@@ -5,7 +5,7 @@ import {
 const defaultMockRoute = { routeId: 'DEFAULT_ROUTE_ID', routeParams: {} }
 
 const auditRouteFn = jest.fn()
-const defaultRouteFn = jest.fn().mockReturnValue(defaultMockRoute)
+const defaultRouteFn = () => defaultMockRoute
 const changeRouteFn = (routeId, routeParams) => ({ routeId, routeParams })
 const changeBrowserHistoryFn = jest.fn()
 const urlFromRouteObjFn = () => '/test/url'
@@ -27,7 +27,7 @@ const dispatchNewRoute = dispatchNewRouteHof(
 const mockRoute = { routeId: 'MOCK_ROUTE_ID', routeParams: {} }
 
 describe('dispatchNewRoute', () => {
-	afterEach(jest.clearAllMocks)
+	afterEach(jest.resetAllMocks)
 
 	test('Dispatch initial route passes auth', () => {
 		isCurrentRouteFn.mockReturnValueOnce(false)

@@ -1,10 +1,10 @@
 import { createStore as reduxCreateStore, applyMiddleware } from 'redux'
 import createSagaMiddleware from 'redux-saga'
-import { call, map } from 'ramda'
+import { call, map, forEach } from 'ramda'
 
 import createReducer from 'sls-aws/src/util/createReducer'
 
-const createStore = (reducerObj, sagas, initialState = {}) => {
+const createStore = (reducerObj, sagas, listeners, initialState = {}) => {
 	const reducer = createReducer(
 		reducerObj,
 		initialState
@@ -18,6 +18,12 @@ const createStore = (reducerObj, sagas, initialState = {}) => {
 	const store = reduxCreateStore(
 		reducer,
 		applyMiddleware(sagaMiddleware)
+	)
+
+	// listeners
+	forEach(
+		listener(store.dispatch, store.getState),
+		listeners
 	)
 	
 	sagaMiddleware.run(rootSaga)
