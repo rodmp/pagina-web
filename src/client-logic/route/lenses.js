@@ -38,3 +38,6 @@ export const routeIdUrlLens = compose(lensPath, prepend([routeUrlKey]))
 // browser history constants
 export const browserHistoryPush = 'push'
 export const browserHistoryReplace = 'replace'
+export const browserHistorylocationStateKey = 'state'
+
+export const locationStateLens = lensProp(browserHistorylocationStateKey)
