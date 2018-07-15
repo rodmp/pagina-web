@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "paths": {
+            "sls-aws/src/*": ["./*"]
+        },
+    },
+    "exclude": [
+        "node_modules",
+        "**/node_modules/*",
+    ],
+}
