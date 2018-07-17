@@ -1,16 +1,18 @@
 import { createStore as reduxCreateStore, applyMiddleware } from 'redux'
 // import createSagaMiddleware from 'redux-saga'
 import thunk from 'redux-thunk'
+import { composeWithDevTools } from 'redux-devtools-extension'
 import { call, map, forEach } from 'ramda'
 
 import createReducer from 'sls-aws/src/util/createReducer'
 
-const createStore = (reducerObj, /*sagas,*/ listeners, initialState = {}) => {
+const createStore = (
+	reducerObj, /*sagas,*/ listeners, initialState = {}, initialThunk
+) => {
 	const reducer = createReducer(
 		reducerObj,
 		initialState
 	)
-	console.log(reducer)
 	// const rootSaga = function* () {
 	// 	yield all(map(call, sagas))
 	// }
@@ -18,18 +20,23 @@ const createStore = (reducerObj, /*sagas,*/ listeners, initialState = {}) => {
 	// const sagaMiddleware = createSagaMiddleware()
 	const store = reduxCreateStore(
 		reducer,
-		window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+		composeWithDevTools(
+			applyMiddleware(thunk),
+		)
+		// window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 		// applyMiddleware(sagaMiddleware)
-		applyMiddleware(thunk)
 	)
-	// sagaMiddleware.run(rootSaga)
+	
+	const { dispatch, getState } = store
 
 	// listeners
 	forEach(
-		listener => listener(store.dispatch, store.getState),
+		listener => listener(dispatch, getState),
 		listeners
 	)
-
+	
+	dispatch(initialThunk())
+	
 	return store
 }
 

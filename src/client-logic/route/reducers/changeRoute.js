@@ -7,7 +7,8 @@ import { routeHistoryLens } from 'sls-aws/src/client-logic/route/lenses'
 export default {
 	[CHANGE_ROUTE]: (state, action) => over(
 		routeHistoryLens,
-		prepend(payloadProp(action)),
+		// prepend(payloadProp(action)),
+		prepend(action),
 		state,
 	)
 }

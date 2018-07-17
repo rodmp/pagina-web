@@ -7,11 +7,12 @@ const createReducer = (reducerObj, initialState) => (
 	state = initialState, action
 ) => Result.try(
 	() => {
-		const { type } = action
+		const { type, payload } = action
+		console.log(state, action, type, payload)
 		if (!has(type, reducerObj)) {
 			throw new Error(`Action ${type} not found`)
 		}
-		reducerObj[action.type](state, action.payload)
+		reducerObj[type](state, payload)
 	}
 ).mapError(reportError).getOrElse(state)
 
