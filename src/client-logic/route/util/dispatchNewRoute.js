@@ -21,12 +21,13 @@ export const dispatchNewRouteHof = (
 	isCurrentRouteFn,
 	dispatchFn,
 	getStateFn,
-) => ({ routeId, routeParams = {} }, isInitial) => {
+) => ({ routeId = 'NONE', routeParams = {} }, isInitial) => {
+	console.log('hello')
 	let nextRouteObj  = { routeId, routeParams }
 	let routeVetoed = false
 	const state = getStateFn()
 	if (!isCurrentRouteFn(nextRouteObj, state)) {
-		if (!auditRouteFn(nextRouteObj)){
+		if (!auditRouteFn(nextRouteObj) || !nextRouteObj){
 			routeVetoed = true
 			nextRouteObj = defaultRouteFn()
 		}
@@ -35,6 +36,7 @@ export const dispatchNewRouteHof = (
 			shouldModifyRoute = !isCurrentRouteFn(nextRouteObj, state)
 		}
 		if (shouldModifyRoute || isInitial) {
+			console.log(nextRouteObj, changeRouteFn(nextRouteObj.routeId, nextRouteObj.routeParams))
 			dispatchFn(
 				changeRouteFn(nextRouteObj.routeId, nextRouteObj.routeParams)
 			)
