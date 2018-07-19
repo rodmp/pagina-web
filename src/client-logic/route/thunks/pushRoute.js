@@ -1,7 +1,7 @@
 import dispatchCommittedRoute from 'sls-aws/src/client-logic/route/util/dispatchCommittedRoute'
 import { browserHistoryPush } from 'sls-aws/src/client-logic/route/lenses'
 
-export const pushInitialRouteHof = (
+export const pushRouteHof = (
 	dispatchCommittedRouteFn,
 ) => (routeId, routeParams) => (dispatch) => dispatchCommittedRouteFn(
 	{ routeId, routeParams },
@@ -9,4 +9,4 @@ export const pushInitialRouteHof = (
 	browserHistoryPush
 )
 
-export default pushInitialRouteHof(dispatchCommittedRoute)
+export default pushRouteHof(dispatchCommittedRoute)
