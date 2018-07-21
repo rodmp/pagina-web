@@ -21,12 +21,20 @@ export default {
 		name: 'aws',
 		runtime: 'nodejs8.10',
 	},
+	plugins: [
+		'serverless-stack-output',
+	],
+	custom: {
+		output: {
+			file: 'slsOutput.json',
+		},
+	},
 	resources: {
 		Resources: {
 			...cognitoResources
-		}
+		},
+		Outputs: {
+			...cognitoOutputs,
+		},
 	},
-	Outputs: {
-		...cognitoOutputs,
-	}
 }
