@@ -1,0 +1,188 @@
+{
+  "service": {
+    "name": "sls-aws-test"
+  },
+  "provider": {
+    "name": "aws",
+    "runtime": "nodejs8.10"
+  },
+  "resources": {
+    "Resources": {
+      "slsAwsDevCognitoAuthRole": {
+        "Type": "AWS::IAM::Role",
+        "DependsOn": [
+          "slsAwsDevIdentityPool"
+        ],
+        "Properties": {
+          "AssumeRolePolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Sid": "",
+                "Effect": "Allow",
+                "Principal": {
+                  "Federated": "cognito-identity.amazonaws.com"
+                },
+                "Action": "sts:AssumeRoleWithWebIdentity",
+                "Condition": {
+                  "StringEquals": {
+                    "cognito-identity.amazonaws.com:aud": {
+                      "Ref": "slsAwsDevIdentityPool"
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "Policies": [
+            {
+              "PolicyName": "cognitoauth",
+              "PolicyDocument": {
+                "Version": "2012-10-17",
+                "Statement": [
+                  {
+                    "Effect": "Allow",
+                    "Action": [
+                      "cognito-sync:*",
+                      "execute-api:*"
+                    ],
+                    "Resource": [
+                      "*"
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "slsAwsDevCognitoUnauthRole": {
+        "Type": "AWS::IAM::Role",
+        "Properties": {
+          "AssumeRolePolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Principal": {
+                  "Federated": "cognito-identity.amazonaws.com"
+                },
+                "Action": [
+                  "sts:AssumeRole"
+                ]
+              }
+            ]
+          },
+          "Policies": [
+            {
+              "PolicyName": "cognitounauth",
+              "PolicyDocument": {
+                "Version": "2012-10-17",
+                "Statement": [
+                  {
+                    "Effect": "Allow",
+                    "Action": [
+                      "cognito-sync:*"
+                    ],
+                    "Resource": [
+                      "*"
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "slsAwsDevIdentityPool": {
+        "Type": "AWS::Cognito::IdentityPool",
+        "Properties": {
+          "IdentityPoolName": "slsAwsDevIdentityPool",
+          "AllowUnauthenticatedIdentities": true,
+          "CognitoIdentityProviders": [
+            {
+              "ClientId": {
+                "Ref": "slsAwsDevUserPoolClient"
+              },
+              "ProviderName": {
+                "Fn::GetAtt": [
+                  "slsAwsDevUserPool",
+                  "ProviderName"
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "slsAwsDevIdentityPoolRoleAttachment": {
+        "DependsOn": [
+          "slsAwsDevIdentityPool",
+          "slsAwsDevCognitoUnauthRole",
+          "slsAwsDevCognitoAuthRole"
+        ],
+        "Type": "AWS::Cognito::IdentityPoolRoleAttachment",
+        "Properties": {
+          "IdentityPoolId": {
+            "Ref": "slsAwsDevIdentityPool"
+          },
+          "Roles": {
+            "authenticated": {
+              "Fn::GetAtt": [
+                "slsAwsDevCognitoAuthRole",
+                "Arn"
+              ]
+            },
+            "unauthenticated": {
+              "Fn::GetAtt": [
+                "slsAwsDevCognitoUnauthRole",
+                "Arn"
+              ]
+            }
+          }
+        }
+      },
+      "slsAwsDevUserPool": {
+        "Type": "AWS::Cognito::UserPool",
+        "Properties": {
+          "AliasAttributes": [
+            "email"
+          ],
+          "EmailVerificationSubject": "Your verification code",
+          "EmailVerificationMessage": "Your verification code is {####}.",
+          "UserPoolName": "slsAwsDevUserPool"
+        }
+      },
+      "slsAwsDevUserPoolClient": {
+        "Type": "AWS::Cognito::UserPoolClient",
+        "Properties": {
+          "ClientName": "slsAwsDevUserPoolClient",
+          "GenerateSecret": false,
+          "RefreshTokenValidity": 365,
+          "UserPoolId": {
+            "Ref": "slsAwsDevUserPool"
+          }
+        }
+      }
+    }
+  },
+  "Outputs": {
+    "USER_POOL": {
+      "Description": "User pool ID",
+      "Value": {
+        "Ref": "slsAwsDevUserPool"
+      }
+    },
+    "IDENTITY_POOL": {
+      "Description": "Identity pool ID",
+      "Value": {
+        "Ref": "slsAwsDevIdentityPool"
+      }
+    },
+    "clientId": {
+      "Description": "Client id for the user pool appclient",
+      "Value": {
+        "Ref": "slsAwsDevUserPoolClient"
+      }
+    }
+  }
+}
