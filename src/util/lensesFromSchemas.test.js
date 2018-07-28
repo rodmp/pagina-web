@@ -1,60 +1,113 @@
 import lensesFromSchema from 'sls-aws/src/util/lensesFromSchemas'
+import { variableSchemaKey } from 'sls-aws/src/util/commonLenses'
+
+
+const testObj = {
+	str: 'str',
+	nestedObj: {
+		nestedStr: 'nestedStr',
+		doubleNestedObj: {
+			doubleNestedStr: 'doubleNestedStr'
+		}
+	},
+	arr: [
+		{ arrStr: 'arrStr' },
+		{ arrStr: 'arrStr2' },
+	],
+	varPathParent: {
+		testVarKey: {
+			varPathStr: 'varPathStr',
+		},
+	},
+}
 
 const testSchema = {
 	type: 'object',
 	properties: {
-		testString: { type: 'string' },
-		testBoolean: { type: 'boolean' },
-		testNestedObject: {
+		str: { type: 'string' },
+		nestedObj: {
 			type: 'object',
 			properties: {
-				testNestedString: { type: 'string' },
-				testNestedBoolean: { type: 'boolean' },
-				testDoubleNestedObject: {
+				nestedStr: { type: 'string' },
+				doubleNestedObj: {
 					type: 'object',
 					properties: {
-						testDoubleNestedString: { type: 'string' },
+						doubleNestedStr: { type: 'string' },
 					}
+				}
+			},
+		},
+		arr: {
+			type: 'array',
+			items: {
+				type: 'object',
+				properties: {
+					arrStr: { type: 'string' }
 				}
 			}
 		},
-		testArray: { type: 'array' }
+		varPathParent: {
+			type: 'object',
+			patternProperties: {
+				[variableSchemaKey]: {
+					type: 'object',
+					properties: {
+						varPathStr: { type: 'varPathStr' }
+					}
+				}
+			},
+		},
 	}
 }
 
+const {
+	viewTestStr,
+	viewTestNestedStr,
+	viewTestNestedObj,
+	viewTestDoubleNestedObj,
+	viewTestDoubleNestedStr,
+	viewTestArr,
+	viewTestArrItem,
+	viewTestArrStr,
+	viewTestVarPathParent,
+	viewTestVarPathParentChild,
+	viewTestVarPathStr,
+} = lensesFromSchema('test', testSchema)
+
 describe('lensesFromSchema', () => {
-	test('works', () => {
-		const lenses = lensesFromSchema(
-			'testNamespace',
-			testSchema
+	test('view top level functions', () => {
+		expect(viewTestStr(testObj)).toEqual('str')
+	})
+	test('nested', () => {
+		expect(viewTestNestedStr(testObj)).toEqual('nestedStr')
+		expect(viewTestNestedObj(testObj)).toEqual({
+			nestedStr: 'nestedStr',
+			doubleNestedObj: { doubleNestedStr: 'doubleNestedStr' },
+		})
+	})
+	test('double nested', () => {
+		expect(viewTestDoubleNestedStr(testObj)).toEqual('doubleNestedStr')
+		expect(viewTestDoubleNestedObj(testObj)).toEqual(
+			{ doubleNestedStr: 'doubleNestedStr' }
 		)
-		expect(
-			lenses.testNamespaceTestString.view(
-				{ testString: 'foo' }
-			)
-		).toEqual('foo')
-		expect(
-			lenses.testNamespaceTestBoolean.view(
-				{ testBoolean: true }
-			)
-		).toEqual(true)
-		expect(
-			lenses.testNamespaceTestArray.view(
-				{ testArray: [1, 2, 3] }
-			)
-		).toEqual([1, 2, 3])
-		expect(
-			lenses.testNamespaceTestNestedString.view(
-				{ testNestedObject: { testNestedString: 'buz' } }
-			)
-		).toEqual('buz')
-		expect(
-			lenses.testNamespaceTestDoubleNestedString.view(
-				{ testNestedObject: {
-					testDoubleNestedObject: { testDoubleNestedString: 'fec' } }
-				}
-			)
-		).toEqual('fec')
+	})
+	test('arrays', () => {
+		expect(viewTestArr(testObj)).toEqual([
+			{ arrStr: 'arrStr' },
+			{ arrStr: 'arrStr2' },
+		])
+		expect(viewTestArrItem(1, testObj)).toEqual({ arrStr: 'arrStr2' })
+		expect(viewTestArrStr(0, testObj)).toEqual('arrStr')
+	})
+	test('var paths', () => {
+		expect(viewTestVarPathParent(testObj)).toEqual({
+			testVarKey: {
+				varPathStr: 'varPathStr'
+			},
+		})
+		expect(viewTestVarPathParentChild('testVarKey', testObj)).toEqual({
+			varPathStr: 'varPathStr'
+		})
+		expect(viewTestVarPathStr('testVarKey', testObj)).toEqual('varPathStr')
 	})
 })
-
