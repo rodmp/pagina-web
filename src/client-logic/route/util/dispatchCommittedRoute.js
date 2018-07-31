@@ -9,7 +9,7 @@ import {
 	browserHistoryPush, browserHistoryReplace,
 } from 'sls-aws/src/client-logic/route/lenses'
 
-export const dispatchNewRouteHof = (
+export const dispatchCommittedRouteHof = (
 	changeRouteFn,
 	changeBrowserHistoryFn,
 	urlFromRouteObjFn,
@@ -26,7 +26,7 @@ export const dispatchNewRouteHof = (
 	return Promise.resolve(nextRouteObj)
 }
 
-export default dispatchNewRouteHof(
+export default dispatchCommittedRouteHof(
 	changeRoute,
 	changeBrowserHistory,
 	urlFromRouteObj,

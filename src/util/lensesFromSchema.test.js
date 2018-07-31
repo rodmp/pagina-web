@@ -1,4 +1,4 @@
-import lensesFromSchema from 'sls-aws/src/util/lensesFromSchemas'
+import lensesFromSchema from 'sls-aws/src/util/lensesFromSchema'
 import { variableSchemaKey } from 'sls-aws/src/util/commonLenses'
 
 
@@ -72,7 +72,10 @@ const {
 	viewTestVarPathParent,
 	viewTestVarPathParentChild,
 	viewTestVarPathStr,
-} = lensesFromSchema('test', testSchema)
+} = lensesFromSchema(
+	testSchema,
+	{ renames: { somePath: 'test' }, prefix: 'test' }
+)
 
 describe('lensesFromSchema', () => {
 	test('view top level functions', () => {
