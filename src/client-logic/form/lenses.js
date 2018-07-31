@@ -1,70 +1,55 @@
-import {
-	lensPath, lensProp, compose, insert, __, unapply, identity, flatten,
-} from 'ramda'
+import { view, lensProp } from 'ramda'
 
-// {
-// 	form: {
-// 		formKey: {
-// 			routeHash: {
-// 				formData: {
-// 					formSubmitted: Boolean
-// 				},
-// 				formInputs: {
-// 					fieldKey: value,
-// 				},
-// 				fieldData: {
-// 					dirty: Boolean,
-// 					valid: Boolean,
-// 					error: Boolean,
-// 				}
-// 			},
-// 		},
-// 	},
-// }
+import lensesFromSchema from 'sls-aws/src/util/lensesFromSchema'
 
-export const namespaceKey = 'form'
+import { variableSchemaKey } from 'sls-aws/src/util/commonLenses'
 
-export const formDataKey = 'formData'
-export const formSubmittedKey = 'formSubmitted'
+const formSchema = {
+	type: 'object',
+	properties: {
+		form: {
+			type: 'object',
+			patternProperties: {
+				[variableSchemaKey]: {
+					type: 'object',
+					properties: {
+						formData: {
+							type: 'object',
+							properties: {
+								formSubmitting: { type: 'boolean' },
+								formSubmitted: { type: 'boolean' }
+							}
+						},
+						formInputs: {
+							type: 'object',
+							patternProperties: {
+								[variableSchemaKey]: { type: 'object' }
+							}
+						},
+						fieldData: {
+							type: 'object',
+							patternProperties: {
+								[variableSchemaKey]: {
+									type: 'object',
+									properties: {
+										dirty: { type: 'boolean' },
+										valid: { type: 'boolean' },
+										error: { type: 'boolean' },
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
 
-export const formInputKey = 'formInput'
+export const formStoreLenses = lensesFromSchema(formSchema)
 
-export const fieldDataKey = 'fieldData'
-export const dirtyKey = 'dirty'
-export const validKey = 'valid'
-export const errorKey = 'error'
+// action payload lenses
+export const viewPayloadFormHash = view(lensProp('formHash'))
 
-export const formSubmittedLens = compose(
-	lensPath,
-	flatten,
-	insert(1, __, [namespaceKey, formDataKey, formSubmittedKey]),
-	unapply(identity)
-)
-
-export const formInputLens = compose(
-	lensPath,
-	flatten,
-	insert(1, __, [namespaceKey, formInputKey]),
-	unapply(identity)
-)
-
-export const fieldDirtyLens = compose(
-	lensPath,
-	flatten,
-	insert(1, __, [namespaceKey, fieldDataKey, dirtyKey]),
-	unapply(identity)
-)
-
-export const fieldValidLens = compose(
-	lensPath,
-	flatten,
-	insert(1, __, [namespaceKey, fieldDataKey, validKey]),
-	unapply(identity)
-)
-
-export const fieldErrorLens = compose(
-	lensPath,
-	flatten,
-	insert(1, __, [namespaceKey, fieldDataKey, errorKey]),
-	unapply(identity)
-)
+export const viewPayloadInputId = view(lensProp('inputId'))
+export const viewPayloadInputValue = view(lensProp('inputValue'))
