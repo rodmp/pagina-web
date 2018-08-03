@@ -1,4 +1,7 @@
 import { lensPath, lensProp, compose, prepend, __ } from 'ramda'
+import lensesFromSchema from 'sls-aws/src/util/lensesFromSchema'
+import { variableSchemaKey } from 'sls-aws/src/util/commonLenses'
+
 
 export const namespaceKey = 'route'
 export const historyKey = 'history'
@@ -41,3 +44,62 @@ export const browserHistoryReplace = 'replace'
 export const browserHistorylocationStateKey = 'state'
 
 export const locationStateLens = lensProp(browserHistorylocationStateKey)
+
+export const routeStoreLenses = lensesFromSchema({
+	type: 'object',
+	properties: {
+		route: {
+			type: 'object',
+			properties: {
+				history: {
+					type: 'array',
+					items: {
+						type: 'object',
+						properties: {
+							routeId: { type: 'string' },
+							params: {
+								type: 'object',
+								patternProperties: {
+									[variableSchemaKey]: {
+										type: 'object',
+										properties: {}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+})
+
+export const routeDescriptionLenses = lensesFromSchema({
+	type: 'object',
+	patternProperties: {
+		[variableSchemaKey]: {
+			type: 'object',
+			properties: {
+				url: { type: 'string' },
+				title: { type: 'string' },
+				authentication: { type: 'string' },
+				modules: {
+					type: 'array',
+					items: { type: 'string' }
+				}
+			}
+		}
+	}
+})
+
+export const moduleDescriptionLenses = lensesFromSchema({
+	type: 'object',
+	patternProperties: {
+		[variableSchemaKey]: {
+			type: 'object',
+			properties: {
+				type: { type: 'string' },
+			}
+		}
+	}
+})

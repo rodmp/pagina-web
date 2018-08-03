@@ -1,8 +1,21 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const env = process.env.ENVIRONMENT || 'development'
+// const appConstants = require('./src/constants/app')
+const colorConstants = require('./src/constants/color')
+const logoConstant = require('./src/constants/logo')
+// const slsConstants = require('./slsOutput.json')
+
+// const env = slsConstants.env || 'dev'
+const env = 'development'
 const isProd = env === 'production'
+const envVars = Object.assign(
+	{ __sha__: process.env.CIRCLE_SHA1 || 'dev' },
+	colorConstants,
+	logoConstant,
+	// appConstants,
+	// _.mapKeys(slsConstants, (v, k) => `__${_.toUpper(_.snakeCase(k))}__`)
+)
 
 module.exports = {
 	mode: env,
@@ -23,24 +36,9 @@ module.exports = {
 					loader: 'babel-loader',
 					options: {
 						presets: ['env', 'stage-0', 'react'],
-        				// plugins: ['package-name-import']
-						// presets: [
-						// 	['env', { loose: true, modules: false }],
-						// 	'stage-0',
-						// 	'react',
-						// ],
 						plugins: ['package-name-import'],
 					},
 				}
-				// loader: 'babel-loader',
-				// query: {
-				// 	presets: [
-				// 		['env', { loose: true, modules: false }],
-				// 		'stage-0',
-				// 		'react',
-				// 	],
-				// 	plugins: ['package-name-import'],
-				// },
 			},
 			{
 				test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot|css)$/,
@@ -52,7 +50,7 @@ module.exports = {
 		],
 	},
 	plugins: [
-		new HtmlWebpackPlugin({
+		new HtmlWebpackPlugin(Object.assign({
 			template: path.resolve(__dirname, 'src/client-web/app.html'),
 			hash: isProd,
 			// inject: 'body',
@@ -61,6 +59,12 @@ module.exports = {
 			// 	removeRedundantAttributes: true,
 			// 	useShortDoctype: true,
 			// },
-		})
+		}, envVars)),
+		// new webpack.DefinePlugin(
+		// 	_.reduce(envVars, (result, v, k) => {
+		// 		result[k] = JSON.stringify(v)
+		// 		return result
+		// 	}, {})
+		// )
 	],
 }

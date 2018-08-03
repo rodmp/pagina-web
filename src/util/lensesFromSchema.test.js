@@ -1,7 +1,6 @@
 import lensesFromSchema from 'sls-aws/src/util/lensesFromSchema'
 import { variableSchemaKey } from 'sls-aws/src/util/commonLenses'
 
-
 const testObj = {
 	str: 'str',
 	nestedObj: {

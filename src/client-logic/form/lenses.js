@@ -17,7 +17,8 @@ const formSchema = {
 							type: 'object',
 							properties: {
 								formSubmitting: { type: 'boolean' },
-								formSubmitted: { type: 'boolean' }
+								formSubmitted: { type: 'boolean' },
+								errors: { type: 'object' },
 							}
 						},
 						formInputs: {
@@ -34,7 +35,6 @@ const formSchema = {
 									properties: {
 										dirty: { type: 'boolean' },
 										valid: { type: 'boolean' },
-										error: { type: 'boolean' },
 									}
 								}
 							}
@@ -53,3 +53,5 @@ export const viewPayloadFormHash = view(lensProp('formHash'))
 
 export const viewPayloadInputId = view(lensProp('inputId'))
 export const viewPayloadInputValue = view(lensProp('inputValue'))
+
+export const viewPayloadErrorObj = view(lensProp('errorObj'))

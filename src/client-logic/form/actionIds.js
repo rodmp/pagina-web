@@ -1,3 +1,5 @@
-export const FORM_SUBMITTING = 'actionId/FORM_SUBMITTING'
+export const SUBMIT_FORM = 'actionId/SUBMIT_FORM'
 export const CLEAR_FORM = 'actionId/CLEAR_FORM'
 export const CHANGE_INPUT = 'actionId/CHANGE_INPUT'
+export const SET_FORM_ERRORS = 'actionId/SET_FORM_ERRORS'
+export const CLEAR_FORM_ERRORS = 'actionId/CLEAR_FORM_ERRORS'
