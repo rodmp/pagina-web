@@ -1,72 +1,76 @@
-import R, {
-	concat, toPairs, prop, reduce, assoc, merge, mapObjIndexed, prepend, cond,
-	always, equals, T, lensPath, map, set, view, identity, replace, toUpper, into,
-	compose, addIndex, filter, pipe, head, pair, either, nth, times, length, has,
-	mergeAll, path, ifElse, propOr, append, unapply, last, union, curryN, add,
-	insert, subtract, over, pathEq, pathOr, takeLast, without
+import {
+	__, concat, toPairs, prop, reduce, equals, lensPath, map, set, view,
+	compose, either, length, mergeAll, propOr, append, unapply, last, curryN,
+	add, subtract, over, pathEq, pathOr, without, dissocPath, not, head, tail,
+	pathSatisfies, when, curry,
 } from 'ramda'
 import { variableSchemaKey } from 'sls-aws/src/util/commonLenses'
 import { capitalize } from 'sls-aws/src/util/stringCase'
 
 const argSubstitute = '__'
 
-const createEachLensType = (baseLensFnKey, schemaPath) => ({
-	[concat('view', baseLensFnKey)]: view(lensPath(schemaPath)),
-	[concat('set', baseLensFnKey)]: set(lensPath(schemaPath)),
-	[concat('over', baseLensFnKey)]: over(lensPath(schemaPath)),
-	[concat('pathEq', baseLensFnKey)]: pathEq(schemaPath),
-	[concat('pathOr', baseLensFnKey)]: pathOr(schemaPath),
-})
+// Change argument order for some ramda fns
+const pathSatisfiesArranged = curry((pathArr, fn, obj) => pathSatisfies(
+	fn, pathArr, obj
+))
+const pathOrArranged = curry((pathArr, fn, obj) => pathOr(fn, pathArr, obj))
 
 const insertArgsIntoPath = (schemaPath, args) => {
-	let argIndexCount = 0
-	return map((pathValue) => {
-		if (equals(pathValue, argSubstitute)) {
-			const res = args[argIndexCount]
-			argIndexCount = add(argIndexCount, 1)
-			return res
-		}
-		return pathValue
-	}, schemaPath)
+	let remainingArgs = args
+	return [map(when(equals(argSubstitute), () => {
+		const res = head(remainingArgs)
+		remainingArgs = tail(remainingArgs)
+		return res
+	}), schemaPath), remainingArgs]
 }
 
-const insertedArgFn = (fn, schemaPath, otherArgCount, lens) => curryN(
-	add(
-		subtract(length(schemaPath), length(without(argSubstitute, schemaPath))),
-		otherArgCount
-	),
-	unapply((args) => {
-		const insertedArgs = insertArgsIntoPath(schemaPath, args)
-		return fn(
-			(lens ? lensPath(insertedArgs) : insertedArgs),
-			...takeLast(otherArgCount, args)
-		)
-	})
-)
+const pathOrLensPath = (path, lens) => (lens ? lensPath(path) : path)
+
+const insertedArgFn = (fn, schemaPath, additionalArgCount, lens) => {
+	const varPathCount = subtract(
+		length(schemaPath),
+		length(without(argSubstitute, schemaPath))
+	)
+	if (equals(varPathCount, 0)) {
+		return fn(pathOrLensPath(schemaPath, lens))
+	}
+	return curryN(
+		add(varPathCount, additionalArgCount),
+		unapply((args) => {
+			const [insertedArgs, remainingArgs] = insertArgsIntoPath(
+				schemaPath, args
+			)
+			return fn(
+				pathOrLensPath(insertedArgs, lens),
+				...remainingArgs
+			)
+		})
+	)
+}
 
 const createEachLensTypeWithInserts = (baseLensFnKey, schemaPath) => ({
 	[concat('view', baseLensFnKey)]: insertedArgFn(view, schemaPath, 1, true),
+	[concat('dissocPath', baseLensFnKey)]: insertedArgFn(
+		dissocPath, schemaPath, 1
+	),
 	[concat('set', baseLensFnKey)]: insertedArgFn(set, schemaPath, 2, true),
 	[concat('over', baseLensFnKey)]: insertedArgFn(over, schemaPath, 2, true),
-	[concat('pathEq', baseLensFnKey)]: insertedArgFn(pathEq, schemaPath, 1),
-	[concat('pathOr', baseLensFnKey)]: insertedArgFn(pathOr, schemaPath, 1),
+	[concat('pathEq', baseLensFnKey)]: insertedArgFn(pathEq, schemaPath, 2),
+	[concat('pathOr', baseLensFnKey)]: insertedArgFn(
+		pathOrArranged, schemaPath, 1
+	),
+	[concat('pathSatisfies', baseLensFnKey)]: insertedArgFn(
+		pathSatisfiesArranged, schemaPath, 2
+	)
 })
 
 const functionNamer = (schemaKey, renames = {}, prefix = '') => concat(
 	capitalize(prefix),
-	capitalize(
-		propOr(schemaKey, schemaKey, renames)
-	)
+	capitalize(propOr(schemaKey, schemaKey, renames))
 )
 
-const createSchemaLenses = createEachLensTypeFn => (
-	schema, options = {}, parentPath = []
-) => {
-	const createdNestedSchemaLenses = createSchemaLenses(createEachLensTypeFn)
-	const createdNestedSchemaLensesInserts = createSchemaLenses(
-		createEachLensTypeWithInserts
-	)
-	return reduce((result, [schemaKey, property]) => {
+const createSchemaLenses = (schema, options = {}, parentPath = []) => reduce(
+	(result, [schemaKey, property]) => {
 		const { prefix, renames } = options
 		const schemaPath = append(schemaKey, parentPath)
 		const baseLensFnKey = functionNamer(schemaKey, renames, prefix)
@@ -75,18 +79,19 @@ const createSchemaLenses = createEachLensTypeFn => (
 		if (equals('object', propertyType)) {
 			if (equals(variableSchemaKey, schemaKey)) {
 				const variableSchemaPath = [...parentPath, argSubstitute]
-				extras = [
+				const prevSchemaKey = last(parentPath)
+				const childLenses = prevSchemaKey ?
 					createEachLensTypeWithInserts(
-						`${functionNamer(last(parentPath), renames, prefix)}Child`,
+						`${functionNamer(prevSchemaKey, renames, prefix)}Child`,
 						variableSchemaPath
-					),
-					createdNestedSchemaLenses(
-						property, options, variableSchemaPath
-					)
+					) : {}
+				extras = [
+					childLenses,
+					createSchemaLenses(property, options, variableSchemaPath)
 				]
 			} else {
 				extras = [
-					createdNestedSchemaLenses(property, options, schemaPath)
+					createSchemaLenses(property, options, schemaPath)
 				]
 			}
 		}
@@ -97,13 +102,13 @@ const createSchemaLenses = createEachLensTypeFn => (
 					`${baseLensFnKey}Item`,
 					variableSchemaPath
 				),
-				createdNestedSchemaLensesInserts(
-					property.items, options, variableSchemaPath
-				)
+				createSchemaLenses(property.items, options, variableSchemaPath)
 			]
 		}
+		const schemaEndpoints = not(equals(variableSchemaKey, schemaKey)) ?
+			createEachLensTypeWithInserts(baseLensFnKey, schemaPath) : {}
 		return mergeAll([
-			createEachLensTypeWithInserts(baseLensFnKey, schemaPath),
+			schemaEndpoints,
 			...extras,
 			result,
 		])
@@ -115,7 +120,7 @@ const createSchemaLenses = createEachLensTypeFn => (
 			prop('properties'),
 			prop('patternProperties'),
 		)
-	)(schema))
-}
+	)(schema)
+)
 
-export default createSchemaLenses(createEachLensType)
+export default createSchemaLenses

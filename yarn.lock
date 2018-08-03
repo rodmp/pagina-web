@@ -6405,6 +6405,10 @@ react-lifecycles-compat@^3.0.2:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
 
+react-material-layout@^1.1.7:
+  version "1.1.7"
+  resolved "https://registry.yarnpkg.com/react-material-layout/-/react-material-layout-1.1.7.tgz#13eec537a73694f2c202e5b2383422447f5d9bac"
+
 react-popper@^0.10.0:
   version "0.10.4"
   resolved "https://registry.yarnpkg.com/react-popper/-/react-popper-0.10.4.tgz#af2a415ea22291edd504678d7afda8a6ee3295aa"

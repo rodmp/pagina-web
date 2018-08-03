@@ -4,9 +4,7 @@ import { FORM_SUBMITTING } from 'sls-aws/src/client-logic/form/actionIds'
 const mockState = {}
 
 const mockAction = {
-	// payload: {
 	formHash: 'test',
-	// },
 }
 
 describe('formSubmitting', () => {

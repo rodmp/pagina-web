@@ -1,0 +1,1 @@
+export const LOGIN_FORM_MODULE_ID = 'LOGIN_FORM_MODULE_ID'
