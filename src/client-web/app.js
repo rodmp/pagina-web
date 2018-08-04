@@ -6,14 +6,13 @@ import { Provider } from 'react-redux'
 import 'react-material-layout/dist/react-material-class-layout.min.css'
 import 'sls-aws/src/client-web/app.css'
 
-// import RouteRender from 'sls-aws/src/client-web/base/RouteRender'
+import RouteRender from 'sls-aws/src/client-web/base/RouteRender'
 
 import webStore from 'sls-aws/src/client-logic/web'
 
 render(
 	<Provider store={webStore}>
-		{/* <RouteRender /> */}
-		<div>Hello world</div>
+		<RouteRender />
 	</Provider>,
 	document.getElementById('app')
 )
