@@ -5,5 +5,8 @@ import {
 export default {
 	[DASHBOARD_ROUTE_ID]: {
 		url: '/dashboard',
+		modules: [
+			'DASHBOARD'
+		]
 	}
 }

@@ -6,7 +6,7 @@ import {
 	routeIdToPathLens,
 } from 'sls-aws/src/client-logic/route/lenses'
 
-export const urlFromRouteObjHof = allRoutes => {
+export const urlFromRouteObjHof = (allRoutes) => {
 	const routeRegexes = createRouteUrlRegexes(allRoutes)
 	return ({ routeId, routeParams }) => view(
 		routeIdToPathLens(routeId),
