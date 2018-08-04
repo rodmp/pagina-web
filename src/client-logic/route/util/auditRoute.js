@@ -1,6 +1,6 @@
 import { path, equals } from 'ramda'
 
-import routes from 'sls-aws/src/client-logic/route/constants/routes/auth'
+import routes from 'sls-aws/src/descriptions/routes/auth'
 import isAuthenticated from 'sls-aws/src/client-logic/auth/selectors/isAuthenticated'
 import {
 	authKey, authValue, unAuthValue,

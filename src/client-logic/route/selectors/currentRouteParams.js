@@ -1,6 +1,7 @@
-import { compose, prop } from 'ramda'
+import {
+	currentRouteIndex, routeStoreLenses
+} from 'sls-aws/src/client-logic/route/lenses'
 
-import { routeParamsKey } from 'sls-aws/src/client-logic/route/lenses'
-import currentRoute from 'sls-aws/src/client-logic/route/selectors/currentRoute'
+const { viewRouteParams } = routeStoreLenses
 
-export default compose(prop(routeParamsKey), currentRoute)
+export default viewRouteParams(currentRouteIndex)
