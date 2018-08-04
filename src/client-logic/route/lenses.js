@@ -3,24 +3,7 @@ import lensesFromSchema from 'sls-aws/src/util/lensesFromSchema'
 import { variableSchemaKey } from 'sls-aws/src/util/commonLenses'
 
 
-export const namespaceKey = 'route'
-export const historyKey = 'history'
-export const routeIdKey = 'routeId'
-export const routeParamsKey = 'routeParams'
-
-export const authKey = 'auth'
-export const authValue = 'authenticated'
-export const unAuthValue = 'unauthenticated'
-
-export const routeHistoryPath = [namespaceKey, historyKey]
-
-export const routeHistoryLens = lensPath(
-	routeHistoryPath
-)
-
-export const currentRouteLens = lensPath(
-	[...routeHistoryPath, 0]
-)
+export const currentRouteIndex = 0
 
 // path regexes
 export const regexKey = 'regex'
@@ -57,7 +40,7 @@ export const routeStoreLenses = lensesFromSchema({
 						type: 'object',
 						properties: {
 							routeId: { type: 'string' },
-							params: {
+							routeParams: {
 								type: 'object',
 								patternProperties: {
 									[variableSchemaKey]: {
@@ -98,7 +81,7 @@ export const moduleDescriptionLenses = lensesFromSchema({
 		[variableSchemaKey]: {
 			type: 'object',
 			properties: {
-				type: { type: 'string' },
+				moduleType: { type: 'string' },
 			}
 		}
 	}
