@@ -6,7 +6,7 @@ import loginSchema from 'sls-aws/src/descriptions/formSchemas/loginSchema'
 
 export default {
 	[LOGIN_FORM_MODULE_ID]: {
-		type: 'form',
+		moduleType: 'form',
 		schema: loginSchema,
 		fields: [
 			{ fieldId: 'email', inputType: 'text', textType: 'email' },
