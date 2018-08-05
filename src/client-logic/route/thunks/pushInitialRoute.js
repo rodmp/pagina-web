@@ -28,4 +28,3 @@ export default pushInitialRouteHof(
 	defaultRoute,
 	dispatchCommittedRoute
 )
-
