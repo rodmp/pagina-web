@@ -1,9 +1,10 @@
 import dashboard from 'sls-aws/src/descriptions/routes/dashboard'
 import auth from 'sls-aws/src/descriptions/routes/auth'
-
-const allRoutes = {
+console.log({
+	...dashboard,
+	...auth,
+})
+export default {
 	...dashboard,
 	...auth,
 }
-
-export default allRoutes

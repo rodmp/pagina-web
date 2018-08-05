@@ -1,10 +1,8 @@
 import dashboard from 'sls-aws/src/descriptions/routes/dashboard'
-import auth from 'sls-aws/src/descriptions/routes/auth'
+import loginForm from 'sls-aws/src/descriptions/modules/loginForm'
 
 const allModules = {
-	DASHBOARD: {
-		moduleType: 'test'
-	}
+	...loginForm
 }
 
 export default allModules
