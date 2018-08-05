@@ -1,11 +1,14 @@
 import React from 'react'
-import reduxConnector from 'sls-aws/src/util/reduxConnector'
 
-import currentRouteModuleTypes from 'sls-aws/src/client-logic/route/selectors/currentRouteModuleTypes'
+import routeRenderConnector from 'sls-aws/src/constants/connectors/routeRenderConnector'
 
-const RenderModules = ({ moduleTypes }) => (
+import FormModule from 'sls-aws/src/client-web/form/FormModule'
+
+export const RenderModules = ({ moduleTypes }) => (
 	moduleTypes.map(([moduleId, moduleType]) => {
 		switch (moduleType) {
+			case 'form':
+				return <FormModule key={moduleId} moduleId={moduleId} />
 			default:
 				return (
 					<div
@@ -20,7 +23,7 @@ const RenderModules = ({ moduleTypes }) => (
 	})
 )
 
-const RouteRender = ({ currentRouteModuleTypes }) => (
+export const RouteRender = ({ currentRouteModuleTypes }) => (
 	<div>
 		{/* <div className={this.props.classes.fullWidth}> */}
 		{/* <div>{this.props.currentRoutePageTitle}</div> */}
@@ -30,8 +33,4 @@ const RouteRender = ({ currentRouteModuleTypes }) => (
 	</div>
 )
 
-export { RouteRender }
-export default reduxConnector(
-	RouteRender,
-	[['currentRouteModuleTypes', currentRouteModuleTypes]]
-)
+export default routeRenderConnector(RouteRender)

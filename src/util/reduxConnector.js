@@ -2,7 +2,7 @@ import { reduce, assoc } from 'ramda'
 import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
 
-export default (component, selectors = [], actions = [], styles) => {
+export default (selectors = [], actions = [], styles) => (component) => {
 	const styledComponent = styles ? withStyles(styles, component) : component
 	return connect(
 		(state, props) => reduce((results, [functionName, fn]) => assoc(
