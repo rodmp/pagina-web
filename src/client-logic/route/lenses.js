@@ -5,6 +5,9 @@ import { variableSchemaKey } from 'sls-aws/src/util/commonLenses'
 
 export const currentRouteIndex = 0
 
+export const routeIdKey = 'routeId'
+export const routeParamsKey = 'routeParams'
+
 // path regexes
 export const regexKey = 'regex'
 export const regexKeysKey = 'regexKeys'
