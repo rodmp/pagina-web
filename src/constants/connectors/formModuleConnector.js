@@ -1,5 +1,5 @@
 import reduxConnector from 'sls-aws/src/util/reduxConnector'
 
-reduxConnector(
-	[['currentRouteModuleTypes', currentRouteModuleTypes]]
+export default reduxConnector(
+	// [['currentRouteModuleTypes', currentRouteModuleTypes]]
 )
