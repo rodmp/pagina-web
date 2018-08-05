@@ -8,6 +8,10 @@ export const currentRouteIndex = 0
 export const routeIdKey = 'routeId'
 export const routeParamsKey = 'routeParams'
 
+export const authKey = 'authentication'
+export const authValue = 'authenticated'
+export const unAuthValue = 'notAuthenticated'
+
 // path regexes
 export const regexKey = 'regex'
 export const regexKeysKey = 'regexKeys'

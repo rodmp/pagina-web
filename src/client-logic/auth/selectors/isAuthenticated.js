@@ -1,3 +1,3 @@
-import { T } from 'ramda'
+import { F } from 'ramda'
 
-export default T
+export default F
