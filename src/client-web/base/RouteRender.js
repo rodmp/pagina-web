@@ -1,6 +1,6 @@
 import React from 'react'
 
-import routeRenderConnector from 'sls-aws/src/constants/connectors/routeRenderConnector'
+import routeRenderConnector from 'sls-aws/src/client-logic/route/connectors/routeRenderConnector'
 
 import FormModule from 'sls-aws/src/client-web/form/FormModule'
 
