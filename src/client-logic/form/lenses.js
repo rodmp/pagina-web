@@ -48,6 +48,41 @@ const formSchema = {
 
 export const formStoreLenses = lensesFromSchema(formSchema)
 
+export const formModuleSchema = {
+	type: 'object',
+	patternProperties: {
+		[variableSchemaKey]: {
+			type: 'object',
+			properties: {
+				schema: {
+					type: 'object',
+					properties: {},
+				},
+				fields: {
+					type: 'array',
+					items: {
+						type: 'object',
+						properties: {
+							fieldId: { type: 'string' },
+							inputType: { type: 'string' },
+							textType: { type: 'string' },
+						},
+					},
+				},
+				submits: {
+					type: 'array',
+					items: {
+						type: 'object',
+						properties: {
+						}
+					},
+				},
+			},
+		}
+	}
+}
+export const formModuleLenses = lensesFromSchema(formModuleSchema)
+
 // action payload lenses
 export const viewPayloadFormHash = view(lensProp('formHash'))
 
