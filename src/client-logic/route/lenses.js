@@ -1,4 +1,4 @@
-import { lensPath, lensProp, compose, prepend, __ } from 'ramda'
+import { lensPath, lensProp, compose, prepend, __, prop } from 'ramda'
 import lensesFromSchema from 'sls-aws/src/util/lensesFromSchema'
 import { variableSchemaKey } from 'sls-aws/src/util/commonLenses'
 
@@ -81,6 +81,8 @@ export const routeDescriptionLenses = lensesFromSchema({
 		}
 	}
 })
+
+export const moduleIdProp = prop('moduleId')
 
 export const moduleDescriptionLenses = lensesFromSchema({
 	type: 'object',
