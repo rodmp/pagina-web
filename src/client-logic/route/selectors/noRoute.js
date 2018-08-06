@@ -1,5 +1,7 @@
-import { pathSatisfies, isNil, isEmpty, or } from 'ramda'
+import { isNil, isEmpty, or } from 'ramda'
 
-import { routeHistoryPath } from 'sls-aws/src/client-logic/route/lenses'
+import { routeStoreLenses } from 'sls-aws/src/client-logic/route/lenses'
 
-export default pathSatisfies(or(isNil, isEmpty), routeHistoryPath)
+const { pathSatisfiesHistory } = routeStoreLenses
+
+export default pathSatisfiesHistory(or(isNil, isEmpty))

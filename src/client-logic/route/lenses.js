@@ -83,6 +83,7 @@ export const routeDescriptionLenses = lensesFromSchema({
 })
 
 export const moduleIdProp = prop('moduleId')
+export const moduleIndexProp = prop('moduleIndex')
 
 export const moduleDescriptionLenses = lensesFromSchema({
 	type: 'object',
