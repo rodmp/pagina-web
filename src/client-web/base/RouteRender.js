@@ -5,10 +5,16 @@ import routeRenderConnector from 'sls-aws/src/client-logic/route/connectors/rout
 import FormModule from 'sls-aws/src/client-web/form/FormModule'
 
 export const RenderModules = ({ moduleTypes }) => (
-	moduleTypes.map(([moduleId, moduleType]) => {
+	moduleTypes.map(([moduleId, moduleType, moduleIndex]) => {
 		switch (moduleType) {
 			case 'form':
-				return <FormModule key={moduleId} moduleId={moduleId} />
+				return (
+					<FormModule
+						key={moduleId}
+						moduleId={moduleId}
+						moduleIndex={moduleIndex}
+					/>
+				)
 			default:
 				return (
 					<div
@@ -25,8 +31,6 @@ export const RenderModules = ({ moduleTypes }) => (
 
 export const RouteRender = ({ currentRouteModuleTypes }) => (
 	<div>
-		{/* <div className={this.props.classes.fullWidth}> */}
-		{/* <div>{this.props.currentRoutePageTitle}</div> */}
 		<div className="layout-column layout-align-center-stretch">
 			<RenderModules moduleTypes={currentRouteModuleTypes} />
 		</div>
