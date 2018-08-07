@@ -66,6 +66,7 @@ export const formModuleSchema = {
 							fieldId: { type: 'string' },
 							inputType: { type: 'string' },
 							textType: { type: 'string' },
+							label: { type: 'string' },
 						},
 					},
 				},

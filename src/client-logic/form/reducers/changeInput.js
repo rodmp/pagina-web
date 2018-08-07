@@ -1,21 +1,17 @@
 import { CHANGE_INPUT } from 'sls-aws/src/client-logic/form/actionIds'
 import {
-	formStoreLenses, viewPayloadInputId, viewPayloadInputValue,
-	viewPayloadFormHash,
+	formStoreLenses,
 } from 'sls-aws/src/client-logic/form/lenses'
 
 const { setFormInputsChild, setDirty } = formStoreLenses
 
 export default {
-	[CHANGE_INPUT]: (state, actionPayload) => {
-		const formHash = viewPayloadFormHash(actionPayload)
-		const inputId = viewPayloadInputId(actionPayload)
-		const inputValue = viewPayloadInputValue(actionPayload)
+	[CHANGE_INPUT]: (state, { moduleKey, fieldId, value }) => {
 		return setFormInputsChild(
-			formHash,
-			inputId,
-			inputValue,
-			setDirty(formHash, inputId, true, state)
+			moduleKey,
+			fieldId,
+			value,
+			setDirty(moduleKey, fieldId, true, state)
 		)
 	}
 }

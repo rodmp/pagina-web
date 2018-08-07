@@ -4,6 +4,7 @@ import initApp from 'sls-aws/src/client-logic/app/thunks/initApp'
 
 // reducers
 import changeRoute from 'sls-aws/src/client-logic/route/reducers/changeRoute'
+import changeInput from 'sls-aws/src/client-logic/form/reducers/changeInput'
 
 // listeners
 import popStateListener from 'sls-aws/src/client-logic/route/listeners/popStateListener'
@@ -11,6 +12,7 @@ import popStateListener from 'sls-aws/src/client-logic/route/listeners/popStateL
 const store = createStore(
 	{
 		...changeRoute,
+		...changeInput,
 	}, // reducer object
 	// [], // sagas
 	[

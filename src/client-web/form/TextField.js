@@ -4,18 +4,20 @@ import TextField from '@material-ui/core/TextField'
 
 import fieldInputConnector from 'sls-aws/src/client-logic/form/connectors/fieldInputConnector'
 
-const handleOnChange = (formHash, inputId, action) => (e) => {
+const handleOnChange = (moduleKey, fieldId, action) => (e) => {
 	e.preventDefault()
-	action(formHash, inputId, e.target.value)
+	action(moduleKey, fieldId, e.target.value)
 }
 
-export const InputField = ({ moduleKey, moduleId, fieldIndex, setInput }) => (
+export const InputField = (
+	{ moduleKey, fieldId, setInput, fieldValue, fieldLabel }
+) => (
 	<TextField
-		id="name"
-		label="test"
+		id={fieldId}
+		label={fieldLabel}
 		fullWidth
-		value={moduleKey}
-		onChange={handleOnChange(moduleId, fieldIndex, setInput)}
+		value={fieldValue}
+		onChange={handleOnChange(moduleKey, fieldId, setInput)}
 	/>
 )
 
