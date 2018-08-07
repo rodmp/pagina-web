@@ -9,8 +9,18 @@ export default {
 		moduleType: 'form',
 		schema: loginSchema,
 		fields: [
-			{ fieldId: 'email', inputType: 'text', textType: 'email' },
-			{ fieldId: 'password', inputType: 'text', textType: 'password' },
+			{
+				fieldId: 'email',
+				inputType: 'text',
+				textType: 'email',
+				label: 'Email'
+			},
+			{
+				fieldId: 'password',
+				inputType: 'text',
+				textType: 'password',
+				label: 'Password'
+			},
 		],
 		submits: [
 			// { label: 'Login', action: cognitoLogin(LOGIN_FORM_MODULE_ID) },

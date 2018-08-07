@@ -4,13 +4,14 @@ import TextField from 'sls-aws/src/client-web/form/TextField'
 import formModuleConnector from 'sls-aws/src/client-logic/form/connectors/formModuleConnector'
 
 export const RenderInputs = ({ formFieldTypes, moduleKey }) => (
-	formFieldTypes.map(([fieldId, inputType]) => {
+	formFieldTypes.map(([fieldId, fieldIndex, inputType]) => {
 		switch (inputType) {
 			case 'text':
 				return (
 					<TextField
 						key={fieldId}
 						fieldId={fieldId}
+						fieldIndex={fieldIndex}
 						moduleKey={moduleKey}
 					/>
 				)
@@ -29,12 +30,16 @@ export const submitForm = fn => (e) => {
 	fn()
 }
 
-export const FormModule = ({ formFieldTypes, moduleKey }) => (
+export const FormModule = ({ formFieldTypes, moduleId, moduleKey }) => (
 	<form
 		onSubmit={submitForm}
 		className="layout-column layout-align-center-stretch"
 	>
-		<RenderInputs moduleKey={moduleKey} formFieldTypes={formFieldTypes} />
+		<RenderInputs
+			moduleKey={moduleKey}
+			moduleId={moduleId}
+			formFieldTypes={formFieldTypes}
+		/>
 	</form>
 )
 
