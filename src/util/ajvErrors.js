@@ -23,7 +23,7 @@ export default (schema, errors) => reduce((result, error) => {
 		case 'constant': {
 			const errorKey = dataPathKey(error)
 			return assoc(
-				errorKey
+				errorKey,
 				`${capitalize(errorKey)} must equal ${capitalize(getConstant(errorKey))}`,
 				result
 			)

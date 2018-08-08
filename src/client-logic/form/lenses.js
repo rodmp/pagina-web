@@ -18,10 +18,15 @@ const formSchema = {
 							properties: {
 								formSubmitting: { type: 'boolean' },
 								formSubmitted: { type: 'boolean' },
-								errors: { type: 'object' },
 							}
 						},
 						formInputs: {
+							type: 'object',
+							patternProperties: {
+								[variableSchemaKey]: { type: 'object' }
+							}
+						},
+						fieldErrors: {
 							type: 'object',
 							patternProperties: {
 								[variableSchemaKey]: { type: 'object' }
