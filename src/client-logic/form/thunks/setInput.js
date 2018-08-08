@@ -7,6 +7,9 @@ import getFormSchema from 'sls-aws/src/client-logic/form/selectors/formSchema'
 import getFormData from 'sls-aws/src/client-logic/form/selectors/formData'
 import moduleIdFromKey from 'sls-aws/src/client-logic/route/util/moduleIdFromKey'
 
+import ajvErrors from 'sls-aws/src/util/ajvErrors'
+
+
 export const setInputHof = (
 	validateSchemaFn, changeInputFn, clearFormErrorsFn, setFormErrorsFn,
 ) => (moduleKey, fieldId, value) => (dispatch, getState) => {
@@ -14,13 +17,17 @@ export const setInputHof = (
 	const moduleId = moduleIdFromKey(moduleKey)
 	const formSchema = getFormSchema(null, { moduleId })
 	const formData = getFormData(getState(), { moduleKey })
-	return validateSchemaFn(moduleId, formSchema, formData).then((x) => {
-		console.log(x)
-		dispatch(clearFormErrorsFn(formHash))
-	}).catch((x) => {
-		console.log(x)
-		dispatch(setFormErrorsFn(formHash))
-	})
+	return validateSchemaFn(moduleId, formSchema, formData).then(
+		({ valid, errors }) => {
+			if (valid) {
+				dispatch(clearFormErrorsFn(moduleKey))
+			} else {
+				dispatch(
+					setFormErrorsFn(moduleKey, ajvErrors(formSchema, errors))
+				)
+			}
+		}
+	)
 }
 
 export default setInputHof(
