@@ -1,15 +1,15 @@
 import { SET_FORM_ERRORS } from 'sls-aws/src/client-logic/form/actionIds'
 
 import {
-	formStoreLenses, viewPayloadFormHash, viewPayloadErrorObj,
+	formStoreLenses,
 } from 'sls-aws/src/client-logic/form/lenses'
 
-const { setErrors } = formStoreLenses
+const { setFieldErrors } = formStoreLenses
 
 export default {
-	[SET_FORM_ERRORS]: (state, actionPayload) => setErrors(
-		viewPayloadFormHash(actionPayload),
-		viewPayloadErrorObj(actionPayload),
+	[SET_FORM_ERRORS]: (state, { moduleKey, errors }) => setFieldErrors(
+		moduleKey,
+		errors,
 		state
 	)
 }

@@ -9,14 +9,17 @@ const handleOnChange = (moduleKey, fieldId, action) => (e) => {
 	action(moduleKey, fieldId, e.target.value)
 }
 
-export const InputField = (
-	{ moduleKey, fieldId, setInput, fieldValue, fieldLabel }
-) => (
+export const InputField = ({
+	moduleKey, fieldId, setInput, fieldValue, fieldLabel, fieldError,
+	fieldHasError,
+}) => (
 	<TextField
 		id={fieldId}
 		label={fieldLabel}
 		fullWidth
 		value={fieldValue}
+		error={fieldHasError}
+		helperText={fieldError}
 		onChange={handleOnChange(moduleKey, fieldId, setInput)}
 	/>
 )
