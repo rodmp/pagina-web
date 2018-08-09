@@ -1,5 +1,6 @@
 import { isNil, and, length, gt } from 'ramda'
 import submitForm from 'sls-aws/src/client-logic/form/actions/submitForm'
+import submitFormComplete from 'sls-aws/src/client-logic/form/actions/submitFormComplete'
 import moduleIdFromKey from 'sls-aws/src/client-logic/route/util/moduleIdFromKey'
 import validateForm from 'sls-aws/src/client-logic/form/util/validateForm'
 import setFormErrors from 'sls-aws/src/client-logic/form/actions/setFormErrors'
@@ -10,7 +11,8 @@ import moduleDescriptions from 'sls-aws/src/descriptions/modules'
 const { viewSubmits, viewAction } = formModuleLenses
 
 export const submitFormHof = (
-	submitFormFn, moduleDescriptionsObj, validateFormFn, setFormErrorsFn
+	submitFormFn, moduleDescriptionsObj, validateFormFn, setFormErrorsFn,
+	submitFormCompleteFn,
 ) => (moduleKey, submitIndex) => (dispatch, getState) => {
 	const nullSubmitIndex = isNil(submitIndex)
 	const moduleId = moduleIdFromKey(moduleKey)
@@ -26,14 +28,18 @@ export const submitFormHof = (
 		const submitAction = viewAction(
 			moduleId, correctedSubmitIndex, moduleDescriptionsObj
 		)
-		return submitAction(formData)
+		return submitAction(formData).then(() => {
+			dispatch(submitFormCompleteFn(moduleKey))
+		}).catch(() => {
+			dispatch(submitFormCompleteFn(moduleKey))
+		})
 	}).catch((errors) => {
 		dispatch(setFormErrorsFn(moduleKey, errors))
-		return Promise.resolve()
+		dispatch(submitFormCompleteFn(moduleKey))
 	})
-
 }
 
 export default submitFormHof(
-	submitForm, moduleDescriptions, validateForm, setFormErrors
+	submitForm, moduleDescriptions, validateForm, setFormErrors,
+	submitFormComplete
 )
