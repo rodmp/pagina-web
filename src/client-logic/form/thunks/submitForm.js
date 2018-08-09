@@ -1,31 +1,40 @@
+import { isNil, and, length, gt } from 'ramda'
+import submitForm from 'sls-aws/src/client-logic/form/actions/submitForm'
+import moduleIdFromKey from 'sls-aws/src/client-logic/route/util/moduleIdFromKey'
+import validateForm from 'sls-aws/src/client-logic/form/util/validateForm'
 
+import { formModuleLenses } from 'sls-aws/src/client-logic/form/lenses'
+import moduleDescriptions from 'sls-aws/src/descriptions/modules'
+
+const { viewSubmits, viewAction } = formModuleLenses
 
 export const submitFormHof = (
-	formSubmittingFn, validateFormFn, formDataFn, formActionFn, resetFormFn,
-	formSubmitErrorFn, setFormDirtyFn, formSubmittingFinishedFn,
-) => (formId, routeId) => (dispatch, getState) => {
-	dispatch(formSubmittingFn())
-	const state = getState()
-	const formValid = validateFormFn(formId, routeId)
-	let formPromise
-	if (formValid) {
-		const formData = formDataFn()
-		const formAction = formActionFn()
-		formPromise = dispatch(formAction(formData)).then((res) => {
-			dispatch(resetFormFn())
-		}).catch((err) => {
-			dispatch(formSubmitErrorFn(err))
-		})
-	} else {
-		dispatch(setFormDirtyFn())
-		formPromise = Promise.resolve()
+	submitFormFn, moduleDescriptionsObj, validateFormFn
+) => (moduleKey, submitIndex) => (dispatch, getState) => {
+	const nullSubmitIndex = isNil(submitIndex)
+	const moduleId = moduleIdFromKey(moduleKey)
+	const submits = viewSubmits(moduleId, moduleDescriptionsObj)
+	const multipleSubmits = gt(length(submits), 1)
+	if (and(multipleSubmits, nullSubmitIndex)) {
+		return Promise.resolve()
 	}
-	return formPromise.then(() => {
-		dispatch(formSubmittingFinishedFn())
+	const correctedSubmitIndex = nullSubmitIndex ? 0 : submitIndex
+	dispatch(submitFormFn(moduleKey, submitIndex))
+	const state = getState()
+	return validateFormFn(moduleKey, state).then((formData) => {
+		const submitAction = viewAction(
+			moduleId, correctedSubmitIndex, moduleDescriptionsObj
+		)
+		return submitAction(formData)
+	}).catch((errors) => {
+		console.log('eyyyyyy', errors)
+		// dispatch(setFormErrorsFn(moduleKey, errors))
+		// set form dirty
+		return Promise.resolve()
 	})
+
 }
 
 export default submitFormHof(
-	formSubmitting, validateForm, formData, formAction, resetForm,
-	formSubmitError, setFormDirty, formSubmittingFinished,
+	submitForm, moduleDescriptions, validateForm
 )

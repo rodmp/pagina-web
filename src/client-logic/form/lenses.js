@@ -80,6 +80,8 @@ export const formModuleSchema = {
 					items: {
 						type: 'object',
 						properties: {
+							action: { type: 'function' },
+							label: { type: 'string' },
 						}
 					},
 				},
