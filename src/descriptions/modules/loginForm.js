@@ -23,7 +23,7 @@ export default {
 			},
 		],
 		submits: [
-			// { label: 'Login', action: cognitoLogin(LOGIN_FORM_MODULE_ID) },
+			{ label: 'Login', action: console.warn },
 		]
 	}
 }
