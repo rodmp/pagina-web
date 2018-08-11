@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 import LoadingButton from 'sls-aws/src/client-web/base/LoadingButton'
 import TextField from 'sls-aws/src/client-web/form/TextField'
 
@@ -29,7 +28,6 @@ export const RenderInputs = ({ formFieldTypes, moduleKey }) => (
 )
 
 export const handleSubmit = (submitFormFn, moduleKey, submitIndex) => (e) => {
-	console.log('yo')
 	e.preventDefault()
 	submitFormFn(moduleKey, submitIndex)
 }
@@ -63,6 +61,7 @@ export const FormModule = ({
 			formSubmits={formSubmits}
 			submitFormFn={submitForm}
 		/>
+		<input type="submit" className="hide" />
 	</form>
 )
 
