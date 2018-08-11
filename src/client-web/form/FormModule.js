@@ -1,7 +1,7 @@
 import React from 'react'
 
-import Button from '@material-ui/core/Button'
 
+import LoadingButton from 'sls-aws/src/client-web/base/LoadingButton'
 import TextField from 'sls-aws/src/client-web/form/TextField'
 
 import formModuleConnector from 'sls-aws/src/client-logic/form/connectors/formModuleConnector'
@@ -29,21 +29,20 @@ export const RenderInputs = ({ formFieldTypes, moduleKey }) => (
 )
 
 export const handleSubmit = (submitFormFn, moduleKey, submitIndex) => (e) => {
+	console.log('yo')
 	e.preventDefault()
 	submitFormFn(moduleKey, submitIndex)
 }
 
 export const RenderSubmits = ({ formSubmits, moduleKey, submitFormFn }) => (
-	formSubmits.map(([label, submitIndex]) => (
-		<Button
+	formSubmits.map(([label, submitIndex, submitting]) => (
+		<LoadingButton
 			key={submitIndex}
-			variant="contained"
-			size="large"
-			color="primary"
+			loading={submitting}
 			onClick={handleSubmit(submitFormFn, moduleKey, submitIndex)}
 		>
 			{label}
-		</Button>
+		</LoadingButton>
 	))
 )
 
@@ -61,7 +60,6 @@ export const FormModule = ({
 		/>
 		<RenderSubmits
 			moduleKey={moduleKey}
-			moduleId={moduleId}
 			formSubmits={formSubmits}
 			submitFormFn={submitForm}
 		/>
