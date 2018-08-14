@@ -33,8 +33,13 @@ describe('currentRouteModuleTypes', () => {
 		expect(
 			currentRouteModuleTypes(mockState)
 		).toEqual([
-			['MODULE_ID_1', 'foo'],
-			['MODULE_ID_2', 'bar'],
+			['MODULE_ID_1', 'foo', 0],
+			['MODULE_ID_2', 'bar', 1],
 		])
+	})
+	test('empty array if no route defined', () => {
+		expect(
+			currentRouteModuleTypes({})
+		).toEqual([])
 	})
 })

@@ -4,4 +4,7 @@ import { routeStoreLenses } from 'sls-aws/src/client-logic/route/lenses'
 
 const { pathSatisfiesHistory } = routeStoreLenses
 
-export default pathSatisfiesHistory(or(isNil, isEmpty))
+export default (state, props) => {
+	console.log(state, props, pathSatisfiesHistory(or(isNil, isEmpty))(state, props))
+	return pathSatisfiesHistory(or(isNil, isEmpty))(state, props)
+}
