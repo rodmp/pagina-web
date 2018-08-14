@@ -15,6 +15,6 @@ export default {
 			},
 		},
 	},
-	required: ['email', 'password', 'confirm_email', 'confirm_password'],
+	required: ['email', 'password', 'confirm_password'],
 	additionalProperties: false,
 }
