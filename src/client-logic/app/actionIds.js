@@ -1,0 +1,1 @@
+export const AUTH_DETERMINED = 'app/AUTH_DETERMINED'

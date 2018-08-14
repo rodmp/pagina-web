@@ -1,8 +1,9 @@
-import dashboard from 'sls-aws/src/descriptions/routes/dashboard'
 import loginForm from 'sls-aws/src/descriptions/modules/loginForm'
+import signUpForm from 'sls-aws/src/descriptions/modules/signUpForm'
 
 const allModules = {
-	...loginForm
+	...loginForm,
+	...signUpForm,
 }
 
 export default allModules

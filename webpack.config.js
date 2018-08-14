@@ -1,10 +1,12 @@
+const { map } = require('ramda')
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const webpack = require('webpack')
 
 // const appConstants = require('./src/constants/app')
 const colorConstants = require('./src/constants/color')
 const logoConstant = require('./src/constants/logo')
-// const slsConstants = require('./slsOutput.json')
+const slsConstants = require('./slsOutput.json')
 
 // const env = slsConstants.env || 'dev'
 const env = 'development'
@@ -14,7 +16,7 @@ const envVars = Object.assign(
 	colorConstants,
 	logoConstant,
 	// appConstants,
-	// _.mapKeys(slsConstants, (v, k) => `__${_.toUpper(_.snakeCase(k))}__`)
+	slsConstants,
 )
 
 module.exports = {
@@ -61,11 +63,8 @@ module.exports = {
 			// 	useShortDoctype: true,
 			// },
 		}, envVars)),
-		// new webpack.DefinePlugin(
-		// 	_.reduce(envVars, (result, v, k) => {
-		// 		result[k] = JSON.stringify(v)
-		// 		return result
-		// 	}, {})
-		// )
+		new webpack.DefinePlugin(
+			map(JSON.stringify, envVars)
+		)
 	],
 }

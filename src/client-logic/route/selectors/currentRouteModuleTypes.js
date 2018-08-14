@@ -1,4 +1,4 @@
-import { __, compose, map, addIndex } from 'ramda'
+import { __, compose, map, addIndex, or } from 'ramda'
 
 import routeDescriptions from 'sls-aws/src/descriptions/routes'
 import moduleDescriptions from 'sls-aws/src/descriptions/modules'
@@ -8,7 +8,7 @@ import {
 	routeDescriptionLenses, moduleDescriptionLenses,
 } from 'sls-aws/src/client-logic/route/lenses'
 
-const { viewModules } = routeDescriptionLenses
+const { pathOrModules } = routeDescriptionLenses
 const { viewModuleType } = moduleDescriptionLenses
 
 export const currentRouteModuleTypesHof = (
@@ -17,7 +17,7 @@ export const currentRouteModuleTypesHof = (
 	addIndex(map)((moduleId, index) => [
 		moduleId, viewModuleType(moduleId, moduleObj), index
 	]),
-	viewModules(__, routeDescriptionObj),
+	pathOrModules(__, [], routeDescriptionObj),
 	currentRouteId
 )
 

@@ -1,7 +1,11 @@
 import reduxConnector from 'sls-aws/src/util/reduxConnector'
 
+import noRoute from 'sls-aws/src/client-logic/route/selectors/noRoute'
 import currentRouteModuleTypes from 'sls-aws/src/client-logic/route/selectors/currentRouteModuleTypes'
 
 export default reduxConnector(
-	[['currentRouteModuleTypes', currentRouteModuleTypes]]
+	[
+		['noRoute', noRoute],
+		['currentRouteModuleTypes', currentRouteModuleTypes],
+	]
 )

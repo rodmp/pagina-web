@@ -57,7 +57,7 @@ const createEachLensTypeWithInserts = (baseLensFnKey, schemaPath) => ({
 	[concat('over', baseLensFnKey)]: insertedArgFn(over, schemaPath, 2, true),
 	[concat('pathEq', baseLensFnKey)]: insertedArgFn(pathEq, schemaPath, 2),
 	[concat('pathOr', baseLensFnKey)]: insertedArgFn(
-		pathOrArranged, schemaPath, 1
+		pathOrArranged, schemaPath, 2
 	),
 	[concat('pathSatisfies', baseLensFnKey)]: insertedArgFn(
 		pathSatisfiesArranged, schemaPath, 2
