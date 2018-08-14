@@ -28,7 +28,7 @@ export const submitFormHof = (
 		const submitAction = viewAction(
 			moduleId, correctedSubmitIndex, moduleDescriptionsObj
 		)
-		return submitAction(formData).then(() => {
+		return dispatch(submitAction(formData)).then(() => {
 			dispatch(submitFormCompleteFn(moduleKey))
 		}).catch(() => {
 			dispatch(submitFormCompleteFn(moduleKey))
