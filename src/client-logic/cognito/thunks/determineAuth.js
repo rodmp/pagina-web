@@ -4,26 +4,27 @@ import userPool from 'sls-aws/src/client-logic/cognito/util/userPool'
 import { storageClear } from 'sls-aws/src/util/storage'
 
 
-const failedAuth = (dispatch, authDeterminedFn) => {
-	storageClear()
-	dispatch(authDeterminedFn(false))
-}
-
-export const determineAuthHof = authDeterminedFn => () => (dispatch) => {
-	const cognitoUser = userPool.getCurrentUser()
-	if (cognitoUser != null) {
-		cognitoUser.getSession((err, session) => {
-			if (err) {
-				failedAuth(dispatch, authDeterminedFn)
-			} else {
-				dispatch(authDeterminedFn(session))
-			}
-		})
-	} else {
-		failedAuth(dispatch, authDeterminedFn)
-	}
-	return Promise.resolve()
-}
+export const determineAuthHof = authDeterminedFn => () => dispatch => (
+	new Promise((resolve, reject) => {
+		const cognitoUser = userPool.getCurrentUser()
+		if (cognitoUser != null) {
+			cognitoUser.getSession((err, session) => {
+				if (err) {
+					reject(err)
+				} else {
+					resolve(session)
+				}
+			})
+		} else {
+			reject()
+		}
+	}).then(
+		session => dispatch(authDeterminedFn(session))
+	).catch(() => {
+		storageClear()
+		dispatch(authDeterminedFn(false))
+	})
+)
 
 export default determineAuthHof(
 	authDetermined
