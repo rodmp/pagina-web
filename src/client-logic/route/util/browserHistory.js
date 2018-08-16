@@ -6,7 +6,7 @@ import createHistory from 'history/createBrowserHistory'
 const history = createHistory()
 
 export const changeBrowserHistory = (
-	historyChangeType, url , { routeId, routeParams }
+	historyChangeType, url, { routeId, routeParams }
 ) => Result.try(() => {
 	if (!contains(historyChangeType, ['push', 'replace'])) {
 		throw new Error(`Invalid history change type: ${historyChangeType}`)
@@ -14,7 +14,7 @@ export const changeBrowserHistory = (
 	history[historyChangeType](url, { routeId, routeParams })
 }).mapError(reportError)
 
-export const historyPopEvent = (fn) => Result.try(() => {
+export const historyPopEvent = fn => Result.try(() => {
 	history.listen((location, action) => {
 		if (action === 'POP') {
 			fn(location, action)
