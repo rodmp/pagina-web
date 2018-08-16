@@ -1,5 +1,4 @@
-// import { cognitoLogin } from 'ff/src/logic/cognito/actions'
-
+import login from 'sls-aws/src/client-logic/cognito/thunks/login'
 import { LOGIN_FORM_MODULE_ID } from 'sls-aws/src/descriptions/modules/moduleIds'
 
 import loginSchema from 'sls-aws/src/descriptions/formSchemas/loginSchema'
@@ -23,7 +22,7 @@ export default {
 			},
 		],
 		submits: [
-			{ label: 'Login', action: console.warn },
+			{ label: 'Login', action: login },
 		]
 	}
 }

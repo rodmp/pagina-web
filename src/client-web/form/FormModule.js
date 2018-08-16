@@ -29,7 +29,6 @@ export const RenderInputs = ({ formFieldTypes, moduleKey }) => (
 
 export const handleSubmit = (submitFormFn, moduleKey, submitIndex) => (e) => {
 	e.preventDefault()
-	console.log(submitFormFn, moduleKey, submitIndex)
 	submitFormFn(moduleKey, submitIndex)
 }
 
