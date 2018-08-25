@@ -13,10 +13,9 @@ export default {
 			CognitoIdentityProviders: [
 				{
 					ClientId: ref(USER_POOL_CLIENT),
-					ProviderName: getAtt(USER_POOL, 'ProviderName')
-				}
-			]
-		}
-	}
+					ProviderName: getAtt(USER_POOL, 'ProviderName'),
+				},
+			],
+		},
+	},
 }
-

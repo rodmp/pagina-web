@@ -17,9 +17,9 @@ export default ({ email, password }) => dispatch => new Promise(
 				} else {
 					resolve(result.user)
 				}
-			}
+			},
 		)
-	}
+	},
 ).then(
-	() => dispatch(pushRoute(VERIFY_ACCOUNT_ROUTE_ID))
+	() => dispatch(pushRoute(VERIFY_ACCOUNT_ROUTE_ID)),
 )

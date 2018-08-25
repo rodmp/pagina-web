@@ -13,13 +13,13 @@ export default {
 					{
 						Effect: 'Allow',
 						Principal: {
-							Federated: 'cognito-identity.amazonaws.com'
+							Federated: 'cognito-identity.amazonaws.com',
 						},
 						Action: [
-							'sts:AssumeRole'
-						]
-					}
-				]
+							'sts:AssumeRole',
+						],
+					},
+				],
 			},
 			Policies: [
 				{
@@ -30,16 +30,16 @@ export default {
 							{
 								Effect: 'Allow',
 								Action: [
-									'cognito-sync:*'
+									'cognito-sync:*',
 								],
 								Resource: [
-									'*'
-								]
-							}
-						]
-					}
-				}
-			]
-		}
-	}
+									'*',
+								],
+							},
+						],
+					},
+				},
+			],
+		},
+	},
 }

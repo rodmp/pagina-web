@@ -3,7 +3,6 @@ import userPool from 'sls-aws/src/client-logic/cognito/util/userPool'
 
 import { storageClear } from 'sls-aws/src/util/storage'
 
-
 export const determineAuthHof = authDeterminedFn => () => dispatch => (
 	new Promise((resolve, reject) => {
 		const cognitoUser = userPool.getCurrentUser()
