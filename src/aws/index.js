@@ -1,4 +1,5 @@
 import { cognitoResources, cognitoOutputs } from 'sls-aws/src/aws/cognito'
+import { apiResources, apiOutputs } from 'sls-aws/src/aws/api'
 
 // export default {
 // 	Parameters: {
@@ -31,10 +32,12 @@ export default {
 	},
 	resources: {
 		Resources: {
-			...cognitoResources
+			...cognitoResources,
+			...apiResources,
 		},
 		Outputs: {
 			...cognitoOutputs,
+			...apiOutputs,
 		},
 	},
 }
