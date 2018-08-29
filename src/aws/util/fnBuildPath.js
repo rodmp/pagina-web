@@ -1,1 +1,1 @@
-export default fnName => `./build-lambda/${fnName}.js`
+export default fnName => `./src/server/${fnName}/index.js`

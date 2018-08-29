@@ -1,22 +1,12 @@
 import { cognitoResources, cognitoOutputs } from 'sls-aws/src/aws/cognito'
 import { apiResources, apiOutputs } from 'sls-aws/src/aws/api'
 
-// export default {
-// 	Parameters: {
-
-// 	},
-// 	Resources: {
-// 		...cognitoResources
-// 	},
-// 	Outputs: {
-// 		...cognitoOutputs,
-// 	},
-// 	AWSTemplateFormatVersion: '2010-09-09',
-// }
-
 export default {
 	service: {
 		name: 'sls-aws-test',
+	},
+	package: {
+		individually: true,
 	},
 	provider: {
 		name: 'aws',
@@ -24,10 +14,15 @@ export default {
 	},
 	plugins: [
 		'serverless-stack-output',
+		'serverless-webpack',
 	],
 	custom: {
 		output: {
 			file: 'slsOutput.json',
+		},
+		webpack: {
+			webpackConfig: 'webpack.lambda.config.js',
+			packager: 'yarn',
 		},
 	},
 	resources: {

@@ -3,7 +3,7 @@ import ref from 'sls-aws/src/aws/util/ref'
 
 import {
 	API_LAMBDA_FUNCTION, API_LAMBDA_EXECUTION_ROLE,
-} from 'sls-aws/src/aws/cognito/resourceIds'
+} from 'sls-aws/src/aws/api/resourceIds'
 
 export default {
 	[API_LAMBDA_FUNCTION]: {
@@ -12,7 +12,7 @@ export default {
 			API_LAMBDA_EXECUTION_ROLE,
 		],
 		Properties: {
-			Code: fnBuildPath('apiLambda'),
+			Code: fnBuildPath('api'),
 			// Environment,
 			// FunctionName: String,
 			Role: ref(API_LAMBDA_EXECUTION_ROLE),
