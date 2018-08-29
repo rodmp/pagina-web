@@ -1,6 +1,4 @@
-import {
-	API_LAMBDA_EXECUTION_ROLE, IDENTITY_POOL,
-} from 'sls-aws/src/aws/cognito/resourceIds'
+import { API_LAMBDA_EXECUTION_ROLE } from 'sls-aws/src/aws/api/resourceIds'
 
 export default {
 	[API_LAMBDA_EXECUTION_ROLE]: {
