@@ -1,5 +1,5 @@
 import {
- reduce, toPairs, prop, append, path, propEq 
+	reduce, toPairs, prop, append, path, propEq,
 } from 'ramda'
 import { CloudFormation } from 'aws-sdk'
 import awsConfig from 'aws-config'
@@ -26,30 +26,31 @@ const noStackError = stage => (
 	`Stack with id ${createStackName(stage)} does not exist`
 )
 
-export const getLambdaFnResourceEntries = (template) => (
+export const getLambdaFnResourceEntries = template => (
 	reduce((result, [resourceKey, resourceObj]) => {
-		// console.log(resourceObj)
 		if (propEq('Type', 'AWS::Lambda::Function', resourceObj)) {
-			return append(
-				{
-					resourceKey,
-					entryPath: path(['Properties', 'Code'], resourceObj),
-				},
-				result,
-			)
+			return append({
+				resourceKey,
+				entryPath: path(['Properties', 'Code'], resourceObj),
+			}, result)
 		}
 		return result
 	}, [], toPairs(prop('Resources', template)))
 )
 
-export const webpackLambdaFns = () => {
+export const webpackLambdaFns = entryArr => new Promise(
+	(resolve, reject) => {
+		// HERE
+		console.log(entryArr)
+		reject()
+	},
+)
 
-}
-
-export const createNewStack = (stage = defaultStage) => {
-	console.log(getLambdaFnResourceEntries(cloudformationTemplate))
-	return 
-}
+export const createNewStack = (stage = defaultStage) => (
+	webpackLambdaFns(
+		getLambdaFnResourceEntries(cloudformationTemplate),
+	).then(() => cf.createStack())
+)
 
 export const updateExistingStack = (stage = defaultStage) => {
 
@@ -87,10 +88,8 @@ const commands = { deploy, remove }
 
 const boom = emoji.find('collision').emoji
 const sad = emoji.find('sob').emoji
-commands[command](stage)
-	.then(() => {
-		console.info(green('Done'), boom, nl)
-	})
-	.catch((err) => {
-		console.info(red('Error'), sad, nl, err, nl)
-	})
+commands[command](stage).then(() => {
+	console.info(green('Done'), boom, nl)
+}).catch((err) => {
+	console.info(red('Error'), sad, nl, err, nl)
+})
