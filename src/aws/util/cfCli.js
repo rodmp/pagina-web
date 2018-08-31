@@ -31,7 +31,17 @@ const noStackError = stage => (
 const createWebpackConf = (entryPath, resourceKey) => assoc(
 	'entry',
 	entryPath,
-	assocPath(['output', 'filename'], `${resourceKey}.js`, webpackLambda)
+	assocPath(['output', 'filename'], `${resourceKey}.js`, webpackLambda),
+)
+
+const addZipsToCfTemplate = (entryArr, cft) => reduce(
+	(result, { resourceKey }) => assocPath(
+		['Resources', resourceKey, 'Properties', 'Code'],
+		{ Zip: `./.webpack/${resourceKey}.zip` },
+		result,
+	),
+	cft,
+	entryArr,
 )
 
 const buildFiles = ({ entryPath, resourceKey }) => new Promise(
@@ -65,24 +75,42 @@ export const getLambdaFnResourceEntries = template => (
 
 export const webpackLambdaFns = () => {
 	const entryArr = getLambdaFnResourceEntries(cloudformationTemplate)
-	return Promise.all(map(buildFiles, entryArr))
+	return Promise.all(map(buildFiles, entryArr)).then(() => entryArr)
 }
 
-export const createNewStack = (stage = defaultStage) => (
-	webpackLambdaFns().then(() => cf.createStack())
+export const createNewStack = stackName => (
+	webpackLambdaFns().then((entryArr) => {
+		const updatedCft = addZipsToCfTemplate(
+			entryArr, cloudformationTemplate,
+		)
+		const spinner = ora('Creating stack').start()
+		// console.log(JSON.stringify(updatedCft, null, 2))
+		return cf.createStack({
+			StackName: stackName,
+			TemplateBody: JSON.stringify(updatedCft),
+		}).promise().then((res) => {
+			spinner.succeed()
+			console.log(res)
+			return res
+		}).catch((err) => {
+			spinner.fail()
+			return Promise.reject(err)
+		})
+	})
 )
 
-export const updateExistingStack = (stage = defaultStage) => {
+export const updateExistingStack = (stackName) => {
 
 }
 
-export const getStackProgress = (stage = defaultStage) => {
+export const getStackProgress = (stackName) => {
 
 }
 
 export const deploy = (stage = defaultStage) => {
 	const spinner = ora('Checking stack status').start()
-	return cf.describeStacks({ StackName: createStackName(stage) })
+	const stackName = createStackName(stage)
+	return cf.describeStacks({ StackName: stackName })
 		.promise()
 		.then(() => {
 			spinner.succeed()
@@ -91,7 +119,7 @@ export const deploy = (stage = defaultStage) => {
 		.catch((err) => {
 			if (err.message === noStackError(stage)) {
 				spinner.succeed()
-				return createNewStack(stage)
+				return createNewStack(stackName)
 			}
 			spinner.fail()
 			return Promise.reject(err.message)
