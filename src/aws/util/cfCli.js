@@ -78,6 +78,27 @@ export const webpackLambdaFns = () => {
 	return Promise.all(map(buildFiles, entryArr)).then(() => entryArr)
 }
 
+export const getStackProgress = (spinner, stackName) => new Promise(
+	(resolve, reject) => {
+		const interval = setInterval(() => {
+			cf.describeStacks({ StackName: stackName }).promise().then(
+				(res) => {
+					console.log(res)
+					// if (STACK_FINISHED) {
+					// 	spinner.succeed()
+					// 	clearInterval(interval)
+					// 	resolve()
+					// }
+				},
+			).catch((err) => {
+				spinner.fail()
+				clearInterval(interval)
+				reject(err.message)
+			})
+		}, 5000)
+	},
+)
+
 export const createNewStack = stackName => (
 	webpackLambdaFns().then((entryArr) => {
 		const updatedCft = addZipsToCfTemplate(
@@ -100,10 +121,6 @@ export const createNewStack = stackName => (
 )
 
 export const updateExistingStack = (stackName) => {
-
-}
-
-export const getStackProgress = (stackName) => {
 
 }
 
