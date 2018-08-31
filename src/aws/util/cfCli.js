@@ -1,14 +1,16 @@
 import {
-	reduce, toPairs, prop, append, path, propEq,
+	reduce, toPairs, prop, append, path, propEq, assoc, map, assocPath,
 } from 'ramda'
 import { CloudFormation } from 'aws-sdk'
 import awsConfig from 'aws-config'
 import { green, red } from 'chalk'
+import webpack from 'webpack'
 import emoji from 'node-emoji'
 import ora from 'ora'
 
 import { name } from 'sls-aws/package.json'
 import { camelCase } from 'sls-aws/src/util/stringCase'
+import webpackLambda from 'sls-aws/src/aws/util/webpackLambda'
 
 import cloudformationTemplate from 'sls-aws/src/aws'
 
@@ -26,6 +28,29 @@ const noStackError = stage => (
 	`Stack with id ${createStackName(stage)} does not exist`
 )
 
+const createWebpackConf = (entryPath, resourceKey) => assoc(
+	'entry',
+	entryPath,
+	assocPath(['output', 'filename'], `${resourceKey}.js`, webpackLambda)
+)
+
+const buildFiles = ({ entryPath, resourceKey }) => new Promise(
+	(resolve, reject) => {
+		const spinner = ora(`Building ${resourceKey}`).start()
+		webpack(
+			createWebpackConf(entryPath, resourceKey),
+			(err, stats) => {
+				if (err || stats.hasErrors()) {
+					spinner.fail()
+					reject(err)
+				}
+				spinner.succeed()
+				resolve()
+			},
+		)
+	},
+)
+
 export const getLambdaFnResourceEntries = template => (
 	reduce((result, [resourceKey, resourceObj]) => {
 		if (propEq('Type', 'AWS::Lambda::Function', resourceObj)) {
@@ -38,18 +63,13 @@ export const getLambdaFnResourceEntries = template => (
 	}, [], toPairs(prop('Resources', template)))
 )
 
-export const webpackLambdaFns = entryArr => new Promise(
-	(resolve, reject) => {
-		// HERE
-		console.log(entryArr)
-		reject()
-	},
-)
+export const webpackLambdaFns = () => {
+	const entryArr = getLambdaFnResourceEntries(cloudformationTemplate)
+	return Promise.all(map(buildFiles, entryArr))
+}
 
 export const createNewStack = (stage = defaultStage) => (
-	webpackLambdaFns(
-		getLambdaFnResourceEntries(cloudformationTemplate),
-	).then(() => cf.createStack())
+	webpackLambdaFns().then(() => cf.createStack())
 )
 
 export const updateExistingStack = (stage = defaultStage) => {
