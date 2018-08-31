@@ -1,6 +1,6 @@
-const path = require('path')
-const slsw = require('serverless-webpack')
-const nodeExternals = require('webpack-node-externals')
+import path from 'path'
+import ZipPlugin from 'zip-webpack-plugin'
+import nodeExternals from 'webpack-node-externals'
 
 // const env = slsConstants.env || 'dev'
 const env = 'development'
@@ -9,13 +9,12 @@ const isProd = env === 'production'
 module.exports = {
 	mode: env,
 	devtool: isProd ? false : 'source-map',
-	entry: slsw.lib.entries,
 	target: 'node',
 	output: {
 		libraryTarget: 'commonjs2',
-		path: path.join(__dirname, '.webpack'),
-		filename: '[name].js',
-		sourceMapFilename: '[file].map',
+		path: path.join(__dirname, '../../../.webpack'),
+		// filename: '[name].js',
+		// sourceMapFilename: '[file].map',
 	},
 	externals: [nodeExternals()],
 	module: {
@@ -40,4 +39,7 @@ module.exports = {
 			},
 		],
 	},
+	plugins: [
+		new ZipPlugin(),
+	],
 }
