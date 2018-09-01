@@ -1,5 +1,6 @@
 import fnBuildPath from 'sls-aws/src/aws/util/fnBuildPath'
-import ref from 'sls-aws/src/aws/util/ref'
+// import ref from 'sls-aws/src/aws/util/ref'
+import getAtt from 'sls-aws/src/aws/util/getAtt'
 
 import {
 	API_LAMBDA_FUNCTION, API_LAMBDA_EXECUTION_ROLE,
@@ -15,7 +16,7 @@ export default {
 			Code: fnBuildPath('api'),
 			// Environment,
 			// FunctionName: String,
-			Role: ref(API_LAMBDA_EXECUTION_ROLE),
+			Role: getAtt(API_LAMBDA_EXECUTION_ROLE, 'Arn'),
 			Handler: 'index.default',
 			// MemorySize: Integer,
 			Runtime: 'nodejs8.10',
