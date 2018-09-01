@@ -17,19 +17,19 @@ export default {
 				],
 			},
 			Policies: [
-				// {
-				// 	PolicyName: 'root',
-				// 	PolicyDocument: {
-				// 		Version: '2012-10-17',
-				// 		Statement: [
-				// 			{
-				// 				Effect: 'Allow',
-				// 				Action: ['logs:*'],
-				// 				Resource: 'arn:aws:logs:*:*:*',
-				// 			},
-				// 		],
-				// 	},
-				// },
+				{
+					PolicyName: 'root',
+					PolicyDocument: {
+						Version: '2012-10-17',
+						Statement: [
+							{
+								Effect: 'Allow',
+								Action: ['logs:*'],
+								Resource: 'arn:aws:logs:*:*:*',
+							},
+						],
+					},
+				},
 			],
 		},
 	},

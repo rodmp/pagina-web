@@ -1,64 +1,23 @@
 import {
 	reduce, toPairs, prop, append, path, propEq, assoc, map, assocPath,
+	compose, contains,
 } from 'ramda'
 import { CloudFormation } from 'aws-sdk'
-import awsConfig from 'aws-config'
 import { green, red } from 'chalk'
-import webpack from 'webpack'
 import emoji from 'node-emoji'
 import ora from 'ora'
 
 import { name } from 'sls-aws/package.json'
 import { camelCase } from 'sls-aws/src/util/stringCase'
-import webpackLambda from 'sls-aws/src/aws/util/webpackLambda'
 
 import cloudformationTemplate from 'sls-aws/src/aws'
 
-const cf = new CloudFormation(awsConfig({
-	region: 'us-east-1',
-	profile: 'default',
-}))
-
-const defaultStage = 'Dev'
-const nl = '\n'
+const cf = new CloudFormation(awsConfig)
 
 const createStackName = stage => camelCase(`${name}${stage}`)
 
 const noStackError = stage => (
 	`Stack with id ${createStackName(stage)} does not exist`
-)
-
-const createWebpackConf = (entryPath, resourceKey) => assoc(
-	'entry',
-	entryPath,
-	assocPath(['output', 'filename'], `${resourceKey}.js`, webpackLambda),
-)
-
-const addZipsToCfTemplate = (entryArr, cft) => reduce(
-	(result, { resourceKey }) => assocPath(
-		['Resources', resourceKey, 'Properties', 'Code'],
-		{ Zip: `./.webpack/${resourceKey}.zip` },
-		result,
-	),
-	cft,
-	entryArr,
-)
-
-const buildFiles = ({ entryPath, resourceKey }) => new Promise(
-	(resolve, reject) => {
-		const spinner = ora(`Building ${resourceKey}`).start()
-		webpack(
-			createWebpackConf(entryPath, resourceKey),
-			(err, stats) => {
-				if (err || stats.hasErrors()) {
-					spinner.fail()
-					reject(err)
-				}
-				spinner.succeed()
-				resolve()
-			},
-		)
-	},
 )
 
 export const getLambdaFnResourceEntries = template => (
@@ -73,34 +32,48 @@ export const getLambdaFnResourceEntries = template => (
 	}, [], toPairs(prop('Resources', template)))
 )
 
-export const webpackLambdaFns = () => {
-	const entryArr = getLambdaFnResourceEntries(cloudformationTemplate)
-	return Promise.all(map(buildFiles, entryArr)).then(() => entryArr)
-}
+const inProgressStatus = compose(
+	contains('_IN_PROGRESS'),
+	prop('StackStatus'),
+)
+const completeStatus = compose(
+	contains('_COMPLETE'),
+	prop('StackStatus'),
+)
+const failedStatus = compose(
+	contains('_FAILED'),
+	prop('StackStatus'),
+)
+
 
 export const getStackProgress = (spinner, stackName) => new Promise(
 	(resolve, reject) => {
 		const interval = setInterval(() => {
 			cf.describeStacks({ StackName: stackName }).promise().then(
 				(res) => {
-					console.log(res)
-					// if (STACK_FINISHED) {
-					// 	spinner.succeed()
-					// 	clearInterval(interval)
-					// 	resolve()
-					// }
+					console.log('progress', res)
+					if (completeStatus(res)) {
+						spinner.succeed()
+						clearInterval(interval)
+						resolve()
+					} else if (failedStatus(res)) {
+						spinner.fail()
+						clearInterval(interval)
+						reject(prop('StackStatusReason', res))
+					}
+					// keep checking
 				},
 			).catch((err) => {
 				spinner.fail()
 				clearInterval(interval)
 				reject(err.message)
 			})
-		}, 5000)
+		}, 10000)
 	},
 )
 
-export const createNewStack = stackName => (
-	webpackLambdaFns().then((entryArr) => {
+export const createNewStack = stackName => createCfS3Bucket(stackName).then(
+	() => webpackLambdaFns().then((entryArr) => {
 		const updatedCft = addZipsToCfTemplate(
 			entryArr, cloudformationTemplate,
 		)
@@ -108,16 +81,16 @@ export const createNewStack = stackName => (
 		// console.log(JSON.stringify(updatedCft, null, 2))
 		return cf.createStack({
 			StackName: stackName,
+			Capabilities: ['CAPABILITY_IAM'],
 			TemplateBody: JSON.stringify(updatedCft),
 		}).promise().then((res) => {
-			spinner.succeed()
-			console.log(res)
-			return res
+			console.log('create', res)
+			return getStackProgress(spinner, stackName)
 		}).catch((err) => {
 			spinner.fail()
 			return Promise.reject(err)
 		})
-	})
+	}),
 )
 
 export const updateExistingStack = (stackName) => {
@@ -147,6 +120,28 @@ export const remove = (stage = defaultStage) => {
 
 }
 
+const createUpdateCommon = [
+	{ title: 'Bundling lambda functions' },
+	{ title: 'Updating template' },
+	{ title: 'Uploading files to s3' },
+]
+
+const create = [
+	{ title: 'Creating s3 bucket' },
+	...createUpdateCommon,
+	{ title: 'Creating stack' },
+]
+
+const update = [
+	...createUpdateCommon,
+	{ title: 'Updating stack' },
+]
+
+const remove = [
+	{ title: 'Emptying s3 buckets' },
+	{ title: 'Deleting stack' },
+]
+
 const [,, command, stage] = process.argv
 
 const commands = { deploy, remove }
@@ -158,3 +153,24 @@ commands[command](stage).then(() => {
 }).catch((err) => {
 	console.info(red('Error'), sad, nl, err, nl)
 })
+
+
+// Statuses
+
+// CREATE_IN_PROGRESS
+// CREATE_FAILED
+// CREATE_COMPLETE
+// ROLLBACK_IN_PROGRESS
+// ROLLBACK_FAILED
+// ROLLBACK_COMPLETE
+// DELETE_IN_PROGRESS
+// DELETE_FAILED
+// DELETE_COMPLETE
+// UPDATE_IN_PROGRESS
+// UPDATE_COMPLETE_CLEANUP_IN_PROGRESS
+// UPDATE_COMPLETE
+// UPDATE_ROLLBACK_IN_PROGRESS
+// UPDATE_ROLLBACK_FAILED
+// UPDATE_ROLLBACK_COMPLETE_CLEANUP_IN_PROGRESS
+// UPDATE_ROLLBACK_COMPLETE
+// REVIEW_IN_PROGRESS
