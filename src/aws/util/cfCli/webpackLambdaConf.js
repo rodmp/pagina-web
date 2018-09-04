@@ -12,7 +12,6 @@ module.exports = {
 	target: 'node',
 	output: {
 		libraryTarget: 'commonjs2',
-		path: path.join(__dirname, '../../../.cf'),
 	},
 	externals: [nodeExternals()],
 	module: {
@@ -38,6 +37,8 @@ module.exports = {
 		],
 	},
 	plugins: [
-		new ZipPlugin(),
+		new ZipPlugin({
+			// pathPrefix: 'test',
+		}),
 	],
 }
