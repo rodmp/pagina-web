@@ -1,23 +1,22 @@
-import { assoc, assocPath } from 'ramda'
+import { assoc, assocPath, map, compose } from 'ramda'
 import webpack from 'webpack'
 
-import webpackLambda from 'sls-aws/src/aws/util/webpackLambda'
+import webpackLambdaConf from 'sls-aws/src/aws/util/cfCli/webpackLambdaConf'
 
-export const webpackLambdaFns = () => {
-	const entryArr = getLambdaFnResourceEntries(cloudformationTemplate)
-	return Promise.all(map(buildFiles, entryArr)).then(() => entryArr)
-}
-
-export const createWebpackConf = (entryPath, resourceKey) => assoc(
-	'entry',
-	entryPath,
-	assocPath(['output', 'filename'], `${resourceKey}.js`, webpackLambda),
+export const createWebpackConf = (entryPath, resourceKey, buildPath) => (
+	compose(
+		assoc('entry', entryPath),
+		assocPath(['output', 'filename'], `${resourceKey}.js`),
+		assocPath(['output', 'path'], buildPath),
+	)(webpackLambdaConf)
 )
 
-export const buildFiles = ({ entryPath, resourceKey }) => new Promise(
+export const buildFilesHof = buildPath => ({
+	entryPath, resourceKey,
+}) => new Promise(
 	(resolve, reject) => {
 		webpack(
-			createWebpackConf(entryPath, resourceKey),
+			createWebpackConf(entryPath, resourceKey, buildPath),
 			(err, stats) => {
 				if (err || stats.hasErrors()) {
 					reject(err)
@@ -27,3 +26,10 @@ export const buildFiles = ({ entryPath, resourceKey }) => new Promise(
 		)
 	},
 )
+
+export default ({ lambdaResourceEntries, buildPath }) => {
+	const buildFiles = buildFilesHof(buildPath)
+	return Promise.all(
+		map(buildFiles, lambdaResourceEntries),
+	)
+}

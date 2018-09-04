@@ -4,3 +4,4 @@ build
 slsOutput.json
 serverless.yml
 .webpack
+.cloudFormation
