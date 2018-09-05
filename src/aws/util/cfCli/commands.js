@@ -9,10 +9,19 @@ import s3Upload from 'sls-aws/src/aws/util/cfCli/s3Upload'
 
 import updateStack from 'sls-aws/src/aws/util/cfCli/updateStack'
 
+import emptyDeleteBuckets from 'sls-aws/src/aws/util/cfCli/emptyDeleteBuckets'
 import deleteStack from 'sls-aws/src/aws/util/cfCli/deleteStack'
 
 import getStackProgress from 'sls-aws/src/aws/util/cfCli/getStackProgress'
+import saveStackOutputs from 'sls-aws/src/aws/util/cfCli/saveStackOutputs'
 
+const afterCreateOrUpdate = [
+	{
+		title: 'Waiting for stack to complete',
+		fn: getStackProgress,
+	},
+	{ title: 'Saving stack output', fn: saveStackOutputs },
+]
 
 const createUpdateCommon = [
 	{ title: 'Bundling lambda functions', fn: webpack },
@@ -23,25 +32,20 @@ const createUpdateCommon = [
 const create = [
 	{ title: 'Creating s3 bucket', fn: createS3DeploymentBucket },
 	...createUpdateCommon,
-	{
-		title: 'Creating stack',
-		fn: config => createNewStack(config).then(
-			() => getStackProgress(config),
-		),
-	},
+	{ title: 'Creating stack', fn: createNewStack },
+	...afterCreateOrUpdate,
 ]
 
 const update = [
 	...createUpdateCommon,
-	{ title: 'Updating stack', fn: composeP(getStackProgress, updateStack) },
+	{ title: 'Updating stack', fn: updateStack },
+	...afterCreateOrUpdate,
 ]
 
 const remove = [
-	{
-		title: 'Emptying s3 buckets',
-		fn: () => { console.log('havent done this yet') },
-	},
-	{ title: 'Deleting stack', fn: composeP(getStackProgress, deleteStack) },
+	{ title: 'Emptying s3 buckets', fn: emptyDeleteBuckets },
+	{ title: 'Deleting stack', fn: deleteStack },
+	{ title: 'Delete processing...', fn: getStackProgress },
 ]
 
 export default {
