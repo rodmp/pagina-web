@@ -24,11 +24,11 @@ const uploadFileHof = (s3UploadClient, s3DeploymentBucket) => (
 
 export default ({
 	s3UploadClient, s3DeploymentBucket, buildPath, lambdaResourceEntries,
-	templateFileName,
+	templateFileName, templateFileNameLocal,
 }) => {
 	const uploadFile = uploadFileHof(s3UploadClient, s3DeploymentBucket)
 	return Promise.all([
-		uploadFile(`${buildPath}/${templateFileName}`, templateFileName),
+		uploadFile(`${buildPath}/${templateFileNameLocal}`, templateFileName),
 		...map(
 			({ s3Key, resourceZipFileName }) => uploadFile(
 				`${buildPath}/${resourceZipFileName}`,

@@ -1,11 +1,11 @@
 import fs from 'fs'
 
 export default ({
-	finalCloudFormationTemplate, buildPath, templateFileName,
+	finalCloudFormationTemplate, buildPath, templateFileNameLocal,
 }) => new Promise(
 	(resolve, reject) => {
 		fs.writeFile(
-			`${buildPath}/${templateFileName}`,
+			`${buildPath}/${templateFileNameLocal}`,
 			JSON.stringify(finalCloudFormationTemplate),
 			(err) => {
 				if (err) {
