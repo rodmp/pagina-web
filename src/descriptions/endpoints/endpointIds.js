@@ -1,0 +1,1 @@
+export const TEST_ENDPOINT_ID = 'TEST_ENDPOINT_ID'
