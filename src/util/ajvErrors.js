@@ -1,12 +1,15 @@
-import { reduce, assoc, path, replace, prop, compose } from 'ramda'
+import {
+	reduce, assoc, path, replace, prop, compose,
+} from 'ramda'
 
 import { capitalize } from 'sls-aws/src/util/stringCase'
 
 const dataPathKey = compose(
-	replace('.', ''),
+	replace(/[./]/, ''),
 	prop('dataPath'),
 )
 const missingPropertyKey = path(['params', 'missingProperty'])
+const typePath = path(['params', 'type'])
 const schemaPathKey = compose(
 	replace(/#\/properties\/(.*?)\/.*/, '$1'),
 	prop('schemaPath'),
@@ -15,31 +18,39 @@ const errorLimit = path(['params', 'limit'])
 
 const getConstant = (schema, key) => compose(
 	replace('1/', ''),
-	path(['properties', key, 'constant', '$data'])
+	path(['properties', key, 'constant', '$data']),
 )(schema)
 
 export default (schema, errors) => reduce((result, error) => {
 	switch (error.keyword) {
+		case 'type': {
+			const errorKey = dataPathKey(error)
+			return assoc(
+				errorKey,
+				`${capitalize(errorKey)} should be a ${typePath(error)}`,
+				result,
+			)
+		}
 		case 'constant': {
 			const errorKey = dataPathKey(error)
 			return assoc(
 				errorKey,
 				`${capitalize(errorKey)} must equal ${capitalize(getConstant(errorKey))}`,
-				result
+				result,
 			)
 		}
 		case 'required': {
 			const errorKey = missingPropertyKey(error)
 			return assoc(
-				errorKey, `${capitalize(errorKey)} is required`, result
+				errorKey, `${capitalize(errorKey)} is required`, result,
 			)
 		}
-		case 'minLength': { 
+		case 'minLength': {
 			const errorKey = schemaPathKey(error)
 			return assoc(
 				errorKey,
 				`${capitalize(errorKey)} must be at least ${errorLimit(error)} characters`,
-				result
+				result,
 			)
 		}
 		case 'format': {
