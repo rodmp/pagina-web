@@ -1,8 +1,9 @@
 import { reduce, append } from 'ramda'
 
-export const promiseSeriesWaterfall = reduce(
+export const promiseSeriesWaterfall = (apply, promiseArr) => reduce(
 	(result, nextP) => result.then(nextP),
-	Promise.resolve([]),
+	Promise.resolve(apply),
+	promiseArr,
 )
 
 export const promiseSeriesWaterfallAggregrate = reduce(
