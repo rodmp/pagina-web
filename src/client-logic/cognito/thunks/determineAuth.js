@@ -6,6 +6,7 @@ import { storageClear } from 'sls-aws/src/util/storage'
 export const determineAuthHof = authDeterminedFn => () => dispatch => (
 	new Promise((resolve, reject) => {
 		const cognitoUser = userPool.getCurrentUser()
+		console(cognitoUser)
 		if (cognitoUser != null) {
 			cognitoUser.getSession((err, session) => {
 				if (err) {
@@ -18,7 +19,7 @@ export const determineAuthHof = authDeterminedFn => () => dispatch => (
 			reject()
 		}
 	}).then(
-		session => dispatch(authDeterminedFn(session))
+		session => dispatch(authDeterminedFn(session)),
 	).catch(() => {
 		storageClear()
 		dispatch(authDeterminedFn(false))
@@ -26,5 +27,5 @@ export const determineAuthHof = authDeterminedFn => () => dispatch => (
 )
 
 export default determineAuthHof(
-	authDetermined
+	authDetermined,
 )
