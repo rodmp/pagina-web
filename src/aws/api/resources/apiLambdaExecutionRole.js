@@ -24,8 +24,17 @@ export default {
 						Statement: [
 							{
 								Effect: 'Allow',
-								Action: ['logs:*'],
-								Resource: 'arn:aws:logs:*:*:*',
+								Action: [
+									'dynamodb:DescribeTable',
+									'dynamodb:Query',
+									'dynamodb:Scan',
+									'dynamodb:GetItem',
+									'dynamodb:PutItem',
+									'dynamodb:UpdateItem',
+									'dynamodb:DeleteItem',
+								],
+								// @TODO: specify the tables from models
+								Resource: '*',
 							},
 						],
 					},

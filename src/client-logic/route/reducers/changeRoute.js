@@ -9,5 +9,5 @@ export default {
 	[CHANGE_ROUTE]: (state, action) => overHistory(
 		prepend(action),
 		state,
-	)
+	),
 }
