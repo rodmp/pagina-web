@@ -1,4 +1,4 @@
-import { over, lensPath, append } from 'ramda'
+import { over, lensPath, concat } from 'ramda'
 
 import {
 	COGNITO_AUTH_ROLE,
@@ -11,6 +11,6 @@ const authPolicyLens = lensPath([
 
 export default (cognitoResources, authPolicies) => over(
 	authPolicyLens,
-	append(authPolicies),
+	concat(authPolicies),
 	cognitoResources,
 )
