@@ -1,13 +1,12 @@
-import { compose, path, assoc, prop, reduce } from 'ramda'
+import { compose, path, prop, map, join } from 'ramda'
 import fs from 'fs'
 
 
 export const formatStackOutput = compose(
-	reduce((result, cfOutputObj) => assoc(
-		prop('OutputKey', cfOutputObj),
-		prop('OutputValue', cfOutputObj),
-		result,
-	), {}),
+	join('\n'),
+	map(cfOutputObj => (
+		`export const ${prop('OutputKey', cfOutputObj)} = '${prop('OutputValue', cfOutputObj)}'`
+	)),
 	path(['Stacks', 0, 'Outputs']),
 )
 
@@ -16,7 +15,7 @@ export const saveOutput = (projectRoot, outputPath, stackOutput) => (
 		(resolve, reject) => {
 			fs.writeFile(
 				`${projectRoot}/${outputPath}`,
-				JSON.stringify(formatStackOutput(stackOutput), null, 2),
+				formatStackOutput(stackOutput),
 				(err) => {
 					if (err) {
 						reject(err)
@@ -27,7 +26,6 @@ export const saveOutput = (projectRoot, outputPath, stackOutput) => (
 		},
 	)
 )
-
 
 export default ({
 	cloudFormationClient, stackName, projectRoot, outputPath,

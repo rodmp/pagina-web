@@ -60,6 +60,6 @@ export default ({
 		projectRoot,
 		buildDir,
 		buildPath: `${projectRoot}/${buildDir}`,
-		outputPath: 'cfOutput.json',
+		outputPath: 'cfOutput.js',
 	}
 }
