@@ -11,10 +11,12 @@ export const pushInitialRouteHof = (
 	matchPathFn,
 	defaultRouteFn,
 	dispatchCommittedRouteFn,
-) => () => (dispatch) => {
+) => () => (dispatch, getState) => {
 	let nextRoute = matchPathFn(getPathFromUrlFn())
 	if (nextRoute) {
-		nextRoute = auditRouteFn(nextRoute) ? nextRoute : defaultRouteFn()
+		const state = getState()
+		nextRoute = auditRouteFn(nextRoute, state)
+			? nextRoute : defaultRouteFn()
 	} else {
 		nextRoute = defaultRouteFn()
 	}
@@ -26,5 +28,5 @@ export default pushInitialRouteHof(
 	getPathFromUrl,
 	matchPath,
 	defaultRoute,
-	dispatchCommittedRoute
+	dispatchCommittedRoute,
 )

@@ -22,7 +22,6 @@ commander
 		if (!cmd/* || !template*/) {
 			commander.help()
 		} else {
-			// console.log(cmd, template, { ...options })
 			const config = createConfigObj({ template, ...options })
 			runCommand(cmd, config)
 				.then(() => {

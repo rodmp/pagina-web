@@ -1,5 +1,5 @@
 import cloudformationTemplate from 'sls-aws/src/aws'
 
-console.log(
-	JSON.stringify(cloudformationTemplate, null, 2)
+console.info(
+	JSON.stringify(cloudformationTemplate, null, 2),
 )

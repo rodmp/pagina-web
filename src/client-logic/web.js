@@ -31,7 +31,7 @@ const store = createStore(
 		popStateListener,
 	], // listeners
 	{}, // initial state
-	initApp
+	initApp,
 )
 
 export default store
