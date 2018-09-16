@@ -13,21 +13,21 @@ export default {
 		url: '/login',
 		authentication: unAuthValue,
 		modules: [
-			LOGIN_FORM_MODULE_ID
+			LOGIN_FORM_MODULE_ID,
 		],
 	},
 	[SIGN_UP_ROUTE_ID]: {
 		url: '/sign-up',
 		authentication: unAuthValue,
 		modules: [
-			SIGN_UP_FORM_MODULE_ID
+			SIGN_UP_FORM_MODULE_ID,
 		],
 	},
 	[VERIFY_ACCOUNT_ROUTE_ID]: {
 		url: '/verify-account',
 		authentication: unAuthValue,
 		modules: [
-			VERIFY_ACCOUNT_FORM_MODULE_ID
+			VERIFY_ACCOUNT_FORM_MODULE_ID,
 		],
-	}
+	},
 }

@@ -12,17 +12,17 @@ export default {
 				fieldId: 'email',
 				inputType: 'text',
 				textType: 'email',
-				label: 'Email'
+				label: 'Email',
 			},
 			{
 				fieldId: 'password',
 				inputType: 'text',
 				textType: 'password',
-				label: 'Password'
+				label: 'Password',
 			},
 		],
 		submits: [
 			{ label: 'Login', action: login },
-		]
-	}
+		],
+	},
 }
