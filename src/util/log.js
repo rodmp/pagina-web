@@ -1,4 +1,4 @@
 export default (x) => {
-	console.log(x)
+	console.info(x)
 	return x
 }

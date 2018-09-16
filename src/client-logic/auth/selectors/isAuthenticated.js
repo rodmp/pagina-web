@@ -1,11 +1,7 @@
-import { join } from 'ramda'
+import {
+	appStoreLenses,
+} from 'sls-aws/src/client-logic/app/lenses'
 
-import { clientId } from 'sls-aws/cfOutput'
-import { storageGet } from 'sls-aws/src/util/storage'
+const { viewAuthenticated } = appStoreLenses
 
-const lsKey = join(
-	'',
-	['CognitoIdentityServiceProvider.', clientId, '.LastAuthUser'],
-)
-
-export default () => Boolean(storageGet(lsKey))
+export default state => Boolean(viewAuthenticated(state))

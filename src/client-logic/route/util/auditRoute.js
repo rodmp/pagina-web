@@ -9,10 +9,10 @@ import {
 const { viewAuthentication } = routeDescriptionLenses
 
 export const auditRouteHof = (
-	authenticatedFn, routeDescriptionObj,
+	authenticatedFn, routeDescriptionObj, state,
 ) => ({ routeId }) => {
 	const routeAuth = viewAuthentication(routeId, routeDescriptionObj)
-	const authenticatedState = authenticatedFn() ? authValue : unAuthValue
+	const authenticatedState = authenticatedFn(state) ? authValue : unAuthValue
 	return !routeAuth ? true : equals(routeAuth, authenticatedState)
 }
 
