@@ -18,21 +18,21 @@ export default {
 						Sid: '',
 						Effect: 'Allow',
 						Principal: {
-							Federated: 'cognito-identity.amazonaws.com'
+							Federated: 'cognito-identity.amazonaws.com',
 						},
 						Action: 'sts:AssumeRoleWithWebIdentity',
 						Condition: {
 							StringEquals: {
 								'cognito-identity.amazonaws.com:aud': ref(
-									IDENTITY_POOL
-								)
+									IDENTITY_POOL,
+								),
 							},
 							// 'ForAnyValue:StringLike': {
 							// 	'cognito-identity.amazonaws.com:amr': 'unauthenticated'
 							// }
-						}
-					}
-				]
+						},
+					},
+				],
 			},
 			Policies: [
 				{
@@ -44,16 +44,16 @@ export default {
 								Effect: 'Allow',
 								Action: [
 									'cognito-sync:*',
-									'execute-api:*'
+									'execute-api:*',
 								],
 								Resource: [
-									'*'
-								]
+									'*',
+								],
 							},
-						]
-					}
-				}
-			]
-		}
-	}
+						],
+					},
+				},
+			],
+		},
+	},
 }

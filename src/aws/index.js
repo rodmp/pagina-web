@@ -1,9 +1,17 @@
 import { cognitoResources, cognitoOutputs } from 'sls-aws/src/aws/cognito'
-import { apiResources, apiOutputs } from 'sls-aws/src/aws/api'
+import { apiResources, apiOutputs, apiAuthPolicies } from 'sls-aws/src/aws/api'
+import addCognitoPolicies from 'sls-aws/src/aws/util/addCognitoPolicies'
+
+const appendedCognitoResources = addCognitoPolicies(
+	cognitoResources,
+	[
+		...apiAuthPolicies,
+	],
+)
 
 export default {
 	Resources: {
-		...cognitoResources,
+		...appendedCognitoResources,
 		...apiResources,
 	},
 	Outputs: {
@@ -11,39 +19,3 @@ export default {
 		...apiOutputs,
 	},
 }
-
-// export default {
-// 	service: {
-// 		name: 'sls-aws-test',
-// 	},
-// 	package: {
-// 		individually: true,
-// 	},
-// 	provider: {
-// 		name: 'aws',
-// 		runtime: 'nodejs8.10',
-// 	},
-// 	plugins: [
-// 		'serverless-stack-output',
-// 		'serverless-webpack',
-// 	],
-// 	custom: {
-// 		output: {
-// 			file: 'slsOutput.json',
-// 		},
-// 		webpack: {
-// 			webpackConfig: 'webpack.lambda.config.js',
-// 			packager: 'yarn',
-// 		},
-// 	},
-// 	resources: {
-// 		Resources: {
-// 			...cognitoResources,
-// 			...apiResources,
-// 		},
-// 		Outputs: {
-// 			...cognitoOutputs,
-// 			...apiOutputs,
-// 		},
-// 	},
-// }

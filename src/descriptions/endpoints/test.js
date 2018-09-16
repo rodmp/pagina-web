@@ -1,23 +1,25 @@
 import {
-	CREATE_TEST_ENDPOINT_ID,
+	TEST_ENDPOINT_ID,
 } from 'sls-aws/src/descriptions/endpoints/endpointIds'
 
 
 export default {
-	// [CREATE_TEST_ENDPOINT_ID]: {
-	// 	authentication: '',
-	// 	action: createRecord('model'),
-	// 	toRepresentation: toRepresentation('modelSchema'),
-	// 	toInternalValue: toInternalValue('modelSchema'),
-	// 	payloadSchema: {
-	// 		type: 'object',
-	// 		properties: {},
-	// 	},
-	// 	responseSchema: {
-	// 		type: 'object',
-	// 		properties: {},
-	// 	},
-	// },
+	[TEST_ENDPOINT_ID]: {
+		authentication: '',
+		action: payload => Promise.resolve(`${payload.test} success`),
+		// toRepresentation: toRepresentation('modelSchema'),
+		// toInternalValue: toInternalValue('modelSchema'),
+		payloadSchema: {
+			type: 'object',
+			properties: {
+				test: { type: 'string' },
+			},
+		},
+		// responseSchema: {
+		// 	type: 'object',
+		// 	properties: {},
+		// },
+	},
 	// [UPDATE_TEST_ENDPOINT_ID]: {
 	// 	authentication: '',
 	// 	action: updateRecord('model'),
