@@ -6,7 +6,6 @@ const webpack = require('webpack')
 // const appConstants = require('./src/constants/app')
 const colorConstants = require('./src/constants/color')
 const logoConstant = require('./src/constants/logo')
-const slsConstants = require('./slsOutput.json')
 
 // const env = slsConstants.env || 'dev'
 const env = 'development'
@@ -16,7 +15,6 @@ const envVars = Object.assign(
 	colorConstants,
 	logoConstant,
 	// appConstants,
-	slsConstants,
 )
 
 module.exports = {
@@ -41,7 +39,7 @@ module.exports = {
 						presets: ['env', 'stage-0', 'react'],
 						plugins: ['package-name-import'],
 					},
-				}
+				},
 			},
 			{
 				test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot|css)$/,
@@ -64,7 +62,7 @@ module.exports = {
 			// },
 		}, envVars)),
 		new webpack.DefinePlugin(
-			map(JSON.stringify, envVars)
-		)
+			map(JSON.stringify, envVars),
+		),
 	],
 }

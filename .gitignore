@@ -1,8 +1,4 @@
 node_modules
-.serverless
 build
-slsOutput.json
-serverless.yml
-.webpack
 .cloudFormation
-cfOutput.json
+cfOutput.js
