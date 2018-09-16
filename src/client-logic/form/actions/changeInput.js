@@ -5,6 +5,6 @@ export default (moduleKey, fieldId, value) => ({
 	payload: {
 		moduleKey,
 		fieldId,
-		value
-	}
+		value,
+	},
 })

@@ -4,7 +4,7 @@ import Result from 'folktale/result'
 import reportError from 'sls-aws/src/util/reportError'
 
 const createReducer = (reducerObj, initialState) => (
-	state = initialState, action
+	state = initialState, action,
 ) => Result.try(
 	() => {
 		const { type, payload } = action
@@ -12,7 +12,7 @@ const createReducer = (reducerObj, initialState) => (
 			throw new Error(`Action ${type} not found`)
 		}
 		return reducerObj[type](state, payload)
-	}
+	},
 ).mapError(reportError).getOrElse(state)
 
 export default createReducer

@@ -18,19 +18,19 @@ const formSchema = {
 							properties: {
 								formSubmitting: { type: 'boolean' },
 								formSubmitted: { type: 'boolean' },
-							}
+							},
 						},
 						formInputs: {
 							type: 'object',
 							patternProperties: {
-								[variableSchemaKey]: { type: 'object' }
-							}
+								[variableSchemaKey]: { type: 'object' },
+							},
 						},
 						fieldErrors: {
 							type: 'object',
 							patternProperties: {
-								[variableSchemaKey]: { type: 'object' }
-							}
+								[variableSchemaKey]: { type: 'object' },
+							},
 						},
 						fieldData: {
 							type: 'object',
@@ -40,15 +40,15 @@ const formSchema = {
 									properties: {
 										dirty: { type: 'boolean' },
 										valid: { type: 'boolean' },
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+	},
 }
 
 export const formStoreLenses = lensesFromSchema(formSchema)
@@ -82,12 +82,12 @@ export const formModuleSchema = {
 						properties: {
 							action: { type: 'function' },
 							label: { type: 'string' },
-						}
+						},
 					},
 				},
 			},
-		}
-	}
+		},
+	},
 }
 export const formModuleLenses = lensesFromSchema(formModuleSchema)
 
