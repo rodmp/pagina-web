@@ -5,3 +5,4 @@ slsOutput.json
 serverless.yml
 .webpack
 .cloudFormation
+cfOutput.json
