@@ -13,7 +13,8 @@ module.exports = {
 	output: {
 		libraryTarget: 'commonjs2',
 	},
-	externals: [nodeExternals()],
+	// externals: [nodeExternals()],
+	externals: ['aws-sdk'],
 	module: {
 		rules: [
 			{

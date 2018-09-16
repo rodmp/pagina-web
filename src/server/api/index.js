@@ -13,4 +13,9 @@ export const apiHof = endpoints => (event, context, callback) => {
 	})
 }
 
-export default apiHof(allEndpoints)
+export const apiFn = apiHof(allEndpoints)
+
+// can't return promise?
+export default (event, context, callback) => {
+	apiFn(event, context, callback)
+}

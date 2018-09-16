@@ -3,5 +3,5 @@ export default ({
 }) => cloudFormationClient.updateStack({
 	StackName: stackName,
 	Capabilities: ['CAPABILITY_IAM'],
-	TemplateBody: templateUrl,
+	TemplateURL: templateUrl,
 }).promise()
