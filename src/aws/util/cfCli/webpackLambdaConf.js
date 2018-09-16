@@ -1,6 +1,4 @@
-import path from 'path'
 import ZipPlugin from 'zip-webpack-plugin'
-import nodeExternals from 'webpack-node-externals'
 
 // const env = slsConstants.env || 'dev'
 const env = 'development'
@@ -13,7 +11,6 @@ module.exports = {
 	output: {
 		libraryTarget: 'commonjs2',
 	},
-	// externals: [nodeExternals()],
 	externals: ['aws-sdk'],
 	module: {
 		rules: [
