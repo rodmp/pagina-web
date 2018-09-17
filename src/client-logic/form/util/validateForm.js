@@ -17,6 +17,6 @@ export default (moduleKey, state) => new Promise((resolve, reject) => {
 			} else {
 				reject(ajvErrors(formSchema, errors))
 			}
-		}
+		},
 	)
 })
