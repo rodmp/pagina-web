@@ -1,5 +1,1 @@
-https://blog.spotinst.com/2017/11/19/best-practices-serverless-connection-pooling-database/
-
-http://docs.sequelizejs.com/
-
-https://docs.aws.amazon.com/lambda/latest/dg/vpc.html
+[Cognito login guide](https://aws.amazon.com/blogs/developer/authentication-in-the-browser-with-amazon-cognito-and-public-identity-providers/)
