@@ -30,7 +30,8 @@ export const submitFormHof = (
 		)
 		return dispatch(submitAction(formData)).then(() => {
 			dispatch(submitFormCompleteFn(moduleKey))
-		}).catch(() => {
+		}).catch((errors) => {
+			dispatch(setFormErrorsFn(moduleKey, errors))
 			dispatch(submitFormCompleteFn(moduleKey))
 		})
 	}).catch((errors) => {
