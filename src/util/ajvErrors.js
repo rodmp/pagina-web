@@ -18,7 +18,7 @@ const errorLimit = path(['params', 'limit'])
 
 const getConstant = (schema, key) => compose(
 	replace('1/', ''),
-	path(['properties', key, 'constant', '$data']),
+	path(['properties', key, 'const', '$data']),
 )(schema)
 
 export default (schema, errors) => reduce((result, error) => {
@@ -31,11 +31,11 @@ export default (schema, errors) => reduce((result, error) => {
 				result,
 			)
 		}
-		case 'constant': {
+		case 'const': {
 			const errorKey = dataPathKey(error)
 			return assoc(
 				errorKey,
-				`${capitalize(errorKey)} must equal ${capitalize(getConstant(errorKey))}`,
+				`Must equal ${capitalize(getConstant(schema, errorKey))}`,
 				result,
 			)
 		}
