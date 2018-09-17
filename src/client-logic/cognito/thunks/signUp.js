@@ -11,9 +11,14 @@ export default ({ email, password }) => dispatch => new Promise(
 		// 	Value: email,
 		// })
 		userPool.signUp(
-			email, password, [], null, (err, result) => {
-				if (err) {
-					reject(err)
+			email, password, [], null, (cognitoError, result) => {
+				if (cognitoError) {
+					const { code, message } = cognitoError
+					let fieldError = { email: message }
+					if (code === 'InvalidPasswordException') {
+						fieldError = { password: message }
+					}
+					reject(fieldError)
 				} else {
 					resolve(result.user)
 				}
