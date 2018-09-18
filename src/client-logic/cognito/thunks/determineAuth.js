@@ -3,6 +3,7 @@ import userPool from 'sls-aws/src/client-logic/cognito/util/userPool'
 
 import reportError from 'sls-aws/src/util/reportError'
 import { storageClear } from 'sls-aws/src/util/storage'
+import setAwsConfig from 'sls-aws/src/client-logic/cognito/util/setAwsConfig'
 
 export const determineAuthHof = authDeterminedFn => () => dispatch => (
 	new Promise((resolve, reject) => {
@@ -12,6 +13,7 @@ export const determineAuthHof = authDeterminedFn => () => dispatch => (
 				if (err) {
 					reject(err)
 				} else {
+					setAwsConfig(session)
 					resolve(session)
 				}
 			})
