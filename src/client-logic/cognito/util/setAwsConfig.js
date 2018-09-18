@@ -4,16 +4,18 @@ import { identityPoolId, userPoolId } from 'sls-aws/cfOutput'
 
 const cognitoLoginKey = `cognito-idp.${region}.amazonaws.com/${userPoolId}`
 
-config.region = region
-config.credentials = new CognitoIdentityCredentials({
+const creds = new CognitoIdentityCredentials({
 	IdentityPoolId: identityPoolId,
 })
 
+config.update({
+	region,
+	credentials: creds,
+})
+
 export default (session) => {
-	config.credentials = new CognitoIdentityCredentials({
-		IdentityPoolId: identityPoolId,
-		Logins: {
-			[cognitoLoginKey]: session.getIdToken().getJwtToken(),
-		},
-	})
+	creds.params.Logins = {
+		[cognitoLoginKey]: session.getIdToken().getJwtToken(),
+	}
+	creds.expired = true
 }
