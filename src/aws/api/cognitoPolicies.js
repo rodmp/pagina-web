@@ -2,7 +2,7 @@ import getAtt from 'sls-aws/src/aws/util/getAtt'
 
 import { API_LAMBDA_FUNCTION } from 'sls-aws/src/aws/api/resourceIds'
 
-export default [
+const commonPolicies = [
 	{
 		Effect: 'Allow',
 		Action: [
@@ -11,3 +11,6 @@ export default [
 		Resource: getAtt(API_LAMBDA_FUNCTION, 'Arn'),
 	},
 ]
+
+export const authPolicies = commonPolicies
+export const unauthPolicies = commonPolicies

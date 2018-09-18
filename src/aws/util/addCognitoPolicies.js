@@ -1,16 +1,16 @@
-import { over, lensPath, concat } from 'ramda'
+import { over, lensPath, concat, compose } from 'ramda'
 
 import {
-	COGNITO_AUTH_ROLE,
+	COGNITO_AUTH_ROLE, COGNITO_UNAUTH_ROLE,
 } from 'sls-aws/src/aws/cognito/resourceIds'
 
-const authPolicyLens = lensPath([
-	COGNITO_AUTH_ROLE, 'Properties', 'Policies', 0, 'PolicyDocument',
-	'Statement',
-])
+const pathCommon = ['Properties', 'Policies', 0, 'PolicyDocument', 'Statement']
 
-export default (cognitoResources, authPolicies) => over(
-	authPolicyLens,
-	concat(authPolicies),
-	cognitoResources,
-)
+const authPolicyLens = lensPath([COGNITO_AUTH_ROLE, ...pathCommon])
+
+const unAuthPolicyLens = lensPath([COGNITO_UNAUTH_ROLE, ...pathCommon])
+
+export default (cognitoResources, authPolicies, unAuthPolicies) => compose(
+	over(authPolicyLens, concat(authPolicies)),
+	over(unAuthPolicyLens, concat(unAuthPolicies)),
+)(cognitoResources)
