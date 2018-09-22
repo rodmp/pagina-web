@@ -48,6 +48,10 @@ const remove = [
 	{ title: 'Delete processing...', fn: getStackProgress },
 ]
 
+const outputs = [
+	{ title: 'Saving stack output', fn: saveStackOutputs },
+]
+
 export default {
-	create, update, remove,
+	create, update, remove, outputs,
 }
