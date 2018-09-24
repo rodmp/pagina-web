@@ -37,7 +37,7 @@ export default {
 						CustomOriginConfig: {
 							HTTPPort: '80',
 							HTTPSPort: '443',
-							OriginProtocolPolicy: 'http-only',
+							OriginProtocolPolicy: 'https-only',
 						},
 					},
 				],
@@ -50,10 +50,10 @@ export default {
 						ErrorCachingMinTTL : '30',
 					}
 				],
-				ViewerCertificate: {
-					SslSupportMethod: 'sni-only',
-					AcmCertificateArn: 'CERTIFICATE_ARN',
-				},
+				// ViewerCertificate: {
+				// 	SslSupportMethod: 'sni-only',
+				// 	AcmCertificateArn: 'CERTIFICATE_ARN',
+				// },
 			},
 		},
 	},
