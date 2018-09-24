@@ -1,4 +1,4 @@
-import ref from 'sls-aws/src/aws/util/ref'
+import getAtt from 'sls-aws/src/aws/util/getAtt'
 import domainName from 'sls-aws/src/aws/util/domainName'
 import {
 	SSL, ROOT_BUCKET,
@@ -8,7 +8,8 @@ export default {
 	[SSL]: {
 		Type: 'AWS::CertificateManager::Certificate',
 		Properties: {
-			DomainName: ref(ROOT_BUCKET),
+			// DomainName: getAtt(ROOT_BUCKET, 'DomainName'),
+			DomainName: domainName,
 			SubjectAlternativeNames: [
 				domainName
 			],
