@@ -9,6 +9,7 @@ import {
 export default {
 	[CLOUDFRONT_DISTRIBUTION]: {
 		Type: 'AWS::CloudFront::Distribution',
+		DependsOn: [ROOT_BUCKET],
 		Properties: {
 			DistributionConfig: {
 				Aliases: [
@@ -22,12 +23,12 @@ export default {
 					MinTTL: 0,
 					AllowedMethods: ['HEAD', 'GET'],
 					CachedMethods: ['HEAD', 'GET'],
-					// ForwardedValues: {
-					// 	QueryString: false,
-					// 	Cookies: {
-					// 		Forward: 'none',
-					// 	},
-					// },
+					ForwardedValues: {
+						QueryString: true,
+						Cookies: {
+							Forward: 'none',
+						},
+					},
 				},
 				Origins: [
 					{
@@ -44,15 +45,14 @@ export default {
 				CustomErrorResponses : [
 					{
 						ErrorCode : '404',
-						ResponsePagePath : 'index.html',
+						ResponsePagePath : '/index.html',
 						ResponseCode : '200',
 						ErrorCachingMinTTL : '30',
 					}
 				],
 				ViewerCertificate: {
 					SslSupportMethod: 'sni-only',
-					MinimumProtocolVersion: 'TLSv1',
-					AcmCertificateArn: ref(SSL),
+					AcmCertificateArn: 'CERTIFICATE_ARN',
 				},
 			},
 		},
