@@ -1,7 +1,7 @@
 import ref from 'sls-aws/src/aws/util/ref'
 import {
-	BUCKET_POLICY, SITE_BUCKET,
-} from 'sls-aws/src/aws/siteBucket/resourceIds'
+	BUCKET_POLICY, STATIC_BUCKET,
+} from 'sls-aws/src/aws/staticHosting/resourceIds'
 
 export default {
 	[BUCKET_POLICY]: {
@@ -21,7 +21,7 @@ export default {
 								'',
 								[
 									'arn:aws:s3:::',
-									ref(SITE_BUCKET),
+									ref(STATIC_BUCKET),
 									'/*',
 								],
 							],
@@ -29,7 +29,7 @@ export default {
 					},
 				],
 			},
-			Bucket: ref(SITE_BUCKET),
+			Bucket: ref(STATIC_BUCKET),
 		},
 	},
 }

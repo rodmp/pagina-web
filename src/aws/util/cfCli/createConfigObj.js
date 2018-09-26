@@ -38,7 +38,6 @@ export default ({
 		`https://${s3DeploymentBucket}.s3.amazonaws.com/${templateFileName}`
 	)
 
-
 	return {
 		templateFileNameLocal: 'template.json',
 		templateFileName,

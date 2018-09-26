@@ -1,15 +1,17 @@
 import ref from 'sls-aws/src/aws/util/ref'
+import split from 'sls-aws/src/aws/util/split'
+import select from 'sls-aws/src/aws/util/select'
 import getAtt from 'sls-aws/src/aws/util/getAtt'
 import domainName from 'sls-aws/src/aws/util/domainName'
 
 import {
-	CLOUDFRONT_DISTRIBUTION, SSL, ROOT_BUCKET,
-} from 'sls-aws/src/aws/siteBucket/resourceIds'
+	CLOUDFRONT_DISTRIBUTION, SSL, STATIC_BUCKET,
+} from 'sls-aws/src/aws/staticHosting/resourceIds'
 
 export default {
 	[CLOUDFRONT_DISTRIBUTION]: {
 		Type: 'AWS::CloudFront::Distribution',
-		DependsOn: [ROOT_BUCKET],
+		DependsOn: [STATIC_BUCKET],
 		Properties: {
 			DistributionConfig: {
 				Aliases: [
@@ -18,7 +20,7 @@ export default {
 				Enabled: true,
 				PriceClass: 'PriceClass_All',
 				DefaultCacheBehavior: {
-					TargetOriginId: ref(ROOT_BUCKET),
+					TargetOriginId: ref(STATIC_BUCKET),
 					ViewerProtocolPolicy: 'redirect-to-https',
 					MinTTL: 0,
 					AllowedMethods: ['HEAD', 'GET'],
@@ -32,12 +34,12 @@ export default {
 				},
 				Origins: [
 					{
-						DomainName: getAtt(ROOT_BUCKET, 'DomainName'),
-						Id: ref(ROOT_BUCKET),
+						DomainName: select(2, split('/', getAtt(STATIC_BUCKET, 'WebsiteURL'))),
+						Id: ref(STATIC_BUCKET),
 						CustomOriginConfig: {
 							HTTPPort: '80',
 							HTTPSPort: '443',
-							OriginProtocolPolicy: 'https-only',
+							OriginProtocolPolicy: 'http-only',
 						},
 					},
 				],
@@ -50,10 +52,10 @@ export default {
 						ErrorCachingMinTTL : '30',
 					}
 				],
-				// ViewerCertificate: {
-				// 	SslSupportMethod: 'sni-only',
-				// 	AcmCertificateArn: 'CERTIFICATE_ARN',
-				// },
+				ViewerCertificate: {
+					SslSupportMethod: 'sni-only',
+					AcmCertificateArn: ref(SSL),
+				},
 			},
 		},
 	},
