@@ -1,8 +1,9 @@
 import ref from 'sls-aws/src/aws/util/ref'
-import domainName, { hostedZoneId } from 'sls-aws/src/aws/util/domainName'
+import getAtt from 'sls-aws/src/aws/util/getAtt'
+import domainName, { hostedZoneId, apexDomain } from 'sls-aws/src/aws/util/domainName'
 import {
 	RECORD_SET, CLOUDFRONT_DISTRIBUTION,
-} from 'sls-aws/src/aws/siteBucket/resourceIds'
+} from 'sls-aws/src/aws/staticHosting/resourceIds'
 
 export default {
 	[RECORD_SET]: {
@@ -22,11 +23,13 @@ export default {
 			// 	}
 			// ]
 			HostedZoneId: hostedZoneId,
+			// Z1UJRXOUMOOFQ8
+			// HostedZoneName: `${apexDomain}.`,
 			Name: domainName,
 			Type: 'A',
 			AliasTarget: {
-				HostedZoneId: hostedZoneId,
-				DNSName: ref(CLOUDFRONT_DISTRIBUTION),
+				HostedZoneId: 'Z2FDTNDATAQYW2', // specific for cloudfront? https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-aliastarget.html 
+				DNSName: getAtt(CLOUDFRONT_DISTRIBUTION, 'DomainName'),
 			}
 		},
 	},

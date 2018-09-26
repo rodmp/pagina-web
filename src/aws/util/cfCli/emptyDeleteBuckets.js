@@ -1,6 +1,37 @@
 import {
- map, prop, propOr, splitEvery, concat 
+ map, prop, propOr, splitEvery, concat, propEq, reduce, append 
 } from 'ramda'
+
+export const getAllBucketNames = (
+	cloudFormationClient, stackName, nextToken, lastBucketNames = [],
+) => (
+	cloudFormationClient.listStackResources({
+		StackName: stackName, NextToken: nextToken,
+	}).promise().then((res) => {
+		console.log(res)
+		const bucketNames = reduce(
+			(result, resource) => {
+				if (propEq('ResourceType', 'ResourceType', resource)) {
+					return append(
+						result,
+						prop('PhysicalResourceId', resource)
+					)
+				}
+				return result 
+			},
+			[],
+			propOr([], 'StackResourceSummaries', res)
+		)
+		const hasNextToken = prop('NextToken', res)
+		if (hasNextToken) {
+			return getAllBucketNames(
+				cloudFormationClient, stackName, hasNextToken,
+				bucketNames,
+			)
+		}
+		return concat(lastBucketNames, bucketNames)
+	})
+)
 
 export const getAllItemKeysChunked = (
 	s3Client, bucketName, marker, lastItemKeys = [],
@@ -46,9 +77,16 @@ export const nukeBucket = (s3Client, bucketName) => getAllItemKeysChunked(
 	s3Client, bucketName, chunkedItemKeys,
 ).then(() => deleteBucket(s3Client, bucketName)))
 
-export default ({ s3Client, s3BucketNames }) => Promise.all(
-	map(
-		bucketName => nukeBucket(s3Client, bucketName),
-		s3BucketNames,
-	),
+export default ({
+	cloudFormationClient, s3Client, s3DeploymentBucket, stackName,
+}) => getAllBucketNames(cloudFormationClient, stackName).then(
+	(resourceBucketNames) => {
+		const allS3BucketNames = append(s3DeploymentBucket, resourceBucketNames) 
+		return Promise.all(
+			map(
+				bucketName => nukeBucket(s3Client, bucketName),
+				allS3BucketNames,
+			),
+		)
+	}
 )

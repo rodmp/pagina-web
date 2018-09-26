@@ -2,11 +2,11 @@ import ref from 'sls-aws/src/aws/util/ref'
 
 import {
 	RECORD_SET,
-} from 'sls-aws/src/aws/siteBucket/resourceIds'
+} from 'sls-aws/src/aws/staticHosting/resourceIds'
 
 import {
 	DOMAIN_NAME,
-} from 'sls-aws/src/aws/siteBucket/outputIds'
+} from 'sls-aws/src/aws/staticHosting/outputIds'
 
 export default {
 	[DOMAIN_NAME]: {

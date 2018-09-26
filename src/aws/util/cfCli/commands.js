@@ -8,6 +8,7 @@ import saveCfTemplate from 'sls-aws/src/aws/util/cfCli/saveCfTemplate'
 import s3Upload from 'sls-aws/src/aws/util/cfCli/s3Upload'
 
 import updateStack from 'sls-aws/src/aws/util/cfCli/updateStack'
+import validateTemplate from 'sls-aws/src/aws/util/cfCli/validateTemplate'
 
 import emptyDeleteBuckets from 'sls-aws/src/aws/util/cfCli/emptyDeleteBuckets'
 import deleteStack from 'sls-aws/src/aws/util/cfCli/deleteStack'
@@ -27,6 +28,7 @@ const createUpdateCommon = [
 	{ title: 'Bundling lambda functions', fn: webpack },
 	{ title: 'Updating and saving template', fn: saveCfTemplate },
 	{ title: 'Uploading files to s3', fn: s3Upload },
+	{ title: 'Validating template', fn: validateTemplate },
 ]
 
 const create = [
