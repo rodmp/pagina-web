@@ -1,16 +1,13 @@
 import {
  map, prop, propOr, splitEvery, concat, propEq, reduce, append 
 } from 'ramda'
+import listAllStackResources from 'sls-aws/src/aws/util/cfCli/listAllStackResources'
 
 export const getAllBucketNames = (
-	cloudFormationClient, stackName, nextToken, lastBucketNames = [],
+	cloudFormationClient, stackName,
 ) => (
-	cloudFormationClient.listStackResources({
-		StackName: stackName, NextToken: nextToken,
-	}).promise().then((res) => {
-		console.log(res)
-		const bucketNames = reduce(
-			(result, resource) => {
+	listAllStackResources(cloudFormationClient, stackName).then(
+		(res) => reduce((result, resource) => {
 				if (propEq('ResourceType', 'ResourceType', resource)) {
 					return append(
 						result,
@@ -20,18 +17,11 @@ export const getAllBucketNames = (
 				return result 
 			},
 			[],
-			propOr([], 'StackResourceSummaries', res)
+			res
 		)
-		const hasNextToken = prop('NextToken', res)
-		if (hasNextToken) {
-			return getAllBucketNames(
-				cloudFormationClient, stackName, hasNextToken,
-				bucketNames,
-			)
-		}
-		return concat(lastBucketNames, bucketNames)
-	})
+	)
 )
+
 
 export const getAllItemKeysChunked = (
 	s3Client, bucketName, marker, lastItemKeys = [],
