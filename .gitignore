@@ -3,3 +3,4 @@ build
 .cloudFormation
 cfOutput.js
 cfTemplate.json
+dist

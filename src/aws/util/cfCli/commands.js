@@ -5,7 +5,7 @@ import createNewStack from 'sls-aws/src/aws/util/cfCli/createNewStack'
 
 import webpackLambda from 'sls-aws/src/aws/util/cfCli/webpackLambda'
 import saveCfTemplate from 'sls-aws/src/aws/util/cfCli/saveCfTemplate'
-import s3Upload from 'sls-aws/src/aws/util/cfCli/s3Upload'
+import templateLambdaUpload from 'sls-aws/src/aws/util/cfCli/templateLambdaUpload'
 
 import updateStack from 'sls-aws/src/aws/util/cfCli/updateStack'
 import validateTemplate from 'sls-aws/src/aws/util/cfCli/validateTemplate'
@@ -30,7 +30,7 @@ const afterCreateOrUpdate = [
 const createUpdateCommon = [
 	{ title: 'Bundling lambda functions', fn: webpackLambda },
 	{ title: 'Updating and saving template', fn: saveCfTemplate },
-	{ title: 'Uploading files to s3', fn: s3Upload },
+	{ title: 'Uploading files to s3', fn: templateLambdaUpload },
 	{ title: 'Validating template', fn: validateTemplate },
 ]
 
