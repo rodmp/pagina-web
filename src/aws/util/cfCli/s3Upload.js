@@ -5,17 +5,17 @@ const uploadFileHof = (s3UploadClient, s3DeploymentBucket) => (
 ) => (
 	new Promise(
 		(resolve, reject) => {
-			const downloader = s3UploadClient.uploadFile({
+			const uploader = s3UploadClient.uploadFile({
 				localFile: localPath,
 				s3Params: {
 					Bucket: s3DeploymentBucket,
 					Key: fileName,
 				},
 			})
-			downloader.on('error', (err) => {
+			uploader.on('error', (err) => {
 				reject(err)
 			})
-			downloader.on('end', () => {
+			uploader.on('end', () => {
 				resolve()
 			})
 		},
