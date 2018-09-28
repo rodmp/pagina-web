@@ -1,29 +1,30 @@
 import { map } from 'ramda'
+import UploadStream from 's3-stream-upload'
+import fs from 'fs'
 
-const uploadFileHof = (s3UploadClient, s3DeploymentBucket) => (
+
+const uploadFileHof = (s3Client, bucket) => (
 	localPath, fileName,
 ) => (
 	new Promise(
 		(resolve, reject) => {
-			const uploader = s3UploadClient.uploadFile({
-				localFile: localPath,
-				s3Params: {
-					Bucket: s3DeploymentBucket,
-					Key: fileName,
-				},
+			fs.createReadStream(localPath).pipe(
+				UploadStream(
+					s3Client,
+					{ Bucket: bucket, Key: fileName }
+				)
+			).on("error", function (err) {
+					reject(err)
 			})
-			uploader.on('error', (err) => {
-				reject(err)
-			})
-			uploader.on('end', () => {
+			.on("finish", function () {
 				resolve()
 			})
 		},
 	)
 )
 
-export default (s3UploadClient, s3DeploymentBucket, fileArr) => {
-	const uploadFile = uploadFileHof(s3UploadClient, s3DeploymentBucket)
+export default (s3Client, bucket, fileArr) => {
+	const uploadFile = uploadFileHof(s3Client, bucket)
 	return Promise.all(
 		map(
 			([localPath, s3FileName]) => uploadFile(localPath, s3FileName),

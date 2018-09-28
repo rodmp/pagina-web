@@ -646,13 +646,6 @@ aws-sdk@^2.80.0:
     uuid "3.1.0"
     xml2js "0.4.19"
 
-aws-sdk@~2.0.31:
-  version "2.0.31"
-  resolved "http://registry.npmjs.org/aws-sdk/-/aws-sdk-2.0.31.tgz#e72cf1fdc69015bd9fd2bdf3d3b88c16507d268e"
-  dependencies:
-    xml2js "0.2.6"
-    xmlbuilder "0.4.2"
-
 aws-sign2@~0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/aws-sign2/-/aws-sign2-0.7.0.tgz#b46e890934a9591f2d2f6f86d7e6a9f1b3fe76a8"
@@ -1630,6 +1623,10 @@ buffer-from@^1.0.0:
 buffer-indexof@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/buffer-indexof/-/buffer-indexof-1.1.1.tgz#52fabcc6a606d1a00302802648ef68f639da268c"
+
+buffer-queue@~1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/buffer-queue/-/buffer-queue-1.0.0.tgz#3d253fe2f0ab70e851d728712e8cd6f914a8c002"
 
 buffer-xor@^1.0.3:
   version "1.0.3"
@@ -3011,12 +3008,6 @@ fbjs@^0.8.1, fbjs@^0.8.16:
     setimmediate "^1.0.5"
     ua-parser-js "^0.7.18"
 
-fd-slicer@~1.0.0:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/fd-slicer/-/fd-slicer-1.0.1.tgz#8b5bcbd9ec327c5041bf9ab023fd6750f1177e65"
-  dependencies:
-    pend "~1.2.0"
-
 figures@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/figures/-/figures-2.0.0.tgz#3ab1a2d2a62c8bfb431a0c94cb797a2fce27c962"
@@ -3107,10 +3098,6 @@ find-up@^2.0.0, find-up@^2.1.0:
   resolved "https://registry.yarnpkg.com/find-up/-/find-up-2.1.0.tgz#45d1b7e506c717ddd482775a2b77920a3c0c57a7"
   dependencies:
     locate-path "^2.0.0"
-
-findit2@~2.2.3:
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/findit2/-/findit2-2.2.3.tgz#58a466697df8a6205cdfdbf395536b8bd777a5f6"
 
 flat-cache@^1.2.1:
   version "1.3.0"
@@ -3329,12 +3316,6 @@ globby@^6.1.0:
 graceful-fs@^4.1.11, graceful-fs@^4.1.2, graceful-fs@^4.1.4:
   version "4.1.11"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.11.tgz#0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658"
-
-graceful-fs@~3.0.5:
-  version "3.0.11"
-  resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-3.0.11.tgz#7613c778a1afea62f25c630a086d7f3acbbdd818"
-  dependencies:
-    natives "^1.1.0"
 
 growly@^1.3.0:
   version "1.3.0"
@@ -4923,10 +4904,6 @@ mime@^2.1.0:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/mime/-/mime-2.3.1.tgz#b1621c54d63b97c47d3cfe7f7215f7d64517c369"
 
-mime@~1.2.11:
-  version "1.2.11"
-  resolved "https://registry.yarnpkg.com/mime/-/mime-1.2.11.tgz#58203eed86e3a5ef17aed2b7d9ebd47f0a60dd10"
-
 mimic-fn@^1.0.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/mimic-fn/-/mimic-fn-1.2.0.tgz#820c86a39334640e99516928bd03fca88057d022"
@@ -5048,10 +5025,6 @@ nanomatch@^1.2.9:
     regex-not "^1.0.0"
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
-
-natives@^1.1.0:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/natives/-/natives-1.1.4.tgz#2f0f224fc9a7dd53407c7667c84cf8dbe773de58"
 
 natural-compare@^1.4.0:
   version "1.4.0"
@@ -5537,10 +5510,6 @@ pbkdf2@^3.0.3:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-pend@~1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/pend/-/pend-1.2.0.tgz#7a57eb550a6783f9115331fcf4663d5c8e007a50"
-
 performance-now@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
@@ -5882,7 +5851,7 @@ read-pkg@^2.0.0:
     normalize-package-data "^2.3.2"
     path-type "^2.0.0"
 
-"readable-stream@1 || 2", readable-stream@^2.0.0, readable-stream@^2.0.1, readable-stream@^2.0.2, readable-stream@^2.0.4, readable-stream@^2.0.6, readable-stream@^2.1.5, readable-stream@^2.2.2, readable-stream@^2.2.9, readable-stream@^2.3.3, readable-stream@^2.3.6:
+"readable-stream@1 || 2", readable-stream@^2.0.0, readable-stream@^2.0.1, readable-stream@^2.0.2, readable-stream@^2.0.4, readable-stream@^2.0.6, readable-stream@^2.1.5, readable-stream@^2.2.2, readable-stream@^2.2.9, readable-stream@^2.3.0, readable-stream@^2.3.3, readable-stream@^2.3.6:
   version "2.3.6"
   resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.3.6.tgz#b11c27d88b8ff1fbe070643cf94b0c79ae1b0aaf"
   dependencies:
@@ -6170,10 +6139,6 @@ rimraf@^2.2.8, rimraf@^2.5.4, rimraf@^2.6.1, rimraf@^2.6.2:
   dependencies:
     glob "^7.0.5"
 
-rimraf@~2.2.8:
-  version "2.2.8"
-  resolved "http://registry.npmjs.org/rimraf/-/rimraf-2.2.8.tgz#e439be2aaee327321952730f99a8929e4fc50582"
-
 ripemd160@^2.0.0, ripemd160@^2.0.1:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/ripemd160/-/ripemd160-2.0.2.tgz#a1c1a6f624751577ba5d07914cbc92850585890c"
@@ -6209,19 +6174,12 @@ rxjs@^6.1.0:
   dependencies:
     tslib "^1.9.0"
 
-s3@^4.4.0:
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/s3/-/s3-4.4.0.tgz#56a4f775515a7b6b9c8e5c6b1ab51f9037669f1f"
+s3-stream-upload@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/s3-stream-upload/-/s3-stream-upload-2.0.2.tgz#60342f12d4aa06ea8f389fb761a5393aedca017f"
   dependencies:
-    aws-sdk "~2.0.31"
-    fd-slicer "~1.0.0"
-    findit2 "~2.2.3"
-    graceful-fs "~3.0.5"
-    mime "~1.2.11"
-    mkdirp "~0.5.0"
-    pend "~1.2.0"
-    rimraf "~2.2.8"
-    streamsink "~1.2.0"
+    buffer-queue "~1.0.0"
+    readable-stream "^2.3.0"
 
 safe-buffer@5.1.1:
   version "5.1.1"
@@ -6255,10 +6213,6 @@ sane@^2.0.0:
     watch "~0.18.0"
   optionalDependencies:
     fsevents "^1.2.3"
-
-sax@0.4.2:
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/sax/-/sax-0.4.2.tgz#39f3b601733d6bec97105b242a2a40fd6978ac3c"
 
 sax@1.2.1:
   version "1.2.1"
@@ -6629,10 +6583,6 @@ stream-http@^2.7.2:
 stream-shift@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/stream-shift/-/stream-shift-1.0.0.tgz#d5c752825e5367e786f78e18e445ea223a155952"
-
-streamsink@~1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/streamsink/-/streamsink-1.2.0.tgz#efafee9f1e22d3591ed7de3dcaa95c3f5e79f73c"
 
 string-length@^2.0.0:
   version "2.0.0"
@@ -7417,22 +7367,12 @@ xml-name-validator@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/xml-name-validator/-/xml-name-validator-3.0.0.tgz#6ae73e06de4d8c6e47f9fb181f78d648ad457c6a"
 
-xml2js@0.2.6:
-  version "0.2.6"
-  resolved "https://registry.yarnpkg.com/xml2js/-/xml2js-0.2.6.tgz#d209c4e4dda1fc9c452141ef41c077f5adfdf6c4"
-  dependencies:
-    sax "0.4.2"
-
 xml2js@0.4.19:
   version "0.4.19"
   resolved "https://registry.yarnpkg.com/xml2js/-/xml2js-0.4.19.tgz#686c20f213209e94abf0d1bcf1efaa291c7827a7"
   dependencies:
     sax ">=0.6.0"
     xmlbuilder "~9.0.1"
-
-xmlbuilder@0.4.2:
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/xmlbuilder/-/xmlbuilder-0.4.2.tgz#1776d65f3fdbad470a08d8604cdeb1c4e540ff83"
 
 xmlbuilder@~9.0.1:
   version "9.0.7"

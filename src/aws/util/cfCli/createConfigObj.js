@@ -2,7 +2,6 @@ import { S3, CloudFormation } from 'aws-sdk'
 import { name as packageName } from 'sls-aws/package.json'
 import { camelCase, kebabCase } from 'sls-aws/src/util/stringCase'
 import awsConf from 'aws-config'
-import s3LocalUpload from 's3'
 import findRoot from 'find-root'
 
 import webpackLambdaConf from 'sls-aws/src/aws/util/cfCli/webpackLambdaConf'
@@ -48,7 +47,6 @@ export default ({
 		lambdaResourceEntries,
 		webpackConfig,
 		s3Client,
-		s3UploadClient: s3LocalUpload.createClient({ s3Client }),
 		cloudFormationClient: new CloudFormation(awsCreds),
 		projectRoot,
 		buildDir,
