@@ -1,5 +1,5 @@
 import webpack from 'webpack'
-import { find, propEq, prop, last, split } from 'ramda'
+import { concat, map, find, propEq, prop, last, split } from 'ramda'
 import fs from 'fs'
 
 import s3Upload from 'sls-aws/src/aws/util/cfCli/s3Upload'
@@ -35,30 +35,30 @@ export const clientFiles = (path) => new Promise((resolve, reject) => {
         if (err) {
             reject(err)
         } else {
-            resolve(fileArr)
+            resolve(map(concat(`${path}/`), fileArr))
         }
     })
 })
 
 export const uploadStatics = (
-    s3UploadClient, projectRoot, bucket,
+    s3Client, projectRoot, bucket,
 ) => clientFiles(`${projectRoot}/dist/build-web-client`).then(
-    (fileArr) => s3Upload(s3UploadClient, bucket, map(
+    (fileArr) => s3Upload(s3Client, bucket, map(
         (localDir) => [
             localDir,
             last(split('/', localDir)),
         ],
-        lambdaResourceEntries,
+        fileArr,
     )
 ))
 
 
 export default ({
-    cloudFormationClient, stackName, projectRoot, s3UploadClient,
+    cloudFormationClient, stackName, projectRoot, s3Client,
 }) => buildStatics().then(
     () => getHostingBucket(cloudFormationClient, stackName).then(
         (hostingBucket) => uploadStatics(
-            s3UploadClient, projectRoot, hostingBucket,
+            s3Client, projectRoot, hostingBucket,
         )
     )
 )
