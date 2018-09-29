@@ -92,6 +92,8 @@ export const moduleDescriptionLenses = lensesFromSchema({
 			type: 'object',
 			properties: {
 				moduleType: { type: 'string' },
+				onEnterActions: { type: 'array' },
+				onExitActions: { type: 'array' },
 			}
 		}
 	}
