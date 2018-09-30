@@ -2,11 +2,14 @@ import changeRoute from 'sls-aws/src/client-logic/route/actions/changeRoute'
 
 export const popRouteHof = (
 	changeRouteFn,
-) => (routeObj) => (dispatch) => {
+) => (nextRouteObj) => (dispatch, getState) => {
+	const { routeId, routeParams } = nextRouteObj
+	const state = getState()
+	runModuleMountsFn(nextRouteObj, state)
 	dispatch(
-		changeRouteFn(routeObj.routeId, routeObj.routeParams)
+		changeRouteFn(routeId, routeParams)
 	)
-	return Promise.resolve(routeObj)
+	return Promise.resolve(nextRouteObj)
 }
 
 export default popRouteHof(
