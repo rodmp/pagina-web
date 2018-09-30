@@ -12,7 +12,7 @@ import {
 	moduleDescriptionLenses, routeDescriptionLenses,
 } from 'sls-aws/src/client-logic/route/lenses'
 
-const { viewOnEnterActions, viewOnExitActions } = moduleDescriptionLenses
+const { pathOrOnEnterActions, pathOrOnExitActions } = moduleDescriptionLenses
 
 const { viewModules } = routeDescriptionLenses
 
@@ -30,11 +30,11 @@ export const runModuleMountsHof = (
 	)
 	const allActions = [
 		...reduce((results, moduleId) => [
-			...viewOnExitActions(moduleId, moduleDescriptionObject),
+			...pathOrOnExitActions(moduleId, [], moduleDescriptionObject),
 			...results,
 		], [], exitModuleIds),
 		...reduce((results, moduleId) => [
-			...viewOnEnterActions(moduleId, moduleDescriptionObject),
+			...pathOrOnEnterActions(moduleId, [], moduleDescriptionObject),
 			...results,
 		], [], enterModuleIds)
 	]

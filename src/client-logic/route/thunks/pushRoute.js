@@ -4,7 +4,7 @@ import dispatchCommittedRoute from 'sls-aws/src/client-logic/route/util/dispatch
 
 
 export const pushRouteHof = (
-	dispatchCommittedRouteFn,
+	dispatchCommittedRouteFn, runModuleMountsFn,
 ) => (routeId, routeParams) => (dispatch, getState) => {
 	const nextRouteObj = { routeId, routeParams }
 	const state = getState()
@@ -16,4 +16,4 @@ export const pushRouteHof = (
 	)
 }
 
-export default pushRouteHof(dispatchCommittedRoute)
+export default pushRouteHof(dispatchCommittedRoute, runModuleMountsFn)
