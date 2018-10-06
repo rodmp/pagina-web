@@ -5,6 +5,9 @@ import TextField from 'sls-aws/src/client-web/form/TextField'
 
 import formModuleConnector from 'sls-aws/src/client-logic/form/connectors/formModuleConnector'
 
+import withModuleContext from 'sls-aws/src/util/withModuleContext'
+
+
 export const RenderInputs = ({ formFieldTypes, moduleKey }) => (
 	formFieldTypes.map(([fieldId, fieldIndex, inputType]) => {
 		switch (inputType) {
@@ -65,4 +68,4 @@ export const FormModule = ({
 	</form>
 )
 
-export default formModuleConnector(FormModule)
+export default withModuleContext(formModuleConnector(FormModule))

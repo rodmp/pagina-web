@@ -6,16 +6,20 @@ import routeRenderConnector from 'sls-aws/src/client-logic/route/connectors/rout
 
 import FormModule from 'sls-aws/src/client-web/form/FormModule'
 
+import { ModuleContextProvider } from 'sls-aws/src/util/withModuleContext'
+
+
 export const RenderModules = ({ moduleTypes }) => (
 	moduleTypes.map(([moduleId, moduleType, moduleIndex]) => {
 		switch (moduleType) {
 			case 'form':
 				return (
-					<FormModule
+					<ModuleContextProvider 
 						key={moduleId}
-						moduleId={moduleId}
-						moduleIndex={moduleIndex}
-					/>
+						value={{ moduleId, moduleIndex }}
+					>
+						<FormModule />
+					</ModuleContextProvider>
 				)
 			default:
 				return (
