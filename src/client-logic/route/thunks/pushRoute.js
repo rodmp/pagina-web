@@ -8,7 +8,7 @@ export const pushRouteHof = (
 ) => (routeId, routeParams) => (dispatch, getState) => {
 	const nextRouteObj = { routeId, routeParams }
 	const state = getState()
-	runModuleMounts(nextRouteObj, state)
+	runModuleMountsFn(nextRouteObj, state)
 	return dispatchCommittedRouteFn(
 		nextRouteObj,
 		dispatch,
@@ -16,4 +16,4 @@ export const pushRouteHof = (
 	)
 }
 
-export default pushRouteHof(dispatchCommittedRoute, runModuleMountsFn)
+export default pushRouteHof(dispatchCommittedRoute, runModuleMounts)
