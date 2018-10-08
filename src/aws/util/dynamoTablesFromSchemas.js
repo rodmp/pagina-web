@@ -1,65 +1,85 @@
-import { reduce } from 'reduce'
+import {
+	toPairs, prop, T, propEq, cond, always, map,
+} from 'ramda'
 
-export default (schemasObj, tableConfig) => reduce(
-	([resourceName, schema]) => assoc(
-		{
-			Type: 'AWS::DynamoDB::Table',
-			Properties: {
-				AttributeDefinitions: [
-					{
-						AttributeName: '',
-						AttributeType: 'S|N|B'
-					}
-				],
-				GlobalSecondaryIndexes: [
-					{
-						IndexName: String,
-						KeySchema: [
-							{
-								AttributeName: String,
-								KeyType: 'HASH|RANGE',
-							}
-						],
-						Projection: {
-							NonKeyAttributes: [],
-							ProjectionType: 'KEYS_ONLY|INCLUDE|ALL'
-						},
-						ProvisionedThroughput: {
-							ReadCapacityUnits: Number,
-							WriteCapacityUnits: Number
-						}
-					}
-				],
-				KeySchema: [
-					{
-						AttributeName: String,
-						KeyType: 'HASH|RANGE',
-					}
-				],
-				LocalSecondaryIndexes: [
-					{
-						IndexName: String,
-						KeySchema: [
-							{
-								AttributeName: String,
-								KeyType: 'HASH|RANGE',
-							}
-						],                           
-						Projection: {
-							NonKeyAttributes: [
-
-							],
-							ProjectionType: 'KEYS_ONLY|INCLUDE|ALL'
-						}
-					}
-				],
-				ProvisionedThroughput: {
-					ReadCapacityUnits: Number,
-					WriteCapacityUnits: Number
-				},
-			}
-		}
-	),
-	{},
-	toPairs(schemasObj)
+export const schemaToAttributeDefinitions = schema => map(
+	([key, schemaDef]) => ({
+		AttributeName: key,
+		AttributeType: cond([
+			[propEq('type', 'boolean'), always('B')],
+			[propEq('type', 'integer'), always('N')],
+			[T, always('S')],
+		])(schemaDef),
+	}),
+	toPairs(prop('properties', schema)),
 )
+
+export default (schema, {
+	hashKey, rangeKey, readCapacity, writeCapacity, gsi, lsi,
+}) => ({
+	Type: 'AWS::DynamoDB::Table',
+	Properties: {
+		AttributeDefinitions: schemaToAttributeDefinitions(schema),
+		KeySchema: [
+			{
+				AttributeName: hashKey,
+				KeyType: 'HASH',
+			},
+			...(rangeKey ? [] : [{
+				AttributeName: rangeKey,
+				KeyType: 'RANGE',
+			}]),
+		],
+		ProvisionedThroughput: {
+			ReadCapacityUnits: readCapacity,
+			WriteCapacityUnits: writeCapacity,
+		},
+		GlobalSecondaryIndexes: map(({
+			name, projectionAttributes, readCapacity, writeCapacity,
+			hashKey, rangeKey,
+		}) => ({
+			IndexName: name,
+			Projection: {
+				...(projectionAttributes ? {
+					NonKeyAttributes: projectionAttributes,
+				} : {}),
+				ProjectionType: projectionAttributes ? 'INCLUDE' : 'All',
+			},
+			KeySchema: [
+				{
+					AttributeName: hashKey,
+					KeyType: 'HASH',
+				},
+				...(rangeKey ? [] : [{
+					AttributeName: rangeKey,
+					KeyType: 'RANGE',
+				}]),
+			],
+			ProvisionedThroughput: {
+				ReadCapacityUnits: readCapacity,
+				WriteCapacityUnits: writeCapacity,
+			},
+		}), gsi),
+		LocalSecondaryIndexes: map(({
+			name, projectionAttributes, hashKey, rangeKey,
+		}) => ({
+			IndexName: name,
+			Projection: {
+				...(projectionAttributes ? {
+					NonKeyAttributes: projectionAttributes,
+				} : {}),
+				ProjectionType: projectionAttributes ? 'INCLUDE' : 'All',
+			},
+			KeySchema: [
+				{
+					AttributeName: hashKey,
+					KeyType: 'HASH',
+				},
+				...(rangeKey ? [] : [{
+					AttributeName: rangeKey,
+					KeyType: 'RANGE',
+				}]),
+			],
+		}), lsi),
+	},
+})
