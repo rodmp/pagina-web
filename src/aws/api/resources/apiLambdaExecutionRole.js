@@ -1,8 +1,13 @@
-import { API_LAMBDA_EXECUTION_ROLE } from 'sls-aws/src/aws/api/resourceIds'
+import {
+	API_LAMBDA_EXECUTION_ROLE, API_DYNAMO_DB_TABLE,
+} from 'sls-aws/src/aws/api/resourceIds'
 
 export default {
 	[API_LAMBDA_EXECUTION_ROLE]: {
 		Type: 'AWS::IAM::Role',
+		DependsOn: [
+			API_DYNAMO_DB_TABLE,
+		],
 		Properties: {
 			AssumeRolePolicyDocument: {
 				Version: '2012-10-17',
@@ -34,7 +39,7 @@ export default {
 									'dynamodb:DeleteItem',
 								],
 								// @TODO: specify the tables from models
-								Resource: '*',
+								Resource: getAtt(API_DYNAMO_DB_TABLE, 'Arn'),
 							},
 						],
 					},
