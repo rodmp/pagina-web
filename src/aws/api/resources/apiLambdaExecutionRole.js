@@ -1,3 +1,5 @@
+import getAtt from 'sls-aws/src/aws/util/getAtt'
+
 import {
 	API_LAMBDA_EXECUTION_ROLE, API_DYNAMO_DB_TABLE,
 } from 'sls-aws/src/aws/api/resourceIds'

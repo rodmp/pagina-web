@@ -3,9 +3,8 @@ import ref from 'sls-aws/src/aws/util/ref'
 import getAtt from 'sls-aws/src/aws/util/getAtt'
 
 import {
-	API_LAMBDA_FUNCTION, API_LAMBDA_EXECUTION_ROLE,
+	API_LAMBDA_FUNCTION, API_LAMBDA_EXECUTION_ROLE, API_DYNAMO_DB_TABLE,
 } from 'sls-aws/src/aws/api/resourceIds'
-import ref from '../../util/ref';
 
 export default {
 	[API_LAMBDA_FUNCTION]: {
