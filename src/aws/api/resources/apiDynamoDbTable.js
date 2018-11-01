@@ -11,47 +11,47 @@ export default {
 			AttributeDefinitions: [
 				{
 					AttributeName: PARTITION_KEY,
-					AttributeType: 'S'
+					AttributeType: 'S',
 				},
 				{
 					AttributeName: SORT_KEY,
-					AttributeType: 'S'
-	  			},  
+					AttributeType: 'S',
+				},
 			],
-		},
-		KeySchema: [
-			{
-				AttributeName: PARTITION_KEY,
-				KeyType: 'HASH'
+			KeySchema: [
+				{
+					AttributeName: PARTITION_KEY,
+					KeyType: 'HASH',
+				},
+				{
+					AttributeName: SORT_KEY,
+					KeyType: 'RANGE',
+				},
+			],
+			// GlobalSecondaryIndexes: [
+			// 	{
+			// 		IndexName: GSI1_INDEX_NAME,
+			// 		KeySchema: [
+			// 			{
+			// 				AttributeName: 'sk',
+			// 				KeyType: 'RANGE'
+			// 			}
+			// 		],
+			// 		Projection: {
+			// 			NonKeyAttributes: ['key1', 'key2'],
+			// 			ProjectionType: 'KEYS_ONLY|INCLUDE|ALL'
+			// 		},
+			// 		ProvisionedThroughput: {
+			// 			ReadCapacityUnits: 1,
+			// 			WriteCapacityUnits: 1,
+			// 		},
+			// 	}
+			// ],
+			// LocalSecondaryIndexes: [],
+			ProvisionedThroughput: {
+				ReadCapacityUnits: 1,
+				WriteCapacityUnits: 1,
 			},
-			{
-				AttributeName: SORT_KEY,
-				KeyType: 'RANGE'
-			}
-		],
-		// GlobalSecondaryIndexes: [
-		// 	{
-		// 		IndexName: GSI1_INDEX_NAME,
-		// 		KeySchema: [
-		// 			{
-		// 				AttributeName: 'sk',
-		// 				KeyType: 'RANGE'
-		// 			}
-		// 		],
-		// 		Projection: {
-		// 			NonKeyAttributes: ['key1', 'key2'],
-		// 			ProjectionType: 'KEYS_ONLY|INCLUDE|ALL'
-		// 		},
-		// 		ProvisionedThroughput: {
-		// 			ReadCapacityUnits: 1,
-		// 			WriteCapacityUnits: 1,
-		// 		},
-		// 	}
-		// ],
-		// LocalSecondaryIndexes: [],
-		ProvisionedThroughput: {
-			ReadCapacityUnits: 1,
-			WriteCapacityUnits: 1,
 		},
 	},
 }

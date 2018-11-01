@@ -7,19 +7,16 @@
 
 
 
-ALL > list projects by active status sorted by created date 
-ALL > list projects by funded status sorted by created date
-ADMIN > list projects to approve by status
-	(gsi project: {
-		rkey: project.status skey: project.created
-	})
+ADMIN > list projects to approve by 'audit' status
+ADMIN > approve project
+ADMIN > reject project
 
-CREATOR > list projects by assignment to creators I've claimed
-	(rkey: outletClaims > (gsi deliverable: {rkey: outletId}) > rkey:project )
+CREATOR > list projects by assignment to outlets I've claimed
 
-PROJECT CREATOR >  list projects created by own user id
-	(gsi project: { rkey: userId })
+PROJECT CREATOR > list projects created by own user id
 
+PLEDGER > list all active projects 
 PLEDGER > list pledged projects by own user id
-PLEDGER > list media from pledged projects
-	(rkey: pledge.userId > project.id)
+PLEDGER > list media from completed pledged projects
+
+PLEDGER / PROJECT CREATOR > list credit cards 
