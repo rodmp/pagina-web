@@ -47,5 +47,4 @@ beforeAll(async () => {
 	await deleteTables(tables)
 	await createTable()
 	const consoleTables = await getTables()
-	console.log('eyo', consoleTables)
 })

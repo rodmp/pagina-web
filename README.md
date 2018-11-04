@@ -18,5 +18,6 @@ PROJECT CREATOR > list projects created by own user id
 PLEDGER > list all active projects 
 PLEDGER > list pledged projects by own user id
 PLEDGER > list media from completed pledged projects
+PLEDGER > pledge project
 
 PLEDGER / PROJECT CREATOR > list credit cards 
