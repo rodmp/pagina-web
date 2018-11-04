@@ -1,21 +1,73 @@
-import allEndpoints from 'sls-aws/src/descriptions/endpoints'
-import getApiPromise from 'sls-aws/src/server/api/getApiPromise'
-import { promiseSeriesWaterfall } from 'sls-aws/src/util/promiseSeries'
+import { prop, path } from 'ramda'
 
-export const apiHof = endpoints => (event, context, callback) => {
-	const { endpointId, payload } = event
-	const promiseArr = getApiPromise(endpoints, endpointId, payload)
+import serverEndpoints from 'sls-aws/src/server/api/actions'
+import clientEndpoints from 'sls-aws/src/descriptions/endpoints'
+import validateSchema from 'sls-aws/src/util/validateSchema'
+import { userPk } from 'sls-aws/src/server/api/pkMaker'
 
-	return promiseSeriesWaterfall(payload, promiseArr).then((res) => {
-		callback(null, { statusCode: 200, body: res })
-	}).catch(({ statusCode, ...errors }) => {
-		callback(null, { statusCode, body: errors })
-	})
+
+const validateOrNah = (schemaType, endpointId, endpointDesc) => (payload) => {
+	const schema = prop(schemaType, endpointDesc)
+	if (schema) {
+		return validateSchema(endpointId, schema, payload).then((res) => {
+			if (prop('valid', res)) {
+				return payload
+			}
+			throw {
+				statusCode: schemaType === 'payloadSchema' ? 400 : 500,
+				schemaErrors: ajvErrors(schema, prop('errors', res)),
+			}
+		})
+	}
+	return Promise.resolve(payload)
 }
 
-export const apiFn = apiHof(allEndpoints)
+export const apiHof = (clientEndpointsObj, serverEndpointsObj) => (
+	async (event, context) => {
+		try {
+			const { endpointId, payload } = event
+			const userId = userPk(
+				path(['identity', 'cognitoIdentityId'], context),
+			)
+			const endpointObj = prop(endpointId, clientEndpointsObj)
+			if (!endpointObj) {
+				throw {
+					statusCode: 500,
+					generalErrors: `Endpoint ${endpointId} not found`,
+				}
+			}
+			const validatePayload = validateOrNah(
+				'payloadSchema', endpointId, endpointObj,
+			)
+			const validateResult = await validateOrNah(
+				'resultSchema', endpointId, endpointObj,
+			)
+			const { payloadLenses, responseLenses } = endpointObj
+			const action = prop(endpointId, serverEndpointsObj)
+			await validatePayload(payload)
+			const res = await action({
+				payload,
+				payloadLenses,
+				responseLenses,
+				userId,
+			})
+			await validateResult(payload)
+			return { statusCode: 200, body: res }
+		} catch (error) {
+			console.log(error)
+			return {
+				...error,
+				statusCode: error.statusCode || 500,
+			}
+		}
+	}
+)
+
+export const apiFn = apiHof(clientEndpoints, serverEndpoints)
 
 // can't return promise?
 export default (event, context, callback) => {
-	apiFn(event, context, callback)
+	apiFn(event, context, callback).then((res) => {
+		callback(null, res)
+	})
 }

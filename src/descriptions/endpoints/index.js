@@ -1,5 +1,19 @@
-import test from 'sls-aws/src/descriptions/endpoints/test'
+import { map } from 'ramda'
 
-export default {
-	...test,
+import lensesFromSchema from 'sls-aws/src/util/lensesFromSchema'
+
+import createProject from 'sls-aws/src/descriptions/endpoints/createProject'
+
+
+const allEndpoints = {
+	...createProject,
 }
+
+export default map(
+	endpoint => ({
+		payloadLenses: lensesFromSchema(endpoint.payloadSchema),
+		responseLenses: lensesFromSchema(endpoint.responseSchema),
+		...endpoint,
+	}),
+	allEndpoints,
+)

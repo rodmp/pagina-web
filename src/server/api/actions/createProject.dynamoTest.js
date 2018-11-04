@@ -1,26 +1,9 @@
-import createProject from 'sls-aws/src/server/api/endpoints/createProject'
+import { apiFn } from 'sls-aws/src/server/api'
 
 import { TABLE_NAME, documentClient } from 'sls-aws/src/server/api/dynamoClient'
 
-const project = {
-	title: 'good project',
-	image: 'http://google.com',
-	description: 'this is a great project',
-	pledge: {
-		stripeCardId: '1234asdf',
-		amount: 500,
-	},
-	assignees: [
-		{
-			platform: 'twitch',
-			url: 'http://assignee2.com',
-		},
-		{
-			platform: 'twitch',
-			url: 'http://assignee2.com',
-		},
-	],
-}
+import { CREATE_PROJECT } from 'sls-aws/src/descriptions/endpoints/endpointIds'
+import createProjectPayload from 'sls-aws/src/server/api/mocks/createProjectPayload'
 
 const scanTable = () => {
 	const params = {
@@ -32,9 +15,16 @@ const scanTable = () => {
 	return documentClient.scan(params).promise()
 }
 
+const event = {
+	endpointId: CREATE_PROJECT,
+	payload: createProjectPayload,
+}
+
+const context = { identity: { cognitoIdentityId: '1234userid1234' } }
+
 describe('getActiveProjects', () => {
 	test('createProject', async () => {
-		const res = await createProject('1234userid1234', project)
+		const res = await apiFn(event, context)
 		const tableScan = await scanTable()
 		expect(tableScan).toBe(true)
 	})

@@ -1,8 +1,10 @@
-import createProject from 'sls-aws/src/server/api/endpoints/createProject'
+import { apiFn } from 'sls-aws/src/server/api'
 
 import { TABLE_NAME, documentClient } from 'sls-aws/src/server/api/dynamoClient'
 
-import projectPayload from 'sls-aws/src/server/api/mocks/projectPayload'
+import { CREATE_PROJECT } from 'sls-aws/src/descriptions/endpointIds'
+import createProjectPayload from 'sls-aws/src/server/api/mocks/createProjectPayload'
+
 
 const scanTable = () => {
 	const params = {
@@ -16,7 +18,7 @@ const scanTable = () => {
 
 describe('getActiveProjects', () => {
 	test('createProject', async () => {
-		const res = await createProject('1234userid1234', projectPayload)
+		const res = await api('1234userid1234', project)
 		const tableScan = await scanTable()
 		expect(tableScan).toBe(true)
 	})
