@@ -1,27 +1,58 @@
 import {
-	split, last, forEach, concat, map, prop, contains,
+	split, last, forEach, concat, map, prop, contains, reduce, addIndex, propEq,
+	find,
 } from 'ramda'
 
 import { getUserData } from 'sls-aws/src/server/api/twitchApi'
 
-export default (assigneeArray) => {
-	const promises = []
-	const twitchUsernames = []
-	forEach((assigneeObj) => {
+export const getTwitchAssigneeDataHof = getUserDataFn => async (
+	assigneeArray,
+) => {
+	const twitchUsernames = addIndex(reduce)((result, assigneeObj, index) => {
 		const streamerUrl = prop('url', assigneeObj)
 		if (contains('twitch.tv', streamerUrl)) {
-			twitchUsernames.push(last(split('/', streamerUrl)))
+			return [...result, [index, last(split('/', streamerUrl))]]
 		}
-	}, assigneeArray)
+		return result
+	}, [], assigneeArray)
 	if (twitchUsernames.length) {
-		promises.push(getUserData(twitchUsernames).then(res => map(
-			userData => ({
-				platform: 'twitch',
-				image: prop('profile_image_url', userData),
-				platformId: prop('display_name', userData),
-			}),
-			prop('data', res),
-		)))
+		const twitchRes = await getUserDataFn(map(last, twitchUsernames))
+		const twitchData = prop('data', twitchRes)
+		return map(([index, twitchUsername]) => {
+			const twitchUserData = find(
+				propEq('display_name', twitchUsername),
+				twitchData,
+			)
+			if (twitchUserData) {
+				return {
+					platform: 'twitch',
+					image: prop('profile_image_url', twitchUserData),
+					platformId: prop('id', twitchUserData),
+					description: prop('description', twitchUserData),
+					displayName: prop('display_name', twitchUserData),
+				}
+			}
+			throw { test: 'broken' }
+		}, twitchUsernames)
 	}
-	return Promise.all(promises).then(res => concat(...res))
+	return Promise.resolve([])
+}
+
+export const getTwitchAssigneeData = getTwitchAssigneeDataHof(getUserData)
+
+export const getYoutubeAssigneeData = () => Promise.resolve()
+
+export default async ({ project, payloadLenses }) => {
+	const { viewAssignees, setAssignees } = payloadLenses
+	const assigneeArray = viewAssignees(project)
+	const results = await getTwitchAssigneeData(assigneeArray)
+	return setAssignees(results)
+	
+	// once you do youtube
+	// const results = await Promise.all([
+	// 	getTwitchAssigneeData(assigneeArray),
+	//  getYoutubeAssigneeData(assigneeArray),
+	// ])
+	// const assignees = concat(...results)
+	// return setAssignees(assignees)
 }

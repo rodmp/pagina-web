@@ -22,7 +22,8 @@ const payloadSchema = {
 					url: {
 						type: 'string',
 						format: 'uri',
-						pattern: '(twitch\.tv)|(youtube\.com)',
+						// pattern: '(twitch\.tv)|(youtube\.com)',
+						pattern: '(twitch\.tv)'
 					},
 				},
 				required: ['url'],
@@ -53,7 +54,9 @@ const responseSchema = {
 						enum: ['twitch', 'youtube'],
 					},
 					image: { type: 'string' },
+					description: { type: 'string' },
 					platformId: { type: 'string' },
+					displayName: { type: 'string' },
 				},
 				required: ['platform', 'image', 'platformId'],
 			},
