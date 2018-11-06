@@ -5,7 +5,10 @@ import { TABLE_NAME, documentClient } from 'sls-aws/src/server/api/dynamoClient'
 
 import { PARTITION_KEY, SORT_KEY } from 'sls-aws/src/constants/apiDynamoIndexes'
 
-export default async ({ userId, payload, payloadLenses }) => {
+import projectSerializer from 'sls-aws/src/server/api/serializers/projectSerializer'
+import { dynamoItemsProp } from 'sls-aws/src/server/api/lenses'
+
+export default async ({ userId, payload, payloadLenses, responseLenses }) => {
 	const projectPk = `project-${uuidV5()}`
 
 	const projectCommon = pick(['image', 'title'], payload)
@@ -57,5 +60,8 @@ export default async ({ userId, payload, payloadLenses }) => {
 	}
 
 	const res = await documentClient.batchWrite(params).promise()
-	return res
+	return {
+		id: projectPk,
+		...pick(['title', 'image', 'description', 'pledgeAmount'], payload),
+	}
 }

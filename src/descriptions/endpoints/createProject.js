@@ -19,16 +19,13 @@ const payloadSchema = {
 				maxItems: 10,
 				uniqueItems: true,
 				properties: {
-					platform: {
-						type: 'string',
-						enum: ['twitch', 'youtube'],
-					},
 					url: {
 						type: 'string',
 						format: 'uri',
+						pattern: '(twitch\.tv)|(youtube\.com)',
 					},
 				},
-				required: ['platform', 'url'],
+				required: ['url'],
 			},
 		},
 	},
@@ -58,9 +55,11 @@ const responseSchema = {
 					image: { type: 'string' },
 					platformId: { type: 'string' },
 				},
+				required: ['platform', 'image', 'platformId'],
 			},
 		},
 	},
+	required: ['id', 'title', 'image', 'description', 'pledgeAmount'],
 }
 
 export { payloadSchema, responseSchema }

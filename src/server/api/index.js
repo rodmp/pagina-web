@@ -1,4 +1,4 @@
-import { prop, path } from 'ramda'
+import { prop, path, pick } from 'ramda'
 
 import serverEndpoints from 'sls-aws/src/server/api/actions'
 import clientEndpoints from 'sls-aws/src/descriptions/endpoints'
@@ -56,7 +56,8 @@ export const apiHof = (clientEndpointsObj, serverEndpointsObj) => (
 		} catch (error) {
 			console.log(error)
 			return {
-				...error,
+				generalErrors: error.message,
+				...pick(['generalErrors', 'schemaErrors'], error),
 				statusCode: error.statusCode || 500,
 			}
 		}
