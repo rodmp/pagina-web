@@ -26,6 +26,6 @@ describe('getActiveProjects', () => {
 	test('createProject', async () => {
 		const res = await apiFn(event, context)
 		const tableScan = await scanTable()
-		expect(tableScan).toBe(true)
+		expect(res).toBe(true)
 	})
 })
