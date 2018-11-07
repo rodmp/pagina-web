@@ -39,6 +39,7 @@
     "eslint-plugin-json": "^1.2.1",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
+    "faker": "^4.1.0",
     "file-loader": "^1.1.11",
     "find-root": "^1.1.0",
     "folktale": "^2.1.0",

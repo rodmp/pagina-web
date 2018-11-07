@@ -1,7 +1,8 @@
 import {
-	split, last, forEach, concat, map, prop, contains, reduce, addIndex, propEq,
-	find,
+	split, last, map, prop, contains, reduce, addIndex, propEq, find,
 } from 'ramda'
+
+import { payloadSchemaError } from 'sls-aws/src/server/api/errors'
 
 import { getUserData } from 'sls-aws/src/server/api/twitchApi'
 
@@ -20,7 +21,7 @@ export const getTwitchAssigneeDataHof = getUserDataFn => async (
 		const twitchData = prop('data', twitchRes)
 		return map(([index, twitchUsername]) => {
 			const twitchUserData = find(
-				propEq('display_name', twitchUsername),
+				propEq('login', twitchUsername.toLowerCase()),
 				twitchData,
 			)
 			if (twitchUserData) {
@@ -32,7 +33,12 @@ export const getTwitchAssigneeDataHof = getUserDataFn => async (
 					displayName: prop('display_name', twitchUserData),
 				}
 			}
-			throw { test: 'broken' }
+			// @TODO make a error creation function
+			throw payloadSchemaError({
+				assignee: {
+					[index]: 'Invalid twitch user',
+				},
+			})
 		}, twitchUsernames)
 	}
 	return Promise.resolve([])
@@ -46,8 +52,8 @@ export default async ({ project, payloadLenses }) => {
 	const { viewAssignees, setAssignees } = payloadLenses
 	const assigneeArray = viewAssignees(project)
 	const results = await getTwitchAssigneeData(assigneeArray)
-	return setAssignees(results)
-	
+	return setAssignees(results, project)
+
 	// once you do youtube
 	// const results = await Promise.all([
 	// 	getTwitchAssigneeData(assigneeArray),
