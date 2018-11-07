@@ -1,5 +1,5 @@
 import uuidV5 from 'uuid'
-import { map, pick } from 'ramda'
+import { map, pick, omit, assoc, prop } from 'ramda'
 
 import { TABLE_NAME, documentClient } from 'sls-aws/src/server/api/dynamoClient'
 
@@ -67,8 +67,12 @@ export default async ({ userId, payload, payloadLenses }) => {
 	// add assignee ids
 	return {
 		id: projectPk,
+		assignees: map(assignee => omit(
+			[PARTITION_KEY, SORT_KEY],
+			assoc('id', prop(SORT_KEY, assignee), assignee),
+		), projectAssignees),
 		...pick(
-			['title', 'image', 'description', 'pledgeAmount', 'assignees'],
+			['title', 'image', 'description', 'pledgeAmount'],
 			serializedProject,
 		),
 	}
