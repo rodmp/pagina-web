@@ -64,6 +64,7 @@ export default async ({ userId, payload, payloadLenses }) => {
 	}
 
 	const res = await documentClient.batchWrite(params).promise()
+	// add assignee ids
 	return {
 		id: projectPk,
 		...pick(

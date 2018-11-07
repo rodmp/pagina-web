@@ -17,7 +17,7 @@ const scanTable = () => {
 
 const event = {
 	endpointId: CREATE_PROJECT,
-	payload: createProjectPayload,
+	payload: createProjectPayload(),
 }
 
 const context = { identity: { cognitoIdentityId: '1234userid1234' } }
