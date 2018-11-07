@@ -3,7 +3,11 @@ import { prop, path, pick } from 'ramda'
 import serverEndpoints from 'sls-aws/src/server/api/actions'
 import clientEndpoints from 'sls-aws/src/descriptions/endpoints'
 import validateSchema from 'sls-aws/src/util/validateSchema'
+import {
+	customError, generalError, payloadSchemaError, responseSchemaError,
+} from 'sls-aws/src/server/api/errors'
 import { userPk } from 'sls-aws/src/server/api/pkMaker'
+import ajvErrors from 'sls-aws/src/util/ajvErrors'
 
 
 const validateOrNah = (schemaType, endpointId, endpointDesc) => (payload) => {
@@ -13,10 +17,9 @@ const validateOrNah = (schemaType, endpointId, endpointDesc) => (payload) => {
 			if (prop('valid', res)) {
 				return payload
 			}
-			throw {
-				statusCode: schemaType === 'payloadSchema' ? 400 : 500,
-				schemaErrors: ajvErrors(schema, prop('errors', res)),
-			}
+			const errors = ajvErrors(schema, prop('errors', res))
+			throw schemaType === 'payloadSchema' ?
+					payloadSchemaError(errors) : responseSchemaError(errors)
 		})
 	}
 	return Promise.resolve(payload)
@@ -31,10 +34,7 @@ export const apiHof = (clientEndpointsObj, serverEndpointsObj) => (
 			)
 			const endpointObj = prop(endpointId, clientEndpointsObj)
 			if (!endpointObj) {
-				throw {
-					statusCode: 500,
-					generalErrors: `Endpoint ${endpointId} not found`,
-				}
+				throw generalError(`Endpoint ${endpointId} not found`)
 			}
 			const validatePayload = validateOrNah(
 				'payloadSchema', endpointId, endpointObj,
@@ -54,12 +54,11 @@ export const apiHof = (clientEndpointsObj, serverEndpointsObj) => (
 			await validateResult(payload)
 			return { statusCode: 200, body: res }
 		} catch (error) {
-			console.log(error)
-			return {
-				generalErrors: error.message,
+			const errorMessage = error.message
+			return customError(error.statusCode || 500, {
+				...(errorMessage ? { generalErrors: errorMessage } : {}),
 				...pick(['generalErrors', 'schemaErrors'], error),
-				statusCode: error.statusCode || 500,
-			}
+			})
 		}
 	}
 )

@@ -21,7 +21,7 @@ const payloadSchema = {
 				properties: {
 					url: {
 						type: 'string',
-						format: 'uri',
+						format: 'url',
 						// pattern: '(twitch\.tv)|(youtube\.com)',
 						pattern: '(twitch\.tv)'
 					},
