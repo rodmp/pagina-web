@@ -49,6 +49,7 @@ const responseSchema = {
 			items: {
 				type: 'object',
 				properties: {
+					id: { type: 'string' },
 					platform: {
 						type: 'string',
 						enum: ['twitch', 'youtube'],
@@ -58,7 +59,7 @@ const responseSchema = {
 					platformId: { type: 'string' },
 					displayName: { type: 'string' },
 				},
-				required: ['platform', 'image', 'platformId'],
+				required: ['platform', 'image', 'platformId', 'id'],
 			},
 		},
 	},
