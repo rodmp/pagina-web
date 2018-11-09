@@ -6,13 +6,17 @@ import { TABLE_NAME, documentClient } from 'sls-aws/src/server/api/dynamoClient'
 import { PARTITION_KEY, SORT_KEY } from 'sls-aws/src/constants/apiDynamoIndexes'
 import assigneeSerializer from 'sls-aws/src/server/api/serializers/assigneeSerializer'
 
-import projectSerializer from 'sls-aws/src/server/api/serializers/projectSerializer'
-import { dynamoItemsProp } from 'sls-aws/src/server/api/lenses'
+import { CREATE_PROJECT } from 'sls-aws/src/descriptions/endpoints/endpointIds'
+import * as test from 'sls-aws/src/server/api/getEndpointDesc'
 
-export default async ({ userId, payload, payloadLenses }) => {
+console.log(test)
+const payloadLenses = test.getPayloadLenses(CREATE_PROJECT)
+
+export default async ({ userId, payload }) => {
 	const serializedProject = await assigneeSerializer({
 		project: payload, payloadLenses,
 	})
+
 	const projectPk = `project-${uuidV5()}`
 
 	const projectCommon = pick(['image', 'title'], serializedProject)
@@ -63,8 +67,7 @@ export default async ({ userId, payload, payloadLenses }) => {
 		// ReturnItemCollectionMetrics: SIZE | NONE,
 	}
 
-	const res = await documentClient.batchWrite(params).promise()
-	// add assignee ids
+	await documentClient.batchWrite(params).promise()
 	return {
 		id: projectPk,
 		assignees: map(assignee => omit(

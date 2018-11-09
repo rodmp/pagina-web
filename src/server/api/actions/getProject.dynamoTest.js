@@ -1,24 +1,23 @@
+import { apiFn } from 'sls-aws/src/server/api'
+
+import { TABLE_NAME, documentClient } from 'sls-aws/src/server/api/dynamoClient'
+
 import createProject from 'sls-aws/src/server/api/actions/createProject'
-import projectPayload from 'sls-aws/src/server/api/mocks/projectPayload'
-import getPledgedProjects from 'sls-aws/src/server/api/actions/getPledgedProjects'
+import createProjectPayload from 'sls-aws/src/server/api/mocks/createProjectPayload'
+import contextMock from 'sls-aws/src/server/api/mocks/contextMock'
 
-import { userPk } from 'sls-aws/src/server/api/pkMaker'
-import pledgeProject from './pledgeProject';
 
-const mockUserId = '1234123412341234'
-const differentUserId = '432143214321'
+const event = {
+	endpointId: CREATE_PROJECT,
+	payload: createProjectPayload(),
+}
 
-describe(('getPledgedProjects'), () => {
-	test('created projects', async () => {
-		const project = await Promise.all([
-			createProject(mockUserId, projectPayload),
-		])
-		await pledgeProject()
-		const res = await getPledgedProjects(mockUserId)
-		expect(res.Count).toBe(3)
-		expect(res.ScannedCount).toBe(3)
-		expect(
-			res.Items.every(project => project.pk === userPk(mockUserId)),
-		).toBe(true)
+describe('getProject', () => {
+	test('createProject', async () => {
+		const newProject = createProjectPayload()
+		await createProject(createProjectPayload()
+		const res = await apiFn(event, contextMock)
+		const tableScan = await scanTable()
+		expect(res).toBe(true)
 	})
 })
