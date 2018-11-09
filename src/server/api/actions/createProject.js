@@ -9,7 +9,6 @@ import assigneeSerializer from 'sls-aws/src/server/api/serializers/assigneeSeria
 import { CREATE_PROJECT } from 'sls-aws/src/descriptions/endpoints/endpointIds'
 import * as test from 'sls-aws/src/server/api/getEndpointDesc'
 
-console.log(test)
 const payloadLenses = test.getPayloadLenses(CREATE_PROJECT)
 
 export default async ({ userId, payload }) => {
