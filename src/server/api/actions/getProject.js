@@ -5,6 +5,8 @@ import { TABLE_NAME, documentClient } from 'sls-aws/src/server/api/dynamoClient'
 
 import { PARTITION_KEY, SORT_KEY } from 'sls-aws/src/constants/apiDynamoIndexes'
 
+import { dynamoItemsProp } from 'sls-aws/src/server/api/lenses'
+import projectSerializer from 'sls-aws/src/server/api/serializers/projectSerializer'
 
 const schema = {
 	type: 'object',
