@@ -38,7 +38,6 @@ export const apiFn = async (event, context) => {
 		const payloadSchema = getPayloadSchema(endpointId)
 		const resultSchema = getResultSchema(endpointId)
 		// const authentication = getAuthentication(endpointId)
-		console.log(action)
 		const userId = userPk(
 			path(['identity', 'cognitoIdentityId'], context),
 		)

@@ -1,23 +1,25 @@
 import { apiFn } from 'sls-aws/src/server/api'
 
-import { TABLE_NAME, documentClient } from 'sls-aws/src/server/api/dynamoClient'
+import { GET_PROJECT } from 'sls-aws/src/descriptions/endpoints/endpointIds'
 
 import createProject from 'sls-aws/src/server/api/actions/createProject'
 import createProjectPayload from 'sls-aws/src/server/api/mocks/createProjectPayload'
-import contextMock from 'sls-aws/src/server/api/mocks/contextMock'
-
-
-const event = {
-	endpointId: CREATE_PROJECT,
-	payload: createProjectPayload(),
-}
+import contextMock, { mockUserId } from 'sls-aws/src/server/api/mocks/contextMock'
 
 describe('getProject', () => {
 	test('createProject', async () => {
-		const newProject = createProjectPayload()
-		await createProject(createProjectPayload()
+		const newProject = await createProject({
+			userId: mockUserId,
+			payload: createProjectPayload(),
+		})
+		const event = {
+			endpointId: GET_PROJECT,
+			payload: { id: newProject.id },
+		}
 		const res = await apiFn(event, contextMock)
-		const tableScan = await scanTable()
-		expect(res).toBe(true)
+		expect(res).toEqual({
+			statusCode: 200,
+			body: newProject,
+		})
 	})
 })
