@@ -7,9 +7,9 @@ import { PARTITION_KEY, SORT_KEY } from 'sls-aws/src/constants/apiDynamoIndexes'
 import assigneeSerializer from 'sls-aws/src/server/api/serializers/assigneeSerializer'
 
 import { CREATE_PROJECT } from 'sls-aws/src/descriptions/endpoints/endpointIds'
-import * as test from 'sls-aws/src/server/api/getEndpointDesc'
+import { getPayloadLenses } from 'sls-aws/src/server/api/getEndpointDesc'
 
-const payloadLenses = test.getPayloadLenses(CREATE_PROJECT)
+const payloadLenses = getPayloadLenses(CREATE_PROJECT)
 
 export default async ({ userId, payload }) => {
 	const serializedProject = await assigneeSerializer({
@@ -31,8 +31,10 @@ export default async ({ userId, payload }) => {
 	const project = {
 		[PARTITION_KEY]: projectPk,
 		[SORT_KEY]: `project-${created}`,
-		amountPledged: pledgeAmount,
-		...serializedProject,
+		...pick(
+			['image', 'description', 'pledgeAmount', 'title'],
+			serializedProject,
+		),
 	}
 
 	const projectAssignees = map(assignee => ({
