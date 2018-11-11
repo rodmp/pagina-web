@@ -45,15 +45,10 @@ export default async ({ userId, payload }) => {
 
 	const pledge = {
 		[PARTITION_KEY]: userId,
-		[SORT_KEY]: `pledged|${projectPk}|${created}`,
+		[SORT_KEY]: `pledge|${projectPk}|${created}`,
 		pledgeAmount,
 		stripeCardId: viewStripeCardId(serializedProject),
-		...projectCommon,
-	}
-
-	const userProject = {
-		[PARTITION_KEY]: userId,
-		[SORT_KEY]: `created|${projectPk}|${created}`,
+		created: true,
 		...projectCommon,
 	}
 
@@ -61,14 +56,12 @@ export default async ({ userId, payload }) => {
 		RequestItems: {
 			[TABLE_NAME]: map(
 				Item => ({ PutRequest: { Item } }),
-				[project, ...projectAssignees, pledge, userProject],
+				[project, ...projectAssignees, pledge],
 			),
 		},
-		// ReturnConsumedCapacity: INDEXES | TOTAL | NONE,
-		// ReturnItemCollectionMetrics: SIZE | NONE,
 	}
-
 	await documentClient.batchWrite(params).promise()
+
 	return {
 		id: projectPk,
 		assignees: map(assignee => omit(
