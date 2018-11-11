@@ -1,6 +1,4 @@
-import {
- reduce, pick, prepend, startsWith,
-} from 'ramda'
+import { reduce, pick, prepend, startsWith } from 'ramda'
 
 import { skProp, pkProp } from 'sls-aws/src/server/api/lenses'
 
