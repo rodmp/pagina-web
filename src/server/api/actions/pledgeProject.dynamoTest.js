@@ -1,25 +1,29 @@
+import { apiFn } from 'sls-aws/src/server/api'
+
+import { PLEDGE_PROJECT } from 'sls-aws/src/descriptions/endpoints/endpointIds'
+
 import createProject from 'sls-aws/src/server/api/actions/createProject'
-import projectPayload from 'sls-aws/src/server/api/mocks/projectPayload'
-import getPledgedProjects from 'sls-aws/src/server/api/actions/getPledgedProjects'
+import createProjectPayload from 'sls-aws/src/server/api/mocks/createProjectPayload'
+import contextMock, { mockUserId } from 'sls-aws/src/server/api/mocks/contextMock'
 
-import { userPk } from 'sls-aws/src/server/api/pkMaker'
-import pledgeProject from './pledgeProject';
-
-const mockUserId = '1234123412341234'
-const differentUserId = '432143214321'
-
-describe(('getPledgedProjects'), () => {
-	test('created projects', async () => {
-		const [project, myProject] = await Promise.all([
-			createProject(differentUserId, projectPayload),
-			createProject(mockUserId, projectPayload),
-		])
-		await pledgeProject()
-		const res = await getPledgedProjects(mockUserId)
-		expect(res.Count).toBe(3)
-		expect(res.ScannedCount).toBe(3)
-		expect(
-			res.Items.every(project => project.pk === userPk(mockUserId)),
-		).toBe(true)
+describe('pledgeProject', () => {
+	test('createProject', async () => {
+		const newProject = await createProject({
+			userId: mockUserId,
+			payload: createProjectPayload(),
+		})
+		const event = {
+			endpointId: PLEDGE_PROJECT,
+			payload: {
+				id: newProject.id,
+				pledgeAmount: 1234,
+				stripeCardId: 'mockStripeCardId',
+			},
+		}
+		const res = await apiFn(event, contextMock)
+		expect(res).toEqual({
+			statusCode: 200,
+			body: newProject,
+		})
 	})
 })
