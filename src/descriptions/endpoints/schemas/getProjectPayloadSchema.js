@@ -1,7 +1,8 @@
 export default {
 	type: 'object',
 	properties: {
-		id: { type: 'string' },
+		projectId: { type: 'string' },
 	},
-	required: ['id'],
+	required: ['projectId'],
+	additionalProperties: false,
 }

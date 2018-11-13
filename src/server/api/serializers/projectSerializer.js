@@ -9,9 +9,12 @@ const responseLenses = getResponseLenses(GET_PROJECT)
 
 export default projectArr => reduce(
 	(result, projectPart) => {
-		const { overAssignees } = responseLenses
+		const { overAssignees, setMyPledge, viewPledgeAmount } = responseLenses
 		const sk = skProp(projectPart)
 		const [, platform, platformId] = split('|', sk)
+		if (startsWith('pledge', sk)) {
+			return setMyPledge(viewPledgeAmount(projectPart), result)
+		}
 		if (startsWith('assignee', sk)) {
 			const assigneeObj = pick(
 				['image', 'description', 'displayName', 'username'],
