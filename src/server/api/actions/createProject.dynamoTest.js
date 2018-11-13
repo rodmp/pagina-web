@@ -18,10 +18,10 @@ const event = {
 	payload: createProjectPayload(),
 }
 
-describe('getActiveProjects', () => {
+describe('createProject', () => {
 	test('createProject', async () => {
 		const res = await apiFn(event, contextMock)
 		const tableScan = await scanTable()
-		expect(res).toBe(true)
+		expect(res).toEqual({})
 	})
 })

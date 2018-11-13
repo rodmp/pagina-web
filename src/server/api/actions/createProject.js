@@ -1,5 +1,5 @@
 import uuidV5 from 'uuid'
-import { map, pick, omit, assoc, prop } from 'ramda'
+import { map, pick, omit, assoc, prop, join } from 'ramda'
 
 import { TABLE_NAME, documentClient } from 'sls-aws/src/server/api/dynamoClient'
 
@@ -30,7 +30,7 @@ export default async ({ userId, payload }) => {
 
 	const project = {
 		[PARTITION_KEY]: projectPk,
-		[SORT_KEY]: `project-${created}`,
+		[SORT_KEY]: `project|${created}`,
 		...pick(
 			['image', 'description', 'pledgeAmount', 'title'],
 			serializedProject,
@@ -39,13 +39,17 @@ export default async ({ userId, payload }) => {
 
 	const projectAssignees = map(assignee => ({
 		[PARTITION_KEY]: projectPk,
-		[SORT_KEY]: `assignee-${uuidV5()}`,
-		...assignee,
+		[SORT_KEY]: join('|', [
+			'assignee',
+			prop('platform', assignee),
+			prop('platformId', assignee),
+		]),
+		...omit(['platform', 'platformId'], assignee),
 	}), viewAssignees(serializedProject))
 
 	const pledge = {
-		[PARTITION_KEY]: userId,
-		[SORT_KEY]: `pledge|${projectPk}|${created}`,
+		[PARTITION_KEY]: projectPk,
+		[SORT_KEY]: `pledge|${userId}`,
 		pledgeAmount,
 		stripeCardId: viewStripeCardId(serializedProject),
 		created: true,
@@ -64,12 +68,8 @@ export default async ({ userId, payload }) => {
 
 	return {
 		id: projectPk,
-		assignees: map(assignee => omit(
-			[PARTITION_KEY, SORT_KEY],
-			assoc('id', prop(SORT_KEY, assignee), assignee),
-		), projectAssignees),
 		...pick(
-			['title', 'image', 'description', 'pledgeAmount'],
+			['title', 'image', 'description', 'pledgeAmount', 'assignees'],
 			serializedProject,
 		),
 	}

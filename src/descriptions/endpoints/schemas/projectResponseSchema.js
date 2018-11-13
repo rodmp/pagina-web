@@ -11,7 +11,6 @@ export default {
 			items: {
 				type: 'object',
 				properties: {
-					id: { type: 'string' },
 					platform: {
 						type: 'string',
 						enum: ['twitch', 'youtube'],
@@ -20,10 +19,13 @@ export default {
 					description: { type: 'string' },
 					platformId: { type: 'string' },
 					displayName: { type: 'string' },
+					username: { type: 'string' },
 				},
-				required: ['platform', 'image', 'platformId', 'id'],
+				required: ['platform', 'image', 'platformId'],
+				additionalProperties: false,
 			},
 		},
 	},
 	required: ['id', 'title', 'image', 'description', 'pledgeAmount'],
+	additionalProperties: false,
 }

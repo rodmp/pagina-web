@@ -31,6 +31,7 @@ export const getTwitchAssigneeDataHof = getUserDataFn => async (
 					platformId: prop('id', twitchUserData),
 					description: prop('description', twitchUserData),
 					displayName: prop('display_name', twitchUserData),
+					username: prop('login', twitchUserData),
 				}
 			}
 			// @TODO make a error creation function

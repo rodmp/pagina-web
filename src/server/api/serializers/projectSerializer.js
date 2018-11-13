@@ -1,4 +1,4 @@
-import { reduce, pick, prepend, startsWith } from 'ramda'
+import { reduce, pick, prepend, startsWith, split } from 'ramda'
 
 import { skProp, pkProp } from 'sls-aws/src/server/api/lenses'
 
@@ -11,16 +11,14 @@ export default projectArr => reduce(
 	(result, projectPart) => {
 		const { overAssignees } = responseLenses
 		const sk = skProp(projectPart)
+		const [, platform, platformId] = split('|', sk)
 		if (startsWith('assignee', sk)) {
 			const assigneeObj = pick(
-				[
-					'platform', 'image', 'platformId', 'description',
-					'displayName',
-				],
+				['image', 'description', 'displayName', 'username'],
 				projectPart,
 			)
 			return overAssignees(
-				prepend({ id: sk, ...assigneeObj }),
+				prepend({ platform, platformId, ...assigneeObj }),
 				result,
 			)
 		}
