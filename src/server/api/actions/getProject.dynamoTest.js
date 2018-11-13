@@ -14,7 +14,7 @@ describe('getProject', () => {
 		})
 		const event = {
 			endpointId: GET_PROJECT,
-			payload: { id: newProject.id },
+			payload: { projectId: newProject.id },
 		}
 		const res = await apiFn(event, contextMock)
 		expect(res).toEqual({

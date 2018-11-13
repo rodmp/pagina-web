@@ -6,6 +6,7 @@ export default {
 		image: { type: 'string' },
 		description: { type: 'string' },
 		pledgeAmount: { type: 'integer' },
+		myPledge: { type: 'integer' },
 		assignees: {
 			type: 'array',
 			items: {

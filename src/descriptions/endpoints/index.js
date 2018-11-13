@@ -4,11 +4,13 @@ import lensesFromSchema from 'sls-aws/src/util/lensesFromSchema'
 
 import createProject from 'sls-aws/src/descriptions/endpoints/createProject'
 import getProject from 'sls-aws/src/descriptions/endpoints/getProject'
+import pledgeProject from 'sls-aws/src/descriptions/endpoints/pledgeProject'
 
 
 const allEndpoints = {
 	...createProject,
 	...getProject,
+	...pledgeProject,
 }
 
 export default map(

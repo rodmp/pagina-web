@@ -22,6 +22,7 @@ export default {
 					},
 				},
 				required: ['url'],
+				additionalProperties: false,
 			},
 		},
 	},
@@ -29,4 +30,5 @@ export default {
 		'title', 'image', 'description', 'assignees', 'pledgeAmount',
 		'stripeCardId',
 	],
+	additionalProperties: false,
 }
