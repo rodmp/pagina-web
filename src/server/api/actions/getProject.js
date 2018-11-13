@@ -27,7 +27,7 @@ export default async ({ userId, payload }) => {
 	}
 	const myPledgeParams = {
 		TableName: TABLE_NAME,
-		KeyConditionExpression: `${PARTITION_KEY} = :pk and ${SORT_KEY} = :pledgeUserId)`,
+		KeyConditionExpression: `${PARTITION_KEY} = :pk and ${SORT_KEY} = :pledgeUserId`,
 		ExpressionAttributeValues: {
 			':pk': pk,
 			':pledgeUserId': `pledge|${userId}`,

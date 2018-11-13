@@ -15,7 +15,7 @@ describe('pledgeProject', () => {
 		const event = {
 			endpointId: PLEDGE_PROJECT,
 			payload: {
-				id: newProject.id,
+				projectId: newProject.id,
 				pledgeAmount: 1234,
 				stripeCardId: 'mockStripeCardId',
 			},
