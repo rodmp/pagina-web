@@ -1,6 +1,5 @@
 import { prop } from 'ramda'
 
-import { dynamoItemsProp } from 'sls-aws/src/server/api/lenses'
 import projectSerializer from 'sls-aws/src/server/api/serializers/projectSerializer'
 
 import dynamoQueryProject from 'sls-aws/src/server/api/actionUtil/dynamoQueryProject'
@@ -11,8 +10,8 @@ export default async ({ userId, payload }) => {
 		userId, projectId,
 	)
 	return projectSerializer([
-		...dynamoItemsProp(project),
-		...dynamoItemsProp(assignee),
-		...dynamoItemsProp(myPledge),
+		...project,
+		...assignee,
+		...myPledge,
 	])
 }

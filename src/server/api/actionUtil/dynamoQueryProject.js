@@ -1,5 +1,6 @@
 import { TABLE_NAME, documentClient } from 'sls-aws/src/server/api/dynamoClient'
 import { PARTITION_KEY, SORT_KEY } from 'sls-aws/src/constants/apiDynamoIndexes'
+import { dynamoItemsProp } from 'sls-aws/src/server/api/lenses'
 
 
 export default async (userId, projectId) => {
@@ -27,9 +28,15 @@ export default async (userId, projectId) => {
 			':pledgeUserId': `pledge|${userId}`,
 		},
 	}
-	return Promise.all([
+
+	const [projectDdb, assigneesDdb, myPledgeDdb] = await Promise.all([
 		documentClient.query(projectParams).promise(),
 		documentClient.query(assigneeParams).promise(),
 		documentClient.query(myPledgeParams).promise(),
 	])
+	return [
+		dynamoItemsProp(projectDdb),
+		dynamoItemsProp(assigneesDdb),
+		dynamoItemsProp(myPledgeDdb),
+	]
 }

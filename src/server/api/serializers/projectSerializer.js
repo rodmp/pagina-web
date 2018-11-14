@@ -6,16 +6,16 @@ import { GET_PROJECT } from 'sls-aws/src/descriptions/endpoints/endpointIds'
 import { getResponseLenses } from 'sls-aws/src/server/api/getEndpointDesc'
 
 const responseLenses = getResponseLenses(GET_PROJECT)
+const { overAssignees, setMyPledge, viewPledgeAmount } = responseLenses
 
 export default projectArr => reduce(
 	(result, projectPart) => {
-		const { overAssignees, setMyPledge, viewPledgeAmount } = responseLenses
 		const sk = skProp(projectPart)
-		const [, platform, platformId] = split('|', sk)
 		if (startsWith('pledge', sk)) {
 			return setMyPledge(viewPledgeAmount(projectPart), result)
 		}
 		if (startsWith('assignee', sk)) {
+			const [, platform, platformId] = split('|', sk)
 			const assigneeObj = pick(
 				['image', 'description', 'displayName', 'username'],
 				projectPart,
