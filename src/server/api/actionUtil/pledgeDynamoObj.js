@@ -9,6 +9,6 @@ export default (
 	[SORT_KEY]: `pledge|${userId}`,
 	pledgeAmount,
 	stripeCardId,
-	created,
+	...(created ? { created: true } : {}),
 	...projectDenormalizeFields(project),
 })

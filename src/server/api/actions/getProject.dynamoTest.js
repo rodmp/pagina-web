@@ -8,9 +8,10 @@ import contextMock, { mockUserId } from 'sls-aws/src/server/api/mocks/contextMoc
 
 describe('getProject', () => {
 	test('createProject', async () => {
+		const newProjectPayload = createProjectPayload()
 		const newProject = await createProject({
 			userId: mockUserId,
-			payload: createProjectPayload(),
+			payload: newProjectPayload,
 		})
 		const event = {
 			endpointId: GET_PROJECT,
@@ -19,7 +20,10 @@ describe('getProject', () => {
 		const res = await apiFn(event, contextMock)
 		expect(res).toEqual({
 			statusCode: 200,
-			body: newProject,
+			body: {
+				...newProject,
+				myPledge: newProjectPayload.pledgeAmount,
+			},
 		})
 	})
 })
