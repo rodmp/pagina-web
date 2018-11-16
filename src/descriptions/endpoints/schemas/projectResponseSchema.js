@@ -1,3 +1,7 @@
+import {
+	auditApprovedKey, auditRejectedKey, projectPendingKey,
+} from 'sls-aws/src/server/api/lenses'
+
 export default {
 	type: 'object',
 	properties: {
@@ -7,6 +11,10 @@ export default {
 		description: { type: 'string' },
 		pledgeAmount: { type: 'integer' },
 		myPledge: { type: 'integer' },
+		status: {
+			type: 'string',
+			enum: [auditApprovedKey, auditRejectedKey, projectPendingKey],
+		},
 		assignees: {
 			type: 'array',
 			items: {
@@ -27,6 +35,6 @@ export default {
 			},
 		},
 	},
-	required: ['id', 'title', 'image', 'description', 'pledgeAmount'],
+	required: ['id', 'title', 'image', 'description', 'pledgeAmount', 'status'],
 	additionalProperties: false,
 }

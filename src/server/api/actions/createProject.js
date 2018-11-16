@@ -1,4 +1,4 @@
-import uuidV5 from 'uuid'
+import uuid from 'uuid/v1'
 import { map, pick, omit, assoc, prop, join } from 'ramda'
 
 import { TABLE_NAME, documentClient } from 'sls-aws/src/server/api/dynamoClient'
@@ -10,6 +10,8 @@ import { CREATE_PROJECT } from 'sls-aws/src/descriptions/endpoints/endpointIds'
 import { getPayloadLenses } from 'sls-aws/src/server/api/getEndpointDesc'
 import projectDenormalizeFields from 'sls-aws/src/server/api/actionUtil/projectDenormalizeFields'
 import pledgeDynamoObj from 'sls-aws/src/server/api/actionUtil/pledgeDynamoObj'
+import randomNumber from 'sls-aws/src/util/randomNumber'
+import { projectPendingKey } from 'sls-aws/src/server/api/lenses'
 
 const payloadLenses = getPayloadLenses(CREATE_PROJECT)
 const {
@@ -21,7 +23,7 @@ export default async ({ userId, payload }) => {
 		project: payload, payloadLenses,
 	})
 
-	const projectId = `project-${uuidV5()}`
+	const projectId = `project-${uuid()}`
 
 	const projectCommon = projectDenormalizeFields(serializedProject)
 
@@ -32,7 +34,8 @@ export default async ({ userId, payload }) => {
 
 	const project = {
 		[PARTITION_KEY]: projectId,
-		[SORT_KEY]: `project|${created}`,
+		[SORT_KEY]: `project|${projectPendingKey}|${randomNumber(1, 10)}`,
+		created,
 		...pick(
 			['image', 'description', 'pledgeAmount', 'title'],
 			serializedProject,
@@ -66,6 +69,7 @@ export default async ({ userId, payload }) => {
 
 	return {
 		id: projectId,
+		status: projectPendingKey,
 		...pick(
 			['title', 'image', 'description', 'pledgeAmount', 'assignees'],
 			serializedProject,
