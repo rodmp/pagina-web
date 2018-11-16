@@ -22,3 +22,7 @@ export const pkProp = prop(PARTITION_KEY)
 export const skProp = prop(SORT_KEY)
 
 export const dynamoItemsProp = prop('Items')
+
+export const projectPendingKey = 'pending'
+export const auditApprovedKey = 'approved'
+export const auditRejectedKey = 'rejected'

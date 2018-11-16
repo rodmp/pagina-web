@@ -1,4 +1,4 @@
-import { reduce, pick, prepend, startsWith, split } from 'ramda'
+import { reduce, pick, prepend, startsWith, split, prop } from 'ramda'
 
 import { skProp, pkProp } from 'sls-aws/src/server/api/lenses'
 
@@ -30,7 +30,12 @@ export default projectArr => reduce(
 				['title', 'image', 'description', 'pledgeAmount'],
 				projectPart,
 			)
-			return { ...result, ...projectObj, id: pkProp(projectPart) }
+			return {
+				...result,
+				...projectObj,
+				id: pkProp(projectPart),
+				status: prop(1, split('|', skProp(projectPart))),
+			}
 		}
 		return result
 	},
