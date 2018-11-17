@@ -1,5 +1,5 @@
 import {
-	auditApprovedKey, auditRejectedKey, projectPendingKey,
+	projectApprovedKey, projectRejectedKey, projectPendingKey,
 } from 'sls-aws/src/server/api/lenses'
 
 export default {
@@ -13,7 +13,7 @@ export default {
 		myPledge: { type: 'integer' },
 		status: {
 			type: 'string',
-			enum: [auditApprovedKey, auditRejectedKey, projectPendingKey],
+			enum: [projectApprovedKey, projectRejectedKey, projectPendingKey],
 		},
 		assignees: {
 			type: 'array',

@@ -1,5 +1,5 @@
 import {
-	auditApprovedKey, auditRejectedKey,
+	projectApprovedKey, projectRejectedKey,
 } from 'sls-aws/src/server/api/lenses'
 
 export default {
@@ -8,7 +8,7 @@ export default {
 		projectId: { type: 'string' },
 		audit: {
 			type: 'string',
-			enum: [auditApprovedKey, auditRejectedKey]
+			enum: [projectApprovedKey, projectRejectedKey]
 		},
 	},
 	required: ['projectId', 'audit'],

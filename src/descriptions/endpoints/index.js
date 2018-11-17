@@ -8,6 +8,9 @@ import pledgeProject from 'sls-aws/src/descriptions/endpoints/pledgeProject'
 import getPledgedProjects from 'sls-aws/src/descriptions/endpoints/getPledgedProjects'
 import auditProject from 'sls-aws/src/descriptions/endpoints/auditProject'
 
+import getActiveProjects from 'sls-aws/src/descriptions/endpoints/getActiveProjects'
+import getPendingProjects from 'sls-aws/src/descriptions/endpoints/getPendingProjects'
+
 
 const allEndpoints = {
 	...createProject,
@@ -15,6 +18,8 @@ const allEndpoints = {
 	...pledgeProject,
 	...getPledgedProjects,
 	...auditProject,
+	...getActiveProjects,
+	...getPendingProjects,
 }
 
 export default map(
