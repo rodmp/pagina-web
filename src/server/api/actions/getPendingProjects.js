@@ -7,7 +7,7 @@ import pledgeSerializer from 'sls-aws/src/server/api/serializers/pledgeSerialize
 export default async () => {
 	const projects = await getProjectsByStatus(projectApprovedKey)
 	return listResults({
-		dynamoResults: { Items: projects },
+		projects,
 		serializer: pledgeSerializer,
 	})
 }

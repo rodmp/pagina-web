@@ -7,7 +7,7 @@ import createProjectPayload from 'sls-aws/src/server/api/mocks/createProjectPayl
 import contextMock, { mockUserId } from 'sls-aws/src/server/api/mocks/contextMock'
 
 import {
-	auditApprovedKey, auditRejectedKey, projectPendingKey,
+	projectApprovedKey, projectRejectedKey, projectPendingKey,
 } from 'sls-aws/src/server/api/lenses'
 
 describe('auditProject', () => {
@@ -21,7 +21,7 @@ describe('auditProject', () => {
 			endpointId: AUDIT_PROJECT,
 			payload: {
 				projectId: newProject.id,
-				audit: auditApprovedKey,
+				audit: projectApprovedKey,
 			},
 		}
 		const res = await apiFn(event, contextMock)
@@ -29,7 +29,7 @@ describe('auditProject', () => {
 			statusCode: 200,
 			body: {
 				...newProject,
-				status: auditApprovedKey,
+				status: projectApprovedKey,
 			},
 		})
 	})

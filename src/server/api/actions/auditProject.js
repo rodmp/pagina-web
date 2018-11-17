@@ -10,7 +10,7 @@ import { generalError } from 'sls-aws/src/server/api/errors'
 import dynamoQueryProject from 'sls-aws/src/server/api/actionUtil/dynamoQueryProject'
 import projectSerializer from 'sls-aws/src/server/api/serializers/projectSerializer'
 import {
-	projectPendingKey, auditApprovedKey,
+	projectPendingKey, projectApprovedKey,
 } from 'sls-aws/src/server/api/lenses'
 
 const payloadLenses = getPayloadLenses(AUDIT_PROJECT)
@@ -63,6 +63,6 @@ export default async ({ userId, payload }) => {
 	])
 	return {
 		...newProject,
-		status: auditApprovedKey,
+		status: projectApprovedKey,
 	}
 }
