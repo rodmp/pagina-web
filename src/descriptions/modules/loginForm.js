@@ -10,14 +10,12 @@ export default {
 		fields: [
 			{
 				fieldId: 'email',
-				inputType: 'text',
-				textType: 'email',
+				inputType: 'email',
 				label: 'Email',
 			},
 			{
 				fieldId: 'password',
-				inputType: 'text',
-				textType: 'password',
+				inputType: 'password',
 				label: 'Password',
 			},
 		],

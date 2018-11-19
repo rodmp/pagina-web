@@ -69,9 +69,18 @@ export const formModuleSchema = {
 						type: 'object',
 						properties: {
 							fieldId: { type: 'string' },
-							inputType: { type: 'string' },
-							textType: { type: 'string' },
+							inputType: {
+								type: 'string',
+								enum: [
+									'text', 'password', 'email', 'number',
+									'subForm',
+								],
+							},
 							label: { type: 'string' },
+							// copy of fields
+							subFormFields: {
+								type: 'array',
+							},
 						},
 					},
 				},

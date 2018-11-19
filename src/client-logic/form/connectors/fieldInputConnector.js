@@ -14,5 +14,5 @@ export default reduxConnector(
 		['fieldError', fieldError],
 		['fieldHasError', fieldHasError],
 	],
-	[['setInput', setInput]]
+	[['setInput', setInput]],
 )

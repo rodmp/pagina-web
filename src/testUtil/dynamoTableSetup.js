@@ -1,14 +1,13 @@
 // docker run --name dynamodb -p 9000:8000 amazon/dynamodb-local
 
-import {
-	merge, propOr, prop, head, values, map,
-} from 'ramda'
+import { merge, propOr, prop, head, values, map } from 'ramda'
 
 import { TABLE_NAME, dynamoDb } from 'sls-aws/src/server/api/dynamoClient'
 
 import apiTableConfig from 'sls-aws/src/aws/api/resources/apiDynamoDbTable'
 
 jest.mock('sls-aws/src/server/api/dynamoClient', () => {
+	// eslint-disable-next-line
 	const { DynamoDB } = require('aws-sdk')
 	const mockConfig = {
 		endpoint: 'http://localhost:9000',
@@ -46,5 +45,5 @@ beforeAll(async () => {
 	const tables = await getTables()
 	await deleteTables(tables)
 	await createTable()
-	const consoleTables = await getTables()
+	// const consoleTables = await getTables()
 })

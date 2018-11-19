@@ -10,24 +10,21 @@ export default {
 			{
 				fieldId: 'email',
 				label: 'Email',
-				inputType: 'text',
-				textType: 'email'
+				inputType: 'email',
 			},
 			{
 				fieldId: 'password',
 				label: 'Password',
-				inputType: 'text',
-				textType: 'password'
+				inputType: 'password',
 			},
 			{
 				fieldId: 'confirm_password',
 				label: 'Confirm password',
-				inputType: 'text',
-				textType: 'password'
+				inputType: 'password',
 			},
 		],
 		submits: [
 			{ label: 'Sign Up', action: signUp },
-		]
-	}
+		],
+	},
 }

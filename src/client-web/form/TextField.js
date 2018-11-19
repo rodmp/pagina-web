@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 
 import TextField from '@material-ui/core/TextField'
 
@@ -9,19 +9,20 @@ const handleOnChange = (moduleKey, fieldId, action) => (e) => {
 	action(moduleKey, fieldId, e.target.value)
 }
 
-export const InputField = ({
+export const InputField = memo(({
 	moduleKey, fieldId, setInput, fieldValue, fieldLabel, fieldError,
-	fieldHasError,
+	fieldHasError, fieldType,
 }) => (
 	<TextField
 		id={fieldId}
 		label={fieldLabel}
+		type={fieldType}
 		fullWidth
 		value={fieldValue}
 		error={fieldHasError}
 		helperText={fieldError}
 		onChange={handleOnChange(moduleKey, fieldId, setInput)}
 	/>
-)
+))
 
 export default fieldInputConnector(InputField)

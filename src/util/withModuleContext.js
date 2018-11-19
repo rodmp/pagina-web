@@ -6,13 +6,13 @@ export const ModuleContextProvider = Provider
 export const ModuleContextConsumer = Consumer
 
 
-export default (Component) => (props) => (
-  <Consumer>
-    {moduleObj => (
-      <Component
-        {...props }
-        {...moduleObj}
-      />
-    )}
-  </Consumer>
+export default Component => props => (
+	<Consumer>
+		{moduleObj => (
+			<Component
+				{...props}
+				{...moduleObj}
+			/>
+		)}
+	</Consumer>
 )

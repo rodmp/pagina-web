@@ -14,7 +14,7 @@ export const RenderModules = ({ moduleTypes }) => (
 		switch (moduleType) {
 			case 'form':
 				return (
-					<ModuleContextProvider 
+					<ModuleContextProvider
 						key={moduleId}
 						value={{ moduleId, moduleIndex }}
 					>
@@ -42,7 +42,7 @@ export const RouteRender = ({ currentRouteModuleTypes, noRoute }) => ternary(
 		<div className="layout-column layout-align-center-stretch">
 			<RenderModules moduleTypes={currentRouteModuleTypes} />
 		</div>
-	</div>
+	</div>,
 )
 
 export default routeRenderConnector(RouteRender)
