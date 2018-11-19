@@ -10,14 +10,13 @@ export default {
 		fields: [
 			{
 				fieldId: 'email',
-				inputType: 'text',
-				textType: 'email',
-				label: 'Email'
+				inputType: 'email',
+				label: 'Email',
 			},
 			{
 				fieldId: 'verificationCode',
 				inputType: 'text',
-				label: 'Verification Code'
+				label: 'Verification Code',
 			},
 		],
 		submits: [

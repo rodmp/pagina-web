@@ -13,6 +13,6 @@ export default reduxConnector(
 		['formSubmits', formSubmits],
 	],
 	[
-		['submitForm', submitForm]
+		['submitForm', submitForm],
 	],
 )

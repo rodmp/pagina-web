@@ -13,17 +13,16 @@ import {
 const { viewModuleType } = moduleDescriptionLenses
 
 export const currentRouteModuleTypesHof = (
-	routeDescriptionObj, moduleDescriptionObj
-) => state => {
-	return addIndex(map)(
+	routeDescriptionObj, moduleDescriptionObj,
+) => state => addIndex(map)(
 	([moduleId], index) => [
-		moduleId, viewModuleType(moduleId, moduleDescriptionObj), index
+		moduleId, viewModuleType(moduleId, moduleDescriptionObj), index,
 	],
 	currentRouteModuleObjectsHof(
-		routeDescriptionObj, moduleDescriptionObj
-	)(state)
-)}
+		routeDescriptionObj, moduleDescriptionObj,
+	)(state),
+)
 
 export default currentRouteModuleTypesHof(
-	routeDescriptions, moduleDescriptions
+	routeDescriptions, moduleDescriptions,
 )

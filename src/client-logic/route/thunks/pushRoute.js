@@ -12,7 +12,7 @@ export const pushRouteHof = (
 	return dispatchCommittedRouteFn(
 		nextRouteObj,
 		dispatch,
-		browserHistoryPush
+		browserHistoryPush,
 	)
 }
 
