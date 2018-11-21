@@ -12,6 +12,7 @@ import clearFormErrors from 'sls-aws/src/client-logic/form/reducers/clearFormErr
 import setFormErrors from 'sls-aws/src/client-logic/form/reducers/setFormErrors'
 import submitForm from 'sls-aws/src/client-logic/form/reducers/submitForm'
 import submitFormComplete from 'sls-aws/src/client-logic/form/reducers/submitFormComplete'
+import addSubForm from 'sls-aws/src/client-logic/form/reducers/addSubForm'
 
 // listeners
 import popStateListener from 'sls-aws/src/client-logic/route/listeners/popStateListener'
@@ -25,6 +26,7 @@ const store = createStore(
 		...setFormErrors,
 		...submitForm,
 		...submitFormComplete,
+		...addSubForm,
 	}, // reducer object
 	// [], // sagas
 	[
