@@ -2,41 +2,31 @@ import React, { memo } from 'react'
 import { map, range } from 'ramda'
 
 import Button from '@material-ui/core/Button'
-import IconButton from '@material-ui/core/IconButton'
-import CloseIcon from '@material-ui/icons/Close'
 
+import SubFormFields from 'sls-aws/src/client-web/form/SubFormFields'
 
-import Fields from 'sls-aws/src/client-web/form/Fields'
 import subFormConnector from 'sls-aws/src/client-logic/form/connectors/subFormConnector'
 import withModuleContext from 'sls-aws/src/util/withModuleContext'
 
-
 import addAnotherHandler from 'sls-aws/src/client-logic/form/handers/addAnotherHandler'
-import removeSubFormHandler from 'sls-aws/src/client-logic/form/handers/removeSubFormHandler'
 
 
 export const SubForm = memo(({
-	moduleKey, moduleId, subFormFieldTypes, fieldLabel, addSubForm,
-	subFormCount, fieldId, removeSubForm,
+	moduleKey, moduleId, fieldLabel, addSubForm, subFormCount, fieldId,
+	fieldDescPath, fieldPath,
 }) => (
 	<div>
 		<div>{fieldLabel}</div>
 		{map(
 			subFormIndex => (
-				<div key={subFormIndex}>
-					<IconButton
-						onClick={removeSubFormHandler(
-							moduleKey, fieldId, subFormIndex, removeSubForm,
-						)}
-					>
-						<CloseIcon />
-					</IconButton>
-					<Fields
-						moduleKey={moduleKey}
-						moduleId={moduleId}
-						formFieldTypes={subFormFieldTypes}
-					/>
-				</div>
+				<SubFormFields
+					subFormIndex={subFormIndex}
+					moduleKey={moduleKey}
+					moduleId={moduleId}
+					fieldId={fieldId}
+					fieldPath={fieldPath}
+					fieldDescPath={fieldDescPath}
+				/>
 			),
 			range(0, subFormCount),
 		)}

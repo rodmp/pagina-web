@@ -26,7 +26,7 @@ export const RenderSubmits = ({ formSubmits, moduleKey, submitFormFn }) => (
 )
 
 export const FormModule = ({
-	formFieldTypes, formSubmits, moduleId, moduleKey, submitForm
+	formFieldTypes, formSubmits, moduleId, moduleKey, submitForm,
 }) => (
 	<form
 		onSubmit={handleSubmit(submitForm, moduleKey)}

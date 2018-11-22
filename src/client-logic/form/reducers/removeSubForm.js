@@ -15,5 +15,5 @@ export default {
 			remove(subFormIndex, 1),
 			state,
 		)
-	)
+	),
 }

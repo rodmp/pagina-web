@@ -1,17 +1,20 @@
+import { compose, set, lensPath } from 'ramda'
+
 import { CHANGE_INPUT } from 'sls-aws/src/client-logic/form/actionIds'
 import {
 	formStoreLenses,
 } from 'sls-aws/src/client-logic/form/lenses'
 
-const { setFormInputsChild, setDirty } = formStoreLenses
+const { overFormInputs, overFieldData } = formStoreLenses
 
 export default {
-	[CHANGE_INPUT]: (state, { moduleKey, fieldId, value }) => (
-		setFormInputsChild(
-			moduleKey,
-			fieldId,
-			value,
-			setDirty(moduleKey, fieldId, true, state),
-		)
-	),
+	[CHANGE_INPUT]: (state, { moduleKey, fieldPath, value }) => {
+		const path = lensPath(fieldPath)
+		return compose(
+			overFormInputs(moduleKey, set(path, value)),
+			overFieldData(
+				moduleKey, set(lensPath([...fieldPath, 'dirty']), true)
+			),
+		)(state)
+	},
 }
