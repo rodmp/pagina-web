@@ -5,5 +5,5 @@ import fieldError from 'sls-aws/src/client-logic/form/selectors/fieldError'
 export default compose(
 	not,
 	equals(''),
-	fieldError
+	fieldError,
 )
