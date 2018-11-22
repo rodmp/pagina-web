@@ -20,6 +20,7 @@ export const SubForm = memo(({
 		{map(
 			subFormIndex => (
 				<SubFormFields
+					key={subFormIndex}
 					subFormIndex={subFormIndex}
 					moduleKey={moduleKey}
 					moduleId={moduleId}

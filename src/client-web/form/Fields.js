@@ -1,5 +1,4 @@
 import React, { memo } from 'react'
-import { isNil } from 'ramda'
 
 import TextField from 'sls-aws/src/client-web/form/TextField'
 import SubForm from 'sls-aws/src/client-web/form/SubForm'
