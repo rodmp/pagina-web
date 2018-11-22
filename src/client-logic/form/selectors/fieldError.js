@@ -1,14 +1,23 @@
-import { or } from 'ramda'
+import { or, view, pathOr, lensPath } from 'ramda'
 
 import { formStoreLenses } from 'sls-aws/src/client-logic/form/lenses'
 
 const {
-	pathOrFieldErrorsChild, viewDirty, viewFormSubmitted,
+	pathOrFieldErrors, pathOrFieldData, viewFormSubmitted,
 } = formStoreLenses
 
-export default (state, { moduleKey, fieldId }) => (
+export default (state, { moduleKey, fieldPath }) => (
 	or(
+		// is form submitted
 		viewFormSubmitted(moduleKey, state),
-		viewDirty(moduleKey, fieldId, state)
-	) ? pathOrFieldErrorsChild(moduleKey, fieldId, '', state) : ''
+		// is field dirty
+		view(
+			lensPath([...fieldPath, 'dirty']),
+			pathOrFieldData(moduleKey, {}, state),
+		),
+	) ? pathOr(
+			'',
+			fieldPath,
+			pathOrFieldErrors(moduleKey, {}, state),
+		) : ''
 )
