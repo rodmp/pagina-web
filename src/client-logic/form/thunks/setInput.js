@@ -7,8 +7,8 @@ import validateForm from 'sls-aws/src/client-logic/form/util/validateForm'
 
 export const setInputHof = (
 	validateFormFn, changeInputFn, clearFormErrorsFn, setFormErrorsFn,
-) => (moduleKey, fieldId, value) => (dispatch, getState) => {
-	dispatch(changeInputFn(moduleKey, fieldId, value))
+) => (moduleKey, fieldPath, value) => (dispatch, getState) => {
+	dispatch(changeInputFn(moduleKey, fieldPath, value))
 	const state = getState()
 	return validateFormFn(moduleKey, state).then(() => {
 		dispatch(clearFormErrorsFn(moduleKey))

@@ -8,7 +8,7 @@ const { viewFields } = formModuleLenses
 
 export default (state, props) => compose(
 	addIndex(map)(({ fieldId, inputType }, fieldIndex) => [
-		fieldId, [fieldIndex], inputType,
+		[fieldId], [fieldIndex], inputType, fieldId,
 	]),
 	viewFields(__, moduleDescriptions),
 	moduleIdProp,

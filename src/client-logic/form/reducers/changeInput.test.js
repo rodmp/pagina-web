@@ -4,25 +4,25 @@ import { CHANGE_INPUT } from 'sls-aws/src/client-logic/form/actionIds'
 const mockState = {}
 
 const mockActionPayload = {
-	formHash: 'test',
-	inputId: 'foo',
-	inputValue: 'bar'
+	moduleKey: 'test',
+	fieldPath: ['foo', 0],
+	value: 'bar',
 }
 
 describe('changeInput', () => {
 	test('works normally', () => {
 		expect(
-			changeInput[CHANGE_INPUT](mockState, mockActionPayload)
+			changeInput[CHANGE_INPUT](mockState, mockActionPayload),
 		).toEqual({
 			form: {
 				test: {
 					formInputs: {
-						foo: 'bar',
+						foo: ['bar'],
 					},
 					fieldData: {
-						foo: {
-							dirty: true,
-						},
+						foo: [
+							{ dirty: true }
+						],
 					},
 				},
 			},
