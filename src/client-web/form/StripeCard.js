@@ -1,5 +1,5 @@
 import React, { memo, useState, createElement } from 'react'
-import { map, equals } from 'ramda'
+import { map, equals, not, or, prop, assoc } from 'ramda'
 import classNames from 'classnames'
 
 import {
@@ -14,8 +14,6 @@ import { makeStyles } from '@material-ui/styles'
 const useStyles = makeStyles({
 	root: {
 		padding: [[6, 0, 7, 0]],
-	},
-	underline: {
 		marginTop: 16,
 		position: 'relative',
 		'&:before': {
@@ -45,6 +43,8 @@ const useStyles = makeStyles({
 			pointerEvents: 'none',
 			transform: 'scale(1)',
 		},
+	},
+	underline: {
 	},
 	elementWrapper: {
 		position: 'relative',
@@ -83,22 +83,24 @@ const elementStyle = {
 	},
 }
 const ccFields = [
-	['flex-55', '1234 1234 1234 1234', CardNumberElement, 'cardNumber'],
-	['flex-15', 'MM / YY', CardExpiryElement, 'cardExpiry'],
-	['flex-15', 'CVC', CardCVCElement, 'cardCvc'],
-	['flex-15', '90210', PostalCodeElement, 'postalCode'],
+	['cardNumber', 'flex-55', '1234 1234 1234 1234', CardNumberElement],
+	['cardExpiry', 'flex-15', 'MM / YY', CardExpiryElement],
+	['cardCvc', 'flex-15', 'CVC', CardCVCElement],
+	['postalCode', 'flex-15', '90210', PostalCodeElement],
 ]
 
 export const StripeCard = memo(() => {
 	const classes = useStyles()
 	const [focus, setFocus] = useState()
+	const [empty, setEmpty] = useState(
+		// reduce(, ccFields)
+	)
 	return (
 		<div className={classes.root}>
-			<div className={classes.underline}>
 			<StripeProvider apiKey={stripeClientId}>
 				<Elements>
 					<div className="layout-row">
-						{map(([flex, label, element, focusString]) => (
+						{map(([elementType, flex, label, element]) => (
 							<div
 								className={classNames(
 									flex,
@@ -109,9 +111,12 @@ export const StripeCard = memo(() => {
 									className={classNames(
 										classes.inputLabelBase,
 										{
-											[classes.inputLabelFocus]: equals(
-												focus,
-												focusString,
+											[classes.inputLabelFocus]: or(
+												equals(focus, elementType),
+												equals(
+													prop(elementType, empty),
+													false,
+												),
 											),
 										},
 									)}
@@ -120,15 +125,23 @@ export const StripeCard = memo(() => {
 								</div>
 								{createElement(element, {
 									style: elementStyle,
-									onFocus: () => setFocus(focusString),
+									onFocus: () => setFocus(elementType),
 									onBlur: () => setFocus(null),
+									onChange: (changeObj) => {
+										setEmpty(
+											assoc(
+												changeObj.elementType,
+												changeObj.empty,
+												empty,
+											),
+										)
+									},
 								})}
 							</div>
 						), ccFields)}
 					</div>
 				</Elements>
 			</StripeProvider>
-			</div>
 		</div>
 	)
 })
