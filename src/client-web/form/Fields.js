@@ -2,6 +2,8 @@ import React, { memo } from 'react'
 
 import TextField from 'sls-aws/src/client-web/form/TextField'
 import SubForm from 'sls-aws/src/client-web/form/SubForm'
+import StripeCard from 'sls-aws/src/client-web/form/StripeCard'
+
 
 const Fields = memo(({
 	formFieldTypes, moduleKey,
@@ -22,6 +24,8 @@ const Fields = memo(({
 			return <TextField {...props} />
 		case 'subForm':
 			return <SubForm {...props} />
+		case 'stripeCard':
+			return <StripeCard {...props} />
 		default:
 			return (
 				<div key={fieldId}>

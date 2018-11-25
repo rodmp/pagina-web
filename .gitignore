@@ -4,3 +4,4 @@ build
 cfOutput.js
 cfTemplate.json
 dist
+secrets.js

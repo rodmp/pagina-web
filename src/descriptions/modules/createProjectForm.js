@@ -39,7 +39,7 @@ export default {
 			},
 			{
 				fieldId: 'stripeCardId',
-				inputType: 'stripe',
+				inputType: 'stripeCard',
 				label: 'Credit Card',
 			},
 		],
