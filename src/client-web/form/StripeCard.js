@@ -1,5 +1,5 @@
 import React, { memo, useState, createElement } from 'react'
-import { map, equals, not, or, prop, assoc } from 'ramda'
+import { map, equals, or, prop, assoc, not, all, isNil, values } from 'ramda'
 import classNames from 'classnames'
 
 import {
@@ -11,40 +11,67 @@ import { stripeClientId } from 'sls-aws/src/constants/stripeClient'
 
 import { makeStyles } from '@material-ui/styles'
 
+const primaryColor = '#303f9f'
+const errorColor = '#f44336'
+
 const useStyles = makeStyles({
 	root: {
 		padding: [[6, 0, 7, 0]],
 		marginTop: 16,
 		position: 'relative',
 		'&:before': {
-			left: '0',
-			right: '0',
-			bottom: '0',
+			left: 0,
+			right: 0,
+			bottom: 0,
 			content: '""',
 			position: 'absolute',
-			transition: 'border-bottom-color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-			borderBottom: '1px solid rgba(0, 0, 0, 0.42)',
+			transition: [[
+				'border-bottom-color', '200ms', 'cubic-bezier(0.4, 0, 0.2, 1)',
+				'0ms',
+			]],
+			borderBottom: [[1, 'solid', 'rgba(0, 0, 0, 0.42)']],
 			pointerEvents: 'none',
-		},
-		'&:hover': {
-			'&:before': {
-				borderBottom: '2px solid rgba(0, 0, 0, 0.87)',
-			},
 		},
 		'&:after': {
-			left: '0,',
-			right: '0,',
-			bottom: '0,',
-			content: '"",',
-			position: 'absolute,',
-			// transform: 'scaleX(0),',
-			transition: 'transform 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms',
-			borderBottom: '2px solid #303f9f,',
+			left: 0,
+			right: 0,
+			bottom: 0,
+			content: '""',
+			position: 'absolute',
+			transform: 'scaleX(0)',
+			transition: [[
+				'transform', '200ms', 'cubic-bezier(0.0, 0, 0.2, 1)', '0ms',
+			]],
+			borderBottom: [[2, 'solid', primaryColor]],
 			pointerEvents: 'none',
-			transform: 'scale(1)',
 		},
 	},
-	underline: {
+	underlineFocus: {
+		'&:after': {
+			transform: 'scaleX(1)',
+		},
+	},
+	underlineError: {
+		'&:after': {
+			transform: 'scaleX(1)',
+			borderBottomColor: errorColor,
+		},
+	},
+	underlineHover: {
+		'&:hover': {
+			'&:before': {
+				borderBottom: [[2, 'solid', 'rgba(0, 0, 0, 0.87)']],
+			},
+		},
+	},
+	errors: {
+		fontSize: '0.75rem',
+		textAlign: 'left',
+		marginTop: 8,
+		minHeight: '1em',
+		fontFamily: [['"Roboto"', '"Helvetica"', '"Arial"', 'sans-serif']],
+		lineHeight: '1em',
+		color: errorColor,
 	},
 	elementWrapper: {
 		position: 'relative',
@@ -61,14 +88,17 @@ const useStyles = makeStyles({
 		color: 'rgba(0, 0, 0, 0.54)',
 		padding: 0,
 		fontSize: 16,
-		fontFamily: ['Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+		fontFamily: ['"Roboto"', '"Helvetica"', '"Arial"', 'sans-serif'],
 		lineHeight: 1,
 		transformOrigin: [['top', 'left']],
 	},
 	inputLabelFocus: {
-		color: '#303f9f',
+		color: primaryColor,
 		transform: [['translate(0, 1.5px)', 'scale(0.75)']],
 		transformOrigin: [['top', 'left']],
+	},
+	inputLabelError: {
+		color: errorColor,
 	},
 })
 
@@ -92,56 +122,89 @@ const ccFields = [
 export const StripeCard = memo(() => {
 	const classes = useStyles()
 	const [focus, setFocus] = useState()
-	const [empty, setEmpty] = useState(
-		// reduce(, ccFields)
-	)
+	const [emptys, setEmptys] = useState()
+	const [errors, setErrors] = useState({})
+	const hasError = not(all(isNil, values(errors)))
 	return (
-		<div className={classes.root}>
-			<StripeProvider apiKey={stripeClientId}>
-				<Elements>
-					<div className="layout-row">
-						{map(([elementType, flex, label, element]) => (
-							<div
-								className={classNames(
-									flex,
-									classes.elementWrapper,
-								)}
-							>
+		<div className="layout-column">
+			<div
+				className={classNames(
+					classes.root,
+					{
+						[classes.underlineFocus]: focus && !hasError,
+						[classes.underlineHover]: !focus,
+						[classes.underlineError]: hasError,
+					},
+				)}
+			>
+				<StripeProvider apiKey={stripeClientId}>
+					<Elements>
+						<div className="layout-row">
+							{map(([elementType, flex, label, element]) => (
 								<div
+									key={elementType}
 									className={classNames(
-										classes.inputLabelBase,
-										{
-											[classes.inputLabelFocus]: or(
-												equals(focus, elementType),
-												equals(
-													prop(elementType, empty),
-													false,
-												),
-											),
-										},
+										flex,
+										classes.elementWrapper,
 									)}
 								>
-									{label}
+									<div
+										className={classNames(
+											classes.inputLabelBase,
+											{
+												[classes.inputLabelError]: prop(
+													errors, elementType,
+												),
+												[classes.inputLabelFocus]: or(
+													equals(focus, elementType),
+													equals(
+														prop(
+															elementType,
+															emptys,
+														),
+														false,
+													),
+												),
+											},
+										)}
+									>
+										{label}
+									</div>
+									{createElement(element, {
+										style: elementStyle,
+										onFocus: () => setFocus(elementType),
+										onBlur: () => setFocus(null),
+										onChange: (changeObj) => {
+											const {
+												empty, error = {},
+											} = changeObj
+											setErrors(
+												assoc(
+													elementType,
+													error.message,
+													errors,
+												),
+											)
+											setEmptys(
+												assoc(
+													elementType, empty, emptys,
+												),
+											)
+										},
+									})}
 								</div>
-								{createElement(element, {
-									style: elementStyle,
-									onFocus: () => setFocus(elementType),
-									onBlur: () => setFocus(null),
-									onChange: (changeObj) => {
-										setEmpty(
-											assoc(
-												changeObj.elementType,
-												changeObj.empty,
-												empty,
-											),
-										)
-									},
-								})}
-							</div>
-						), ccFields)}
+							), ccFields)}
+						</div>
+					</Elements>
+				</StripeProvider>
+			</div>
+			<div className={classNames('layout-row', classes.errors)}>
+				{map(([elementType, flex]) => (
+					<div className={flex}>
+						{errors[elementType]}
 					</div>
-				</Elements>
-			</StripeProvider>
+				), ccFields)}
+			</div>
 		</div>
 	)
 })
