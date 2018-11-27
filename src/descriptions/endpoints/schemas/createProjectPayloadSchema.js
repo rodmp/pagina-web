@@ -2,7 +2,6 @@ export default {
 	type: 'object',
 	properties: {
 		title: { type: 'string' },
-		image: { type: 'string', format: 'uri' },
 		description: { type: 'string' },
 		stripeCardId: { type: 'string' },
 		pledgeAmount: { type: 'integer' },
@@ -27,8 +26,7 @@ export default {
 		},
 	},
 	required: [
-		'title', 'image', 'description', 'assignees', 'pledgeAmount',
-		'stripeCardId',
+		'title', 'description', 'assignees', 'pledgeAmount', 'stripeCardId',
 	],
 	additionalProperties: false,
 }

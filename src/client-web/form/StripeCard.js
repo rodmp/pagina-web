@@ -200,7 +200,7 @@ export const StripeCard = memo(() => {
 			</div>
 			<div className={classNames('layout-row', classes.errors)}>
 				{map(([elementType, flex]) => (
-					<div className={flex}>
+					<div className={flex} key={elementType}>
 						{errors[elementType]}
 					</div>
 				), ccFields)}

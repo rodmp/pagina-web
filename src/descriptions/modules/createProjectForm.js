@@ -1,14 +1,25 @@
+import { dissocPath, compose, set, lensProp, without, view } from 'ramda'
+
 import {
 	CREATE_PROJECT_FORM_MODULE_ID,
 } from 'sls-aws/src/descriptions/modules/moduleIds'
 
 import createProjectPayloadSchema from 'sls-aws/src/descriptions/endpoints/schemas/createProjectPayloadSchema'
-import login from 'sls-aws/src/client-logic/cognito/thunks/login'
+import createProject from 'sls-aws/src/client-logic/project/thunks/createProject'
 
 export default {
 	[CREATE_PROJECT_FORM_MODULE_ID]: {
 		moduleType: 'form',
-		schema: createProjectPayloadSchema,
+		schema: compose(
+			dissocPath(['properties', 'stripeCardId']),
+			set(
+				lensProp('required'),
+				without(
+					['stripeCardId'],
+					view(lensProp('required'), createProjectPayloadSchema),
+				),
+			),
+		)(createProjectPayloadSchema),
 		fields: [
 			{
 				fieldId: 'title',
@@ -44,7 +55,7 @@ export default {
 			},
 		],
 		submits: [
-			{ label: 'Create', action: login },
+			{ label: 'Create', action: createProject },
 		],
 	},
 }
