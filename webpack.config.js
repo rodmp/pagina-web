@@ -20,7 +20,10 @@ const envVars = Object.assign(
 module.exports = {
 	mode: env,
 	devtool: isProd ? false : 'source-map',
-	entry: path.resolve(__dirname, 'src/client-web/app.js'),
+	entry: [
+		'babel-polyfill',
+		path.resolve(__dirname, 'src/client-web/app.js'),
+	],
 	output: {
 		path: path.resolve(__dirname, 'dist/build-web-client'),
 		filename: 'bundle.js',
