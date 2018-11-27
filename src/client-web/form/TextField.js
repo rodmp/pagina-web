@@ -4,10 +4,7 @@ import TextField from '@material-ui/core/TextField'
 
 import fieldInputConnector from 'sls-aws/src/client-logic/form/connectors/fieldInputConnector'
 
-const handleOnChange = (moduleKey, fieldPath, action) => (e) => {
-	e.preventDefault()
-	action(moduleKey, fieldPath, e.target.value)
-}
+import textFieldSetInputHandler from 'sls-aws/src/client-logic/form/handers/textFieldSetInputHandler'
 
 export const InputField = memo(({
 	moduleKey, fieldId, fieldPath, setInput, fieldValue, fieldLabel, fieldError,
@@ -21,7 +18,9 @@ export const InputField = memo(({
 		value={fieldValue}
 		error={fieldHasError}
 		helperText={fieldError}
-		onChange={handleOnChange(moduleKey, fieldPath, setInput)}
+		onChange={textFieldSetInputHandler(
+			moduleKey, fieldPath, setInput, fieldType,
+		)}
 	/>
 ))
 

@@ -26,7 +26,7 @@ export const submitFormHof = (
 	const state = getState()
 	return validateFormFn(moduleKey, state).then((formData) => {
 		const submitAction = viewAction(
-			moduleId, correctedSubmitIndex, moduleDescriptionsObj
+			moduleId, correctedSubmitIndex, moduleDescriptionsObj,
 		)
 		return dispatch(submitAction(formData)).then(() => {
 			dispatch(submitFormCompleteFn(moduleKey))
@@ -42,5 +42,5 @@ export const submitFormHof = (
 
 export default submitFormHof(
 	submitForm, moduleDescriptions, validateForm, setFormErrors,
-	submitFormComplete
+	submitFormComplete,
 )
