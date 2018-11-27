@@ -1,10 +1,10 @@
-import React, { memo, useState, createElement } from 'react'
+import React, { memo, useState, useEffect, createElement } from 'react'
 import { map, equals, or, prop, assoc, not, all, isNil, values } from 'ramda'
 import classNames from 'classnames'
 
 import {
 	StripeProvider, Elements, CardNumberElement, CardExpiryElement,
-	CardCVCElement, PostalCodeElement,
+	CardCVCElement, PostalCodeElement, injectStripe,
 } from 'react-stripe-elements'
 
 import { stripeClientId } from 'sls-aws/src/constants/stripeClient'
@@ -119,12 +119,18 @@ const ccFields = [
 	['postalCode', 'flex-15', '90210', PostalCodeElement],
 ]
 
-export const StripeCard = memo(() => {
+export const StripeFields = memo(({ stripe }) => {
 	const classes = useStyles()
 	const [focus, setFocus] = useState()
 	const [emptys, setEmptys] = useState()
 	const [errors, setErrors] = useState({})
 	const hasError = not(all(isNil, values(errors)))
+	useEffect(
+		() => {
+			console.log(stripe)
+		},
+		[stripe],
+	)
 	return (
 		<div className="layout-column">
 			<div
@@ -137,66 +143,62 @@ export const StripeCard = memo(() => {
 					},
 				)}
 			>
-				<StripeProvider apiKey={stripeClientId}>
-					<Elements>
-						<div className="layout-row">
-							{map(([elementType, flex, label, element]) => (
-								<div
-									key={elementType}
-									className={classNames(
-										flex,
-										classes.elementWrapper,
-									)}
-								>
-									<div
-										className={classNames(
-											classes.inputLabelBase,
-											{
-												[classes.inputLabelError]: prop(
-													errors, elementType,
-												),
-												[classes.inputLabelFocus]: or(
-													equals(focus, elementType),
-													equals(
-														prop(
-															elementType,
-															emptys,
-														),
-														false,
-													),
-												),
-											},
-										)}
-									>
-										{label}
-									</div>
-									{createElement(element, {
-										style: elementStyle,
-										onFocus: () => setFocus(elementType),
-										onBlur: () => setFocus(null),
-										onChange: (changeObj) => {
-											const {
-												empty, error = {},
-											} = changeObj
-											setErrors(
-												assoc(
+				<div className="layout-row">
+					{map(([elementType, flex, label, element]) => (
+						<div
+							key={elementType}
+							className={classNames(
+								flex,
+								classes.elementWrapper,
+							)}
+						>
+							<div
+								className={classNames(
+									classes.inputLabelBase,
+									{
+										[classes.inputLabelError]: prop(
+											errors, elementType,
+										),
+										[classes.inputLabelFocus]: or(
+											equals(focus, elementType),
+											equals(
+												prop(
 													elementType,
-													error.message,
-													errors,
+													emptys,
 												),
-											)
-											setEmptys(
-												assoc(
-													elementType, empty, emptys,
-												),
-											)
-										},
-									})}
-								</div>
-							), ccFields)}
+												false,
+											),
+										),
+									},
+								)}
+							>
+								{label}
+							</div>
+							{createElement(element, {
+								style: elementStyle,
+								onFocus: () => setFocus(elementType),
+								onBlur: () => setFocus(null),
+								onChange: (changeObj) => {
+									const {
+										empty, error = {},
+									} = changeObj
+									setErrors(
+										assoc(
+											elementType,
+											error.message,
+											errors,
+										),
+									)
+									setEmptys(
+										assoc(
+											elementType, empty, emptys,
+										),
+									)
+								},
+							})}
 						</div>
-					</Elements>
-				</StripeProvider>
+					), ccFields)}
+				</div>
 			</div>
 			<div className={classNames('layout-row', classes.errors)}>
 				{map(([elementType, flex]) => (
@@ -208,5 +210,15 @@ export const StripeCard = memo(() => {
 		</div>
 	)
 })
+
+const InjectedStripeFields = injectStripe(StripeFields)
+
+export const StripeCard = memo(() => (
+	<StripeProvider apiKey={stripeClientId}>
+		<Elements>
+			<InjectedStripeFields />
+		</Elements>
+	</StripeProvider>
+))
 
 export default StripeCard
