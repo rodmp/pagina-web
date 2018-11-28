@@ -8,6 +8,7 @@ import {
 } from 'react-stripe-elements'
 
 import { stripeClientId } from 'sls-aws/src/constants/stripeClient'
+import stripeFieldConnector from 'sls-aws/src/client-logic/form/connectors/stripeFieldConnector'
 
 import { makeStyles } from '@material-ui/styles'
 
@@ -119,18 +120,16 @@ const ccFields = [
 	['postalCode', 'flex-15', '90210', PostalCodeElement],
 ]
 
-export const StripeFields = memo(({ stripe }) => {
+export const StripeFields = memo(({ stripe, moduleKey, setFormStripe }) => {
 	const classes = useStyles()
 	const [focus, setFocus] = useState()
 	const [emptys, setEmptys] = useState()
 	const [errors, setErrors] = useState({})
 	const hasError = not(all(isNil, values(errors)))
-	useEffect(
-		() => {
-			console.log(stripe)
-		},
-		[stripe],
-	)
+	useEffect(() => {
+		console.log(stripe)
+		setFormStripe(moduleKey, stripe)
+	}, [stripe])
 	return (
 		<div className="layout-column">
 			<div
@@ -213,12 +212,15 @@ export const StripeFields = memo(({ stripe }) => {
 
 const InjectedStripeFields = injectStripe(StripeFields)
 
-export const StripeCard = memo(() => (
+export const StripeCard = memo(({ moduleKey, setFormStripe }) => (
 	<StripeProvider apiKey={stripeClientId}>
 		<Elements>
-			<InjectedStripeFields />
+			<InjectedStripeFields
+				moduleKey={moduleKey}
+				setFormStripe={setFormStripe}
+			/>
 		</Elements>
 	</StripeProvider>
 ))
 
-export default StripeCard
+export default stripeFieldConnector(StripeCard)

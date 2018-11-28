@@ -44,6 +44,10 @@ const formSchema = {
 								},
 							},
 						},
+						formStripe: {
+							// this is really a function
+							type: 'string',
+						},
 					},
 				},
 			},
