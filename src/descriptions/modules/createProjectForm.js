@@ -12,6 +12,7 @@ export default {
 		moduleType: 'form',
 		schema: compose(
 			dissocPath(['properties', 'stripeCardId']),
+			dissocPath(['additionalProperties']),
 			set(
 				lensProp('required'),
 				without(
