@@ -6,8 +6,8 @@ jest.mock('sls-aws/src/util/reportError')
 const mockReducers = {
 	TEST_ACTION: (state, payload) => payload.test,
 	MODIFY_ACTION: (state, payload) => ({
-		test: `${state.test} - ${payload.test}`
-	})
+		test: `${state.test} - ${payload.test}`,
+	}),
 }
 
 const testInitialState = { test: true }
@@ -17,13 +17,13 @@ const reducer = createReducer(mockReducers, testInitialState)
 describe('createReducer', () => {
 	test('Working normally', () => {
 		expect(
-			reducer(null, { type: 'TEST_ACTION', payload: { test: 'test' } })
+			reducer(null, { type: 'TEST_ACTION', payload: { test: 'test' } }),
 		).toBe('test')
 	})
 
 	test('Error reporting', () => {
 		expect(
-			reducer(undefined, { type: 'BAD_ACTION' })
+			reducer(undefined, { type: 'BAD_ACTION' }),
 		).toEqual({ test: true })
 		expect(reportError).toBeCalled()
 	})
@@ -32,8 +32,8 @@ describe('createReducer', () => {
 		expect(
 			reducer(
 				{ test: 'foo' },
-				{ type: 'MODIFY_ACTION', payload: { test: 'bar' } }
-			)
+				{ type: 'MODIFY_ACTION', payload: { test: 'bar' } },
+			),
 		).toEqual({ test: 'foo - bar' })
 	})
 })

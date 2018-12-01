@@ -1,7 +1,8 @@
 export default formData => async (dispatch, getState) => {
 	const { stripeCardId } = formData
-	const stripeRes = await stripeCardId.createToken({
-		usage: 'reusable', currency: 'usd',
+	console.log('hello', stripeCardId)
+	const stripeRes = await stripeCardId.createSource({
+		type: 'card', usage: 'reusable', currency: 'usd',
 	})
 	console.log(stripeRes)
 // 	const apiPayload = set(stripeSourceToken, token, formData)
