@@ -1,6 +1,4 @@
-import {
-	appStoreLenses,
-} from 'sls-aws/src/client-logic/app/lenses'
+import { appStoreLenses } from 'sls-aws/src/client-logic/app/lenses'
 
 const { viewAuthenticated } = appStoreLenses
 
