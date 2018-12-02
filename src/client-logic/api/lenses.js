@@ -26,6 +26,7 @@ const apiStoreSchema = {
 					type: 'object',
 					patternProperties: {
 						[variableSchemaKey]: { // listTypes-filterHash
+							// type: 'string', this is really a string
 							type: 'object',
 							properties: {},
 						},
@@ -35,29 +36,38 @@ const apiStoreSchema = {
 					type: 'object',
 					patternProperties: {
 						[variableSchemaKey]: { // listTypes-filterHash
-							type: 'boolean',
+							// type: 'boolean', this is really a boolean
+							type: 'object',
+							properties: {},
 						},
 					},
 				},
 				records: {
 					type: 'object',
-					[variableSchemaKey]: { // recordTypes-recordId
-						type: 'object',
-						properties: {},
+					patternProperties: {
+						[variableSchemaKey]: { // recordTypes-recordId
+							type: 'object',
+							properties: {},
+						},
 					},
 				},
 				recordErrors: {
 					type: 'object',
-					[variableSchemaKey]: { // recordTypes-recordId
-						type: 'array',
-						items: { type: 'string' },
+					patternProperties: {
+						[variableSchemaKey]: { // recordTypes-recordId
+							// type: 'string', this is really a string
+							type: 'object',
+							properties: {},
+						},
 					},
 				},
 				recordProcessing: {
 					type: 'object',
 					patternProperties: {
 						[variableSchemaKey]: { // recordTypes-recordId
-							type: 'boolean',
+							// type: 'boolean', this is really a boolean
+							type: 'object',
+							properties: {},
 						},
 					},
 				},

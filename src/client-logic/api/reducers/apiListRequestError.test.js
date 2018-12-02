@@ -13,6 +13,9 @@ describe('apiListRequestError', () => {
 				listErrors: {
 					mockHash: 'mockError',
 				},
+				listProcessing: {
+					mockHash: false,
+				},
 			},
 		})
 	})

@@ -3,7 +3,7 @@ import {
 } from 'sls-aws/src/client-logic/api/reducers/apiListRequestSuccess'
 
 describe('apiListRequestSuccess', () => {
-	test('sets list errors', () => {
+	test('sets list ids and records', () => {
 		const reduced = apiListRequestSuccess(
 			{},
 			{
@@ -28,6 +28,9 @@ describe('apiListRequestSuccess', () => {
 							'mockRecordType-mockId2',
 						],
 					},
+				},
+				listProcessing: {
+					mockHash: false,
 				},
 				records: {
 					'mockRecordType-mockId1': {

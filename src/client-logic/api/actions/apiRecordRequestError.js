@@ -1,6 +1,6 @@
 import { API_RECORD_REQUEST_ERROR } from 'sls-aws/src/client-logic/api/actionIds'
 
-export default (recordTypeRecordId, error) => ({
+export default (recordType, recordId, error) => ({
 	type: API_RECORD_REQUEST_ERROR,
-	payload: { recordTypeRecordId, error },
+	payload: { recordType, recordId, error },
 })
