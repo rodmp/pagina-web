@@ -1,4 +1,4 @@
-import { view, lensProp } from 'ramda'
+import { view, lensProp, prop } from 'ramda'
 
 import lensesFromSchema from 'sls-aws/src/util/lensesFromSchema'
 
@@ -13,29 +13,51 @@ const apiStoreSchema = {
 				lists: {
 					type: 'object',
 					patternProperties: {
-						[variableSchemaKey]: { // listTypes
+						[variableSchemaKey]: { // listTypes-filterHash
 							type: 'object',
-							patternProperties: {
-								[variableSchemaKey]: { // filtersHash
-									type: 'object',
-									properties: {
-										nextKey: { type: 'string' },
-										items: { type: 'array' },
-									},
-								},
+							properties: {
+								next: { type: 'string' },
+								items: { type: 'array' },
 							},
+						},
+					},
+				},
+				listErrors: {
+					type: 'object',
+					patternProperties: {
+						[variableSchemaKey]: { // listTypes-filterHash
+							type: 'object',
+							properties: {},
+						},
+					},
+				},
+				listProcessing: {
+					type: 'object',
+					patternProperties: {
+						[variableSchemaKey]: { // listTypes-filterHash
+							type: 'boolean',
 						},
 					},
 				},
 				records: {
 					type: 'object',
-					[variableSchemaKey]: { // recordTypes
+					[variableSchemaKey]: { // recordTypes-recordId
 						type: 'object',
-						patternProperties: {
-							[variableSchemaKey]: { // recordId
-								type: 'object',
-								properties: {},
-							},
+						properties: {},
+					},
+				},
+				recordErrors: {
+					type: 'object',
+					[variableSchemaKey]: { // recordTypes-recordId
+						type: 'array',
+						items: { type: 'string' },
+					},
+				},
+				recordProcessing: {
+					type: 'object',
+					patternProperties: {
+						[variableSchemaKey]: { // recordTypes-recordId
+							type: 'boolean',
 						},
 					},
 				},
@@ -56,3 +78,7 @@ export const apiModuleSchema = {
 	},
 }
 export const apiModuleLenses = lensesFromSchema(apiModuleSchema)
+
+export const nextKeyProp = prop('next')
+export const itemsProp = prop('items')
+export const idProp = prop('id')
