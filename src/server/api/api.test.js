@@ -5,137 +5,78 @@ import { apiHof } from 'sls-aws/src/server/api'
 
 const mockContext = {}
 const MOCK_ENDPOINT_ID = 'MOCK_ENDPOINT_ID'
-const mockEndpoints = {
-	[MOCK_ENDPOINT_ID]: {
-		authentication: '',
-		action: payload => Promise.resolve(payload),
-		toRepresentation: payload => Promise.resolve(payload),
-		toInternalValue: payload => Promise.resolve(payload),
-		payloadSchema: null,
-		responseSchema: null,
-	},
-}
 
+
+const serverEndpointsMock = {
+	[MOCK_ENDPOINT_ID]: ({ payload }) => Promise.resolve(payload),
+}
+const getPayloadSchemaFnMock = jest.fn()
+const getResultSchemaFnMock = jest.fn()
+const getAuthenticationFnMock = jest.fn()
+const testEndpointExistsFnMock = jest.fn()
+
+const apiFn = apiHof(
+	serverEndpointsMock, getPayloadSchemaFnMock, getResultSchemaFnMock,
+	getAuthenticationFnMock, testEndpointExistsFnMock,
+)
 
 describe('api', () => {
-	test('Endpoint not found', () => {
-		const api = apiHof(mockEndpoints)
-		const mockLambdaCallback = jest.fn()
-		const apiCall = api(
-			{ endpointId: 'foo' }, mockContext, mockLambdaCallback,
+	test('Endpoint not found', async () => {
+		testEndpointExistsFnMock.mockReturnValueOnce(undefined)
+		const apiResult = await apiFn(
+			{ endpointId: 'foo', payload: {} }, mockContext,
 		)
-		return apiCall.then(() => {
-			expect(mockLambdaCallback).toHaveBeenCalledWith(null, {
-				statusCode: 404,
-				body: { generalError: 'Endpoint foo not found' },
-			})
+		expect(apiResult).toEqual({
+			statusCode: 404,
+			generalErrors: 'Endpoint foo not found',
 		})
 	})
 
-	test('Payload schema invalid', () => {
-		const api = apiHof(assocPath(
-			[MOCK_ENDPOINT_ID, 'payloadSchema'],
-			{ type: 'object', properties: { foo: { type: 'string' } } },
-			mockEndpoints,
-		))
-		const mockLambdaCallback = jest.fn()
-		const apiCall = api(
-			{ endpointId: MOCK_ENDPOINT_ID, payload: { foo: 1 } },
-			mockContext,
-			mockLambdaCallback,
+	test('Payload schema invalid', async () => {
+		testEndpointExistsFnMock.mockReturnValueOnce(true)
+		getPayloadSchemaFnMock.mockReturnValueOnce({
+			type: 'object', properties: { foo: { type: 'string' } },
+		})
+		const apiCall = await apiFn(
+			{ endpointId: MOCK_ENDPOINT_ID, payload: { foo: 1 } }, mockContext,
 		)
-		return apiCall.then(() => {
-			expect(mockLambdaCallback).toHaveBeenCalledWith(null, {
-				statusCode: 400,
-				body: { schemaErrors: { foo: 'Foo should be a string' } },
-			})
+		expect(apiCall).toEqual({
+			statusCode: 400,
+			schemaErrors: { foo: 'Foo should be a string' },
 		})
 	})
 
-	test('Payload schema valid', () => {
-		const api = apiHof(assocPath(
-			[MOCK_ENDPOINT_ID, 'payloadSchema'],
-			{ type: 'object', properties: { foo: { type: 'string' } } },
-			mockEndpoints,
-		))
+	test('Payload schema valid', async () => {
+		testEndpointExistsFnMock.mockReturnValueOnce(true)
+		getPayloadSchemaFnMock.mockReturnValueOnce({
+			type: 'object', properties: { foo: { type: 'string' } },
+		})
 		const payload = { foo: 'a string' }
-		const mockLambdaCallback = jest.fn()
-		const apiCall = api(
+		const apiCall = await apiFn(
 			{ endpointId: MOCK_ENDPOINT_ID, payload },
 			mockContext,
-			mockLambdaCallback,
 		)
-		return apiCall.then(() => {
-			expect(mockLambdaCallback).toHaveBeenCalledWith(null, {
-				statusCode: 200,
-				body: payload,
-			})
+		expect(apiCall).toEqual({
+			statusCode: 200,
+			body: payload,
 		})
 	})
-
-	test('To internal value', () => {
-		const mutation = 'foo bar'
-		const payload = 'test payload'
-		const api = apiHof(assocPath(
-			[MOCK_ENDPOINT_ID, 'toInternalValue'],
-			() => Promise.resolve(mutation),
-			mockEndpoints,
-		))
-		const mockLambdaCallback = jest.fn()
-		const apiCall = api(
-			{ endpointId: MOCK_ENDPOINT_ID, payload },
-			mockContext,
-			mockLambdaCallback,
-		)
-		return apiCall.then(() => {
-			expect(mockLambdaCallback).toHaveBeenCalledWith(null, {
-				statusCode: 200,
-				body: mutation,
-			})
+	test('Result schema valid', async () => {
+		testEndpointExistsFnMock.mockReturnValueOnce(true)
+		getPayloadSchemaFnMock.mockReturnValueOnce({
+			type: 'object', properties: { foo: { type: 'string' } },
 		})
-	})
-
-	test('Action', () => {
-		const res = ' test action result'
-		const payload = 'test payload'
-		const api = apiHof(assocPath(
-			[MOCK_ENDPOINT_ID, 'action'],
-			pl => Promise.resolve(`${pl}${res}`),
-			mockEndpoints,
-		))
-		const mockLambdaCallback = jest.fn()
-		const apiCall = api(
-			{ endpointId: MOCK_ENDPOINT_ID, payload },
-			mockContext,
-			mockLambdaCallback,
-		)
-		return apiCall.then(() => {
-			expect(mockLambdaCallback).toHaveBeenCalledWith(null, {
-				statusCode: 200,
-				body: payload + res,
-			})
+		getResultSchemaFnMock.mockReturnValueOnce({
+			type: 'object', properties: { foo: { type: 'integer' } },
 		})
-	})
-
-	test('To representation', () => {
-		const mutation = 'foo bar'
-		const payload = 'test payload'
-		const api = apiHof(assocPath(
-			[MOCK_ENDPOINT_ID, 'toRepresentation'],
-			() => Promise.resolve(mutation),
-			mockEndpoints,
-		))
-		const mockLambdaCallback = jest.fn()
-		const apiCall = api(
+		const payload = { foo: 'a string' }
+		const apiCall = await apiFn(
 			{ endpointId: MOCK_ENDPOINT_ID, payload },
 			mockContext,
-			mockLambdaCallback,
 		)
-		return apiCall.then(() => {
-			expect(mockLambdaCallback).toHaveBeenCalledWith(null, {
-				statusCode: 200,
-				body: mutation,
-			})
+		expect(apiCall).toEqual({
+			statusCode: 500,
+			schemaErrors: { foo: 'Foo should be a integer' }, 
 		})
 	})
 })
