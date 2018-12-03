@@ -10,9 +10,9 @@ const mockState = {
 			{
 				routeId: 'ANOTHER_ROUTE_ID',
 				routeParams: { foo: 'bar' },
-			}
-		]
-	}
+			},
+		],
+	},
 }
 
 describe('isCurrentRoute', () => {
