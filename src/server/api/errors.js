@@ -9,6 +9,11 @@ export const payloadSchemaError = errors => ({
 	schemaErrors: errors,
 })
 
+export const notFoundError = endpointId => ({
+	statusCode: 404,
+	generalErrors: `Endpoint ${endpointId} not found`,
+})
+
 export const responseSchemaError = errors => ({
 	statusCode: 500,
 	schemaErrors: errors,

@@ -3,6 +3,7 @@ import { prop, path, pick } from 'ramda'
 import validateSchema from 'sls-aws/src/util/validateSchema'
 import {
 	customError, generalError, payloadSchemaError, responseSchemaError,
+	notFoundError,
 } from 'sls-aws/src/server/api/errors'
 import { userPk } from 'sls-aws/src/server/api/pkMaker'
 import ajvErrors from 'sls-aws/src/util/ajvErrors'
@@ -15,29 +16,35 @@ import serverEndpoints from 'sls-aws/src/server/api/actions'
 
 const validateOrNah = (schemaType, endpointId, schema) => (payload) => {
 	if (schema) {
-		return validateSchema(endpointId, schema, payload).then((res) => {
+		return validateSchema(
+			`endpointId${schemaType}`, schema, payload,
+		).then((res) => {
 			if (prop('valid', res)) {
 				return payload
 			}
 			const errors = ajvErrors(schema, prop('errors', res))
-			throw schemaType === 'payloadSchema'
-					? payloadSchemaError(errors) : responseSchemaError(errors)
+			const errorType = schemaType === 'payloadSchema' ?
+				payloadSchemaError(errors) : responseSchemaError(errors)
+			throw errorType
 		})
 	}
 	return Promise.resolve(payload)
 }
 
-export const apiFn = async (event, context) => {
+export const apiHof = (
+	serverEndpointsObj, getPayloadSchemaFn, getResultSchemaFn,
+	getAuthenticationFn, testEndpointExistsFn,
+) => async (event, context) => {
 	try {
 		const { endpointId, payload } = event
-		const endpointExists = testEndpointExists(endpointId)
+		const endpointExists = testEndpointExistsFn(endpointId)
 		if (!endpointExists) {
-			throw generalError(`Endpoint ${endpointId} not found`)
+			throw notFoundError(endpointId)
 		}
-		const action = prop(endpointId, serverEndpoints)
-		const payloadSchema = getPayloadSchema(endpointId)
-		const resultSchema = getResultSchema(endpointId)
-		// const authentication = getAuthentication(endpointId)
+		const action = prop(endpointId, serverEndpointsObj)
+		const payloadSchema = getPayloadSchemaFn(endpointId)
+		const resultSchema = getResultSchemaFn(endpointId)
+		// const authentication = getAuthenticationFn(endpointId)
 		const userId = userPk(
 			path(['identity', 'cognitoIdentityId'], context),
 		)
@@ -62,6 +69,11 @@ export const apiFn = async (event, context) => {
 		})
 	}
 }
+
+export const apiFn = apiHof(
+	serverEndpoints, getPayloadSchema, getResultSchema, getAuthentication,
+	testEndpointExists,
+)
 
 // can't return promise?
 export default (event, context, callback) => {
