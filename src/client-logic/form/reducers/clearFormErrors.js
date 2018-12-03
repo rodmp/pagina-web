@@ -6,9 +6,11 @@ import {
 
 const { dissocPathFieldErrors } = formStoreLenses
 
+export const reducer = (state, { moduleKey }) => dissocPathFieldErrors(
+	moduleKey,
+	state,
+)
+
 export default {
-	[CLEAR_FORM_ERRORS]: (state, { moduleKey }) => dissocPathFieldErrors(
-		moduleKey,
-		state
-	)
+	[CLEAR_FORM_ERRORS]: reducer,
 }
