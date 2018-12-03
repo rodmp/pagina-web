@@ -6,10 +6,12 @@ import {
 
 const { setFieldErrors } = formStoreLenses
 
+export const reducer = (state, { moduleKey, errors }) => setFieldErrors(
+	moduleKey,
+	errors,
+	state,
+)
+
 export default {
-	[SET_FORM_ERRORS]: (state, { moduleKey, errors }) => setFieldErrors(
-		moduleKey,
-		errors,
-		state
-	)
+	[SET_FORM_ERRORS]: reducer,
 }
