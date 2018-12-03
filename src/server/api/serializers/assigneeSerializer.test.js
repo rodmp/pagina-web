@@ -48,6 +48,7 @@ describe('assigneeSerializer', () => {
 				description: '5gorillaz desc',
 				platformId: '146000275',
 				displayName: '5gorillaz',
+				username: '5gorillaz',
 			},
 			{
 				platform: 'twitch',
@@ -55,6 +56,7 @@ describe('assigneeSerializer', () => {
 				description: 'sonicfingboom desc',
 				platformId: '148899812',
 				displayName: 'sonicfingboom',
+				username: 'sonicfingboom',
 			},
 		])
 	})
@@ -65,7 +67,10 @@ describe('assigneeSerializer', () => {
 		try {
 			await getTwitchAssigneeData(mockAssigneeArray)
 		} catch (e) {
-			expect(e).toEqual({ test: 'broken'})
+			expect(e).toEqual({
+				schemaErrors: { assignee: { 1: 'Invalid twitch user' } },
+				statusCode: 400,
+			})
 		}
 	})
 })
