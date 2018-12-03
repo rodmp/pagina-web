@@ -1,21 +1,13 @@
-import { compose, __, isNil } from 'ramda'
+import { __, compose, prop } from 'ramda'
 
-import currentRoute from 'sls-aws/src/client-logic/route/selectors/currentRoute'
-import {
-	routeStoreLenses, routeDescriptionLenses,
-} from 'sls-aws/src/client-logic/route/lenses'
+import routeDescriptions from 'sls-aws/src/descriptions/routes'
+import currentRouteId from 'sls-aws/src/client-logic/route/selectors/currentRouteId'
 
-const { viewRouteId, pathSatisfiesRouteId } = routeStoreLenses
-const { viewUrl } = routeDescriptionLenses
-
-export const currentRouteDescriptionHof = (
-	routeDescriptionsObj
-) => compose(
-	viewUrl(__, routeDescriptionsObj),
-	viewRouteId(0)
+export const currentRouteDescriptionHof = routeDescriptionObj => compose(
+	prop(__, routeDescriptionObj),
+	currentRouteId,
 )
-	
-export const test = pathSatisfiesRouteId(0, isNil)
-// export default currentRouteDescriptionHof(
-// 	routeDescriptions
-// )
+
+export default currentRouteDescriptionHof(
+	routeDescriptions,
+)
