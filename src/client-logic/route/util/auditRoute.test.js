@@ -2,13 +2,13 @@ import { auditRouteHof } from 'sls-aws/src/client-logic/route/util/auditRoute'
 
 const mockRoutes = {
 	AUTH_REQUIRED_ROUTE_ID: {
-		auth: 'authenticated'
+		authentication: 'authenticated',
 	},
 	UNAUTH_REQUIRED_ROUTE_ID: {
-		auth: 'unauthenticated'
+		authentication: 'notAuthenticated',
 	},
 	EITHER_ROUTE_ID: {
-	}
+	},
 }
 
 const mockAuthenticatedFn = jest.fn()
