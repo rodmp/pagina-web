@@ -6,7 +6,6 @@ import {
 import listResults from 'sls-aws/src/server/api/actionUtil/listResults'
 import pledgeSerializer from 'sls-aws/src/server/api/serializers/pledgeSerializer'
 
-
 export default async ({ userId }) => {
 	const userProjectIdParams = {
 		TableName: TABLE_NAME,

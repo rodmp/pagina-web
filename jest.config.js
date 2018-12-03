@@ -12,7 +12,6 @@ module.exports = {
 				'<rootDir>/**/*.dynamoTest.js',
 			],
 			setupTestFrameworkScriptFile: '<rootDir>/src/testUtil/dynamoTableSetup.js',
-			// globalSetup: '<rootDir>/src/testUtil/dynamoTestSetup.js',
 		},
 	],
 }

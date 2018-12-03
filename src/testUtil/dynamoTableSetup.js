@@ -1,13 +1,13 @@
 // docker run --name dynamodb -p 9000:8000 amazon/dynamodb-local
 
-import { merge, propOr, prop, head, values, map } from 'ramda'
-
-import { TABLE_NAME, dynamoDb } from 'sls-aws/src/server/api/dynamoClient'
+import { merge, propOr, prop, head, values, compose, set, lensPath, map } from 'ramda'
 
 import apiTableConfig from 'sls-aws/src/aws/api/resources/apiDynamoDbTable'
 
 jest.mock('sls-aws/src/server/api/dynamoClient', () => {
 	// eslint-disable-next-line
+	const uuid = require('uuid/v1')
+	const tableName = `TEST_TABLE_${uuid()}`
 	const { DynamoDB } = require('aws-sdk')
 	const mockConfig = {
 		endpoint: 'http://localhost:9000',
@@ -17,33 +17,42 @@ jest.mock('sls-aws/src/server/api/dynamoClient', () => {
 		apiVersion: '2012-08-10',
 	}
 	return {
-		TABLE_NAME: 'TEST_TABLE',
+		TABLE_NAME: tableName,
 		dynamoDb: new DynamoDB(mockConfig),
 		documentClient: new DynamoDB.DocumentClient(mockConfig),
 	}
 })
 
-const tableParams = merge(
-	{ TableName: TABLE_NAME },
-	prop('Properties', head(values(apiTableConfig))),
+const tableParams = tableName => merge(
+	{ TableName: tableName },
+	compose(
+		set(lensPath(['ProvisionedThroughput', 'ReadCapacityUnits']), 100),
+		set(lensPath(['ProvisionedThroughput', 'WriteCapacityUnits']), 100),
+	)(prop('Properties', head(values(apiTableConfig)))),
 )
+
+const {
+	TABLE_NAME, dynamoDb,
+} = require('sls-aws/src/server/api/dynamoClient')
+
+beforeAll(async () => {
+	await dynamoDb.createTable(tableParams(TABLE_NAME)).promise()
+})
 
 const getTables = () => dynamoDb.listTables({}).promise().then(
 	propOr([], 'TableNames'),
 )
 
-const deleteTables = tables => Promise.all(
+const deleteAllTables = tables => Promise.all(
 	map(
 		TableName => dynamoDb.deleteTable({ TableName }).promise(),
 		tables,
 	),
 )
 
-const createTable = () => dynamoDb.createTable(tableParams).promise()
-
-beforeAll(async () => {
-	const tables = await getTables()
-	await deleteTables(tables)
-	await createTable()
-	// const consoleTables = await getTables()
+afterAll(async () => {
+	// const tables = await getTables()
+	// console.log(tables)
+	// await deleteAllTables(tables)
+	await dynamoDb.deleteTable({ TableName: TABLE_NAME }).promise()
 })
