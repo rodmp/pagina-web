@@ -1,30 +1,26 @@
-import clearFormErrors from 'sls-aws/src/client-logic/form/reducers/clearFormErrors'
-import { CLEAR_FORM_ERRORS } from 'sls-aws/src/client-logic/form/actionIds'
+import { reducer } from 'sls-aws/src/client-logic/form/reducers/clearFormErrors'
 
 const mockState = {
 	form: {
 		test: {
-			formData: {
+			fieldErrors: {
 				errors: { foo: 'bar' },
-			}
-		}
+			},
+		},
 	},
 }
 
 const mockAction = {
-	formHash: 'test',
-	errorObj: { foo: 'bar' },
+	moduleKey: 'test',
 }
 
 describe('clearFormErrors', () => {
 	test('works normally', () => {
 		expect(
-			clearFormErrors[CLEAR_FORM_ERRORS](mockState, mockAction)
+			reducer(mockState, mockAction),
 		).toEqual({
 			form: {
-				test: {
-					formData: {}
-				}
+				test: {},
 			},
 		})
 	})
