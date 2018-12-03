@@ -52,16 +52,16 @@ export const routeStoreLenses = lensesFromSchema({
 								patternProperties: {
 									[variableSchemaKey]: {
 										type: 'object',
-										properties: {}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+										properties: {},
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+	},
 })
 
 export const routeDescriptionLenses = lensesFromSchema({
@@ -75,11 +75,11 @@ export const routeDescriptionLenses = lensesFromSchema({
 				authentication: { type: 'string' },
 				modules: {
 					type: 'array',
-					items: { type: 'string' }
-				}
-			}
-		}
-	}
+					items: { type: 'string' },
+				},
+			},
+		},
+	},
 })
 
 export const moduleIdProp = prop('moduleId')
@@ -94,7 +94,7 @@ export const moduleDescriptionLenses = lensesFromSchema({
 				moduleType: { type: 'string' },
 				onEnterActions: { type: 'array' },
 				onExitActions: { type: 'array' },
-			}
-		}
-	}
+			},
+		},
+	},
 })

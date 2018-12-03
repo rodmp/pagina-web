@@ -7,12 +7,12 @@ import {
 } from 'sls-aws/src/client-logic/route/lenses'
 
 const { viewAuthentication } = routeDescriptionLenses
-
 export const auditRouteHof = (
 	authenticatedFn, routeDescriptionObj,
 ) => ({ routeId }, state) => {
 	const routeAuth = viewAuthentication(routeId, routeDescriptionObj)
 	const authenticatedState = authenticatedFn(state) ? authValue : unAuthValue
+	console.log(routeAuth, authenticatedState)
 	return !routeAuth ? true : equals(routeAuth, authenticatedState)
 }
 
