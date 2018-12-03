@@ -1,21 +1,21 @@
-// import {
-// 	currentRouteDescriptionHof, test
-// } from 'sls-aws/src/client-logic/route/selectors/currentRouteDescription'
+import {
+	currentRouteDescriptionHof,
+} from 'sls-aws/src/client-logic/route/selectors/currentRouteDescription'
 
-// const mockState = { route: { history: [{ routeId: 'test', routeParams: {} }] } }
+const mockState = { route: { history: [{ routeId: 'test', routeParams: {} }] } }
 // const mockState2 = { route: { history: [] } }
 
-// const mockRouteDescriptions = { test: { url: '/bar' } }
+const mockRouteDescriptions = { test: { url: '/bar' } }
 
 
-// const currentRouteDescription = currentRouteDescriptionHof(
-// 	mockRouteDescriptions
-// )
+const currentRouteDescription = currentRouteDescriptionHof(
+	mockRouteDescriptions,
+)
 
-// describe('currentRouteDescription', () => {
-// 	test('works', () => {
-// 		expect(
-// 			currentRouteDescription(mockState)
-// 		).toEqual({ foo: 'bar' })
-// 	})
-// })
+describe('currentRouteDescription', () => {
+	test('works', () => {
+		expect(
+			currentRouteDescription(mockState),
+		).toEqual({ url: '/bar' })
+	})
+})

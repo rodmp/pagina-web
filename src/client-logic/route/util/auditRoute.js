@@ -12,7 +12,6 @@ export const auditRouteHof = (
 ) => ({ routeId }, state) => {
 	const routeAuth = viewAuthentication(routeId, routeDescriptionObj)
 	const authenticatedState = authenticatedFn(state) ? authValue : unAuthValue
-	console.log(routeAuth, authenticatedState)
 	return !routeAuth ? true : equals(routeAuth, authenticatedState)
 }
 
