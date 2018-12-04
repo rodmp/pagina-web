@@ -7,10 +7,10 @@ import {
 
 const { setListErrorsChild, setListProcessingChild } = apiStoreLenses
 
-export const apiListRequestError = (state, { listTypeFilterHash, error }) => (
+export const apiListRequestError = (state, { listStoreKey, error }) => (
 	compose(
-		setListErrorsChild(listTypeFilterHash, error),
-		setListProcessingChild(listTypeFilterHash, false),
+		setListErrorsChild(listStoreKey, error),
+		setListProcessingChild(listStoreKey, false),
 	)(state)
 )
 

@@ -1,7 +1,11 @@
 import {
 	PLEDGE_PROJECT,
 } from 'sls-aws/src/descriptions/endpoints/endpointIds'
+
 import { authenticated } from 'sls-aws/src/constants/authenticationTypes'
+
+import { recordEndpointType } from 'sls-aws/src/descriptions/endpoints/lenses'
+import { project } from 'sls-aws/src/descriptions/endpoints/recordTypes'
 
 import pledgeProjectPayloadSchema from 'sls-aws/src/descriptions/endpoints/schemas/pledgeProjectPayloadSchema'
 import projectResponseSchema from 'sls-aws/src/descriptions/endpoints/schemas/projectResponseSchema'
@@ -12,6 +16,8 @@ export const responseSchema = projectResponseSchema
 export default {
 	[PLEDGE_PROJECT]: {
 		authentication: authenticated,
+		endpointType: recordEndpointType,
+		recordType: project,
 		payloadSchema,
 		responseSchema,
 	},

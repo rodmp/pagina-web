@@ -1,4 +1,4 @@
-import { view, lensProp, prop } from 'ramda'
+import { prop } from 'ramda'
 
 import lensesFromSchema from 'sls-aws/src/util/lensesFromSchema'
 
@@ -13,7 +13,7 @@ const apiStoreSchema = {
 				lists: {
 					type: 'object',
 					patternProperties: {
-						[variableSchemaKey]: { // listTypes-filterHash
+						[variableSchemaKey]: { // listStoreKey
 							type: 'object',
 							properties: {
 								next: { type: 'string' },
@@ -25,7 +25,7 @@ const apiStoreSchema = {
 				listErrors: {
 					type: 'object',
 					patternProperties: {
-						[variableSchemaKey]: { // listTypes-filterHash
+						[variableSchemaKey]: { // listStoreKey
 							// type: 'string', this is really a string
 							type: 'object',
 							properties: {},
@@ -35,7 +35,7 @@ const apiStoreSchema = {
 				listProcessing: {
 					type: 'object',
 					patternProperties: {
-						[variableSchemaKey]: { // listTypes-filterHash
+						[variableSchemaKey]: { // listStoreKey
 							// type: 'boolean', this is really a boolean
 							type: 'object',
 							properties: {},

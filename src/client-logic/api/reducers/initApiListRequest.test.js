@@ -7,7 +7,7 @@ describe('initApiListRequest', () => {
 		const reduced = initApiListRequest(
 			{},
 			{
-				listTypeFilterHash: 'mockHash',
+				listStoreKey: 'mockHash',
 			},
 		)
 		expect(reduced).toEqual({
