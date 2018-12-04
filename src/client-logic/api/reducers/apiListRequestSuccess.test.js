@@ -7,7 +7,7 @@ describe('apiListRequestSuccess', () => {
 		const reduced = apiListRequestSuccess(
 			{},
 			{
-				listTypeFilterHash: 'mockHash',
+				listStoreKey: 'mockHash',
 				recordType: 'mockRecordType',
 				list: {
 					next: 'mockNextPageKey',

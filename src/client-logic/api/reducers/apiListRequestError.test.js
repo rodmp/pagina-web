@@ -6,7 +6,7 @@ describe('apiListRequestError', () => {
 	test('sets list errors', () => {
 		const reduced = apiListRequestError(
 			{},
-			{ listTypeFilterHash: 'mockHash', error: 'mockError' },
+			{ listStoreKey: 'mockHash', error: 'mockError' },
 		)
 		expect(reduced).toEqual({
 			api: {

@@ -8,8 +8,8 @@ const { setListProcessingChild } = apiStoreLenses
 
 export const initApiListRequest = (
 	state,
-	{ listTypeFilterHash },
-) => setListProcessingChild(listTypeFilterHash, true, state)
+	{ listStoreKey },
+) => setListProcessingChild(listStoreKey, true, state)
 
 export default {
 	[API_LIST_REQUEST_SUCCESS]: initApiListRequest,

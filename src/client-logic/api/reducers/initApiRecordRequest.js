@@ -1,4 +1,4 @@
-import createRecordStoreId from 'sls-aws/src/client-logic/api/util/createRecordStoreId'
+import createRecordStoreKey from 'sls-aws/src/client-logic/api/util/createRecordStoreKey'
 
 import { API_LIST_REQUEST_SUCCESS } from 'sls-aws/src/client-logic/api/actionIds'
 
@@ -10,7 +10,7 @@ export const initApiRecordRequest = (
 	state,
 	{ recordType, recordId },
 ) => setRecordProcessingChild(
-	createRecordStoreId(recordType, recordId),
+	createRecordStoreKey(recordType, recordId),
 	true,
 	state,
 )

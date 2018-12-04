@@ -5,6 +5,7 @@ export default formData => async (dispatch, getState) => {
 		type: 'card', usage: 'reusable', currency: 'usd',
 	})
 	console.log(stripeRes)
+	return dispatch()
 // 	const apiPayload = set(stripeSourceToken, token, formData)
 // 	return await hitApi(ID, apiPayload)
 }
