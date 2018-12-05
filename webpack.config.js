@@ -27,6 +27,7 @@ module.exports = {
 	output: {
 		path: path.resolve(__dirname, 'dist/build-web-client'),
 		filename: 'bundle.js',
+		publicPath: '/',
 	},
 	devServer: {
 		historyApiFallback: true,
