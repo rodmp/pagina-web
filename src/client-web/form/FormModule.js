@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 
 import Fields from 'sls-aws/src/client-web/form/Fields'
 import LoadingButton from 'sls-aws/src/client-web/base/LoadingButton'
@@ -25,7 +25,7 @@ export const RenderSubmits = ({ formSubmits, moduleKey, submitFormFn }) => (
 	))
 )
 
-export const FormModule = ({
+export const FormModule = memo(({
 	formFieldTypes, formSubmits, moduleId, moduleKey, submitForm,
 }) => (
 	<form
@@ -44,6 +44,6 @@ export const FormModule = ({
 		/>
 		<input type="submit" className="hide" />
 	</form>
-)
+))
 
 export default withModuleContext(formModuleConnector(FormModule))

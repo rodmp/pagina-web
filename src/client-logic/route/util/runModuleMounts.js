@@ -17,7 +17,7 @@ const { pathOrOnEnterActions, pathOrOnExitActions } = moduleDescriptionLenses
 const { viewModules } = routeDescriptionLenses
 
 export const runModuleMountsHof = (
-	routeDescriptionObject, moduleDescriptionObject,	
+	routeDescriptionObject, moduleDescriptionObject,
 ) => (nextRouteObj, state) => {
 	const { routeId } = nextRouteObj
 	const currentRouteObj = currentRouteObjSelector(state)
@@ -26,7 +26,7 @@ export const runModuleMountsHof = (
 		head,
 		currentRouteModuleObjectsHof(
 			routeDescriptionObject, moduleDescriptionObject,
-		)(state)
+		)(state),
 	)
 	const allActions = [
 		...reduce((results, moduleId) => [
@@ -36,16 +36,16 @@ export const runModuleMountsHof = (
 		...reduce((results, moduleId) => [
 			...pathOrOnEnterActions(moduleId, [], moduleDescriptionObject),
 			...results,
-		], [], enterModuleIds)
+		], [], enterModuleIds),
 	]
 	return Promise.all(
 		map(
 			action => action({
 				currentRouteObj,
-				nextRouteObj, 
+				nextRouteObj,
 			}),
-			allActions
-		)
+			allActions,
+		),
 	)
 }
 

@@ -5,6 +5,8 @@ import { ternary } from 'sls-aws/src/util/ramdaPlus'
 import routeRenderConnector from 'sls-aws/src/client-logic/route/connectors/routeRenderConnector'
 
 import FormModule from 'sls-aws/src/client-web/form/FormModule'
+import ViewProjectModule from 'sls-aws/src/client-web/viewProject/ViewProjectModule'
+
 
 import { ModuleContextProvider } from 'sls-aws/src/util/withModuleContext'
 
@@ -19,6 +21,15 @@ export const RenderModules = ({ moduleTypes }) => (
 						value={{ moduleId, moduleIndex }}
 					>
 						<FormModule />
+					</ModuleContextProvider>
+				)
+			case 'viewProject':
+				return (
+					<ModuleContextProvider
+						key={moduleId}
+						value={{ moduleId, moduleIndex }}
+					>
+						<ViewProjectModule />
 					</ModuleContextProvider>
 				)
 			default:
