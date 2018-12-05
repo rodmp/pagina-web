@@ -1,8 +1,8 @@
 import { equals } from 'ramda'
 
 import invokeLambda from 'sls-aws/src/util/invokeLambda'
-import createListStoreKey from 'sls-aws/src/util/createListStoreKey'
-import createRecordStoreKey from 'sls-aws/src/util/createRecordStoreKey'
+import createListStoreKey from 'sls-aws/src/client-logic/api/util/createListStoreKey'
+import createRecordStoreKey from 'sls-aws/src/client-logic/api/util/createRecordStoreKey'
 import { idProp } from 'sls-aws/src/client-logic/api/lenses'
 
 import initApiListRequest from 'sls-aws/src/client-logic/api/actions/initApiListRequest'
