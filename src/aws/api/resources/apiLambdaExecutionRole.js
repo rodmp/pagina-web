@@ -39,6 +39,8 @@ export default {
 									'dynamodb:PutItem',
 									'dynamodb:UpdateItem',
 									'dynamodb:DeleteItem',
+									'dynamodb:BatchWriteItem',
+									'dynamodb:BatchGetItem',
 								],
 								// @TODO: specify the tables from models
 								Resource: getAtt(API_DYNAMO_DB_TABLE, 'Arn'),

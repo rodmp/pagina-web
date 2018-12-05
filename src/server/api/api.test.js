@@ -76,7 +76,7 @@ describe('api', () => {
 		)
 		expect(apiCall).toEqual({
 			statusCode: 500,
-			schemaErrors: { foo: 'Foo should be a integer' }, 
+			schemaErrors: { foo: 'Foo should be a integer' },
 		})
 	})
 })

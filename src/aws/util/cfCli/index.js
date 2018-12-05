@@ -19,7 +19,7 @@ commander
 	.option('-r, --region [value]', 'aws region default: us-east-1')
 	.option('-b, --build-dir [value]', 'src build dir default: .cloudFormation')
 	.action((cmd, template, options) => {
-		if (!cmd/* || !template*/) {
+		if (!cmd/* || !template */) {
 			commander.help()
 		} else {
 			const config = createConfigObj({ template, ...options })

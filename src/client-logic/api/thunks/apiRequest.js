@@ -16,11 +16,17 @@ import apiRecordRequestError from 'sls-aws/src/client-logic/api/actions/apiRecor
 import recordTypeSelector from 'sls-aws/src/client-logic/api/selectors/recordTypeSelector'
 import endpointTypeSelector from 'sls-aws/src/client-logic/api/selectors/endpointTypeSelector'
 
-export const fetchList = async (dispatch, endpointId, payload) => {
+import { apiFunctionArn } from 'sls-aws/cfOutput'
+
+export const invokeApiLambda = (endpointId, payload) => invokeLambda(
+	apiFunctionArn, { endpointId, payload },
+)
+
+export const fetchList = async (dispatch, state, endpointId, payload) => {
 	const recordType = recordTypeSelector(endpointId)
 	const listStoreKey = createListStoreKey(recordType, payload)
 	dispatch(initApiListRequest(listStoreKey))
-	const lambdaRes = await invokeLambda(endpointId, payload)
+	const lambdaRes = await invokeApiLambda(endpointId, payload)
 	const { statusCode, body, statusError, generalError } = lambdaRes
 	if (equals(statusCode, 200)) {
 		dispatch(apiListRequestSuccess(listStoreKey, recordType, body))
@@ -31,14 +37,16 @@ export const fetchList = async (dispatch, endpointId, payload) => {
 	return lambdaRes
 }
 
-export const fetchRecord = async (dispatch, endpointId, payload) => {
+export const fetchRecord = async (dispatch, state, endpointId, payload) => {
 	const recordType = recordTypeSelector(endpointId)
 	const recordId = idProp(payload)
+	console.log(2, recordType, recordId)
 	if (recordId) { // else creating, don't need record loading state
 		const recordStoreKey = createRecordStoreKey(recordType, recordId)
 		dispatch(initApiRecordRequest(recordStoreKey))
 	}
-	const lambdaRes = await invokeLambda(endpointId, payload)
+	const lambdaRes = await invokeApiLambda(endpointId, payload)
+	console.log(3, lambdaRes)
 	const { statusCode, body, statusError, generalError } = lambdaRes
 	if (equals(statusCode, 200)) {
 		dispatch(apiRecordRequestSuccess(recordType, body))
@@ -55,9 +63,14 @@ const endpointTypeFunctionMap = {
 }
 
 export default (endpointId, payload) => async (dispatch, getState) => {
-	const state = getState()
-	const endpointType = endpointTypeSelector(endpointId)
-	return endpointTypeFunctionMap[endpointType](
-		dispatch, state, endpointId, payload,
-	)
+	try {
+		const state = getState()
+		const endpointType = endpointTypeSelector(endpointId)
+		console.log(1, endpointType)
+		return endpointTypeFunctionMap[endpointType](
+			dispatch, state, endpointId, payload,
+		)
+	} catch (e) {
+		console.warn(e)
+	}
 }

@@ -1,6 +1,6 @@
 
 import { map } from 'ramda'
-import { hacker, image, lorem, random } from 'faker'
+import { hacker, lorem, random } from 'faker'
 import { randomArrayElements } from 'sls-aws/src/util/randomNumber'
 
 const twitchStreamers = [
@@ -10,7 +10,6 @@ const twitchStreamers = [
 
 export default ({ assigneeCount = 1 } = {}) => ({
 	title: hacker.phrase(),
-	image: image.imageUrl(),
 	description: lorem.paragraph(),
 	stripeCardId: random.uuid(),
 	pledgeAmount: random.number(),

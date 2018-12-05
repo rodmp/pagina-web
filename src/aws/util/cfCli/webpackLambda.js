@@ -5,7 +5,7 @@ import webpackLambdaConf from 'sls-aws/src/aws/util/cfCli/webpackLambdaConf'
 
 export const createWebpackConf = (entryPath, resourceKey, buildPath) => (
 	compose(
-		assoc('entry', entryPath),
+		assoc('entry', ['babel-polyfill', entryPath]),
 		assocPath(['output', 'filename'], `${resourceKey}.js`),
 		assocPath(['output', 'path'], buildPath),
 	)(webpackLambdaConf)
