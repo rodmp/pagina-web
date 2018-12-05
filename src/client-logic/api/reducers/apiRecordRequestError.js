@@ -1,6 +1,6 @@
 import { compose } from 'ramda'
 
-import { API_LIST_REQUEST_SUCCESS } from 'sls-aws/src/client-logic/api/actionIds'
+import { API_RECORD_REQUEST_ERROR } from 'sls-aws/src/client-logic/api/actionIds'
 import createRecordStoreKey from 'sls-aws/src/client-logic/api/util/createRecordStoreKey'
 import { apiStoreLenses } from 'sls-aws/src/client-logic/api/lenses'
 
@@ -18,5 +18,5 @@ export const apiRecordRequestError = (
 }
 
 export default {
-	[API_LIST_REQUEST_SUCCESS]: apiRecordRequestError,
+	[API_RECORD_REQUEST_ERROR]: apiRecordRequestError,
 }

@@ -1,4 +1,4 @@
-import { API_LIST_REQUEST_SUCCESS } from 'sls-aws/src/client-logic/api/actionIds'
+import { INIT_API_LIST_REQUEST } from 'sls-aws/src/client-logic/api/actionIds'
 
 import { apiStoreLenses } from 'sls-aws/src/client-logic/api/lenses'
 
@@ -10,5 +10,5 @@ export const initApiListRequest = (
 ) => setListProcessingChild(listStoreKey, true, state)
 
 export default {
-	[API_LIST_REQUEST_SUCCESS]: initApiListRequest,
+	[INIT_API_LIST_REQUEST]: initApiListRequest,
 }
