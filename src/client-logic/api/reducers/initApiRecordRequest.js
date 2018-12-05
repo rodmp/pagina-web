@@ -1,6 +1,6 @@
 import createRecordStoreKey from 'sls-aws/src/client-logic/api/util/createRecordStoreKey'
 
-import { API_LIST_REQUEST_SUCCESS } from 'sls-aws/src/client-logic/api/actionIds'
+import { INIT_API_RECORD_REQUEST } from 'sls-aws/src/client-logic/api/actionIds'
 
 import { apiStoreLenses } from 'sls-aws/src/client-logic/api/lenses'
 
@@ -16,5 +16,5 @@ export const initApiRecordRequest = (
 )
 
 export default {
-	[API_LIST_REQUEST_SUCCESS]: initApiRecordRequest,
+	[INIT_API_RECORD_REQUEST]: initApiRecordRequest,
 }
