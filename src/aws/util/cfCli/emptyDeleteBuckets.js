@@ -1,5 +1,5 @@
 import {
- map, prop, propOr, splitEvery, concat, propEq, reduce, append 
+	map, prop, propOr, splitEvery, concat, propEq, reduce, append,
 } from 'ramda'
 import listAllStackResources from 'sls-aws/src/aws/util/cfCli/listAllStackResources'
 
@@ -7,18 +7,15 @@ export const getAllBucketNames = (
 	cloudFormationClient, stackName,
 ) => (
 	listAllStackResources(cloudFormationClient, stackName).then(
-		(res) => reduce((result, resource) => {
-				if (propEq('ResourceType', 'ResourceType', resource)) {
-					return append(
-						result,
-						prop('PhysicalResourceId', resource)
-					)
-				}
-				return result 
-			},
-			[],
-			res
-		)
+		res => reduce((result, resource) => {
+			if (propEq('Type', 'AWS::S3::Bucket', resource)) {
+				return append(
+					result,
+					prop('PhysicalResourceId', resource),
+				)
+			}
+			return result
+		}, [], res),
 	)
 )
 
@@ -71,12 +68,12 @@ export default ({
 	cloudFormationClient, s3Client, s3DeploymentBucket, stackName,
 }) => getAllBucketNames(cloudFormationClient, stackName).then(
 	(resourceBucketNames) => {
-		const allS3BucketNames = append(s3DeploymentBucket, resourceBucketNames) 
+		const allS3BucketNames = append(s3DeploymentBucket, resourceBucketNames)
 		return Promise.all(
 			map(
 				bucketName => nukeBucket(s3Client, bucketName),
 				allS3BucketNames,
 			),
 		)
-	}
+	},
 )
