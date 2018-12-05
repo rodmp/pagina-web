@@ -1,6 +1,8 @@
 import getAtt from 'sls-aws/src/aws/util/getAtt'
 
-import { API_LAMBDA_FUNCTION } from 'sls-aws/src/aws/api/resourceIds'
+import {
+	API_LAMBDA_FUNCTION, API_DYNAMO_DB_TABLE,
+} from 'sls-aws/src/aws/api/resourceIds'
 
 import {
 	API_FUNCTION_ARN, API_DYNAMO_TABLE_NAME,
@@ -13,6 +15,6 @@ export default {
 	},
 	[API_DYNAMO_TABLE_NAME]: {
 		Description: 'Api dynamodb table name',
-		Value: getAtt(API_DYNAMO_TABLE_NAME, 'TableName'),
+		Value: getAtt(API_DYNAMO_DB_TABLE, 'Arn'),
 	},
 }
