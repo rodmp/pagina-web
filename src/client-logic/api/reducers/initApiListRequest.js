@@ -1,5 +1,3 @@
-import { reduce, append, compose } from 'ramda'
-
 import { API_LIST_REQUEST_SUCCESS } from 'sls-aws/src/client-logic/api/actionIds'
 
 import { apiStoreLenses } from 'sls-aws/src/client-logic/api/lenses'

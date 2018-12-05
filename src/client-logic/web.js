@@ -15,6 +15,14 @@ import submitFormComplete from 'sls-aws/src/client-logic/form/reducers/submitFor
 import addSubForm from 'sls-aws/src/client-logic/form/reducers/addSubForm'
 import removeSubForm from 'sls-aws/src/client-logic/form/reducers/removeSubForm'
 
+// api
+import apiListRequestError from 'sls-aws/src/client-logic/api/reducers/apiListRequestError'
+import apiListRequestSuccess from 'sls-aws/src/client-logic/api/reducers/apiListRequestSuccess'
+import apiRecordRequestError from 'sls-aws/src/client-logic/api/reducers/apiRecordRequestError'
+import apiRecordRequestSuccess from 'sls-aws/src/client-logic/api/reducers/apiRecordRequestSuccess'
+import initApiListRequest from 'sls-aws/src/client-logic/api/reducers/initApiListRequest'
+import initApiRecordRequest from 'sls-aws/src/client-logic/api/reducers/initApiRecordRequest'
+
 // listeners
 import popStateListener from 'sls-aws/src/client-logic/route/listeners/popStateListener'
 
@@ -29,6 +37,12 @@ const store = createStore(
 		...submitFormComplete,
 		...addSubForm,
 		...removeSubForm,
+		...apiListRequestError,
+		...apiListRequestSuccess,
+		...apiRecordRequestError,
+		...apiRecordRequestSuccess,
+		...initApiListRequest,
+		...initApiRecordRequest,
 	}, // reducer object
 	// [], // sagas
 	[
