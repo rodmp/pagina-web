@@ -1,7 +1,6 @@
-import { map, reduce, head } from 'ramda'
+import { map, reduce, head, prop } from 'ramda'
 
 import routeDescriptions from 'sls-aws/src/descriptions/routes'
-import moduleDescriptions from 'sls-aws/src/descriptions/modules'
 
 import {
 	currentRouteModuleObjectsHof,
@@ -16,12 +15,27 @@ const { pathOrOnEnterActions, pathOrOnExitActions } = moduleDescriptionLenses
 
 const { viewModules } = routeDescriptionLenses
 
+export const circularGetModuleDescriptionObject = async () => {
+	// lazy load cause of a circular dependency, ex:
+	// src/client-logic/cognito/thunks/login.js ->
+	// src/client-logic/route/thunks/pushRoute.js ->
+	// src/client-logic/route/util/runModuleMounts.js ->
+	// src/client-logic/route/selectors/currentRouteModuleObjects.js ->
+	// src/descriptions/modules/index.js ->
+	// src/descriptions/modules/loginForm.js ->
+	// src/client-logic/cognito/thunks/login.js
+
+	const moduleDescriptions = await import('../../../descriptions/modules')
+	return prop('default', moduleDescriptions)
+}
+
 export const runModuleMountsHof = (
-	routeDescriptionObject, moduleDescriptionObject,
-) => (nextRouteObj, state) => {
+	routeDescriptionObject, circularGetModuleDescriptionObjectFn,
+) => async (nextRouteObj, state) => {
 	const { routeId } = nextRouteObj
 	const currentRouteObj = currentRouteObjSelector(state)
 	const enterModuleIds = viewModules(routeId, routeDescriptionObject)
+	const moduleDescriptionObject = await circularGetModuleDescriptionObjectFn()
 	const exitModuleIds = map(
 		head,
 		currentRouteModuleObjectsHof(
@@ -50,5 +64,5 @@ export const runModuleMountsHof = (
 }
 
 export default runModuleMountsHof(
-	routeDescriptions, moduleDescriptions,
+	routeDescriptions, circularGetModuleDescriptionObject,
 )
