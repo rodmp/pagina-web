@@ -1,5 +1,5 @@
 import {
- __, compose, map, addIndex, equals 
+	__, compose, map, addIndex, equals,
 } from 'ramda'
 
 import moduleKeySelector from 'sls-aws/src/client-logic/route/selectors/moduleKey'
@@ -18,9 +18,9 @@ export default (state, props) => compose(
 		submitIndex,
 		equals(
 			viewFormSubmitting(moduleKeySelector(state, props), state),
-			submitIndex
-		)
+			submitIndex,
+		),
 	]),
 	viewSubmits(__, moduleDescriptions),
-	moduleIdProp
+	moduleIdProp,
 )(props)
