@@ -11,6 +11,7 @@ export default async (userId, projectId) => {
 			':pk': projectId,
 			':project': 'project',
 		},
+		ConsistentRead: true,
 	}
 	const assigneeParams = {
 		TableName: TABLE_NAME,
@@ -19,6 +20,7 @@ export default async (userId, projectId) => {
 			':pk': projectId,
 			':assignee': 'assignee',
 		},
+		ConsistentRead: true,
 	}
 	const myPledgeParams = {
 		TableName: TABLE_NAME,
@@ -27,6 +29,7 @@ export default async (userId, projectId) => {
 			':pk': projectId,
 			':pledgeUserId': `pledge|${userId}`,
 		},
+		ConsistentRead: true,
 	}
 
 	const [projectDdb, assigneesDdb, myPledgeDdb] = await Promise.all([
