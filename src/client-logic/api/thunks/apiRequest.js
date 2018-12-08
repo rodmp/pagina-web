@@ -40,13 +40,11 @@ export const fetchList = async (dispatch, state, endpointId, payload) => {
 export const fetchRecord = async (dispatch, state, endpointId, payload) => {
 	const recordType = recordTypeSelector(endpointId)
 	const recordId = idProp(payload)
-	console.log(2, recordType, recordId)
 	if (recordId) { // else creating, don't need record loading state
 		const recordStoreKey = createRecordStoreKey(recordType, recordId)
 		dispatch(initApiRecordRequest(recordStoreKey))
 	}
 	const lambdaRes = await invokeApiLambda(endpointId, payload)
-	console.log(3, lambdaRes)
 	const { statusCode, body, statusError, generalError } = lambdaRes
 	if (equals(statusCode, 200)) {
 		dispatch(apiRecordRequestSuccess(recordType, body))
@@ -66,7 +64,6 @@ export default (endpointId, payload) => async (dispatch, getState) => {
 	try {
 		const state = getState()
 		const endpointType = endpointTypeSelector(endpointId)
-		console.log(1, endpointType)
 		return endpointTypeFunctionMap[endpointType](
 			dispatch, state, endpointId, payload,
 		)

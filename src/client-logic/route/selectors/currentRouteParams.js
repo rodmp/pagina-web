@@ -1,5 +1,5 @@
 import {
-	currentRouteIndex, routeStoreLenses
+	currentRouteIndex, routeStoreLenses,
 } from 'sls-aws/src/client-logic/route/lenses'
 
 const { viewRouteParams } = routeStoreLenses

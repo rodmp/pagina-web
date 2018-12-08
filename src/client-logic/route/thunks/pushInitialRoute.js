@@ -22,7 +22,7 @@ export const pushInitialRouteHof = (
 	} else {
 		nextRoute = defaultRouteFn(state)
 	}
-	runModuleMountsFn(nextRoute, state)
+	dispatch(runModuleMountsFn(nextRoute, state))
 	return dispatchCommittedRouteFn(nextRoute, dispatch, browserHistoryReplace)
 }
 

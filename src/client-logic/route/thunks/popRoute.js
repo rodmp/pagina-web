@@ -5,7 +5,7 @@ export const popRouteHof = (
 ) => (nextRouteObj) => (dispatch, getState) => {
 	const { routeId, routeParams } = nextRouteObj
 	const state = getState()
-	runModuleMountsFn(nextRouteObj, state)
+	dispatch(runModuleMountsFn(nextRouteObj, state))
 	dispatch(
 		changeRouteFn(routeId, routeParams)
 	)
