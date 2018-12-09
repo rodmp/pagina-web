@@ -94,6 +94,7 @@ export const formModuleSchema = {
 						type: 'object',
 						properties: {
 							action: { type: 'function' },
+							onSuccess: { type: 'function' },
 							label: { type: 'string' },
 						},
 					},

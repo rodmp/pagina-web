@@ -8,7 +8,7 @@ import setFormErrors from 'sls-aws/src/client-logic/form/actions/setFormErrors'
 import { formModuleLenses } from 'sls-aws/src/client-logic/form/lenses'
 import moduleDescriptions from 'sls-aws/src/descriptions/modules'
 
-const { viewSubmits, viewAction } = formModuleLenses
+const { viewSubmits, viewAction, viewSuccess } = formModuleLenses
 
 export const submitFormHof = (
 	submitFormFn, moduleDescriptionsObj, validateFormFn, setFormErrorsFn,
@@ -28,7 +28,11 @@ export const submitFormHof = (
 		const submitAction = viewAction(
 			moduleId, correctedSubmitIndex, moduleDescriptionsObj,
 		)
-		return dispatch(submitAction(formData)).then(() => {
+		return dispatch(submitAction(formData)).then((res) => {
+			const onSuccessFn = viewSuccess(
+				moduleId, correctedSubmitIndex, moduleDescriptionsObj,
+			)
+			dispatch(onSuccessFn(res))
 			dispatch(submitFormCompleteFn(moduleKey))
 		}).catch((errors) => {
 			dispatch(setFormErrorsFn(moduleKey, errors))
