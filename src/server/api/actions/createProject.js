@@ -1,5 +1,5 @@
 import uuid from 'uuid/v1'
-import { map, pick, omit, assoc, prop, join } from 'ramda'
+import { map, pick, omit, prop, join } from 'ramda'
 
 import { TABLE_NAME, documentClient } from 'sls-aws/src/server/api/dynamoClient'
 

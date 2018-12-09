@@ -17,7 +17,7 @@ import serverEndpoints from 'sls-aws/src/server/api/actions'
 const validateOrNah = (schemaType, endpointId, schema) => (payload) => {
 	if (schema) {
 		return validateSchema(
-			`endpointId${schemaType}`, schema, payload,
+			`${endpointId}${schemaType}`, schema, payload,
 		).then((res) => {
 			if (prop('valid', res)) {
 				return payload
@@ -63,7 +63,7 @@ export const apiHof = (
 		return { statusCode: 200, body: res }
 	} catch (error) {
 		const errorMessage = error.message
-		console.warn(error)
+		// console.warn(error)
 		return customError(error.statusCode || 500, {
 			...(errorMessage ? { generalErrors: errorMessage } : {}),
 			...pick(['generalErrors', 'schemaErrors'], error),
