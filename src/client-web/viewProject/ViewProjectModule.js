@@ -1,4 +1,4 @@
-import { map } from 'ramda'
+import { map, addIndex } from 'ramda'
 import React, { memo } from 'react'
 
 import Assignee from 'sls-aws/src/client-web/viewProject/Assignee'
@@ -14,8 +14,8 @@ export const ViewProjectModule = memo(({
 		<div>{ projectDescription }</div>
 		<div>Pledge Amount: {pledgeAmount}</div>
 		<div>My Pledge Amount: {myPledge}</div>
-		{map((assignee) => (
-			<Assignee {...assignee} />
+		{addIndex(map)((assignee, i) => (
+			<Assignee key={i} {...assignee} />
 		), assignees)}
 	</div>
 ))
