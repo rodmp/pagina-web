@@ -13,7 +13,6 @@ export default {
 			EmailVerificationSubject: 'Your verification code',
 			EmailVerificationMessage: 'Your verification code is {####}.',
 			UserPoolName: USER_POOL,
-		}
-	}
+		},
+	},
 }
-

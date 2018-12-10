@@ -6,7 +6,20 @@ const appSchema = {
 		app: {
 			type: 'object',
 			properties: {
-				authenticated: { type: 'boolean' },
+				authenticated: {
+					type: 'object',
+					properties: {
+						idToken: {
+							type: 'object',
+							properties: {
+								'cognito:groups': {
+									type: 'array',
+									items: { type: 'string' },
+								},
+							},
+						},
+					},
+				},
 			},
 		},
 	},
