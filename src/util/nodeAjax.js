@@ -3,7 +3,7 @@ import { parse } from 'url'
 import { stringify } from 'qs'
 
 export default ({
-	url, method, body, queryParams, headers,
+	url, method, body, queryParams, headers = {},
 }) => new Promise((resolve, reject) => {
 	const queryString = queryParams
 		? `?${stringify(queryParams, { indices: false })}` : ''

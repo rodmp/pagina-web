@@ -15,18 +15,25 @@ import apiRecordRequestError from 'sls-aws/src/client-logic/api/actions/apiRecor
 
 import recordTypeSelector from 'sls-aws/src/client-logic/api/selectors/recordTypeSelector'
 import endpointTypeSelector from 'sls-aws/src/client-logic/api/selectors/endpointTypeSelector'
+import jwtTokenSelector from 'sls-aws/src/client-logic/auth/selectors/jwtTokenSelector'
 
 import { apiFunctionArn } from 'sls-aws/cfOutput'
 
-export const invokeApiLambda = (endpointId, payload) => invokeLambda(
-	apiFunctionArn, { endpointId, payload },
-)
+export const invokeApiLambda = (endpointId, payload, state) => {
+	const jwtToken = jwtTokenSelector(state)
+	const lambdaPayload = {
+		endpointId,
+		payload,
+		...(jwtToken ? { authentication: jwtToken } : {}),
+	}
+	return invokeLambda(apiFunctionArn, lambdaPayload)
+}
 
 export const fetchList = async (dispatch, state, endpointId, payload) => {
 	const recordType = recordTypeSelector(endpointId)
 	const listStoreKey = createListStoreKey(recordType, payload)
 	dispatch(initApiListRequest(listStoreKey))
-	const lambdaRes = await invokeApiLambda(endpointId, payload)
+	const lambdaRes = await invokeApiLambda(endpointId, payload, state)
 	const { statusCode, body, statusError, generalError } = lambdaRes
 	if (equals(statusCode, 200)) {
 		dispatch(apiListRequestSuccess(listStoreKey, recordType, body))
@@ -44,7 +51,7 @@ export const fetchRecord = async (dispatch, state, endpointId, payload) => {
 		const recordStoreKey = createRecordStoreKey(recordType, recordId)
 		dispatch(initApiRecordRequest(recordStoreKey))
 	}
-	const lambdaRes = await invokeApiLambda(endpointId, payload)
+	const lambdaRes = await invokeApiLambda(endpointId, payload, state)
 	const { statusCode, body, statusError, generalError } = lambdaRes
 	console.log(lambdaRes)
 	if (equals(statusCode, 200)) {

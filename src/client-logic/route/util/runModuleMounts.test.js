@@ -20,26 +20,26 @@ const mockRouteDescriptions = {
 		modules: [
 			MODULE_MOCK_1,
 			MODULE_MOCK_2,
-		]
+		],
 	},
 	[ROUTE_MOCK_2]: {
 		modules: [
 			MODULE_MOCK_3,
-		]
+		],
 	},
 	[ROUTE_MOCK_3]: {
 		modules: [
 			MODULE_MOCK_4,
-		]
+		],
 	},
 	[ROUTE_MOCK_4]: {
 		modules: [
 			MODULE_MOCK_5,
-		]
+		],
 	},
 }
 
-const mockModuleDescriptions = {
+const mockModuleMountActions = {
 	[MODULE_MOCK_1]: {
 		onEnterActions: [jest.fn(), jest.fn()],
 		onExitActions: [jest.fn(), jest.fn()],
@@ -62,74 +62,67 @@ const mockState = {
 	route: {
 		history: [
 			{ routeId: ROUTE_MOCK_1 },
-		]
-	}
+		],
+	},
 }
 
 const runModuleMounts = runModuleMountsHof(
-	mockRouteDescriptions, mockModuleDescriptions,
+	mockRouteDescriptions, mockModuleMountActions,
 )
 
+const mockDispatch = () => {}
+
 describe('runModuleMounts', () => {
-	const moduleMountPromise =  runModuleMounts(
-		{ routeId: ROUTE_MOCK_2, routeParams: {} }, mockState,
-	)
-	test('Correct actions run', () => moduleMountPromise.then(() => {
+	test('Correct actions run, other actions dont', async () => {
+		await runModuleMounts(
+			{ routeId: ROUTE_MOCK_2, routeParams: {} }, mockState,
+		)(mockDispatch)
 		forEach(
 			(action) => {
 				expect(action).toHaveBeenCalled()
 			},
 			[
-				...mockModuleDescriptions[MODULE_MOCK_1].onExitActions,
-				...mockModuleDescriptions[MODULE_MOCK_2].onExitActions,
-				...mockModuleDescriptions[MODULE_MOCK_3].onEnterActions,
-			]
+				...mockModuleMountActions[MODULE_MOCK_1].onExitActions,
+				...mockModuleMountActions[MODULE_MOCK_2].onExitActions,
+				...mockModuleMountActions[MODULE_MOCK_3].onEnterActions,
+			],
 		)
-	}))
-	test('Other actions don\'t run', () => moduleMountPromise.then(() => {
 		forEach(
 			(action) => {
 				expect(action).not.toHaveBeenCalled()
 			},
 			[
-				...mockModuleDescriptions[MODULE_MOCK_1].onEnterActions,
-				...mockModuleDescriptions[MODULE_MOCK_2].onEnterActions,
-				...mockModuleDescriptions[MODULE_MOCK_3].onExitActions,
-			]
+				...mockModuleMountActions[MODULE_MOCK_1].onEnterActions,
+				...mockModuleMountActions[MODULE_MOCK_2].onEnterActions,
+				...mockModuleMountActions[MODULE_MOCK_3].onExitActions,
+			],
 		)
-	}))
+	})
 
-	const moduleMountEmptyStatePromise =  runModuleMounts(
-		{ routeId: ROUTE_MOCK_3, routeParams: {} }, {},
-	)
-	test(
-		'First state on enter actions',
-		() => moduleMountEmptyStatePromise.then(
-			() => {
-				forEach(
-					(action) => {
-						expect(action).toHaveBeenCalled()
-					},
-					mockModuleDescriptions[MODULE_MOCK_4].onEnterActions,
-				)
-			}
+	test('First state on enter actions', async () => {
+		await runModuleMounts(
+			{ routeId: ROUTE_MOCK_3, routeParams: {} }, {},
+		)(mockDispatch)
+		forEach(
+			(action) => {
+				expect(action).toHaveBeenCalled()
+			},
+			mockModuleMountActions[MODULE_MOCK_4].onEnterActions,
 		)
-	)
+	})
 
-	const noExitActionsMockState = {
-		route: {
-			history: [
-				{ routeId: ROUTE_MOCK_3 },
-			]
+	test('Doesn\'t break if no actions', async () => {
+		const noExitActionsMockState = {
+			route: {
+				history: [
+					{ routeId: ROUTE_MOCK_3 },
+				],
+			},
 		}
-	}
-	const noActionsMountPromise =  runModuleMounts(
-		{ routeId: ROUTE_MOCK_4, routeParams: {} }, noExitActionsMockState,
-	)
-	test(
-		'Doesn\'t break if no actions',
-		() => noActionsMountPromise.then(() => {
-			expect(noActionsMountPromise).resolves
-		})
-	)
+		const noActionsMountPromise = runModuleMounts(
+			{ routeId: ROUTE_MOCK_4, routeParams: {} }, noExitActionsMockState,
+		)(mockDispatch)
+		await noActionsMountPromise
+		expect(noActionsMountPromise).resolves
+	})
 })

@@ -4,6 +4,7 @@
 
 - [Cloudformation template reference](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html)
 
+- [Authorize cognito jwtToken example](https://stackoverflow.com/a/42405528/1692715)
 
 
 

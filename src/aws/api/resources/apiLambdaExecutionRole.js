@@ -32,6 +32,18 @@ export default {
 							{
 								Effect: 'Allow',
 								Action: [
+									'logs:CreateLogGroup',
+									'logs:CreateLogStream',
+									'logs:PutLogEvents',
+									'logs:DescribeLogStreams',
+								],
+								Resource: [
+									'arn:aws:logs:*:*:*',
+								],
+							},
+							{
+								Effect: 'Allow',
+								Action: [
 									'dynamodb:DescribeTable',
 									'dynamodb:Query',
 									'dynamodb:Scan',
@@ -42,7 +54,6 @@ export default {
 									'dynamodb:BatchWriteItem',
 									'dynamodb:BatchGetItem',
 								],
-								// @TODO: specify the tables from models
 								Resource: getAtt(API_DYNAMO_DB_TABLE, 'Arn'),
 							},
 						],

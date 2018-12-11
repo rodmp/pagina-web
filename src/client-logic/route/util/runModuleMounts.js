@@ -1,35 +1,38 @@
-import { map, reduce, head, prop } from 'ramda'
+import { map, reduce, pathOr } from 'ramda'
 
 import routeDescriptions from 'sls-aws/src/descriptions/routes'
 
-import {
-	currentRouteModuleObjectsHof,
-} from 'sls-aws/src/client-logic/route/selectors/currentRouteModuleObjects'
 import currentRouteObjSelector from 'sls-aws/src/client-logic/route/selectors/currentRouteObj'
 
 import { routeDescriptionLenses } from 'sls-aws/src/client-logic/route/lenses'
 
-import {
-	pathOrOnEnterActions, pathOrOnExitActions,
-} from 'sls-aws/src/descriptions/moduleMountActions'
+import moduleMountActions from 'sls-aws/src/descriptions/moduleMountActions'
 
 const { viewModules } = routeDescriptionLenses
 
-export const runModuleMountsHof = routeDescriptionObject => (
+export const runModuleMountsHof = (
+	routeDescriptionObject, moduleMountActionsObj,
+) => (
 	(nextRouteObj, state) => async (dispatch) => {
 		const { routeId } = nextRouteObj
 		const currentRouteObj = currentRouteObjSelector(state)
 		const enterModuleIds = viewModules(routeId, routeDescriptionObject)
-		const exitModuleIds = []
+		const exitModuleIds = viewModules(
+			currentRouteObj.routeId, routeDescriptionObject,
+		) || []
 		const allActions = [
 			...reduce((results, moduleId) => [
-				...pathOrOnExitActions(moduleId),
-				...results,
-			], [], exitModuleIds),
-			...reduce((results, moduleId) => [
-				...pathOrOnEnterActions(moduleId),
+				...pathOr(
+					[], [moduleId, 'onEnterActions'], moduleMountActionsObj,
+				),
 				...results,
 			], [], enterModuleIds),
+			...reduce((results, moduleId) => [
+				...pathOr(
+					[], [moduleId, 'onExitActions'], moduleMountActionsObj,
+				),
+				...results,
+			], [], exitModuleIds),
 		]
 		return Promise.all(
 			map(
@@ -44,5 +47,5 @@ export const runModuleMountsHof = routeDescriptionObject => (
 )
 
 export default runModuleMountsHof(
-	routeDescriptions,
+	routeDescriptions, moduleMountActions,
 )
