@@ -19,6 +19,11 @@ export const responseSchemaError = errors => ({
 	schemaErrors: errors,
 })
 
+export const authorizationError = errorMessage => ({
+	statusCode: 403,
+	generalErrors: errorMessage,
+})
+
 export const customError = (statusCode, errorObj) => ({
 	statusCode,
 	...errorObj,

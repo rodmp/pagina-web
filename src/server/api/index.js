@@ -1,9 +1,9 @@
-import { prop, path, pick } from 'ramda'
+import { prop, not, equals, contains, and, pick } from 'ramda'
 
 import validateSchema from 'sls-aws/src/util/validateSchema'
 import {
 	customError, generalError, payloadSchemaError, responseSchemaError,
-	notFoundError,
+	notFoundError, authorizationError,
 } from 'sls-aws/src/server/api/errors'
 import { userPk } from 'sls-aws/src/server/api/pkMaker'
 import ajvErrors from 'sls-aws/src/util/ajvErrors'
@@ -12,6 +12,9 @@ import {
 	testEndpointExists,
 } from 'sls-aws/src/server/api/getEndpointDesc'
 import serverEndpoints from 'sls-aws/src/server/api/actions'
+import getCognitoUser from 'sls-aws/src/server/api/getCognitoUser'
+import { authenticated } from 'sls-aws/src/constants/authenticationTypes'
+
 
 
 const validateOrNah = (schemaType, endpointId, schema) => (payload) => {
@@ -44,10 +47,24 @@ export const apiHof = (
 		const action = prop(endpointId, serverEndpointsObj)
 		const payloadSchema = getPayloadSchemaFn(endpointId)
 		const resultSchema = getResultSchemaFn(endpointId)
-		// const authentication = getAuthenticationFn(endpointId)
-		const userId = userPk(
-			path(['identity', 'cognitoIdentityId'], context),
-		)
+
+		let userId
+		const authentication = getAuthenticationFn(endpointId)
+		if (authentication) {
+			const { error, cognitoUser } = await getCognitoUser(context)
+			if (error) {
+				throw authorizationError(error)
+			}
+			const cognitoGroups = cognitoUser['cognito:groups']
+			const invalidAuthentication = and(
+				not(equals(authentication, authenticated)),
+				not(contains(authentication, cognitoGroups)),
+			)
+			if (invalidAuthentication) {
+				throw authorizationError('Not admin user')
+			}
+			userId = cognitoUser.sub
+		}
 
 		const validatePayload = validateOrNah(
 			'payloadSchema', endpointId, payloadSchema,

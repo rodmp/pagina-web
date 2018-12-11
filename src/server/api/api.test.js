@@ -1,4 +1,3 @@
-import { assocPath } from 'ramda'
 import { apiHof } from 'sls-aws/src/server/api'
 
 // api(event, context, callback)

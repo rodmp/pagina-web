@@ -23,6 +23,12 @@ jest.mock('sls-aws/src/server/api/dynamoClient', () => {
 	}
 })
 
+jest.mock('sls-aws/src/server/api/getCognitoUser', () => Promise.resolve({
+	cognitoUser: {
+		'cognito:groups': ['admin'],
+	},
+}))
+
 const tableParams = tableName => merge(
 	{ TableName: tableName },
 	compose(

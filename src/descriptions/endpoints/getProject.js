@@ -2,8 +2,6 @@ import {
 	GET_PROJECT,
 } from 'sls-aws/src/descriptions/endpoints/endpointIds'
 
-import { everyone } from 'sls-aws/src/constants/authenticationTypes'
-
 import { recordEndpointType } from 'sls-aws/src/descriptions/endpoints/lenses'
 import { project } from 'sls-aws/src/descriptions/endpoints/recordTypes'
 
@@ -15,7 +13,6 @@ export const responseSchema = projectResponseSchema
 
 export default {
 	[GET_PROJECT]: {
-		authentication: everyone,
 		endpointType: recordEndpointType,
 		recordType: project,
 		payloadSchema,
