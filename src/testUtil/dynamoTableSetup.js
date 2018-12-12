@@ -23,11 +23,12 @@ jest.mock('sls-aws/src/server/api/dynamoClient', () => {
 	}
 })
 
-jest.mock('sls-aws/src/server/api/getCognitoUser', () => Promise.resolve({
-	cognitoUser: {
-		'cognito:groups': ['admin'],
-	},
-}))
+// Normally authentication is a JWT that gets decoded and returns a user id.
+// For tests I'm mocking the authorizeRequest which does the jwt decoding and
+// just returning whatever you put for authentication as the userId
+jest.mock('sls-aws/src/server/api/authorizeRequest', () => (
+	endpointId, authentication,
+) => Promise.resolve(authentication))
 
 const tableParams = tableName => merge(
 	{ TableName: tableName },
@@ -60,5 +61,8 @@ afterAll(async () => {
 	// const tables = await getTables()
 	// console.log(tables)
 	// await deleteAllTables(tables)
+	// const tablesGone = await getTables()
+	// console.log(tablesGone)
+
 	await dynamoDb.deleteTable({ TableName: TABLE_NAME }).promise()
 })

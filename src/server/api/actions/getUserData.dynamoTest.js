@@ -4,10 +4,10 @@ import { GET_PROJECT } from 'sls-aws/src/descriptions/endpoints/endpointIds'
 
 import createProject from 'sls-aws/src/server/api/actions/createProject'
 import createProjectPayload from 'sls-aws/src/server/api/mocks/createProjectPayload'
-import contextMock, { mockUserId } from 'sls-aws/src/server/api/mocks/contextMock'
+import { mockUserId } from 'sls-aws/src/server/api/mocks/contextMock'
 
-describe('getProject', () => {
-	test('createProject', async () => {
+describe('getUserData', () => {
+	test('gets user data', async () => {
 		const newProjectPayload = createProjectPayload()
 		const newProject = await createProject({
 			userId: mockUserId,
@@ -16,8 +16,9 @@ describe('getProject', () => {
 		const event = {
 			endpointId: GET_PROJECT,
 			payload: { projectId: newProject.id },
+			authentication: mockUserId,
 		}
-		const res = await apiFn(event, contextMock)
+		const res = await apiFn(event)
 		expect(res).toEqual({
 			statusCode: 200,
 			body: {

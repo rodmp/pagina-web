@@ -6,7 +6,7 @@ import createProject from 'sls-aws/src/server/api/actions/createProject'
 import pledgeProject from 'sls-aws/src/server/api/actions/pledgeProject'
 import createProjectPayload from 'sls-aws/src/server/api/mocks/createProjectPayload'
 import createPledgeProjectPayload from 'sls-aws/src/server/api/mocks/createPledgeProjectPayload'
-import contextMock, { mockUserId } from 'sls-aws/src/server/api/mocks/contextMock'
+import { mockUserId } from 'sls-aws/src/server/api/mocks/contextMock'
 
 describe('getPledgedProjects', () => {
 	test('Successfully get pledged projects', async () => {
@@ -28,8 +28,9 @@ describe('getPledgedProjects', () => {
 		const event = {
 			endpointId: GET_PLEDGED_PROJECTS,
 			payload: {},
+			authentication: mockUserId,
 		}
-		const res = await apiFn(event, contextMock)
+		const res = await apiFn(event)
 		expect(res).toEqual({
 			statusCode: 200,
 			body: {
