@@ -1,20 +1,17 @@
-import { prop, not, equals, contains, and, pick } from 'ramda'
+import { prop, pick } from 'ramda'
 
 import validateSchema from 'sls-aws/src/util/validateSchema'
 import {
-	customError, generalError, payloadSchemaError, responseSchemaError,
-	notFoundError, authorizationError,
+	customError, payloadSchemaError, responseSchemaError,
+	notFoundError,
 } from 'sls-aws/src/server/api/errors'
-import { userPk } from 'sls-aws/src/server/api/pkMaker'
 import ajvErrors from 'sls-aws/src/util/ajvErrors'
 import {
 	getPayloadSchema, getResultSchema, getAuthentication,
 	testEndpointExists,
 } from 'sls-aws/src/server/api/getEndpointDesc'
 import serverEndpoints from 'sls-aws/src/server/api/actions'
-import getCognitoUser from 'sls-aws/src/server/api/getCognitoUser'
-import { authenticated } from 'sls-aws/src/constants/authenticationTypes'
-
+import authorizeRequest from 'sls-aws/src/server/api/authorizeRequest'
 
 
 const validateOrNah = (schemaType, endpointId, schema) => (payload) => {
@@ -36,10 +33,10 @@ const validateOrNah = (schemaType, endpointId, schema) => (payload) => {
 
 export const apiHof = (
 	serverEndpointsObj, getPayloadSchemaFn, getResultSchemaFn,
-	getAuthenticationFn, testEndpointExistsFn,
-) => async (event, context) => {
+	authorizeRequestFn, testEndpointExistsFn,
+) => async (event) => {
 	try {
-		const { endpointId, payload } = event
+		const { endpointId, payload, authentication } = event
 		const endpointExists = testEndpointExistsFn(endpointId)
 		if (!endpointExists) {
 			throw notFoundError(endpointId)
@@ -48,23 +45,7 @@ export const apiHof = (
 		const payloadSchema = getPayloadSchemaFn(endpointId)
 		const resultSchema = getResultSchemaFn(endpointId)
 
-		let userId
-		const authentication = getAuthenticationFn(endpointId)
-		if (authentication) {
-			const { error, cognitoUser } = await getCognitoUser(context)
-			if (error) {
-				throw authorizationError(error)
-			}
-			const cognitoGroups = cognitoUser['cognito:groups']
-			const invalidAuthentication = and(
-				not(equals(authentication, authenticated)),
-				not(contains(authentication, cognitoGroups)),
-			)
-			if (invalidAuthentication) {
-				throw authorizationError('Not admin user')
-			}
-			userId = cognitoUser.sub
-		}
+		const userId = await authorizeRequestFn(endpointId, authentication)
 
 		const validatePayload = validateOrNah(
 			'payloadSchema', endpointId, payloadSchema,
@@ -89,7 +70,7 @@ export const apiHof = (
 }
 
 export const apiFn = apiHof(
-	serverEndpoints, getPayloadSchema, getResultSchema, getAuthentication,
+	serverEndpoints, getPayloadSchema, getResultSchema, authorizeRequest,
 	testEndpointExists,
 )
 

@@ -5,14 +5,17 @@
 			"type": "node",
 			"request": "launch",
 			"name": "Launch Jest",
+			"runtimeArgs": ["--nolazy"],
 			"program": "${workspaceRoot}/node_modules/.bin/jest",
 			"cwd": "${workspaceRoot}",
 			"console": "integratedTerminal",
 			"args": [
 				"${fileDirname}/${fileBasenameNoExtension}",
+				"--runInBand",
 				"--watch",
 			],
-			"sourceMaps": true
+			"stopOnEntry": false,
+			"sourceMaps": true,
 		},
 	]
 }
