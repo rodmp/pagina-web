@@ -7,8 +7,7 @@ import {
 } from 'sls-aws/src/server/api/errors'
 import ajvErrors from 'sls-aws/src/util/ajvErrors'
 import {
-	getPayloadSchema, getResultSchema, getAuthentication,
-	testEndpointExists,
+	getPayloadSchema, getResultSchema, testEndpointExists,
 } from 'sls-aws/src/server/api/getEndpointDesc'
 import serverEndpoints from 'sls-aws/src/server/api/actions'
 import authorizeRequest from 'sls-aws/src/server/api/authorizeRequest'
