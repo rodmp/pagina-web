@@ -5,3 +5,4 @@ cfOutput.js
 cfTemplate.json
 dist
 secrets.js
+.idea/
