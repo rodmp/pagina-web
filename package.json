@@ -70,6 +70,7 @@
     "redux-devtools-extension": "^2.13.5",
     "redux-thunk": "^2.3.0",
     "s3-stream-upload": "^2.0.2",
+    "stripe": "^6.19.0",
     "uuid": "^3.3.2",
     "webpack": "^4.12.2",
     "webpack-cli": "^3.0.8",
