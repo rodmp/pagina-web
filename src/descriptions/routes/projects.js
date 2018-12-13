@@ -1,5 +1,6 @@
 import {
 	CREATE_PROJECT_ROUTE_ID, VIEW_PROJECT_ROUTE_ID,
+	PENDING_PROJECTS_ROUTE_ID,
 } from 'sls-aws/src/descriptions/routes/routeIds'
 
 import {
@@ -18,6 +19,13 @@ export default {
 	},
 	[VIEW_PROJECT_ROUTE_ID]: {
 		url: '/view-project/:projectId',
+		modules: [
+			VIEW_PROJECT_MODULE_ID,
+		],
+	},
+	[PENDING_PROJECTS_ROUTE_ID]: {
+		url: '/pending-projects',
+		authentication: authValue,
 		modules: [
 			VIEW_PROJECT_MODULE_ID,
 		],
