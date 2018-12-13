@@ -31,7 +31,7 @@ export const invokeApiLambda = (endpointId, payload, state) => {
 
 export const fetchList = async (dispatch, state, endpointId, payload) => {
 	const recordType = recordTypeSelector(endpointId)
-	const listStoreKey = createListStoreKey(recordType, payload)
+	const listStoreKey = createListStoreKey(endpointId, payload)
 	dispatch(initApiListRequest(listStoreKey))
 	const lambdaRes = await invokeApiLambda(endpointId, payload, state)
 	const { statusCode, body, statusError, generalError } = lambdaRes

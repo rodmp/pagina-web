@@ -6,7 +6,9 @@ import {
 	apiStoreLenses, nextKeyProp, idProp, itemsProp,
 } from 'sls-aws/src/client-logic/api/lenses'
 
-const { setNext, setItems, setRecordsChild, setListProcessingChild } = apiStoreLenses
+const {
+	setNext, setItems, setRecordsChild, setListProcessingChild,
+} = apiStoreLenses
 
 export const apiListRequestSuccess = (
 	state,

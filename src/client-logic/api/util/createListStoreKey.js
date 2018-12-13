@@ -1,5 +1,5 @@
 import objectHash from 'object-hash'
 
-export default (recordType, filters = {}) => (
-	`${recordType}-${objectHash({ filters })}`
+export default (endpointId, filters = {}) => (
+	`${endpointId}-${objectHash({ filters })}`
 )

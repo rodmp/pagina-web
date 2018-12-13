@@ -78,16 +78,22 @@ const apiStoreSchema = {
 
 export const apiStoreLenses = lensesFromSchema(apiStoreSchema)
 
-export const apiModuleSchema = {
+
+export const generalApiModuleDescriptionSchema = {
 	type: 'object',
 	patternProperties: {
 		[variableSchemaKey]: {
 			type: 'object',
-			properties: {},
+			properties: {
+				endpointId: { type: 'string' },
+				recordType: { type: 'string' },
+			},
 		},
 	},
 }
-export const apiModuleLenses = lensesFromSchema(apiModuleSchema)
+export const generalApiModuleDescriptionLenses = lensesFromSchema(
+	generalApiModuleDescriptionSchema,
+)
 
 export const nextKeyProp = prop('next')
 export const itemsProp = prop('items')
