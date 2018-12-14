@@ -9,17 +9,19 @@ import {
 	routeDescriptionLenses, moduleDescriptionLenses,
 } from 'sls-aws/src/client-logic/route/lenses'
 
-import moduleMountActions from 'sls-aws/src/descriptions/moduleMountActions'
-
 import listModuleOnEnter from 'sls-aws/src/client-logic/api/thunks/listModuleOnEnter'
+import recordModuleOnEnter from 'sls-aws/src/client-logic/api/thunks/recordModuleOnEnter'
 
 const { viewModules } = routeDescriptionLenses
 const { viewModuleType } = moduleDescriptionLenses
 
+// eslint-disable-next-line consistent-return
 const moduleTypeAction = (moduleType) => {
 	switch (moduleType) {
 		case 'list':
 			return listModuleOnEnter
+		case 'record':
+			return recordModuleOnEnter
 		default:
 	}
 }

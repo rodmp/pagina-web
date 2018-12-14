@@ -21,6 +21,7 @@ export const regexLens = lensProp(regexKey)
 export const regexKeysLens = lensProp(regexKeysKey)
 export const toPathLens = lensProp(toPathKey)
 export const routeIdToPathLens = compose(lensPath, prepend(__, [toPathKey]))
+export const recordIdProp = prop('recordId')
 
 // route constants
 export const routeUrlKey = 'url'

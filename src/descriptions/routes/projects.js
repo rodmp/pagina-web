@@ -19,7 +19,7 @@ export default {
 		],
 	},
 	[VIEW_PROJECT_ROUTE_ID]: {
-		url: '/view-project/:projectId',
+		url: '/view-project/:recordId',
 		modules: [
 			VIEW_PROJECT_MODULE_ID,
 		],

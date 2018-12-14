@@ -5,7 +5,7 @@ import {
 import { admin } from 'sls-aws/src/constants/authenticationTypes'
 
 import { listEndpointType } from 'sls-aws/src/descriptions/endpoints/lenses'
-import { project } from 'sls-aws/src/descriptions/endpoints/recordTypes'
+import { projectList } from 'sls-aws/src/descriptions/endpoints/recordTypes'
 
 import projectResponseSchema from 'sls-aws/src/descriptions/endpoints/schemas/projectResponseSchema'
 
@@ -15,7 +15,7 @@ export default {
 	[GET_PENDING_PROJECTS]: {
 		authentication: admin,
 		endpointType: listEndpointType,
-		recordType: project,
+		recordType: projectList,
 		responseSchema,
 	},
 }

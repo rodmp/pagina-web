@@ -1,7 +1,7 @@
 import { map } from 'ramda'
 import React, { memo } from 'react'
 
-import ListItem from 'sls-aws/src/client-web/list/ListItem'
+import ProjectListItem from 'sls-aws/src/client-web/list/ProjectListItem'
 
 import withModuleContext from 'sls-aws/src/util/withModuleContext'
 
@@ -12,7 +12,7 @@ import listModuleConnector from 'sls-aws/src/client-logic/api/connectors/listMod
 export const ListModule = memo(({ list }) => (
 	<List>
 		{map(recordId => (
-			<ListItem key={recordId} recordId={recordId} />
+			<ProjectListItem key={recordId} recordId={recordId} />
 		), list)}
 	</List>
 ))
