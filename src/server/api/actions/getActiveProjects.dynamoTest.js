@@ -11,7 +11,7 @@ import { projectApprovedKey } from 'sls-aws/src/server/api/lenses'
 import auditProject from 'sls-aws/src/server/api/actions/auditProject'
 
 describe('getActiveProjects', () => {
-	test('successfull get active projects', async () => {
+	test('Successfully get active projects', async () => {
 		const [newProject1, newProject2] = await Promise.all(
 			map(
 				() => createProject({

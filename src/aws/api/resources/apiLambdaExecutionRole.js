@@ -1,4 +1,5 @@
 import getAtt from 'sls-aws/src/aws/util/getAtt'
+import join from 'sls-aws/src/aws/util/join'
 
 import {
 	API_LAMBDA_EXECUTION_ROLE, API_DYNAMO_DB_TABLE,
@@ -54,7 +55,14 @@ export default {
 									'dynamodb:BatchWriteItem',
 									'dynamodb:BatchGetItem',
 								],
-								Resource: getAtt(API_DYNAMO_DB_TABLE, 'Arn'),
+								// For ARN/index/x_index
+								Resource: join(
+									'',
+									[
+										getAtt(API_DYNAMO_DB_TABLE, 'Arn'),
+										'/*',
+									],
+								),
 							},
 						],
 					},

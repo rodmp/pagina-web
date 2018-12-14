@@ -53,7 +53,6 @@ export const fetchRecord = async (dispatch, state, endpointId, payload) => {
 	}
 	const lambdaRes = await invokeApiLambda(endpointId, payload, state)
 	const { statusCode, body, statusError, generalError } = lambdaRes
-	console.log(lambdaRes)
 	if (equals(statusCode, 200)) {
 		dispatch(apiRecordRequestSuccess(recordType, body))
 	} else if (recordId) { // else creating, don't need record error state

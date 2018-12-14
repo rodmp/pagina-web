@@ -1,6 +1,6 @@
 import { SIGN_UP_FORM_MODULE_ID } from 'sls-aws/src/descriptions/modules/moduleIds'
 import signUpSchema from 'sls-aws/src/descriptions/formSchemas/signUpSchema'
-import signUp from 'sls-aws/src/client-logic/cognito/thunks/signUp'
+// import signUp from 'sls-aws/src/client-logic/cognito/thunks/signUp'
 
 export default {
 	[SIGN_UP_FORM_MODULE_ID]: {
@@ -23,8 +23,8 @@ export default {
 				inputType: 'password',
 			},
 		],
-		submits: [
-			{ label: 'Sign Up', action: signUp },
-		],
+		// submits: [
+		// 	{ label: 'Sign Up', action: signUp },
+		// ],
 	},
 }

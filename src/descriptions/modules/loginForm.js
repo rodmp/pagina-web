@@ -1,4 +1,4 @@
-import login from 'sls-aws/src/client-logic/cognito/thunks/login'
+// import login from 'sls-aws/src/client-logic/cognito/thunks/login'
 import { LOGIN_FORM_MODULE_ID } from 'sls-aws/src/descriptions/modules/moduleIds'
 
 import loginSchema from 'sls-aws/src/descriptions/formSchemas/loginSchema'
@@ -19,8 +19,8 @@ export default {
 				label: 'Password',
 			},
 		],
-		submits: [
-			{ label: 'Login', action: login },
-		],
+		// submits: [
+		// 	{ label: 'Login', action: login },
+		// ],
 	},
 }
