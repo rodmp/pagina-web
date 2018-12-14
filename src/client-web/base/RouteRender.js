@@ -25,6 +25,7 @@ export const RenderModules = ({ moduleTypes }) => (
 					</ModuleContextProvider>
 				)
 			case 'list':
+			console.log(moduleId)
 				return (
 					<ModuleContextProvider
 						key={moduleId}
@@ -33,7 +34,7 @@ export const RenderModules = ({ moduleTypes }) => (
 						<ListModule />
 					</ModuleContextProvider>
 				)
-			case 'viewProject':
+			case 'record':
 				return (
 					<ModuleContextProvider
 						key={moduleId}
