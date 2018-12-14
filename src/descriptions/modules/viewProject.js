@@ -4,6 +4,6 @@ import { GET_PROJECT } from 'sls-aws/src/descriptions/endpoints/endpointIds'
 export default {
 	[VIEW_PROJECT_MODULE_ID]: {
 		moduleType: 'record',
-		endpointId: GET_PROJECT
+		endpointId: GET_PROJECT,
 	},
 }

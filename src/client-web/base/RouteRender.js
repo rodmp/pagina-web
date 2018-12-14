@@ -6,7 +6,7 @@ import routeRenderConnector from 'sls-aws/src/client-logic/route/connectors/rout
 
 import FormModule from 'sls-aws/src/client-web/form/FormModule'
 import ListModule from 'sls-aws/src/client-web/list/ListModule'
-import ViewProjectModule from 'sls-aws/src/client-web/viewProject/ViewProjectModule'
+import RecordModule from 'sls-aws/src/client-web/record/RecordModule'
 
 
 import { ModuleContextProvider } from 'sls-aws/src/util/withModuleContext'
@@ -25,7 +25,6 @@ export const RenderModules = ({ moduleTypes }) => (
 					</ModuleContextProvider>
 				)
 			case 'list':
-			console.log(moduleId)
 				return (
 					<ModuleContextProvider
 						key={moduleId}
@@ -40,7 +39,7 @@ export const RenderModules = ({ moduleTypes }) => (
 						key={moduleId}
 						value={{ moduleId, moduleIndex }}
 					>
-						<ViewProjectModule />
+						<RecordModule />
 					</ModuleContextProvider>
 				)
 			default:
@@ -49,8 +48,16 @@ export const RenderModules = ({ moduleTypes }) => (
 						key={moduleId}
 						className="flex layout-column layout-align-center-center"
 					>
-						<p>moduleId: {moduleId}</p>
-						<p>moduleType: {moduleType}</p>
+						<p>
+moduleId:
+														{' '}
+														{moduleId}
+      												</p>
+						<p>
+moduleType:
+														{' '}
+														{moduleType}
+												      </p>
 					</div>
 				)
 		}
