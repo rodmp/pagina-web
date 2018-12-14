@@ -2,6 +2,7 @@ const { map } = require('ramda')
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
+const CircularDependencyPlugin = require('circular-dependency-plugin')
 
 // const appConstants = require('./src/constants/app')
 const colorConstants = require('./src/constants/color')
@@ -68,5 +69,13 @@ module.exports = {
 		new webpack.DefinePlugin(
 			map(JSON.stringify, envVars),
 		),
+		// new CircularDependencyPlugin({
+		// 	// exclude detection of files based on a RegExp
+		// 	exclude: /node_modules/,
+		// 	// add errors to webpack instead of warnings
+		// 	failOnError: true,
+		// 	// set the current working directory for displaying module paths
+		// 	cwd: process.cwd(),
+		// }),
 	],
 }

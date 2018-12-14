@@ -5,6 +5,7 @@ import {
 
 import {
 	CREATE_PROJECT_FORM_MODULE_ID, VIEW_PROJECT_MODULE_ID,
+	PENDING_PROJECTS_LIST_MODULE_ID,
 } from 'sls-aws/src/descriptions/modules/moduleIds'
 
 import { authValue } from 'sls-aws/src/client-logic/route/lenses'
@@ -27,7 +28,7 @@ export default {
 		url: '/pending-projects',
 		authentication: authValue,
 		modules: [
-			VIEW_PROJECT_MODULE_ID,
+			PENDING_PROJECTS_LIST_MODULE_ID,
 		],
 	},
 }

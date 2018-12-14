@@ -2,10 +2,10 @@ import createListStoreKey from 'sls-aws/src/client-logic/api/util/createListStor
 import { apiStoreLenses } from 'sls-aws/src/client-logic/api/lenses'
 import moduleEndpointIdSelector from 'sls-aws/src/client-logic/api/selectors/moduleEndpointIdSelector'
 
-const { viewListsChild } = apiStoreLenses
+const { viewItems } = apiStoreLenses
 
 export default (state, { moduleId }) => {
 	const endpointId = moduleEndpointIdSelector(state, { moduleId })
 	const listStoreKey = createListStoreKey(endpointId, { /* filters */ })
-	return viewListsChild(listStoreKey, state)
+	return viewItems(listStoreKey, state) || []
 }

@@ -7,9 +7,7 @@ export const popRouteHof = (
 	const { routeId, routeParams } = nextRouteObj
 	const state = getState()
 	dispatch(runModuleMountsFn(nextRouteObj, state))
-	dispatch(
-		changeRouteFn(routeId, routeParams),
-	)
+	dispatch(changeRouteFn(routeId, routeParams))
 	return Promise.resolve(nextRouteObj)
 }
 
