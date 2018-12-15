@@ -4,10 +4,9 @@ import { AUDIT_PROJECT } from 'sls-aws/src/descriptions/endpoints/endpointIds'
 
 import createProject from 'sls-aws/src/server/api/actions/createProject'
 import createProjectPayload from 'sls-aws/src/server/api/mocks/createProjectPayload'
-import contextMock, { mockUserId } from 'sls-aws/src/server/api/mocks/contextMock'
 
 import {
-	projectApprovedKey, projectRejectedKey, projectPendingKey,
+	projectApprovedKey, projectPendingKey,
 } from 'sls-aws/src/server/api/lenses'
 
 describe('auditProject', () => {
@@ -24,7 +23,7 @@ describe('auditProject', () => {
 				audit: projectApprovedKey,
 			},
 		}
-		const res = await apiFn(event, contextMock)
+		const res = await apiFn(event)
 		expect(res).toEqual({
 			statusCode: 200,
 			body: {

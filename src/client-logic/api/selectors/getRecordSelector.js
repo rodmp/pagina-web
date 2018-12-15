@@ -20,7 +20,5 @@ export default (state, props = {}) => {
 	}
 	const paramsRecordId = currentRouteParamsRecordId(state)
 	recordStoreId = createRecordStoreKey(recordType, paramsRecordId)
-	console.log(recordId)
-	console.log(recordStoreId)
 	return viewRecordsChild(recordStoreId, state)
 }

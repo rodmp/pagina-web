@@ -22,8 +22,8 @@ const RenderLoading = withStyles(buttonProgressStyles)(
 		<CircularProgress
 			size={24}
 			className={classes.buttonProgress}
-		/>
-	)
+		/>,
+	),
 )
 
 const wrapperStyles = {
@@ -34,7 +34,7 @@ const wrapperStyles = {
 
 export default withStyles(wrapperStyles)(
 	({
-		children, onClick, classes, loading
+		children, onClick, classes, loading,
 	}) => (
 		<div className="flex layout-row layout-align-center">
 			<div className={classes.wrapper}>
@@ -47,5 +47,5 @@ export default withStyles(wrapperStyles)(
 				<RenderLoading loading={loading} />
 			</div>
 		</div>
-	)
+	),
 )
