@@ -8,7 +8,7 @@ export default {
 		projectId: { type: 'string' },
 		audit: {
 			type: 'string',
-			enum: [projectApprovedKey, projectRejectedKey]
+			enum: [projectApprovedKey, projectRejectedKey],
 		},
 	},
 	required: ['projectId', 'audit'],

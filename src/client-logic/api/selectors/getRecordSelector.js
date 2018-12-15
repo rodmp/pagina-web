@@ -9,15 +9,18 @@ const { viewRecordsChild } = apiStoreLenses
 
 export default (state, props = {}) => {
 	const { moduleId, recordId } = props
-
-	// From a list module we just pass in the recordId, for a record view we
-	// have to get it from the current route params
-	if (recordId) {
-		return viewRecordsChild(recordId, state)
-	}
-	const paramsRecordId = currentRouteParamsRecordId(state)
 	const endpointId = moduleEndpointIdSelector(state, { moduleId })
 	const recordType = recordTypeSelector(endpointId)
-	const recordStoreId = createRecordStoreKey(recordType, paramsRecordId)
+	// From a list module we just pass in the recordId, for a record view we
+	// have to get it from the current route params
+	let recordStoreId
+	if (recordId) {
+		recordStoreId = createRecordStoreKey(recordType, recordId)
+		return viewRecordsChild(recordStoreId, state)
+	}
+	const paramsRecordId = currentRouteParamsRecordId(state)
+	recordStoreId = createRecordStoreKey(recordType, paramsRecordId)
+	console.log(recordId)
+	console.log(recordStoreId)
 	return viewRecordsChild(recordStoreId, state)
 }

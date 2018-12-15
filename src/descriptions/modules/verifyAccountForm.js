@@ -19,8 +19,8 @@ export default {
 				label: 'Verification Code',
 			},
 		],
-		// submits: [
-		// 	{ label: 'Verify', action: verifyAccount },
-		// ],
+		submits: [
+			// { label: 'Verify', action: verifyAccount },
+		],
 	},
 }

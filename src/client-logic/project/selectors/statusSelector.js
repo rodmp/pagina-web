@@ -6,4 +6,4 @@ import { getResponseLenses } from 'sls-aws/src/server/api/getEndpointDesc'
 const responseLenses = getResponseLenses(GET_PROJECT)
 const { viewStatus } = responseLenses
 
-export default state => viewStatus(getRecordSelector(state))
+export default (state, props) => viewStatus(getRecordSelector(state, props))

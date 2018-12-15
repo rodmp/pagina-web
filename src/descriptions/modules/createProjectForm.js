@@ -56,12 +56,12 @@ export default {
 				label: 'Credit Card',
 			},
 		],
-		// submits: [
-		// 	{
-		// 		label: 'Create',
-		// 		action: createProject,
-		// 		onSuccess: createProjectOnSuccess,
-		// 	},
-		// ],
+		submits: [
+			// {
+			// 	label: 'Create',
+			// 	action: createProject,
+			// 	onSuccess: createProjectOnSuccess,
+			// },
+		],
 	},
 }

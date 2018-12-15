@@ -6,4 +6,6 @@ import { getResponseLenses } from 'sls-aws/src/server/api/getEndpointDesc'
 const responseLenses = getResponseLenses(GET_PROJECT)
 const { viewDescription } = responseLenses
 
-export default state => viewDescription(getRecordSelector(state))
+export default (state, props) => viewDescription(
+	getRecordSelector(state, props),
+)

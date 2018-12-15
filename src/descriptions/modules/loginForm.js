@@ -19,8 +19,8 @@ export default {
 				label: 'Password',
 			},
 		],
-		// submits: [
-		// 	{ label: 'Login', action: login },
-		// ],
+		submits: [
+			// { label: 'Login', action: login },
+		],
 	},
 }

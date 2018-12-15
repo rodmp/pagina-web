@@ -6,4 +6,6 @@ import { getResponseLenses } from 'sls-aws/src/server/api/getEndpointDesc'
 const responseLenses = getResponseLenses(GET_PROJECT)
 const { pathOrAssignees } = responseLenses
 
-export default state => pathOrAssignees([], getRecordSelector(state))
+export default (state, props) => pathOrAssignees(
+	[], getRecordSelector(state, props),
+)
