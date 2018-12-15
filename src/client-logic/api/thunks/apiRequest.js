@@ -1,6 +1,5 @@
 import { equals } from 'ramda'
 
-import invokeLambda from 'sls-aws/src/util/invokeLambda'
 import createListStoreKey from 'sls-aws/src/client-logic/api/util/createListStoreKey'
 import createRecordStoreKey from 'sls-aws/src/client-logic/api/util/createRecordStoreKey'
 import { idProp } from 'sls-aws/src/client-logic/api/lenses'
@@ -15,19 +14,8 @@ import apiRecordRequestError from 'sls-aws/src/client-logic/api/actions/apiRecor
 
 import recordTypeSelector from 'sls-aws/src/client-logic/api/selectors/recordTypeSelector'
 import endpointTypeSelector from 'sls-aws/src/client-logic/api/selectors/endpointTypeSelector'
-import jwtTokenSelector from 'sls-aws/src/client-logic/auth/selectors/jwtTokenSelector'
 
-import { apiFunctionArn } from 'sls-aws/cfOutput'
-
-export const invokeApiLambda = (endpointId, payload, state) => {
-	const jwtToken = jwtTokenSelector(state)
-	const lambdaPayload = {
-		endpointId,
-		payload,
-		...(jwtToken ? { authentication: jwtToken } : {}),
-	}
-	return invokeLambda(apiFunctionArn, lambdaPayload)
-}
+import invokeApiLambda from 'sls-aws/src/client-logic/api/util/invokeApiLambda'
 
 export const fetchList = async (dispatch, state, endpointId, payload) => {
 	const recordType = recordTypeSelector(endpointId)

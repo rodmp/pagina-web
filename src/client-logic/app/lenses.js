@@ -13,9 +13,14 @@ const appSchema = {
 							type: 'object',
 							properties: {
 								jwtToken: { type: 'string' },
-								'cognito:groups': {
-									type: 'array',
-									items: { type: 'string' },
+								payload: {
+									type: 'object',
+									properties: {
+										'cognito:groups': {
+											type: 'array',
+											items: { type: 'string' },
+										},
+									},
 								},
 							},
 						},

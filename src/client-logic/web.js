@@ -23,6 +23,10 @@ import apiRecordRequestSuccess from 'sls-aws/src/client-logic/api/reducers/apiRe
 import initApiListRequest from 'sls-aws/src/client-logic/api/reducers/initApiListRequest'
 import initApiRecordRequest from 'sls-aws/src/client-logic/api/reducers/initApiRecordRequest'
 
+import apiRecordClickActionRequestError from 'sls-aws/src/client-logic/api/reducers/apiRecordClickActionRequestError'
+import apiRecordClickActionRequestSuccess from 'sls-aws/src/client-logic/api/reducers/apiRecordClickActionRequestSuccess'
+import initApiRecordClickActionRequest from 'sls-aws/src/client-logic/api/reducers/initApiRecordClickActionRequest'
+
 // listeners
 import popStateListener from 'sls-aws/src/client-logic/route/listeners/popStateListener'
 
@@ -43,6 +47,9 @@ const store = createStore(
 		...apiRecordRequestSuccess,
 		...initApiListRequest,
 		...initApiRecordRequest,
+		...apiRecordClickActionRequestError,
+		...apiRecordClickActionRequestSuccess,
+		...initApiRecordClickActionRequest,
 	}, // reducer object
 	// [], // sagas
 	[

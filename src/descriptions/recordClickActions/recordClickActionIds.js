@@ -1,0 +1,1 @@
+export const APPROVE_PROJECT = 'APPROVE_PROJECT'

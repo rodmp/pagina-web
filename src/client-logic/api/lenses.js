@@ -71,6 +71,16 @@ const apiStoreSchema = {
 						},
 					},
 				},
+				recordClickActionProcessing: {
+					type: 'object',
+					patternProperties: {
+						[variableSchemaKey]: { // recordTypes-recordId
+							// type: 'boolean', this is really a boolean
+							type: 'object',
+							properties: {},
+						},
+					},
+				},
 			},
 		},
 	},
