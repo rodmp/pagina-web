@@ -1,8 +1,9 @@
 import { map, addIndex } from 'ramda'
 import React, { memo } from 'react'
 
-import Assignee from 'sls-aws/src/client-web/viewProject/Assignee'
+import Assignee from 'sls-aws/src/client-web/record/Assignee'
 import viewProjectConnector from 'sls-aws/src/client-logic/project/connectors/viewProjectConnector'
+import withModuleContext from 'sls-aws/src/util/withModuleContext'
 
 export const ViewProjectModule = memo(({
 	projectDescription, projectTitle, pledgeAmount, myPledge, status,
@@ -20,4 +21,4 @@ export const ViewProjectModule = memo(({
 	</div>
 ))
 
-export default viewProjectConnector(ViewProjectModule)
+export default withModuleContext(viewProjectConnector(ViewProjectModule))

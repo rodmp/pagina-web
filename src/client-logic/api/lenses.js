@@ -87,6 +87,7 @@ export const generalApiModuleDescriptionSchema = {
 			properties: {
 				endpointId: { type: 'string' },
 				recordType: { type: 'string' },
+				recordPayloadMap: { type: 'array' },
 			},
 		},
 	},

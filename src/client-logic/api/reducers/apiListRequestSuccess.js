@@ -17,8 +17,9 @@ export const apiListRequestSuccess = (
 	let listIds = []
 	const listItems = itemsProp(list)
 	const recordsSet = reduce((result, record) => {
-		const recordStoreId = createRecordStoreKey(recordType, idProp(record))
-		listIds = append(recordStoreId, listIds)
+		const recordId = idProp(record)
+		const recordStoreId = createRecordStoreKey(recordType, recordId)
+		listIds = append(recordId, listIds)
 		return setRecordsChild(recordStoreId, record, result)
 	}, state, listItems)
 	return compose(

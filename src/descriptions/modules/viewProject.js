@@ -5,5 +5,8 @@ export default {
 	[VIEW_PROJECT_MODULE_ID]: {
 		moduleType: 'record',
 		endpointId: GET_PROJECT,
+		recordPayloadMap: [
+			['projectId', ':recordId'],
+		],
 	},
 }

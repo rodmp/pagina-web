@@ -60,7 +60,7 @@ export default {
 									'',
 									[
 										getAtt(API_DYNAMO_DB_TABLE, 'Arn'),
-										'/*',
+										'*',
 									],
 								),
 							},

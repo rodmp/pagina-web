@@ -23,8 +23,8 @@ export default {
 				inputType: 'password',
 			},
 		],
-		// submits: [
-		// 	{ label: 'Sign Up', action: signUp },
-		// ],
+		submits: [
+			// { label: 'Sign Up', action: signUp },
+		],
 	},
 }
