@@ -1,7 +1,6 @@
 import { VERIFY_ACCOUNT_FORM_MODULE_ID } from 'sls-aws/src/descriptions/modules/moduleIds'
 
 import verifyAccountSchema from 'sls-aws/src/descriptions/formSchemas/verifyAccountSchema'
-// import verifyAccount from 'sls-aws/src/client-logic/cognito/thunks/verifyAccount'
 
 export default {
 	[VERIFY_ACCOUNT_FORM_MODULE_ID]: {
@@ -20,7 +19,7 @@ export default {
 			},
 		],
 		submits: [
-			// { label: 'Verify', action: verifyAccount },
+			{ label: 'Verify' },
 		],
 	},
 }
