@@ -4,7 +4,9 @@ const mockStateNotAdmin = {
 	app: {
 		authenticated: {
 			idToken: {
-				'cognito:groups': [],
+				payload: {
+					'cognito:groups': [],
+				},
 			},
 		},
 	},
@@ -14,7 +16,9 @@ const mockStateAdmin = {
 	app: {
 		authenticated: {
 			idToken: {
-				'cognito:groups': ['admin'],
+				payload: {
+					'cognito:groups': ['admin'],
+				},
 			},
 		},
 	},

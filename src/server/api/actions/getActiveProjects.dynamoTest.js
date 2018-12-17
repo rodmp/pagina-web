@@ -1,5 +1,7 @@
 import { map, range } from 'ramda'
 
+import wait from 'sls-aws/src/testUtil/wait'
+
 import { apiFn } from 'sls-aws/src/server/api'
 
 import { GET_ACTIVE_PROJECTS } from 'sls-aws/src/descriptions/endpoints/endpointIds'
@@ -33,7 +35,10 @@ describe('getActiveProjects', () => {
 				[newProject1, newProject2],
 			),
 		)
-
+		// So this kinda sucks, but there is no way to ConsistenRead on a GSI.
+		// This test will fail because of a race condition occasionally. Should
+		// figure out a better solution to this at some point...maybe a retry?
+		await wait(750)
 		const event = {
 			endpointId: GET_ACTIVE_PROJECTS,
 		}

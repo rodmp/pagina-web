@@ -5,10 +5,10 @@
 			"type": "node",
 			"request": "launch",
 			"name": "Launch Jest",
-			"runtimeArgs": ["--nolazy"],
 			"program": "${workspaceRoot}/node_modules/.bin/jest",
 			"cwd": "${workspaceRoot}",
 			"console": "integratedTerminal",
+			"protocol": "auto",
 			"args": [
 				"${fileDirname}/${fileBasenameNoExtension}",
 				"--runInBand",
