@@ -28,7 +28,7 @@ const moduleTypeAction = (moduleType) => {
 
 
 export const runModuleMountsHof = (
-	routeDescriptionsObj, moduleDescriptionsObj,
+	routeDescriptionsObj, moduleDescriptionsObj, moduleTypeActionFn,
 ) => (
 	(nextRouteObj, state) => async (dispatch) => {
 		const { routeId } = nextRouteObj
@@ -40,7 +40,7 @@ export const runModuleMountsHof = (
 					const moduleType = viewModuleType(
 						moduleId, moduleDescriptionsObj,
 					)
-					const action = moduleTypeAction(moduleType)
+					const action = moduleTypeActionFn(moduleType)
 					if (action) {
 						const args = { currentRouteObj, nextRouteObj, moduleId }
 						return [
@@ -58,5 +58,5 @@ export const runModuleMountsHof = (
 )
 
 export default runModuleMountsHof(
-	routeDescriptions, moduleDescriptions,
+	routeDescriptions, moduleDescriptions, moduleTypeAction,
 )

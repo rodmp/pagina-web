@@ -1,4 +1,3 @@
-import { forEach } from 'ramda'
 
 import {
 	runModuleMountsHof,
@@ -7,55 +6,39 @@ import {
 const ROUTE_MOCK_1 = 'ROUTE_MOCK_1'
 const ROUTE_MOCK_2 = 'ROUTE_MOCK_2'
 const ROUTE_MOCK_3 = 'ROUTE_MOCK_3'
-const ROUTE_MOCK_4 = 'ROUTE_MOCK_4'
 
 const MODULE_MOCK_1 = 'MODULE_MOCK_1'
 const MODULE_MOCK_2 = 'MODULE_MOCK_2'
 const MODULE_MOCK_3 = 'MODULE_MOCK_3'
-const MODULE_MOCK_4 = 'MODULE_MOCK_4'
-const MODULE_MOCK_5 = 'MODULE_MOCK_5'
 
 const mockRouteDescriptions = {
 	[ROUTE_MOCK_1]: {
 		modules: [
 			MODULE_MOCK_1,
-			MODULE_MOCK_2,
 		],
 	},
 	[ROUTE_MOCK_2]: {
 		modules: [
-			MODULE_MOCK_3,
+			MODULE_MOCK_2,
 		],
 	},
 	[ROUTE_MOCK_3]: {
 		modules: [
-			MODULE_MOCK_4,
-		],
-	},
-	[ROUTE_MOCK_4]: {
-		modules: [
-			MODULE_MOCK_5,
+			MODULE_MOCK_3,
 		],
 	},
 }
 
 const mockModuleMountActions = {
 	[MODULE_MOCK_1]: {
-		onEnterActions: [jest.fn(), jest.fn()],
-		onExitActions: [jest.fn(), jest.fn()],
+		moduleType: 'list',
 	},
 	[MODULE_MOCK_2]: {
-		onEnterActions: [jest.fn(), jest.fn()],
-		onExitActions: [jest.fn(), jest.fn()],
+		moduleType: 'record',
 	},
 	[MODULE_MOCK_3]: {
-		onEnterActions: [jest.fn(), jest.fn()],
-		onExitActions: [jest.fn(), jest.fn()],
+		moduleType: 'noMountFnsModuleType',
 	},
-	[MODULE_MOCK_4]: {
-		onEnterActions: [jest.fn(), jest.fn()],
-	},
-	[MODULE_MOCK_5]: {},
 }
 
 const mockState = {
@@ -66,8 +49,21 @@ const mockState = {
 	},
 }
 
+
+const listModuleOnEnterMock = jest.fn()
+const recordModuleOnEnterMock = jest.fn()
+const mockModuleTypeAction = (moduleType) => {
+	switch (moduleType) {
+		case 'list':
+			return listModuleOnEnterMock
+		case 'record':
+			return recordModuleOnEnterMock
+		default:
+	}
+}
+
 const runModuleMounts = runModuleMountsHof(
-	mockRouteDescriptions, mockModuleMountActions,
+	mockRouteDescriptions, mockModuleMountActions, mockModuleTypeAction,
 )
 
 const mockDispatch = () => {}
@@ -77,41 +73,17 @@ describe('runModuleMounts', () => {
 		await runModuleMounts(
 			{ routeId: ROUTE_MOCK_2, routeParams: {} }, mockState,
 		)(mockDispatch)
-		forEach(
-			(action) => {
-				expect(action).toHaveBeenCalled()
-			},
-			[
-				...mockModuleMountActions[MODULE_MOCK_1].onExitActions,
-				...mockModuleMountActions[MODULE_MOCK_2].onExitActions,
-				...mockModuleMountActions[MODULE_MOCK_3].onEnterActions,
-			],
-		)
-		forEach(
-			(action) => {
-				expect(action).not.toHaveBeenCalled()
-			},
-			[
-				...mockModuleMountActions[MODULE_MOCK_1].onEnterActions,
-				...mockModuleMountActions[MODULE_MOCK_2].onEnterActions,
-				...mockModuleMountActions[MODULE_MOCK_3].onExitActions,
-			],
-		)
+		expect(recordModuleOnEnterMock).toHaveBeenCalled()
 	})
 
 	test('First state on enter actions', async () => {
 		await runModuleMounts(
-			{ routeId: ROUTE_MOCK_3, routeParams: {} }, {},
+			{ routeId: ROUTE_MOCK_1, routeParams: {} }, {},
 		)(mockDispatch)
-		forEach(
-			(action) => {
-				expect(action).toHaveBeenCalled()
-			},
-			mockModuleMountActions[MODULE_MOCK_4].onEnterActions,
-		)
+		expect(listModuleOnEnterMock).toHaveBeenCalled()
 	})
 
-	test('Doesn\'t break if no actions', async () => {
+	test('Doesn\'t break if no actions for moduleType', async () => {
 		const noExitActionsMockState = {
 			route: {
 				history: [
@@ -120,7 +92,7 @@ describe('runModuleMounts', () => {
 			},
 		}
 		const noActionsMountPromise = runModuleMounts(
-			{ routeId: ROUTE_MOCK_4, routeParams: {} }, noExitActionsMockState,
+			{ routeId: ROUTE_MOCK_3, routeParams: {} }, noExitActionsMockState,
 		)(mockDispatch)
 		await noActionsMountPromise
 		expect(noActionsMountPromise).resolves

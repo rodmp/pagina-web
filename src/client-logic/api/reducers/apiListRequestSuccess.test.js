@@ -7,7 +7,7 @@ describe('apiListRequestSuccess', () => {
 		const reduced = apiListRequestSuccess(
 			{},
 			{
-				listStoreKey: 'mockHash',
+				listStoreKey: 'mockListStoreKey',
 				recordType: 'mockRecordType',
 				list: {
 					next: 'mockNextPageKey',
@@ -21,16 +21,16 @@ describe('apiListRequestSuccess', () => {
 		expect(reduced).toEqual({
 			api: {
 				lists: {
-					mockHash: {
+					mockListStoreKey: {
 						next: 'mockNextPageKey',
 						items: [
-							'mockRecordType-mockId1',
-							'mockRecordType-mockId2',
+							'mockId1',
+							'mockId2',
 						],
 					},
 				},
 				listProcessing: {
-					mockHash: false,
+					mockListStoreKey: false,
 				},
 				records: {
 					'mockRecordType-mockId1': {
