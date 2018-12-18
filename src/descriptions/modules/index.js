@@ -5,6 +5,7 @@ import createProjectForm from 'sls-aws/src/descriptions/modules/createProjectFor
 import viewProject from 'sls-aws/src/descriptions/modules/viewProject'
 import pendingProjectsList from 'sls-aws/src/descriptions/modules/pendingProjectsList'
 import activeProjectsList from 'sls-aws/src/descriptions/modules/activeProjectsList'
+import pledgeProjectForm from 'sls-aws/src/descriptions/modules/pledgeProjectForm'
 
 const allModules = {
 	...loginForm,
@@ -14,6 +15,7 @@ const allModules = {
 	...viewProject,
 	...pendingProjectsList,
 	...activeProjectsList,
+	...pledgeProjectForm,
 }
 
 export default allModules

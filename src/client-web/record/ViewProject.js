@@ -9,11 +9,15 @@ import { APPROVE_PROJECT } from 'sls-aws/src/descriptions/recordClickActions/rec
 import viewProjectConnector from 'sls-aws/src/client-logic/project/connectors/viewProjectConnector'
 import withModuleContext from 'sls-aws/src/util/withModuleContext'
 
+import goToPledgeProjectHandler from 'sls-aws/src/client-logic/project/handlers/goToPledgeProjectHandler'
+
 import { orNull } from 'sls-aws/src/util/ramdaPlus'
+
+import Button from '@material-ui/core/Button'
 
 export const ViewProjectModule = memo(({
 	projectId, projectDescription, projectTitle, pledgeAmount, myPledge, status,
-	assignees, canApproveProject,
+	assignees, canApproveProject, pushRoute,
 }) => (
 	<div className="layout-column">
 		<div>Project Status: {status}</div>
@@ -30,6 +34,12 @@ export const ViewProjectModule = memo(({
 				recordClickActionId={APPROVE_PROJECT}
 				recordId={projectId}
 			/>,
+		)}
+		{orNull(
+			true,
+			<Button onClick={goToPledgeProjectHandler(projectId, pushRoute)}>
+				Pledge
+			</Button>,
 		)}
 	</div>
 ))

@@ -4,7 +4,7 @@ export default {
 		title: { type: 'string' },
 		description: { type: 'string' },
 		stripeCardId: { type: 'string' },
-		pledgeAmount: { type: 'integer' },
+		pledgeAmount: { type: 'integer', minimum: 5 },
 		assignees: {
 			type: 'array',
 			items: {

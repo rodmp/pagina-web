@@ -10,6 +10,8 @@ import statusSelector from 'sls-aws/src/client-logic/project/selectors/statusSel
 import projectAssigneesSelector from 'sls-aws/src/client-logic/project/selectors/projectAssigneesSelector'
 import canApproveProjectSelector from 'sls-aws/src/client-logic/project/selectors/canApproveProjectSelector'
 
+import pushRoute from 'sls-aws/src/client-logic/route/thunks/pushRoute'
+
 export default reduxConnector(
 	[
 		['projectId', recordIdSelector],
@@ -21,5 +23,5 @@ export default reduxConnector(
 		['assignees', projectAssigneesSelector],
 		['canApproveProject', canApproveProjectSelector],
 	],
-	// [['setInput', setInput]],
+	[['pushRoute', pushRoute]],
 )
