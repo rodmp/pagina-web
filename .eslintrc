@@ -34,7 +34,9 @@
         "react/jsx-indent": [2, "tab"],
         "react/jsx-indent-props": ["error", "tab"],
         "react/jsx-filename-extension": 0,
-        "react/prefer-stateless-function": [1, { "ignorePureComponents": true }]
+        "react/prefer-stateless-function": [1, { "ignorePureComponents": true }],
+        // This just seems to mess stuff up
+        "react/jsx-one-expression-per-line": [0]
     },
     "parserOptions": {
         "ecmaFeatures": {

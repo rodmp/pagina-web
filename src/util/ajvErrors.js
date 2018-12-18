@@ -51,6 +51,14 @@ export default (schema, errors) => reduce((result, error) => {
 				result,
 			)
 		}
+		case 'minimum': {
+			const errorPath = dataPathKey(error)
+			return set(
+				lensPath(errorPath),
+				`${propTitle(errorPath)} must be at least ${errorLimit(error)}`,
+				result,
+			)
+		}
 		case 'minLength': {
 			const errorPath = dataPathKey(error)
 			return set(
