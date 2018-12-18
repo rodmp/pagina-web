@@ -22,6 +22,7 @@ import apiRecordRequestError from 'sls-aws/src/client-logic/api/reducers/apiReco
 import apiRecordRequestSuccess from 'sls-aws/src/client-logic/api/reducers/apiRecordRequestSuccess'
 import initApiListRequest from 'sls-aws/src/client-logic/api/reducers/initApiListRequest'
 import initApiRecordRequest from 'sls-aws/src/client-logic/api/reducers/initApiRecordRequest'
+import generalRecordModification from 'sls-aws/src/client-logic/api/reducers/generalRecordModification'
 
 import apiRecordClickActionRequestError from 'sls-aws/src/client-logic/api/reducers/apiRecordClickActionRequestError'
 import apiRecordClickActionRequestSuccess from 'sls-aws/src/client-logic/api/reducers/apiRecordClickActionRequestSuccess'
@@ -50,6 +51,7 @@ const store = createStore(
 		...apiRecordClickActionRequestError,
 		...apiRecordClickActionRequestSuccess,
 		...initApiRecordClickActionRequest,
+		...generalRecordModification,
 	}, // reducer object
 	// [], // sagas
 	[
