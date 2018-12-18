@@ -16,5 +16,12 @@ export default {
 			['audit', projectApprovedKey],
 		],
 		label: 'Approve',
+		onSuccessRecordUpdates: [
+			{
+				modification: 'set',
+				path: [':recordStoreKey', 'status'],
+				value: projectApprovedKey,
+			},
+		],
 	},
 }

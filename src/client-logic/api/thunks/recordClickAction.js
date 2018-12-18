@@ -6,8 +6,11 @@ import createRecordClickActionStoreKey from 'sls-aws/src/client-logic/api/util/c
 import initApiRecordClickActionRequest from 'sls-aws/src/client-logic/api/actions/initApiRecordClickActionRequest'
 import apiRecordClickActionRequestSuccess from 'sls-aws/src/client-logic/api/actions/apiRecordClickActionRequestSuccess'
 import apiRecordClickActionRequestError from 'sls-aws/src/client-logic/api/actions/apiRecordClickActionRequestError'
-
+import generalRecordModification from 'sls-aws/src/client-logic/api/actions/generalRecordModification'
 import recordClickActionDescriptions from 'sls-aws/src/descriptions/recordClickActions'
+
+import recordTypeSelector from 'sls-aws/src/client-logic/api/selectors/recordTypeSelector'
+import createRecordStoreKey from 'sls-aws/src/client-logic/api/util/createRecordStoreKey'
 
 import invokeApiLambda from 'sls-aws/src/client-logic/api/util/invokeApiLambda'
 
@@ -21,7 +24,7 @@ export default (
 		dispatch(initApiRecordClickActionRequest(recordClickActionStoreKey))
 		const state = getState()
 		const {
-			endpointId, payloadMap,
+			endpointId, payloadMap, onSuccessRecordUpdates,
 		} = prop(recordClickActionId, recordClickActionDescriptions)
 		const payloadSubs = { recordId }
 		const payload = reduce(
@@ -42,6 +45,16 @@ export default (
 					recordClickActionStoreKey, body,
 				),
 			)
+			if (onSuccessRecordUpdates) {
+				const recordType = recordTypeSelector(endpointId)
+				const recordStoreKey = createRecordStoreKey(
+					recordType, recordId,
+				)
+				dispatch(generalRecordModification(
+					{ recordStoreKey },
+					onSuccessRecordUpdates,
+				))
+			}
 		} else { // else creating, don't need record error state
 			const error = { ...statusError, ...generalError }
 			dispatch(
