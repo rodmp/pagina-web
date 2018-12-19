@@ -17,7 +17,7 @@ import Button from '@material-ui/core/Button'
 
 export const ViewProjectModule = memo(({
 	projectId, projectDescription, projectTitle, pledgeAmount, myPledge, status,
-	assignees, canApproveProject, pushRoute,
+	assignees, canApproveProject, pushRoute, canPledgeProject,
 }) => (
 	<div className="layout-column">
 		<div>Project Status: {status}</div>
@@ -36,7 +36,7 @@ export const ViewProjectModule = memo(({
 			/>,
 		)}
 		{orNull(
-			true,
+			canPledgeProject,
 			<Button onClick={goToPledgeProjectHandler(projectId, pushRoute)}>
 				Pledge
 			</Button>,

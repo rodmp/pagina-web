@@ -21,12 +21,11 @@ const adminUser = {
 }
 
 describe('authorizeRequest', () => {
-	test('no auth required', async () => {
-		getAuthenticationFn.mockReturnValueOnce(undefined)
-		const userId = await authorizeRequest(mockEndpointId, mockAuthentication)
+	test('No auth required', async () => {
+		const userId = await authorizeRequest(mockEndpointId)
 		expect(userId).toBeUndefined()
 	})
-	test('auth required, user authenticated', async () => {
+	test('Authenticated but no auth required', async () => {
 		getAuthenticationFn.mockReturnValueOnce(authenticated)
 		getCognitoUserFn.mockReturnValueOnce(
 			Promise.resolve(regularUser),
@@ -34,7 +33,15 @@ describe('authorizeRequest', () => {
 		const userId = await authorizeRequest(mockEndpointId, mockAuthentication)
 		expect(userId).toEqual('user-mockUserId')
 	})
-	test('auth required, user not authenticated', async () => {
+	test('Auth required, user authenticated', async () => {
+		getAuthenticationFn.mockReturnValueOnce(authenticated)
+		getCognitoUserFn.mockReturnValueOnce(
+			Promise.resolve(regularUser),
+		)
+		const userId = await authorizeRequest(mockEndpointId, mockAuthentication)
+		expect(userId).toEqual('user-mockUserId')
+	})
+	test('Auth required, user not authenticated', async () => {
 		getAuthenticationFn.mockReturnValueOnce(authenticated)
 		getCognitoUserFn.mockReturnValueOnce(
 			Promise.resolve({ error: 'MOCK_VALIDATION_ERROR' }),
@@ -50,7 +57,7 @@ describe('authorizeRequest', () => {
 			statusCode: 403,
 		})
 	})
-	test('admin required, user is admin', async () => {
+	test('Admin required, user is admin', async () => {
 		getAuthenticationFn.mockReturnValueOnce(admin)
 		getCognitoUserFn.mockReturnValueOnce(
 			Promise.resolve(adminUser),
@@ -58,7 +65,7 @@ describe('authorizeRequest', () => {
 		const userId = await authorizeRequest(mockEndpointId, mockAuthentication)
 		expect(userId).toEqual('user-mockAdminUserId')
 	})
-	test('admin required, user is not admin', async () => {
+	test('Admin required, user is not admin', async () => {
 		getAuthenticationFn.mockReturnValueOnce(admin)
 		getCognitoUserFn.mockReturnValueOnce(
 			Promise.resolve(regularUser),
