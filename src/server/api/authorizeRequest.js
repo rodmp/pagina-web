@@ -8,24 +8,25 @@ import { getAuthentication } from 'sls-aws/src/server/api/getEndpointDesc'
 export const authorizeRequestHof = (
 	getAuthenticationFn, getCognitoUserFn,
 ) => async (endpointId, authentication) => {
-	let userId
 	const authenticationRequired = getAuthenticationFn(endpointId)
-	if (authenticationRequired) {
-		const { error, cognitoUser } = await getCognitoUserFn(authentication)
-		if (error) {
-			throw authorizationError(error)
-		}
+	let cognito = {}
+	if (authentication) {
+		cognito = await getCognitoUserFn(authentication)
+	}
+	const { error, cognitoUser } = cognito
+	if (error && authenticationRequired) {
+		throw authorizationError(error)
+	}
+	if (authenticationRequired && not(equals(authenticationRequired, authenticated))) {
 		const cognitoGroups = propOr([], 'cognito:groups', cognitoUser)
-		const invalidAuthentication = and(
-			not(equals(authenticationRequired, authenticated)),
-			not(contains(authenticationRequired, cognitoGroups)),
+		const invalidAuthentication = not(
+			contains(authenticationRequired, cognitoGroups),
 		)
 		if (invalidAuthentication) {
 			throw authorizationError('Must be admin user')
 		}
-		userId = userPk(prop('sub', cognitoUser))
 	}
-	return userId
+	return cognitoUser && userPk(prop('sub', cognitoUser))
 }
 
 export default authorizeRequestHof(getAuthentication, getCognitoUser)

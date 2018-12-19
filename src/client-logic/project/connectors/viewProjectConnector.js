@@ -9,6 +9,7 @@ import myPledgeSelector from 'sls-aws/src/client-logic/project/selectors/myPledg
 import statusSelector from 'sls-aws/src/client-logic/project/selectors/statusSelector'
 import projectAssigneesSelector from 'sls-aws/src/client-logic/project/selectors/projectAssigneesSelector'
 import canApproveProjectSelector from 'sls-aws/src/client-logic/project/selectors/canApproveProjectSelector'
+import canPledgeProjectSelector from 'sls-aws/src/client-logic/project/selectors/canPledgeProjectSelector'
 
 import pushRoute from 'sls-aws/src/client-logic/route/thunks/pushRoute'
 
@@ -22,6 +23,7 @@ export default reduxConnector(
 		['status', statusSelector],
 		['assignees', projectAssigneesSelector],
 		['canApproveProject', canApproveProjectSelector],
+		['canPledgeProject', canPledgeProjectSelector],
 	],
 	[['pushRoute', pushRoute]],
 )
