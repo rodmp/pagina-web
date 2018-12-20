@@ -27,6 +27,7 @@ export default (
 			endpointId, payloadMap, onSuccessRecordUpdates,
 		} = prop(recordClickActionId, recordClickActionDescriptions)
 		const payloadSubs = { recordId }
+		// @TODO replace this with util/subObj (also in recordModuleOnEnter)
 		const payload = reduce(
 			(result, [key, value]) => {
 				if (contains(':', value)) {
