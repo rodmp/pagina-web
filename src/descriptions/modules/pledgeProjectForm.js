@@ -5,6 +5,10 @@ import {
 } from 'sls-aws/src/descriptions/modules/moduleIds'
 
 import pledgeProjectPayloadSchema from 'sls-aws/src/descriptions/endpoints/schemas/pledgeProjectPayloadSchema'
+import { PLEDGE_PROJECT } from 'sls-aws/src/descriptions/endpoints/endpointIds'
+import {
+	VIEW_PROJECT_ROUTE_ID,
+} from 'sls-aws/src/descriptions/routes/routeIds'
 
 export default {
 	[PLEDGE_PROJECT_FORM_MODULE_ID]: {
@@ -36,6 +40,18 @@ export default {
 		submits: [
 			{
 				label: 'Pledge',
+				endpointId: PLEDGE_PROJECT,
+				onSuccessRecordUpdates: [{
+					modification: 'set',
+					path: [':recordStoreKey', 'myPledge'],
+					valuePath: ['formData', 'pledgeAmount'],
+				}],
+				onSuccessRedirect: {
+					routeId: VIEW_PROJECT_ROUTE_ID,
+					routeParams: [
+						['recordId', { $sub: ['resBody', 'id'] }],
+					],
+				},
 			},
 		],
 	},
