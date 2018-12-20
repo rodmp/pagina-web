@@ -1,10 +1,17 @@
-import { isNil, and, length, gt, prop, path } from 'ramda'
+import { isNil, and, length, gt, prop, path, pathOr } from 'ramda'
 import submitForm from 'sls-aws/src/client-logic/form/actions/submitForm'
 import submitFormComplete from 'sls-aws/src/client-logic/form/actions/submitFormComplete'
 import moduleIdFromKey from 'sls-aws/src/client-logic/route/util/moduleIdFromKey'
 import validateForm from 'sls-aws/src/client-logic/form/util/validateForm'
 import setFormErrors from 'sls-aws/src/client-logic/form/actions/setFormErrors'
 import formSubmits from 'sls-aws/src/descriptions/formSubmits'
+
+import recordTypeSelector from 'sls-aws/src/client-logic/api/selectors/recordTypeSelector'
+import createRecordStoreKey from 'sls-aws/src/client-logic/api/util/createRecordStoreKey'
+import generalRecordModification from 'sls-aws/src/client-logic/api/actions/generalRecordModification'
+import subPushRoute from 'sls-aws/src/client-logic/route/thunks/subPushRoute'
+
+import { idProp } from 'sls-aws/src/client-logic/api/lenses'
 
 import moduleDescriptions from 'sls-aws/src/descriptions/modules'
 
@@ -25,16 +32,47 @@ export const submitFormHof = (
 	return validateFormFn(moduleKey, state).then((formData) => {
 		const submitAction = path([correctedSubmitIndex, 'action'], submits)
 		return dispatch(submitAction(formData)).then((res) => {
+			const successPromises = []
 			const onSuccessFn = path(
 				[correctedSubmitIndex, 'onSuccess'], submits,
 			)
 			if (onSuccessFn) {
-				dispatch(onSuccessFn(res)).then(() => {
-					dispatch(submitFormCompleteFn(moduleKey))
-				})
-			} else {
-				dispatch(submitFormCompleteFn(moduleKey))
+				successPromises.push(dispatch(onSuccessFn(res)))
 			}
+
+			const {
+				onSuccessRecordUpdates, endpointId, onSuccessRedirect,
+			} = pathOr([
+				moduleId, 'submits', correctedSubmitIndex,
+				'onSuccessRecordUpdates',
+			], {}, moduleDescriptionsObj)
+			const recordType = recordTypeSelector(endpointId)
+			const recordId = idProp(res)
+			const recordStoreKey = createRecordStoreKey(
+				recordType, recordId,
+			)
+			const substitutes = { formData, recordStoreKey, res }
+			if (onSuccessRecordUpdates) {
+				successPromises.push(
+					dispatch(generalRecordModification(
+						substitutes,
+						onSuccessRecordUpdates,
+					)),
+				)
+			}
+
+			if (onSuccessRedirect) {
+				const { routeId, routeParams } = onSuccessRedirect
+				successPromises.push(
+					dispatch(
+						subPushRoute(routeId, routeParams, substitutes),
+					),
+				)
+			}
+
+			Promise.all(successPromises).then(() => {
+				dispatch(submitFormCompleteFn(moduleKey))
+			})
 		}).catch((errors) => {
 			console.warn(errors)
 			dispatch(setFormErrorsFn(moduleKey, errors))
