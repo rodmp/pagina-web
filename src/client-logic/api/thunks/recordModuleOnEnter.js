@@ -13,6 +13,7 @@ export default ({ moduleId, nextRouteObj }) => async (dispatch) => {
 	const payloadItems = moduleRecordPayloadMapSelector(
 		{ /* state */ }, { moduleId },
 	)
+	// @TODO replace this with util/subObj (also in recordClickAction)
 	const payload = reduce(
 		(result, [key, value]) => {
 			if (contains(':', value)) {

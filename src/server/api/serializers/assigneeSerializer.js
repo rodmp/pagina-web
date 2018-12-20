@@ -34,7 +34,6 @@ export const getTwitchAssigneeDataHof = getUserDataFn => async (
 					username: prop('login', twitchUserData),
 				}
 			}
-			// @TODO make a error creation function
 			throw payloadSchemaError({
 				assignee: {
 					[index]: 'Invalid twitch user',
