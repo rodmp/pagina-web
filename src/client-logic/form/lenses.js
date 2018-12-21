@@ -63,6 +63,7 @@ export const formModuleSchema = {
 		[variableSchemaKey]: {
 			type: 'object',
 			properties: {
+				title: { type: 'string' },
 				schema: {
 					type: 'object',
 					properties: {},
