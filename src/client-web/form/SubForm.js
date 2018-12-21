@@ -8,7 +8,7 @@ import SubFormFields from 'sls-aws/src/client-web/form/SubFormFields'
 import subFormConnector from 'sls-aws/src/client-logic/form/connectors/subFormConnector'
 import withModuleContext from 'sls-aws/src/util/withModuleContext'
 
-import addAnotherHandler from 'sls-aws/src/client-logic/form/handers/addAnotherHandler'
+import addAnotherHandler from 'sls-aws/src/client-logic/form/handlers/addAnotherHandler'
 
 
 export const SubForm = memo(({

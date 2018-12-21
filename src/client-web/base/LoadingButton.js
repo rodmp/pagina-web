@@ -1,7 +1,7 @@
 import React from 'react'
 import { orNull } from 'sls-aws/src/util/ramdaPlus'
 
-import Button from '@material-ui/core/Button'
+import Button from 'sls-aws/src/client-web/base/Button'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import { withStyles } from '@material-ui/core/styles'
 
@@ -29,6 +29,7 @@ const RenderLoading = withStyles(buttonProgressStyles)(
 const wrapperStyles = {
 	wrapper: {
 		position: 'relative',
+		width: '100%',
 	},
 }
 

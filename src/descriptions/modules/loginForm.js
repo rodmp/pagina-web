@@ -5,6 +5,7 @@ import loginSchema from 'sls-aws/src/descriptions/formSchemas/loginSchema'
 export default {
 	[LOGIN_FORM_MODULE_ID]: {
 		moduleType: 'form',
+		title: 'Sign In',
 		schema: loginSchema,
 		fields: [
 			{
@@ -19,7 +20,7 @@ export default {
 			},
 		],
 		submits: [
-			{ label: 'Login' },
+			{ label: 'Sign In' },
 		],
 	},
 }

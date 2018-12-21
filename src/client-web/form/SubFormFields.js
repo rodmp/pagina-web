@@ -9,7 +9,7 @@ import Fields from 'sls-aws/src/client-web/form/Fields'
 import subFormFieldsConnector from 'sls-aws/src/client-logic/form/connectors/subFormFieldsConnector'
 import withModuleContext from 'sls-aws/src/util/withModuleContext'
 
-import removeSubFormHandler from 'sls-aws/src/client-logic/form/handers/removeSubFormHandler'
+import removeSubFormHandler from 'sls-aws/src/client-logic/form/handlers/removeSubFormHandler'
 
 
 export const SubFormFields = memo(({
