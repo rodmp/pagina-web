@@ -213,7 +213,7 @@ export const StripeFields = memo(({
 
 const InjectedStripeFields = injectStripe(StripeFields)
 
-export const StripeCard = memo(({
+export const StripeCardUnconnected = memo(({
 	moduleKey, fieldPath, setInput,
 }) => (
 	<StripeProvider apiKey={stripeClientId}>
@@ -227,4 +227,4 @@ export const StripeCard = memo(({
 	</StripeProvider>
 ))
 
-export default fieldInputConnector(StripeCard)
+export default fieldInputConnector(StripeCardUnconnected)

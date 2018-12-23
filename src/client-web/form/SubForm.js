@@ -11,7 +11,7 @@ import withModuleContext from 'sls-aws/src/util/withModuleContext'
 import addAnotherHandler from 'sls-aws/src/client-logic/form/handlers/addAnotherHandler'
 
 
-export const SubForm = memo(({
+export const SubFormUnconnected = memo(({
 	moduleKey, moduleId, fieldLabel, addSubForm, subFormCount, fieldId,
 	fieldDescPath, fieldPath,
 }) => (
@@ -40,5 +40,5 @@ export const SubForm = memo(({
 ))
 
 export default withModuleContext(
-	subFormConnector(SubForm),
+	subFormConnector(SubFormUnconnected),
 )
