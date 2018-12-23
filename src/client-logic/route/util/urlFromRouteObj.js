@@ -10,7 +10,7 @@ export const urlFromRouteObjHof = (allRoutes) => {
 	const routeRegexes = createRouteUrlRegexes(allRoutes)
 	return ({ routeId, routeParams }) => view(
 		routeIdToPathLens(routeId),
-		routeRegexes
+		routeRegexes,
 	)(routeParams)
 }
 

@@ -64,6 +64,11 @@ export const formModuleSchema = {
 			type: 'object',
 			properties: {
 				title: { type: 'string' },
+				subTitle: { type: 'string' },
+				preSubmitText: { type: 'string' },
+				postSubmitText: { type: 'string' },
+				preSubmitCaption: { type: 'string' },
+				postSubmitCaption: { type: 'string' },
 				schema: {
 					type: 'object',
 					properties: {},

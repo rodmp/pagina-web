@@ -1,5 +1,6 @@
 import {
 	LOGIN_ROUTE_ID, SIGN_UP_ROUTE_ID, VERIFY_ACCOUNT_ROUTE_ID,
+	FORGOT_PASSWORD_ROUTE_ID,
 } from 'sls-aws/src/descriptions/routes/routeIds'
 
 import {
@@ -25,6 +26,13 @@ export default {
 	},
 	[VERIFY_ACCOUNT_ROUTE_ID]: {
 		url: '/verify-account',
+		authentication: unAuthValue,
+		modules: [
+			VERIFY_ACCOUNT_FORM_MODULE_ID,
+		],
+	},
+	[FORGOT_PASSWORD_ROUTE_ID]: {
+		url: '/forgot-password',
 		authentication: unAuthValue,
 		modules: [
 			VERIFY_ACCOUNT_FORM_MODULE_ID,

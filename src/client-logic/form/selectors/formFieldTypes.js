@@ -7,8 +7,8 @@ import moduleDescriptions from 'sls-aws/src/descriptions/modules'
 const { viewFields } = formModuleLenses
 
 export default (state, props) => compose(
-	addIndex(map)(({ fieldId, inputType }, fieldIndex) => [
-		[fieldId], [fieldIndex], inputType, fieldId,
+	addIndex(map)(({ fieldId, inputType, subFieldText }, fieldIndex) => [
+		[fieldId], [fieldIndex], inputType, fieldId, subFieldText,
 	]),
 	viewFields(__, moduleDescriptions),
 	moduleIdProp,

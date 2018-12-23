@@ -4,12 +4,15 @@ import TextField from 'sls-aws/src/client-web/form/TextField'
 import SubForm from 'sls-aws/src/client-web/form/SubForm'
 import StripeCard from 'sls-aws/src/client-web/form/StripeCard'
 
+import InputWrapper from 'sls-aws/src/client-web/form/InputWrapper'
 
 const Fields = memo(({
 	formFieldTypes, moduleKey,
-}) => formFieldTypes.map(([fieldPath, fieldDescPath, inputType, fieldId]) => {
+}) => formFieldTypes.map(([
+	fieldPath, fieldDescPath, inputType, fieldId, subFieldText,
+]) => {
+	const wrapperProps = { subFieldText, key: fieldId }
 	const props = {
-		key: fieldId,
 		fieldType: inputType,
 		fieldId,
 		fieldDescPath,
@@ -21,11 +24,23 @@ const Fields = memo(({
 		case 'email':
 		case 'password':
 		case 'number':
-			return <TextField {...props} />
+			return (
+				<InputWrapper {...wrapperProps}>
+					<TextField {...props} />
+				</InputWrapper>
+			)
 		case 'subForm':
-			return <SubForm {...props} />
+			return (
+				<InputWrapper {...wrapperProps}>
+					<SubForm {...props} />
+				</InputWrapper>
+			)
 		case 'stripeCard':
-			return <StripeCard {...props} />
+			return (
+				<InputWrapper {...wrapperProps}>
+					<StripeCard {...props} />
+				</InputWrapper>
+			)
 		default:
 			return (
 				<div key={fieldId}>
