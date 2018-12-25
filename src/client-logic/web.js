@@ -1,9 +1,11 @@
 import createStore from 'sls-aws/src/util/createStore'
 
 import initApp from 'sls-aws/src/client-logic/app/thunks/initApp'
+import testMediaBreakpoints from 'sls-aws/src/client-logic/app/thunks/testMediaBreakpoints'
 
 // reducers
 import authDetermined from 'sls-aws/src/client-logic/app/reducers/authDetermined'
+import setMediaBreakpoints from 'sls-aws/src/client-logic/app/reducers/setMediaBreakpoints'
 import changeRoute from 'sls-aws/src/client-logic/route/reducers/changeRoute'
 
 // form
@@ -30,10 +32,12 @@ import initApiRecordClickActionRequest from 'sls-aws/src/client-logic/api/reduce
 
 // listeners
 import popStateListener from 'sls-aws/src/client-logic/route/listeners/popStateListener'
+import windowSizeListener from 'sls-aws/src/client-logic/app/listeners/windowSizeListener'
 
 const store = createStore(
 	{
 		...authDetermined,
+		...setMediaBreakpoints,
 		...changeRoute,
 		...changeInput,
 		...clearFormErrors,
@@ -56,9 +60,10 @@ const store = createStore(
 	// [], // sagas
 	[
 		popStateListener,
+		windowSizeListener,
 	], // listeners
 	{}, // initial state
-	initApp,
+	[initApp, testMediaBreakpoints],
 )
 
 export default store

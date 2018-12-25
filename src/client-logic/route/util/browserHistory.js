@@ -6,7 +6,7 @@ import createHistory from 'history/createBrowserHistory'
 const history = createHistory()
 
 export const changeBrowserHistory = (
-	historyChangeType, url, { routeId, routeParams }
+	historyChangeType, url, { routeId, routeParams },
 ) => Result.try(() => {
 	if (!contains(historyChangeType, ['push', 'replace'])) {
 		throw new Error(`Invalid history change type: ${historyChangeType}`)

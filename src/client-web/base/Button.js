@@ -8,7 +8,7 @@ import {
 import { withStyles } from '@material-ui/core/styles'
 
 const styles = {
-	root: {
+	button: {
 		color: 'white',
 		backgroundColor: primaryColor,
 		'&:hover': {
@@ -19,13 +19,15 @@ const styles = {
 }
 
 export const ButtonUnstyled = memo(({
-	classes, onClick, disabled,
+	classes, onClick, disabled, children,
 }) => (
 	<Button
 		className={classes.button}
 		onClick={onClick}
 		disabled={disabled}
-	/>
+	>
+		{children}
+	</Button>
 ))
 
-export default withStyles(styles)(Button)
+export default withStyles(styles)(ButtonUnstyled)

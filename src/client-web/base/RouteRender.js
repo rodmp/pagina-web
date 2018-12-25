@@ -7,7 +7,8 @@ import routeRenderConnector from 'sls-aws/src/client-logic/route/connectors/rout
 import FormModule from 'sls-aws/src/client-web/form/FormModule'
 import ListModule from 'sls-aws/src/client-web/list/ListModule'
 import RecordModule from 'sls-aws/src/client-web/record/RecordModule'
-
+import Navigation from 'sls-aws/src/client-web/base/Navigation'
+import Footer from 'sls-aws/src/client-web/base/Footer'
 
 import { ModuleContextProvider } from 'sls-aws/src/util/withModuleContext'
 
@@ -48,16 +49,8 @@ export const RenderModules = ({ moduleTypes }) => (
 						key={moduleId}
 						className="flex layout-column layout-align-center-center"
 					>
-						<p>
-moduleId:
-														{' '}
-														{moduleId}
-      												</p>
-						<p>
-moduleType:
-														{' '}
-														{moduleType}
-												      </p>
+						<p>{moduleId}</p>
+						<p>moduleType: {moduleType}</p>
 					</div>
 				)
 		}
@@ -67,10 +60,12 @@ moduleType:
 export const RouteRender = ({ currentRouteModuleTypes, noRoute }) => ternary(
 	noRoute,
 	<div>loading</div>,
-	<div>
-		<div className="layout-column layout-align-center-stretch">
+	<div className="flex layout-column">
+		<Navigation />
+		<div className="flex layout-column layout-align-center-stretch">
 			<RenderModules moduleTypes={currentRouteModuleTypes} />
 		</div>
+		<Footer />
 	</div>,
 )
 

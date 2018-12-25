@@ -5,6 +5,6 @@ import {
 	historyPopEvent,
 } from 'sls-aws/src/client-logic/route/util/browserHistory'
 
-export default dispatch => historyPopEvent((location) => (
+export default dispatch => historyPopEvent(location => (
 	dispatch(popRoute(view(locationStateLens, location)))
 ))
