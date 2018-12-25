@@ -6,7 +6,8 @@ import {
 	navigationColor,
 } from 'sls-aws/src/client-web/commonStyles'
 
-import { withStyles } from '@material-ui/core/styles'
+import navigationConnector from 'sls-aws/src/client-logic/app/connectors/navigationConnector'
+
 import MaxWidthContainer from 'sls-aws/src/client-web/base/MaxWidthContainer'
 
 const styles = {
@@ -21,8 +22,8 @@ const styles = {
 	},
 }
 
-export const NavigationUnstyled = memo(({
-	classes,
+export const NavigationUnconnected = memo(({
+	showMobileNav, classes,
 }) => (
 	<div
 		className={classNames(
@@ -32,8 +33,9 @@ export const NavigationUnstyled = memo(({
 	>
 		<MaxWidthContainer>
 			<div className={classes.logo}>Double Dog</div>
+			<div>{showMobileNav.toString()}</div>
 		</MaxWidthContainer>
 	</div>
 ))
 
-export default withStyles(styles)(NavigationUnstyled)
+export default navigationConnector(NavigationUnconnected, styles)

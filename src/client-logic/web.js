@@ -63,7 +63,10 @@ const store = createStore(
 		windowSizeListener,
 	], // listeners
 	{}, // initial state
-	[initApp, testMediaBreakpoints],
+	[
+		initApp,
+		testMediaBreakpoints,
+	],
 )
 
 export default store
