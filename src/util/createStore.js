@@ -7,7 +7,7 @@ import { forEach } from 'ramda'
 import createReducer from 'sls-aws/src/util/createReducer'
 
 const createStore = (
-	reducerObj, /* sagas,*/ listeners, initialState = {}, initialThunk,
+	reducerObj, /* sagas, */ listeners, initialState = {}, initialThunks,
 ) => {
 	const reducer = createReducer(
 		reducerObj,
@@ -35,7 +35,10 @@ const createStore = (
 		listeners,
 	)
 
-	dispatch(initialThunk())
+	forEach(
+		initialThunk => dispatch(initialThunk()),
+		initialThunks,
+	)
 
 	return store
 }
