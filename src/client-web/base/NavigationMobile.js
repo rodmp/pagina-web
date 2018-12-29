@@ -1,5 +1,7 @@
 import React, { memo } from 'react'
 
+import { ternary } from 'sls-aws/src/util/ramdaPlus'
+
 import classNames from 'classnames'
 
 import {
@@ -9,8 +11,6 @@ import {
 import navigationConnector from 'sls-aws/src/client-logic/app/connectors/navigationConnector'
 
 import MaxWidthContainer from 'sls-aws/src/client-web/base/MaxWidthContainer'
-import NavigationDesktop from 'sls-aws/src/client-web/base/NavigationDesktop'
-import NavigationMobile from 'sls-aws/src/client-web/base/NavigationMobile'
 
 const styles = {
 	root: {
@@ -29,20 +29,17 @@ export const NavigationUnconnected = memo(({
 }) => (
 	<div
 		className={classNames(
-			'layout-row layout-align-center-stretch',
+			'layout-row layout-align-center-center',
 			classes.root,
 		)}
 	>
 		<MaxWidthContainer>
-			<div
-				className={classNames(
-					'layout-column layout-align-center',
-					classes.logo,
-				)}
-			>
-				DoubleDog.tv
-			</div>
-			<NavigationDesktop />
+			<div className={classes.logo}>Double Dog</div>
+			{ternary(
+				showMobileNav,
+				<div>mobile</div>,
+				<div>reg</div>,
+			)}
 		</MaxWidthContainer>
 	</div>
 ))
