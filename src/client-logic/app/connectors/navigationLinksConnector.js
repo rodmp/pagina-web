@@ -1,11 +1,11 @@
 import reduxConnector from 'sls-aws/src/util/reduxConnector'
 
-import desktopNavigation from 'sls-aws/src/client-logic/app/selectors/desktopNavigation'
+import navigationLinks from 'sls-aws/src/client-logic/app/selectors/navigationLinks'
 import pushRoute from 'sls-aws/src/client-logic/route/thunks/pushRoute'
 
 export default reduxConnector(
 	[
-		['desktopNavigation', desktopNavigation],
+		['navigationLinks', navigationLinks],
 	],
 	[
 		['pushRoute', pushRoute],

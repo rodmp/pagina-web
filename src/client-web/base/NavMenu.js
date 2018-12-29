@@ -1,4 +1,4 @@
-import React, { memo, Fragment, useState } from 'react'
+import React, { memo, Fragment, useState, useRef } from 'react'
 
 import { navLinkStyle } from 'sls-aws/src/client-web/commonStyles'
 
@@ -8,6 +8,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import { withStyles } from '@material-ui/core/styles'
 
 import Link from 'sls-aws/src/client-web/base/Link'
+import LabelOrIcon from 'sls-aws/src/client-web/base/LabelOrIcon'
 
 const styles = {
 	root: {
@@ -17,25 +18,25 @@ const styles = {
 	navLinkStyle,
 }
 
-export const NavMenu = memo(({ menuLabel, menuItems, classes }) => {
+export const NavMenuUnstyled = memo(({
+	menuLabel, menuIcon, menuItems, classes,
+}) => {
 	const [open, setOpen] = useState(false)
-	const [anchorEl, setAnchorEl] = useState()
+	const anchorEl = useRef()
 	return (
 		<Fragment>
 			<button
 				type="button"
 				className={classes.navLinkStyle}
-				onClick={(e) => {
-					setAnchorEl(e.target)
-					setOpen(true)
-				}}
+				ref={anchorEl}
+				onClick={() => setOpen(true)}
 			>
-				{menuLabel}
+				<LabelOrIcon label={menuLabel} icon={menuIcon} />
 			</button>
 			<Menu
 				open={open}
 				onClose={() => setOpen(false)}
-				anchorEl={anchorEl}
+				anchorEl={anchorEl.current}
 				getContentAnchorEl={null}
 				anchorOrigin={{
 					vertical: 'bottom',
@@ -46,18 +47,20 @@ export const NavMenu = memo(({ menuLabel, menuItems, classes }) => {
 					horizontal: 'right',
 				}}
 			>
-				{menuItems.map(({ label, routeId }) => (
+				{menuItems.map(({ label, icon, routeId }, i) => (
 					<MenuItem
-						key={label}
+						// eslint-disable-next-line react/no-array-index-key
+						key={i}
 						disableGutters
-						classes={classes}
+						classes={{ root: classes.root }}
+						onClick={() => setOpen(false)}
 					>
+						{/* eslint-disable jsx-a11y/anchor-is-valid */} 
 						<Link
-							key={label}
 							navMenuStyle
 							routeId={routeId}
 						>
-							{label}
+							<LabelOrIcon label={label} icon={icon} />
 						</Link>
 					</MenuItem>
 				))}
@@ -66,4 +69,4 @@ export const NavMenu = memo(({ menuLabel, menuItems, classes }) => {
 	)
 })
 
-export default withStyles(styles)(NavMenu)
+export default withStyles(styles)(NavMenuUnstyled)

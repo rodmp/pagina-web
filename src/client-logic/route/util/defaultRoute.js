@@ -4,7 +4,7 @@ import {
 } from 'sls-aws/src/descriptions/routes/routeIds'
 
 export default state => (
-	isAuthenticated(state) ?
-		{ routeId: ACTIVE_PROJECTS_ROUTE_ID, routeParams: {} } :
-		{ routeId: SIGN_UP_ROUTE_ID, routeParams: {} }
+	isAuthenticated(state)
+		? { routeId: ACTIVE_PROJECTS_ROUTE_ID, routeParams: {} }
+		: { routeId: SIGN_UP_ROUTE_ID, routeParams: {} }
 )

@@ -1,5 +1,4 @@
 import React, { memo } from 'react'
-import { orNull } from 'sls-aws/src/util/ramdaPlus' 
 
 import IconButton from '@material-ui/core/IconButton'
 import CloseIcon from '@material-ui/icons/Close'
