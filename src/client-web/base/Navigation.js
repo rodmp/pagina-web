@@ -6,11 +6,10 @@ import {
 	navigationColor,
 } from 'sls-aws/src/client-web/commonStyles'
 
-import navigationConnector from 'sls-aws/src/client-logic/app/connectors/navigationConnector'
-
 import MaxWidthContainer from 'sls-aws/src/client-web/base/MaxWidthContainer'
-import NavigationDesktop from 'sls-aws/src/client-web/base/NavigationDesktop'
-import NavigationMobile from 'sls-aws/src/client-web/base/NavigationMobile'
+import NavigationLinks from 'sls-aws/src/client-web/base/NavigationLinks'
+
+import { withStyles } from '@material-ui/core/styles'
 
 const styles = {
 	root: {
@@ -24,9 +23,7 @@ const styles = {
 	},
 }
 
-export const NavigationUnconnected = memo(({
-	showMobileNav, classes,
-}) => (
+export const NavigationUnstyled = memo(({ classes }) => (
 	<div
 		className={classNames(
 			'layout-row layout-align-center-stretch',
@@ -42,9 +39,9 @@ export const NavigationUnconnected = memo(({
 			>
 				DoubleDog.tv
 			</div>
-			<NavigationDesktop />
+			<NavigationLinks />
 		</MaxWidthContainer>
 	</div>
 ))
 
-export default navigationConnector(NavigationUnconnected, styles)
+export default withStyles(styles)(NavigationUnstyled)

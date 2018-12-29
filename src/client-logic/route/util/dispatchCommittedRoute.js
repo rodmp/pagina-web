@@ -14,7 +14,7 @@ export const dispatchCommittedRouteHof = (
 	const { routeId, routeParams } = nextRouteObj
 	if (routeId === 'SIGN_OUT') {
 		storageClear()
-		window.location = window.location
+		window.location.reload(true)
 	} else {
 		dispatchFn(
 			changeRouteFn(routeId, routeParams),
