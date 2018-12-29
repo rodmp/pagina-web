@@ -7032,10 +7032,10 @@ react-lifecycles-compat@^3.0.0, react-lifecycles-compat@^3.0.2, react-lifecycles
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
-react-material-layout@^1.1.7:
-  version "1.1.7"
-  resolved "https://registry.yarnpkg.com/react-material-layout/-/react-material-layout-1.1.7.tgz#13eec537a73694f2c202e5b2383422447f5d9bac"
-  integrity sha512-ny/K7VrZqdVJBEzdyxYqKC1ArKuutEubucHqYAcrgFCfH7iEQmmToObYOTcb+d/2FLokLxlNEs5TJfbG/iNqBA==
+react-material-layout@^1.1.11:
+  version "1.1.11"
+  resolved "https://registry.yarnpkg.com/react-material-layout/-/react-material-layout-1.1.11.tgz#b901ee44e4f1aecb562c6a902a6b9936fc33a925"
+  integrity sha512-XOXeQv8bnLTm0DNdigkDcFmlcjHcnavSKFxD7sJ1/QJavi+HM2tXY7RsA9GbWLo9iNzYVdMxDepcABw9Sto79A==
 
 react-redux@^5.1.1:
   version "5.1.1"

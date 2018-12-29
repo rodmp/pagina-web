@@ -61,7 +61,7 @@
     "ramda": "^0.26.0",
     "react": "16.7.0-alpha.0",
     "react-dom": "16.7.0-alpha.0",
-    "react-material-layout": "^1.1.7",
+    "react-material-layout": "^1.1.11",
     "react-redux": "^5.1.1",
     "react-stripe-elements": "^2.0.1",
     "redux": "^4.0.0",
