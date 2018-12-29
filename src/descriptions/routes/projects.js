@@ -1,7 +1,7 @@
 import {
 	CREATE_PROJECT_ROUTE_ID, VIEW_PROJECT_ROUTE_ID,
 	PENDING_PROJECTS_ROUTE_ID, ACTIVE_PROJECTS_ROUTE_ID,
-	PLEDGE_PROJECT_ROUTE_ID,
+	PLEDGE_PROJECT_ROUTE_ID, MY_PROJECTS_ROUTE_ID,
 } from 'sls-aws/src/descriptions/routes/routeIds'
 
 import {
@@ -34,8 +34,15 @@ export default {
 		],
 	},
 	[ACTIVE_PROJECTS_ROUTE_ID]: {
-		url: '/projects',
+		url: '/marketplace',
 		modules: [
+			ACTIVE_PROJECTS_LIST_MODULE_ID,
+		],
+	},
+	[MY_PROJECTS_ROUTE_ID]: {
+		url: '/my-projects',
+		modules: [
+			// TODO: make the my projects list page
 			ACTIVE_PROJECTS_LIST_MODULE_ID,
 		],
 	},

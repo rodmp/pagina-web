@@ -1,6 +1,6 @@
 import {
 	LOGIN_ROUTE_ID, SIGN_UP_ROUTE_ID, VERIFY_ACCOUNT_ROUTE_ID,
-	FORGOT_PASSWORD_ROUTE_ID,
+	FORGOT_PASSWORD_ROUTE_ID, SIGN_OUT,
 } from 'sls-aws/src/descriptions/routes/routeIds'
 
 import {
@@ -11,7 +11,7 @@ import { unAuthValue } from 'sls-aws/src/client-logic/route/lenses'
 
 export default {
 	[LOGIN_ROUTE_ID]: {
-		url: '/login',
+		url: '/sign-in',
 		authentication: unAuthValue,
 		modules: [
 			LOGIN_FORM_MODULE_ID,
@@ -37,5 +37,8 @@ export default {
 		modules: [
 			VERIFY_ACCOUNT_FORM_MODULE_ID,
 		],
+	},
+	[SIGN_OUT]: {
+		url: 'sign-out',
 	},
 }
