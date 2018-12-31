@@ -44,6 +44,12 @@ export default {
 				],
 			},
 			{
+				fieldId: 'games',
+				maxItems: 2,
+				inputType: 'autoComplete',
+				label: 'Game',
+			},
+			{
 				fieldId: 'pledgeAmount',
 				inputType: 'number',
 				label: 'Pledge Amount',
