@@ -9,7 +9,7 @@ import { getPayloadLenses } from 'sls-aws/src/server/api/getEndpointDesc'
 import pledgeDynamoObj from 'sls-aws/src/server/api/actionUtil/pledgeDynamoObj'
 import { generalError, payloadSchemaError } from 'sls-aws/src/server/api/errors'
 import dynamoQueryProject from 'sls-aws/src/server/api/actionUtil/dynamoQueryProject'
-import { validateSourceId } from 'sls-aws/src/server/api/actionUtil/stripe'
+import validateStripeSourceId from 'sls-aws/src/server/api/actionUtil/validateStripeSourceId'
 import projectSerializer from 'sls-aws/src/server/api/serializers/projectSerializer'
 
 const payloadLenses = getPayloadLenses(PLEDGE_PROJECT)
@@ -33,7 +33,9 @@ export default async ({ userId, payload }) => {
 	const newPledgeAmount = viewPledgeAmount(payload)
 
 	const sourceId = viewStripeCardId(payload)
-	if (!validateSourceId(sourceId)) throw payloadSchemaError({stripeCardId: 'Invalid source id'})
+	if (!validateStripeSourceId(sourceId)) {
+		throw payloadSchemaError({ stripeCardId: 'Invalid source id' })
+	}
 
 	const newPledge = pledgeDynamoObj(
 		projectId, projectToPledge, userId,
