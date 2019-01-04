@@ -1,4 +1,4 @@
-import lensesFromSchema from 'sls-aws/src/util/lensesFromSchema'
+import lensesFromSchema from 'sls-aws/src/shared/util/lensesFromSchema'
 
 const appSchema = {
 	type: 'object',

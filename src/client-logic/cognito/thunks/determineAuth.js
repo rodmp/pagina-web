@@ -1,8 +1,8 @@
 import authDetermined from 'sls-aws/src/client-logic/app/actions/authDetermined'
 import userPool from 'sls-aws/src/client-logic/cognito/util/userPool'
 
-import reportError from 'sls-aws/src/util/reportError'
-import { storageClear } from 'sls-aws/src/util/storage'
+import reportError from 'sls-aws/src/shared/util/reportError'
+import { storageClear } from 'sls-aws/src/shared/util/storage'
 import setAwsConfig from 'sls-aws/src/client-logic/cognito/util/setAwsConfig'
 
 export const determineAuthHof = authDeterminedFn => () => dispatch => (

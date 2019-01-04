@@ -2,7 +2,7 @@ import {
 	find, view, toPairs, reduce, prop, addIndex, assoc
 } from 'ramda'
 
-import routes from 'sls-aws/src/descriptions/routes'
+import routes from 'sls-aws/src/shared/descriptions/routes'
 import createRouteUrlRegexes from 'sls-aws/src/client-logic/route/util/createRouteUrlRegexes'
 import {
 	regexLens, regexKeysLens, routeIdKey, routeParamsKey,

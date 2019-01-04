@@ -4,9 +4,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 const CircularDependencyPlugin = require('circular-dependency-plugin')
 
-// const appConstants = require('./src/constants/app')
-const colorConstants = require('./src/constants/color')
-const logoConstant = require('./src/constants/logo')
+// const appConstants = require('./src/shared/constants/app')
+const colorConstants = require('./src/shared/constants/color')
+const logoConstant = require('./src/shared/constants/logo')
 
 // const env = slsConstants.env || 'dev'
 const env = 'development'

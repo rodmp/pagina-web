@@ -1,4 +1,4 @@
-import reduxConnector from 'sls-aws/src/util/reduxConnector'
+import reduxConnector from 'sls-aws/src/shared/util/reduxConnector'
 
 import currentYearSelector from 'sls-aws/src/client-logic/app/selectors/currentYearSelector'
 

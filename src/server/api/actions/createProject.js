@@ -3,14 +3,14 @@ import { map, pick, omit, prop, join } from 'ramda'
 
 import { TABLE_NAME, documentClient } from 'sls-aws/src/server/api/dynamoClient'
 
-import { PARTITION_KEY, SORT_KEY } from 'sls-aws/src/constants/apiDynamoIndexes'
+import { PARTITION_KEY, SORT_KEY } from 'sls-aws/src/shared/constants/apiDynamoIndexes'
 import assigneeSerializer from 'sls-aws/src/server/api/serializers/assigneeSerializer'
 
-import { CREATE_PROJECT } from 'sls-aws/src/descriptions/endpoints/endpointIds'
+import { CREATE_PROJECT } from 'sls-aws/src/shared/descriptions/endpoints/endpointIds'
 import { getPayloadLenses } from 'sls-aws/src/server/api/getEndpointDesc'
 import projectDenormalizeFields from 'sls-aws/src/server/api/actionUtil/projectDenormalizeFields'
 import pledgeDynamoObj from 'sls-aws/src/server/api/actionUtil/pledgeDynamoObj'
-import randomNumber from 'sls-aws/src/util/randomNumber'
+import randomNumber from 'sls-aws/src/shared/util/randomNumber'
 import { projectPendingKey } from 'sls-aws/src/server/api/lenses'
 
 const payloadLenses = getPayloadLenses(CREATE_PROJECT)

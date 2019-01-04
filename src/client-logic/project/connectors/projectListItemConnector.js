@@ -1,4 +1,4 @@
-import reduxConnector from 'sls-aws/src/util/reduxConnector'
+import reduxConnector from 'sls-aws/src/shared/util/reduxConnector'
 
 import projectTitleSelector from 'sls-aws/src/client-logic/project/selectors/projectTitleSelector'
 import projectDescriptionSelector from 'sls-aws/src/client-logic/project/selectors/projectDescriptionSelector'

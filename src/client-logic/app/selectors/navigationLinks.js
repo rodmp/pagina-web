@@ -1,9 +1,9 @@
 import {
 	ACTIVE_PROJECTS_ROUTE_ID, HOW_IT_WORKS_ROUTE_ID, LOGIN_ROUTE_ID,
 	MY_PROJECTS_ROUTE_ID, PENDING_PROJECTS_ROUTE_ID, SIGN_OUT,
-} from 'sls-aws/src/descriptions/routes/routeIds'
+} from 'sls-aws/src/shared/descriptions/routes/routeIds'
 
-import { ternary } from 'sls-aws/src/util/ramdaPlus'
+import { ternary } from 'sls-aws/src/shared/util/ramdaPlus'
 
 import isAuthenticated from 'sls-aws/src/client-logic/auth/selectors/isAuthenticated'
 import isAdminSelector from 'sls-aws/src/client-logic/auth/selectors/isAdminSelector'

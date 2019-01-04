@@ -1,6 +1,6 @@
 import { path } from 'ramda'
 
-import recordClickActionDescriptions from 'sls-aws/src/descriptions/recordClickActions'
+import recordClickActionDescriptions from 'sls-aws/src/shared/descriptions/recordClickActions'
 
 export const recordClickActionLabelHof = recordClickActionDescriptionsObj => (
 	state, { recordClickActionId },

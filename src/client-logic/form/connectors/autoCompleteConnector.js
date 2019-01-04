@@ -1,4 +1,4 @@
-import reduxConnector from 'sls-aws/src/util/reduxConnector'
+import reduxConnector from 'sls-aws/src/shared/util/reduxConnector'
 
 import multiFieldValue from 'sls-aws/src/client-logic/form/selectors/multiFieldValue'
 import arrayFieldMaxItems from 'sls-aws/src/client-logic/form/selectors/arrayFieldMaxItems'

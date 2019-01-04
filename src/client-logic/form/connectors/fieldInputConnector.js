@@ -1,4 +1,4 @@
-import reduxConnector from 'sls-aws/src/util/reduxConnector'
+import reduxConnector from 'sls-aws/src/shared/util/reduxConnector'
 
 import fieldValue from 'sls-aws/src/client-logic/form/selectors/fieldValue'
 import fieldLabel from 'sls-aws/src/client-logic/form/selectors/fieldLabel'

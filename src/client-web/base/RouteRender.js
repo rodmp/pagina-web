@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ternary } from 'sls-aws/src/util/ramdaPlus'
+import { ternary } from 'sls-aws/src/shared/util/ramdaPlus'
 
 import routeRenderConnector from 'sls-aws/src/client-logic/route/connectors/routeRenderConnector'
 
@@ -10,7 +10,7 @@ import RecordModule from 'sls-aws/src/client-web/record/RecordModule'
 import Navigation from 'sls-aws/src/client-web/base/Navigation'
 import Footer from 'sls-aws/src/client-web/base/Footer'
 
-import { ModuleContextProvider } from 'sls-aws/src/util/withModuleContext'
+import { ModuleContextProvider } from 'sls-aws/src/shared/util/withModuleContext'
 
 
 export const RenderModules = ({ moduleTypes }) => (

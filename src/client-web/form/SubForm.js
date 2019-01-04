@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button'
 import SubFormFields from 'sls-aws/src/client-web/form/SubFormFields'
 
 import subFormConnector from 'sls-aws/src/client-logic/form/connectors/subFormConnector'
-import withModuleContext from 'sls-aws/src/util/withModuleContext'
+import withModuleContext from 'sls-aws/src/shared/util/withModuleContext'
 
 import addAnotherHandler from 'sls-aws/src/client-logic/form/handlers/addAnotherHandler'
 

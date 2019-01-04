@@ -5,14 +5,14 @@ import Assignee from 'sls-aws/src/client-web/record/Assignee'
 import Game from 'sls-aws/src/client-web/record/Game'
 
 import RecordClickActionButton from 'sls-aws/src/client-web/base/RecordClickActionButton'
-import { APPROVE_PROJECT } from 'sls-aws/src/descriptions/recordClickActions/recordClickActionIds'
+import { APPROVE_PROJECT } from 'sls-aws/src/shared/descriptions/recordClickActions/recordClickActionIds'
 
 import viewProjectConnector from 'sls-aws/src/client-logic/project/connectors/viewProjectConnector'
-import withModuleContext from 'sls-aws/src/util/withModuleContext'
+import withModuleContext from 'sls-aws/src/shared/util/withModuleContext'
 
 import goToPledgeProjectHandler from 'sls-aws/src/client-logic/project/handlers/goToPledgeProjectHandler'
 
-import { orNull } from 'sls-aws/src/util/ramdaPlus'
+import { orNull } from 'sls-aws/src/shared/util/ramdaPlus'
 
 import Button from '@material-ui/core/Button'
 

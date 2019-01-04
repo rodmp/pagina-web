@@ -1,6 +1,6 @@
 import userPool from 'sls-aws/src/client-logic/cognito/util/userPool'
 import pushRoute from 'sls-aws/src/client-logic/route/thunks/pushRoute'
-import { VERIFY_ACCOUNT_ROUTE_ID } from 'sls-aws/src/descriptions/routes/routeIds'
+import { VERIFY_ACCOUNT_ROUTE_ID } from 'sls-aws/src/shared/descriptions/routes/routeIds'
 
 export default ({ email, password }) => dispatch => new Promise(
 	(resolve, reject) => {

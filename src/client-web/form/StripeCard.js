@@ -7,7 +7,7 @@ import {
 	CardCVCElement, PostalCodeElement, injectStripe,
 } from 'react-stripe-elements'
 
-import { stripeClientId } from 'sls-aws/src/constants/stripeClient'
+import { stripeClientId } from 'sls-aws/src/shared/constants/stripeClient'
 import fieldInputConnector from 'sls-aws/src/client-logic/form/connectors/fieldInputConnector'
 
 import { makeStyles } from '@material-ui/styles'

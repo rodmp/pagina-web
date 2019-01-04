@@ -1,4 +1,4 @@
-import reduxConnector from 'sls-aws/src/util/reduxConnector'
+import reduxConnector from 'sls-aws/src/shared/util/reduxConnector'
 
 import formFieldTypes from 'sls-aws/src/client-logic/form/selectors/formFieldTypes'
 import formSubmits from 'sls-aws/src/client-logic/form/selectors/formSubmits'

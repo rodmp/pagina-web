@@ -1,6 +1,6 @@
 import { equals } from 'ramda'
 
-import routeDescriptions from 'sls-aws/src/descriptions/routes'
+import routeDescriptions from 'sls-aws/src/shared/descriptions/routes'
 import isAuthenticated from 'sls-aws/src/client-logic/auth/selectors/isAuthenticated'
 import {
 	authValue, unAuthValue, routeDescriptionLenses,

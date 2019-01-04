@@ -1,6 +1,6 @@
-import nodeAjax from 'sls-aws/src/util/nodeAjax'
+import nodeAjax from 'sls-aws/src/shared/util/nodeAjax'
 
-import { clientId, baseUrlNewApi } from 'sls-aws/src/constants/twitch'
+import { clientId, baseUrlNewApi } from 'sls-aws/src/shared/constants/twitch'
 
 export const getUserData = loginArray => nodeAjax({
 	url: `${baseUrlNewApi}users`,

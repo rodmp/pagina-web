@@ -1,6 +1,6 @@
 import { contains } from 'ramda'
 import Result from 'folktale/result'
-import reportError from 'sls-aws/src/util/reportError'
+import reportError from 'sls-aws/src/shared/util/reportError'
 import createHistory from 'history/createBrowserHistory'
 
 const history = createHistory()

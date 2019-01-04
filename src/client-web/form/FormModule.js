@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 
-import { orNull } from 'sls-aws/src/util/ramdaPlus'
+import { orNull } from 'sls-aws/src/shared/util/ramdaPlus'
 
 import Fields from 'sls-aws/src/client-web/form/Fields'
 import Submits from 'sls-aws/src/client-web/form/Submits'
@@ -11,7 +11,7 @@ import formModuleConnector from 'sls-aws/src/client-logic/form/connectors/formMo
 
 import submitFormHandler from 'sls-aws/src/client-logic/form/handlers/submitFormHandler'
 
-import withModuleContext from 'sls-aws/src/util/withModuleContext'
+import withModuleContext from 'sls-aws/src/shared/util/withModuleContext'
 
 import classNames from 'classnames'
 

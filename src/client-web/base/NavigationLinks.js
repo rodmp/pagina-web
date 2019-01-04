@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 
-import { ternary } from 'sls-aws/src/util/ramdaPlus'
+import { ternary } from 'sls-aws/src/shared/util/ramdaPlus'
 
 import navigationLinksConnector from 'sls-aws/src/client-logic/app/connectors/navigationLinksConnector'
 import NavMenu from 'sls-aws/src/client-web/base/NavMenu'

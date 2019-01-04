@@ -1,6 +1,6 @@
 import changeRoute from 'sls-aws/src/client-logic/route/actions/changeRoute'
 import urlFromRouteObj from 'sls-aws/src/client-logic/route/util/urlFromRouteObj'
-import { storageClear } from 'sls-aws/src/util/storage'
+import { storageClear } from 'sls-aws/src/shared/util/storage'
 
 import {
 	changeBrowserHistory,
