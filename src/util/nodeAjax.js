@@ -6,7 +6,8 @@ export default ({
 	url, method, body, queryParams, headers = {},
 }) => new Promise((resolve, reject) => {
 	const queryString = queryParams
-		? `?${stringify(queryParams, { indices: false })}` : ''
+		? `?${stringify(queryParams, { indices: false })}`
+		: ''
 	const jsonBody = body ? JSON.stringify(body) : undefined
 	const parsedUrl = parse(url)
 	const options = {

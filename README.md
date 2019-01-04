@@ -6,6 +6,7 @@
 
 - [Authorize cognito jwtToken example](https://stackoverflow.com/a/42405528/1692715)
 
+- [AWS Glue](https://aws.amazon.com/blogs/database/simplify-amazon-dynamodb-data-extraction-and-analysis-by-using-aws-glue-and-amazon-athena/)
 
 
 ADMIN > list projects to approve by 'audit' status

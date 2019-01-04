@@ -34,6 +34,18 @@ export default {
 				additionalProperties: false,
 			},
 		},
+		games: {
+			type: 'array',
+			items: {
+				type: 'object',
+				properties: {
+					name: { type: 'string' },
+					boxArtTemplateUrl: { type: 'string' },
+				},
+				required: ['name', 'boxArtTemplateUrl'],
+				additionalProperties: false,
+			},
+		},
 	},
 	required: ['id', 'title', 'image', 'description', 'pledgeAmount', 'status'],
 	additionalProperties: false,

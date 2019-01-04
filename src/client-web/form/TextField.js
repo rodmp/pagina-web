@@ -8,16 +8,19 @@ import textFieldSetInputHandler from 'sls-aws/src/client-logic/form/handlers/tex
 
 export const InputField = memo(({
 	moduleKey, fieldId, fieldPath, setInput, fieldValue, fieldLabel, fieldError,
-	fieldHasError, fieldType,
+	fieldHasError, fieldType, fieldMultiline, fieldPlaceholder,
 }) => (
 	<TextField
+		fullWidth
 		id={fieldId}
 		label={fieldLabel}
 		type={fieldType}
-		fullWidth
+		multiline={fieldMultiline}
+		variant="outlined"
 		value={fieldValue}
 		error={fieldHasError}
 		helperText={fieldError}
+		placeholder={fieldPlaceholder}
 		onChange={textFieldSetInputHandler(
 			moduleKey, fieldPath, setInput, fieldType,
 		)}

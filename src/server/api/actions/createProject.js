@@ -15,20 +15,19 @@ import { projectPendingKey } from 'sls-aws/src/server/api/lenses'
 
 const payloadLenses = getPayloadLenses(CREATE_PROJECT)
 const {
-	viewStripeCardId, viewPledgeAmount, viewAssignees,
+	viewStripeCardId, viewPledgeAmount, viewAssignees, viewGames,
 } = payloadLenses
 
 export default async ({ userId, payload }) => {
 	const serializedProject = await assigneeSerializer({
 		project: payload, payloadLenses,
 	})
-
+	console.log(serializedProject)
 	const projectId = `project-${uuid()}`
 
 	const projectCommon = projectDenormalizeFields(serializedProject)
 
 	const created = Date.now()
-
 
 	const pledgeAmount = viewPledgeAmount(serializedProject)
 
@@ -52,6 +51,15 @@ export default async ({ userId, payload }) => {
 		...omit(['platform', 'platformId'], assignee),
 	}), viewAssignees(serializedProject))
 
+	const projectGames = map(game => ({
+		[PARTITION_KEY]: projectId,
+		[SORT_KEY]: join('|', [
+			'game',
+			prop('id', game),
+		]),
+		...omit(['id'], game),
+	}), viewGames(serializedProject))
+
 	const pledge = pledgeDynamoObj(
 		projectId, serializedProject, userId, pledgeAmount,
 		viewStripeCardId(serializedProject), true,
@@ -61,7 +69,7 @@ export default async ({ userId, payload }) => {
 		RequestItems: {
 			[TABLE_NAME]: map(
 				Item => ({ PutRequest: { Item } }),
-				[project, ...projectAssignees, pledge],
+				[project, ...projectAssignees, ...projectGames, pledge],
 			),
 		},
 	}

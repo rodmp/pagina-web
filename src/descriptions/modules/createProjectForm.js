@@ -30,24 +30,35 @@ export default {
 				fieldId: 'description',
 				inputType: 'text',
 				label: 'Description',
+				multiline: true,
 			},
+			// {
+			// 	fieldId: 'assignees',
+			// 	inputType: 'subForm',
+			// 	label: 'Assignees',
+			// 	subFormFields: [
+			// 		{
+			// 			fieldId: 'url',
+			// 			inputType: 'text',
+			// 			label: 'Twitch streamer url',
+			// 		},
+			// 	],
+			// },
 			{
 				fieldId: 'assignees',
-				inputType: 'subForm',
+				maxItems: 10,
+				inputType: 'autoComplete',
+				optionsPromiseType: 'twitchChannels',
 				label: 'Assignees',
-				subFormFields: [
-					{
-						fieldId: 'url',
-						inputType: 'text',
-						label: 'Twitch streamer url',
-					},
-				],
+				placeholder: 'Search Twitch Channels',
 			},
 			{
 				fieldId: 'games',
-				maxItems: 2,
+				maxItems: 1,
 				inputType: 'autoComplete',
+				optionsPromiseType: 'twitchGames',
 				label: 'Game',
+				placeholder: 'Search Games',
 			},
 			{
 				fieldId: 'pledgeAmount',

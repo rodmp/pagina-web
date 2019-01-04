@@ -1,20 +1,22 @@
 // docker run --name dynamodb -p 9000:8000 amazon/dynamodb-local
 
-import { merge, propOr, prop, head, values, compose, set, lensPath, map } from 'ramda'
+import {
+	merge, propOr, prop, head, values, compose, set, lensPath, map, dissoc,
+} from 'ramda'
 
 import apiTableConfig from 'sls-aws/src/aws/api/resources/apiDynamoDbTable'
 
 jest.mock('sls-aws/src/server/api/dynamoClient', () => {
-	// eslint-disable-next-line
+	/* eslint-disable global-require */
 	const uuid = require('uuid/v1')
-	const tableName = `TEST_TABLE_${uuid()}`
 	const { DynamoDB } = require('aws-sdk')
+	/* eslint-enable */
+	const tableName = `TEST_TABLE_${uuid()}`
 	const mockConfig = {
 		endpoint: 'http://localhost:9000',
 		accessKeyId: 'dynamo',
 		secretAccessKey: 'devDummyKey',
 		region: 'dev',
-		apiVersion: '2012-08-10',
 	}
 	return {
 		TABLE_NAME: tableName,
@@ -32,9 +34,13 @@ jest.mock('sls-aws/src/server/api/authorizeRequest', () => (
 
 const tableParams = tableName => merge(
 	{ TableName: tableName },
+	// Can't use BillingMode in the aws-sdk yet
 	compose(
-		set(lensPath(['ProvisionedThroughput', 'ReadCapacityUnits']), 100),
-		set(lensPath(['ProvisionedThroughput', 'WriteCapacityUnits']), 100),
+		dissoc('BillingMode'),
+		set(lensPath(['GlobalSecondaryIndexes', 0, 'ProvisionedThroughput', 'ReadCapacityUnits']), 1),
+		set(lensPath(['GlobalSecondaryIndexes', 0, 'ProvisionedThroughput', 'WriteCapacityUnits']), 1),
+		set(lensPath(['ProvisionedThroughput', 'ReadCapacityUnits']), 1),
+		set(lensPath(['ProvisionedThroughput', 'WriteCapacityUnits']), 1),
 	)(prop('Properties', head(values(apiTableConfig)))),
 )
 
@@ -59,10 +65,9 @@ const deleteAllTables = tables => Promise.all(
 
 afterAll(async () => {
 	// const tables = await getTables()
-	// console.log(tables)
+	// console.info(tables)
 	// await deleteAllTables(tables)
 	// const tablesGone = await getTables()
-	// console.log(tablesGone)
-
+	// console.info(tablesGone)
 	await dynamoDb.deleteTable({ TableName: TABLE_NAME }).promise()
 })

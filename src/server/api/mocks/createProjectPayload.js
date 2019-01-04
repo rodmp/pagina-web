@@ -8,12 +8,19 @@ const twitchStreamers = [
 	'summit1g', 'shroud', 'tsm_myth', 'ninja',
 ]
 
+const twitchStreamerIds = [
+	{ id: 19571641 }, // ninja
+]
+
+const gameIds = [
+	{ id: 138585 }, // hearthstone
+]
+
 export default ({ assigneeCount = 1 } = {}) => ({
 	title: hacker.phrase(),
 	description: lorem.paragraph(),
 	stripeCardId: random.uuid(),
 	pledgeAmount: random.number(),
-	assignees: map(streamer => ({
-		url: `https://www.twitch.tv/${streamer}`,
-	}), randomArrayElements(twitchStreamers, assigneeCount)),
+	assignees: twitchStreamerIds,
+	games: gameIds,
 })
