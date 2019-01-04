@@ -1,10 +1,10 @@
 import {
-	getTwitchAssigneeDataHof,
+	getDataHof,
 } from 'sls-aws/src/server/api/serializers/assigneeSerializer'
 
 const getUserDataMock = jest.fn()
 
-const getTwitchAssigneeData = getTwitchAssigneeDataHof(getUserDataMock)
+const assigneeSerializer = getDataHof(getUserDataMock)
 
 const mockChannel1 = {
 	id: '146000275',
@@ -30,18 +30,21 @@ const mockChannel2 = {
 }
 
 
-const mockAssigneeArray = [
-	{ url: 'http://www.twitch.tv/5gorillaz' },
-	{ url: 'http://www.twitch.tv/sonicfingboom' },
+const mockDataArray = [
+	[
+		{ id: 146000275	 },
+		{ id: 148899812	 },
+	],
+	[], // should test games too but it works very similarly
 ]
 
 describe('assigneeSerializer', () => {
-	test('getTwitchAssigneeData works with valid channels', async () => {
+	test('assigneeSerializer works with valid channels', async () => {
 		getUserDataMock.mockReturnValueOnce(Promise.resolve({
 			data: [mockChannel1, mockChannel2],
 		}))
-		const res = await getTwitchAssigneeData(mockAssigneeArray)
-		expect(res).toEqual([
+		const res = await assigneeSerializer(mockDataArray)
+		expect(res).toEqual([[
 			{
 				platform: 'twitch',
 				image: 'https://5gorillaz.jpg',
@@ -58,17 +61,17 @@ describe('assigneeSerializer', () => {
 				displayName: 'sonicfingboom',
 				username: 'sonicfingboom',
 			},
-		])
+		], []])
 	})
-	test('getTwitchAssigneeData throws error for invalid channel', async () => {
+	test('assigneeSerializer throws error for invalid channel', async () => {
 		getUserDataMock.mockReturnValueOnce(Promise.resolve({
 			data: [mockChannel1],
 		}))
 		try {
-			await getTwitchAssigneeData(mockAssigneeArray)
+			await assigneeSerializer(mockDataArray)
 		} catch (e) {
 			expect(e).toEqual({
-				schemaErrors: { assignee: { 1: 'Invalid twitch user' } },
+				schemaErrors: { assignees: { 1: 'Invalid twitch user' } },
 				statusCode: 400,
 			})
 		}

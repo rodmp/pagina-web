@@ -6,7 +6,9 @@ import { GET_PROJECT } from 'sls-aws/src/descriptions/endpoints/endpointIds'
 import { getResponseLenses } from 'sls-aws/src/server/api/getEndpointDesc'
 
 const responseLenses = getResponseLenses(GET_PROJECT)
-const { overAssignees, setMyPledge, viewPledgeAmount } = responseLenses
+const {
+	overAssignees, setMyPledge, viewPledgeAmount, overGames,
+} = responseLenses
 
 export default projectArr => reduce(
 	(result, projectPart) => {
@@ -24,6 +26,13 @@ export default projectArr => reduce(
 				prepend({ platform, platformId, ...assigneeObj }),
 				result,
 			)
+		}
+		if (startsWith('game', sk)) {
+			const game = pick(
+				['boxArtTemplateUrl', 'name'],
+				projectPart,
+			)
+			return overGames(prepend(game), result)
 		}
 		if (startsWith('project', sk)) {
 			const projectObj = pick(

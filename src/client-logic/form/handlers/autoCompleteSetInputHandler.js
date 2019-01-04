@@ -1,10 +1,10 @@
-import { length, gt, last, dropLast } from 'ramda'
+import { length, gt, last, dropLast, equals } from 'ramda'
 
 export default (moduleKey, fieldPath, maxItems, action) => (value) => {
 	let validateMaxValue = value
 	if (gt(length(value), maxItems)) {
 		validateMaxValue = [
-			...dropLast(maxItems, value),
+			...dropLast(equals(maxItems, 1) ? 2 : maxItems, value),
 			last(value),
 		]
 	}

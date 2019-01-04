@@ -1,4 +1,4 @@
-import { set, lensProp } from 'ramda'
+import { set, lensProp, path } from 'ramda'
 
 import apiRequest from 'sls-aws/src/client-logic/api/thunks/apiRequest'
 
@@ -10,7 +10,9 @@ export default formData => async (dispatch) => {
 		type: 'card', usage: 'reusable', currency: 'usd',
 	})
 	const apiPayload = set(
-		lensProp('stripeCardId'), stripeRes.source.id, formData,
+		lensProp('stripeCardId'),
+		path(['source', 'id'], stripeRes),
+		formData,
 	)
 	return dispatch(apiRequest(CREATE_PROJECT, apiPayload))
 }

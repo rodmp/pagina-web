@@ -1,64 +1,84 @@
-import {
-	split, last, map, prop, contains, reduce, addIndex, propEq, find,
-} from 'ramda'
+import { map, prop, reduce, addIndex, propEq, find } from 'ramda'
+import { idProp } from 'sls-aws/src/client-logic/api/lenses'
 
 import { payloadSchemaError } from 'sls-aws/src/server/api/errors'
 
-import { getUserData } from 'sls-aws/src/server/api/twitchApi'
+import { getUserData, getGameData } from 'sls-aws/src/server/api/twitchApi'
 
-export const getTwitchAssigneeDataHof = getUserDataFn => async (
-	assigneeArray,
-) => {
-	const twitchUsernames = addIndex(reduce)((result, assigneeObj, index) => {
-		const streamerUrl = prop('url', assigneeObj)
-		if (contains('twitch.tv', streamerUrl)) {
-			return [...result, [index, last(split('/', streamerUrl))]]
-		}
-		return result
-	}, [], assigneeArray)
-	if (twitchUsernames.length) {
-		const twitchRes = await getUserDataFn(map(last, twitchUsernames))
-		const twitchData = prop('data', twitchRes)
-		return map(([index, twitchUsername]) => {
-			const twitchUserData = find(
-				propEq('login', twitchUsername.toLowerCase()),
-				twitchData,
-			)
-			if (twitchUserData) {
-				return {
-					platform: 'twitch',
-					image: prop('profile_image_url', twitchUserData),
-					platformId: prop('id', twitchUserData),
-					description: prop('description', twitchUserData),
-					displayName: prop('display_name', twitchUserData),
-					username: prop('login', twitchUserData),
+const createDataToFetchObjs = (
+	userDataFetchFn, gameDataFetchFn, [assignees, games],
+) => [
+	{
+		payloadData: assignees,
+		fetchFn: userDataFetchFn,
+		payloadKey: 'assignees',
+		staticData: { platform: 'twitch' },
+		dataMap: [
+			['image', 'profile_image_url'],
+			['platformId', 'id'],
+			['description', 'description'],
+			['displayName', 'display_name'],
+			['username', 'login'],
+		],
+	},
+	{
+		payloadData: games,
+		fetchFn: gameDataFetchFn,
+		payloadKey: 'games',
+		staticData: {},
+		dataMap: [
+			['id', 'id'],
+			['name', 'name'],
+			['boxArtTemplateUrl', 'box_art_url'],
+		],
+	},
+]
+
+export const getDataHof = (userDataFetchFn, gameDataFetchFn) => (idArrays) => {
+	const dataToFetch = createDataToFetchObjs(
+		userDataFetchFn, gameDataFetchFn, idArrays,
+	)
+	return Promise.all(map(async ({
+		payloadData, fetchFn, payloadKey, staticData, dataMap,
+	}) => {
+		if (payloadData.length) {
+			const providerRes = await fetchFn(map(idProp, payloadData))
+			const providerData = prop('data', providerRes)
+			return addIndex(map)(({ id }, index) => {
+				const specificProviderData = find(
+					propEq('id', id.toString()),
+					providerData,
+				)
+				if (specificProviderData) {
+					return reduce((result, [key, providerProp]) => ({
+						...result,
+						[key]: prop(providerProp, specificProviderData),
+					}), staticData, dataMap)
 				}
-			}
-			throw payloadSchemaError({
-				assignee: {
-					[index]: 'Invalid twitch user',
-				},
-			})
-		}, twitchUsernames)
-	}
-	return Promise.resolve([])
+				throw payloadSchemaError({
+					[payloadKey]: {
+						[index]: 'Invalid twitch user',
+					},
+				})
+			}, payloadData)
+		}
+		return []
+	}, dataToFetch))
 }
 
-export const getTwitchAssigneeData = getTwitchAssigneeDataHof(getUserData)
-
-export const getYoutubeAssigneeData = () => Promise.resolve()
+export const getRemoteApiData = getDataHof(
+	getUserData, getGameData,
+)
 
 export default async ({ project, payloadLenses }) => {
-	const { viewAssignees, setAssignees } = payloadLenses
+	const { viewAssignees, setAssignees, viewGames, setGames } = payloadLenses
 	const assigneeArray = viewAssignees(project)
-	const results = await getTwitchAssigneeData(assigneeArray)
-	return setAssignees(results, project)
+	const gamesArray = viewGames(project)
 
-	// once you do youtube
-	// const results = await Promise.all([
-	// 	getTwitchAssigneeData(assigneeArray),
-	//  getYoutubeAssigneeData(assigneeArray),
-	// ])
-	// const assignees = concat(...results)
-	// return setAssignees(assignees)
+	// These must be in the same order as the dataToFetch array
+	const results = await getRemoteApiData([assigneeArray, gamesArray])
+
+	return addIndex(reduce)((result, setFn, index) => (
+		setFn(prop(index, results), result)
+	), project, [setAssignees, setGames])
 }

@@ -45,17 +45,18 @@ export default {
 					Projection: {
 						ProjectionType: 'ALL',
 					},
-					ProvisionedThroughput: {
-						ReadCapacityUnits: 1,
-						WriteCapacityUnits: 1,
-					},
+					// ProvisionedThroughput: {
+					// 	ReadCapacityUnits: 1,
+					// 	WriteCapacityUnits: 1,
+					// },
 				},
 			],
+			BillingMode: 'PAY_PER_REQUEST',
 			// LocalSecondaryIndexes: [],
-			ProvisionedThroughput: {
-				ReadCapacityUnits: 1,
-				WriteCapacityUnits: 1,
-			},
+			// ProvisionedThroughput: {
+			// 	ReadCapacityUnits: 1,
+			// 	WriteCapacityUnits: 1,
+			// },
 		},
 	},
 }

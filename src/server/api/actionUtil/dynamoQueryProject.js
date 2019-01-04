@@ -22,6 +22,15 @@ export default async (userId, projectId) => {
 		},
 		ConsistentRead: true,
 	}
+	const gameParams = {
+		TableName: TABLE_NAME,
+		KeyConditionExpression: `${PARTITION_KEY} = :pk and begins_with(${SORT_KEY}, :game)`,
+		ExpressionAttributeValues: {
+			':pk': projectId,
+			':game': 'game',
+		},
+		ConsistentRead: true,
+	}
 	const myPledgeParams = {
 		TableName: TABLE_NAME,
 		KeyConditionExpression: `${PARTITION_KEY} = :pk and ${SORT_KEY} = :pledgeUserId`,
@@ -32,14 +41,16 @@ export default async (userId, projectId) => {
 		ConsistentRead: true,
 	}
 
-	const [projectDdb, assigneesDdb, myPledgeDdb] = await Promise.all([
+	const [projectDdb, assigneesDdb, gamesDdb, myPledgeDdb] = await Promise.all([
 		documentClient.query(projectParams).promise(),
 		documentClient.query(assigneeParams).promise(),
+		documentClient.query(gameParams).promise(),
 		documentClient.query(myPledgeParams).promise(),
 	])
 	return [
 		dynamoItemsProp(projectDdb),
 		dynamoItemsProp(assigneesDdb),
+		dynamoItemsProp(gamesDdb),
 		dynamoItemsProp(myPledgeDdb),
 	]
 }

@@ -17,7 +17,7 @@ const { viewProjectId, viewPledgeAmount, viewStripeCardId } = payloadLenses
 export default async ({ userId, payload }) => {
 	const projectId = viewProjectId(payload)
 	const [
-		projectToPledgeDdb, assigneesDdb, myPledgeDdb,
+		projectToPledgeDdb, assigneesDdb, gamesDdb, myPledgeDdb,
 	] = await dynamoQueryProject(
 		userId, projectId,
 	)
@@ -55,6 +55,7 @@ export default async ({ userId, payload }) => {
 	const newProject = projectSerializer([
 		...projectToPledgeDdb,
 		...assigneesDdb,
+		...gamesDdb,
 		newPledge,
 	])
 	return {

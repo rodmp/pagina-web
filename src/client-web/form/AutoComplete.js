@@ -1,3 +1,4 @@
+import { identity } from 'ramda'
 import React, { memo } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
@@ -5,26 +6,30 @@ import NoSsr from '@material-ui/core/NoSsr'
 import TextField from '@material-ui/core/TextField'
 import Paper from '@material-ui/core/Paper'
 import Chip from '@material-ui/core/Chip'
+import Avatar from '@material-ui/core/Avatar'
 import MenuItem from '@material-ui/core/MenuItem'
 import CancelIcon from '@material-ui/icons/Cancel'
+import ListItemAvatar from '@material-ui/core/ListItemAvatar'
+import ListItemText from '@material-ui/core/ListItemText'
 import AsyncSelect from 'react-select/lib/Async'
 import classNames from 'classnames'
 
 import autoCompleteSetInputHandler from 'sls-aws/src/client-logic/form/handlers/autoCompleteSetInputHandler'
 import autoCompleteConnector from 'sls-aws/src/client-logic/form/connectors/autoCompleteConnector'
+import { orNull } from 'sls-aws/src/util/ramdaPlus'
 
 
-const NoOptionsMessage = memo(({ children, innerProps }) => (
-	<Typography color="textSecondary" {...innerProps}>
-		{children}
-	</Typography>
-))
+// const NoOptionsMessage = memo(({ children, innerProps }) => (
+// 	<Typography color="textSecondary" {...innerProps}>
+// 		{children}
+// 	</Typography>
+// ))
 
 
 const controlStyles = {
 	input: {
 		display: 'flex',
-		padding: 0,
+		padding: [[10, 14]],
 	},
 }
 const inputComponent = memo(({ inputRef, ...props }) => (
@@ -43,6 +48,7 @@ const Control = withStyles(controlStyles)(
 				},
 				...innerProps,
 			}}
+			variant="outlined"
 			{...selectProps.textFieldProps}
 		/>
 	)),
@@ -60,26 +66,35 @@ const optionStyles = {
 const Option = withStyles(optionStyles)(
 	memo(({
 		classes, children, innerRef, isFocused, isSelected, innerProps,
-	}) => (
-		<MenuItem
-			buttonRef={innerRef}
-			selected={isFocused}
-			component="div"
-			className={classNames({
-				[classes.selected]: isSelected,
-				[classes.unSelected]: !isSelected,
-			})}
-			{...innerProps}
-		>
-			{children}
-		</MenuItem>
-	)),
+	}) => {
+		const { image, label } = children
+		return (
+			<MenuItem
+				buttonRef={innerRef}
+				selected={isFocused}
+				component="div"
+				className={classNames({
+					[classes.selected]: isSelected,
+					[classes.unSelected]: !isSelected,
+				})}
+				{...innerProps}
+			>
+				{orNull(
+					image,
+					<ListItemAvatar>
+						<Avatar alt={label} src={image} />
+					</ListItemAvatar>,
+				)}
+				<ListItemText primary={label} />
+			</MenuItem>
+		)
+	}),
 )
 
 const placeholderStyles = {
 	placeholder: {
 		position: 'absolute',
-		left: 2,
+		left: 14,
 		fontSize: 16,
 	},
 }
@@ -113,30 +128,39 @@ const ValueContainer = withStyles(valueContainerStyles)(
 )
 
 
-const multiValueStyles = {
+const chipStyles = {
 	root: {
-		height: 26,
+		height: 34,
+		marginBottom: 2,
 	},
 }
-const MultiValue = withStyles(multiValueStyles)(
-	memo(({ children, classes, innerProps }) => (
-		<Chip
-			tabIndex={-1}
-			classes={classes}
-			label={children}
-			onDelete={() => { console.log('remove') }}
-			deleteIcon={
-				<CancelIcon onClick={() => { console.log('remove') }} />
-			}
-			{...innerProps}
-		/>
-	)),
+const MultiValue = withStyles(chipStyles)(
+	memo(({ children, classes, innerProps, removeProps }) => {
+		const { image, label } = children
+		return (
+			<Chip
+				avatar={orNull(
+					image,
+					<Avatar alt={label} src={image} />,
+				)}
+				tabIndex={-1}
+				classes={classes}
+				label={label}
+				onDelete={removeProps.onClick}
+				deleteIcon={
+					<CancelIcon {...removeProps} />
+				}
+				{...innerProps}
+			/>
+		)
+	}),
 )
+
 
 const menuStyles = {
 	paper: {
 		position: 'absolute',
-		zIndex: 1,
+		zIndex: 100,
 		left: 0,
 		right: 0,
 	},
@@ -166,21 +190,12 @@ const components = {
 
 export const AutoCompleteUnconnected = memo(({
 	moduleKey, fieldPath, setInput, multiFieldValue, fieldLabel,
-	fieldError, fieldHasError, arrayFieldMaxItems,
+	fieldError, fieldHasError, arrayFieldMaxItems, loadOptionsPromise,
+	fieldPlaceholder,
 }) => (
 	<NoSsr>
 		<AsyncSelect
-			loadOptions={inputValue => new Promise((resolve) => {
-				console.log(inputValue)
-				setTimeout(() => {
-					resolve([
-						{ value: 'hey', label: 'hey' },
-						{ value: 'this', label: 'this' },
-						{ value: 'is', label: 'is' },
-						{ value: 'cool', label: 'cool' },
-					])
-				}, 1000)
-			})}
+			loadOptions={loadOptionsPromise}
 			textFieldProps={{
 				label: fieldLabel,
 				error: fieldHasError,
@@ -189,6 +204,7 @@ export const AutoCompleteUnconnected = memo(({
 					shrink: true,
 				},
 			}}
+			placeholder={fieldPlaceholder}
 			components={components}
 			value={multiFieldValue}
 			onChange={autoCompleteSetInputHandler(
@@ -196,6 +212,8 @@ export const AutoCompleteUnconnected = memo(({
 			)}
 			isMulti
 			cacheOptions
+			getOptionLabel={identity}
+			getValue={identity}
 		/>
 	</NoSsr>
 ))
