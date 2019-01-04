@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 
-import withModuleContext from 'sls-aws/src/util/withModuleContext'
+import withModuleContext from 'sls-aws/src/shared/util/withModuleContext'
 import projectListItemConnector from 'sls-aws/src/client-logic/project/connectors/projectListItemConnector'
 import goToViewProjectHandler from 'sls-aws/src/client-logic/project/handlers/goToViewProjectHandler'
 

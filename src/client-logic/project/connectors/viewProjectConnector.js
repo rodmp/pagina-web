@@ -1,4 +1,4 @@
-import reduxConnector from 'sls-aws/src/util/reduxConnector'
+import reduxConnector from 'sls-aws/src/shared/util/reduxConnector'
 
 import recordIdSelector from 'sls-aws/src/client-logic/api/selectors/recordIdSelector'
 

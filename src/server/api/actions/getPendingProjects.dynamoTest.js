@@ -4,7 +4,7 @@ import { apiFn } from 'sls-aws/src/server/api'
 
 import wait from 'sls-aws/src/testUtil/wait'
 
-import { GET_PENDING_PROJECTS } from 'sls-aws/src/descriptions/endpoints/endpointIds'
+import { GET_PENDING_PROJECTS } from 'sls-aws/src/shared/descriptions/endpoints/endpointIds'
 import createProjectPayload from 'sls-aws/src/server/api/mocks/createProjectPayload'
 import createProject from 'sls-aws/src/server/api/actions/createProject'
 

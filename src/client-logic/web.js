@@ -1,4 +1,4 @@
-import createStore from 'sls-aws/src/util/createStore'
+import createStore from 'sls-aws/src/shared/util/createStore'
 
 import initApp from 'sls-aws/src/client-logic/app/thunks/initApp'
 import testMediaBreakpoints from 'sls-aws/src/client-logic/app/thunks/testMediaBreakpoints'

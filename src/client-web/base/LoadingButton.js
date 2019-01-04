@@ -1,5 +1,5 @@
 import React from 'react'
-import { orNull } from 'sls-aws/src/util/ramdaPlus'
+import { orNull } from 'sls-aws/src/shared/util/ramdaPlus'
 
 import Button from 'sls-aws/src/client-web/base/Button'
 import CircularProgress from '@material-ui/core/CircularProgress'

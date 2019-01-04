@@ -4,7 +4,7 @@ import React, { memo, Fragment } from 'react'
 
 import Link from 'sls-aws/src/client-web/base/Link'
 
-import { ternary } from 'sls-aws/src/util/ramdaPlus'
+import { ternary } from 'sls-aws/src/shared/util/ramdaPlus'
 
 export default memo(({ text = '' }) => (
 	<Fragment>

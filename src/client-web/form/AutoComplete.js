@@ -16,7 +16,7 @@ import classNames from 'classnames'
 
 import autoCompleteSetInputHandler from 'sls-aws/src/client-logic/form/handlers/autoCompleteSetInputHandler'
 import autoCompleteConnector from 'sls-aws/src/client-logic/form/connectors/autoCompleteConnector'
-import { orNull } from 'sls-aws/src/util/ramdaPlus'
+import { orNull } from 'sls-aws/src/shared/util/ramdaPlus'
 
 
 // const NoOptionsMessage = memo(({ children, innerProps }) => (

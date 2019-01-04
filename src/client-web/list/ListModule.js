@@ -3,7 +3,7 @@ import React, { memo } from 'react'
 
 import ProjectListItem from 'sls-aws/src/client-web/list/ProjectListItem'
 
-import withModuleContext from 'sls-aws/src/util/withModuleContext'
+import withModuleContext from 'sls-aws/src/shared/util/withModuleContext'
 
 import List from '@material-ui/core/List'
 

@@ -1,8 +1,8 @@
 import { prop } from 'ramda'
 
-import lensesFromSchema from 'sls-aws/src/util/lensesFromSchema'
+import lensesFromSchema from 'sls-aws/src/shared/util/lensesFromSchema'
 
-import { variableSchemaKey } from 'sls-aws/src/util/commonLenses'
+import { variableSchemaKey } from 'sls-aws/src/shared/util/commonLenses'
 
 const apiStoreSchema = {
 	type: 'object',

@@ -1,7 +1,7 @@
 import { map, reduce, pathOr } from 'ramda'
 
-import routeDescriptions from 'sls-aws/src/descriptions/routes'
-import moduleDescriptions from 'sls-aws/src/descriptions/modules'
+import routeDescriptions from 'sls-aws/src/shared/descriptions/routes'
+import moduleDescriptions from 'sls-aws/src/shared/descriptions/modules'
 
 import currentRouteObjSelector from 'sls-aws/src/client-logic/route/selectors/currentRouteObj'
 

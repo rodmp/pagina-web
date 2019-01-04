@@ -1,4 +1,4 @@
-import moduleDescriptions from 'sls-aws/src/descriptions/modules'
+import moduleDescriptions from 'sls-aws/src/shared/descriptions/modules'
 import {
 	generalApiModuleDescriptionLenses,
 } from 'sls-aws/src/client-logic/api/lenses'
