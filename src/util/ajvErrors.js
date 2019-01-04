@@ -26,6 +26,14 @@ const propTitle = errorPath => capitalize(last(errorPath))
 
 export default (schema, errors) => reduce((result, error) => {
 	switch (error.keyword) {
+		case 'errorMessage': {
+			const errorPath = dataPathKey(error)
+			return set(
+				lensPath(errorPath),
+				error.message,
+				result,
+			)
+		}
 		case 'type': {
 			const errorPath = dataPathKey(error)
 			return set(
