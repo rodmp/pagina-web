@@ -9,6 +9,7 @@ import { project } from 'sls-aws/src/descriptions/endpoints/recordTypes'
 export default {
 	[ACTIVE_PROJECTS_LIST_MODULE_ID]: {
 		moduleType: 'list',
+		listType: 'card',
 		recordType: project,
 		endpointId: GET_ACTIVE_PROJECTS,
 	},
