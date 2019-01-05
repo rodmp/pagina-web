@@ -33,6 +33,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "chalk": "^2.4.1",
+    "change-case": "^3.0.2",
     "circular-dependency-plugin": "^5.0.2",
     "classnames": "^2.2.6",
     "commander": "^2.17.1",
