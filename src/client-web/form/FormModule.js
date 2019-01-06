@@ -21,7 +21,7 @@ const styles = {
 	},
 }
 
-export const FormModule = memo(({
+export const FormModuleUnconnected = memo(({
 	formFieldTypes, formTitle, formSubmits, moduleId, moduleKey, submitForm,
 	preSubmitText, postSubmitText, preSubmitCaption, postSubmitCaption,
 	classes, subTitle,
@@ -106,4 +106,6 @@ export const FormModule = memo(({
 	</div>
 ))
 
-export default withModuleContext(formModuleConnector(FormModule, styles))
+export default withModuleContext(
+	formModuleConnector(FormModuleUnconnected, styles)
+)
