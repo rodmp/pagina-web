@@ -16,7 +16,7 @@ import classNames from 'classnames'
 
 const styles = {
 	cardRoot: {
-		padding: [[0, 20]],
+		padding: [[0, 10]],
 		color: 'white',
 	},
 	cardBg: {
@@ -45,7 +45,7 @@ const styles = {
 }
 
 export const ListItemUnconnected = memo(({
-	recordId, pushRoute, projectTitle, pledgeAmount, classes,
+	recordId, pushRoute, projectTitle, projectDescription, classes,
 }) => (
 	<div
 		className={classNames(
@@ -82,7 +82,7 @@ export const ListItemUnconnected = memo(({
 					<TertiaryBody>Hearthstone</TertiaryBody>
 				</div>
 				<div className={classes.description}>
-					<Body>project desc asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdfasdfasdfasdfasdfasdfasdfasdfasdfasdf</Body>
+					<Body>{projectDescription}</Body>
 				</div>
 				<button>pledge</button>
 			</div>

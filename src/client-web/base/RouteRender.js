@@ -1,5 +1,5 @@
 import React from 'react'
-
+import classNames from 'classnames'
 import { ternary } from 'sls-aws/src/util/ramdaPlus'
 
 import routeRenderConnector from 'sls-aws/src/client-logic/route/connectors/routeRenderConnector'
@@ -12,6 +12,12 @@ import Footer from 'sls-aws/src/client-web/base/Footer'
 
 import { ModuleContextProvider } from 'sls-aws/src/util/withModuleContext'
 
+const styles = {
+	content: {
+		WebkitFlex: [[1, 0, 'auto']],
+		flex: [[1, 0, 'auto']],
+	},
+}
 
 export const RenderModules = ({ moduleTypes }) => (
 	moduleTypes.map(([moduleId, moduleType, moduleIndex]) => {
@@ -57,10 +63,17 @@ export const RenderModules = ({ moduleTypes }) => (
 	})
 )
 
-export const RouteRender = ({ currentRouteModuleTypes, noRoute }) => ternary(
+export const RouteRender = ({
+	currentRouteModuleTypes, noRoute, classes,
+}) => ternary(
 	noRoute,
 	<div>loading</div>,
-	<div className="flex layout-column">
+	<div
+		className={classNames(
+			classes.content,
+			"layout-column"
+		)}
+	>
 		<Navigation />
 		<div className="flex layout-column layout-align-center-stretch">
 			<RenderModules moduleTypes={currentRouteModuleTypes} />
@@ -69,4 +82,4 @@ export const RouteRender = ({ currentRouteModuleTypes, noRoute }) => ternary(
 	</div>,
 )
 
-export default routeRenderConnector(RouteRender)
+export default routeRenderConnector(RouteRender, styles)
