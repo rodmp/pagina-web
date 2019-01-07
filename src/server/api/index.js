@@ -1,11 +1,11 @@
 import { prop, pick } from 'ramda'
 
-import validateSchema from 'sls-aws/src/util/validateSchema'
+import validateSchema from 'sls-aws/src/shared/util/validateSchema'
 import {
 	customError, payloadSchemaError, responseSchemaError,
 	notFoundError,
 } from 'sls-aws/src/server/api/errors'
-import ajvErrors from 'sls-aws/src/util/ajvErrors'
+import ajvErrors from 'sls-aws/src/shared/util/ajvErrors'
 import {
 	getPayloadSchema, getResultSchema, testEndpointExists,
 } from 'sls-aws/src/server/api/getEndpointDesc'

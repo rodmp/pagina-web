@@ -1,7 +1,7 @@
 import {
 	GET_PROJECT, CREATE_PROJECT, PLEDGE_PROJECT, GET_PLEDGED_PROJECTS,
 	AUDIT_PROJECT, GET_ACTIVE_PROJECTS, GET_PENDING_PROJECTS,
-} from 'sls-aws/src/descriptions/endpoints/endpointIds'
+} from 'sls-aws/src/shared/descriptions/endpoints/endpointIds'
 
 import getProject from 'sls-aws/src/server/api/actions/getProject'
 import createProject from 'sls-aws/src/server/api/actions/createProject'

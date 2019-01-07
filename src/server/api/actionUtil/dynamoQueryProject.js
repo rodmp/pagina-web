@@ -1,5 +1,5 @@
 import { TABLE_NAME, documentClient } from 'sls-aws/src/server/api/dynamoClient'
-import { PARTITION_KEY, SORT_KEY } from 'sls-aws/src/constants/apiDynamoIndexes'
+import { PARTITION_KEY, SORT_KEY } from 'sls-aws/src/shared/constants/apiDynamoIndexes'
 import { dynamoItemsProp } from 'sls-aws/src/server/api/lenses'
 
 
