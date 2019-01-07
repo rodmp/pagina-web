@@ -2,9 +2,9 @@ import { head, add } from 'ramda'
 
 import { TABLE_NAME, documentClient } from 'sls-aws/src/server/api/dynamoClient'
 
-import { PARTITION_KEY, SORT_KEY } from 'sls-aws/src/constants/apiDynamoIndexes'
+import { PARTITION_KEY, SORT_KEY } from 'sls-aws/src/shared/constants/apiDynamoIndexes'
 
-import { PLEDGE_PROJECT } from 'sls-aws/src/descriptions/endpoints/endpointIds'
+import { PLEDGE_PROJECT } from 'sls-aws/src/shared/descriptions/endpoints/endpointIds'
 import { getPayloadLenses } from 'sls-aws/src/server/api/getEndpointDesc'
 import pledgeDynamoObj from 'sls-aws/src/server/api/actionUtil/pledgeDynamoObj'
 import { generalError } from 'sls-aws/src/server/api/errors'

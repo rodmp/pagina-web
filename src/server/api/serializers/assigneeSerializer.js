@@ -1,5 +1,5 @@
 import { map, prop, reduce, addIndex, propEq, find } from 'ramda'
-import { idProp } from 'sls-aws/src/client-logic/api/lenses'
+import { idProp } from 'sls-aws/src/client/logic/api/lenses'
 
 import { payloadSchemaError } from 'sls-aws/src/server/api/errors'
 

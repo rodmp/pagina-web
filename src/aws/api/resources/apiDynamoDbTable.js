@@ -1,7 +1,7 @@
 import {
 	PARTITION_KEY, SORT_KEY, GSI1_INDEX_NAME, GSI1_PARTITION_KEY,
 	GSI1_SORT_KEY,
-} from 'sls-aws/src/constants/apiDynamoIndexes'
+} from 'sls-aws/src/shared/constants/apiDynamoIndexes'
 
 import { API_DYNAMO_DB_TABLE } from 'sls-aws/src/aws/api/resourceIds'
 

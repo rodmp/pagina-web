@@ -1,4 +1,4 @@
-import { PARTITION_KEY, SORT_KEY } from 'sls-aws/src/constants/apiDynamoIndexes'
+import { PARTITION_KEY, SORT_KEY } from 'sls-aws/src/shared/constants/apiDynamoIndexes'
 
 import projectDenormalizeFields from 'sls-aws/src/server/api/actionUtil/projectDenormalizeFields'
 

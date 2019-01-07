@@ -2,7 +2,7 @@ import { apiFn } from 'sls-aws/src/server/api'
 
 import { TABLE_NAME, documentClient } from 'sls-aws/src/server/api/dynamoClient'
 
-import { CREATE_PROJECT } from 'sls-aws/src/descriptions/endpoints/endpointIds'
+import { CREATE_PROJECT } from 'sls-aws/src/shared/descriptions/endpoints/endpointIds'
 import createProjectPayload from 'sls-aws/src/server/api/mocks/createProjectPayload'
 import { mockUserId } from 'sls-aws/src/server/api/mocks/contextMock'
 

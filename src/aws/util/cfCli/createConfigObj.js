@@ -1,6 +1,6 @@
 import { S3, CloudFormation } from 'aws-sdk'
 import { name as packageName } from 'sls-aws/package.json'
-import { camelCase, kebabCase } from 'sls-aws/src/util/stringCase'
+import { camelCase, kebabCase } from 'sls-aws/src/shared/util/stringCase'
 import awsConf from 'aws-config'
 import findRoot from 'find-root'
 

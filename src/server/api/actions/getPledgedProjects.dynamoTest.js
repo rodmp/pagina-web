@@ -1,6 +1,6 @@
 import { apiFn } from 'sls-aws/src/server/api'
 
-import { GET_PLEDGED_PROJECTS } from 'sls-aws/src/descriptions/endpoints/endpointIds'
+import { GET_PLEDGED_PROJECTS } from 'sls-aws/src/shared/descriptions/endpoints/endpointIds'
 
 import createProject from 'sls-aws/src/server/api/actions/createProject'
 import pledgeProject from 'sls-aws/src/server/api/actions/pledgeProject'

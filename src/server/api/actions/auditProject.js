@@ -2,9 +2,9 @@ import { head, replace } from 'ramda'
 
 import { TABLE_NAME, documentClient } from 'sls-aws/src/server/api/dynamoClient'
 
-import { PARTITION_KEY, SORT_KEY } from 'sls-aws/src/constants/apiDynamoIndexes'
+import { PARTITION_KEY, SORT_KEY } from 'sls-aws/src/shared/constants/apiDynamoIndexes'
 
-import { AUDIT_PROJECT } from 'sls-aws/src/descriptions/endpoints/endpointIds'
+import { AUDIT_PROJECT } from 'sls-aws/src/shared/descriptions/endpoints/endpointIds'
 import { getPayloadLenses } from 'sls-aws/src/server/api/getEndpointDesc'
 import { generalError } from 'sls-aws/src/server/api/errors'
 import dynamoQueryProject from 'sls-aws/src/server/api/actionUtil/dynamoQueryProject'
