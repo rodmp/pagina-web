@@ -36,7 +36,10 @@ export default projectArr => reduce(
 		}
 		if (startsWith('project', sk)) {
 			const projectObj = pick(
-				['title', 'image', 'description', 'pledgeAmount'],
+				[
+					'title', 'image', 'description', 'pledgeAmount',
+					'assignees', 'games',
+				],
 				projectPart,
 			)
 			return {
