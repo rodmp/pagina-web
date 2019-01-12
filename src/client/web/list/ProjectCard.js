@@ -4,11 +4,7 @@ import withModuleContext from 'sls-aws/src/client/util/withModuleContext'
 import projectListItemConnector from 'sls-aws/src/client/logic/project/connectors/projectListItemConnector'
 import goToViewProjectHandler from 'sls-aws/src/client/logic/project/handlers/goToViewProjectHandler'
 
-import MuiListItem from '@material-ui/core/ListItem'
-import ListItemText from '@material-ui/core/ListItemText'
-import Avatar from '@material-ui/core/Avatar'
-import ImageIcon from '@material-ui/icons/Image'
-
+import Button from 'sls-aws/src/client/web/base/Button'
 import Header from 'sls-aws/src/client/web/typography/Header'
 import Body from 'sls-aws/src/client/web/typography/Body'
 import TertiaryBody from 'sls-aws/src/client/web/typography/TertiaryBody'
@@ -16,7 +12,7 @@ import classNames from 'classnames'
 
 const styles = {
 	cardRoot: {
-		padding: [[0, 10]],
+		padding: [[0, 10, 20]],
 		color: 'white',
 	},
 	cardBg: {
@@ -25,14 +21,17 @@ const styles = {
 		backgroundSize: 'cover',
 	},
 	cardHeader: {
-		height: 75,
+		height: 15,
 		backgroundColor: 'rgba(0, 0, 0, 0.74)',
 		padding: [[0, 16]],
 	},
 	cardFooter: {
-		height: 130,
+		height: 215,
 		backgroundColor: 'rgba(0, 0, 0, 0.74)',
-		padding: [[0, 16]],
+		padding: [[10, 16]],
+	},
+	cardGameTitle: {
+		paddingBottom: 5,
 	},
 	description: {
 		height: 40,
@@ -42,10 +41,15 @@ const styles = {
 		overflow: 'hidden',
 		textOverflow: 'ellipsis',
 	},
+	assigneeImg: {
+		width: 100,
+		height: 100,
+	},
 }
 
 export const ListItemUnconnected = memo(({
 	recordId, pushRoute, projectTitle, projectDescription, classes,
+	projectGameImage, projectAssigneesImages,
 }) => (
 	<div
 		className={classNames(
@@ -59,9 +63,7 @@ export const ListItemUnconnected = memo(({
 				'flex layout-column',
 				classes.cardBg,
 			)}
-			style={{
-				backgroundImage: 'url(https://static-cdn.jtvnw.net/ttv-boxart/Hearthstone-144x240.jpg)',
-			}}
+			style={{ backgroundImage: `url(${projectGameImage})` }}
 		>
 			<div
 				className={classNames(
@@ -71,20 +73,35 @@ export const ListItemUnconnected = memo(({
 			>
 				<Header>{projectTitle}</Header>
 			</div>
-			<div>image arr</div>
+			<div className="layout-row layout-align-center">
+				{projectAssigneesImages.map((imgSrc, i) => (
+					<img
+						key={i}
+						className={classes.assigneeImg}
+						src={imgSrc}
+						alt={`Assignee${i}`}
+					/>
+				))}
+			</div>
 			<div
 				className={classNames(
 					'flex layout-column layout-align-space-around',
 					classes.cardFooter,
 				)}
 			>
-				<div>
+				<div className={classes.cardGameTitle}>
 					<TertiaryBody>Hearthstone</TertiaryBody>
 				</div>
 				<div className={classes.description}>
 					<Body>{projectDescription}</Body>
 				</div>
-				<button>pledge</button>
+				<div>
+					<Button
+						onClick={goToViewProjectHandler(recordId, pushRoute)}
+					>
+						pledge
+					</Button>
+				</div>
 			</div>
 		</div>
 	</div>

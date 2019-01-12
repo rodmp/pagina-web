@@ -35,10 +35,7 @@ export default async ({ userId, payload }) => {
 		[PARTITION_KEY]: projectId,
 		[SORT_KEY]: `project|${projectPendingKey}|${randomNumber(1, 10)}`,
 		created,
-		...pick(
-			['image', 'description', 'pledgeAmount', 'title'],
-			serializedProject,
-		),
+		...projectCommon,
 	}
 
 	const projectAssignees = map(assignee => ({
@@ -78,9 +75,6 @@ export default async ({ userId, payload }) => {
 	return {
 		id: projectId,
 		status: projectPendingKey,
-		...pick(
-			['title', 'image', 'description', 'pledgeAmount', 'assignees'],
-			serializedProject,
-		),
+		...projectCommon,
 	}
 }

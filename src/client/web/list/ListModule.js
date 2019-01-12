@@ -16,7 +16,7 @@ export const ListModuleUnconnected = memo(({ list, listType }) => ternary(
 	<div className="flex layout-row layout-align-center-start">
 		<MaxWidthContainer>
 			<div className="flex layout-row layout-align-center">
-				<div className="layout-row layout-align-space-between layout-wrap">
+				<div className="layout-row layout-wrap">
 					{map(recordId => (
 						<ProjectCard key={recordId} recordId={recordId} />
 					), list)}
