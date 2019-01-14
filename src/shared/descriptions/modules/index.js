@@ -7,6 +7,7 @@ import pendingProjectsList from 'sls-aws/src/shared/descriptions/modules/pending
 import activeProjectsList from 'sls-aws/src/shared/descriptions/modules/activeProjectsList'
 import pledgeProjectForm from 'sls-aws/src/shared/descriptions/modules/pledgeProjectForm'
 import howItWorks from 'sls-aws/src/shared/descriptions/modules/howItWorks'
+import marketplaceBannerHeader from 'sls-aws/src/shared/descriptions/modules/marketplaceBannerHeader'
 
 const allModules = {
 	...loginForm,
@@ -18,6 +19,7 @@ const allModules = {
 	...activeProjectsList,
 	...pledgeProjectForm,
 	...howItWorks,
+	...marketplaceBannerHeader,
 }
 
 export default allModules

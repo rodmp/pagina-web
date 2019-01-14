@@ -9,7 +9,6 @@ const styles = {
 		fontSize: 32,
 		fontWeight: 'bold',
 		lineHeight: 1.25,
-		color: '#7f7f7f',
 	},
 }
 
