@@ -5,6 +5,7 @@ import projectListItemConnector from 'sls-aws/src/client/logic/project/connector
 import goToViewProjectHandler from 'sls-aws/src/client/logic/project/handlers/goToViewProjectHandler'
 
 import Button from 'sls-aws/src/client/web/base/Button'
+import ShareMenu from 'sls-aws/src/client/web/base/ShareMenu'
 import Header from 'sls-aws/src/client/web/typography/Header'
 import Body from 'sls-aws/src/client/web/typography/Body'
 import TertiaryBody from 'sls-aws/src/client/web/typography/TertiaryBody'
@@ -72,6 +73,7 @@ export const ListItemUnconnected = memo(({
 				)}
 			>
 				<Header>{projectTitle}</Header>
+				<ShareMenu />
 			</div>
 			<div className="layout-row layout-align-center">
 				{projectAssigneesImages.map((imgSrc, i) => (
