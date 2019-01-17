@@ -22,12 +22,19 @@ const styles = {
 		backgroundSize: 'cover',
 	},
 	cardHeader: {
-		height: 15,
+		height: 70,
 		backgroundColor: 'rgba(0, 0, 0, 0.74)',
 		padding: [[0, 16]],
 	},
+	headerText: {
+		display: '-webkit-box',
+		WebkitLineClamp: 2,
+		WebkitBoxOrient: 'vertical',
+		overflow: 'hidden',
+		textOverflow: 'ellipsis',
+	},
 	cardFooter: {
-		height: 215,
+		height: 145,
 		backgroundColor: 'rgba(0, 0, 0, 0.74)',
 		padding: [[10, 16]],
 	},
@@ -50,7 +57,7 @@ const styles = {
 
 export const ListItemUnconnected = memo(({
 	recordId, pushRoute, projectTitle, projectDescription, classes,
-	projectGameImage, projectAssigneesImages,
+	projectGameImage, projectAssigneesImages, projectShareUrl,
 }) => (
 	<div
 		className={classNames(
@@ -69,11 +76,13 @@ export const ListItemUnconnected = memo(({
 			<div
 				className={classNames(
 					classes.cardHeader,
-					'flex layout-row layout-align-start-center',
+					'layout-row layout-align-start-center',
 				)}
 			>
-				<Header>{projectTitle}</Header>
-				<ShareMenu />
+				<div className={classNames(classes.headerText, 'flex')}>
+					<Header>{projectTitle}</Header>
+				</div>
+				<ShareMenu url={projectShareUrl} />
 			</div>
 			<div className="layout-row layout-align-center">
 				{projectAssigneesImages.map((imgSrc, i) => (
@@ -87,7 +96,7 @@ export const ListItemUnconnected = memo(({
 			</div>
 			<div
 				className={classNames(
-					'flex layout-column layout-align-space-around',
+					'layout-column layout-align-space-around',
 					classes.cardFooter,
 				)}
 			>
