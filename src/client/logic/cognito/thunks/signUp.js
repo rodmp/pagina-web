@@ -10,7 +10,9 @@ export default ({ email, password }) => dispatch => new Promise(
 					const { code, message } = cognitoError
 					let fieldError = { email: message }
 					if (code === 'InvalidPasswordException') {
-						fieldError = { password: message }
+						fieldError = {
+							password: 'Password must contain at least one number, symbol, and uppercase character',
+						}
 					}
 					reject(fieldError)
 				} else {
