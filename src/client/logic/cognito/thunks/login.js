@@ -8,6 +8,15 @@ import { ACTIVE_PROJECTS_ROUTE_ID } from 'sls-aws/src/shared/descriptions/routes
 
 import setAwsConfig from 'sls-aws/src/client/logic/cognito/util/setAwsConfig'
 
+const AuthenticateUserError = reject => (error) => {
+	const { code, message } = error
+	let fieldError = { password: message }
+	if (code === 'UserNotFoundException') {
+		fieldError = { email: message }
+	}
+	reject(fieldError)
+}
+
 export default ({ email, password }) => dispatch => new Promise(
 	(resolve, reject) => {
 		const authenticationDetails = new AuthenticationDetails({
@@ -20,7 +29,7 @@ export default ({ email, password }) => dispatch => new Promise(
 		})
 		cognitoUser.authenticateUser(authenticationDetails, {
 			onSuccess: resolve,
-			onFailure: reject,
+			onFailure: AuthenticateUserError(reject),
 		})
 	},
 ).then((session) => {
@@ -28,6 +37,4 @@ export default ({ email, password }) => dispatch => new Promise(
 	return dispatch(determineAuth()).then(
 		() => dispatch(pushRoute(ACTIVE_PROJECTS_ROUTE_ID)),
 	)
-}).catch(
-	console.warn,
-)
+})

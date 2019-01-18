@@ -74,11 +74,13 @@ export const submitFormHof = (
 				dispatch(submitFormCompleteFn(moduleKey))
 			})
 		}).catch((errors) => {
+			console.log(1)
 			console.warn(errors)
 			dispatch(setFormErrorsFn(moduleKey, errors))
 			dispatch(submitFormCompleteFn(moduleKey))
 		})
 	}).catch((errors) => {
+		console.log(2)
 		console.warn(errors)
 		dispatch(setFormErrorsFn(moduleKey, errors))
 		dispatch(submitFormCompleteFn(moduleKey))
