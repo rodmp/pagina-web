@@ -43,7 +43,7 @@ export default async (userId, projectId) => {
 		ConsistentRead: true,
 	}
 
-	const [projectDdb, assigneesDdb, gamesDdb, myPledgeDdb] = await Promise.all([
+	const [projectDdb, /* assigneesDdb, gamesDdb, */ myPledgeDdb] = await Promise.all([
 		documentClient.query(projectParams).promise(),
 		// documentClient.query(assigneeParams).promise(),
 		// documentClient.query(gameParams).promise(),
@@ -51,8 +51,8 @@ export default async (userId, projectId) => {
 	])
 	return [
 		dynamoItemsProp(projectDdb),
-		dynamoItemsProp(assigneesDdb),
-		dynamoItemsProp(gamesDdb),
+		// dynamoItemsProp(assigneesDdb),
+		// dynamoItemsProp(gamesDdb),
 		dynamoItemsProp(myPledgeDdb),
 	]
 }
