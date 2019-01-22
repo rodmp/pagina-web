@@ -45,8 +45,8 @@ export default async (userId, projectId) => {
 
 	const [projectDdb, assigneesDdb, gamesDdb, myPledgeDdb] = await Promise.all([
 		documentClient.query(projectParams).promise(),
-		documentClient.query(assigneeParams).promise(),
-		documentClient.query(gameParams).promise(),
+		// documentClient.query(assigneeParams).promise(),
+		// documentClient.query(gameParams).promise(),
 		documentClient.query(myPledgeParams).promise(),
 	])
 	return [
