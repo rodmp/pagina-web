@@ -39,6 +39,9 @@ const styles = {
 	sidebarItem: {
 		marginBottom: 20,
 	},
+	description: {
+		wordWrap: 'break-word',
+	},
 }
 
 export const ViewProjectModule = memo(({
@@ -48,7 +51,7 @@ export const ViewProjectModule = memo(({
 }) => (
 	<div className="flex layout-row layout-align-center-start">
 		<MaxWidthContainer>
-			<div className="layout-row layout-wrap">
+			<div className="flex layout-row layout-wrap">
 				<div className="flex-100 layout-row layout-align-center">
 					<Title>{projectTitle}</Title>
 				</div>
@@ -105,7 +108,9 @@ export const ViewProjectModule = memo(({
 				</div>
 				<div className="flex-100 flex-order-2 flex-order-gt-xs-3">
 					<SubHeader>Description</SubHeader>
-					{projectDescription}
+					<div className={classes.description}>
+						{projectDescription}
+					</div>
 				</div>
 			</div>
 		</MaxWidthContainer>
