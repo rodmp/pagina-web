@@ -50,10 +50,15 @@ export const getDataHof = (userDataFetchFn, gameDataFetchFn) => (idArrays) => {
 					providerData,
 				)
 				if (specificProviderData) {
-					return reduce((result, [key, providerProp]) => ({
-						...result,
-						[key]: prop(providerProp, specificProviderData),
-					}), staticData, dataMap)
+					return reduce((result, [key, providerProp]) => {
+						const providerValue = prop(
+							providerProp, specificProviderData,
+						)
+						if (providerValue) {
+							return { ...result, [key]: providerValue }
+						}
+						return result
+					}, staticData, dataMap)
 				}
 				throw payloadSchemaError({
 					[payloadKey]: {
