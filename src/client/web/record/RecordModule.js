@@ -8,9 +8,9 @@ import withModuleContext from 'sls-aws/src/client/util/withModuleContext'
 // import recordModuleConnector from 'sls-aws/src/client/logic/api/connectors/recordModuleConnector'
 
 // eventually make this a switch statement for record types
-export const ListModule = memo(() => (
+export const RecordModule = memo(() => (
 	<ViewProject />
 ))
 
-export default withModuleContext(ListModule)
-// export default withModuleContext(recordModuleConnector(ListModule))
+export default withModuleContext(RecordModule)
+// export default withModuleContext(recordModuleConnector(RecordModule))

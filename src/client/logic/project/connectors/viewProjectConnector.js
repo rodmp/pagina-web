@@ -8,7 +8,7 @@ import pledgeAmountSelector from 'sls-aws/src/client/logic/project/selectors/ple
 import myPledgeSelector from 'sls-aws/src/client/logic/project/selectors/myPledgeSelector'
 import statusSelector from 'sls-aws/src/client/logic/project/selectors/statusSelector'
 import projectAssigneesSelector from 'sls-aws/src/client/logic/project/selectors/projectAssigneesSelector'
-import projectGamesSelector from 'sls-aws/src/client/logic/project/selectors/projectGamesSelector'
+import projectGameImageSquareSelector from 'sls-aws/src/client/logic/project/selectors/projectGameImageSquareSelector'
 import canApproveProjectSelector from 'sls-aws/src/client/logic/project/selectors/canApproveProjectSelector'
 import canPledgeProjectSelector from 'sls-aws/src/client/logic/project/selectors/canPledgeProjectSelector'
 
@@ -23,7 +23,7 @@ export default reduxConnector(
 		['myPledge', myPledgeSelector],
 		['status', statusSelector],
 		['assignees', projectAssigneesSelector],
-		['games', projectGamesSelector],
+		['gameImage', projectGameImageSquareSelector],
 		['canApproveProject', canApproveProjectSelector],
 		['canPledgeProject', canPledgeProjectSelector],
 	],
