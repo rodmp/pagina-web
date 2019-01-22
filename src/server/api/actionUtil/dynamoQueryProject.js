@@ -13,24 +13,26 @@ export default async (userId, projectId) => {
 		},
 		ConsistentRead: true,
 	}
-	const assigneeParams = {
-		TableName: TABLE_NAME,
-		KeyConditionExpression: `${PARTITION_KEY} = :pk and begins_with(${SORT_KEY}, :assignee)`,
-		ExpressionAttributeValues: {
-			':pk': projectId,
-			':assignee': 'assignee',
-		},
-		ConsistentRead: true,
-	}
-	const gameParams = {
-		TableName: TABLE_NAME,
-		KeyConditionExpression: `${PARTITION_KEY} = :pk and begins_with(${SORT_KEY}, :game)`,
-		ExpressionAttributeValues: {
-			':pk': projectId,
-			':game': 'game',
-		},
-		ConsistentRead: true,
-	}
+	// Don't have to grab these anymore cause they are de-normalized on project
+	// ...may have to make a toggle for this fn though
+	// const assigneeParams = {
+	// 	TableName: TABLE_NAME,
+	// 	KeyConditionExpression: `${PARTITION_KEY} = :pk and begins_with(${SORT_KEY}, :assignee)`,
+	// 	ExpressionAttributeValues: {
+	// 		':pk': projectId,
+	// 		':assignee': 'assignee',
+	// 	},
+	// 	ConsistentRead: true,
+	// }
+	// const gameParams = {
+	// 	TableName: TABLE_NAME,
+	// 	KeyConditionExpression: `${PARTITION_KEY} = :pk and begins_with(${SORT_KEY}, :game)`,
+	// 	ExpressionAttributeValues: {
+	// 		':pk': projectId,
+	// 		':game': 'game',
+	// 	},
+	// 	ConsistentRead: true,
+	// }
 	const myPledgeParams = {
 		TableName: TABLE_NAME,
 		KeyConditionExpression: `${PARTITION_KEY} = :pk and ${SORT_KEY} = :pledgeUserId`,
