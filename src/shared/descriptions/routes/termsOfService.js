@@ -1,16 +1,17 @@
 import {
-	HOW_IT_WORKS_ROUTE_ID,
+	TERMS_OF_SERVICE_ROUTE_ID,
 } from 'sls-aws/src/shared/descriptions/routes/routeIds'
 
 import {
-	HOW_IT_WORKS_MODULE_ID,
+	TERMS_OF_SERVICE_MODULE_ID,
 } from 'sls-aws/src/shared/descriptions/modules/moduleIds'
 
+
 export default {
-	[HOW_IT_WORKS_ROUTE_ID]: {
-		url: '/how-it-works',
+	[TERMS_OF_SERVICE_ROUTE_ID]: {
+		url: '/terms',
 		modules: [
-			HOW_IT_WORKS_MODULE_ID,
+			TERMS_OF_SERVICE_MODULE_ID,
 		],
 	},
 }

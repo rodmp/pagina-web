@@ -7,6 +7,8 @@ import pendingProjectsList from 'sls-aws/src/shared/descriptions/modules/pending
 import activeProjectsList from 'sls-aws/src/shared/descriptions/modules/activeProjectsList'
 import pledgeProjectForm from 'sls-aws/src/shared/descriptions/modules/pledgeProjectForm'
 import howItWorks from 'sls-aws/src/shared/descriptions/modules/howItWorks'
+import termsOfService from 'sls-aws/src/shared/descriptions/modules/termsOfService'
+import privacyPolicy from 'sls-aws/src/shared/descriptions/modules/privacyPolicy'
 import marketplaceBannerHeader from 'sls-aws/src/shared/descriptions/modules/marketplaceBannerHeader'
 
 const allModules = {
@@ -19,7 +21,9 @@ const allModules = {
 	...activeProjectsList,
 	...pledgeProjectForm,
 	...howItWorks,
+	...termsOfService,
 	...marketplaceBannerHeader,
+	...privacyPolicy,
 }
 
 export default allModules

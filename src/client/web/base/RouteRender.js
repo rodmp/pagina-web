@@ -8,6 +8,7 @@ import routeRenderConnector from 'sls-aws/src/client/logic/route/connectors/rout
 import FormModule from 'sls-aws/src/client/web/form/FormModule'
 import ListModule from 'sls-aws/src/client/web/list/ListModule'
 import RecordModule from 'sls-aws/src/client/web/record/RecordModule'
+import StaticModule from 'sls-aws/src/client/web/static/StaticModule'
 import Navigation from 'sls-aws/src/client/web/base/Navigation'
 import Footer from 'sls-aws/src/client/web/base/Footer'
 import BannerHeader from 'sls-aws/src/client/web/header/BannerHeader'
@@ -44,6 +45,12 @@ export const RenderModules = ({ moduleTypes }) => (
 				return (
 					<ModuleContextProvider {...moduleProps}>
 						<RecordModule />
+					</ModuleContextProvider>
+				)
+			case 'static':
+				return (
+					<ModuleContextProvider {...moduleProps}>
+						<StaticModule />
 					</ModuleContextProvider>
 				)
 			case 'bannerHeader':
