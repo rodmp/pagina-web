@@ -61,7 +61,6 @@ export default async ({ userId, payload }) => {
 		projectId, serializedProject, userId, pledgeAmount,
 		viewStripeCardId(serializedProject), true,
 	)
-		console.log([project, ...projectAssignees, ...projectGames, pledge])
 	const params = {
 		RequestItems: {
 			[TABLE_NAME]: map(
