@@ -10,11 +10,8 @@ import { getResponseLenses } from 'sls-aws/src/server/api/getEndpointDesc'
 const responseLenses = getResponseLenses(GET_PROJECT)
 const { pathOrGamesItem } = responseLenses
 
-export default (state, props) => stringFormat(
-	propOr(
-		'http://placehold.jp/24/cc9999/993333/{width}x{height}.png?text=Game',
-		'boxArtTemplateUrl',
-		pathOrGamesItem(0, [], getRecordSelector(state, props)),
-	),
-	{ width: 144, height: 240 },
+export default (state, props) => propOr(
+	'http://placehold.jp/24/cc9999/993333/{width}x{height}.png?text=Game',
+	'boxArtTemplateUrl',
+	pathOrGamesItem(0, [], getRecordSelector(state, props)),
 )
