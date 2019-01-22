@@ -6,13 +6,13 @@ import dynamoQueryProject from 'sls-aws/src/server/api/actionUtil/dynamoQueryPro
 
 export default async ({ userId, payload }) => {
 	const projectId = prop('projectId', payload)
-	const [project, assignee, games, myPledge] = await dynamoQueryProject(
+	const [project, /* assignee, games, */ myPledge] = await dynamoQueryProject(
 		userId, projectId,
 	)
 	return projectSerializer([
 		...project,
-		...assignee,
-		...games,
+		// ...assignee,
+		// ...games,
 		...myPledge,
 	])
 }
