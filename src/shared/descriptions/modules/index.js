@@ -9,7 +9,12 @@ import pledgeProjectForm from 'sls-aws/src/shared/descriptions/modules/pledgePro
 import howItWorks from 'sls-aws/src/shared/descriptions/modules/howItWorks'
 import termsOfService from 'sls-aws/src/shared/descriptions/modules/termsOfService'
 import privacyPolicy from 'sls-aws/src/shared/descriptions/modules/privacyPolicy'
+import cookiePolicy from 'sls-aws/src/shared/descriptions/modules/cookiePolicy'
 import marketplaceBannerHeader from 'sls-aws/src/shared/descriptions/modules/marketplaceBannerHeader'
+import howItWorkBannerHeader from 'sls-aws/src/shared/descriptions/modules/howItWorkBannerHeader'
+import privacyPolicyBannerHeader from 'sls-aws/src/shared/descriptions/modules/privacyPolicyBannerHeader'
+import cookiePolicyBannerHeader from 'sls-aws/src/shared/descriptions/modules/cookiePolicyBannerHeader'
+import termsOfServiceBannerHeader from 'sls-aws/src/shared/descriptions/modules/termsOfServiceBannerHeader'
 
 const allModules = {
 	...loginForm,
@@ -24,6 +29,11 @@ const allModules = {
 	...termsOfService,
 	...marketplaceBannerHeader,
 	...privacyPolicy,
+	...cookiePolicy,
+	...howItWorkBannerHeader,
+	...cookiePolicyBannerHeader,
+	...privacyPolicyBannerHeader,
+	...termsOfServiceBannerHeader,
 }
 
 export default allModules
