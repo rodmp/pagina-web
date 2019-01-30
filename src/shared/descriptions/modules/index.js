@@ -1,6 +1,8 @@
 import loginForm from 'sls-aws/src/shared/descriptions/modules/loginForm'
 import signUpForm from 'sls-aws/src/shared/descriptions/modules/signUpForm'
 import verifyAccountForm from 'sls-aws/src/shared/descriptions/modules/verifyAccountForm'
+import forgotPassword from 'sls-aws/src/shared/descriptions/modules/forgotPassword'
+import resetPassword from 'sls-aws/src/shared/descriptions/modules/resetPassword'
 import createProjectForm from 'sls-aws/src/shared/descriptions/modules/createProjectForm'
 import viewProject from 'sls-aws/src/shared/descriptions/modules/viewProject'
 import pendingProjectsList from 'sls-aws/src/shared/descriptions/modules/pendingProjectsList'
@@ -21,6 +23,8 @@ import rulesOfUseBannerHeader from 'sls-aws/src/shared/descriptions/modules/rule
 const allModules = {
 	...loginForm,
 	...signUpForm,
+	...forgotPassword,
+	...resetPassword,
 	...verifyAccountForm,
 	...createProjectForm,
 	...viewProject,
