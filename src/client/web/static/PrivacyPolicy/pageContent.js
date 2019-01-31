@@ -19,7 +19,7 @@ const pageContent = classes => [
         We may update this Policy periodically. If we do, we’ll let you know about any material
         changes, either by notifying you on the Site or by sending you an email. New versions of
         this Policy will never apply retroactively — we’ll tell you the exact date they go into
-        effect. If you keep using DoubleDog after a change, that means you accept this Policy.
+        effect. If you keep using Double Dog after a change, that means you accept this Policy.
 			</p>
 		),
 	},
@@ -28,11 +28,10 @@ const pageContent = classes => [
 		id: ANCHORS.WHO_WE_ARE,
 		text: (
 			<p>
-        Double Dog, PBC (together with Drip U.S., LLC, The Creative Independent, LLC, and its and
-        their parents, subsidiaries, affiliates, agents, representatives, consultants, employees,
-        officers, and directors — collectively, “Double Dog,” “we,” or “us”) provides services that
-        help people bring creative content to life. Our main service is a funding platform for
-        creative projects.
+        Double Dog, PBC (along with its parents, subsidiaries, affiliates, agents, representatives, 
+		consultants, employees, officers, and directors — collectively, “Double Dog,” “we,” or 
+		“us”) provides services that help people bring creative content to life. Our main service 
+		is a funding platform for creative dares.
 			</p>
 		),
 	},
@@ -75,7 +74,7 @@ const pageContent = classes => [
             newsletters, upload, pledge or submit content through Double Dog, or if you contact us;
 					</li>
 					<li>
-            Information you provide for identity verification purposes when fulfilling a project,
+            Information you provide for identity verification purposes when fulfilling a dare,
             including your legal name, business name and Tax ID for business entities, and date of
             birth. In some cases, our payment processor will request that you provide a secure
             upload of an identity document (such as your passport, drivers license or other
@@ -112,9 +111,9 @@ const pageContent = classes => [
 				</ul>
 				<p>
           You may decline to provide us with your information. However, this will limit your ability
-          to register for an account or use our Services. You may pledge to a project as a guest by
+          to register for an account or use our Services. You may pledge to a dare as a guest by
           providing only an email address. However, to adjust your pledge, save payment details for
-          future pledges, make project comments and take most other actions on our Site, you will
+          future pledges, make dare comments and take most other actions on our Site, you will
           need to finish creating an account. You may review, change or remove your information
           through your <Link routeId={null}>account settings</Link>.
 				</p>
@@ -137,7 +136,7 @@ const pageContent = classes => [
 					</li>
 					<li>
             To create and administer your account, contact you, and customize your experience on
-            Double Dog (for example, to show you projects that we think may interest you based on
+            Double Dog (for example, to show you dares that we think may interest you based on
             your previous use); and
 					</li>
 					<li>
@@ -162,7 +161,7 @@ const pageContent = classes => [
 					<li>
             Performing the contract we have with you: In certain circumstances, we need your
             personal data to comply with our contractual obligation to deliver the Services, enable
-            creators to establish and display their projects, and enable backers to find and make
+            creators to establish and display their dares, and enable backers to find and make
             pledges to them.
 					</li>
 					<li>
@@ -207,15 +206,15 @@ const pageContent = classes => [
 					<strong> Information that’s shared publicly</strong>
 					<span>
             When you create an account, we create a basic profile page for you on Double Dog,
-            containing your username, the date the account was created, and a list of projects you
-            have funded or delivered. Your profile is private. Your username appears with projects
+            containing your username, the date the account was created, and a list of dares you
+            have funded or delivered. Your profile is private. Your username appears with dares
             you create or claim on Double Dog.
 					</span>
 				</p>
 				<p>
-          Creators are also asked to verify their identities before claiming a project. Once this
+          Creators are also asked to verify their identities before claiming a dare. Once this
           has been done, the creator’s Verified Name will be publicly displayed on their account
-          profile and on any projects they create or claim.
+          profile and on any dares they create or claim.
 				</p>
 			</React.Fragment>
 		),
@@ -272,13 +271,13 @@ const pageContent = classes => [
 				<p>
 					<strong>Information that’s shared with creators and collaborators</strong>
 					<span>
-            When you back a project, the project’s deliverer will know your username, and the amount
+            When you back a dare, the dare’s deliverer will know your username, and the amount
             you have pledged. Deliverers never receive backers’ credit card details or other payment
             information.
 					</span>
 				</p>
 				<p>
-          If a project you have backed is successfully funded, the creator will receive the email
+          If a dare you have backed is successfully funded, the creator will receive the email
           address associated with your Double Dog account. They may also send you a survey
           requesting information needed to provide any reward. (For instance, they may need your
           mailing address, or T-shirt size.) Any information you provide in such surveys will be
@@ -293,7 +292,7 @@ const pageContent = classes => [
           that seems inappropriate or excessive
 				</p>
 				<p>
-          Collaborators are third parties that deliverers can appoint to help manage their project.
+          Collaborators are third parties that deliverers can appoint to help manage their dare.
           These collaborators may be able to access the information available to deliverers
           (including backers’ names, email addresses, pledge amounts, messages, and survey
           responses), and are required to treat backers’ personal information with the same care and
@@ -301,7 +300,7 @@ const pageContent = classes => [
 				</p>
 				<p>
           Deliverers and their collaborators may also receive routine traffic analytics about their
-          project pages.
+          dare pages.
 				</p>
 			</React.Fragment>
 		),
@@ -311,7 +310,7 @@ const pageContent = classes => [
 		id: ANCHORS.SHARED_WITH_DOUBLE_DOG,
 		text: (
 			<p>
-				<strong>Information that’s shared to protect DoubleDog and comply with the law</strong>
+				<strong>Information that’s shared to protect Double Dog and comply with the law</strong>
 				<span>
           We do reserve the right to disclose personal information when we believe that doing so is
           reasonably necessary to comply with the law or law enforcement, to prevent fraud or abuse,
@@ -322,7 +321,7 @@ const pageContent = classes => [
 		),
 	},
 	{
-		title: null,
+		title: 'TOS for Links',
 		id: ANCHORS.LINKS_TO_SERVICE,
 		text: (
 			<p>
@@ -336,7 +335,7 @@ const pageContent = classes => [
 		),
 	},
 	{
-		title: 'Retention',
+		title: 'Data Retention',
 		id: ANCHORS.RETENTION,
 		text: (
 			<React.Fragment>
@@ -356,7 +355,7 @@ const pageContent = classes => [
 		),
 	},
 	{
-		title: 'Data Transfers Because DoubleDog',
+		title: 'Data Transfers',
 		id: ANCHORS.DATA_TRANSFER,
 		text: (
 			<p>
@@ -370,7 +369,7 @@ const pageContent = classes => [
 		),
 	},
 	{
-		title: 'Your Rights Users',
+		title: 'Your Rights',
 		id: ANCHORS.RIGHTS,
 		text: (
 			<React.Fragment>
@@ -401,8 +400,7 @@ const pageContent = classes => [
 				<p>
           We will send you email relating to your transactions on Double Dog. You may also elect to
           receive certain marketing email communications, in accordance with your preferences, and
-          from which you may opt out at any time by adjusting your{' '}
-					<Link routeId={null}>notification settings</Link>. We’ll also send you service-related announcements
+          from which you may opt out at any time. We’ll also send you service-related announcements
           when it’s necessary to do so.
 				</p>
 			</React.Fragment>
@@ -422,14 +420,14 @@ const pageContent = classes => [
           protected by a password, which you should choose carefully and keep secure.
 				</p>
 				<p>
-          We encourage the responsible disclosure of vulnerabilities of our Services by emailing{' '}
-					<a href={`mailto:${EMAIL}`}>{EMAIL}om</a>.
+          We encourage the responsible disclosure of vulnerabilities of our Services by emailing {' '}
+					<a href={`mailto:${EMAIL}`}>{EMAIL}</a>.
 				</p>
 			</React.Fragment>
 		),
 	},
 	{
-		title: ' Data Protection Officer',
+		title: 'Data Protection Officer',
 		id: ANCHORS.DATA_PROTECT_OFFICER,
 		text: (
 			<React.Fragment>
@@ -493,7 +491,7 @@ const pageContent = classes => [
           delete it.
 				</p>
 				<p>
-					<i>Updated: Dec 2018</i>
+					<i>Updated: Feb 2019</i>
 				</p>
 			</React.Fragment>
 		),

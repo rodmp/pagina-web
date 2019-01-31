@@ -31,7 +31,7 @@ const styles = {
 	mainParagraph: {
 		fontFamily: 'Open Sans, sans-serif',
 		color: '#fff',
-		padding: 27,
+		padding: 15,
 
 		backgroundColor: '#800080',
 		borderRadius: 3,
