@@ -116,7 +116,7 @@ const pageContent = classes => [
 		),
 	},
 	{
-		title: ' Our Do Not Track Policy',
+		title: 'Our Do Not Track Policy',
 		text: (
 			<React.Fragment>
 				<p>
@@ -130,7 +130,7 @@ const pageContent = classes => [
 		),
 	},
 	{
-		title: ' Questions?',
+		title: 'Questions?',
 		text: (
 			<React.Fragment>
 				<p>

@@ -21,13 +21,8 @@ const TermsOfService = ({ classes }) => (
 			pageContent(classes),
 		)}
 		<p className={classes.info}>
-      These updated terms will go into effect on <mark>September 2, 2018, at 12 a.m.</mark> Eastern
-      Time, and apply to all projects launched on Double Dog on or after that date.{' '}
-			<mark>
-        To see the previous version of these terms, which govern all projects launched before that
-        date, <Link routeId={TERMS_OF_SERVICE_ROUTE_ID}>click here</Link>. To see a comparison of
-        the two versions, <Link routeId={null}>click here</Link>.
-			</mark>
+      	These updated terms will go into effect on February 1, 2019, at 12 a.m. Eastern
+      	Time, and apply to all projects launched on Double Dog on or after that date.
 		</p>
 	</Terms>
 )
