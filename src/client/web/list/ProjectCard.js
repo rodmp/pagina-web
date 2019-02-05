@@ -62,7 +62,7 @@ export const ListItemUnconnected = memo(({
 	<div
 		className={classNames(
 			classes.cardRoot,
-			'flex-xs-100 flex-md-33 flex-sm-50 flex-lg-33 flex-gt-lg-33',
+			'flex-xs-100 flex-sm-100 flex-md-50 flex-lg-25 flex-xl-25',
 			'layout-column layout-align-start-stretch',
 		)}
 	>
