@@ -4,7 +4,7 @@ import { linkHoverColor } from 'sls-aws/src/client/web/commonStyles'
 const styles = {
 	section: {
 		...styled.section,
-		paddingBottom: 100,
+		paddingBottom: 0,
 
 		'& p': {
 			marginBottom: 18,
@@ -20,7 +20,7 @@ const styles = {
 				paddingLeft: 17,
 				paddingRight: 17,
 			},
-		},
+		},.
 	},
 	sectionTitle: {
 		...styled.sectionTitle,
