@@ -14,9 +14,9 @@ const pageContent = classes => [
 	{
 		title: '1. Welcome to Double Dog!',
 		paragraph: `
-        This page explains our terms of use. When you use Double Dog, you’re agreeing to all the
+        This page explains our terms of service. When you use Double Dog, you’re agreeing to all the
         rules on this page. We’ve done our best to offer you clear and simple explanations of what
-        everything means with brief summaries before each TermSection. The summaries are not part of
+        everything means with brief summaries before each Section. The summaries are not part of
         the official legal terms.
     `,
 		text: (
@@ -29,7 +29,7 @@ const pageContent = classes => [
           (the “Terms”). You’re also agreeing to our{' '}
 					<Link routeId={PRIVACY_POLICY_ROUTE_ID}>Privacy Policy</Link> and{' '}
 					<Link routeId={COOKIE_POLICY_ROUTE_ID}>Cookie Policy</Link>, and agreeing to follow any
-          other rules on the Site, like our <Link routeId={RULES_OF_USE_ROUTE_ID}>rules for starting dares</Link>.
+          other rules on the Site, like our <Link routeId={RULES_OF_USE_ROUTE_ID}>rules for starting Dares</Link>.
 				</p>
 				<p>
           We may change these terms from time to time. If we do, we’ll let you know about any
@@ -107,8 +107,8 @@ const pageContent = classes => [
             misleading, or inaccurate. Don’t do anything deceptive or fraudulent.
 					</li>
 					<li>
-						<strong>Don’t solicit use of prohibited items of activities.</strong>
-            Don’t post dares that include or encourage illegal actions or items, violate any of
+						<strong>Don’t solicit use of prohibited items of activities. </strong>
+            Don’t post Dares that include or encourage illegal actions or items, violate any of
             Double Dog’s policies, rules, or guidelines, or violate any applicable law, statute,
             ordinance, or regulation.
 					</li>
@@ -155,17 +155,17 @@ const pageContent = classes => [
 		id: 'section-4',
 		title: '4. How Dares Work',
 		paragraph: `
-        Most of our Terms of Use explain your relationship with Double Dog. This Section is
-        different — it explains the relationship between creators and backers of Double Dog dares,
+        Most of our Terms of Service explain your relationship with Double Dog. This section is
+        different — it explains the relationship between creators and backers of Double Dog Dares,
         and who’s responsible for what. This is what you’re agreeing to when you create, fund,
-        delivers results for a Double Dog dare.
+        delivers results for a Double Dog Dare.
     `,
 		text: (
 			<React.Fragment>
 				<p>
-          Double Dog provides a funding platform for creative dares. When a creator fulfills a
-          dare on Double Dog or a funder backs a dare on Double Dog, they’re inviting other
-          people to form a contract with them. Anyone who delivers the result for a dare is
+          Double Dog provides a funding platform for creative Dares. When a creator fulfills a
+          Dare on Double Dog or a funder backs a Dare on Double Dog, they’re inviting other
+          people to form a contract with them. Anyone who delivers the result for a Dare is
           accepting the creator’s and funder’s offer, and forming that contract
 				</p>
 				<p>
@@ -173,20 +173,20 @@ const pageContent = classes => [
           between creators and backers. Here are the terms that govern that agreement:
 				</p>
 				<p>
-          When a dare is successfully delivered,{' '}
+          When a Dare is successfully delivered,{' '}
 					<b>the funders must pay their pledged amounts to the deliverer</b>. Once a funder has done
           so, they’ve satisfied their obligation to the other funders and the deliverer.
 				</p>
 				<p>
           Throughout the process, deliverers owe their funders a high standard of effort, honest
-          communication, and a dedication to bringing the dare to life. At the same time, funders
-          must understand that when they fund a dare, they’re helping to create something. There
+          communication, and a dedication to bringing the Dare to life. At the same time, funders
+          must understand that when they fund a Dare, they’re helping to create something. There
           may be changes or delays, and there’s a chance something could happen that prevents a
-          deliverer from being able to finish the dare as requested.
+          deliverer from being able to finish the Dare as requested.
 				</p>
 				<p>
           The deliverers are each solely responsible for fulfilling the promises made in their
-          claimed dare. If they’re unable to satisfy the terms of this agreement, they may be
+          claimed Dare. If they’re unable to satisfy the terms of this agreement, they may be
           subject to legal action by the funders.
 				</p>
 			</React.Fragment>
@@ -196,18 +196,18 @@ const pageContent = classes => [
 		id: 'section-5',
 		title: '5. How Funding Works',
 		paragraph: `
-        This Section goes over the details of funding and creating dares. This is how money
+        This Section goes over the details of funding and creating Dares. This is how money
         gets collected, and the details on how and when pledges can be changed or canceled
     `,
 		text: (
 			<React.Fragment>
-				<p>These are the terms that apply when you’re funding or creating a dare:</p>
+				<p>These are the terms that apply when you’re funding or creating a Dare:</p>
 				<ul className={classes.termsList}>
 					<li>
-            You’re only charged if the dare is delivered. You’ll provide your payment information
+            You’re only charged if the Dare is delivered. You’ll provide your payment information
             when you pledge, but you won’t be charged. Your payment will only be collected if, at
-            the time of the dare’s funding deadline, the dare has been delivered. The exact
-            amount you pledged is the amount Double Dog will collect. If the dare hasn’t been
+            the time of the Dare’s funding deadline, the Dare has been delivered. The exact
+            amount you pledged is the amount Double Dog will collect. If the Dare hasn’t been
             delivered, you won’t be charged, and no money will change hands.
 					</li>
 					<li>
@@ -217,26 +217,26 @@ const pageContent = classes => [
             collection of funds.
 					</li>
 					<li>
-            You can change or cancel your pledge at any time before the dare’s funding deadline
+            You can change or cancel your pledge at any time before the Dare’s funding deadline
             (with one exception). You can increase, decrease, or cancel your pledge at any time
-            during the dare, with one exception. During the last 24 hours before the dare is
+            during the Dare, with one exception. During the last 24 hours before the Dare is
             delivered on, you can’t decrease or cancel your pledge without contacting customer
             support first — if the deliverer has already created the video or is in the process of
-            streaming the video which will be used to deliver on the dare.
+            streaming the video which will be used to deliver on the Dare.
 					</li>
 					<li>
-            Double Dog doesn’t offer refunds. Responsibility for finishing a dare lies entirely
-            with the dare deliverer. Double Dog doesn’t hold funds on deliverers’ behalf, cannot
+            Double Dog doesn’t offer refunds. Responsibility for finishing a Dare lies entirely
+            with the Dare deliverer. Double Dog doesn’t hold funds on deliverers’ behalf, cannot
             guarantee deliverers’ work, and does not offer refunds.
 					</li>
 				</ul>
 				<p>
-          These are the terms that apply when you’re <b>delivering a dare</b>:
+          These are the terms that apply when you’re <b>delivering a Dare</b>:
 				</p>
 				<ul className={classes.termsList}>
 					<li>
 						<b>We’ll charge our fees before putting funds in your account</b>. Double Dog and its
-            payment partners will subtract fees before transmitting the proceeds of a campaign.
+            payment partners will subtract fees before transmitting the proceeds of a Dare.
 					</li>
 					<li>
 						<b>Some pledges can’t be collected, which might reduce the amount of funding you get</b>
@@ -246,18 +246,18 @@ const pageContent = classes => [
             amount pledged minus fees.
 					</li>
 					<li>
-						<b>We'll help resolve payment-card disputes</b>. If a backer of your dare disputes
+						<b>We'll help resolve payment-card disputes</b>. If a backer of your Dare disputes
             the charge with their card issuer, we'll handle re-presenting the charge to settle the
             dispute with the card issuer. You’ll be notified that a dispute has been filed, and
             you’ll be able to provide evidence to help us resolve it in your favor. If the
             cardholder’s dispute is found valid, you authorize us to charge the credit card number
-            you provided when you delivered on the dare for the amount of the chargeback.
+            you provided when you delivered on the Dare for the amount of the chargeback.
 					</li>
 					<li>
 						<b>Don’t count your chickens before they hatch</b>. Don’t assume you’ll be able to
-            deliver on a dare when you want; there could be a reason we’re not able to accept it,
+            deliver on a Dare when you want; there could be a reason we’re not able to accept it,
             or a problem that takes time to resolve. Don’t assume you’ll be able to immediately
-            collect your funding; there may be a delay between the end of a successful campaign and
+            collect your funding; there may be a delay between the end of a successful Dare and
             your access to the funds. And don’t take any actions in reliance on collecting any of
             the money pledged until you actually have the ability to withdraw it from your account
             and spend it.
@@ -269,14 +269,14 @@ const pageContent = classes => [
 	{
 		title: '6. Stuff We Aren’t Responsible For',
 		paragraph: `
-        We don’t oversee dares’ performance, and we don’t mediate disputes between users.
+        We don’t oversee Dares’ performance, and we don’t mediate disputes between users.
     `,
 		text: (
 			<p>
         Double Dog isn’t liable for any damages or losses related to your use of the Services. We
         don’t become involved in disputes between users, or between users and any third party
         relating to the use of the Services. We don’t oversee the performance or punctuality of
-        dares, and we don’t endorse any content users submit to the Site. When you use the
+        Dares, and we don’t endorse any content users submit to the Site. When you use the
         Services, you release Double Dog from claims, damages, and demands of every kind — known or
         unknown, suspected or unsuspected, Dsclosed or undisclosed — arising out of or in any way
         related to such disputes and the Services. All content you access through the Services is at
@@ -287,16 +287,15 @@ const pageContent = classes => [
 	{
 		title: '7. Our Fees',
 		paragraph: `
-        Fees are only charged on successfully funded dares. We charge 5%, in addition to any fees
+        Fees are only charged on successfully funded Dares. We charge 5%, in addition to any fees
         from our payments partners.
     `,
 		text: (
 			<React.Fragment>
 				<p>
-          Creating an account on Double Dog is free. If you create, fund or deliver on a dare
+          Creating an account on Double Dog is free. If you create, fund or deliver on a Dare
           that is successfully funded, we (and our payment partners) collect fees. Our partners’
-          fees {' '}
-					<Link routeId={null}>may vary slightly</Link> based on your location.
+          fees may vary slightly based on your location.
 				</p>
 				<p>
           We will not collect any fees without giving you a chance to review and accept them. If our
@@ -320,13 +319,13 @@ const pageContent = classes => [
 		text: (
 			<React.Fragment>
 				<p>
-          Double Dog may contain links to other websites (for instance, dare pages, and user
+          Double Dog may contain links to other websites (for instance, Dare pages, and user
           profiles may link to other sites). When you access third-party websites, you
           do so at your own risk. We don’t control or endorse those sites.
 				</p>
 				<p>
           Double Dog partners with other companies (such as <a href="https://stripe.com/" target="__blank">Stripe</a>) for
-          payment processing. When you back or create a dare, you’re also agreeing to the payment
+          payment processing. When you back or create a Dare, you’re also agreeing to the payment
           processor’s terms of service.
 				</p>
 			</React.Fragment>
@@ -337,7 +336,7 @@ const pageContent = classes => [
 		paragraph: `
         We don’t own the stuff you post on Double Dog. But when you post it, you’re giving us
         permission to use or copy it however we need in order to run the site, or show people what’s
-        happening on it. (We generally just use this to promote dares and showcase our community
+        happening on it. (We generally just use this to promote Dares and showcase our community
         on the website.) You’re responsible for the content you post, and you’re vouching to us that
         it’s all okay to use.
     `,
@@ -345,8 +344,8 @@ const pageContent = classes => [
 			<React.Fragment>
 				<p>
           Double Dog doesn’t own content you submit to us (your “Content”). But we do need certain
-          licenses from you in order to perform our Services. When you submit delivery on a dare
-          or submit a new dare for review, you agree to these terms:
+          licenses from you in order to perform our Services. When you submit delivery on a Dare
+          or submit a new Dare for review, you agree to these terms:
 				</p>
 				<ul className={classes.termsList}>
 					<li>
@@ -480,10 +479,10 @@ const pageContent = classes => [
           certain information as required by law or as necessary for our legitimate business
           purposes. All provisions of this agreement survive termination of an account, including
           our rights regarding any content you’ve already submitted to the Site. (For example, if
-          you’ve created a dare, deleting your account will not remove the dare from the
+          you’ve created a Dare, deleting your account will not remove the Dare from the
           Site.) You can contact us at{' '}
 					<a href={`mailto:${EMAIL}`}>{EMAIL}</a> for more
-          information or to request dare page deletion (this is not available in all
+          information or to request Dare page deletion (this is not available in all
           circumstances).
 				</p>
 			</React.Fragment>
@@ -511,10 +510,10 @@ const pageContent = classes => [
             then we revoke your right to use Double Dog in that jurisdiction.
 					</li>
 					<li>
-            We have the right to cancel any pledge to any dare, at any time and for any reason.
+            We have the right to cancel any pledge to any Dare, at any time and for any reason.
 					</li>
 					<li>
-            We have the right to reject, cancel, interrupt, remove, or suspend any dare at any
+            We have the right to reject, cancel, interrupt, remove, or suspend any Dare at any
             time and for any reason.
 					</li>
 				</ul>

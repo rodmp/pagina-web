@@ -1,7 +1,7 @@
 
-export default (recordId, routeParams, pushRoute) => (e) => {
-	if (recordId) {
+export default (routeId, routeParams, pushRoute) => (e) => {
+	if (routeId) {
 		e.preventDefault()
-		pushRoute(recordId, routeParams)
+		pushRoute(routeId, routeParams)
 	}
 }

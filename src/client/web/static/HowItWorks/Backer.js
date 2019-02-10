@@ -18,7 +18,7 @@ const Backer = ({ classes }) => (
 		</Card>
 		<Card title="Pledge" icon={PledgeIcon}>
 			<p>
-          Put money on the line &amp; tell your friends.This is just a pledge
+          Put money on the line &amp; tell your friends. This is just a pledge
           and you’ll only be charged if the streamer delivers. If they don’t
           deliver, you won’t pay a thing!
 			</p>

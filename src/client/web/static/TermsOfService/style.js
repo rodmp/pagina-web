@@ -20,7 +20,7 @@ const styles = {
 				paddingLeft: 17,
 				paddingRight: 17,
 			},
-		},.
+		},
 	},
 	sectionTitle: {
 		...styled.sectionTitle,

@@ -12,11 +12,11 @@ export default {
 	[MARKETPLACE_BANNER_HEADER_MODULE_ID]: {
 		moduleType: 'bannerHeader',
 		bannerImage: marketplace,
-		bannerImageText: 'Challenge A Streamer',
-		bannerSubText: 'Choose a Project',
+		bannerImageText: 'Dare A Streamer',
+		bannerSubText: 'Active Dares',
 		link: {
 			routeId: CREATE_PROJECT_ROUTE_ID,
-			label: 'Create New Project +',
+			label: 'Create a New Dare +',
 		},
 	},
 }
