@@ -42,7 +42,7 @@ export const NavigationUnstyled = memo(({ classes }) => (
 						classes.logo,
 					)}
 				>
-					DoubleDog.tv
+					Double Dog
 				</div>
 			</Link>
 

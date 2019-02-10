@@ -19,10 +19,10 @@ export default (state, props) => ternary(
 			{ label: 'How It Works', routeId: HOW_IT_WORKS_ROUTE_ID },
 			...(isAuthenticated(state, props)
 				? [
-					{ label: 'My Projects', routeId: MY_PROJECTS_ROUTE_ID },
+					{ label: 'My Dares', routeId: MY_PROJECTS_ROUTE_ID },
 					...(isAdminSelector(state, props)
 						? [{
-							label: 'Pending Projects',
+							label: 'Pending Dares',
 							routeId: PENDING_PROJECTS_ROUTE_ID,
 						}]
 						: []
@@ -41,10 +41,10 @@ export default (state, props) => ternary(
 			? [{
 				label: 'USER',
 				menuItems: [
-					{ label: 'My Projects', routeId: MY_PROJECTS_ROUTE_ID },
+					{ label: 'My Dares', routeId: MY_PROJECTS_ROUTE_ID },
 					...(isAdminSelector(state, props)
 						? [{
-							label: 'Pending Projects',
+							label: 'Pending Dares',
 							routeId: PENDING_PROJECTS_ROUTE_ID,
 						}]
 						: []

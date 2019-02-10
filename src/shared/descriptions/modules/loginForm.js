@@ -27,7 +27,7 @@ export default {
 				label: 'Password',
 				subFieldText: [
 					{
-						text: 'Forgot password?',
+						text: 'Forgot your password?',
 						routeId: FORGOT_PASSWORD_ROUTE_ID,
 					},
 				],
