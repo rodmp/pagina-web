@@ -10,16 +10,15 @@ export default {
 		DependsOn: [
 			IDENTITY_POOL,
 			COGNITO_UNAUTH_ROLE,
-			COGNITO_AUTH_ROLE
+			COGNITO_AUTH_ROLE,
 		],
 		Type: 'AWS::Cognito::IdentityPoolRoleAttachment',
 		Properties: {
 			IdentityPoolId: ref(IDENTITY_POOL),
 			Roles: {
 				authenticated: getAtt(COGNITO_AUTH_ROLE, 'Arn'),
-				unauthenticated: getAtt(COGNITO_UNAUTH_ROLE, 'Arn')
-			}
-		}
-	}
+				unauthenticated: getAtt(COGNITO_UNAUTH_ROLE, 'Arn'),
+			},
+		},
+	},
 }
-
