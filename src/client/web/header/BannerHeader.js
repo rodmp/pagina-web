@@ -30,9 +30,11 @@ const styles = {
 		bottom: 0,
 		left: 0,
 		textAlign: 'center',
-		marginTop: 130, // half banner height minus half text height
 		position: 'absolute',
 		color: 'white',
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center',
 	},
 	overlay: {
 		backgroundColor: 'rgba(128, 0, 128, 0.41)',
@@ -45,7 +47,7 @@ const styles = {
 }
 
 export const BannerHeaderUnconnected = memo(({
-	bannerImage, bannerImageText, bannerSubText, linkLabel, linkRouteId,
+	bannerImage, bannerImageText, textWithBg, bannerSubText, linkLabel, linkRouteId,
 	classes,
 }) => (
 	<div className={classNames(classes.bottomMargin, 'layout-column')}>
@@ -58,7 +60,7 @@ export const BannerHeaderUnconnected = memo(({
 			/>
 			<div className={classes.overlay} />
 			<div className={classes.textOverlay}>
-				<Title>{bannerImageText}</Title>
+				<Title textWithBg={textWithBg}>{bannerImageText}</Title>
 			</div>
 		</div>
 		<div className="layout-row layout-align-center">

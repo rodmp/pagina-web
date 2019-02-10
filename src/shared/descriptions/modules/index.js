@@ -14,6 +14,7 @@ import privacyPolicy from 'sls-aws/src/shared/descriptions/modules/privacyPolicy
 import cookiePolicy from 'sls-aws/src/shared/descriptions/modules/cookiePolicy'
 import rulesOfUse from 'sls-aws/src/shared/descriptions/modules/rulesOfUse'
 import marketplaceBannerHeader from 'sls-aws/src/shared/descriptions/modules/marketplaceBannerHeader'
+import myProjectsBannerHeader from 'sls-aws/src/shared/descriptions/modules/myProjectsBannerHeader'
 import howItWorkBannerHeader from 'sls-aws/src/shared/descriptions/modules/howItWorkBannerHeader'
 import privacyPolicyBannerHeader from 'sls-aws/src/shared/descriptions/modules/privacyPolicyBannerHeader'
 import cookiePolicyBannerHeader from 'sls-aws/src/shared/descriptions/modules/cookiePolicyBannerHeader'
@@ -34,6 +35,7 @@ const allModules = {
 	...howItWorks,
 	...termsOfService,
 	...marketplaceBannerHeader,
+	...myProjectsBannerHeader,
 	...privacyPolicy,
 	...cookiePolicy,
 	...rulesOfUse,
