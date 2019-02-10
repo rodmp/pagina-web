@@ -52,7 +52,7 @@ export const BannerHeaderUnconnected = memo(({
 }) => (
 	<div className={classNames(classes.bottomMargin, 'layout-column')}>
 		<div
-			className={classNames(classes.banner, 'flex layout-row')}
+			className={classNames(classes.banner, 'layout-row')}
 		>
 			<div
 				className={classNames(classes.bannerBg, 'flex')}
