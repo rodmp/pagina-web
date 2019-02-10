@@ -10,8 +10,7 @@ export default {
 			ClientName: USER_POOL_CLIENT,
 			GenerateSecret: false,
 			RefreshTokenValidity: 365,
-			UserPoolId: ref(USER_POOL)
-		}
-	}
+			UserPoolId: ref(USER_POOL),
+		},
+	},
 }
-
