@@ -34,13 +34,13 @@ const pageContent = classes => [
 						<span>
               Double Dog uses authentication cookies and similar technologies to tell us when you’re
               logged in to Double Dog. This lets us show you personalized views related to your
-              interests and connect you with projects like those you may already have backed.
+              interests and connect you with Dares like those you may already have backed.
 						</span>
 						<strong>Security</strong>
 						<span>
               Cookies also help keep Double Dog secure by facilitating security features and
               allowing us to detect activity that might violate our rules and{' '}
-							<Link routeId={TERMS_OF_SERVICE_ROUTE_ID}>Terms of Use</Link>. These cookies help
+							<Link routeId={TERMS_OF_SERVICE_ROUTE_ID}>Terms of Service</Link>. These cookies help
               protect your account from being accessed by anyone other than you, alert you and us
               when your account is accessed, and provide capabilities that allow us to disable any
               active sessions you have (for example, when you log out or change your password).
@@ -69,9 +69,9 @@ const pageContent = classes => [
 						<span>
               Cookies and other technologies also help us to understand, improve, and research
               features and content on the Double Dog site. For example, we may use cookies to
-              understand how you are discovering projects or to determine which types of browsers or
+              understand how you are discovering Dares or to determine which types of browsers or
               devices are accessing Double Dog. You can opt-out of being included in Google
-              Analytics here.
+              Analytics <Link href="https://tools.google.com/dlpage/gaoptout">here</Link>.
 						</span>
 						<strong>Social Media Platforms</strong>
 						<span>
@@ -85,7 +85,7 @@ const pageContent = classes => [
 						<strong>Marketing</strong>
 						<span>
               Cookies help us deliver targeted advertisements on social media platforms, based on
-              your activity on Double Dog, including the projects you’ve backed or creators you’ve
+              your activity on Double Dog, including the Dares you’ve backed or creators you’ve
               followed on Double Dog, and to track the performance of those ads. This is sometimes
               referred to as online behavioral advertising. In some cases, our partners may use
               cookies to provide us with information about your interactions with their services.
@@ -94,7 +94,8 @@ const pageContent = classes => [
               Behavioral Advertising program provides consumers with the ability to opt-out of
               having their online behavior recorded and used for advertising purposes. To opt out of
               having your online behavior collected for advertising purposes, click{' '}
-							<Link routeId={null}>here</Link>. Certain choices you make are both browser- and device-specific.
+							<Link href="http://optout.aboutads.info/?c=2#!/">here</Link>. Certain 
+							choices you make are both browser- and device-specific.
 						</span>
 					</p>
 				</div>
@@ -108,10 +109,11 @@ const pageContent = classes => [
         Your browser may give you the ability to control cookies. How you do so depends on the type
         of cookie. Certain browsers can be set to reject browser cookies. Blocking or deleting
         cookies may prevent you from using most of our Services. To find out more about how to
-        enable, disable, or delete cookies from your web browser, please visit <Link routeId={null}>here</Link>
-        . To control flash cookies, which may be used on certain websites from time to time, you can
-        go <Link routeId={null}>here</Link>. Why? Because flash cookies cannot be controlled through your
-        browser settings.
+        enable, disable, or delete cookies from your web browser, please visit{' '}
+		<Link href="http://www.allaboutcookies.org/">here</Link>. To control flash cookies, which 
+		may be used on certain websites from time to time, you can go{' '}
+		<Link href="http://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager07.html">
+		here</Link>. Why? Because flash cookies cannot be controlled through your browser settings.
 			</p>
 		),
 	},

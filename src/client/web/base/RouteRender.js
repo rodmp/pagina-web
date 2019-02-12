@@ -85,7 +85,7 @@ export const RouteRender = ({
 		)}
 	>
 		<Navigation />
-		<div className="flex layout-column layout-align-center-stretch">
+		<div className="flex layout-column layout-align-start-stretch">
 			<RenderModules moduleTypes={currentRouteModuleTypes} />
 		</div>
 		<Footer />

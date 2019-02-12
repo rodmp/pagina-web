@@ -107,5 +107,5 @@ export const FormModuleUnconnected = memo(({
 ))
 
 export default withModuleContext(
-	formModuleConnector(FormModuleUnconnected, styles)
+	formModuleConnector(FormModuleUnconnected, styles),
 )

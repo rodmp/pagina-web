@@ -2,7 +2,6 @@ import React, { memo } from 'react'
 
 import { fontFamily } from 'sls-aws/src/client/web/commonStyles'
 import { withStyles } from '@material-ui/core/styles'
-import { sentenceCase } from 'change-case'
 
 const styles = {
 	fontStyle: {
@@ -15,7 +14,7 @@ const styles = {
 
 export const HeaderUnstyled = memo((({ classes, children }) => (
 	<div className={classes.fontStyle}>
-		{sentenceCase(children)}
+		{children}
 	</div>
 )))
 
