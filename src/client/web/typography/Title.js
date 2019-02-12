@@ -10,10 +10,22 @@ const styles = {
 		fontWeight: 'bold',
 		lineHeight: 1.25,
 	},
+	withBg: {
+		fontFamily,
+		fontSize: 32,
+		fontWeight: 'bold',
+		lineHeight: 1.25,
+		backgroundColor: 'rgba(128, 0, 128, 0.7)',
+		paddingTop: 90,
+		paddingBottom: 90,
+		paddingRight: 150,
+		paddingLeft: 150,
+		borderRadius: 30,
+	},
 }
 
-export const TitleUnstyled = memo((({ classes, children }) => (
-	<div className={classes.fontStyle}>
+export const TitleUnstyled = memo((({ classes, textWithBg, children }) => (
+	<div className={textWithBg ? classes.withBg : classes.fontStyle}>
 		{children}
 	</div>
 )))
