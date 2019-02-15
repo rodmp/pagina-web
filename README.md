@@ -53,3 +53,10 @@ Site should be available at:
 
 #
 ## Server
+
+#
+## Contributing
+
+- Create a feature branch from master
+
+- Make a pull request to master
