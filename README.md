@@ -23,3 +23,33 @@ PLEDGER > list media from completed pledged projects
 PLEDGER > pledge project
 
 PLEDGER / PROJECT CREATOR > list credit cards 
+
+
+# Local setup
+
+
+## Client
+
+Install node and yarn
+
+`yarn install`
+
+
+Add a file with the contents below called `cfOutput.js` to the root directory
+```
+export const apiDynamoTableName = 'arn:aws:dynamodb:us-east-1:439348682344:table/slsAwsDev-slsAwsDevApiDynamoDbTable-1G9ZZQFLUKW01'
+export const clientId = '7288ckgtjig4gr4pbvfuuioest'
+export const apiFunctionArn = 'arn:aws:lambda:us-east-1:439348682344:function:slsAwsDev-slsAwsDevApiLambdaFunction-1KH0LVBSKGJK8'
+export const domainName = 'dev.5gorillaz.com'
+export const userPoolId = 'us-east-1_aUua2XNQk'
+export const identityPoolId = 'us-east-1:01a34d10-f3eb-403d-9360-3fad8c1969c5'
+```
+
+`yarn start`
+
+Site should be available at:
+
+[http://localhost:8585](http://localhost:8585)
+
+#
+## Server
