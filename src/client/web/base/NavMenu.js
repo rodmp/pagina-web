@@ -5,28 +5,15 @@ import { navLinkStyle } from 'sls-aws/src/client/web/commonStyles'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 
-import ExpandMore from '@material-ui/icons/ExpandMore'
-
 import { withStyles } from '@material-ui/core/styles'
 
 import Link from 'sls-aws/src/client/web/base/Link'
 import LabelOrIcon from 'sls-aws/src/client/web/base/LabelOrIcon'
 
-import { ternary } from 'sls-aws/src/shared/util/ramdaPlus'
-
 const styles = {
 	root: {
 		padding: 0,
 		height: 'inherit',
-	},
-	arrow: {
-		transition: '.3s'
-	},
-	arrowOpen: {
-		transform: 'rotateX(180deg)'
-	},
-	arrowClosed: {
-		transform: 'rotate(180deg)'
 	},
 	navLinkStyle,
 }
@@ -36,18 +23,15 @@ export const NavMenuUnstyled = memo(({
 }) => {
 	const [open, setOpen] = useState(false)
 	const anchorEl = useRef()
-
 	return (
 		<Fragment>
 			<button
-				style={{display: 'flex', alignItems: 'center'}}
 				type="button"
 				className={classes.navLinkStyle}
 				ref={anchorEl}
 				onClick={() => setOpen(true)}
 			>
 				<LabelOrIcon label={menuLabel} icon={menuIcon} />
-				<ExpandMore style={{...styles.arrow, ...ternary(open, styles.arrowOpen, '')}}/>
 			</button>
 			<Menu
 				open={open}
