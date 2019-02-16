@@ -1,6 +1,6 @@
 import React, { memo, Fragment, useState, useRef } from 'react'
 
-import { navLinkStyle } from 'sls-aws/src/client/web/commonStyles'
+import { navLinkStyle, gtSmMediaQuery } from 'sls-aws/src/client/web/commonStyles'
 
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
@@ -12,7 +12,7 @@ import { withStyles } from '@material-ui/core/styles'
 import Link from 'sls-aws/src/client/web/base/Link'
 import LabelOrIcon from 'sls-aws/src/client/web/base/LabelOrIcon'
 
-import { ternary } from 'sls-aws/src/shared/util/ramdaPlus'
+import classNames from 'classnames'
 
 const styles = {
 	root: {
@@ -20,7 +20,11 @@ const styles = {
 		height: 'inherit',
 	},
 	arrow: {
-		transition: '.3s'
+		transition: '.3s',
+		display: 'none',
+		[gtSmMediaQuery]: {
+			display: 'inline-block'
+		}
 	},
 	arrowOpen: {
 		transform: 'rotateX(180deg)'
@@ -44,7 +48,9 @@ export const NavMenuUnstyled = memo(({
 				onClick={() => setOpen(true)}
 			>
 				<LabelOrIcon label={menuLabel} icon={menuIcon} />
-				<ExpandMore style={{ ...styles.arrow, ...ternary(open, styles.arrowOpen, '') }} />
+				<ExpandMore className={classNames(
+					classes.arrow, open && classes.arrowOpen,
+				)} />				
 			</button>
 			<Menu
 				open={open}
