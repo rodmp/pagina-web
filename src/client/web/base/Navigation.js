@@ -20,6 +20,7 @@ const styles = {
 		color: 'white',
 		backgroundColor: navigationColor,
 		height: 75,
+		zIndex: 1
 	},
 	logo: {
 		fontSize: 25,
