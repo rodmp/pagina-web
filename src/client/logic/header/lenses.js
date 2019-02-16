@@ -11,6 +11,7 @@ export const bannerHeaderModuleDescriptionSchema = {
 				bannerImage: { type: 'string' },
 				bannerSubText: { type: 'string' },
 				bannerImageText: { type: 'string' },
+				bannerImageSubText: { type: 'string' },
 				textWithBg: { type: 'boolean' },
 				link: {
 					type: 'object',
