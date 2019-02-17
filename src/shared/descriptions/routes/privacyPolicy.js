@@ -6,8 +6,8 @@ import {
 } from 'sls-aws/src/shared/descriptions/modules/moduleIds'
 
 export default {
-  [PRIVACY_POLICY_ROUTE_ID]: {
-    url: '/privacy-policy',
-    modules: [PRIVACY_POLICY_BANNER_HEADER_MODULE_ID, PRIVACY_POLICY_MODULE_ID]
-  }
-};
+	[PRIVACY_POLICY_ROUTE_ID]: {
+		url: '/privacy-policy',
+		modules: [PRIVACY_POLICY_BANNER_HEADER_MODULE_ID, PRIVACY_POLICY_MODULE_ID],
+	},
+}
