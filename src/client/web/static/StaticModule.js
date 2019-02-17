@@ -5,6 +5,7 @@ import TermsOfService from 'sls-aws/src/client/web/static/TermsOfService'
 import PrivacyPolicy from 'sls-aws/src/client/web/static/PrivacyPolicy'
 import CookiePolicy from 'sls-aws/src/client/web/static/CookiePolicy'
 import RulesOfUse from 'sls-aws/src/client/web/static/RulesOfUse'
+import PledgeSuccess from 'sls-aws/src/client/web/static/PledgeSuccess'
 
 import withModuleContext from 'sls-aws/src/client/util/withModuleContext'
 
@@ -23,6 +24,8 @@ export const StaticModuleUnconnected = memo(({ staticPageType }) => {
 			return <CookiePolicy />
 		case 'rulesOfUse':
 			return <RulesOfUse />
+		case 'pledgeSuccess':
+			return <PledgeSuccess />
 		default:
 			return <div>Unsuported static page type: {staticPageType}</div>
 	}
