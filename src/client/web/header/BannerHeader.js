@@ -1,5 +1,6 @@
 import React, { memo } from 'react'
 import classNames from 'classnames'
+import { ternary } from 'sls-aws/src/shared/util/ramdaPlus'
 
 import Link from 'sls-aws/src/client/web/base/Link'
 import Header from 'sls-aws/src/client/web/typography/Header'
@@ -68,7 +69,7 @@ export const BannerHeaderUnconnected = memo(({
 				/>
 				<div className={classes.overlay} />
 				<div className={classes.textOverlay}>
-					<div className={classes.textBox}>
+					<div className={ternary(textWithBg, classes.textBox, '')}>
 						<Title>{bannerImageText}</Title>
 						<SubTitle>{bannerImageSubText}</SubTitle></div>
 				</div>
