@@ -1,19 +1,33 @@
 import React, { memo, Fragment, useState, useRef } from 'react'
 
-import { navLinkStyle } from 'sls-aws/src/client/web/commonStyles'
+import { navLinkStyle, gtSmMediaQuery } from 'sls-aws/src/client/web/commonStyles'
 
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
+
+import ExpandMore from '@material-ui/icons/ExpandMore'
 
 import { withStyles } from '@material-ui/core/styles'
 
 import Link from 'sls-aws/src/client/web/base/Link'
 import LabelOrIcon from 'sls-aws/src/client/web/base/LabelOrIcon'
 
+import classNames from 'classnames'
+
 const styles = {
 	root: {
 		padding: 0,
 		height: 'inherit',
+	},
+	arrow: {
+		transition: '.3s',
+		display: 'none',
+		[gtSmMediaQuery]: {
+			display: 'inline-block'
+		}
+	},
+	arrowOpen: {
+		transform: 'rotateX(180deg)'
 	},
 	navLinkStyle,
 }
@@ -23,15 +37,20 @@ export const NavMenuUnstyled = memo(({
 }) => {
 	const [open, setOpen] = useState(false)
 	const anchorEl = useRef()
+
 	return (
 		<Fragment>
 			<button
+				style={{ display: 'flex', alignItems: 'center' }}
 				type="button"
 				className={classes.navLinkStyle}
 				ref={anchorEl}
 				onClick={() => setOpen(true)}
 			>
 				<LabelOrIcon label={menuLabel} icon={menuIcon} />
+				<ExpandMore className={classNames(
+					classes.arrow, open && classes.arrowOpen,
+				)} />				
 			</button>
 			<Menu
 				open={open}
@@ -55,7 +74,7 @@ export const NavMenuUnstyled = memo(({
 						classes={{ root: classes.root }}
 						onClick={() => setOpen(false)}
 					>
-						{/* eslint-disable jsx-a11y/anchor-is-valid */} 
+						{/* eslint-disable jsx-a11y/anchor-is-valid */}
 						<Link
 							navMenuStyle
 							routeId={routeId}
