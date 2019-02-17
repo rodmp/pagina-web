@@ -8,6 +8,7 @@ import viewProject from 'sls-aws/src/shared/descriptions/modules/viewProject'
 import pendingProjectsList from 'sls-aws/src/shared/descriptions/modules/pendingProjectsList'
 import activeProjectsList from 'sls-aws/src/shared/descriptions/modules/activeProjectsList'
 import pledgeProjectForm from 'sls-aws/src/shared/descriptions/modules/pledgeProjectForm'
+import pledgeSuccessPage from 'sls-aws/src/shared/descriptions/modules/pledgeSuccessPage'
 import howItWorks from 'sls-aws/src/shared/descriptions/modules/howItWorks'
 import termsOfService from 'sls-aws/src/shared/descriptions/modules/termsOfService'
 import privacyPolicy from 'sls-aws/src/shared/descriptions/modules/privacyPolicy'
@@ -38,6 +39,7 @@ const allModules = {
 	...pendingProjectsList,
 	...activeProjectsList,
 	...pledgeProjectForm,
+	...pledgeSuccessPage,
 	...howItWorks,
 	...termsOfService,
 	...marketplaceBannerHeader,
