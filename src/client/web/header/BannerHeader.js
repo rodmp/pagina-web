@@ -1,9 +1,11 @@
 import React, { memo } from 'react'
 import classNames from 'classnames'
+import { ternary } from 'sls-aws/src/shared/util/ramdaPlus'
 
 import Link from 'sls-aws/src/client/web/base/Link'
 import Header from 'sls-aws/src/client/web/typography/Header'
 import Title from 'sls-aws/src/client/web/typography/Title'
+import SubTitle from 'sls-aws/src/client/web/typography/SubTitle'
 
 import MaxWidthContainer from 'sls-aws/src/client/web/base/MaxWidthContainer'
 import withModuleContext from 'sls-aws/src/client/util/withModuleContext'
@@ -33,8 +35,15 @@ const styles = {
 		position: 'absolute',
 		color: 'white',
 		display: 'flex',
+		flexDirection: 'column',
 		alignItems: 'center',
 		justifyContent: 'center',
+	},
+	textBox: {
+		padding: '16px 0',
+		backgroundColor: 'rgba(128, 0, 128, 0.7)',
+		borderRadius: 30,
+		margin: '0 auto'
 	},
 	overlay: {
 		backgroundColor: 'rgba(128, 0, 128, 0.41)',
@@ -47,36 +56,38 @@ const styles = {
 }
 
 export const BannerHeaderUnconnected = memo(({
-	bannerImage, bannerImageText, textWithBg, bannerSubText, linkLabel, linkRouteId,
+	bannerImage, bannerImageText, bannerImageSubText, textWithBg, bannerSubText, linkLabel, linkRouteId,
 	classes,
 }) => (
-	<div className={classNames(classes.bottomMargin, 'layout-column')}>
-		<div
-			className={classNames(classes.banner, 'layout-row')}
-		>
+		<div className={classNames(classes.bottomMargin, 'layout-column')}>
 			<div
-				className={classNames(classes.bannerBg, 'flex')}
-				style={{ backgroundImage: `url(${bannerImage})` }}
-			/>
-			<div className={classes.overlay} />
-			<div className={classes.textOverlay}>
-				<Title textWithBg={textWithBg}>{bannerImageText}</Title>
+				className={classNames(classes.banner, 'layout-row')}
+			>
+				<div
+					className={classNames(classes.bannerBg, 'flex')}
+					style={{ backgroundImage: `url(${bannerImage})` }}
+				/>
+				<div className={classes.overlay} />
+				<div className={classes.textOverlay}>
+					<div className={ternary(textWithBg, classes.textBox, '')}>
+						<Title>{bannerImageText}</Title>
+						<SubTitle>{bannerImageSubText}</SubTitle></div>
+				</div>
+			</div>
+			<div className="layout-row layout-align-center">
+				<MaxWidthContainer>
+					<div className="flex layout-column">
+						<div className="layout-row layout-align-center">
+							<Header>{bannerSubText}</Header>
+						</div>
+						<div>
+							<Link routeId={linkRouteId}>{linkLabel}</Link>
+						</div>
+					</div>
+				</MaxWidthContainer>
 			</div>
 		</div>
-		<div className="layout-row layout-align-center">
-			<MaxWidthContainer>
-				<div className="flex layout-column">
-					<div className="layout-row layout-align-center">
-						<Header>{bannerSubText}</Header>
-					</div>
-					<div>
-						<Link routeId={linkRouteId}>{linkLabel}</Link>
-					</div>
-				</div>
-			</MaxWidthContainer>
-		</div>
-	</div>
-))
+	))
 
 export default withModuleContext(
 	bannerHeaderConnector(BannerHeaderUnconnected, styles),
