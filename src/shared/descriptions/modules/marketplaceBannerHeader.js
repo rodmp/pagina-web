@@ -13,10 +13,12 @@ export default {
 		moduleType: 'bannerHeader',
 		bannerImage: marketplace,
 		bannerImageText: 'Dare A Streamer',
+		bannerImageSubText: 'Pledge to a Dare you like, or create your own!',
 		bannerSubText: 'Active Dares',
 		link: {
 			routeId: CREATE_PROJECT_ROUTE_ID,
 			label: 'Create a New Dare +',
 		},
+		textWithBg: true
 	},
 }
