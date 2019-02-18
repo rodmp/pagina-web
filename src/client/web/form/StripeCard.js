@@ -9,7 +9,7 @@ import {
 
 import { stripeClientId } from 'sls-aws/src/shared/constants/stripeClient'
 import fieldInputConnector from 'sls-aws/src/client/logic/form/connectors/fieldInputConnector'
-import { useStyles, elementStyle } from './stripeStyles';
+import { useStyles, elementStyle } from './stripeStyles'
 
 const ccFields = [
 	['cardNumber', 'flex-100', '1234 1234 1234 1234', CardNumberElement],

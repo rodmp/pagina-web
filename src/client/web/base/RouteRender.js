@@ -10,7 +10,8 @@ import ListModule from 'sls-aws/src/client/web/list/ListModule'
 import RecordModule from 'sls-aws/src/client/web/record/RecordModule'
 import StaticModule from 'sls-aws/src/client/web/static/StaticModule'
 import Navigation from 'sls-aws/src/client/web/base/Navigation'
-import Footer from 'sls-aws/src/client/web/base/Footer'
+import Footer from 'sls-aws/src/client/web/footer/Footer'
+import BannerFooter from 'sls-aws/src/client/web/footer/BannerFooter'
 import BannerHeader from 'sls-aws/src/client/web/header/BannerHeader'
 
 import { ModuleContextProvider } from 'sls-aws/src/client/util/withModuleContext'
@@ -57,6 +58,12 @@ export const RenderModules = ({ moduleTypes }) => (
 				return (
 					<ModuleContextProvider {...moduleProps}>
 						<BannerHeader />
+					</ModuleContextProvider>
+				)
+			case 'bannerFooter':
+				return (
+					<ModuleContextProvider {...moduleProps}>
+						<BannerFooter />
 					</ModuleContextProvider>
 				)
 			default:

@@ -7,5 +7,5 @@ export default reduxConnector(
 	[
 		['noRoute', noRoute],
 		['currentRouteModuleTypes', currentRouteModuleTypes],
-	]
+	],
 )
