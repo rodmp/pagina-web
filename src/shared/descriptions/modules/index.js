@@ -8,6 +8,7 @@ import viewProject from 'sls-aws/src/shared/descriptions/modules/viewProject'
 import pendingProjectsList from 'sls-aws/src/shared/descriptions/modules/pendingProjectsList'
 import activeProjectsList from 'sls-aws/src/shared/descriptions/modules/activeProjectsList'
 import pledgeProjectForm from 'sls-aws/src/shared/descriptions/modules/pledgeProjectForm'
+import pledgeSuccessPage from 'sls-aws/src/shared/descriptions/modules/pledgeSuccessPage'
 import howItWorks from 'sls-aws/src/shared/descriptions/modules/howItWorks'
 import termsOfService from 'sls-aws/src/shared/descriptions/modules/termsOfService'
 import privacyPolicy from 'sls-aws/src/shared/descriptions/modules/privacyPolicy'
@@ -20,6 +21,12 @@ import privacyPolicyBannerHeader from 'sls-aws/src/shared/descriptions/modules/p
 import cookiePolicyBannerHeader from 'sls-aws/src/shared/descriptions/modules/cookiePolicyBannerHeader'
 import termsOfServiceBannerHeader from 'sls-aws/src/shared/descriptions/modules/termsOfServiceBannerHeader'
 import rulesOfUseBannerHeader from 'sls-aws/src/shared/descriptions/modules/rulesOfUseBannerHeader'
+import bannerFooterMarketplace from 'sls-aws/src/shared/descriptions/modules/bannerFooterMarketplace'
+import bannerFooterHowItWorks from 'sls-aws/src/shared/descriptions/modules/bannerFooterHowItWorks'
+import bannerFooterYourDare from 'sls-aws/src/shared/descriptions/modules/bannerFooterYourDare'
+import bannerFooterDareAccepted from 'sls-aws/src/shared/descriptions/modules/bannerFooterDareAccepted'
+import bannerFooterDareRejectConfirmation from 'sls-aws/src/shared/descriptions/modules/bannerFooterDareRejectConfirmation'
+import bannerFooterDareSuccessCreate from 'sls-aws/src/shared/descriptions/modules/bannerFooterDareSuccessCreate'
 
 const allModules = {
 	...loginForm,
@@ -32,6 +39,7 @@ const allModules = {
 	...pendingProjectsList,
 	...activeProjectsList,
 	...pledgeProjectForm,
+	...pledgeSuccessPage,
 	...howItWorks,
 	...termsOfService,
 	...marketplaceBannerHeader,
@@ -44,6 +52,12 @@ const allModules = {
 	...privacyPolicyBannerHeader,
 	...termsOfServiceBannerHeader,
 	...rulesOfUseBannerHeader,
+	...bannerFooterMarketplace,
+	...bannerFooterHowItWorks,
+	...bannerFooterYourDare,
+	...bannerFooterDareAccepted,
+	...bannerFooterDareRejectConfirmation,
+	...bannerFooterDareSuccessCreate,
 }
 
 export default allModules
