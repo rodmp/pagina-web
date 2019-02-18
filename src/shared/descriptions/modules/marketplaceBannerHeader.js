@@ -1,3 +1,4 @@
+import React from 'react'
 import {
 	MARKETPLACE_BANNER_HEADER_MODULE_ID,
 } from 'root/src/shared/descriptions/modules/moduleIds'
@@ -7,6 +8,8 @@ import {
 } from 'root/src/shared/descriptions/routes/routeIds'
 
 import marketplace from 'root/src/client/assets/Marketplace.png'
+
+import SubBanner from 'root/src/client/web/header/MarketplaceSubBanner'
 
 export default {
 	[MARKETPLACE_BANNER_HEADER_MODULE_ID]: {
