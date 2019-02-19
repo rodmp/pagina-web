@@ -33,7 +33,6 @@ const SubBanner = ({classes}) => {
                     <div className={classNames(classes.itemText, classes.enjoyAwesomeContent)}>ENJOY AWESOME CONTENT</div>
                 </div>
             </div>
-            <div className={classes.subTitle}>Active Dares</div>
         </div>
     );
 };

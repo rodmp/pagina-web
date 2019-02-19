@@ -13,6 +13,7 @@ const styles = {
         boxShadow: '0 3px 26px 0 rgba(0, 0, 0, 0.16)',
         backgroundColor: '#ffffff',
         marginTop: 25,
+        marginBottom: 33,
         '@media (max-width: 1218px)': {
             width: '90vw'
         }
