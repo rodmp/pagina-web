@@ -29,6 +29,10 @@ const styles = {
 	arrowOpen: {
 		transform: 'rotateX(180deg)'
 	},
+	centeredButton: {
+		display: 'flex',
+		alignItems: 'center'
+	},
 	navLinkStyle,
 }
 
@@ -41,16 +45,15 @@ export const NavMenuUnstyled = memo(({
 	return (
 		<Fragment>
 			<button
-				style={{ display: 'flex', alignItems: 'center' }}
 				type="button"
-				className={classes.navLinkStyle}
+				className={classNames(classes.navLinkStyle, classes.centeredButton)}
 				ref={anchorEl}
 				onClick={() => setOpen(true)}
 			>
 				<LabelOrIcon label={menuLabel} icon={menuIcon} />
 				<ExpandMore className={classNames(
 					classes.arrow, open && classes.arrowOpen,
-				)} />				
+				)} />
 			</button>
 			<Menu
 				open={open}
