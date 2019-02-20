@@ -9,6 +9,6 @@ export default {
 	[SUBMIT_FORM]: (state, { moduleKey, submitIndex }) => setFormSubmitting(
 		moduleKey,
 		submitIndex,
-		setFormSubmitted(moduleKey, true, state)
-	)
+		setFormSubmitted(moduleKey, true, state),
+	),
 }

@@ -5,7 +5,7 @@ import LoadingButton from 'sls-aws/src/client/web/base/LoadingButton'
 import submitFormHandler from 'sls-aws/src/client/logic/form/handlers/submitFormHandler'
 
 export const SubmitsUnstyled = memo(({
-	formSubmits, moduleKey, submitFormFn, classes,
+	formSubmits, moduleKey, submitFormFn,
 }) => (
 	<div>
 		{formSubmits.map(([label, submitIndex, submitting]) => (

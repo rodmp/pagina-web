@@ -7,9 +7,25 @@ import moduleDescriptions from 'sls-aws/src/shared/descriptions/modules'
 const { viewFields } = formModuleLenses
 
 export default (state, props) => compose(
-	addIndex(map)(({ fieldId, inputType, subFieldText }, fieldIndex) => [
-		[fieldId], [fieldIndex], inputType, fieldId, subFieldText,
-	]),
+	addIndex(map)(
+		({
+			fieldId,
+			inputType,
+			subFieldText,
+			labelFieldText,
+			extraButton,
+			inputMaxLength,
+		}, fieldIndex) => [
+			[fieldId],
+			[fieldIndex],
+			inputType,
+			fieldId,
+			subFieldText,
+			labelFieldText,
+			extraButton,
+			inputMaxLength,
+		],
+	),
 	viewFields(__, moduleDescriptions),
 	moduleIdProp,
 )(props)

@@ -10,15 +10,30 @@ import InputWrapper from 'sls-aws/src/client/web/form/InputWrapper'
 const Fields = memo(({
 	formFieldTypes, moduleKey,
 }) => formFieldTypes.map(([
-	fieldPath, fieldDescPath, inputType, fieldId, subFieldText,
+	fieldPath,
+	fieldDescPath,
+	inputType,
+	fieldId,
+	subFieldText,
+	labelFieldText,
+	extraButton,
+	fieldValue,
+	fieldMax,
 ]) => {
-	const wrapperProps = { subFieldText, key: fieldId }
+	const wrapperProps = {
+		subFieldText,
+		labelFieldText,
+		extraButton,
+		key: fieldId,
+	}
 	const props = {
 		fieldType: inputType,
 		fieldId,
 		fieldDescPath,
 		moduleKey,
 		fieldPath,
+		fieldValue,
+		fieldMax,
 	}
 	switch (inputType) {
 		case 'text':

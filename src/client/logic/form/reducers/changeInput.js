@@ -13,7 +13,7 @@ export default {
 		return compose(
 			overFormInputs(moduleKey, set(path, value)),
 			overFieldData(
-				moduleKey, set(lensPath([...fieldPath, 'dirty']), true)
+				moduleKey, set(lensPath([...fieldPath, 'dirty']), true),
 			),
 		)(state)
 	},
