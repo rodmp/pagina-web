@@ -8,6 +8,7 @@ import formPreSubmitText from 'sls-aws/src/client/logic/form/selectors/formPreSu
 import formPostSubmitText from 'sls-aws/src/client/logic/form/selectors/formPostSubmitText'
 import formPreSubmitCaption from 'sls-aws/src/client/logic/form/selectors/formPreSubmitCaption'
 import formPostSubmitCaption from 'sls-aws/src/client/logic/form/selectors/formPostSubmitCaption'
+import backButton from 'sls-aws/src/client/logic/form/selectors/backButton'
 import moduleKey from 'sls-aws/src/client/logic/route/selectors/moduleKey'
 
 import submitForm from 'sls-aws/src/client/logic/form/thunks/submitForm'
@@ -23,6 +24,7 @@ export default reduxConnector(
 		['postSubmitText', formPostSubmitText],
 		['preSubmitCaption', formPreSubmitCaption],
 		['postSubmitCaption', formPostSubmitCaption],
+		['backButton', backButton],
 	],
 	[
 		['submitForm', submitForm],

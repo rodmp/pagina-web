@@ -7,7 +7,7 @@ import {
 import pledgeProjectPayloadSchema from 'sls-aws/src/shared/descriptions/endpoints/schemas/pledgeProjectPayloadSchema'
 import { PLEDGE_PROJECT } from 'sls-aws/src/shared/descriptions/endpoints/endpointIds'
 import {
-	VIEW_PROJECT_ROUTE_ID,
+	VIEW_PROJECT_ROUTE_ID, CREATE_PROJECT_ROUTE_ID,
 } from 'sls-aws/src/shared/descriptions/routes/routeIds'
 
 export default {
@@ -25,11 +25,28 @@ export default {
 				),
 			),
 		)(pledgeProjectPayloadSchema),
+		title: 'Payment Information',
 		fields: [
 			{
 				fieldId: 'pledgeAmount',
-				inputType: 'number',
-				label: 'Pledge Amount',
+				inputType: 'amountNumber',
+				label: '$5',
+				labelFieldText: [
+					{
+						text: 'Amount to Contribute (min. $5)',
+					},
+				],
+			},
+			{
+				fieldId: 'cardName',
+				inputType: 'text',
+				label: 'Name',
+				labelFieldText: [
+					{
+						text: 'Name on Credit Card',
+						required: true,
+					},
+				],
 			},
 			{
 				fieldId: 'stripeCardId',
@@ -37,9 +54,10 @@ export default {
 				label: 'Credit Card',
 			},
 		],
+		preSubmitCaption: '*This is just a pledge and you’ll only be charged if the streamer delivers. If they don’t deliver, you won’t pay a thing!',
 		submits: [
 			{
-				label: 'Pledge',
+				label: 'Confirm',
 				endpointId: PLEDGE_PROJECT,
 				onSuccessRecordUpdates: [{
 					modification: 'set',
@@ -54,5 +72,9 @@ export default {
 				},
 			},
 		],
+		backButton: {
+			label: 'Go back',
+			routeId: CREATE_PROJECT_ROUTE_ID,
+		},
 	},
 }

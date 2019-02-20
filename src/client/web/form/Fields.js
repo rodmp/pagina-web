@@ -2,6 +2,7 @@ import React, { memo } from 'react'
 
 import TextField from 'sls-aws/src/client/web/form/TextField'
 import SubForm from 'sls-aws/src/client/web/form/SubForm'
+import AmountNumber from 'sls-aws/src/client/web/form/AmountNumber'
 import StripeCard from 'sls-aws/src/client/web/form/StripeCard'
 import AutoComplete from 'sls-aws/src/client/web/form/AutoComplete'
 
@@ -43,6 +44,12 @@ const Fields = memo(({
 			return (
 				<InputWrapper {...wrapperProps}>
 					<TextField {...props} />
+				</InputWrapper>
+			)
+		case 'amountNumber':
+			return (
+				<InputWrapper {...wrapperProps}>
+					<AmountNumber {...props} />
 				</InputWrapper>
 			)
 		case 'subForm':
