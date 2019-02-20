@@ -2,6 +2,8 @@ import React, { memo } from 'react'
 import classNames from 'classnames'
 import { ternary } from 'sls-aws/src/shared/util/ramdaPlus'
 
+import MenuItem from '@material-ui/core/MenuItem'
+
 import Link from 'sls-aws/src/client/web/base/Link'
 import Header from 'sls-aws/src/client/web/typography/Header'
 import Title from 'sls-aws/src/client/web/typography/Title'
@@ -53,6 +55,12 @@ const styles = {
 		bottom: 0,
 		position: 'absolute',
 	},
+	newDare: {
+		fontSize: 18,
+		letterSpacing: 1,
+		fontWeight: 'bold',
+		color: '#800080'
+	}
 }
 
 export const BannerHeaderUnconnected = memo(({
@@ -81,7 +89,9 @@ export const BannerHeaderUnconnected = memo(({
 							<Header>{bannerSubText}</Header>
 						</div>
 						<div>
-							<Link routeId={linkRouteId}>{linkLabel}</Link>
+							<Link routeId={linkRouteId}>
+								<MenuItem className={classes.newDare}>{linkLabel}</MenuItem>
+							</Link>
 						</div>
 					</div>
 				</MaxWidthContainer>
