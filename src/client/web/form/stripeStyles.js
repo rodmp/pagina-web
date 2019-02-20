@@ -17,8 +17,7 @@ export const elementStyle = {
 
 export const useStyles = makeStyles({
 	root: {
-		padding: [[6, 0, 7, 0]],
-		marginTop: 16,
+		marginBottom: -50,
 		boxSizing: 'border-box',
 		position: 'relative',
 		'&:before': {
@@ -63,7 +62,7 @@ export const useStyles = makeStyles({
 		paddingTop: 18,
 		paddingBottom: 18,
 		border: '1px solid rgba(0, 0, 0, 0.23)',
-		borderRadius: 4,
+		borderRadius: 0,
 		'&:hover': {
 			borderColor: '#000',
 		},
@@ -95,6 +94,9 @@ export const useStyles = makeStyles({
 	},
 	inputLabelError: {
 		color: errorColor,
+	},
+	labelFieldText: {
+		marginBottom: 8,
 	},
 	elementFocus: {
 		borderWidth: 2,
