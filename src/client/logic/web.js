@@ -16,6 +16,7 @@ import submitForm from 'sls-aws/src/client/logic/form/reducers/submitForm'
 import submitFormComplete from 'sls-aws/src/client/logic/form/reducers/submitFormComplete'
 import addSubForm from 'sls-aws/src/client/logic/form/reducers/addSubForm'
 import removeSubForm from 'sls-aws/src/client/logic/form/reducers/removeSubForm'
+import nextStep from 'sls-aws/src/client/logic/form/reducers/nextStep'
 
 // api
 import apiListRequestError from 'sls-aws/src/client/logic/api/reducers/apiListRequestError'
@@ -40,6 +41,7 @@ const store = createStore(
 		...setMediaBreakpoints,
 		...changeRoute,
 		...changeInput,
+		...nextStep,
 		...clearFormErrors,
 		...setFormErrors,
 		...submitForm,

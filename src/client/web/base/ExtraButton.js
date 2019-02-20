@@ -1,25 +1,20 @@
 import React, { memo } from 'react'
 
 import Button from '@material-ui/core/Button'
-import {
-	primaryColor, secondaryColor,
-} from 'sls-aws/src/client/web/commonStyles'
+import { secondaryColor } from 'sls-aws/src/client/web/commonStyles'
 
 import { withStyles } from '@material-ui/core/styles'
 
 const styles = {
 	button: {
-		color: 'white',
-		backgroundColor: primaryColor,
-		'&:hover': {
-			backgroundColor: secondaryColor,
-		},
-		width: '100%',
-		height: 48.1,
+		color: secondaryColor,
+		backgroundColor: 'transparent',
+		textTransform: 'none',
+		fontSize: 18,
 	},
 }
 
-export const ButtonUnstyled = memo(({
+export const ExtraButtonUnstyled = memo(({
 	classes, onClick, disabled, children,
 }) => (
 	<Button
@@ -31,4 +26,4 @@ export const ButtonUnstyled = memo(({
 	</Button>
 ))
 
-export default withStyles(styles)(ButtonUnstyled)
+export default withStyles(styles)(ExtraButtonUnstyled)

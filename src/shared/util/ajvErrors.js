@@ -51,19 +51,19 @@ export default (schema, errors) => reduce((result, error) => {
 				result,
 			)
 		}
-		case 'required': {
-			const errorPath = dataPathKey(error)
-			return set(
-				lensPath(errorPath),
-				`${propTitle(errorPath)} is required`,
-				result,
-			)
-		}
 		case 'minimum': {
 			const errorPath = dataPathKey(error)
 			return set(
 				lensPath(errorPath),
 				`${propTitle(errorPath)} must be at least ${errorLimit(error)}`,
+				result,
+			)
+		}
+		case 'required': {
+			const errorPath = dataPathKey(error)
+			return set(
+				lensPath(errorPath),
+				`${propTitle(errorPath)} is required`,
 				result,
 			)
 		}

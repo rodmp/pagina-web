@@ -9,3 +9,5 @@ export const ADD_SUB_FORM = 'actionId/ADD_SUB_FORM'
 export const REMOVE_SUB_FORM = 'actionId/REMOVE_SUB_FORM'
 
 export const SET_FORM_STRIPE = 'actionId/SET_FORM_STRIPE'
+
+export const NEXT_STEP = 'actionId/NEXT_STEP'

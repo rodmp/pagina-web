@@ -17,7 +17,15 @@ import classNames from 'classnames'
 
 const styles = {
 	space: {
+		marginTop: 25,
 		marginBottom: 25,
+	},
+	formContainer: {
+		width: 360,
+
+		'@media (max-width: 600px)': {
+			width: 340,
+		},
 	},
 }
 
@@ -27,7 +35,7 @@ export const FormModuleUnconnected = memo(({
 	classes, subTitle,
 }) => (
 	<div className="flex layout-row layout-align-center">
-		<div className="flex-40 flex-xs-90">
+		<div className={classes.formContainer}>
 			{orNull(
 				formTitle,
 				<div
