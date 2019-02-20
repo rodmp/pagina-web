@@ -1,5 +1,6 @@
 import changeRoute from 'sls-aws/src/client/logic/route/actions/changeRoute'
 import urlFromRouteObj from 'sls-aws/src/client/logic/route/util/urlFromRouteObj'
+import anchors from 'sls-aws/src/shared/constants/anchors'
 import { storageClear } from 'sls-aws/src/shared/util/storage'
 
 import {
@@ -13,7 +14,7 @@ export const dispatchCommittedRouteHof = (
 ) => (nextRouteObj, dispatchFn, changeType) => {
 	const { routeId, routeParams } = nextRouteObj
 
-	window.scrollTo(0, 0)
+	window.scrollTo(anchors.TOP, anchors.TOP)
 	if (routeId === 'SIGN_OUT') {
 		storageClear()
 		window.location.reload(true)
