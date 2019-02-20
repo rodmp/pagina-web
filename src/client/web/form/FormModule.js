@@ -33,8 +33,8 @@ const styles = {
 		textAlign: 'center',
 		marginBottom: 35,
 
-		'& a': {
-			color: `${secondaryColor} !important`,
+		'& span': {
+			color: secondaryColor,
 			backgroundColor: 'transparent',
 			textTransform: 'none',
 			fontSize: 18,
@@ -124,7 +124,7 @@ export const FormModuleUnconnected = memo(({
 				{backButton && (
 					<div className={classes.backButton}>
 						<Link routeId={backButton.routeId}>
-							{backButton.label}
+							<span>{backButton.label}</span>
 						</Link>
 					</div>
 				)}

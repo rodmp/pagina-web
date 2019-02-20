@@ -12,6 +12,8 @@ export const dispatchCommittedRouteHof = (
 	urlFromRouteObjFn,
 ) => (nextRouteObj, dispatchFn, changeType) => {
 	const { routeId, routeParams } = nextRouteObj
+
+	window.scrollTo(0, 0)
 	if (routeId === 'SIGN_OUT') {
 		storageClear()
 		window.location.reload(true)
