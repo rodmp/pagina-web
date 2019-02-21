@@ -8,9 +8,10 @@ const styles = {
 		fontFamily,
 		fontSize: 32,
 		fontWeight: 'bold',
-		lineHeight: 1.25,
+		lineHeight: '38px',
 		marginBottom: 14,
-		textTransform: 'uppercase'
+		textTransform: 'uppercase',
+		textAlign: 'center',
 	},
 }
 

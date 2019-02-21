@@ -5,7 +5,7 @@ import { secondaryColor } from 'sls-aws/src/client/web/commonStyles'
 
 import Fields from 'sls-aws/src/client/web/form/Fields'
 import Submits from 'sls-aws/src/client/web/form/Submits'
-import Header from 'sls-aws/src/client/web/typography/Header'
+import FormTitle from 'sls-aws/src/client/web/typography/FormTitle'
 import Link from 'sls-aws/src/client/web/base/Link'
 import Body from 'sls-aws/src/client/web/typography/Body'
 import TertiaryBody from 'sls-aws/src/client/web/typography/TertiaryBody'
@@ -57,7 +57,7 @@ export const FormModuleUnconnected = memo(({
 						'layout-row layout-align-center',
 					)}
 				>
-					<Header>{formTitle}</Header>
+					<FormTitle>{formTitle}</FormTitle>
 				</div>,
 			)}
 			{orNull(
