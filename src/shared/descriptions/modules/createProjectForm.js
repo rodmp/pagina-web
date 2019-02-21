@@ -25,12 +25,14 @@ export default {
 		title: 'Dare a Streamer',
 		fields: [
 			{
-				fieldId: 'streamerUrl',
-				inputType: 'text',
-				label: 'Enter URL',
+				fieldId: 'streamerName',
+				maxItems: 1,
+				inputType: 'autoComplete',
+				optionsPromiseType: 'twitchChannels',
+				placeholder: 'Enter Streamer Name',
 				labelFieldText: [
 					{
-						text: 'Streamer URL',
+						text: 'Streamer',
 					},
 				],
 				extraButton: 'Add Another',
