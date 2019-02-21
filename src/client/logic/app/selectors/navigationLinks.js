@@ -6,6 +6,7 @@ import {
 import { ternary } from 'sls-aws/src/shared/util/ramdaPlus'
 
 import isAuthenticated from 'sls-aws/src/client/logic/auth/selectors/isAuthenticated'
+import userEmail from 'sls-aws/src/client/logic/auth/selectors/userEmail'
 import isAdminSelector from 'sls-aws/src/client/logic/auth/selectors/isAdminSelector'
 import showMobileNavSelector from 'sls-aws/src/client/logic/app/selectors/showMobileNavSelector'
 
@@ -39,7 +40,7 @@ export default (state, props) => ternary(
 		{ label: 'How It Works', routeId: HOW_IT_WORKS_ROUTE_ID },
 		...(isAuthenticated(state, props)
 			? [{
-				label: 'USER',
+				label: userEmail(state),
 				menuItems: [
 					{ label: 'My Dares', routeId: MY_PROJECTS_ROUTE_ID },
 					...(isAdminSelector(state, props)
