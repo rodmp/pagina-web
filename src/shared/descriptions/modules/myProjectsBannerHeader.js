@@ -6,13 +6,14 @@ import {
 	CREATE_PROJECT_ROUTE_ID,
 } from 'sls-aws/src/shared/descriptions/routes/routeIds'
 
-import myprojects from 'sls-aws/src/client/assets/myprojects.jpg'
+import myDare from 'sls-aws/src/client/assets/Your-Dare.jpg'
 
 export default {
 	[MY_PROJECT_BANNER_HEADER_MODULE_ID]: {
 		moduleType: 'bannerHeader',
-		bannerImage: myprojects,
-		bannerImageText: 'YOUR DARES',
+		bannerImage: myDare,
+		bannerImageText: 'DARE A STREAMER',
+		bannerImageSubText: 'Pledge to a Dare you like, or create your own!',
 		textWithBg: true,
 		bannerSubText: 'Select a Dare',
 		link: {

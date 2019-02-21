@@ -19,6 +19,6 @@ export default {
 			routeId: CREATE_PROJECT_ROUTE_ID,
 			label: 'Create a New Dare +',
 		},
-		textWithBg: true
+		textWithBg: true,
 	},
 }
