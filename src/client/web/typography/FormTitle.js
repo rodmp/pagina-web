@@ -6,16 +6,18 @@ import { withStyles } from '@material-ui/core/styles'
 const styles = {
 	fontStyle: {
 		fontFamily,
-		fontSize: 20,
-		fontWeight: 500,
-		lineHeight: 1.5,
+		fontSize: 32,
+		fontWeight: 'bold',
+		lineHeight: '38px',
+		marginBottom: 14,
+		textAlign: 'center',
 	},
 }
 
-export const HeaderUnstyled = memo((({ classes, children }) => (
+export const TitleUnstyled = memo((({ classes, children }) => (
 	<div className={classes.fontStyle}>
 		{children}
 	</div>
 )))
 
-export default withStyles(styles)(HeaderUnstyled)
+export default withStyles(styles)(TitleUnstyled)
