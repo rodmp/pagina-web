@@ -1,6 +1,6 @@
 import {
 	ACTIVE_PROJECTS_ROUTE_ID, HOW_IT_WORKS_ROUTE_ID, LOGIN_ROUTE_ID,
-	MY_PROJECTS_ROUTE_ID, PENDING_PROJECTS_ROUTE_ID, SIGN_OUT,
+	MY_PROJECTS_ROUTE_ID, PENDING_PROJECTS_ROUTE_ID, SIGN_OUT, ACCOUNT_SETTINGS_ROUTE_ID
 } from 'sls-aws/src/shared/descriptions/routes/routeIds'
 
 import { ternary } from 'sls-aws/src/shared/util/ramdaPlus'
@@ -20,6 +20,7 @@ export default (state, props) => ternary(
 			...(isAuthenticated(state, props)
 				? [
 					{ label: 'My Dares', routeId: MY_PROJECTS_ROUTE_ID },
+					{ label: 'Account Settings', routeId: ACCOUNT_SETTINGS_ROUTE_ID },
 					...(isAdminSelector(state, props)
 						? [{
 							label: 'Pending Dares',
@@ -42,6 +43,7 @@ export default (state, props) => ternary(
 				label: 'USER',
 				menuItems: [
 					{ label: 'My Dares', routeId: MY_PROJECTS_ROUTE_ID },
+					{ label: 'Account Settings', routeId: ACCOUNT_SETTINGS_ROUTE_ID },
 					...(isAdminSelector(state, props)
 						? [{
 							label: 'Pending Dares',
