@@ -16,6 +16,6 @@ export default {
 	...privacyPolicy,
 	...cookiePolicy,
 	...rulesOfUse,
-	...accountSettings
+	...accountSettings,
 	...dareCreateSuccess,
 }
