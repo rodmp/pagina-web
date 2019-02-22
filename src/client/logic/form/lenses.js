@@ -105,6 +105,13 @@ export const formModuleSchema = {
 						},
 					},
 				},
+				backButton: {
+					type: 'object',
+					properties: {
+						label: { type: 'string' },
+						routeId: { type: 'string' },
+					},
+				},
 			},
 		},
 	},
