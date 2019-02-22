@@ -14,6 +14,7 @@ import termsOfService from 'sls-aws/src/shared/descriptions/modules/termsOfServi
 import privacyPolicy from 'sls-aws/src/shared/descriptions/modules/privacyPolicy'
 import cookiePolicy from 'sls-aws/src/shared/descriptions/modules/cookiePolicy'
 import rulesOfUse from 'sls-aws/src/shared/descriptions/modules/rulesOfUse'
+import accountSettings from 'sls-aws/src/shared/descriptions/modules/accountSettings'
 import marketplaceBannerHeader from 'sls-aws/src/shared/descriptions/modules/marketplaceBannerHeader'
 import myProjectsBannerHeader from 'sls-aws/src/shared/descriptions/modules/myProjectsBannerHeader'
 import howItWorkBannerHeader from 'sls-aws/src/shared/descriptions/modules/howItWorkBannerHeader'
@@ -21,6 +22,7 @@ import privacyPolicyBannerHeader from 'sls-aws/src/shared/descriptions/modules/p
 import cookiePolicyBannerHeader from 'sls-aws/src/shared/descriptions/modules/cookiePolicyBannerHeader'
 import termsOfServiceBannerHeader from 'sls-aws/src/shared/descriptions/modules/termsOfServiceBannerHeader'
 import rulesOfUseBannerHeader from 'sls-aws/src/shared/descriptions/modules/rulesOfUseBannerHeader'
+import accountSettingsBannerHeader from 'sls-aws/src/shared/descriptions/modules/accountSettingsBannerHeader'
 import dareCreateSuccess from 'sls-aws/src/shared/descriptions/modules/dareCreateSuccess'
 import bannerFooterMarketplace from 'sls-aws/src/shared/descriptions/modules/bannerFooterMarketplace'
 import bannerFooterHowItWorks from 'sls-aws/src/shared/descriptions/modules/bannerFooterHowItWorks'
@@ -60,6 +62,8 @@ const allModules = {
 	...bannerFooterDareAccepted,
 	...bannerFooterDareRejectConfirmation,
 	...bannerFooterDareSuccessCreate,
+	...accountSettings,
+	...accountSettingsBannerHeader
 }
 
 export default allModules
