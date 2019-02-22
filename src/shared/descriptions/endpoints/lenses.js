@@ -15,6 +15,7 @@ const endpointDescriptionSchema = {
 					enum: [
 						'project',
 						'projectList',
+						'paymentMethod',
 					],
 				},
 			},
