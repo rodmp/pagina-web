@@ -57,7 +57,7 @@ const styles = {
 
 export const ListItemUnconnected = memo(({
 	recordId, pushRoute, projectTitle, projectDescription, classes,
-	projectGameImage, projectAssigneesImages, projectShareUrl,
+	projectGameImage, projectAssigneesImages, projectShareUrl, projectGames,
 }) => (
 	<div
 		className={classNames(
@@ -101,7 +101,7 @@ export const ListItemUnconnected = memo(({
 				)}
 			>
 				<div className={classes.cardGameTitle}>
-					<TertiaryBody>Hearthstone</TertiaryBody>
+					<TertiaryBody>{projectGames.map(({ name }) => name)}</TertiaryBody>
 				</div>
 				<div className={classes.description}>
 					<Body>{projectDescription}</Body>
@@ -110,7 +110,7 @@ export const ListItemUnconnected = memo(({
 					<Button
 						onClick={goToViewProjectHandler(recordId, pushRoute)}
 					>
-						pledge
+							pledge
 					</Button>
 				</div>
 			</div>
