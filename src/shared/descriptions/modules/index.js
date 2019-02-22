@@ -29,6 +29,8 @@ import bannerFooterYourDare from 'sls-aws/src/shared/descriptions/modules/banner
 import bannerFooterDareAccepted from 'sls-aws/src/shared/descriptions/modules/bannerFooterDareAccepted'
 import bannerFooterDareRejectConfirmation from 'sls-aws/src/shared/descriptions/modules/bannerFooterDareRejectConfirmation'
 import bannerFooterDareSuccessCreate from 'sls-aws/src/shared/descriptions/modules/bannerFooterDareSuccessCreate'
+import managePaymentForm from 'sls-aws/src/shared/descriptions/modules/managePaymentForm'
+import managePaymentList from 'sls-aws/src/shared/descriptions/modules/managePaymentList'
 
 const allModules = {
 	...loginForm,
@@ -61,7 +63,9 @@ const allModules = {
 	...bannerFooterDareRejectConfirmation,
 	...bannerFooterDareSuccessCreate,
 	...accountSettings,
-	...accountSettingsBannerHeader
+	...accountSettingsBannerHeader,
+	...managePaymentForm,
+	...managePaymentList,
 }
 
 export default allModules

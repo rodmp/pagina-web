@@ -1,5 +1,7 @@
 import React, { memo } from 'react'
 
+import classNames from 'classnames'
+
 import { fontFamily } from 'sls-aws/src/client/web/commonStyles'
 import { withStyles } from '@material-ui/core/styles'
 
@@ -10,12 +12,15 @@ const styles = {
 		fontWeight: 'bold',
 		lineHeight: 1.25,
 		marginBottom: 14,
-		textTransform: 'uppercase'
+		textTransform: 'uppercase',
+	},
+	notUpperCase: {
+		textTransform: 'none',
 	},
 }
 
-export const TitleUnstyled = memo((({ classes, children }) => (
-	<div className={classes.fontStyle}>
+export const TitleUnstyled = memo((({ classes, children, notUpperCase }) => (
+	<div className={classNames(classes.fontStyle, { [classes.notUpperCase]: notUpperCase })}>
 		{children}
 	</div>
 )))
