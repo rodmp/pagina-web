@@ -2,13 +2,15 @@ import React, { memo } from 'react'
 
 import { withStyles } from '@material-ui/core/styles'
 
+import classNames from 'classnames'
+
 const styles = {
 
 }
 
-export const MaxWidthContainerUnstyled = memo(({ children }) => (
+export const MaxWidthContainerUnstyled = memo(({ children, isNavigation }) => (
 	<div
-		className="flex layout-row layout-align-start flex-70 flex-xs-90"
+		className={classNames('flex layout-row layout-align-start flex-xs-90', { 'flex-70': !isNavigation })}
 	>
 		{children}
 	</div>
