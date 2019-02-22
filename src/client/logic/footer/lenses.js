@@ -9,6 +9,7 @@ export const footerModuleDescriptionSchema = {
 			type: 'object',
 			properties: {
 				bannerFooterImage: { type: 'string' },
+				isSuccessPage: { type: 'boolean' },
 			},
 		},
 	},
