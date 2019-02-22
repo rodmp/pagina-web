@@ -6,6 +6,7 @@ import pledgeAmountSelector from 'sls-aws/src/client/logic/project/selectors/ple
 import projectGameImagePortraitSelector from 'sls-aws/src/client/logic/project/selectors/projectGameImagePortraitSelector'
 import projectAssigneesImagesSelector from 'sls-aws/src/client/logic/project/selectors/projectAssigneesImagesSelector'
 import projectShareUrlSelector from 'sls-aws/src/client/logic/project/selectors/projectShareUrlSelector'
+import projectGamesSelector from 'sls-aws/src/client/logic/project/selectors/projectGamesSelector'
 
 import pushRoute from 'sls-aws/src/client/logic/route/thunks/pushRoute'
 
@@ -17,6 +18,7 @@ export default reduxConnector(
 		['projectGameImage', projectGameImagePortraitSelector],
 		['projectAssigneesImages', projectAssigneesImagesSelector],
 		['projectShareUrl', projectShareUrlSelector],
+		['projectGames', projectGamesSelector],
 	],
 	[['pushRoute', pushRoute]],
 )
