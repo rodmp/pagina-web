@@ -1,7 +1,6 @@
 export default {
 	type: 'object',
 	properties: {
-		projectId: { type: 'string' },
 		pledgeAmount: {
 			type: 'integer',
 			minimum: 5,
@@ -10,8 +9,9 @@ export default {
 				minimum: 'Pledge amount must be at least $5.',
 			},
 		},
+		cardName: { type: 'string' },
 		stripeCardId: { type: 'string' },
 	},
-	required: ['projectId', 'pledgeAmount', 'stripeCardId'],
+	required: ['pledgeAmount', 'cardName', 'stripeCardId'],
 	additionalProperties: false,
 }
