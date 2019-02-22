@@ -6,6 +6,7 @@ import PrivacyPolicy from 'sls-aws/src/client/web/static/PrivacyPolicy'
 import CookiePolicy from 'sls-aws/src/client/web/static/CookiePolicy'
 import RulesOfUse from 'sls-aws/src/client/web/static/RulesOfUse'
 import PledgeSuccess from 'sls-aws/src/client/web/static/PledgeSuccess'
+import DareCreateSuccess from 'sls-aws/src/client/web/static/DareCreateSuccess'
 
 import withModuleContext from 'sls-aws/src/client/util/withModuleContext'
 
@@ -26,6 +27,8 @@ export const StaticModuleUnconnected = memo(({ staticPageType }) => {
 			return <RulesOfUse />
 		case 'pledgeSuccess':
 			return <PledgeSuccess />
+		case 'dareCreateSuccess':
+			return <DareCreateSuccess />
 		default:
 			return <div>Unsuported static page type: {staticPageType}</div>
 	}

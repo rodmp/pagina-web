@@ -5,6 +5,7 @@ import cookiePolicy from 'sls-aws/src/shared/descriptions/routes/cookiePolicy'
 import rulesOfUse from 'sls-aws/src/shared/descriptions/routes/rulesOfUse'
 import auth from 'sls-aws/src/shared/descriptions/routes/auth'
 import projects from 'sls-aws/src/shared/descriptions/routes/projects'
+import dareCreateSuccess from 'sls-aws/src/shared/descriptions/routes/dareCreateSuccess';
 
 export default {
 	...howItWorks,
@@ -14,4 +15,5 @@ export default {
 	...privacyPolicy,
 	...cookiePolicy,
 	...rulesOfUse,
+	...dareCreateSuccess,
 }
