@@ -3,8 +3,6 @@ import classNames from 'classnames'
 
 import MenuItem from '@material-ui/core/MenuItem'
 
-import MenuItem from '@material-ui/core/MenuItem'
-
 import Link from 'sls-aws/src/client/web/base/Link'
 import Header from 'sls-aws/src/client/web/typography/Header'
 import Title from 'sls-aws/src/client/web/typography/Title'
@@ -83,17 +81,12 @@ export const BannerHeaderUnconnected = memo(({
 					<SubTitle>{bannerImageSubText}</SubTitle>
 				</div>
 			</div>
-			<div className="layout-row layout-align-center">
-				<MaxWidthContainer>
-					<div className="flex layout-column">
-						<div className="layout-row layout-align-center">
-							<Header>{bannerSubText}</Header>
-						</div>
-						<div>
-							<Link routeId={linkRouteId}>
-								<MenuItem className={classes.newDare}>{linkLabel}</MenuItem>
-							</Link>
-						</div>
+		</div>
+		<div className="layout-row layout-align-center">
+			<MaxWidthContainer>
+				<div className="flex layout-column">
+					<div className="layout-row layout-align-center">
+						<Header>{bannerSubText}</Header>
 					</div>
 					<div>
 						<Link routeId={linkRouteId}>
