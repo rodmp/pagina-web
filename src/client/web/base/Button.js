@@ -18,6 +18,7 @@ const styles = {
 			backgroundColor: secondaryColor,
 		},
 		width: '100%',
+		height: 48.1,
 	},
 	styledButton: {
 		padding: 10,

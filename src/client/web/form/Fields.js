@@ -2,6 +2,7 @@ import React, { memo } from 'react'
 
 import TextField from 'sls-aws/src/client/web/form/TextField'
 import SubForm from 'sls-aws/src/client/web/form/SubForm'
+import AmountNumber from 'sls-aws/src/client/web/form/AmountNumber'
 import StripeCard from 'sls-aws/src/client/web/form/StripeCard'
 import AutoComplete from 'sls-aws/src/client/web/form/AutoComplete'
 
@@ -10,9 +11,23 @@ import InputWrapper from 'sls-aws/src/client/web/form/InputWrapper'
 const Fields = memo(({
 	formFieldTypes, moduleKey, formType,
 }) => formFieldTypes.map(([
-	fieldPath, fieldDescPath, inputType, fieldId, subFieldText,
+	fieldPath,
+	fieldDescPath,
+	inputType,
+	fieldId,
+	subFieldText,
+	labelFieldText,
+	extraButton,
+	fieldValue,
+	fieldMax,
 ]) => {
-	const wrapperProps = { subFieldText, key: fieldId, formType }
+	const wrapperProps = {
+		subFieldText,
+		labelFieldText,
+		extraButton,
+		key: fieldId,
+		formType,
+	}
 	const props = {
 		fieldType: inputType,
 		fieldId,
@@ -20,6 +35,8 @@ const Fields = memo(({
 		moduleKey,
 		fieldPath,
 		formType,
+		fieldValue,
+		fieldMax,
 	}
 	switch (inputType) {
 		case 'text':
@@ -29,6 +46,12 @@ const Fields = memo(({
 			return (
 				<InputWrapper {...wrapperProps}>
 					<TextField {...props} />
+				</InputWrapper>
+			)
+		case 'amountNumber':
+			return (
+				<InputWrapper {...wrapperProps}>
+					<AmountNumber {...props} />
 				</InputWrapper>
 			)
 		case 'subForm':

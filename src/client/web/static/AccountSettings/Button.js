@@ -7,11 +7,11 @@ import styles from './style'
 
 const Button = memo(({ classes, routeId, children, routeParams, pushRoute }) => (
 	<button
+		type="button"
 		className={classes.button}
 		onClick={linkHandler(routeId, routeParams, pushRoute)}
 	>{children}
 	</button>
 ))
 
-// export default withStyles(styles)(Button)
 export default linkConnector(Button, styles)

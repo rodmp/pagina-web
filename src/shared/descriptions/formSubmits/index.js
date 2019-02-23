@@ -13,5 +13,5 @@ export default {
 	...verifyAccountForm,
 	...createPledgeForm,
 	...forgotPassword,
-	...resetPassword
+	...resetPassword,
 }

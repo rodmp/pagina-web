@@ -1,15 +1,20 @@
 import React, { memo } from 'react'
 
-import TextField from '@material-ui/core/TextField'
-import { orNull, ternary } from 'sls-aws/src/shared/util/ramdaPlus'
+import { orNull } from 'sls-aws/src/shared/util/ramdaPlus'
 import classNames from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 
+import TextField from '@material-ui/core/TextField'
 import fieldInputConnector from 'sls-aws/src/client/logic/form/connectors/fieldInputConnector'
-
 import textFieldSetInputHandler from 'sls-aws/src/client/logic/form/handlers/textFieldSetInputHandler'
+import MinMaxLength from 'sls-aws/src/client/web/base/MinMaxLength'
+import withModuleContext from 'sls-aws/src/client/util/withModuleContext'
+
 
 const styles = {
+	fieldMax: {
+		marginTop: 9,
+	},
 	field: {
 		marginBottom: 20,
 		width: 'calc(100% - 10px)',
