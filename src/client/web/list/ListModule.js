@@ -10,12 +10,11 @@ import withModuleContext from 'sls-aws/src/client/util/withModuleContext'
 
 import Title from 'sls-aws/src/client/web/typography/Title'
 import SubTitle from 'sls-aws/src/client/web/typography/SubTitle'
+import Button from 'sls-aws/src/client/web/base/Button'
 
 import List from '@material-ui/core/List'
 
 import listModuleConnector from 'sls-aws/src/client/logic/api/connectors/listModuleConnector'
-
-import Button from 'sls-aws/src/client/web/base/Button'
 
 import mockCardList from 'sls-aws/src/server/api/mocks/creditCardsMock'
 
@@ -76,7 +75,6 @@ export const ListModuleUnconnected = memo(({
 							<Button
 								type="button"
 								key={title}
-								// onClick={onClick}
 								buttonType={buttonType}
 								isStyled
 								disableRipple

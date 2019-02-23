@@ -40,22 +40,22 @@ const styles = {
 }
 
 export const ButtonUnstyled = memo(({
-	classes, onClick, disabled, children, buttonType, isStyled, disableRipple, additionalClass
+	classes, onClick, disabled, children, buttonType, isStyled, disableRipple, additionalClass,
 }) => (
-		<Button
-			className={classNames(
-				classes.button,
-				{ [classes.styledButton]: isStyled },
-				({ [classes.primarySquareButton]: buttonType === 'primarySquareButton' }),
-				({ [classes.noBackgroundButton]: buttonType === 'noBackgroundButton' }),
-				(additionalClass),
-			)}
-			onClick={onClick}
-			disabled={disabled}
-			disableRipple={disableRipple}
-		>
-			{children}
-		</Button>
-	))
+	<Button
+		className={classNames(
+			classes.button,
+			{ [classes.styledButton]: isStyled },
+			({ [classes.primarySquareButton]: buttonType === 'primarySquareButton' }),
+			({ [classes.noBackgroundButton]: buttonType === 'noBackgroundButton' }),
+			(additionalClass),
+		)}
+		onClick={onClick}
+		disabled={disabled}
+		disableRipple={disableRipple}
+	>
+		{children}
+	</Button>
+))
 
 export default withStyles(styles)(ButtonUnstyled)

@@ -19,12 +19,15 @@ const styles = {
 	space: {
 		marginBottom: 25,
 	},
+	paymentTitle: {
+		fontSize: 32,
+	},
 }
 
 export const FormModuleUnconnected = memo(({
 	formFieldTypes, formTitle, formSubmits, moduleId, moduleKey, submitForm,
 	preSubmitText, postSubmitText, preSubmitCaption, postSubmitCaption,
-	classes, subTitle,
+	classes, subTitle, formType,
 }) => (
 	<div className="flex layout-row layout-align-center">
 		<div className="flex-40 flex-xs-90">
@@ -36,7 +39,7 @@ export const FormModuleUnconnected = memo(({
 						'layout-row layout-align-center',
 					)}
 				>
-					<Header>{formTitle}</Header>
+					<Header additionalClass={classNames({ [classes.paymentTitle]: (formType === 'paymentMethod') })}>{formTitle}</Header>
 				</div>,
 			)}
 			{orNull(
@@ -52,12 +55,13 @@ export const FormModuleUnconnected = memo(({
 			)}
 			<form
 				onSubmit={submitFormHandler(submitForm, moduleKey)}
-				className="layout-column layout-align-center-stretch"
+				className={classNames({ 'layout-column layout-align-center-stretch': (formType !== 'paymentMethod') })}
 			>
 				<Fields
 					moduleKey={moduleKey}
 					moduleId={moduleId}
 					formFieldTypes={formFieldTypes}
+					formType={formType}
 				/>
 				{orNull(
 					preSubmitText,
