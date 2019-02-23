@@ -4,19 +4,19 @@ import {
 } from 'sls-aws/src/shared/descriptions/modules/moduleIds'
 import addPaymentMethodPayloadSchema from 'sls-aws/src/shared/descriptions/endpoints/schemas/addPaymentMethodPayloadSchema'
 import {
-	MANAGE_PAYMENT_LIST_ROUTE_ID,
+	MANAGE_PAYMENT_LIST_ROUTE_ID, ACCOUNT_SETTINGS_ROUTE_ID, MANAGE_PAYMENT_FORM_ROUTE_ID,
 } from 'sls-aws/src/shared/descriptions/routes/routeIds'
 
 export default {
 	[MANAGE_PAYMENT_FORM_MODULE_ID]: {
 		moduleType: 'form',
+		formType: 'paymentMethod',
 		schema: compose(
-			dissocPath(['properties', 'stripeCardId']),
 			dissocPath(['additionalProperties']),
 			set(
 				lensProp('required'),
 				without(
-					['stripeCardId'],
+					[],
 					view(lensProp('required'), addPaymentMethodPayloadSchema),
 				),
 			),
@@ -24,25 +24,46 @@ export default {
 		title: 'Payment Information',
 		fields: [
 			{
-				fieldId: 'cardName',
+				fieldId: 'cardNumber',
 				inputType: 'text',
-				label: 'Name',
+				label: 'Credit Card Number',
+				placeholder: '4242 4242 4242 4242',
 				labelFieldText: [
 					{
-						text: 'Name on Credit Card',
+						text: 'Credit Card Number',
 						required: true,
 					},
 				],
 			},
 			{
-				fieldId: 'stripeCardId',
-				inputType: 'stripeCard',
-				label: 'Credit Card',
+				fieldId: 'cardName',
+				inputType: 'text',
+				label: 'Name on Credit Card',
+				placeholder: 'Name',
+			},
+			{
+				fieldId: 'expDate',
+				inputType: 'text',
+				label: 'Expiration',
+				placeholder: '01/12',
+			},
+			{
+				fieldId: 'securityCode',
+				inputType: 'text',
+				label: 'Security Code',
+				placeholder: '456',
+			},
+			{
+				fieldId: 'zipCode',
+				inputType: 'text',
+				label: 'Zip Code',
+				placeholder: '90210',
 			},
 		],
 		submits: [
 			{
 				label: 'Confirm',
+				buttonType: 'primarySquareButton',
 			},
 		],
 		backButton: {

@@ -8,17 +8,18 @@ import AutoComplete from 'sls-aws/src/client/web/form/AutoComplete'
 import InputWrapper from 'sls-aws/src/client/web/form/InputWrapper'
 
 const Fields = memo(({
-	formFieldTypes, moduleKey,
+	formFieldTypes, moduleKey, formType,
 }) => formFieldTypes.map(([
 	fieldPath, fieldDescPath, inputType, fieldId, subFieldText,
 ]) => {
-	const wrapperProps = { subFieldText, key: fieldId }
+	const wrapperProps = { subFieldText, key: fieldId, formType }
 	const props = {
 		fieldType: inputType,
 		fieldId,
 		fieldDescPath,
 		moduleKey,
 		fieldPath,
+		formType,
 	}
 	switch (inputType) {
 		case 'text':
