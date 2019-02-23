@@ -23,14 +23,26 @@ const styles = {
 		transition: '.3s',
 		display: 'none',
 		[gtSmMediaQuery]: {
-			display: 'inline-block'
-		}
+			display: 'inline-block',
+		},
 	},
 	arrowOpen: {
-		transform: 'rotateX(180deg)'
+		transform: 'rotateX(180deg)',
+	},
+	menu: {
+		position: 'absolute',
+	},
+	centeredButton: {
+		display: 'flex',
+		alignItems: 'center',
+	},
+	centeredButton: {
+		display: 'flex',
+		alignItems: 'center'
 	},
 	navLinkStyle,
 }
+
 
 export const NavMenuUnstyled = memo(({
 	menuLabel, menuIcon, menuItems, classes,
@@ -41,18 +53,19 @@ export const NavMenuUnstyled = memo(({
 	return (
 		<Fragment>
 			<button
-				style={{ display: 'flex', alignItems: 'center' }}
 				type="button"
-				className={classes.navLinkStyle}
+				className={classNames(classes.navLinkStyle, classes.centeredButton)}
 				ref={anchorEl}
 				onClick={() => setOpen(true)}
 			>
 				<LabelOrIcon label={menuLabel} icon={menuIcon} />
 				<ExpandMore className={classNames(
-					classes.arrow, open && classes.arrowOpen,
-				)} />				
+					classes.arrow, { [classes.arrowOpen]: open },
+				)}
+				/>
 			</button>
 			<Menu
+				className={classes.menu}
 				open={open}
 				onClose={() => setOpen(false)}
 				anchorEl={anchorEl.current}

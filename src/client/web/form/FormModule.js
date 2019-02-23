@@ -1,10 +1,12 @@
 import React, { memo } from 'react'
 
 import { orNull } from 'sls-aws/src/shared/util/ramdaPlus'
+import { secondaryColor } from 'sls-aws/src/client/web/commonStyles'
 
 import Fields from 'sls-aws/src/client/web/form/Fields'
 import Submits from 'sls-aws/src/client/web/form/Submits'
 import Header from 'sls-aws/src/client/web/typography/Header'
+import Link from 'sls-aws/src/client/web/base/Link'
 import Body from 'sls-aws/src/client/web/typography/Body'
 import TertiaryBody from 'sls-aws/src/client/web/typography/TertiaryBody'
 import formModuleConnector from 'sls-aws/src/client/logic/form/connectors/formModuleConnector'
@@ -17,20 +19,39 @@ import classNames from 'classnames'
 
 const styles = {
 	space: {
+		marginTop: 25,
 		marginBottom: 25,
 	},
 	paymentTitle: {
 		fontSize: 32,
+	},
+	formContainer: {
+		width: 360,
+
+		'@media (max-width: 600px)': {
+			width: 340,
+		},
+	},
+	backButton: {
+		textAlign: 'center',
+		marginBottom: 35,
+
+		'& span': {
+			color: secondaryColor,
+			backgroundColor: 'transparent',
+			textTransform: 'none',
+			fontSize: 18,
+		},
 	},
 }
 
 export const FormModuleUnconnected = memo(({
 	formFieldTypes, formTitle, formSubmits, moduleId, moduleKey, submitForm,
 	preSubmitText, postSubmitText, preSubmitCaption, postSubmitCaption,
-	classes, subTitle, formType,
+	classes, subTitle, formType, backButton,
 }) => (
 	<div className="flex layout-row layout-align-center">
-		<div className="flex-40 flex-xs-90">
+		<div className={classes.formContainer}>
 			{orNull(
 				formTitle,
 				<div
@@ -103,6 +124,13 @@ export const FormModuleUnconnected = memo(({
 					<div className="flex layout-row layout-align-center">
 						<TertiaryBody>{postSubmitCaption}</TertiaryBody>
 					</div>,
+				)}
+				{backButton && (
+					<div className={classes.backButton}>
+						<Link routeId={backButton.routeId}>
+							<span>{backButton.label}</span>
+						</Link>
+					</div>
 				)}
 				<input type="submit" className="hide" />
 			</form>

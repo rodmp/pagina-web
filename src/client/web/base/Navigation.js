@@ -26,6 +26,9 @@ const styles = {
 		fontSize: 25,
 		fontFamily: 'Impact',
 	},
+	navContainer: {
+		margin: 0
+	}
 }
 
 export const NavigationUnstyled = memo(({ classes }) => (
@@ -35,7 +38,7 @@ export const NavigationUnstyled = memo(({ classes }) => (
 			classes.root,
 		)}
 	>
-		<MaxWidthContainer>
+		<MaxWidthContainer isNavigation={true}>
 			<Link navStyle routeId={ACTIVE_PROJECTS_ROUTE_ID}>
 				<div
 					className={classNames(

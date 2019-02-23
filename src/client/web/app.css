@@ -5,11 +5,12 @@ html, body {
 
 body {
 	margin: 0;
-	padding: 0;
+	padding: 0 !important; 
 	font-family: Roboto;
 	white-space: pre-line;
 	overflow-scrolling: touch;
 	-webkit-overflow-scrolling: touch;
+	overflow-y: scroll !important; 
 }
 
 .hide {

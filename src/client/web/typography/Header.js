@@ -8,7 +8,7 @@ import { withStyles } from '@material-ui/core/styles'
 const styles = {
 	fontStyle: {
 		fontFamily,
-		fontSize: 20,
+		fontSize: 32,
 		fontWeight: 500,
 		lineHeight: 1.5,
 	},

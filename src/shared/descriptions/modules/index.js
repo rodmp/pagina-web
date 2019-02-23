@@ -23,6 +23,7 @@ import cookiePolicyBannerHeader from 'sls-aws/src/shared/descriptions/modules/co
 import termsOfServiceBannerHeader from 'sls-aws/src/shared/descriptions/modules/termsOfServiceBannerHeader'
 import rulesOfUseBannerHeader from 'sls-aws/src/shared/descriptions/modules/rulesOfUseBannerHeader'
 import accountSettingsBannerHeader from 'sls-aws/src/shared/descriptions/modules/accountSettingsBannerHeader'
+import dareCreateSuccess from 'sls-aws/src/shared/descriptions/modules/dareCreateSuccess'
 import bannerFooterMarketplace from 'sls-aws/src/shared/descriptions/modules/bannerFooterMarketplace'
 import bannerFooterHowItWorks from 'sls-aws/src/shared/descriptions/modules/bannerFooterHowItWorks'
 import bannerFooterYourDare from 'sls-aws/src/shared/descriptions/modules/bannerFooterYourDare'
@@ -56,6 +57,7 @@ const allModules = {
 	...privacyPolicyBannerHeader,
 	...termsOfServiceBannerHeader,
 	...rulesOfUseBannerHeader,
+	...dareCreateSuccess,
 	...bannerFooterMarketplace,
 	...bannerFooterHowItWorks,
 	...bannerFooterYourDare,

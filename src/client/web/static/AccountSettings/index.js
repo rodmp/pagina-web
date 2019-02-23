@@ -15,8 +15,8 @@ const AccountSettings = ({ classes }) => (
 		<section className={classes.section}>
 			<h3 className={classes.sectionTitle}>{lead}</h3>
 			<div className={classes.buttons}>
-				{buttons.map(({ text, routeId }, idx) => (
-					<Button key={idx} routeId={routeId}> {text}</Button>
+				{buttons.map(({ text, routeId }) => (
+					<Button key={routeId} routeId={routeId}>{text}</Button>
 				))}
 			</div>
 		</section>

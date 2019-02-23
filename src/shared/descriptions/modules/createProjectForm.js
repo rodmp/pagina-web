@@ -4,12 +4,14 @@ import {
 	CREATE_PROJECT_FORM_MODULE_ID,
 } from 'sls-aws/src/shared/descriptions/modules/moduleIds'
 
+import { CREATE_PROJECT } from 'sls-aws/src/shared/descriptions/endpoints/endpointIds'
 import createProjectPayloadSchema from 'sls-aws/src/shared/descriptions/endpoints/schemas/createProjectPayloadSchema'
 
 export default {
 	[CREATE_PROJECT_FORM_MODULE_ID]: {
 		moduleType: 'form',
 		schema: compose(
+			dissocPath(['properties', 'projectId']),
 			dissocPath(['properties', 'stripeCardId']),
 			dissocPath(['additionalProperties']),
 			set(
@@ -20,60 +22,64 @@ export default {
 				),
 			),
 		)(createProjectPayloadSchema),
+		title: 'Dare a Streamer',
 		fields: [
+			{
+				fieldId: 'streamerUrl',
+				inputType: 'text',
+				label: 'Enter URL',
+				labelFieldText: [
+					{
+						text: 'Streamer URL',
+					},
+				],
+				extraButton: 'Add Another',
+			},
 			{
 				fieldId: 'title',
 				inputType: 'text',
-				label: 'Title',
+				label: 'My new dare Title',
+				labelFieldText: [
+					{
+						text: 'Dare Title',
+						subText: 'What do you want to see? :',
+						required: true,
+					},
+				],
+				inputMaxLength: 60,
 			},
 			{
 				fieldId: 'description',
 				inputType: 'text',
-				label: 'Description',
+				label: 'My new dare Description',
 				multiline: true,
-			},
-			// {
-			// 	fieldId: 'assignees',
-			// 	inputType: 'subForm',
-			// 	label: 'Assignees',
-			// 	subFormFields: [
-			// 		{
-			// 			fieldId: 'url',
-			// 			inputType: 'text',
-			// 			label: 'Twitch streamer url',
-			// 		},
-			// 	],
-			// },
-			{
-				fieldId: 'assignees',
-				maxItems: 10,
-				inputType: 'autoComplete',
-				optionsPromiseType: 'twitchChannels',
-				label: 'Assignees',
-				placeholder: 'Search Twitch Channels',
+				subFieldText: 'Make sure you describe what you want to see in detail so the streamer can deliver what you want.*',
+				labelFieldText: [
+					{
+						text: 'Description',
+					},
+				],
 			},
 			{
 				fieldId: 'games',
 				maxItems: 1,
 				inputType: 'autoComplete',
 				optionsPromiseType: 'twitchGames',
-				label: 'Game',
-				placeholder: 'Search Games',
-			},
-			{
-				fieldId: 'pledgeAmount',
-				inputType: 'number',
-				label: 'Pledge Amount',
-			},
-			{
-				fieldId: 'stripeCardId',
-				inputType: 'stripeCard',
-				label: 'Credit Card',
+				placeholder: 'Select',
+				labelFieldText: [
+					{
+						text: 'Select Video game',
+						required: true,
+					},
+				],
 			},
 		],
+		preSubmitCaption: '*We take no responsibility for resolving discrepancies between intended project content and content which meet the requirement as stated.',
+
 		submits: [
 			{
-				label: 'Create',
+				label: 'Go to Payment',
+				endpointId: CREATE_PROJECT,
 			},
 		],
 	},
