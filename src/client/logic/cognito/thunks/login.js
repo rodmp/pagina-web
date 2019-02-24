@@ -32,9 +32,8 @@ export default ({ email, password }) => dispatch => new Promise(
 			onFailure: AuthenticateUserError(reject),
 		})
 	},
-).then((session) => {
-	setAwsConfig(session)
-	return dispatch(determineAuth()).then(
+).then(session => setAwsConfig(session).then(
+	() => dispatch(determineAuth()).then(
 		() => dispatch(pushRoute(ACTIVE_PROJECTS_ROUTE_ID)),
-	)
-})
+	),
+))

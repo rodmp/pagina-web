@@ -1,5 +1,7 @@
+import ref from 'root/src/aws/util/ref'
+
 import {
-	COGNITO_UNAUTH_ROLE,
+	COGNITO_UNAUTH_ROLE, IDENTITY_POOL,
 } from 'root/src/aws/cognito/resourceIds'
 
 export default {
@@ -11,13 +13,19 @@ export default {
 				Version: '2012-10-17',
 				Statement: [
 					{
+						Sid: '',
 						Effect: 'Allow',
 						Principal: {
 							Federated: 'cognito-identity.amazonaws.com',
 						},
-						Action: [
-							'sts:AssumeRole',
-						],
+						Action: 'sts:AssumeRoleWithWebIdentity',
+						Condition: {
+							StringEquals: {
+								'cognito-identity.amazonaws.com:aud': ref(
+									IDENTITY_POOL,
+								),
+							},
+						},
 					},
 				],
 			},
