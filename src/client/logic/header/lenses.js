@@ -13,6 +13,7 @@ export const bannerHeaderModuleDescriptionSchema = {
 				bannerImageText: { type: 'string' },
 				bannerImageSubText: { type: 'string' },
 				textWithBg: { type: 'boolean' },
+				createNewDareActive: { type: 'boolean' },
 				link: {
 					type: 'object',
 					properties: {
