@@ -13,7 +13,7 @@ import badTemplateImport from 'sls-aws/src/aws'
 export default ({
 	name = packageName, stage = 'Dev', template,
 	webpackConfig = webpackLambdaConf,
-	profile = 'slsAdmin', // @TODO profile option not working
+	profile = 'dareMeAdmin', // @TODO profile option not working
 	region = 'us-east-1', buildDir = '.cloudFormation',
 }) => {
 	const awsCreds = awsConf({ region, profile })
