@@ -1,6 +1,6 @@
 import {
 	matchPathHof,
-} from 'sls-aws/src/client/logic/route/util/matchPath'
+} from 'root/src/client/logic/route/util/matchPath'
 
 const mockRoutes = {
 	ROUTE_ID_1: { url: '/foo' },

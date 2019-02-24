@@ -1,11 +1,11 @@
-import apiLambda from 'sls-aws/src/aws/api/resources/apiLambda'
-import apiLambdaExecutionRole from 'sls-aws/src/aws/api/resources/apiLambdaExecutionRole'
-import apiDynamoDbTable from 'sls-aws/src/aws/api/resources/apiDynamoDbTable'
+import apiLambda from 'root/src/aws/api/resources/apiLambda'
+import apiLambdaExecutionRole from 'root/src/aws/api/resources/apiLambdaExecutionRole'
+import apiDynamoDbTable from 'root/src/aws/api/resources/apiDynamoDbTable'
 
-import outputs from 'sls-aws/src/aws/api/outputs'
+import outputs from 'root/src/aws/api/outputs'
 import {
 	authPolicies, unauthPolicies,
-} from 'sls-aws/src/aws/api/cognitoPolicies'
+} from 'root/src/aws/api/cognitoPolicies'
 
 export const apiResources = {
 	...apiLambda,

@@ -1,7 +1,7 @@
-import reduxConnector from 'sls-aws/src/shared/util/reduxConnector'
+import reduxConnector from 'root/src/shared/util/reduxConnector'
 
-import staticPageTypeSelector from 'sls-aws/src/client/logic/static/selectors/staticPageTypeSelector'
-import pageContentSelector from 'sls-aws/src/client/logic/static/selectors/pageContentSelector'
+import staticPageTypeSelector from 'root/src/client/logic/static/selectors/staticPageTypeSelector'
+import pageContentSelector from 'root/src/client/logic/static/selectors/pageContentSelector'
 
 export default reduxConnector(
 	[

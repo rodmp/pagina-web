@@ -1,4 +1,4 @@
-import styled from 'sls-aws/src/client/web/base/StaticLayout/style'
+import styled from 'root/src/client/web/base/StaticLayout/style'
 
 const color = 'rgba(0, 0, 0, 0.87)'
 

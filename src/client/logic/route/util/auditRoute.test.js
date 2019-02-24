@@ -1,4 +1,4 @@
-import { auditRouteHof } from 'sls-aws/src/client/logic/route/util/auditRoute'
+import { auditRouteHof } from 'root/src/client/logic/route/util/auditRoute'
 
 const mockRoutes = {
 	AUTH_REQUIRED_ROUTE_ID: {

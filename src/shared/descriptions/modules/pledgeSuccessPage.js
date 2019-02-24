@@ -1,8 +1,8 @@
 import {
 	PLEDGE_SUCCESS_PAGE_MODULE_ID,
-} from 'sls-aws/src/shared/descriptions/modules/moduleIds'
-import { ACTIVE_PROJECTS_ROUTE_ID } from 'sls-aws/src/shared/descriptions/routes/routeIds'
-import bannerFooterImage from 'sls-aws/src/client/assets/pledge-success-page.jpg'
+} from 'root/src/shared/descriptions/modules/moduleIds'
+import { ACTIVE_PROJECTS_ROUTE_ID } from 'root/src/shared/descriptions/routes/routeIds'
+import bannerFooterImage from 'root/src/client/assets/pledge-success-page.jpg'
 
 export default {
 	[PLEDGE_SUCCESS_PAGE_MODULE_ID]: {

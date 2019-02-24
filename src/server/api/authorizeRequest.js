@@ -1,9 +1,9 @@
 import { not, equals, contains, and, propOr, prop } from 'ramda'
-import { authorizationError } from 'sls-aws/src/server/api/errors'
-import { userPk } from 'sls-aws/src/server/api/pkMaker'
-import getCognitoUser from 'sls-aws/src/server/api/getCognitoUser'
-import { authenticated } from 'sls-aws/src/shared/constants/authenticationTypes'
-import { getAuthentication } from 'sls-aws/src/server/api/getEndpointDesc'
+import { authorizationError } from 'root/src/server/api/errors'
+import { userPk } from 'root/src/server/api/pkMaker'
+import getCognitoUser from 'root/src/server/api/getCognitoUser'
+import { authenticated } from 'root/src/shared/constants/authenticationTypes'
+import { getAuthentication } from 'root/src/server/api/getEndpointDesc'
 
 export const authorizeRequestHof = (
 	getAuthenticationFn, getCognitoUserFn,

@@ -1,4 +1,4 @@
-import { apiHof } from 'sls-aws/src/server/api'
+import { apiHof } from 'root/src/server/api'
 
 // api(event, context, callback)
 

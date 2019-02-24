@@ -1,7 +1,7 @@
-import { SUBMIT_FORM } from 'sls-aws/src/client/logic/form/actionIds'
+import { SUBMIT_FORM } from 'root/src/client/logic/form/actionIds'
 import {
 	formStoreLenses,
-} from 'sls-aws/src/client/logic/form/lenses'
+} from 'root/src/client/logic/form/lenses'
 
 const { setFormSubmitting, setFormSubmitted } = formStoreLenses
 

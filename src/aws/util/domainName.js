@@ -1,4 +1,4 @@
-import { stage } from 'sls-aws/src/aws/util/resourcePrefix'
+import { stage } from 'root/src/aws/util/resourcePrefix'
 
 export const apexDomain = 'watt.tv'
 

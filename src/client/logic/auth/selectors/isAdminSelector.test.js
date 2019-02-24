@@ -1,4 +1,4 @@
-import isAdminSelector from 'sls-aws/src/client/logic/auth/selectors/isAdminSelector'
+import isAdminSelector from 'root/src/client/logic/auth/selectors/isAdminSelector'
 
 const mockStateNotAdmin = {
 	app: {

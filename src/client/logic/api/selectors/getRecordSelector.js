@@ -1,9 +1,9 @@
-import moduleEndpointIdSelector from 'sls-aws/src/client/logic/api/selectors/moduleEndpointIdSelector'
-import recordTypeSelector from 'sls-aws/src/client/logic/api/selectors/recordTypeSelector'
-import createRecordStoreKey from 'sls-aws/src/client/logic/api/util/createRecordStoreKey'
-import currentRouteParamsRecordId from 'sls-aws/src/client/logic/route/selectors/currentRouteParamsRecordId'
+import moduleEndpointIdSelector from 'root/src/client/logic/api/selectors/moduleEndpointIdSelector'
+import recordTypeSelector from 'root/src/client/logic/api/selectors/recordTypeSelector'
+import createRecordStoreKey from 'root/src/client/logic/api/util/createRecordStoreKey'
+import currentRouteParamsRecordId from 'root/src/client/logic/route/selectors/currentRouteParamsRecordId'
 
-import { apiStoreLenses } from 'sls-aws/src/client/logic/api/lenses'
+import { apiStoreLenses } from 'root/src/client/logic/api/lenses'
 
 const { viewRecordsChild } = apiStoreLenses
 

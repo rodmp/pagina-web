@@ -2,10 +2,10 @@ import webpack from 'webpack'
 import { concat, map, find, propEq, prop, last, split } from 'ramda'
 import fs from 'fs'
 
-import s3Upload from 'sls-aws/src/aws/util/cfCli/s3Upload'
-import { STATIC_BUCKET } from 'sls-aws/src/aws/staticHosting/resourceIds'
-import listAllStackResources from 'sls-aws/src/aws/util/cfCli/listAllStackResources'
-import webConfig from 'sls-aws/webpack.config'
+import s3Upload from 'root/src/aws/util/cfCli/s3Upload'
+import { STATIC_BUCKET } from 'root/src/aws/staticHosting/resourceIds'
+import listAllStackResources from 'root/src/aws/util/cfCli/listAllStackResources'
+import webConfig from 'root/webpack.config'
 
 export const buildStatics = () => new Promise((resolve, reject) => (
 	webpack(

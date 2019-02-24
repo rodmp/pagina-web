@@ -1,5 +1,5 @@
 import Result from 'folktale/result'
-import reportError from 'sls-aws/src/shared/util/reportError'
+import reportError from 'root/src/shared/util/reportError'
 
 export const storageGet = key => Result.try(
 	() => localStorage.getItem(key)

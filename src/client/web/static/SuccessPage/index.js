@@ -1,11 +1,11 @@
 import React from 'react'
 
-import Link from 'sls-aws/src/client/web/base/Link'
+import Link from 'root/src/client/web/base/Link'
 
 import { withStyles } from '@material-ui/core/styles'
 import classNames from 'classnames'
 
-import SocialIconSet from 'sls-aws/src/client/web/static/reusable/socialIconSet'
+import SocialIconSet from 'root/src/client/web/static/reusable/socialIconSet'
 
 import styles from './style'
 

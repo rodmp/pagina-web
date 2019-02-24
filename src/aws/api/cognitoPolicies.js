@@ -1,6 +1,6 @@
-import getAtt from 'sls-aws/src/aws/util/getAtt'
+import getAtt from 'root/src/aws/util/getAtt'
 
-import { API_LAMBDA_FUNCTION } from 'sls-aws/src/aws/api/resourceIds'
+import { API_LAMBDA_FUNCTION } from 'root/src/aws/api/resourceIds'
 
 const commonPolicies = [
 	{

@@ -1,9 +1,9 @@
 import { compose } from 'ramda'
 
-import { API_LIST_REQUEST_ERROR } from 'sls-aws/src/client/logic/api/actionIds'
+import { API_LIST_REQUEST_ERROR } from 'root/src/client/logic/api/actionIds'
 import {
 	apiStoreLenses,
-} from 'sls-aws/src/client/logic/api/lenses'
+} from 'root/src/client/logic/api/lenses'
 
 const { setListErrorsChild, setListProcessingChild } = apiStoreLenses
 

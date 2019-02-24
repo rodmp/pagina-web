@@ -1,10 +1,10 @@
-import { apiFn } from 'sls-aws/src/server/api'
+import { apiFn } from 'root/src/server/api'
 
-import { TABLE_NAME, documentClient } from 'sls-aws/src/server/api/dynamoClient'
+import { TABLE_NAME, documentClient } from 'root/src/server/api/dynamoClient'
 
-import { CREATE_PROJECT } from 'sls-aws/src/shared/descriptions/endpoints/endpointIds'
-import createProjectPayload from 'sls-aws/src/server/api/mocks/createProjectPayload'
-import { mockUserId } from 'sls-aws/src/server/api/mocks/contextMock'
+import { CREATE_PROJECT } from 'root/src/shared/descriptions/endpoints/endpointIds'
+import createProjectPayload from 'root/src/server/api/mocks/createProjectPayload'
+import { mockUserId } from 'root/src/server/api/mocks/contextMock'
 
 const scanTable = () => {
 	const params = {

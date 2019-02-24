@@ -1,4 +1,4 @@
-import { formModuleLenses } from 'sls-aws/src/client/logic/form/lenses'
+import { formModuleLenses } from 'root/src/client/logic/form/lenses'
 
 const { viewFormStripe } = formModuleLenses
 

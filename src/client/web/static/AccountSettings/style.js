@@ -1,4 +1,4 @@
-import styled from 'sls-aws/src/client/web/base/StaticLayout/style'
+import styled from 'root/src/client/web/base/StaticLayout/style'
 
 const styles = {
 	section: {

@@ -1,5 +1,5 @@
-import moduleDescriptions from 'sls-aws/src/shared/descriptions/modules'
-import { listModuleLenses } from 'sls-aws/src/client/logic/list/lenses'
+import moduleDescriptions from 'root/src/shared/descriptions/modules'
+import { listModuleLenses } from 'root/src/client/logic/list/lenses'
 
 const { viewListType } = listModuleLenses
 

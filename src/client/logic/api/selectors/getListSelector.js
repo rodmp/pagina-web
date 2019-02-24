@@ -1,6 +1,6 @@
-import createListStoreKey from 'sls-aws/src/client/logic/api/util/createListStoreKey'
-import { apiStoreLenses } from 'sls-aws/src/client/logic/api/lenses'
-import moduleEndpointIdSelector from 'sls-aws/src/client/logic/api/selectors/moduleEndpointIdSelector'
+import createListStoreKey from 'root/src/client/logic/api/util/createListStoreKey'
+import { apiStoreLenses } from 'root/src/client/logic/api/lenses'
+import moduleEndpointIdSelector from 'root/src/client/logic/api/selectors/moduleEndpointIdSelector'
 
 const { viewItems } = apiStoreLenses
 

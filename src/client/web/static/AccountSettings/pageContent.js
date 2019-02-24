@@ -1,7 +1,7 @@
 import {
   CHANGE_PASSWORD_ROUTE_ID,
   MANAGE_PAYMENT_ROUTE_ID
-} from 'sls-aws/src/shared/descriptions/routes/routeIds'
+} from 'root/src/shared/descriptions/routes/routeIds'
 
 export default {
   lead: 'Select Action',

@@ -1,9 +1,9 @@
 import { concat, length } from 'ramda'
 
-import { ADD_SUB_FORM } from 'sls-aws/src/client/logic/form/actionIds'
+import { ADD_SUB_FORM } from 'root/src/client/logic/form/actionIds'
 import {
 	formStoreLenses,
-} from 'sls-aws/src/client/logic/form/lenses'
+} from 'root/src/client/logic/form/lenses'
 
 const { setFormInputsChild, pathOrFormInputsChild } = formStoreLenses
 

@@ -1,10 +1,10 @@
-import { LOGIN_FORM_MODULE_ID } from 'sls-aws/src/shared/descriptions/modules/moduleIds'
+import { LOGIN_FORM_MODULE_ID } from 'root/src/shared/descriptions/modules/moduleIds'
 
-import loginSchema from 'sls-aws/src/shared/descriptions/formSchemas/loginSchema'
+import loginSchema from 'root/src/shared/descriptions/formSchemas/loginSchema'
 
 import {
 	SIGN_UP_ROUTE_ID, FORGOT_PASSWORD_ROUTE_ID,
-} from 'sls-aws/src/shared/descriptions/routes/routeIds'
+} from 'root/src/shared/descriptions/routes/routeIds'
 
 export default {
 	[LOGIN_FORM_MODULE_ID]: {

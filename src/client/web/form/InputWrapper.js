@@ -1,10 +1,10 @@
 import React, { memo } from 'react'
 
-import { orNull } from 'sls-aws/src/shared/util/ramdaPlus'
+import { orNull } from 'root/src/shared/util/ramdaPlus'
 
-import TertiaryBody from 'sls-aws/src/client/web/typography/TertiaryBody'
-import TitleFormText from 'sls-aws/src/client/web/typography/TitleFormText'
-import ExtraButton from 'sls-aws/src/client/web/base/ExtraButton'
+import TertiaryBody from 'root/src/client/web/typography/TertiaryBody'
+import TitleFormText from 'root/src/client/web/typography/TitleFormText'
+import ExtraButton from 'root/src/client/web/base/ExtraButton'
 
 import { withStyles } from '@material-ui/core/styles'
 

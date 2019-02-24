@@ -1,8 +1,8 @@
-import moduleDescriptions from 'sls-aws/src/shared/descriptions/modules'
+import moduleDescriptions from 'root/src/shared/descriptions/modules'
 
 import {
 	footerModuleDescriptionLenses,
-} from 'sls-aws/src/client/logic/footer/lenses'
+} from 'root/src/client/logic/footer/lenses'
 
 const { viewIsSuccessPage } = footerModuleDescriptionLenses
 

@@ -1,6 +1,6 @@
 import { reduce } from 'ramda'
 
-import setMediaBreakpoints from 'sls-aws/src/client/logic/app/actions/setMediaBreakpoints'
+import setMediaBreakpoints from 'root/src/client/logic/app/actions/setMediaBreakpoints'
 
 const breakpoints = [
 	['xs', '(max-width: 599px)'],

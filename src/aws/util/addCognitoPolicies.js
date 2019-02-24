@@ -2,7 +2,7 @@ import { over, lensPath, concat, compose } from 'ramda'
 
 import {
 	COGNITO_AUTH_ROLE, COGNITO_UNAUTH_ROLE,
-} from 'sls-aws/src/aws/cognito/resourceIds'
+} from 'root/src/aws/cognito/resourceIds'
 
 const pathCommon = ['Properties', 'Policies', 0, 'PolicyDocument', 'Statement']
 

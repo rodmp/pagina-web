@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 
-import Button from 'sls-aws/src/client/web/base/Button'
-import Modal from 'sls-aws/src/client/web/base/Modal';
+import Button from 'root/src/client/web/base/Button'
+import Modal from 'root/src/client/web/base/Modal';
 import styles from './styles';
 
 class RejectDareModal extends React.Component {

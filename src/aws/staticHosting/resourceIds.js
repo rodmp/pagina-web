@@ -1,4 +1,4 @@
-import resourcePrefix from 'sls-aws/src/aws/util/resourcePrefix'
+import resourcePrefix from 'root/src/aws/util/resourcePrefix'
 
 export const STATIC_BUCKET = `${resourcePrefix}StaticBucket`
 export const BUCKET_POLICY = `${resourcePrefix}BucketPolicy`

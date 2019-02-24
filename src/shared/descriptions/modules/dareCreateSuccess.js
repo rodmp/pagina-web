@@ -1,8 +1,8 @@
 import {
 	DARE_CREATE_SUCCESS_MODULE_ID,
-} from 'sls-aws/src/shared/descriptions/modules/moduleIds'
-import bannerFooterImage from 'sls-aws/src/client/assets/Dare-success-create.jpg'
-import { ACTIVE_PROJECTS_ROUTE_ID } from 'sls-aws/src/shared/descriptions/routes/routeIds'
+} from 'root/src/shared/descriptions/modules/moduleIds'
+import bannerFooterImage from 'root/src/client/assets/Dare-success-create.jpg'
+import { ACTIVE_PROJECTS_ROUTE_ID } from 'root/src/shared/descriptions/routes/routeIds'
 
 export default {
 	[DARE_CREATE_SUCCESS_MODULE_ID]: {

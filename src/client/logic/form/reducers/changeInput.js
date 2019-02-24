@@ -1,9 +1,9 @@
 import { compose, set, lensPath } from 'ramda'
 
-import { CHANGE_INPUT } from 'sls-aws/src/client/logic/form/actionIds'
+import { CHANGE_INPUT } from 'root/src/client/logic/form/actionIds'
 import {
 	formStoreLenses,
-} from 'sls-aws/src/client/logic/form/lenses'
+} from 'root/src/client/logic/form/lenses'
 
 const { overFormInputs, overFieldData } = formStoreLenses
 

@@ -1,14 +1,14 @@
-import reduxConnector from 'sls-aws/src/shared/util/reduxConnector'
+import reduxConnector from 'root/src/shared/util/reduxConnector'
 
-import bannerImageSelector from 'sls-aws/src/client/logic/header/selectors/bannerImageSelector'
-import bannerImageTextSelector from 'sls-aws/src/client/logic/header/selectors/bannerImageTextSelector'
-import bannerSubTextSelector from 'sls-aws/src/client/logic/header/selectors/bannerSubTextSelector'
-import textWithBg from 'sls-aws/src/client/logic/header/selectors/textWithBg'
-import createNewDareActive from 'sls-aws/src/client/logic/header/selectors/createNewDareActive'
-import linkLabelSelector from 'sls-aws/src/client/logic/header/selectors/linkLabelSelector'
-import linkRouteIdSelector from 'sls-aws/src/client/logic/header/selectors/linkRouteIdSelector'
+import bannerImageSelector from 'root/src/client/logic/header/selectors/bannerImageSelector'
+import bannerImageTextSelector from 'root/src/client/logic/header/selectors/bannerImageTextSelector'
+import bannerSubTextSelector from 'root/src/client/logic/header/selectors/bannerSubTextSelector'
+import textWithBg from 'root/src/client/logic/header/selectors/textWithBg'
+import createNewDareActive from 'root/src/client/logic/header/selectors/createNewDareActive'
+import linkLabelSelector from 'root/src/client/logic/header/selectors/linkLabelSelector'
+import linkRouteIdSelector from 'root/src/client/logic/header/selectors/linkRouteIdSelector'
 
-import pushRoute from 'sls-aws/src/client/logic/route/thunks/pushRoute'
+import pushRoute from 'root/src/client/logic/route/thunks/pushRoute'
 import bannerImageSubTextSelector from '../selectors/bannerImageSubTextSelector'
 
 export default reduxConnector(

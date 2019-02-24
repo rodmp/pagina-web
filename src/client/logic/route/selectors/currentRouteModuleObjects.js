@@ -1,12 +1,12 @@
 import { __, compose, map, prop } from 'ramda'
 
-import routeDescriptions from 'sls-aws/src/shared/descriptions/routes'
-import moduleDescriptions from 'sls-aws/src/shared/descriptions/modules'
-import currentRouteId from 'sls-aws/src/client/logic/route/selectors/currentRouteId'
+import routeDescriptions from 'root/src/shared/descriptions/routes'
+import moduleDescriptions from 'root/src/shared/descriptions/modules'
+import currentRouteId from 'root/src/client/logic/route/selectors/currentRouteId'
 
 import {
 	routeDescriptionLenses,
-} from 'sls-aws/src/client/logic/route/lenses'
+} from 'root/src/client/logic/route/lenses'
 
 const { pathOrModules } = routeDescriptionLenses
 

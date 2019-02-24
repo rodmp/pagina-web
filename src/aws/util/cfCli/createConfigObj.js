@@ -1,19 +1,19 @@
 import { S3, CloudFormation } from 'aws-sdk'
-import { name as packageName } from 'sls-aws/package.json'
-import { camelCase, kebabCase } from 'sls-aws/src/shared/util/stringCase'
+import { name as packageName, awsAdminProfile } from 'root/appConfig.json'
+import { camelCase, kebabCase } from 'root/src/shared/util/stringCase'
 import awsConf from 'aws-config'
 import findRoot from 'find-root'
 
-import webpackLambdaConf from 'sls-aws/src/aws/util/cfCli/webpackLambdaConf'
-import getLambdaResourceEntries from 'sls-aws/src/aws/util/cfCli/getLambdaResourceEntries'
-import addZipsToCfTemplate from 'sls-aws/src/aws/util/cfCli/addZipsToCfTemplate'
+import webpackLambdaConf from 'root/src/aws/util/cfCli/webpackLambdaConf'
+import getLambdaResourceEntries from 'root/src/aws/util/cfCli/getLambdaResourceEntries'
+import addZipsToCfTemplate from 'root/src/aws/util/cfCli/addZipsToCfTemplate'
 
-import badTemplateImport from 'sls-aws/src/aws'
+import badTemplateImport from 'root/src/aws'
 
 export default ({
 	name = packageName, stage = 'Dev', template,
 	webpackConfig = webpackLambdaConf,
-	profile = 'dareMeAdmin', // @TODO profile option not working
+	profile = awsAdminProfile, // @TODO profile option not working
 	region = 'us-east-1', buildDir = '.cloudFormation',
 }) => {
 	const awsCreds = awsConf({ region, profile })
