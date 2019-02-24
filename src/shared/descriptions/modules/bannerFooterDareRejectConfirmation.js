@@ -6,5 +6,6 @@ export default {
 	[BANNER_FOOTER_DARE_REJECT_CONFIRMATION_MODULE_ID]: {
 		moduleType: 'bannerFooter',
 		bannerFooterImage: dareRejectConfirmation,
+		isSuccessPage: true,
 	},
 }
