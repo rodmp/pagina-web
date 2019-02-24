@@ -23,7 +23,6 @@ import goToPledgeProjectHandler from 'sls-aws/src/client/logic/project/handlers/
 
 import { orNull } from 'sls-aws/src/shared/util/ramdaPlus'
 
-
 const styles = {
 	title: {
 		marginTop: 28,
