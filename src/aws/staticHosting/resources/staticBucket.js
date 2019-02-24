@@ -1,6 +1,6 @@
 import {
 	STATIC_BUCKET,
-} from 'sls-aws/src/aws/staticHosting/resourceIds'
+} from 'root/src/aws/staticHosting/resourceIds'
 
 export default {
 	[STATIC_BUCKET]: {

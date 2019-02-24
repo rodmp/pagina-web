@@ -1,8 +1,8 @@
 import { compose } from 'ramda'
 
-import { API_RECORD_REQUEST_ERROR } from 'sls-aws/src/client/logic/api/actionIds'
-import createRecordStoreKey from 'sls-aws/src/client/logic/api/util/createRecordStoreKey'
-import { apiStoreLenses } from 'sls-aws/src/client/logic/api/lenses'
+import { API_RECORD_REQUEST_ERROR } from 'root/src/client/logic/api/actionIds'
+import createRecordStoreKey from 'root/src/client/logic/api/util/createRecordStoreKey'
+import { apiStoreLenses } from 'root/src/client/logic/api/lenses'
 
 const { setRecordErrorsChild, setRecordProcessingChild } = apiStoreLenses
 

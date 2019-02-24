@@ -2,10 +2,10 @@ import { dissocPath, compose, set, lensProp, without, view } from 'ramda'
 
 import {
 	CREATE_PROJECT_FORM_MODULE_ID,
-} from 'sls-aws/src/shared/descriptions/modules/moduleIds'
+} from 'root/src/shared/descriptions/modules/moduleIds'
 
-import { CREATE_PROJECT } from 'sls-aws/src/shared/descriptions/endpoints/endpointIds'
-import createProjectPayloadSchema from 'sls-aws/src/shared/descriptions/endpoints/schemas/createProjectPayloadSchema'
+import { CREATE_PROJECT } from 'root/src/shared/descriptions/endpoints/endpointIds'
+import createProjectPayloadSchema from 'root/src/shared/descriptions/endpoints/schemas/createProjectPayloadSchema'
 
 export default {
 	[CREATE_PROJECT_FORM_MODULE_ID]: {

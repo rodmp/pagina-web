@@ -2,8 +2,8 @@ import { green, red } from 'chalk'
 import emoji from 'node-emoji'
 import commander from 'commander'
 
-import createConfigObj from 'sls-aws/src/aws/util/cfCli/createConfigObj'
-import runCommand from 'sls-aws/src/aws/util/cfCli/runCommand'
+import createConfigObj from 'root/src/aws/util/cfCli/createConfigObj'
+import runCommand from 'root/src/aws/util/cfCli/runCommand'
 
 const boom = emoji.find('collision').emoji
 const sad = emoji.find('sob').emoji

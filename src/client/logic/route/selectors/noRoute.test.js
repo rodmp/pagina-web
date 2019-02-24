@@ -1,4 +1,4 @@
-import noRoute from 'sls-aws/src/client/logic/route/selectors/noRoute'
+import noRoute from 'root/src/client/logic/route/selectors/noRoute'
 
 const mockState = { route: { history: [{}] } }
 const emptyMockState = { route: { } }

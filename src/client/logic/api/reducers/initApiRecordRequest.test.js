@@ -1,6 +1,6 @@
 import {
 	initApiRecordRequest,
-} from 'sls-aws/src/client/logic/api/reducers/initApiRecordRequest'
+} from 'root/src/client/logic/api/reducers/initApiRecordRequest'
 
 describe('initApiRecordRequest', () => {
 	test('sets records', () => {

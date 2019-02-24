@@ -1,4 +1,4 @@
-import currentRouteParams from 'sls-aws/src/client/logic/route/selectors/currentRouteParams'
+import currentRouteParams from 'root/src/client/logic/route/selectors/currentRouteParams'
 
 const mockState = {
 	route: {

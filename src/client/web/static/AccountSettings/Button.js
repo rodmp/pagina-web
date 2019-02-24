@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 
-import linkHandler from 'sls-aws/src/client/logic/app/handlers/linkHandler'
-import linkConnector from 'sls-aws/src/client/logic/app/connectors/linkConnector'
+import linkHandler from 'root/src/client/logic/app/handlers/linkHandler'
+import linkConnector from 'root/src/client/logic/app/connectors/linkConnector'
 
 import styles from './style'
 

@@ -1,12 +1,12 @@
 import {
 	MARKETPLACE_BANNER_HEADER_MODULE_ID,
-} from 'sls-aws/src/shared/descriptions/modules/moduleIds'
+} from 'root/src/shared/descriptions/modules/moduleIds'
 
 import {
 	CREATE_PROJECT_ROUTE_ID,
-} from 'sls-aws/src/shared/descriptions/routes/routeIds'
+} from 'root/src/shared/descriptions/routes/routeIds'
 
-import marketplace from 'sls-aws/src/client/assets/Marketplace.png'
+import marketplace from 'root/src/client/assets/Marketplace.png'
 
 export default {
 	[MARKETPLACE_BANNER_HEADER_MODULE_ID]: {

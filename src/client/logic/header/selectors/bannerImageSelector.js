@@ -1,8 +1,8 @@
-import moduleDescriptions from 'sls-aws/src/shared/descriptions/modules'
+import moduleDescriptions from 'root/src/shared/descriptions/modules'
 
 import {
 	bannerHeaderModuleDescriptionLenses,
-} from 'sls-aws/src/client/logic/header/lenses'
+} from 'root/src/client/logic/header/lenses'
 
 const { viewBannerImage } = bannerHeaderModuleDescriptionLenses
 

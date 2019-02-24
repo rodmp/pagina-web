@@ -1,6 +1,6 @@
 import { lensPath, lensProp, compose, prepend, __, prop } from 'ramda'
-import lensesFromSchema from 'sls-aws/src/shared/util/lensesFromSchema'
-import { variableSchemaKey } from 'sls-aws/src/shared/util/commonLenses'
+import lensesFromSchema from 'root/src/shared/util/lensesFromSchema'
+import { variableSchemaKey } from 'root/src/shared/util/commonLenses'
 
 
 export const currentRouteIndex = 0

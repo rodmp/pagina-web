@@ -1,8 +1,8 @@
 import { join } from 'ramda'
 
-import { SIGN_UP_FORM_MODULE_ID } from 'sls-aws/src/shared/descriptions/modules/moduleIds'
-import signUpSchema from 'sls-aws/src/shared/descriptions/formSchemas/signUpSchema'
-import { LOGIN_ROUTE_ID } from 'sls-aws/src/shared/descriptions/routes/routeIds'
+import { SIGN_UP_FORM_MODULE_ID } from 'root/src/shared/descriptions/modules/moduleIds'
+import signUpSchema from 'root/src/shared/descriptions/formSchemas/signUpSchema'
+import { LOGIN_ROUTE_ID } from 'root/src/shared/descriptions/routes/routeIds'
 
 export default {
 	[SIGN_UP_FORM_MODULE_ID]: {

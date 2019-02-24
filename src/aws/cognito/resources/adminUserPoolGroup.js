@@ -1,8 +1,8 @@
-import ref from 'sls-aws/src/aws/util/ref'
+import ref from 'root/src/aws/util/ref'
 
 import {
 	ADMIN_USER_POOL_GROUP, USER_POOL,
-} from 'sls-aws/src/aws/cognito/resourceIds'
+} from 'root/src/aws/cognito/resourceIds'
 
 export default {
 	[ADMIN_USER_POOL_GROUP]: {

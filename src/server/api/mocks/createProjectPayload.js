@@ -1,7 +1,7 @@
 
 import { map } from 'ramda'
 import { hacker, lorem, random } from 'faker'
-import { randomArrayElements } from 'sls-aws/src/shared/util/randomNumber'
+import { randomArrayElements } from 'root/src/shared/util/randomNumber'
 
 const twitchStreamers = [
 	'timthetatman', 'syndicate', 'riotgames',

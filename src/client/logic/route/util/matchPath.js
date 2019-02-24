@@ -2,11 +2,11 @@ import {
 	find, view, toPairs, reduce, prop, addIndex, assoc
 } from 'ramda'
 
-import routes from 'sls-aws/src/shared/descriptions/routes'
-import createRouteUrlRegexes from 'sls-aws/src/client/logic/route/util/createRouteUrlRegexes'
+import routes from 'root/src/shared/descriptions/routes'
+import createRouteUrlRegexes from 'root/src/client/logic/route/util/createRouteUrlRegexes'
 import {
 	regexLens, regexKeysLens, routeIdKey, routeParamsKey,
-} from 'sls-aws/src/client/logic/route/lenses'
+} from 'root/src/client/logic/route/lenses'
 
 export const matchPathHof = (allRoutes) => {
 	const routeRegexes = createRouteUrlRegexes(allRoutes)

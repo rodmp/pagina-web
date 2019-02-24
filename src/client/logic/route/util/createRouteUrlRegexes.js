@@ -3,7 +3,7 @@ import { assoc, toPairs, reduce, view, path, compose, memoizeWith } from 'ramda'
 
 import {
 	regexKey, regexKeysKey, toPathKey, routeUrlLens,
-} from 'sls-aws/src/client/logic/route/lenses'
+} from 'root/src/client/logic/route/lenses'
 
 export const createRouteUrlRegexesHof = memoizeWith(
 	compose(path([0, 0]), toPairs),

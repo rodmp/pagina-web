@@ -2,7 +2,7 @@ import React from 'react'
 
 import { withStyles } from '@material-ui/core/styles'
 
-import Settings from 'sls-aws/src/client/web/base/StaticLayout'
+import Settings from 'root/src/client/web/base/StaticLayout'
 
 import Button from './Button'
 import styles from './style'

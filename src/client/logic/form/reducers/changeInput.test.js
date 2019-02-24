@@ -1,5 +1,5 @@
-import changeInput from 'sls-aws/src/client/logic/form/reducers/changeInput'
-import { CHANGE_INPUT } from 'sls-aws/src/client/logic/form/actionIds'
+import changeInput from 'root/src/client/logic/form/reducers/changeInput'
+import { CHANGE_INPUT } from 'root/src/client/logic/form/actionIds'
 
 const mockState = {}
 

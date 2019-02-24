@@ -1,6 +1,6 @@
-import { RESET_PASSWORD_FORM_MODULE_ID } from 'sls-aws/src/shared/descriptions/modules/moduleIds'
+import { RESET_PASSWORD_FORM_MODULE_ID } from 'root/src/shared/descriptions/modules/moduleIds'
 
-import resetPasswordSchema from 'sls-aws/src/shared/descriptions/formSchemas/resetPasswordSchema'
+import resetPasswordSchema from 'root/src/shared/descriptions/formSchemas/resetPasswordSchema'
 
 export default {
 	[RESET_PASSWORD_FORM_MODULE_ID]: {

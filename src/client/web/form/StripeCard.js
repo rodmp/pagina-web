@@ -7,9 +7,9 @@ import {
 	CardCVCElement, PostalCodeElement, injectStripe,
 } from 'react-stripe-elements'
 
-import { stripeClientId } from 'sls-aws/src/shared/constants/stripeClient'
-import TitleStrideText from 'sls-aws/src/client/web/typography/TitleStrideText'
-import fieldInputConnector from 'sls-aws/src/client/logic/form/connectors/fieldInputConnector'
+import { stripeClientId } from 'root/src/shared/constants/stripeClient'
+import TitleStrideText from 'root/src/client/web/typography/TitleStrideText'
+import fieldInputConnector from 'root/src/client/logic/form/connectors/fieldInputConnector'
 import { useStyles, elementStyle } from './stripeStyles'
 
 const ccFields = [

@@ -1,8 +1,8 @@
 import React, { memo } from 'react'
 
-import LoadingButton from 'sls-aws/src/client/web/base/LoadingButton'
+import LoadingButton from 'root/src/client/web/base/LoadingButton'
 
-import submitFormHandler from 'sls-aws/src/client/logic/form/handlers/submitFormHandler'
+import submitFormHandler from 'root/src/client/logic/form/handlers/submitFormHandler'
 
 export const SubmitsUnstyled = memo(({
 	formSubmits, moduleKey, submitFormFn,

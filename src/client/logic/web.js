@@ -1,39 +1,39 @@
-import createStore from 'sls-aws/src/shared/util/createStore'
+import createStore from 'root/src/shared/util/createStore'
 
-import initApp from 'sls-aws/src/client/logic/app/thunks/initApp'
-import testMediaBreakpoints from 'sls-aws/src/client/logic/app/thunks/testMediaBreakpoints'
+import initApp from 'root/src/client/logic/app/thunks/initApp'
+import testMediaBreakpoints from 'root/src/client/logic/app/thunks/testMediaBreakpoints'
 
 // reducers
-import authDetermined from 'sls-aws/src/client/logic/app/reducers/authDetermined'
-import setMediaBreakpoints from 'sls-aws/src/client/logic/app/reducers/setMediaBreakpoints'
-import changeRoute from 'sls-aws/src/client/logic/route/reducers/changeRoute'
+import authDetermined from 'root/src/client/logic/app/reducers/authDetermined'
+import setMediaBreakpoints from 'root/src/client/logic/app/reducers/setMediaBreakpoints'
+import changeRoute from 'root/src/client/logic/route/reducers/changeRoute'
 
 // form
-import changeInput from 'sls-aws/src/client/logic/form/reducers/changeInput'
-import clearFormErrors from 'sls-aws/src/client/logic/form/reducers/clearFormErrors'
-import setFormErrors from 'sls-aws/src/client/logic/form/reducers/setFormErrors'
-import submitForm from 'sls-aws/src/client/logic/form/reducers/submitForm'
-import submitFormComplete from 'sls-aws/src/client/logic/form/reducers/submitFormComplete'
-import addSubForm from 'sls-aws/src/client/logic/form/reducers/addSubForm'
-import removeSubForm from 'sls-aws/src/client/logic/form/reducers/removeSubForm'
-import nextStep from 'sls-aws/src/client/logic/form/reducers/nextStep'
+import changeInput from 'root/src/client/logic/form/reducers/changeInput'
+import clearFormErrors from 'root/src/client/logic/form/reducers/clearFormErrors'
+import setFormErrors from 'root/src/client/logic/form/reducers/setFormErrors'
+import submitForm from 'root/src/client/logic/form/reducers/submitForm'
+import submitFormComplete from 'root/src/client/logic/form/reducers/submitFormComplete'
+import addSubForm from 'root/src/client/logic/form/reducers/addSubForm'
+import removeSubForm from 'root/src/client/logic/form/reducers/removeSubForm'
+import nextStep from 'root/src/client/logic/form/reducers/nextStep'
 
 // api
-import apiListRequestError from 'sls-aws/src/client/logic/api/reducers/apiListRequestError'
-import apiListRequestSuccess from 'sls-aws/src/client/logic/api/reducers/apiListRequestSuccess'
-import apiRecordRequestError from 'sls-aws/src/client/logic/api/reducers/apiRecordRequestError'
-import apiRecordRequestSuccess from 'sls-aws/src/client/logic/api/reducers/apiRecordRequestSuccess'
-import initApiListRequest from 'sls-aws/src/client/logic/api/reducers/initApiListRequest'
-import initApiRecordRequest from 'sls-aws/src/client/logic/api/reducers/initApiRecordRequest'
-import generalRecordModification from 'sls-aws/src/client/logic/api/reducers/generalRecordModification'
+import apiListRequestError from 'root/src/client/logic/api/reducers/apiListRequestError'
+import apiListRequestSuccess from 'root/src/client/logic/api/reducers/apiListRequestSuccess'
+import apiRecordRequestError from 'root/src/client/logic/api/reducers/apiRecordRequestError'
+import apiRecordRequestSuccess from 'root/src/client/logic/api/reducers/apiRecordRequestSuccess'
+import initApiListRequest from 'root/src/client/logic/api/reducers/initApiListRequest'
+import initApiRecordRequest from 'root/src/client/logic/api/reducers/initApiRecordRequest'
+import generalRecordModification from 'root/src/client/logic/api/reducers/generalRecordModification'
 
-import apiRecordClickActionRequestError from 'sls-aws/src/client/logic/api/reducers/apiRecordClickActionRequestError'
-import apiRecordClickActionRequestSuccess from 'sls-aws/src/client/logic/api/reducers/apiRecordClickActionRequestSuccess'
-import initApiRecordClickActionRequest from 'sls-aws/src/client/logic/api/reducers/initApiRecordClickActionRequest'
+import apiRecordClickActionRequestError from 'root/src/client/logic/api/reducers/apiRecordClickActionRequestError'
+import apiRecordClickActionRequestSuccess from 'root/src/client/logic/api/reducers/apiRecordClickActionRequestSuccess'
+import initApiRecordClickActionRequest from 'root/src/client/logic/api/reducers/initApiRecordClickActionRequest'
 
 // listeners
-import popStateListener from 'sls-aws/src/client/logic/route/listeners/popStateListener'
-import windowSizeListener from 'sls-aws/src/client/logic/app/listeners/windowSizeListener'
+import popStateListener from 'root/src/client/logic/route/listeners/popStateListener'
+import windowSizeListener from 'root/src/client/logic/app/listeners/windowSizeListener'
 
 const store = createStore(
 	{

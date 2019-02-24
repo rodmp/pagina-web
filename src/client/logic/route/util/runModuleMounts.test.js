@@ -1,7 +1,7 @@
 
 import {
 	runModuleMountsHof,
-} from 'sls-aws/src/client/logic/route/util/runModuleMounts'
+} from 'root/src/client/logic/route/util/runModuleMounts'
 
 const ROUTE_MOCK_1 = 'ROUTE_MOCK_1'
 const ROUTE_MOCK_2 = 'ROUTE_MOCK_2'

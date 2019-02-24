@@ -3,15 +3,15 @@ import React, { memo } from 'react'
 
 import classNames from 'classnames'
 
-import { ternary } from 'sls-aws/src/shared/util/ramdaPlus'
+import { ternary } from 'root/src/shared/util/ramdaPlus'
 
-import ProjectCard from 'sls-aws/src/client/web/list/ProjectCard'
-import MaxWidthContainer from 'sls-aws/src/client/web/base/MaxWidthContainer'
-import withModuleContext from 'sls-aws/src/client/util/withModuleContext'
+import ProjectCard from 'root/src/client/web/list/ProjectCard'
+import MaxWidthContainer from 'root/src/client/web/base/MaxWidthContainer'
+import withModuleContext from 'root/src/client/util/withModuleContext'
 
 import List from '@material-ui/core/List'
 
-import listModuleConnector from 'sls-aws/src/client/logic/api/connectors/listModuleConnector'
+import listModuleConnector from 'root/src/client/logic/api/connectors/listModuleConnector'
 
 const styles = {
 	paddingOffset: {

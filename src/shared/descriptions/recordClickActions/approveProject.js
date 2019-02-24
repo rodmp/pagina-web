@@ -1,12 +1,12 @@
-import { projectApprovedKey } from 'sls-aws/src/server/api/lenses'
+import { projectApprovedKey } from 'root/src/server/api/lenses'
 
 import {
 	APPROVE_PROJECT,
-} from 'sls-aws/src/shared/descriptions/recordClickActions/recordClickActionIds'
+} from 'root/src/shared/descriptions/recordClickActions/recordClickActionIds'
 
 import {
 	AUDIT_PROJECT,
-} from 'sls-aws/src/shared/descriptions/endpoints/endpointIds'
+} from 'root/src/shared/descriptions/endpoints/endpointIds'
 
 export default {
 	[APPROVE_PROJECT]: {

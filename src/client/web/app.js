@@ -4,11 +4,11 @@ import { Provider } from 'react-redux'
 
 // css
 import 'react-material-layout/dist/react-material-class-layout.min.css'
-import 'sls-aws/src/client/web/app.css'
+import 'root/src/client/web/app.css'
 
-import RouteRender from 'sls-aws/src/client/web/base/RouteRender'
+import RouteRender from 'root/src/client/web/base/RouteRender'
 
-import webStore from 'sls-aws/src/client/logic/web'
+import webStore from 'root/src/client/logic/web'
 
 render(
 	<Provider store={webStore}>

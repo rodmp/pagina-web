@@ -1,6 +1,6 @@
 import {
 	COGNITO_UNAUTH_ROLE,
-} from 'sls-aws/src/aws/cognito/resourceIds'
+} from 'root/src/aws/cognito/resourceIds'
 
 export default {
 	[COGNITO_UNAUTH_ROLE]: {

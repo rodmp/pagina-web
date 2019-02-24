@@ -1,19 +1,19 @@
 import React, { memo } from 'react'
 import classNames from 'classnames'
 
-import { orNull } from 'sls-aws/src/shared/util/ramdaPlus'
+import { orNull } from 'root/src/shared/util/ramdaPlus'
 
-import Link from 'sls-aws/src/client/web/base/Link'
-import Header from 'sls-aws/src/client/web/typography/Header'
-import Title from 'sls-aws/src/client/web/typography/Title'
-import SubTitle from 'sls-aws/src/client/web/typography/SubTitle'
+import Link from 'root/src/client/web/base/Link'
+import Header from 'root/src/client/web/typography/Header'
+import Title from 'root/src/client/web/typography/Title'
+import SubTitle from 'root/src/client/web/typography/SubTitle'
 
-import MaxWidthContainer from 'sls-aws/src/client/web/base/MaxWidthContainer'
-import withModuleContext from 'sls-aws/src/client/util/withModuleContext'
+import MaxWidthContainer from 'root/src/client/web/base/MaxWidthContainer'
+import withModuleContext from 'root/src/client/util/withModuleContext'
 
-import bannerHeaderConnector from 'sls-aws/src/client/logic/header/connectors/bannerHeaderConnector'
+import bannerHeaderConnector from 'root/src/client/logic/header/connectors/bannerHeaderConnector'
 
-import { primaryColor, secondaryColor } from 'sls-aws/src/client/web/commonStyles'
+import { primaryColor, secondaryColor } from 'root/src/client/web/commonStyles'
 
 const styles = {
 	bottomMargin: {

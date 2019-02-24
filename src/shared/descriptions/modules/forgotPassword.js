@@ -1,6 +1,6 @@
-import { FORGOT_PASSWORD_FORM_MODULE_ID } from 'sls-aws/src/shared/descriptions/modules/moduleIds'
+import { FORGOT_PASSWORD_FORM_MODULE_ID } from 'root/src/shared/descriptions/modules/moduleIds'
 
-import forgotPasswordSchema from 'sls-aws/src/shared/descriptions/formSchemas/forgotPasswordSchema'
+import forgotPasswordSchema from 'root/src/shared/descriptions/formSchemas/forgotPasswordSchema'
 
 export default {
 	[FORGOT_PASSWORD_FORM_MODULE_ID]: {

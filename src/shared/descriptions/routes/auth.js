@@ -5,7 +5,7 @@ import {
 	FORGOT_PASSWORD_ROUTE_ID,
 	RESET_PASSWORD_ROUTE_ID,
 	SIGN_OUT,
-} from 'sls-aws/src/shared/descriptions/routes/routeIds'
+} from 'root/src/shared/descriptions/routes/routeIds'
 
 import {
 	LOGIN_FORM_MODULE_ID,
@@ -13,9 +13,9 @@ import {
 	VERIFY_ACCOUNT_FORM_MODULE_ID,
 	FORGOT_PASSWORD_FORM_MODULE_ID,
 	RESET_PASSWORD_FORM_MODULE_ID,
-} from 'sls-aws/src/shared/descriptions/modules/moduleIds'
+} from 'root/src/shared/descriptions/modules/moduleIds'
 
-import { unAuthValue } from 'sls-aws/src/client/logic/route/lenses'
+import { unAuthValue } from 'root/src/client/logic/route/lenses'
 
 export default {
 	[LOGIN_ROUTE_ID]: {

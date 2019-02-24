@@ -1,7 +1,7 @@
-import { NEXT_STEP } from 'sls-aws/src/client/logic/form/actionIds'
+import { NEXT_STEP } from 'root/src/client/logic/form/actionIds'
 import {
 	formStoreLenses,
-} from 'sls-aws/src/client/logic/form/lenses'
+} from 'root/src/client/logic/form/lenses'
 
 const { setFormData } = formStoreLenses
 

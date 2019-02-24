@@ -1,12 +1,12 @@
 import {
 	MY_PROJECT_BANNER_HEADER_MODULE_ID,
-} from 'sls-aws/src/shared/descriptions/modules/moduleIds'
+} from 'root/src/shared/descriptions/modules/moduleIds'
 
 import {
 	CREATE_PROJECT_ROUTE_ID,
-} from 'sls-aws/src/shared/descriptions/routes/routeIds'
+} from 'root/src/shared/descriptions/routes/routeIds'
 
-import myprojects from 'sls-aws/src/client/assets/myprojects.jpg'
+import myprojects from 'root/src/client/assets/myprojects.jpg'
 
 export default {
 	[MY_PROJECT_BANNER_HEADER_MODULE_ID]: {

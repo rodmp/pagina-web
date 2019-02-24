@@ -1,6 +1,6 @@
-import lensesFromSchema from 'sls-aws/src/shared/util/lensesFromSchema'
+import lensesFromSchema from 'root/src/shared/util/lensesFromSchema'
 
-import { variableSchemaKey } from 'sls-aws/src/shared/util/commonLenses'
+import { variableSchemaKey } from 'root/src/shared/util/commonLenses'
 
 export const bannerHeaderModuleDescriptionSchema = {
 	type: 'object',

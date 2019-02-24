@@ -2,9 +2,9 @@ import { reduce } from 'ramda'
 import jwt from 'jsonwebtoken'
 import jwkToPem from 'jwk-to-pem'
 
-import nodeAjax from 'sls-aws/src/shared/util/nodeAjax'
-import { userPoolId } from 'sls-aws/cfOutput'
-import { region } from 'sls-aws/src/shared/constants/aws'
+import nodeAjax from 'root/src/shared/util/nodeAjax'
+import { userPoolId } from 'root/cfOutput'
+import { region } from 'root/src/shared/constants/aws'
 
 const issuer = `https://cognito-idp.${region}.amazonaws.com/${userPoolId}`
 

@@ -1,6 +1,6 @@
 import { config, CognitoIdentityCredentials } from 'aws-sdk'
-import { region } from 'sls-aws/src/shared/constants/aws'
-import { identityPoolId, userPoolId } from 'sls-aws/cfOutput'
+import { region } from 'root/src/shared/constants/aws'
+import { identityPoolId, userPoolId } from 'root/cfOutput'
 
 const cognitoLoginKey = `cognito-idp.${region}.amazonaws.com/${userPoolId}`
 
