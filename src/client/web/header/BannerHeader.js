@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import classNames from 'classnames'
 
-import MenuItem from '@material-ui/core/MenuItem'
+import { orNull } from 'sls-aws/src/shared/util/ramdaPlus'
 
 import Link from 'sls-aws/src/client/web/base/Link'
 import Header from 'sls-aws/src/client/web/typography/Header'
@@ -12,6 +12,8 @@ import MaxWidthContainer from 'sls-aws/src/client/web/base/MaxWidthContainer'
 import withModuleContext from 'sls-aws/src/client/util/withModuleContext'
 
 import bannerHeaderConnector from 'sls-aws/src/client/logic/header/connectors/bannerHeaderConnector'
+
+import { primaryColor, secondaryColor } from 'sls-aws/src/client/web/commonStyles'
 
 const styles = {
 	bottomMargin: {
@@ -58,13 +60,16 @@ const styles = {
 		fontSize: 18,
 		letterSpacing: 1,
 		fontWeight: 'bold',
-		color: '#800080',
+		color: primaryColor,
+		'&:hover': {
+			color: secondaryColor,
+		},
 	},
 }
 
 export const BannerHeaderUnconnected = memo(({
 	bannerImage, bannerImageText, bannerImageSubText, textWithBg, bannerSubText, linkLabel, linkRouteId,
-	classes,
+	classes, createNewDareActive,
 }) => (
 	<div className={classNames(classes.bottomMargin, 'layout-column')}>
 		<div
@@ -88,11 +93,14 @@ export const BannerHeaderUnconnected = memo(({
 					<div className="layout-row layout-align-center">
 						<Header>{bannerSubText}</Header>
 					</div>
-					<div>
-						<Link routeId={linkRouteId}>
-							<MenuItem className={classes.newDare}>{linkLabel}</MenuItem>
-						</Link>
-					</div>
+					{orNull(
+						createNewDareActive,
+						<div>
+							<Link routeId={linkRouteId}>
+								<span className={classes.newDare}>{linkLabel}</span>
+							</Link>
+						</div>,
+					)}
 				</div>
 			</MaxWidthContainer>
 		</div>
