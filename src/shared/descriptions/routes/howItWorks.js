@@ -5,7 +5,6 @@ import {
 import {
 	HOW_IT_WORKS_MODULE_ID,
 	HOW_IT_WORK_BANNER_HEADER_MODULE_ID,
-	BANNER_FOOTER_HOW_IT_WORKS_MODULE_ID,
 } from 'sls-aws/src/shared/descriptions/modules/moduleIds'
 
 export default {
@@ -14,7 +13,6 @@ export default {
 		modules: [
 			HOW_IT_WORK_BANNER_HEADER_MODULE_ID,
 			HOW_IT_WORKS_MODULE_ID,
-			BANNER_FOOTER_HOW_IT_WORKS_MODULE_ID,
 		],
 	},
 }

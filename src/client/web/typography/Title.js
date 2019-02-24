@@ -10,7 +10,7 @@ const styles = {
 		fontWeight: 'bold',
 		lineHeight: 1.25,
 		marginBottom: 14,
-		textTransform: 'uppercase'
+		textTransform: 'uppercase',
 	},
 }
 

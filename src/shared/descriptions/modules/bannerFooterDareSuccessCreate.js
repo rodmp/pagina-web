@@ -6,5 +6,6 @@ export default {
 	[BANNER_FOOTER_DARE_SUCCESS_CREATE_MODULE_ID]: {
 		moduleType: 'bannerFooter',
 		bannerFooterImage: dareSuccessCreate,
+		isSuccessPage: true,
 	},
 }
