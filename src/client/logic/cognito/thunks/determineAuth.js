@@ -13,8 +13,7 @@ export const determineAuthHof = authDeterminedFn => () => dispatch => (
 				if (err) {
 					reject(err)
 				} else {
-					setAwsConfig(session)
-					resolve(session)
+					resolve(setAwsConfig(session))
 				}
 			})
 		} else {
@@ -27,7 +26,7 @@ export const determineAuthHof = authDeterminedFn => () => dispatch => (
 			reportError(err)
 		}
 		storageClear()
-		dispatch(authDeterminedFn(false))
+		return setAwsConfig().then(() => dispatch(authDeterminedFn(false)))
 	})
 )
 
