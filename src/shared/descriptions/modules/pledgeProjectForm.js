@@ -7,7 +7,7 @@ import {
 import pledgeProjectPayloadSchema from 'sls-aws/src/shared/descriptions/endpoints/schemas/pledgeProjectPayloadSchema'
 import { PLEDGE_PROJECT } from 'sls-aws/src/shared/descriptions/endpoints/endpointIds'
 import {
-	VIEW_PROJECT_ROUTE_ID, CREATE_PROJECT_ROUTE_ID,
+	VIEW_PROJECT_ROUTE_ID,
 } from 'sls-aws/src/shared/descriptions/routes/routeIds'
 
 export default {
@@ -74,7 +74,6 @@ export default {
 		],
 		backButton: {
 			label: 'Go back',
-			routeId: CREATE_PROJECT_ROUTE_ID,
 		},
 	},
 }

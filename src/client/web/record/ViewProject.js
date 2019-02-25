@@ -91,6 +91,17 @@ const styles = {
 		lineHeight: 1.21,
 		color: '#000000',
 	},
+	titleText: {
+		'& div': {
+			maxWidth: 400,
+			display: '-webkit-box',
+			WebkitLineClamp: 1,
+			wordBreak: 'break-all',
+			WebkitBoxOrient: 'vertical',
+			overflow: 'hidden',
+			textOverflow: 'ellipsis',
+		},
+	},
 }
 
 export const ViewProjectModule = memo(({
@@ -105,7 +116,9 @@ export const ViewProjectModule = memo(({
 					'layout-align-center', classes.title,
 				)}
 				>
-					<Title>{projectTitle}</Title>
+					<div className={classes.titleText}>
+						<Title>{projectTitle}</Title>
+					</div>
 				</div>
 				<div className="flex-100 flex-gt-sm-60 flex-order-1">
 					<img alt="Game" src={gameImage} className={classes.image} />
