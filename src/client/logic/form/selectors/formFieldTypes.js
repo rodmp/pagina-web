@@ -13,7 +13,6 @@ export default (state, props) => compose(
 			inputType,
 			subFieldText,
 			labelFieldText,
-			extraButton,
 			inputMaxLength,
 		}, fieldIndex) => [
 			[fieldId],
@@ -22,7 +21,6 @@ export default (state, props) => compose(
 			fieldId,
 			subFieldText,
 			labelFieldText,
-			extraButton,
 			inputMaxLength,
 		],
 	),

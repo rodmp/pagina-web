@@ -1,16 +1,17 @@
 import React, { memo } from 'react'
 
 import { orNull } from 'sls-aws/src/shared/util/ramdaPlus'
-import { secondaryColor } from 'sls-aws/src/client/web/commonStyles'
+import { secondaryColor, primaryColor } from 'sls-aws/src/client/web/commonStyles'
 
 import Fields from 'sls-aws/src/client/web/form/Fields'
 import Submits from 'sls-aws/src/client/web/form/Submits'
 import FormTitle from 'sls-aws/src/client/web/typography/FormTitle'
-import Link from 'sls-aws/src/client/web/base/Link'
 import Body from 'sls-aws/src/client/web/typography/Body'
+import Button from 'sls-aws/src/client/web/base/Button'
 import TertiaryBody from 'sls-aws/src/client/web/typography/TertiaryBody'
 import formModuleConnector from 'sls-aws/src/client/logic/form/connectors/formModuleConnector'
 
+import backToPrevHandler from 'sls-aws/src/client/logic/form/handlers/backToPrevHandler'
 import submitFormHandler from 'sls-aws/src/client/logic/form/handlers/submitFormHandler'
 
 import withModuleContext from 'sls-aws/src/client/util/withModuleContext'
@@ -33,11 +34,16 @@ const styles = {
 		textAlign: 'center',
 		marginBottom: 35,
 
-		'& span': {
+		'& button': {
 			color: secondaryColor,
 			backgroundColor: 'transparent',
 			textTransform: 'none',
 			fontSize: 18,
+
+			'&:hover': {
+				color: primaryColor,
+				backgroundColor: 'transparent',
+			},
 		},
 	},
 }
@@ -123,9 +129,7 @@ export const FormModuleUnconnected = memo(({
 				)}
 				{backButton && (
 					<div className={classes.backButton}>
-						<Link routeId={backButton.routeId}>
-							<span>{backButton.label}</span>
-						</Link>
+						<Button onClick={backToPrevHandler}>{backButton.label}</Button>
 					</div>
 				)}
 				<input type="submit" className="hide" />

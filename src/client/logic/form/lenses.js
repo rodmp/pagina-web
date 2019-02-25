@@ -109,7 +109,6 @@ export const formModuleSchema = {
 					type: 'object',
 					properties: {
 						label: { type: 'string' },
-						routeId: { type: 'string' },
 					},
 				},
 			},
