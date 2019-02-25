@@ -1,7 +1,7 @@
-import createReducer from 'sls-aws/src/shared/util/createReducer'
-import reportError from 'sls-aws/src/shared/util/reportError'
+import createReducer from 'root/src/shared/util/createReducer'
+import reportError from 'root/src/shared/util/reportError'
 
-jest.mock('sls-aws/src/shared/util/reportError')
+jest.mock('root/src/shared/util/reportError')
 
 const mockReducers = {
 	TEST_ACTION: (state, payload) => payload.test,

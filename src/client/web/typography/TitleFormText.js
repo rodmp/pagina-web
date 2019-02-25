@@ -1,9 +1,9 @@
 import React, { memo } from 'react'
 import { is, addIndex, map } from 'ramda'
 
-import { fontFamily } from 'sls-aws/src/client/web/commonStyles'
+import { fontFamily } from 'root/src/client/web/commonStyles'
 import { withStyles } from '@material-ui/core/styles'
-import { ternary } from 'sls-aws/src/shared/util/ramdaPlus'
+import { ternary } from 'root/src/shared/util/ramdaPlus'
 
 const styles = {
 	fontStyle: {

@@ -1,12 +1,12 @@
 import {
 	MY_PROJECT_BANNER_HEADER_MODULE_ID,
-} from 'sls-aws/src/shared/descriptions/modules/moduleIds'
+} from 'root/src/shared/descriptions/modules/moduleIds'
 
 import {
 	CREATE_PROJECT_ROUTE_ID,
-} from 'sls-aws/src/shared/descriptions/routes/routeIds'
+} from 'root/src/shared/descriptions/routes/routeIds'
 
-import myDare from 'sls-aws/src/client/assets/Your-Dare.jpg'
+import myDare from 'root/src/client/assets/myDare.jpg'
 
 export default {
 	[MY_PROJECT_BANNER_HEADER_MODULE_ID]: {
@@ -20,5 +20,6 @@ export default {
 			routeId: CREATE_PROJECT_ROUTE_ID,
 			label: 'Create a new Dare +',
 		},
+		createNewDareActive: true,
 	},
 }

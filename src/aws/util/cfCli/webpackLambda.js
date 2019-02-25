@@ -1,7 +1,7 @@
 import { assoc, assocPath, map, compose } from 'ramda'
 import webpack from 'webpack'
 
-import webpackLambdaConf from 'sls-aws/src/aws/util/cfCli/webpackLambdaConf'
+import webpackLambdaConf from 'root/src/aws/util/cfCli/webpackLambdaConf'
 
 export const createWebpackConf = (entryPath, resourceKey, buildPath) => (
 	compose(

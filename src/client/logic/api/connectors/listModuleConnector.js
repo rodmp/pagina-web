@@ -1,7 +1,7 @@
-import reduxConnector from 'sls-aws/src/shared/util/reduxConnector'
+import reduxConnector from 'root/src/shared/util/reduxConnector'
 
-import getListSelector from 'sls-aws/src/client/logic/api/selectors/getListSelector'
-import listTypeSelector from 'sls-aws/src/client/logic/list/selectors/listTypeSelector'
+import getListSelector from 'root/src/client/logic/api/selectors/getListSelector'
+import listTypeSelector from 'root/src/client/logic/list/selectors/listTypeSelector'
 
 export default reduxConnector(
 	[

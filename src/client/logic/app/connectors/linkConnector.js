@@ -1,9 +1,9 @@
-import reduxConnector from 'sls-aws/src/shared/util/reduxConnector'
+import reduxConnector from 'root/src/shared/util/reduxConnector'
 
-import linkTargetSelector from 'sls-aws/src/client/logic/app/selectors/linkTargetSelector'
-import linkHrefSelector from 'sls-aws/src/client/logic/app/selectors/linkHrefSelector'
+import linkTargetSelector from 'root/src/client/logic/app/selectors/linkTargetSelector'
+import linkHrefSelector from 'root/src/client/logic/app/selectors/linkHrefSelector'
 
-import pushRoute from 'sls-aws/src/client/logic/route/thunks/pushRoute'
+import pushRoute from 'root/src/client/logic/route/thunks/pushRoute'
 
 export default reduxConnector(
 	[

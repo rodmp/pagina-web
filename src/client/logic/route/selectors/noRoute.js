@@ -1,6 +1,6 @@
 import { isNil, isEmpty, or } from 'ramda'
 
-import { routeStoreLenses } from 'sls-aws/src/client/logic/route/lenses'
+import { routeStoreLenses } from 'root/src/client/logic/route/lenses'
 
 const { pathSatisfiesHistory } = routeStoreLenses
 

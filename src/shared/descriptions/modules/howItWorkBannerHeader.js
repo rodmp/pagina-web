@@ -1,6 +1,6 @@
-import { HOW_IT_WORK_BANNER_HEADER_MODULE_ID } from 'sls-aws/src/shared/descriptions/modules/moduleIds'
+import { HOW_IT_WORK_BANNER_HEADER_MODULE_ID } from 'root/src/shared/descriptions/modules/moduleIds'
 
-import howItWorks from 'sls-aws/src/client/assets/How-it-works.png'
+import howItWorks from 'root/src/client/assets/How-it-works.png'
 
 export default {
 	[HOW_IT_WORK_BANNER_HEADER_MODULE_ID]: {

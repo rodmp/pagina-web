@@ -1,4 +1,4 @@
-import { userPoolId, clientId } from 'sls-aws/cfOutput'
+import { userPoolId, clientId } from 'root/cfOutput'
 
 import { CognitoUserPool } from 'amazon-cognito-identity-js'
 

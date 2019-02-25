@@ -1,6 +1,6 @@
 import {
 	CHANGE_ROUTE,
-} from 'sls-aws/src/client/logic/route/actionIds'
+} from 'root/src/client/logic/route/actionIds'
 
 const changeRoute = (routeId, routeParams) => ({
 	type: CHANGE_ROUTE,

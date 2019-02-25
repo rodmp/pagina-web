@@ -1,9 +1,9 @@
 import React, { memo } from 'react'
 
 import TextField from '@material-ui/core/TextField'
-import fieldInputConnector from 'sls-aws/src/client/logic/form/connectors/fieldInputConnector'
-import textFieldSetInputHandler from 'sls-aws/src/client/logic/form/handlers/textFieldSetInputHandler'
-import withModuleContext from 'sls-aws/src/client/util/withModuleContext'
+import fieldInputConnector from 'root/src/client/logic/form/connectors/fieldInputConnector'
+import textFieldSetInputHandler from 'root/src/client/logic/form/handlers/textFieldSetInputHandler'
+import withModuleContext from 'root/src/client/util/withModuleContext'
 import MonetizationOn from '@material-ui/icons/MonetizationOn'
 
 const styles = {

@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import { SimpleButton } from 'sls-aws/src/client/web/base/CustomButton'
-import Link from 'sls-aws/src/client/web/base/Link'
+import { SimpleButton } from 'root/src/client/web/base/CustomButton'
+import Link from 'root/src/client/web/base/Link'
 import {
 	TERMS_OF_SERVICE_ROUTE_ID,
 	ACTIVE_PROJECTS_ROUTE_ID,
-} from 'sls-aws/src/shared/descriptions/routes/routeIds'
+} from 'root/src/shared/descriptions/routes/routeIds'
 import Backer from './Backer'
 import Streamer from './Streamer'
 import styles from './style'

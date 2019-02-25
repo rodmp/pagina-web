@@ -1,13 +1,13 @@
 import {
 	CREATE_PROJECT,
-} from 'sls-aws/src/shared/descriptions/endpoints/endpointIds'
-import { authenticated } from 'sls-aws/src/shared/constants/authenticationTypes'
+} from 'root/src/shared/descriptions/endpoints/endpointIds'
+import { authenticated } from 'root/src/shared/constants/authenticationTypes'
 
-import { recordEndpointType } from 'sls-aws/src/shared/descriptions/endpoints/lenses'
-import { project } from 'sls-aws/src/shared/descriptions/endpoints/recordTypes'
+import { recordEndpointType } from 'root/src/shared/descriptions/endpoints/lenses'
+import { project } from 'root/src/shared/descriptions/endpoints/recordTypes'
 
-import createProjectPayloadSchema from 'sls-aws/src/shared/descriptions/endpoints/schemas/createProjectPayloadSchema'
-import getProjectPayloadSchema from 'sls-aws/src/shared/descriptions/endpoints/schemas/getProjectPayloadSchema'
+import createProjectPayloadSchema from 'root/src/shared/descriptions/endpoints/schemas/createProjectPayloadSchema'
+import getProjectPayloadSchema from 'root/src/shared/descriptions/endpoints/schemas/getProjectPayloadSchema'
 
 export const payloadSchema = createProjectPayloadSchema
 export const responseSchema = getProjectPayloadSchema

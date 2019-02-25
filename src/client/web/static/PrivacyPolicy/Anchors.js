@@ -1,5 +1,5 @@
 import React from 'react'
-import ANCHORS from 'sls-aws/src/shared/constants/anchors'
+import ANCHORS from 'root/src/shared/constants/anchors'
 
 const Anchors = ({ classes }) => (
 	<div className={classes.listWrapper}>

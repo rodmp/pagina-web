@@ -1,9 +1,9 @@
-import changeInput from 'sls-aws/src/client/logic/form/actions/changeInput'
+import changeInput from 'root/src/client/logic/form/actions/changeInput'
 
-import clearFormErrors from 'sls-aws/src/client/logic/form/actions/clearFormErrors'
-import setFormErrors from 'sls-aws/src/client/logic/form/actions/setFormErrors'
+import clearFormErrors from 'root/src/client/logic/form/actions/clearFormErrors'
+import setFormErrors from 'root/src/client/logic/form/actions/setFormErrors'
 
-import validateForm from 'sls-aws/src/client/logic/form/util/validateForm'
+import validateForm from 'root/src/client/logic/form/util/validateForm'
 
 export const setInputHof = (
 	validateFormFn, changeInputFn, clearFormErrorsFn, setFormErrorsFn,

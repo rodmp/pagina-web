@@ -1,4 +1,4 @@
-import resourcePrefix from 'sls-aws/src/aws/util/resourcePrefix'
+import resourcePrefix from 'root/src/aws/util/resourcePrefix'
 
 export const COGNITO_AUTH_ROLE = `${resourcePrefix}CognitoAuthRole`
 export const COGNITO_UNAUTH_ROLE = `${resourcePrefix}CognitoUnauthRole`

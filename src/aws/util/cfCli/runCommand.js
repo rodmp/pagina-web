@@ -1,8 +1,8 @@
 import { reduce } from 'ramda'
 import ora from 'ora'
 
-import commands from 'sls-aws/src/aws/util/cfCli/commands'
-import getStackStatus from 'sls-aws/src/aws/util/cfCli/getStackStatus'
+import commands from 'root/src/aws/util/cfCli/commands'
+import getStackStatus from 'root/src/aws/util/cfCli/getStackStatus'
 
 const runCommandSteps = (command, config) => reduce(
 	(result, { title, fn }) => result.then(() => {

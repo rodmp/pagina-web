@@ -1,6 +1,6 @@
-import { TABLE_NAME, documentClient } from 'sls-aws/src/server/api/dynamoClient'
-import { PARTITION_KEY, SORT_KEY } from 'sls-aws/src/shared/constants/apiDynamoIndexes'
-import { dynamoItemsProp } from 'sls-aws/src/server/api/lenses'
+import { TABLE_NAME, documentClient } from 'root/src/server/api/dynamoClient'
+import { PARTITION_KEY, SORT_KEY } from 'root/src/shared/constants/apiDynamoIndexes'
+import { dynamoItemsProp } from 'root/src/server/api/lenses'
 
 
 export default async (userId, projectId) => {

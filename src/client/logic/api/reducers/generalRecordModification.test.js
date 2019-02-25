@@ -1,6 +1,6 @@
 import {
 	generalRecordModification,
-} from 'sls-aws/src/client/logic/api/reducers/generalRecordModification'
+} from 'root/src/client/logic/api/reducers/generalRecordModification'
 
 describe('initApiListRequest', () => {
 	test('sets list ids and records', () => {

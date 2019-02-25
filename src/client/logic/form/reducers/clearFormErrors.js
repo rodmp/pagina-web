@@ -1,8 +1,8 @@
-import { CLEAR_FORM_ERRORS } from 'sls-aws/src/client/logic/form/actionIds'
+import { CLEAR_FORM_ERRORS } from 'root/src/client/logic/form/actionIds'
 
 import {
 	formStoreLenses,
-} from 'sls-aws/src/client/logic/form/lenses'
+} from 'root/src/client/logic/form/lenses'
 
 const { dissocPathFieldErrors } = formStoreLenses
 

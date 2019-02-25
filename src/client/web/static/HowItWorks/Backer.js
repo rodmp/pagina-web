@@ -1,17 +1,17 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import classNames from 'classnames'
-import Link from 'sls-aws/src/client/web/base/Link'
+import Link from 'root/src/client/web/base/Link'
 import {
 	CREATE_PROJECT_ROUTE_ID,
 	RULES_OF_USE_ROUTE_ID,
-} from 'sls-aws/src/shared/descriptions/routes/routeIds'
-import Card from 'sls-aws/src/client/web/base/Card'
-import BullhornIcon from 'sls-aws/src/client/assets/bullhorn-solid.svg'
-import PledgeIcon from 'sls-aws/src/client/assets/comments-regular.svg'
-import WatchIcon from 'sls-aws/src/client/assets/play-circle-regular.svg'
-import ClockIcon from 'sls-aws/src/client/assets/clock-outline.svg'
-import SmileIcon from 'sls-aws/src/client/assets/smile-regular.svg'
+} from 'root/src/shared/descriptions/routes/routeIds'
+import Card from 'root/src/client/web/base/Card'
+import BullhornIcon from 'root/src/client/assets/bullhorn-solid.svg'
+import PledgeIcon from 'root/src/client/assets/comments-regular.svg'
+import WatchIcon from 'root/src/client/assets/play-circle-regular.svg'
+import ClockIcon from 'root/src/client/assets/clock-outline.svg'
+import SmileIcon from 'root/src/client/assets/smile-regular.svg'
 import styles from './style'
 
 const Backer = ({ classes }) => (

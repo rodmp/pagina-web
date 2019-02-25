@@ -1,6 +1,6 @@
-import { browserHistoryPush } from 'sls-aws/src/client/logic/route/lenses'
-import runModuleMounts from 'sls-aws/src/client/logic/route/util/runModuleMounts'
-import dispatchCommittedRoute from 'sls-aws/src/client/logic/route/util/dispatchCommittedRoute'
+import { browserHistoryPush } from 'root/src/client/logic/route/lenses'
+import runModuleMounts from 'root/src/client/logic/route/util/runModuleMounts'
+import dispatchCommittedRoute from 'root/src/client/logic/route/util/dispatchCommittedRoute'
 
 
 export const pushRouteHof = (

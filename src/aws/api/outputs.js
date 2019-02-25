@@ -1,12 +1,12 @@
-import getAtt from 'sls-aws/src/aws/util/getAtt'
+import getAtt from 'root/src/aws/util/getAtt'
 
 import {
 	API_LAMBDA_FUNCTION, API_DYNAMO_DB_TABLE,
-} from 'sls-aws/src/aws/api/resourceIds'
+} from 'root/src/aws/api/resourceIds'
 
 import {
 	API_FUNCTION_ARN, API_DYNAMO_TABLE_NAME,
-} from 'sls-aws/src/aws/api/outputIds'
+} from 'root/src/aws/api/outputIds'
 
 export default {
 	[API_FUNCTION_ARN]: {

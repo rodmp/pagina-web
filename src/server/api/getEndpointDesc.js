@@ -1,6 +1,6 @@
 import { all, prop, path } from 'ramda'
 
-import clientEndpoints from 'sls-aws/src/shared/descriptions/endpoints'
+import clientEndpoints from 'root/src/shared/descriptions/endpoints'
 
 export const testEndpointExists = endpointId => all([
 	prop(endpointId, clientEndpoints),

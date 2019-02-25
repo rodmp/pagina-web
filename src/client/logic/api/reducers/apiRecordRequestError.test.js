@@ -1,6 +1,6 @@
 import {
 	apiRecordRequestError,
-} from 'sls-aws/src/client/logic/api/reducers/apiRecordRequestError'
+} from 'root/src/client/logic/api/reducers/apiRecordRequestError'
 
 describe('apiRecordRequestError', () => {
 	test('sets record errors', () => {

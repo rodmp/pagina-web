@@ -1,9 +1,9 @@
 import { remove } from 'ramda'
 
-import { REMOVE_SUB_FORM } from 'sls-aws/src/client/logic/form/actionIds'
+import { REMOVE_SUB_FORM } from 'root/src/client/logic/form/actionIds'
 import {
 	formStoreLenses,
-} from 'sls-aws/src/client/logic/form/lenses'
+} from 'root/src/client/logic/form/lenses'
 
 const { overFormInputsChild } = formStoreLenses
 

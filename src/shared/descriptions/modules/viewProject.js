@@ -1,5 +1,5 @@
-import { VIEW_PROJECT_MODULE_ID } from 'sls-aws/src/shared/descriptions/modules/moduleIds'
-import { GET_PROJECT } from 'sls-aws/src/shared/descriptions/endpoints/endpointIds'
+import { VIEW_PROJECT_MODULE_ID } from 'root/src/shared/descriptions/modules/moduleIds'
+import { GET_PROJECT } from 'root/src/shared/descriptions/endpoints/endpointIds'
 
 export default {
 	[VIEW_PROJECT_MODULE_ID]: {

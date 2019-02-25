@@ -4,7 +4,7 @@ import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { forEach } from 'ramda'
 
-import createReducer from 'sls-aws/src/shared/util/createReducer'
+import createReducer from 'root/src/shared/util/createReducer'
 
 const createStore = (
 	reducerObj, /* sagas, */ listeners, initialState = {}, initialThunks,

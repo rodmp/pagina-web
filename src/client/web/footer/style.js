@@ -1,4 +1,4 @@
-import { fontFamily, navigationColor, lineColor } from 'sls-aws/src/client/web/commonStyles'
+import { fontFamily, navigationColor, lineColor } from 'root/src/client/web/commonStyles'
 
 const styles = {
 	root: {

@@ -1,5 +1,5 @@
-import runModuleMounts from 'sls-aws/src/client/logic/route/util/runModuleMounts'
-import changeRoute from 'sls-aws/src/client/logic/route/actions/changeRoute'
+import runModuleMounts from 'root/src/client/logic/route/util/runModuleMounts'
+import changeRoute from 'root/src/client/logic/route/actions/changeRoute'
 
 export const popRouteHof = (
 	changeRouteFn, runModuleMountsFn,

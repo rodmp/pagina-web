@@ -4,9 +4,9 @@ import {
 	merge, propOr, prop, head, values, compose, set, lensPath, map, dissoc,
 } from 'ramda'
 
-import apiTableConfig from 'sls-aws/src/aws/api/resources/apiDynamoDbTable'
+import apiTableConfig from 'root/src/aws/api/resources/apiDynamoDbTable'
 
-jest.mock('sls-aws/src/server/api/dynamoClient', () => {
+jest.mock('root/src/server/api/dynamoClient', () => {
 	/* eslint-disable global-require */
 	const uuid = require('uuid/v1')
 	const { DynamoDB } = require('aws-sdk')
@@ -28,7 +28,7 @@ jest.mock('sls-aws/src/server/api/dynamoClient', () => {
 // Normally authentication is a JWT that gets decoded and returns a user id.
 // For tests I'm mocking the authorizeRequest which does the jwt decoding and
 // just returning whatever you put for authentication as the userId
-jest.mock('sls-aws/src/server/api/authorizeRequest', () => (
+jest.mock('root/src/server/api/authorizeRequest', () => (
 	endpointId, authentication,
 ) => Promise.resolve(authentication))
 
@@ -46,7 +46,7 @@ const tableParams = tableName => merge(
 
 const {
 	TABLE_NAME, dynamoDb,
-} = require('sls-aws/src/server/api/dynamoClient')
+} = require('root/src/server/api/dynamoClient')
 
 beforeAll(async () => {
 	await dynamoDb.createTable(tableParams(TABLE_NAME)).promise()

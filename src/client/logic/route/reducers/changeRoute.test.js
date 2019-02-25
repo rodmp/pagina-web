@@ -1,5 +1,5 @@
-import changeRoute from 'sls-aws/src/client/logic/route/reducers/changeRoute'
-import { CHANGE_ROUTE } from 'sls-aws/src/client/logic/route/actionIds'
+import changeRoute from 'root/src/client/logic/route/reducers/changeRoute'
+import { CHANGE_ROUTE } from 'root/src/client/logic/route/actionIds'
 
 const mockState = {
 	route: { history: [] },

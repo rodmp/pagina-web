@@ -1,5 +1,5 @@
-import currentRouteId from 'sls-aws/src/client/logic/route/selectors/currentRouteId'
-import currentRouteParams from 'sls-aws/src/client/logic/route/selectors/currentRouteParams'
+import currentRouteId from 'root/src/client/logic/route/selectors/currentRouteId'
+import currentRouteParams from 'root/src/client/logic/route/selectors/currentRouteParams'
 
 
 export default (state, props) => ({

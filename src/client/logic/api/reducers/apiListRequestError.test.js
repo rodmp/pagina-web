@@ -1,6 +1,6 @@
 import {
 	apiListRequestError,
-} from 'sls-aws/src/client/logic/api/reducers/apiListRequestError'
+} from 'root/src/client/logic/api/reducers/apiListRequestError'
 
 describe('apiListRequestError', () => {
 	test('sets list errors', () => {

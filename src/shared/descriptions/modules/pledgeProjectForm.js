@@ -2,13 +2,13 @@ import { dissocPath, compose, set, lensProp, without, view } from 'ramda'
 
 import {
 	PLEDGE_PROJECT_FORM_MODULE_ID,
-} from 'sls-aws/src/shared/descriptions/modules/moduleIds'
+} from 'root/src/shared/descriptions/modules/moduleIds'
 
-import pledgeProjectPayloadSchema from 'sls-aws/src/shared/descriptions/endpoints/schemas/pledgeProjectPayloadSchema'
-import { PLEDGE_PROJECT } from 'sls-aws/src/shared/descriptions/endpoints/endpointIds'
+import pledgeProjectPayloadSchema from 'root/src/shared/descriptions/endpoints/schemas/pledgeProjectPayloadSchema'
+import { PLEDGE_PROJECT } from 'root/src/shared/descriptions/endpoints/endpointIds'
 import {
 	VIEW_PROJECT_ROUTE_ID,
-} from 'sls-aws/src/shared/descriptions/routes/routeIds'
+} from 'root/src/shared/descriptions/routes/routeIds'
 
 export default {
 	[PLEDGE_PROJECT_FORM_MODULE_ID]: {

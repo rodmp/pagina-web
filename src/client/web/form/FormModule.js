@@ -1,20 +1,21 @@
 import React, { memo } from 'react'
 
-import { orNull } from 'sls-aws/src/shared/util/ramdaPlus'
-import { secondaryColor, primaryColor } from 'sls-aws/src/client/web/commonStyles'
 
-import Fields from 'sls-aws/src/client/web/form/Fields'
-import Submits from 'sls-aws/src/client/web/form/Submits'
-import FormTitle from 'sls-aws/src/client/web/typography/FormTitle'
-import Body from 'sls-aws/src/client/web/typography/Body'
-import Button from 'sls-aws/src/client/web/base/Button'
-import TertiaryBody from 'sls-aws/src/client/web/typography/TertiaryBody'
-import formModuleConnector from 'sls-aws/src/client/logic/form/connectors/formModuleConnector'
+import { orNull } from 'root/src/shared/util/ramdaPlus'
+import { secondaryColor, primaryColor } from 'root/src/client/web/commonStyles'
 
-import backToPrevHandler from 'sls-aws/src/client/logic/form/handlers/backToPrevHandler'
-import submitFormHandler from 'sls-aws/src/client/logic/form/handlers/submitFormHandler'
+import Fields from 'root/src/client/web/form/Fields'
+import Submits from 'root/src/client/web/form/Submits'
+import FormTitle from 'root/src/client/web/typography/FormTitle'
+import Button from 'root/src/client/web/base/Button'
+import Body from 'root/src/client/web/typography/Body'
+import TertiaryBody from 'root/src/client/web/typography/TertiaryBody'
+import formModuleConnector from 'root/src/client/logic/form/connectors/formModuleConnector'
 
-import withModuleContext from 'sls-aws/src/client/util/withModuleContext'
+import backToPrevHandler from 'root/src/client/logic/form/handlers/backToPrevHandler'
+import submitFormHandler from 'root/src/client/logic/form/handlers/submitFormHandler'
+
+import withModuleContext from 'root/src/client/util/withModuleContext'
 
 import classNames from 'classnames'
 

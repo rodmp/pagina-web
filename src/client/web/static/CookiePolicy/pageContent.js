@@ -1,7 +1,7 @@
 import React from 'react'
-import Link from 'sls-aws/src/client/web/base/Link'
-import { TERMS_OF_SERVICE_ROUTE_ID } from 'sls-aws/src/shared/descriptions/routes/routeIds'
-import { EMAIL } from 'sls-aws/src/shared/constants/pageData'
+import Link from 'root/src/client/web/base/Link'
+import { TERMS_OF_SERVICE_ROUTE_ID } from 'root/src/shared/descriptions/routes/routeIds'
+import { EMAIL } from 'root/src/shared/constants/pageData'
 
 const pageContent = classes => [
 	{

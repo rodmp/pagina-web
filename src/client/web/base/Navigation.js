@@ -3,15 +3,15 @@ import classNames from 'classnames'
 
 import {
 	navigationColor,
-} from 'sls-aws/src/client/web/commonStyles'
+} from 'root/src/client/web/commonStyles'
 import {
 	ACTIVE_PROJECTS_ROUTE_ID,
-} from 'sls-aws/src/shared/descriptions/routes/routeIds'
+} from 'root/src/shared/descriptions/routes/routeIds'
 
-import MaxWidthContainer from 'sls-aws/src/client/web/base/MaxWidthContainer'
-import NavigationLinks from 'sls-aws/src/client/web/base/NavigationLinks'
+import MaxWidthContainer from 'root/src/client/web/base/MaxWidthContainer'
+import NavigationLinks from 'root/src/client/web/base/NavigationLinks'
 
-import Link from 'sls-aws/src/client/web/base/Link'
+import Link from 'root/src/client/web/base/Link'
 
 import { withStyles } from '@material-ui/core/styles'
 
@@ -26,6 +26,9 @@ const styles = {
 		fontSize: 25,
 		fontFamily: 'Impact',
 	},
+	navContainer: {
+		margin: 0
+	}
 }
 
 export const NavigationUnstyled = memo(({ classes }) => (
@@ -35,7 +38,7 @@ export const NavigationUnstyled = memo(({ classes }) => (
 			classes.root,
 		)}
 	>
-		<MaxWidthContainer>
+		<MaxWidthContainer isNavigation={true}>
 			<Link navStyle routeId={ACTIVE_PROJECTS_ROUTE_ID}>
 				<div
 					className={classNames(
