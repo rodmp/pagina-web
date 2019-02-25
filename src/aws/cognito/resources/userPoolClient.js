@@ -1,7 +1,7 @@
-import ref from 'sls-aws/src/aws/util/ref'
+import ref from 'root/src/aws/util/ref'
 import {
 	USER_POOL, USER_POOL_CLIENT,
-} from 'sls-aws/src/aws/cognito/resourceIds'
+} from 'root/src/aws/cognito/resourceIds'
 
 export default {
 	[USER_POOL_CLIENT]: {

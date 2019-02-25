@@ -1,6 +1,6 @@
-import { VIEW_PROJECT_MODULE_ID } from 'sls-aws/src/shared/descriptions/modules/moduleIds'
+import { VIEW_PROJECT_MODULE_ID } from 'root/src/shared/descriptions/modules/moduleIds'
 
-import getProject from 'sls-aws/src/client/logic/project/thunks/getProject'
+import getProject from 'root/src/client/logic/project/thunks/getProject'
 
 export default {
 	[VIEW_PROJECT_MODULE_ID]: {

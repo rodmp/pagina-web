@@ -1,9 +1,9 @@
-import urlFromRouteObj from 'sls-aws/src/client/logic/route/util/urlFromRouteObj'
-import origin from 'sls-aws/src/shared/constants/origin'
+import urlFromRouteObj from 'root/src/client/logic/route/util/urlFromRouteObj'
+import origin from 'root/src/shared/constants/origin'
 
 import {
 	VIEW_PROJECT_ROUTE_ID,
-} from 'sls-aws/src/shared/descriptions/routes/routeIds'
+} from 'root/src/shared/descriptions/routes/routeIds'
 
 export default (state, { recordId }) => {
 	const localUrl = urlFromRouteObj({

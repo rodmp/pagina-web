@@ -1,4 +1,4 @@
-import { INIT_API_RECORD_REQUEST } from 'sls-aws/src/client/logic/api/actionIds'
+import { INIT_API_RECORD_REQUEST } from 'root/src/client/logic/api/actionIds'
 
 export default recordStoreKey => ({
 	type: INIT_API_RECORD_REQUEST,

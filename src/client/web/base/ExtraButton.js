@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 
 import Button from '@material-ui/core/Button'
-import { secondaryColor } from 'sls-aws/src/client/web/commonStyles'
+import { secondaryColor } from 'root/src/client/web/commonStyles'
 
 import { withStyles } from '@material-ui/core/styles'
 

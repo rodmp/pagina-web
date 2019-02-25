@@ -1,9 +1,9 @@
 import React, { memo } from 'react'
 
-import { fontFamily } from 'sls-aws/src/client/web/commonStyles'
+import { fontFamily } from 'root/src/client/web/commonStyles'
 import { withStyles } from '@material-ui/core/styles'
 
-import TextWithLinks from 'sls-aws/src/client/web/base/TextWithLinks'
+import TextWithLinks from 'root/src/client/web/base/TextWithLinks'
 
 const styles = {
 	fontStyle: {

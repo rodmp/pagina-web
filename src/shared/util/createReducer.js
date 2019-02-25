@@ -1,7 +1,7 @@
 import { has } from 'ramda'
 import Result from 'folktale/result'
 
-import reportError from 'sls-aws/src/shared/util/reportError'
+import reportError from 'root/src/shared/util/reportError'
 
 const createReducer = (reducerObj, initialState) => (
 	state = initialState, action,

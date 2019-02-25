@@ -1,12 +1,12 @@
 import React, { memo } from 'react'
 
-import { ternary } from 'sls-aws/src/shared/util/ramdaPlus'
+import { ternary } from 'root/src/shared/util/ramdaPlus'
 
-import navigationLinksConnector from 'sls-aws/src/client/logic/app/connectors/navigationLinksConnector'
-import NavMenu from 'sls-aws/src/client/web/base/NavMenu'
+import navigationLinksConnector from 'root/src/client/logic/app/connectors/navigationLinksConnector'
+import NavMenu from 'root/src/client/web/base/NavMenu'
 
-import Link from 'sls-aws/src/client/web/base/Link'
-import LabelOrIcon from 'sls-aws/src/client/web/base/LabelOrIcon'
+import Link from 'root/src/client/web/base/Link'
+import LabelOrIcon from 'root/src/client/web/base/LabelOrIcon'
 
 export const NavigationUnconnected = memo(({
 	navigationLinks,

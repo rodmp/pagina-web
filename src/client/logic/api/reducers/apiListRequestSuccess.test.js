@@ -1,6 +1,6 @@
 import {
 	apiListRequestSuccess,
-} from 'sls-aws/src/client/logic/api/reducers/apiListRequestSuccess'
+} from 'root/src/client/logic/api/reducers/apiListRequestSuccess'
 
 describe('apiListRequestSuccess', () => {
 	test('sets list ids and records', () => {

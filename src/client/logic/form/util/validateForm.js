@@ -1,12 +1,12 @@
 import { isEmpty, not, equals } from 'ramda'
 
-import validateSchema from 'sls-aws/src/shared/util/validateSchema'
+import validateSchema from 'root/src/shared/util/validateSchema'
 
-import getFormSchema from 'sls-aws/src/client/logic/form/selectors/formSchema'
-import getFormData from 'sls-aws/src/client/logic/form/selectors/formData'
-import moduleIdFromKey from 'sls-aws/src/client/logic/route/util/moduleIdFromKey'
+import getFormSchema from 'root/src/client/logic/form/selectors/formSchema'
+import getFormData from 'root/src/client/logic/form/selectors/formData'
+import moduleIdFromKey from 'root/src/client/logic/route/util/moduleIdFromKey'
 
-import ajvErrors from 'sls-aws/src/shared/util/ajvErrors'
+import ajvErrors from 'root/src/shared/util/ajvErrors'
 
 export default (moduleKey, state) => new Promise((resolve, reject) => {
 	const moduleId = moduleIdFromKey(moduleKey)

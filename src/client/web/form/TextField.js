@@ -5,10 +5,10 @@ import classNames from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 
 import TextField from '@material-ui/core/TextField'
-import fieldInputConnector from 'sls-aws/src/client/logic/form/connectors/fieldInputConnector'
-import textFieldSetInputHandler from 'sls-aws/src/client/logic/form/handlers/textFieldSetInputHandler'
-import MinMaxLength from 'sls-aws/src/client/web/base/MinMaxLength'
-import withModuleContext from 'sls-aws/src/client/util/withModuleContext'
+import fieldInputConnector from 'root/src/client/logic/form/connectors/fieldInputConnector'
+import textFieldSetInputHandler from 'root/src/client/logic/form/handlers/textFieldSetInputHandler'
+import MinMaxLength from 'root/src/client/web/base/MinMaxLength'
+import withModuleContext from 'root/src/client/util/withModuleContext'
 
 
 const styles = {

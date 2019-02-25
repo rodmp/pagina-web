@@ -1,7 +1,7 @@
 import { equals, head } from 'ramda'
 import {
 	routeStoreLenses,
-} from 'sls-aws/src/client/logic/route/lenses'
+} from 'root/src/client/logic/route/lenses'
 
 const { viewHistory } = routeStoreLenses
 

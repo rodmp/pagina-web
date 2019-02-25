@@ -1,10 +1,10 @@
-import addCognitoPolicies from 'sls-aws/src/aws/util/addCognitoPolicies'
+import addCognitoPolicies from 'root/src/aws/util/addCognitoPolicies'
 
-import { cognitoResources, cognitoOutputs } from 'sls-aws/src/aws/cognito'
-import { staticHostingResources, staticHostingOutputs } from 'sls-aws/src/aws/staticHosting'
+import { cognitoResources, cognitoOutputs } from 'root/src/aws/cognito'
+import { staticHostingResources, staticHostingOutputs } from 'root/src/aws/staticHosting'
 import {
 	apiResources, apiOutputs, apiAuthPolicies, apiUnauthPolicies,
-} from 'sls-aws/src/aws/api'
+} from 'root/src/aws/api'
 
 const appendedCognitoResources = addCognitoPolicies(
 	cognitoResources,

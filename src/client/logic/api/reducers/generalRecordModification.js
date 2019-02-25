@@ -1,5 +1,5 @@
 import { reduce, map, contains, lensPath, set, prop, tail } from 'ramda'
-import { GENERAL_RECORD_MODIFICATION } from 'sls-aws/src/client/logic/api/actionIds'
+import { GENERAL_RECORD_MODIFICATION } from 'root/src/client/logic/api/actionIds'
 
 const subMethods = {
 	set,

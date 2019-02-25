@@ -1,8 +1,8 @@
-import createRecordStoreKey from 'sls-aws/src/client/logic/api/util/createRecordStoreKey'
+import createRecordStoreKey from 'root/src/client/logic/api/util/createRecordStoreKey'
 
-import { INIT_API_RECORD_REQUEST } from 'sls-aws/src/client/logic/api/actionIds'
+import { INIT_API_RECORD_REQUEST } from 'root/src/client/logic/api/actionIds'
 
-import { apiStoreLenses } from 'sls-aws/src/client/logic/api/lenses'
+import { apiStoreLenses } from 'root/src/client/logic/api/lenses'
 
 const { setRecordProcessingChild } = apiStoreLenses
 

@@ -1,6 +1,6 @@
 import {
 	createRouteUrlRegexesHof,
-} from 'sls-aws/src/client/logic/route/util/createRouteUrlRegexes'
+} from 'root/src/client/logic/route/util/createRouteUrlRegexes'
 
 const mockRoutes = {
 	ROUTE_ID_1: {},

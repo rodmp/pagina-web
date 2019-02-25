@@ -1,5 +1,5 @@
-import createRecordClickActionStoreKey from 'sls-aws/src/client/logic/api/util/createRecordClickActionStoreKey'
-import { apiStoreLenses } from 'sls-aws/src/client/logic/api/lenses'
+import createRecordClickActionStoreKey from 'root/src/client/logic/api/util/createRecordClickActionStoreKey'
+import { apiStoreLenses } from 'root/src/client/logic/api/lenses'
 
 const { viewRecordClickActionProcessing } = apiStoreLenses
 

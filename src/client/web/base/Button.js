@@ -3,7 +3,7 @@ import React, { memo } from 'react'
 import Button from '@material-ui/core/Button'
 import {
 	primaryColor, secondaryColor,
-} from 'sls-aws/src/client/web/commonStyles'
+} from 'root/src/client/web/commonStyles'
 
 import classNames from 'classnames'
 

@@ -1,13 +1,13 @@
 import {
 	ACTIVE_PROJECTS_ROUTE_ID, HOW_IT_WORKS_ROUTE_ID, LOGIN_ROUTE_ID,
 	MY_PROJECTS_ROUTE_ID, PENDING_PROJECTS_ROUTE_ID, SIGN_OUT, ACCOUNT_SETTINGS_ROUTE_ID
-} from 'sls-aws/src/shared/descriptions/routes/routeIds'
+} from 'root/src/shared/descriptions/routes/routeIds'
 
-import { ternary } from 'sls-aws/src/shared/util/ramdaPlus'
+import { ternary } from 'root/src/shared/util/ramdaPlus'
 
-import isAuthenticated from 'sls-aws/src/client/logic/auth/selectors/isAuthenticated'
-import isAdminSelector from 'sls-aws/src/client/logic/auth/selectors/isAdminSelector'
-import showMobileNavSelector from 'sls-aws/src/client/logic/app/selectors/showMobileNavSelector'
+import isAuthenticated from 'root/src/client/logic/auth/selectors/isAuthenticated'
+import isAdminSelector from 'root/src/client/logic/auth/selectors/isAdminSelector'
+import showMobileNavSelector from 'root/src/client/logic/app/selectors/showMobileNavSelector'
 
 export default (state, props) => ternary(
 	showMobileNavSelector(state, props),

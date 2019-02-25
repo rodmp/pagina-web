@@ -1,6 +1,6 @@
-import { VERIFY_ACCOUNT_FORM_MODULE_ID } from 'sls-aws/src/shared/descriptions/modules/moduleIds'
+import { VERIFY_ACCOUNT_FORM_MODULE_ID } from 'root/src/shared/descriptions/modules/moduleIds'
 
-import verifyAccount from 'sls-aws/src/client/logic/cognito/thunks/verifyAccount'
+import verifyAccount from 'root/src/client/logic/cognito/thunks/verifyAccount'
 
 export default {
 	[VERIFY_ACCOUNT_FORM_MODULE_ID]: [

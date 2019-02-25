@@ -1,6 +1,6 @@
 import React, { memo, Fragment, useState, useRef } from 'react'
 
-import { navLinkStyle, gtSmMediaQuery } from 'sls-aws/src/client/web/commonStyles'
+import { navLinkStyle, gtSmMediaQuery } from 'root/src/client/web/commonStyles'
 
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
@@ -9,8 +9,8 @@ import ExpandMore from '@material-ui/icons/ExpandMore'
 
 import { withStyles } from '@material-ui/core/styles'
 
-import Link from 'sls-aws/src/client/web/base/Link'
-import LabelOrIcon from 'sls-aws/src/client/web/base/LabelOrIcon'
+import Link from 'root/src/client/web/base/Link'
+import LabelOrIcon from 'root/src/client/web/base/LabelOrIcon'
 
 import classNames from 'classnames'
 

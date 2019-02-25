@@ -1,8 +1,8 @@
-import getAtt from 'sls-aws/src/aws/util/getAtt'
-import ref from 'sls-aws/src/aws/util/ref'
+import getAtt from 'root/src/aws/util/getAtt'
+import ref from 'root/src/aws/util/ref'
 import {
 	IDENTITY_POOL, USER_POOL_CLIENT, USER_POOL,
-} from 'sls-aws/src/aws/cognito/resourceIds'
+} from 'root/src/aws/cognito/resourceIds'
 
 export default {
 	[IDENTITY_POOL]: {

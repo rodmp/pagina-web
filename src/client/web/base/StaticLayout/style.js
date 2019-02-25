@@ -1,4 +1,4 @@
-import { linkColor } from 'sls-aws/src/client/web/commonStyles'
+import { linkColor } from 'root/src/client/web/commonStyles'
 
 const styles = {
 	mainContent: {

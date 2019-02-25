@@ -1,6 +1,6 @@
 import {
 	endpointTypeSelectorHof,
-} from 'sls-aws/src/client/logic/api/selectors/endpointTypeSelector'
+} from 'root/src/client/logic/api/selectors/endpointTypeSelector'
 
 const MOCK_ENDPOINT_ID = 'MOCK_ENDPOINT_ID'
 

@@ -1,8 +1,8 @@
 import { __, compose, map, addIndex, join, path } from 'ramda'
 
-import { moduleIdProp } from 'sls-aws/src/client/logic/route/lenses'
-import { formModuleLenses } from 'sls-aws/src/client/logic/form/lenses'
-import moduleDescriptions from 'sls-aws/src/shared/descriptions/modules'
+import { moduleIdProp } from 'root/src/client/logic/route/lenses'
+import { formModuleLenses } from 'root/src/client/logic/form/lenses'
+import moduleDescriptions from 'root/src/shared/descriptions/modules'
 
 const { viewFields } = formModuleLenses
 

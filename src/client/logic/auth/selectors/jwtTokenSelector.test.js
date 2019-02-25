@@ -1,4 +1,4 @@
-import jwtTokenSelector from 'sls-aws/src/client/logic/auth/selectors/jwtTokenSelector'
+import jwtTokenSelector from 'root/src/client/logic/auth/selectors/jwtTokenSelector'
 
 const mockJwtState = {
 	app: {

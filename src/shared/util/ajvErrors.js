@@ -3,7 +3,7 @@ import {
 	join,
 } from 'ramda'
 
-import { capitalize } from 'sls-aws/src/shared/util/stringCase'
+import { capitalize } from 'root/src/shared/util/stringCase'
 
 const dataPathKey = compose(
 	tail,

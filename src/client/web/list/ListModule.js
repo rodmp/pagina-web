@@ -3,10 +3,11 @@ import React, { memo, useState } from 'react'
 
 import classNames from 'classnames'
 
+import { ternary } from 'root/src/shared/util/ramdaPlus'
 import PaymentMethod from 'sls-aws/src/client/web/list/PaymentMethod'
-import ProjectCard from 'sls-aws/src/client/web/list/ProjectCard'
-import MaxWidthContainer from 'sls-aws/src/client/web/base/MaxWidthContainer'
-import withModuleContext from 'sls-aws/src/client/util/withModuleContext'
+import ProjectCard from 'root/src/client/web/list/ProjectCard'
+import MaxWidthContainer from 'root/src/client/web/base/MaxWidthContainer'
+import withModuleContext from 'root/src/client/util/withModuleContext'
 
 import modalStyle from 'sls-aws/src/client/web/list/modalStyle'
 import Title from 'sls-aws/src/client/web/typography/Title'
@@ -15,7 +16,7 @@ import LinkButton from 'sls-aws/src/client/web/base/LinkButton'
 
 import List from '@material-ui/core/List'
 
-import listModuleConnector from 'sls-aws/src/client/logic/api/connectors/listModuleConnector'
+import listModuleConnector from 'root/src/client/logic/api/connectors/listModuleConnector'
 
 import mockCardList from 'sls-aws/src/server/api/mocks/creditCardsMock'
 import { DeletePaymentModal } from './DeletePaymentModal'

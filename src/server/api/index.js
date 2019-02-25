@@ -1,16 +1,16 @@
 import { prop, pick } from 'ramda'
 
-import validateSchema from 'sls-aws/src/shared/util/validateSchema'
+import validateSchema from 'root/src/shared/util/validateSchema'
 import {
 	customError, payloadSchemaError, responseSchemaError,
 	notFoundError,
-} from 'sls-aws/src/server/api/errors'
-import ajvErrors from 'sls-aws/src/shared/util/ajvErrors'
+} from 'root/src/server/api/errors'
+import ajvErrors from 'root/src/shared/util/ajvErrors'
 import {
 	getPayloadSchema, getResultSchema, testEndpointExists,
-} from 'sls-aws/src/server/api/getEndpointDesc'
-import serverEndpoints from 'sls-aws/src/server/api/actions'
-import authorizeRequest from 'sls-aws/src/server/api/authorizeRequest'
+} from 'root/src/server/api/getEndpointDesc'
+import serverEndpoints from 'root/src/server/api/actions'
+import authorizeRequest from 'root/src/server/api/authorizeRequest'
 
 
 const validateOrNah = (schemaType, endpointId, schema) => (payload) => {

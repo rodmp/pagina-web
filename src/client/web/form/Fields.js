@@ -1,12 +1,12 @@
 import React, { memo } from 'react'
 
-import TextField from 'sls-aws/src/client/web/form/TextField'
-import SubForm from 'sls-aws/src/client/web/form/SubForm'
-import AmountNumber from 'sls-aws/src/client/web/form/AmountNumber'
-import StripeCard from 'sls-aws/src/client/web/form/StripeCard'
-import AutoComplete from 'sls-aws/src/client/web/form/AutoComplete'
+import TextField from 'root/src/client/web/form/TextField'
+import SubForm from 'root/src/client/web/form/SubForm'
+import AmountNumber from 'root/src/client/web/form/AmountNumber'
+import StripeCard from 'root/src/client/web/form/StripeCard'
+import AutoComplete from 'root/src/client/web/form/AutoComplete'
 
-import InputWrapper from 'sls-aws/src/client/web/form/InputWrapper'
+import InputWrapper from 'root/src/client/web/form/InputWrapper'
 
 const Fields = memo(({
 	formFieldTypes, moduleKey, formType, wasSubmitted,
