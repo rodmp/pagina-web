@@ -19,7 +19,7 @@ const styles = {
 }
 
 export const ListItemUnconnected = memo(({
-	classes, card,
+	classes, card, openModal,
 }) => (
 	<div className={classNames('flex layout-row layout-align-space-between-center', classes.root)}>
 		<div className={classNames('flex layout-column', classes.cardDetails)}>
@@ -29,7 +29,7 @@ export const ListItemUnconnected = memo(({
 		</div>
 		<Button
 			type="button"
-			// onClick={onClick}
+			onClick={() => openModal()}
 			buttonType="noBackgroundButton"
 			additionalClass={classes.button}
 			isStyled

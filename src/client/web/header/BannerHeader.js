@@ -66,38 +66,38 @@ export const BannerHeaderUnconnected = memo(({
 	bannerImage, bannerImageText, bannerImageSubText, textWithBg, bannerSubText, linkLabel, linkRouteId,
 	classes,
 }) => (
-	<div className={classNames(classes.bottomMargin, 'layout-column')}>
-		<div
-			className={classNames(classes.banner, 'layout-row')}
-		>
+		<div className={classNames(classes.bottomMargin, 'layout-column')}>
 			<div
-				className={classNames(classes.bannerBg, 'flex')}
-				style={{ backgroundImage: `url(${bannerImage})` }}
-			/>
-			<div className={classes.overlay} />
-			<div className={classes.textOverlay}>
-				<div className={classNames({ [classes.textBox]: textWithBg })}>
-					<Title>{bannerImageText}</Title>
-					<SubTitle>{bannerImageSubText}</SubTitle>
+				className={classNames(classes.banner, 'layout-row')}
+			>
+				<div
+					className={classNames(classes.bannerBg, 'flex')}
+					style={{ backgroundImage: `url(${bannerImage})` }}
+				/>
+				<div className={classes.overlay} />
+				<div className={classes.textOverlay}>
+					<div className={classNames({ [classes.textBox]: textWithBg })}>
+						<Title>{bannerImageText}</Title>
+						<SubTitle>{bannerImageSubText}</SubTitle>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div className="layout-row layout-align-center">
-			<MaxWidthContainer>
-				<div className="flex layout-column">
-					<div className="layout-row layout-align-center">
-						<Header>{bannerSubText}</Header>
+			<div className="layout-row layout-align-center">
+				<MaxWidthContainer>
+					<div className="flex layout-column">
+						<div className="layout-row layout-align-center">
+							<Header>{bannerSubText}</Header>
+						</div>
+						<div>
+							<Link routeId={linkRouteId}>
+								<MenuItem className={classes.newDare}>{linkLabel}</MenuItem>
+							</Link>
+						</div>
 					</div>
-					<div>
-						<Link routeId={linkRouteId}>
-							<MenuItem className={classes.newDare}>{linkLabel}</MenuItem>
-						</Link>
-					</div>
-				</div>
-			</MaxWidthContainer>
+				</MaxWidthContainer>
+			</div>
 		</div>
-	</div>
-))
+	))
 
 export default withModuleContext(
 	bannerHeaderConnector(BannerHeaderUnconnected, styles),

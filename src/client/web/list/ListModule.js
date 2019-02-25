@@ -1,5 +1,5 @@
 import { map } from 'ramda'
-import React, { memo } from 'react'
+import React, { memo, useState } from 'react'
 
 import classNames from 'classnames'
 
@@ -8,15 +8,17 @@ import ProjectCard from 'sls-aws/src/client/web/list/ProjectCard'
 import MaxWidthContainer from 'sls-aws/src/client/web/base/MaxWidthContainer'
 import withModuleContext from 'sls-aws/src/client/util/withModuleContext'
 
+import modalStyle from 'sls-aws/src/client/web/list/modalStyle'
 import Title from 'sls-aws/src/client/web/typography/Title'
 import SubTitle from 'sls-aws/src/client/web/typography/SubTitle'
-import Button from 'sls-aws/src/client/web/base/Button'
+import LinkButton from 'sls-aws/src/client/web/base/LinkButton'
 
 import List from '@material-ui/core/List'
 
 import listModuleConnector from 'sls-aws/src/client/logic/api/connectors/listModuleConnector'
 
 import mockCardList from 'sls-aws/src/server/api/mocks/creditCardsMock'
+import { DeletePaymentModal } from './DeletePaymentModal'
 
 const styles = {
 	paddingOffset: {
@@ -36,12 +38,14 @@ const styles = {
 		margin: '10px 0 50px 0',
 		width: '100%',
 	},
+	...modalStyle,
 }
 
 
 export const ListModuleUnconnected = memo(({
 	list, listType, classes, listTitle, listSubtitle, listControls,
 }) => {
+	const [modalOpen, setModalOpen] = useState(false)
 	switch (listType) {
 		case 'card':
 			return (
@@ -65,22 +69,28 @@ export const ListModuleUnconnected = memo(({
 		case 'list':
 			return (
 				<List className={classNames('layout-column layout-align-start-center', classes.list)}>
+					<DeletePaymentModal
+						open={modalOpen}
+						closeModal={() => setModalOpen(false)}
+						classes={classes}
+					/>
 					<Title notUpperCase>{listTitle}</Title>
 					<SubTitle additionalClass={classes.subtitle}>{listSubtitle}</SubTitle>
 					{map(card => (
-						<PaymentMethod key={card.lastFour} card={card} />
+						<PaymentMethod key={card.lastFour} card={card} openModal={() => setModalOpen(true)} />
 					), mockCardList)}
 					<div className={classes.buttons}>
 						{map(({ title, routeId, buttonType }) => (
-							<Button
+							<LinkButton
 								type="button"
 								key={title}
 								buttonType={buttonType}
+								routeId={routeId}
 								isStyled
-								disableRipple
+								disableRipple={buttonType === 'noBackgroundButton'}
 							>
 								{title}
-							</Button>
+							</LinkButton>
 						), listControls)}
 					</div>
 				</List>

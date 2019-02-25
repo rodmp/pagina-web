@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useState } from 'react'
 
 import { orNull } from 'sls-aws/src/shared/util/ramdaPlus'
 import { secondaryColor } from 'sls-aws/src/client/web/commonStyles'
@@ -21,6 +21,12 @@ const styles = {
 	space: {
 		marginTop: 25,
 		marginBottom: 25,
+	},
+	noMarginTop: {
+		marginTop: 0,
+	},
+	noMarginBottom: {
+		marginBottom: 0,
 	},
 	paymentTitle: {
 		fontSize: 32,
@@ -49,94 +55,105 @@ export const FormModuleUnconnected = memo(({
 	formFieldTypes, formTitle, formSubmits, moduleId, moduleKey, submitForm,
 	preSubmitText, postSubmitText, preSubmitCaption, postSubmitCaption,
 	classes, subTitle, formType, backButton,
-}) => (
-	<div className="flex layout-row layout-align-center">
-		<div className={classes.formContainer}>
-			{orNull(
-				formTitle,
-				<div
-					className={classNames(
-						classes.space,
-						'layout-row layout-align-center',
-					)}
-				>
-					<Header additionalClass={classNames({ [classes.paymentTitle]: (formType === 'paymentMethod') })}>{formTitle}</Header>
-				</div>,
-			)}
-			{orNull(
-				subTitle,
-				<div
-					className={classNames(
-						classes.space,
-						'layout-row layout-align-center',
-					)}
-				>
-					<Body>{subTitle}</Body>
-				</div>,
-			)}
-			<form
-				onSubmit={submitFormHandler(submitForm, moduleKey)}
-				className={classNames({ 'layout-column layout-align-center-stretch': (formType !== 'paymentMethod') })}
-			>
-				<Fields
-					moduleKey={moduleKey}
-					moduleId={moduleId}
-					formFieldTypes={formFieldTypes}
-					formType={formType}
-				/>
+}) => {
+	const [wasSubmitted, setWasSubmitted] = useState(false)
+	return (
+		<div className="flex layout-row layout-align-center">
+			<div className={classes.formContainer}>
 				{orNull(
-					preSubmitText,
+					formTitle,
+					<div
+						className={classNames(
+							classes.space,
+							{ [classes.noMarginTop]: (formType === 'paymentMethod') },
+							'layout-row layout-align-center',
+						)}
+					>
+						<Header additionalClass={classNames({ [classes.paymentTitle]: (formType === 'paymentMethod') })}>{formTitle}</Header>
+					</div>,
+				)}
+				{orNull(
+					subTitle,
 					<div
 						className={classNames(
 							classes.space,
 							'layout-row layout-align-center',
 						)}
 					>
-						<Body>{preSubmitText}</Body>
+						<Body>{subTitle}</Body>
 					</div>,
 				)}
-				{orNull(
-					preSubmitCaption,
-					<div
-						className={classNames(
-							classes.space,
-							'layout-row layout-align-center',
-						)}
-					>
-						<TertiaryBody>{preSubmitCaption}</TertiaryBody>
-					</div>,
-				)}
-				<div className={classes.space}>
-					<Submits
+				<form
+					onSubmit={submitFormHandler(submitForm, moduleKey, null, setWasSubmitted)}
+					className={classNames({ 'layout-column layout-align-center-stretch': (formType !== 'paymentMethod') })}
+				>
+					<Fields
 						moduleKey={moduleKey}
-						formSubmits={formSubmits}
-						submitFormFn={submitForm}
+						moduleId={moduleId}
+						formFieldTypes={formFieldTypes}
+						formType={formType}
+						wasSubmitted={wasSubmitted}
 					/>
-				</div>
-				{orNull(
-					postSubmitText,
-					<div className="flex layout-row layout-align-center">
-						<Body>{postSubmitText}</Body>
-					</div>,
-				)}
-				{orNull(
-					postSubmitCaption,
-					<div className="flex layout-row layout-align-center">
-						<TertiaryBody>{postSubmitCaption}</TertiaryBody>
-					</div>,
-				)}
-				{backButton && (
-					<div className={classes.backButton}>
-						<Link routeId={backButton.routeId}>
-							<span>{backButton.label}</span>
-						</Link>
+					{orNull(
+						preSubmitText,
+						<div
+							className={classNames(
+								classes.space,
+								'layout-row layout-align-center',
+							)}
+						>
+							<Body>{preSubmitText}</Body>
+						</div>,
+					)}
+					{orNull(
+						preSubmitCaption,
+						<div
+							className={classNames(
+								classes.space,
+								'layout-row layout-align-center',
+							)}
+						>
+							<TertiaryBody>{preSubmitCaption}</TertiaryBody>
+						</div>,
+					)}
+					<div className={classNames(
+						classes.space,
+						{ [classes.noMarginBottom]: (formType === 'paymentMethod') },
+					)}
+					>
+						<Submits
+							moduleKey={moduleKey}
+							formSubmits={formSubmits}
+							submitFormFn={submitForm}
+							formType={formType}
+							setWasSubmitted={setWasSubmitted}
+						/>
 					</div>
-				)}
-				<input type="submit" className="hide" />
-			</form>
+					{orNull(
+						postSubmitText,
+						<div className="flex layout-row layout-align-center">
+							<Body>{postSubmitText}</Body>
+						</div>,
+					)}
+					{orNull(
+						postSubmitCaption,
+						<div className="flex layout-row layout-align-center">
+							<TertiaryBody>{postSubmitCaption}</TertiaryBody>
+						</div>,
+					)}
+					{backButton && (
+						<div className={classes.backButton}>
+							<Link routeId={backButton.routeId}>
+								<span>{backButton.label}</span>
+							</Link>
+						</div>
+					)}
+					<input type="submit" className="hide" />
+				</form>
+			</div>
 		</div>
-	</div>
-))
+	)
+})
 
 export default withModuleContext(
 	formModuleConnector(FormModuleUnconnected, styles),

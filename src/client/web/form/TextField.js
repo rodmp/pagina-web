@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { useState, useEffect, memo } from 'react'
 
 import { orNull } from 'sls-aws/src/shared/util/ramdaPlus'
 import classNames from 'classnames'
@@ -23,6 +23,7 @@ const styles = {
 		width: 'calc(48.5% - 10px)',
 		display: 'inline-block',
 		textAlign: 'center',
+		verticalAlign: 'top',
 	},
 	label: {
 		marginBottom: 8,
@@ -36,24 +37,45 @@ const styles = {
 		height: 44,
 		border: 'solid 0.5px #cccccc',
 		fontSize: 16,
-		color: '#757575',
 		paddingLeft: 10,
+		'&:placeholder': {
+			color: '#757575',
+		},
 	},
 	expDate: {
 		marginRight: 'calc(1.5% + 5px)',
 	},
 	securityCode: {
 		marginLeft: 'calc(1.5% + 5px)',
+		'&::-webkit-inner-spin-button': {
+			appearance: 'none',
+			margin: 0,
+		},
+		'&::-webkit-outer-spin-button': {
+			appearance: 'none',
+			margin: 0,
+		},
 	},
 	redText: {
 		color: 'red',
+	},
+	error: {
+		textAlign: 'left',
+		fontSize: 12,
+		margin: '3px 0 0 0',
 	},
 }
 
 export const InputField = memo(({
 	moduleKey, fieldId, fieldPath, setInput, fieldValue, fieldLabel, fieldError,
-	fieldHasError, fieldType, fieldMultiline, fieldPlaceholder, formType, classes,
+	fieldHasError, fieldType, fieldMultiline, fieldPlaceholder, formType, classes, wasSubmitted,
 }) => {
+	// const [focus, setFocus] = useState()
+	// const [error, setError] = useState(fieldError)
+	// useEffect(() => {
+	// 	setError(fieldError)
+	// }, [fieldHasError])
+
 	switch (formType) {
 		case 'paymentMethod':
 			return (
@@ -61,8 +83,8 @@ export const InputField = memo(({
 					classNames(
 						'flex layout-column',
 						classes.field,
-						orNull((fieldId === 'expDate' || fieldId === 'securityCode'), classes.halfField),
-						orNull((fieldId === 'expDate'), classes.expDate),
+						orNull((fieldId === 'expirationDate' || fieldId === 'securityCode'), classes.halfField),
+						orNull((fieldId === 'expirationDate'), classes.expDate),
 						orNull((fieldId === 'securityCode'), classes.securityCode),
 					)}
 				>
@@ -70,23 +92,19 @@ export const InputField = memo(({
 						{fieldLabel}<span className={classes.redText}>*</span>:
 					</label>
 					<input
-						type="text"
+						id={fieldId}
+						type={fieldType}
 						className={classes.input}
 						placeholder={fieldPlaceholder}
 						onChange={textFieldSetInputHandler(
 							moduleKey, fieldPath, setInput, fieldType,
 						)}
-					/>
-					{/* <TextField
-						fullWidth={ternary((fieldId !== 'expDate' && fieldId !== 'securityCode'), true, false)}
-						id={fieldId}
-						type={fieldType}
-						multiline={fieldMultiline}
-						variant="outlined"
 						value={fieldValue}
-						error={fieldHasError}
-						helperText={fieldError}
-					/> */}
+					/>
+					{orNull(fieldHasError && wasSubmitted,
+						<p className={classNames(classes.error, classes.redText)}>
+							{fieldError}
+						</p>)}
 				</div>
 
 			)
