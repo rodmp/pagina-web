@@ -3,7 +3,7 @@ import {
 	CHANGE_PASSWORD_ROUTE_ID,
 	MANAGE_PAYMENT_LIST_ROUTE_ID,
 	MANAGE_PAYMENT_FORM_ROUTE_ID,
-} from 'sls-aws/src/shared/descriptions/routes/routeIds'
+} from 'root/src/shared/descriptions/routes/routeIds'
 
 
 import {
@@ -11,7 +11,7 @@ import {
 	ACCOUNT_SETTINGS_BANNER_HEADER_MODULE_ID,
 	MANAGE_PAYMENT_LIST_MODULE_ID,
 	MANAGE_PAYMENT_FORM_MODULE_ID,
-} from 'sls-aws/src/shared/descriptions/modules/moduleIds'
+} from 'root/src/shared/descriptions/modules/moduleIds'
 
 export default {
 	[ACCOUNT_SETTINGS_ROUTE_ID]: {

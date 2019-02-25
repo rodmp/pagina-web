@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles'
 
 import Settings from 'root/src/client/web/base/StaticLayout'
 
-import LinkButton from 'sls-aws/src/client/web/base/LinkButton'
+import LinkButton from 'root/src/client/web/base/LinkButton'
 import styles from './style'
 import content from './pageContent'
 

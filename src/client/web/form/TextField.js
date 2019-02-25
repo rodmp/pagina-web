@@ -1,6 +1,6 @@
-import React, { useState, useEffect, memo } from 'react'
+import React, { memo } from 'react'
 
-import { orNull } from 'sls-aws/src/shared/util/ramdaPlus'
+import { orNull } from 'root/src/shared/util/ramdaPlus'
 import classNames from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 

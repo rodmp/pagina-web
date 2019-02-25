@@ -2,7 +2,7 @@ import {
 	cardNumberValidation,
 	securityCodeValidation,
 	expirationDateValidation,
-} from 'sls-aws/src/client/logic/form/util/creditCardValidations'
+} from 'root/src/client/logic/form/util/creditCardValidations'
 
 export default (moduleKey, fieldPath, action, fieldType) => (e) => {
 	e.preventDefault()

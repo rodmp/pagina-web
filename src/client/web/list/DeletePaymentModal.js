@@ -4,8 +4,9 @@ import Dialog from '@material-ui/core/Dialog'
 import DialogContent from '@material-ui/core/DialogContent'
 import CloseIcon from '@material-ui/icons/Close'
 
-import SubHeader from 'sls-aws/src/client/web/typography/SubHeader'
-import Button from 'sls-aws/src/client/web/base/Button'
+import SubHeader from 'root/src/client/web/typography/SubHeader'
+import Button from 'root/src/client/web/base/Button'
+
 
 export const DeletePaymentModal = memo(({
 	open, closeModal, children, classes,
@@ -31,7 +32,7 @@ export const DeletePaymentModal = memo(({
 			additionalClass={classes.modalButton}
 			buttonType="primarySquareButton"
 		>Confirm
-   </Button>
+		</Button>
 	</Dialog>
 ))
 

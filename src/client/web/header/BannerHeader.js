@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, Fragment } from 'react'
 import classNames from 'classnames'
 
 import { orNull } from 'root/src/shared/util/ramdaPlus'
@@ -71,6 +71,7 @@ export const BannerHeaderUnconnected = memo(({
 	bannerImage, bannerImageText, bannerImageSubText, textWithBg, bannerSubText, linkLabel, linkRouteId,
 	classes, createNewDareActive,
 }) => (
+	<Fragment>
 		<div className={classNames(classes.bottomMargin, 'layout-column')}>
 			<div
 				className={classNames(classes.banner, 'layout-row')}
@@ -105,7 +106,8 @@ export const BannerHeaderUnconnected = memo(({
 				</div>
 			</MaxWidthContainer>
 		</div>
-	))
+	</Fragment>
+))
 
 export default withModuleContext(
 	bannerHeaderConnector(BannerHeaderUnconnected, styles),

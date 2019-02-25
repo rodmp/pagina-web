@@ -3,12 +3,12 @@ import React, { memo } from 'react'
 import Button from '@material-ui/core/Button'
 import {
 	primaryColor, secondaryColor,
-} from 'sls-aws/src/client/web/commonStyles'
+} from 'root/src/client/web/commonStyles'
 
 import classNames from 'classnames'
-import linkConnector from 'sls-aws/src/client/logic/app/connectors/linkConnector'
+import linkConnector from 'root/src/client/logic/app/connectors/linkConnector'
 
-import linkHandler from 'sls-aws/src/client/logic/app/handlers/linkHandler'
+import linkHandler from 'root/src/client/logic/app/handlers/linkHandler'
 
 const styles = {
 	button: {
@@ -53,7 +53,7 @@ export const BaseLink = memo(({
 			({ [classes.noBackgroundButton]: buttonType === 'noBackgroundButton' }),
 			additionalClass,
 		)}
-	onClick={linkHandler(routeId, routeParams, pushRoute)}
+		onClick={linkHandler(routeId, routeParams, pushRoute)}
 		disabled={disabled}
 		disableRipple={disableRipple}
 	>

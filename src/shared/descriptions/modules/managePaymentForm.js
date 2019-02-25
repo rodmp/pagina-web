@@ -1,11 +1,11 @@
 import { dissocPath, compose, set, lensProp, without, view } from 'ramda'
 import {
 	MANAGE_PAYMENT_FORM_MODULE_ID,
-} from 'sls-aws/src/shared/descriptions/modules/moduleIds'
-import addPaymentMethodPayloadSchema from 'sls-aws/src/shared/descriptions/endpoints/schemas/addPaymentMethodPayloadSchema'
+} from 'root/src/shared/descriptions/modules/moduleIds'
+import addPaymentMethodPayloadSchema from 'root/src/shared/descriptions/endpoints/schemas/addPaymentMethodPayloadSchema'
 import {
 	MANAGE_PAYMENT_LIST_ROUTE_ID,
-} from 'sls-aws/src/shared/descriptions/routes/routeIds'
+} from 'root/src/shared/descriptions/routes/routeIds'
 
 export default {
 	[MANAGE_PAYMENT_FORM_MODULE_ID]: {

@@ -1,4 +1,4 @@
-import creditCardFormat from 'sls-aws/src/client/logic/form/util/creditCardFormat'
+import creditCardFormat from 'root/src/client/logic/form/util/creditCardFormat'
 
 export const cardNumberValidation = (value) => {
 	const pattern = /^\s*\d*\s*$/
