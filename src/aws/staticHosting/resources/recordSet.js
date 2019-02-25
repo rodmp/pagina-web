@@ -1,9 +1,9 @@
-import ref from 'sls-aws/src/aws/util/ref'
-import getAtt from 'sls-aws/src/aws/util/getAtt'
-import domainName, { hostedZoneId, apexDomain } from 'sls-aws/src/aws/util/domainName'
+import ref from 'root/src/aws/util/ref'
+import getAtt from 'root/src/aws/util/getAtt'
+import domainName, { hostedZoneId, apexDomain } from 'root/src/aws/util/domainName'
 import {
 	RECORD_SET, CLOUDFRONT_DISTRIBUTION,
-} from 'sls-aws/src/aws/staticHosting/resourceIds'
+} from 'root/src/aws/staticHosting/resourceIds'
 
 export default {
 	[RECORD_SET]: {

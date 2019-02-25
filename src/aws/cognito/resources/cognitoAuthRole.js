@@ -1,7 +1,7 @@
-import ref from 'sls-aws/src/aws/util/ref'
+import ref from 'root/src/aws/util/ref'
 import {
 	COGNITO_AUTH_ROLE, IDENTITY_POOL,
-} from 'sls-aws/src/aws/cognito/resourceIds'
+} from 'root/src/aws/cognito/resourceIds'
 
 export default {
 	[COGNITO_AUTH_ROLE]: {

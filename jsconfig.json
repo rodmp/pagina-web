@@ -1,8 +1,9 @@
 {
     "compilerOptions": {
         "target": "ES6",
+        "baseUrl": ".",
         "paths": {
-            "sls-aws/src/*": ["./*"]
+            "root/src/*": ["./*"]
         },
     },
     "exclude": [

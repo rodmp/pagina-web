@@ -4,25 +4,24 @@ import classNames from 'classnames'
 
 import {
 	smMediaQuery, gtSmMediaQuery,
-} from 'sls-aws/src/client/web/commonStyles'
+} from 'root/src/client/web/commonStyles'
 
-import Assignee from 'sls-aws/src/client/web/record/Assignee'
+import Assignee from 'root/src/client/web/record/Assignee'
 
-import MaxWidthContainer from 'sls-aws/src/client/web/base/MaxWidthContainer'
-import Title from 'sls-aws/src/client/web/typography/Title'
-import SubHeader from 'sls-aws/src/client/web/typography/SubHeader'
-import Button from 'sls-aws/src/client/web/base/Button'
+import MaxWidthContainer from 'root/src/client/web/base/MaxWidthContainer'
+import Title from 'root/src/client/web/typography/Title'
+import SubHeader from 'root/src/client/web/typography/SubHeader'
+import Button from 'root/src/client/web/base/Button'
 
-import RecordClickActionButton from 'sls-aws/src/client/web/base/RecordClickActionButton'
-import { APPROVE_PROJECT } from 'sls-aws/src/shared/descriptions/recordClickActions/recordClickActionIds'
+import RecordClickActionButton from 'root/src/client/web/base/RecordClickActionButton'
+import { APPROVE_PROJECT } from 'root/src/shared/descriptions/recordClickActions/recordClickActionIds'
 
-import viewProjectConnector from 'sls-aws/src/client/logic/project/connectors/viewProjectConnector'
-import withModuleContext from 'sls-aws/src/client/util/withModuleContext'
+import viewProjectConnector from 'root/src/client/logic/project/connectors/viewProjectConnector'
+import withModuleContext from 'root/src/client/util/withModuleContext'
 
-import goToPledgeProjectHandler from 'sls-aws/src/client/logic/project/handlers/goToPledgeProjectHandler'
+import goToPledgeProjectHandler from 'root/src/client/logic/project/handlers/goToPledgeProjectHandler'
 
-import { orNull } from 'sls-aws/src/shared/util/ramdaPlus'
-
+import { orNull } from 'root/src/shared/util/ramdaPlus'
 
 const styles = {
 	title: {

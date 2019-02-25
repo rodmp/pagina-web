@@ -1,4 +1,4 @@
-import { formStoreLenses } from 'sls-aws/src/client/logic/form/lenses'
+import { formStoreLenses } from 'root/src/client/logic/form/lenses'
 
 const { pathOrFormInputs } = formStoreLenses
 

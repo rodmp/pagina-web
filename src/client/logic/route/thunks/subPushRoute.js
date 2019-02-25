@@ -1,5 +1,5 @@
-import pushRoute from 'sls-aws/src/client/logic/route/thunks/pushRoute'
-import subObj from 'sls-aws/src/shared/util/subObj'
+import pushRoute from 'root/src/client/logic/route/thunks/pushRoute'
+import subObj from 'root/src/shared/util/subObj'
 
 export default (
 	routeId, routeParamsArr = [], substitutes = {},

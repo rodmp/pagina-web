@@ -1,6 +1,6 @@
 import {
 	urlFromRouteObjHof,
-} from 'sls-aws/src/client/logic/route/util/urlFromRouteObj'
+} from 'root/src/client/logic/route/util/urlFromRouteObj'
 
 const mockRoutes = {
 	ROUTE_ID_1: { url: '/foo' },

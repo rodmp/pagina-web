@@ -1,6 +1,6 @@
 import { __, pathOr, compose, prepend } from 'ramda'
 
-import viewProject from 'sls-aws/src/shared/descriptions/moduleMountActions/viewProject'
+import viewProject from 'root/src/shared/descriptions/moduleMountActions/viewProject'
 
 const allModules = {
 	...viewProject,

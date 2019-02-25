@@ -1,6 +1,6 @@
 import {
 	initApiListRequest,
-} from 'sls-aws/src/client/logic/api/reducers/initApiListRequest'
+} from 'root/src/client/logic/api/reducers/initApiListRequest'
 
 describe('initApiListRequest', () => {
 	test('sets list ids and records', () => {

@@ -1,15 +1,15 @@
 import { head, add } from 'ramda'
 
-import { TABLE_NAME, documentClient } from 'sls-aws/src/server/api/dynamoClient'
+import { TABLE_NAME, documentClient } from 'root/src/server/api/dynamoClient'
 
-import { PARTITION_KEY, SORT_KEY } from 'sls-aws/src/shared/constants/apiDynamoIndexes'
+import { PARTITION_KEY, SORT_KEY } from 'root/src/shared/constants/apiDynamoIndexes'
 
-import { PLEDGE_PROJECT } from 'sls-aws/src/shared/descriptions/endpoints/endpointIds'
-import { getPayloadLenses } from 'sls-aws/src/server/api/getEndpointDesc'
-import pledgeDynamoObj from 'sls-aws/src/server/api/actionUtil/pledgeDynamoObj'
-import { generalError } from 'sls-aws/src/server/api/errors'
-import dynamoQueryProject from 'sls-aws/src/server/api/actionUtil/dynamoQueryProject'
-import projectSerializer from 'sls-aws/src/server/api/serializers/projectSerializer'
+import { PLEDGE_PROJECT } from 'root/src/shared/descriptions/endpoints/endpointIds'
+import { getPayloadLenses } from 'root/src/server/api/getEndpointDesc'
+import pledgeDynamoObj from 'root/src/server/api/actionUtil/pledgeDynamoObj'
+import { generalError } from 'root/src/server/api/errors'
+import dynamoQueryProject from 'root/src/server/api/actionUtil/dynamoQueryProject'
+import projectSerializer from 'root/src/server/api/serializers/projectSerializer'
 
 const payloadLenses = getPayloadLenses(PLEDGE_PROJECT)
 const { viewProjectId, viewPledgeAmount, viewStripeCardId } = payloadLenses

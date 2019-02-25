@@ -1,6 +1,6 @@
 import {
 	USER_POOL,
-} from 'sls-aws/src/aws/cognito/resourceIds'
+} from 'root/src/aws/cognito/resourceIds'
 
 export default {
 	[USER_POOL]: {

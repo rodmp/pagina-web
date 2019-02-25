@@ -1,12 +1,12 @@
-import ref from 'sls-aws/src/aws/util/ref'
-import split from 'sls-aws/src/aws/util/split'
-import select from 'sls-aws/src/aws/util/select'
-import getAtt from 'sls-aws/src/aws/util/getAtt'
-import domainName from 'sls-aws/src/aws/util/domainName'
+import ref from 'root/src/aws/util/ref'
+import split from 'root/src/aws/util/split'
+import select from 'root/src/aws/util/select'
+import getAtt from 'root/src/aws/util/getAtt'
+import domainName from 'root/src/aws/util/domainName'
 
 import {
 	CLOUDFRONT_DISTRIBUTION, SSL, STATIC_BUCKET,
-} from 'sls-aws/src/aws/staticHosting/resourceIds'
+} from 'root/src/aws/staticHosting/resourceIds'
 
 export default {
 	[CLOUDFRONT_DISTRIBUTION]: {

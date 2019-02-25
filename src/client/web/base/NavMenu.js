@@ -1,6 +1,6 @@
 import React, { memo, Fragment, useState, useRef } from 'react'
 
-import { navLinkStyle, gtSmMediaQuery } from 'sls-aws/src/client/web/commonStyles'
+import { navLinkStyle, gtSmMediaQuery } from 'root/src/client/web/commonStyles'
 
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
@@ -9,8 +9,8 @@ import ExpandMore from '@material-ui/icons/ExpandMore'
 
 import { withStyles } from '@material-ui/core/styles'
 
-import Link from 'sls-aws/src/client/web/base/Link'
-import LabelOrIcon from 'sls-aws/src/client/web/base/LabelOrIcon'
+import Link from 'root/src/client/web/base/Link'
+import LabelOrIcon from 'root/src/client/web/base/LabelOrIcon'
 
 import classNames from 'classnames'
 
@@ -23,11 +23,18 @@ const styles = {
 		transition: '.3s',
 		display: 'none',
 		[gtSmMediaQuery]: {
-			display: 'inline-block'
-		}
+			display: 'inline-block',
+		},
 	},
 	arrowOpen: {
-		transform: 'rotateX(180deg)'
+		transform: 'rotateX(180deg)',
+	},
+	menu: {
+		position: 'absolute',
+	},
+	centeredButton: {
+		display: 'flex',
+		alignItems: 'center',
 	},
 	centeredButton: {
 		display: 'flex',
@@ -35,6 +42,7 @@ const styles = {
 	},
 	navLinkStyle,
 }
+
 
 export const NavMenuUnstyled = memo(({
 	menuLabel, menuIcon, menuItems, classes,
@@ -52,10 +60,12 @@ export const NavMenuUnstyled = memo(({
 			>
 				<LabelOrIcon label={menuLabel} icon={menuIcon} />
 				<ExpandMore className={classNames(
-					classes.arrow, open && classes.arrowOpen,
-				)} />
+					classes.arrow, { [classes.arrowOpen]: open },
+				)}
+				/>
 			</button>
 			<Menu
+				className={classes.menu}
 				open={open}
 				onClose={() => setOpen(false)}
 				anchorEl={anchorEl.current}

@@ -1,14 +1,14 @@
 import {
 	ACTIVE_PROJECTS_ROUTE_ID, HOW_IT_WORKS_ROUTE_ID, LOGIN_ROUTE_ID,
-	MY_PROJECTS_ROUTE_ID, PENDING_PROJECTS_ROUTE_ID, SIGN_OUT,
-} from 'sls-aws/src/shared/descriptions/routes/routeIds'
+	MY_PROJECTS_ROUTE_ID, PENDING_PROJECTS_ROUTE_ID, SIGN_OUT, ACCOUNT_SETTINGS_ROUTE_ID
+} from 'root/src/shared/descriptions/routes/routeIds'
 
-import { ternary } from 'sls-aws/src/shared/util/ramdaPlus'
+import { ternary } from 'root/src/shared/util/ramdaPlus'
 
-import isAuthenticated from 'sls-aws/src/client/logic/auth/selectors/isAuthenticated'
 import userEmail from 'sls-aws/src/client/logic/auth/selectors/userEmail'
-import isAdminSelector from 'sls-aws/src/client/logic/auth/selectors/isAdminSelector'
 import showMobileNavSelector from 'sls-aws/src/client/logic/app/selectors/showMobileNavSelector'
+import isAuthenticated from 'root/src/client/logic/auth/selectors/isAuthenticated'
+import isAdminSelector from 'root/src/client/logic/auth/selectors/isAdminSelector'
 
 export default (state, props) => ternary(
 	showMobileNavSelector(state, props),
@@ -21,6 +21,7 @@ export default (state, props) => ternary(
 			...(isAuthenticated(state, props)
 				? [
 					{ label: 'My Dares', routeId: MY_PROJECTS_ROUTE_ID },
+					{ label: 'Account Settings', routeId: ACCOUNT_SETTINGS_ROUTE_ID },
 					...(isAdminSelector(state, props)
 						? [{
 							label: 'Pending Dares',
@@ -43,6 +44,7 @@ export default (state, props) => ternary(
 				label: userEmail(state),
 				menuItems: [
 					{ label: 'My Dares', routeId: MY_PROJECTS_ROUTE_ID },
+					{ label: 'Account Settings', routeId: ACCOUNT_SETTINGS_ROUTE_ID },
 					...(isAdminSelector(state, props)
 						? [{
 							label: 'Pending Dares',

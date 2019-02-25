@@ -1,17 +1,17 @@
 import uuid from 'uuid/v1'
 import { map, pick, omit, prop, join } from 'ramda'
 
-import { TABLE_NAME, documentClient } from 'sls-aws/src/server/api/dynamoClient'
+import { TABLE_NAME, documentClient } from 'root/src/server/api/dynamoClient'
 
-import { PARTITION_KEY, SORT_KEY } from 'sls-aws/src/shared/constants/apiDynamoIndexes'
-import assigneeSerializer from 'sls-aws/src/server/api/serializers/assigneeSerializer'
+import { PARTITION_KEY, SORT_KEY } from 'root/src/shared/constants/apiDynamoIndexes'
+import assigneeSerializer from 'root/src/server/api/serializers/assigneeSerializer'
 
-import { CREATE_PROJECT } from 'sls-aws/src/shared/descriptions/endpoints/endpointIds'
-import { getPayloadLenses } from 'sls-aws/src/server/api/getEndpointDesc'
-import projectDenormalizeFields from 'sls-aws/src/server/api/actionUtil/projectDenormalizeFields'
-import pledgeDynamoObj from 'sls-aws/src/server/api/actionUtil/pledgeDynamoObj'
-import randomNumber from 'sls-aws/src/shared/util/randomNumber'
-import { projectPendingKey } from 'sls-aws/src/server/api/lenses'
+import { CREATE_PROJECT } from 'root/src/shared/descriptions/endpoints/endpointIds'
+import { getPayloadLenses } from 'root/src/server/api/getEndpointDesc'
+import projectDenormalizeFields from 'root/src/server/api/actionUtil/projectDenormalizeFields'
+import pledgeDynamoObj from 'root/src/server/api/actionUtil/pledgeDynamoObj'
+import randomNumber from 'root/src/shared/util/randomNumber'
+import { projectPendingKey } from 'root/src/server/api/lenses'
 
 const payloadLenses = getPayloadLenses(CREATE_PROJECT)
 const {

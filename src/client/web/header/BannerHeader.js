@@ -1,18 +1,19 @@
 import React, { memo } from 'react'
 import classNames from 'classnames'
-import { ternary } from 'sls-aws/src/shared/util/ramdaPlus'
 
-import MenuItem from '@material-ui/core/MenuItem'
+import { orNull } from 'root/src/shared/util/ramdaPlus'
 
-import Link from 'sls-aws/src/client/web/base/Link'
-import Header from 'sls-aws/src/client/web/typography/Header'
-import Title from 'sls-aws/src/client/web/typography/Title'
-import SubTitle from 'sls-aws/src/client/web/typography/SubTitle'
+import Link from 'root/src/client/web/base/Link'
+import Header from 'root/src/client/web/typography/Header'
+import Title from 'root/src/client/web/typography/Title'
+import SubTitle from 'root/src/client/web/typography/SubTitle'
 
-import MaxWidthContainer from 'sls-aws/src/client/web/base/MaxWidthContainer'
-import withModuleContext from 'sls-aws/src/client/util/withModuleContext'
+import MaxWidthContainer from 'root/src/client/web/base/MaxWidthContainer'
+import withModuleContext from 'root/src/client/util/withModuleContext'
 
-import bannerHeaderConnector from 'sls-aws/src/client/logic/header/connectors/bannerHeaderConnector'
+import bannerHeaderConnector from 'root/src/client/logic/header/connectors/bannerHeaderConnector'
+
+import { primaryColor, secondaryColor } from 'root/src/client/web/commonStyles'
 
 const styles = {
 	bottomMargin: {
@@ -68,16 +69,16 @@ const styles = {
 		fontSize: 18,
 		letterSpacing: 1,
 		fontWeight: 'bold',
-		color: '#800080',
-	},
-	subtitle: {
-		marginTop: 30,
+		color: primaryColor,
+		'&:hover': {
+			color: secondaryColor,
+		},
 	},
 }
 
 export const BannerHeaderUnconnected = memo(({
-	bannerImage, bannerImageText, bannerImageSubText, textWithBg, bannerSubText, linkLabel,
-	linkRouteId, classes,
+	bannerImage, bannerImageText, bannerImageSubText, textWithBg, bannerSubText, linkLabel, linkRouteId,
+	classes, createNewDareActive,
 }) => (
 	<div className={classNames(classes.bottomMargin, 'layout-column')}>
 		<div
@@ -89,7 +90,7 @@ export const BannerHeaderUnconnected = memo(({
 			/>
 			<div className={classes.overlay} />
 			<div className={classes.textOverlay}>
-				<div className={ternary(textWithBg, classes.textBox, '')}>
+				<div className={classNames({ [classes.textBox]: textWithBg })}>
 					<Title>{bannerImageText}</Title>
 					<SubTitle>{bannerImageSubText}</SubTitle>
 				</div>
@@ -98,17 +99,17 @@ export const BannerHeaderUnconnected = memo(({
 		<div className="layout-row layout-align-center">
 			<MaxWidthContainer>
 				<div className="flex layout-column">
-					<div className={classNames(
-						classes.subtitle, 'layout-row layout-align-center',
-					)}
-					>
+					<div className="layout-row layout-align-center">
 						<Header>{bannerSubText}</Header>
 					</div>
-					<div>
-						<Link routeId={linkRouteId}>
-							<MenuItem className={classes.newDare}>{linkLabel}</MenuItem>
-						</Link>
-					</div>
+					{orNull(
+						createNewDareActive,
+						<div>
+							<Link routeId={linkRouteId}>
+								<span className={classes.newDare}>{linkLabel}</span>
+							</Link>
+						</div>,
+					)}
 				</div>
 			</MaxWidthContainer>
 		</div>

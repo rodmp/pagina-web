@@ -1,14 +1,14 @@
-import reduxConnector from 'sls-aws/src/shared/util/reduxConnector'
+import reduxConnector from 'root/src/shared/util/reduxConnector'
 
-import fieldValue from 'sls-aws/src/client/logic/form/selectors/fieldValue'
-import fieldMax from 'sls-aws/src/client/logic/form/selectors/fieldMax'
-import fieldLabel from 'sls-aws/src/client/logic/form/selectors/fieldLabel'
-import fieldError from 'sls-aws/src/client/logic/form/selectors/fieldError'
-import fieldHasError from 'sls-aws/src/client/logic/form/selectors/fieldHasError'
-import fieldPlaceholder from 'sls-aws/src/client/logic/form/selectors/fieldPlaceholder'
-import fieldMultiline from 'sls-aws/src/client/logic/form/selectors/fieldMultiline'
+import fieldValue from 'root/src/client/logic/form/selectors/fieldValue'
+import fieldMax from 'root/src/client/logic/form/selectors/fieldMax'
+import fieldLabel from 'root/src/client/logic/form/selectors/fieldLabel'
+import fieldError from 'root/src/client/logic/form/selectors/fieldError'
+import fieldHasError from 'root/src/client/logic/form/selectors/fieldHasError'
+import fieldPlaceholder from 'root/src/client/logic/form/selectors/fieldPlaceholder'
+import fieldMultiline from 'root/src/client/logic/form/selectors/fieldMultiline'
 
-import setInput from 'sls-aws/src/client/logic/form/thunks/setInput'
+import setInput from 'root/src/client/logic/form/thunks/setInput'
 
 export default reduxConnector(
 	[

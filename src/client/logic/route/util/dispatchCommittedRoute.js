@@ -1,11 +1,11 @@
-import changeRoute from 'sls-aws/src/client/logic/route/actions/changeRoute'
-import urlFromRouteObj from 'sls-aws/src/client/logic/route/util/urlFromRouteObj'
-import anchors from 'sls-aws/src/shared/constants/anchors'
-import { storageClear } from 'sls-aws/src/shared/util/storage'
+import changeRoute from 'root/src/client/logic/route/actions/changeRoute'
+import urlFromRouteObj from 'root/src/client/logic/route/util/urlFromRouteObj'
+import anchors from 'root/src/shared/constants/anchors'
+import { storageClear } from 'root/src/shared/util/storage'
 
 import {
 	changeBrowserHistory,
-} from 'sls-aws/src/client/logic/route/util/browserHistory'
+} from 'root/src/client/logic/route/util/browserHistory'
 
 export const dispatchCommittedRouteHof = (
 	changeRouteFn,

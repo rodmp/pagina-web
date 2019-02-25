@@ -4,11 +4,11 @@ import IconButton from '@material-ui/core/IconButton'
 import CloseIcon from '@material-ui/icons/Close'
 
 
-import Fields from 'sls-aws/src/client/web/form/Fields'
-import subFormFieldsConnector from 'sls-aws/src/client/logic/form/connectors/subFormFieldsConnector'
-import withModuleContext from 'sls-aws/src/client/util/withModuleContext'
+import Fields from 'root/src/client/web/form/Fields'
+import subFormFieldsConnector from 'root/src/client/logic/form/connectors/subFormFieldsConnector'
+import withModuleContext from 'root/src/client/util/withModuleContext'
 
-import removeSubFormHandler from 'sls-aws/src/client/logic/form/handlers/removeSubFormHandler'
+import removeSubFormHandler from 'root/src/client/logic/form/handlers/removeSubFormHandler'
 
 
 export const SubFormFields = memo(({

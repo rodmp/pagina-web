@@ -1,6 +1,6 @@
 import {
 	apiRecordRequestSuccess,
-} from 'sls-aws/src/client/logic/api/reducers/apiRecordRequestSuccess'
+} from 'root/src/client/logic/api/reducers/apiRecordRequestSuccess'
 
 describe('apiRecordRequestSuccess', () => {
 	test('sets records', () => {

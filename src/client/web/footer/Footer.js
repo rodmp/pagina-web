@@ -1,21 +1,21 @@
 import React, { memo } from 'react'
 
 import classNames from 'classnames'
-import facebookFooter from 'sls-aws/src/client/assets/Facebook footer.png'
-import twitterFooter from 'sls-aws/src/client/assets/Twitter footer.png'
-import instagramFooter from 'sls-aws/src/client/assets/Instagram footer.png'
-import youtubeFooter from 'sls-aws/src/client/assets/Youtube footer.png'
+import facebookFooter from 'root/src/client/assets/Facebook footer.png'
+import twitterFooter from 'root/src/client/assets/Twitter footer.png'
+import instagramFooter from 'root/src/client/assets/Instagram footer.png'
+import youtubeFooter from 'root/src/client/assets/Youtube footer.png'
 
 import {
 	HOW_IT_WORKS_ROUTE_ID,
 	TERMS_OF_SERVICE_ROUTE_ID,
 	COOKIE_POLICY_ROUTE_ID,
 	PRIVACY_POLICY_ROUTE_ID,
-} from 'sls-aws/src/shared/descriptions/routes/routeIds'
-import { EMAIL } from 'sls-aws/src/shared/constants/pageData'
-import Link from 'sls-aws/src/client/web/base/Link'
-import withModuleContext from 'sls-aws/src/client/util/withModuleContext'
-import footerConnector from 'sls-aws/src/client/logic/app/connectors/footerConnector'
+} from 'root/src/shared/descriptions/routes/routeIds'
+import { EMAIL } from 'root/src/shared/constants/pageData'
+import Link from 'root/src/client/web/base/Link'
+import withModuleContext from 'root/src/client/util/withModuleContext'
+import footerConnector from 'root/src/client/logic/app/connectors/footerConnector'
 import styles from './style'
 
 export const FooterUnconnected = memo(({ classes, currentYear }) => (

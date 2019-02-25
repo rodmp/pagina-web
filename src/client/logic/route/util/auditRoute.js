@@ -1,10 +1,10 @@
 import { equals } from 'ramda'
 
-import routeDescriptions from 'sls-aws/src/shared/descriptions/routes'
-import isAuthenticated from 'sls-aws/src/client/logic/auth/selectors/isAuthenticated'
+import routeDescriptions from 'root/src/shared/descriptions/routes'
+import isAuthenticated from 'root/src/client/logic/auth/selectors/isAuthenticated'
 import {
 	authValue, unAuthValue, routeDescriptionLenses,
-} from 'sls-aws/src/client/logic/route/lenses'
+} from 'root/src/client/logic/route/lenses'
 
 const { viewAuthentication } = routeDescriptionLenses
 export const auditRouteHof = (

@@ -1,5 +1,5 @@
-import styled from 'sls-aws/src/client/web/base/StaticLayout/style'
-import { linkHoverColor, linkColor } from 'sls-aws/src/client/web/commonStyles';
+import styled from 'root/src/client/web/base/StaticLayout/style'
+import { linkHoverColor, linkColor } from 'root/src/client/web/commonStyles';
 
 const styles = {
 	listWrapper: {

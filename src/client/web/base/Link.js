@@ -1,12 +1,12 @@
 import React, { memo } from 'react'
 
 import classNames from 'classnames'
-import linkConnector from 'sls-aws/src/client/logic/app/connectors/linkConnector'
+import linkConnector from 'root/src/client/logic/app/connectors/linkConnector'
 import {
 	linkColor, linkHoverColor, navLinkStyle,
-} from 'sls-aws/src/client/web/commonStyles'
+} from 'root/src/client/web/commonStyles'
 
-import linkHandler from 'sls-aws/src/client/logic/app/handlers/linkHandler'
+import linkHandler from 'root/src/client/logic/app/handlers/linkHandler'
 
 const styles = {
 	link: {

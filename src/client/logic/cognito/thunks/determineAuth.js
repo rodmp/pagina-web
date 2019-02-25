@@ -1,9 +1,9 @@
-import authDetermined from 'sls-aws/src/client/logic/app/actions/authDetermined'
-import userPool from 'sls-aws/src/client/logic/cognito/util/userPool'
+import authDetermined from 'root/src/client/logic/app/actions/authDetermined'
+import userPool from 'root/src/client/logic/cognito/util/userPool'
 
-import reportError from 'sls-aws/src/shared/util/reportError'
-import { storageClear } from 'sls-aws/src/shared/util/storage'
-import setAwsConfig from 'sls-aws/src/client/logic/cognito/util/setAwsConfig'
+import reportError from 'root/src/shared/util/reportError'
+import { storageClear } from 'root/src/shared/util/storage'
+import setAwsConfig from 'root/src/client/logic/cognito/util/setAwsConfig'
 
 export const determineAuthHof = authDeterminedFn => () => dispatch => (
 	new Promise((resolve, reject) => {
@@ -13,8 +13,7 @@ export const determineAuthHof = authDeterminedFn => () => dispatch => (
 				if (err) {
 					reject(err)
 				} else {
-					setAwsConfig(session)
-					resolve(session)
+					resolve(setAwsConfig(session))
 				}
 			})
 		} else {
@@ -27,7 +26,7 @@ export const determineAuthHof = authDeterminedFn => () => dispatch => (
 			reportError(err)
 		}
 		storageClear()
-		dispatch(authDeterminedFn(false))
+		return setAwsConfig().then(() => dispatch(authDeterminedFn(false)))
 	})
 )
 

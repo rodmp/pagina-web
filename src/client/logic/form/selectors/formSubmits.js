@@ -2,12 +2,12 @@ import {
 	__, compose, map, addIndex, equals,
 } from 'ramda'
 
-import moduleKeySelector from 'sls-aws/src/client/logic/route/selectors/moduleKey'
-import { moduleIdProp } from 'sls-aws/src/client/logic/route/lenses'
+import moduleKeySelector from 'root/src/client/logic/route/selectors/moduleKey'
+import { moduleIdProp } from 'root/src/client/logic/route/lenses'
 import {
 	formModuleLenses, formStoreLenses,
-} from 'sls-aws/src/client/logic/form/lenses'
-import moduleDescriptions from 'sls-aws/src/shared/descriptions/modules'
+} from 'root/src/client/logic/form/lenses'
+import moduleDescriptions from 'root/src/shared/descriptions/modules'
 
 const { viewSubmits } = formModuleLenses
 const { viewFormSubmitting } = formStoreLenses

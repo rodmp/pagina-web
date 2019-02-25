@@ -1,6 +1,6 @@
 import {
 	currentRouteDescriptionHof,
-} from 'sls-aws/src/client/logic/route/selectors/currentRouteDescription'
+} from 'root/src/client/logic/route/selectors/currentRouteDescription'
 
 const mockState = { route: { history: [{ routeId: 'test', routeParams: {} }] } }
 // const mockState2 = { route: { history: [] } }
