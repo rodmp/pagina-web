@@ -4,7 +4,7 @@ import {
 } from 'sls-aws/src/shared/descriptions/modules/moduleIds'
 import addPaymentMethodPayloadSchema from 'sls-aws/src/shared/descriptions/endpoints/schemas/addPaymentMethodPayloadSchema'
 import {
-	MANAGE_PAYMENT_LIST_ROUTE_ID, ACCOUNT_SETTINGS_ROUTE_ID, MANAGE_PAYMENT_FORM_ROUTE_ID,
+	MANAGE_PAYMENT_LIST_ROUTE_ID,
 } from 'sls-aws/src/shared/descriptions/routes/routeIds'
 
 export default {
@@ -28,12 +28,6 @@ export default {
 				inputType: 'text',
 				label: 'Credit Card Number',
 				placeholder: '4242 4242 4242 4242',
-				labelFieldText: [
-					{
-						text: 'Credit Card Number',
-						required: true,
-					},
-				],
 			},
 			{
 				fieldId: 'cardName',
@@ -42,7 +36,7 @@ export default {
 				placeholder: 'Name',
 			},
 			{
-				fieldId: 'expDate',
+				fieldId: 'expirationDate',
 				inputType: 'text',
 				label: 'Expiration',
 				placeholder: '01/12',

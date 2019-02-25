@@ -9,7 +9,7 @@ import AutoComplete from 'sls-aws/src/client/web/form/AutoComplete'
 import InputWrapper from 'sls-aws/src/client/web/form/InputWrapper'
 
 const Fields = memo(({
-	formFieldTypes, moduleKey, formType,
+	formFieldTypes, moduleKey, formType, wasSubmitted,
 }) => formFieldTypes.map(([
 	fieldPath,
 	fieldDescPath,
@@ -37,6 +37,7 @@ const Fields = memo(({
 		formType,
 		fieldValue,
 		fieldMax,
+		wasSubmitted,
 	}
 	switch (inputType) {
 		case 'text':

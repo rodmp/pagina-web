@@ -68,10 +68,18 @@ export default (schema, errors) => reduce((result, error) => {
 			)
 		}
 		case 'minLength': {
+			let value
 			const errorPath = dataPathKey(error)
+			if (errorPath[0] === 'expirationDate') {
+				value = errorLimit(error) - 1
+			} else if (errorPath[0] === 'cardNumber') {
+				value = errorLimit(error) - 3
+			} else {
+				value = errorLimit(error)
+			}
 			return set(
 				lensPath(errorPath),
-				`${propTitle(errorPath)} must be at least ${errorLimit(error)} characters`,
+				`${propTitle(errorPath)} must be at least ${value} characters`,
 				result,
 			)
 		}
