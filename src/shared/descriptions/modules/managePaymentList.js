@@ -1,8 +1,8 @@
-import { GET_PAYMENT_METHODS } from 'sls-aws/src/shared/descriptions/endpoints/endpointIds'
-import { MANAGE_PAYMENT_LIST_MODULE_ID } from 'sls-aws/src/shared/descriptions/modules/moduleIds'
-import { paymentMethod } from 'sls-aws/src/shared/descriptions/endpoints/recordTypes'
-import { ACCOUNT_SETTINGS_ROUTE_ID, MANAGE_PAYMENT_FORM_ROUTE_ID } from 'sls-aws/src/shared/descriptions/routes/routeIds'
-import pushRoute from 'sls-aws/src/client/logic/route/thunks/pushRoute'
+import { GET_PAYMENT_METHODS } from 'root/src/shared/descriptions/endpoints/endpointIds'
+import { MANAGE_PAYMENT_LIST_MODULE_ID } from 'root/src/shared/descriptions/modules/moduleIds'
+import { paymentMethod } from 'root/src/shared/descriptions/endpoints/recordTypes'
+import { ACCOUNT_SETTINGS_ROUTE_ID, MANAGE_PAYMENT_FORM_ROUTE_ID } from 'root/src/shared/descriptions/routes/routeIds'
+import pushRoute from 'root/src/client/logic/route/thunks/pushRoute'
 
 
 export default {

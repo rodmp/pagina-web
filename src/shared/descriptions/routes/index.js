@@ -1,12 +1,12 @@
-import howItWorks from 'sls-aws/src/shared/descriptions/routes/howItWorks'
-import termsOfService from 'sls-aws/src/shared/descriptions/routes/termsOfService'
-import privacyPolicy from 'sls-aws/src/shared/descriptions/routes/privacyPolicy'
-import cookiePolicy from 'sls-aws/src/shared/descriptions/routes/cookiePolicy'
-import rulesOfUse from 'sls-aws/src/shared/descriptions/routes/rulesOfUse'
-import auth from 'sls-aws/src/shared/descriptions/routes/auth'
-import projects from 'sls-aws/src/shared/descriptions/routes/projects'
-import accountSettings from 'sls-aws/src/shared/descriptions/routes/accountSettings'
-import dareCreateSuccess from 'sls-aws/src/shared/descriptions/routes/dareCreateSuccess'
+import howItWorks from 'root/src/shared/descriptions/routes/howItWorks'
+import termsOfService from 'root/src/shared/descriptions/routes/termsOfService'
+import privacyPolicy from 'root/src/shared/descriptions/routes/privacyPolicy'
+import cookiePolicy from 'root/src/shared/descriptions/routes/cookiePolicy'
+import rulesOfUse from 'root/src/shared/descriptions/routes/rulesOfUse'
+import auth from 'root/src/shared/descriptions/routes/auth'
+import projects from 'root/src/shared/descriptions/routes/projects'
+import accountSettings from 'root/src/shared/descriptions/routes/accountSettings'
+import dareCreateSuccess from 'root/src/shared/descriptions/routes/dareCreateSuccess'
 
 export default {
 	...howItWorks,

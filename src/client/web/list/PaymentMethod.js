@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core/styles'
 
 import classNames from 'classnames'
 
-import Button from 'sls-aws/src/client/web/base/Button'
+import Button from 'root/src/client/web/base/Button'
 
 const styles = {
 	root: {
