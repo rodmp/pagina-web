@@ -6,12 +6,12 @@ import {
 	CREATE_PROJECT_ROUTE_ID,
 } from 'root/src/shared/descriptions/routes/routeIds'
 
-import myDare from 'root/src/client/assets/myDare.jpg'
+import myprojects from 'root/src/client/assets/myprojects.jpg'
 
 export default {
 	[MY_PROJECT_BANNER_HEADER_MODULE_ID]: {
 		moduleType: 'bannerHeader',
-		bannerImage: myDare,
+		bannerImage: myprojects,
 		bannerImageText: 'DARE A STREAMER',
 		bannerImageSubText: 'Pledge to a Dare you like, or create your own!',
 		textWithBg: true,
