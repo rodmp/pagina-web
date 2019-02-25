@@ -1,8 +1,8 @@
-import { SET_MEDIA_BREAKPOINTS } from 'sls-aws/src/client/logic/app/actionIds'
+import { SET_MEDIA_BREAKPOINTS } from 'root/src/client/logic/app/actionIds'
 
 import {
 	appStoreLenses,
-} from 'sls-aws/src/client/logic/app/lenses'
+} from 'root/src/client/logic/app/lenses'
 
 const { setMediaBreakpoints } = appStoreLenses
 

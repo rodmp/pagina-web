@@ -1,9 +1,9 @@
 import { map, prop, reduce, addIndex, propEq, find } from 'ramda'
-import { idProp } from 'sls-aws/src/client/logic/api/lenses'
+import { idProp } from 'root/src/client/logic/api/lenses'
 
-import { payloadSchemaError } from 'sls-aws/src/server/api/errors'
+import { payloadSchemaError } from 'root/src/server/api/errors'
 
-import { getUserData, getGameData } from 'sls-aws/src/server/api/twitchApi'
+import { getUserData, getGameData } from 'root/src/server/api/twitchApi'
 
 const createDataToFetchObjs = (
 	userDataFetchFn, gameDataFetchFn, [assignees, games],

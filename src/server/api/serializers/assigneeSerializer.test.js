@@ -1,6 +1,6 @@
 import {
 	getDataHof,
-} from 'sls-aws/src/server/api/serializers/assigneeSerializer'
+} from 'root/src/server/api/serializers/assigneeSerializer'
 
 const getUserDataMock = jest.fn()
 

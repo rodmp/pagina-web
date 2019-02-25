@@ -1,6 +1,6 @@
 import {
 	currentRouteModuleTypesHof,
-} from 'sls-aws/src/client/logic/route/selectors/currentRouteModuleTypes'
+} from 'root/src/client/logic/route/selectors/currentRouteModuleTypes'
 
 const mockState = {
 	route: {

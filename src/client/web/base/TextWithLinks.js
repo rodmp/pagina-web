@@ -2,9 +2,9 @@ import { is, map, addIndex } from 'ramda'
 
 import React, { memo, Fragment } from 'react'
 
-import Link from 'sls-aws/src/client/web/base/Link'
+import Link from 'root/src/client/web/base/Link'
 
-import { ternary } from 'sls-aws/src/shared/util/ramdaPlus'
+import { ternary } from 'root/src/shared/util/ramdaPlus'
 
 export default memo(({ text = '' }) => (
 	<Fragment>

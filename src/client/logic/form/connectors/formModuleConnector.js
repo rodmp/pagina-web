@@ -1,4 +1,4 @@
-import reduxConnector from 'sls-aws/src/shared/util/reduxConnector'
+import reduxConnector from 'root/src/shared/util/reduxConnector'
 
 import formFieldTypes from 'sls-aws/src/client/logic/form/selectors/formFieldTypes'
 import formSubmits from 'sls-aws/src/client/logic/form/selectors/formSubmits'
@@ -12,7 +12,7 @@ import formType from 'sls-aws/src/client/logic/form/selectors/formType'
 import backButton from 'sls-aws/src/client/logic/form/selectors/backButton'
 import moduleKey from 'sls-aws/src/client/logic/route/selectors/moduleKey'
 
-import submitForm from 'sls-aws/src/client/logic/form/thunks/submitForm'
+import submitForm from 'root/src/client/logic/form/thunks/submitForm'
 
 export default reduxConnector(
 	[

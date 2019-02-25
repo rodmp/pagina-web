@@ -1,16 +1,16 @@
 import { map, reduce, pathOr } from 'ramda'
 
-import routeDescriptions from 'sls-aws/src/shared/descriptions/routes'
-import moduleDescriptions from 'sls-aws/src/shared/descriptions/modules'
+import routeDescriptions from 'root/src/shared/descriptions/routes'
+import moduleDescriptions from 'root/src/shared/descriptions/modules'
 
-import currentRouteObjSelector from 'sls-aws/src/client/logic/route/selectors/currentRouteObj'
+import currentRouteObjSelector from 'root/src/client/logic/route/selectors/currentRouteObj'
 
 import {
 	routeDescriptionLenses, moduleDescriptionLenses,
-} from 'sls-aws/src/client/logic/route/lenses'
+} from 'root/src/client/logic/route/lenses'
 
-import listModuleOnEnter from 'sls-aws/src/client/logic/api/thunks/listModuleOnEnter'
-import recordModuleOnEnter from 'sls-aws/src/client/logic/api/thunks/recordModuleOnEnter'
+import listModuleOnEnter from 'root/src/client/logic/api/thunks/listModuleOnEnter'
+import recordModuleOnEnter from 'root/src/client/logic/api/thunks/recordModuleOnEnter'
 
 const { viewModules } = routeDescriptionLenses
 const { viewModuleType } = moduleDescriptionLenses

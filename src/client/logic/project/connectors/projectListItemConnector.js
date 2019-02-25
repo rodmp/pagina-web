@@ -1,14 +1,14 @@
-import reduxConnector from 'sls-aws/src/shared/util/reduxConnector'
+import reduxConnector from 'root/src/shared/util/reduxConnector'
 
-import projectTitleSelector from 'sls-aws/src/client/logic/project/selectors/projectTitleSelector'
-import projectDescriptionSelector from 'sls-aws/src/client/logic/project/selectors/projectDescriptionSelector'
-import pledgeAmountSelector from 'sls-aws/src/client/logic/project/selectors/pledgeAmountSelector'
-import projectGameImagePortraitSelector from 'sls-aws/src/client/logic/project/selectors/projectGameImagePortraitSelector'
-import projectAssigneesImagesSelector from 'sls-aws/src/client/logic/project/selectors/projectAssigneesImagesSelector'
-import projectShareUrlSelector from 'sls-aws/src/client/logic/project/selectors/projectShareUrlSelector'
-import projectGamesSelector from 'sls-aws/src/client/logic/project/selectors/projectGamesSelector'
+import projectTitleSelector from 'root/src/client/logic/project/selectors/projectTitleSelector'
+import projectDescriptionSelector from 'root/src/client/logic/project/selectors/projectDescriptionSelector'
+import pledgeAmountSelector from 'root/src/client/logic/project/selectors/pledgeAmountSelector'
+import projectGameImagePortraitSelector from 'root/src/client/logic/project/selectors/projectGameImagePortraitSelector'
+import projectAssigneesImagesSelector from 'root/src/client/logic/project/selectors/projectAssigneesImagesSelector'
+import projectShareUrlSelector from 'root/src/client/logic/project/selectors/projectShareUrlSelector'
+import projectGamesSelector from 'root/src/client/logic/project/selectors/projectGamesSelector'
 
-import pushRoute from 'sls-aws/src/client/logic/route/thunks/pushRoute'
+import pushRoute from 'root/src/client/logic/route/thunks/pushRoute'
 
 export default reduxConnector(
 	[

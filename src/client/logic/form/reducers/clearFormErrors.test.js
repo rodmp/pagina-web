@@ -1,4 +1,4 @@
-import { reducer } from 'sls-aws/src/client/logic/form/reducers/clearFormErrors'
+import { reducer } from 'root/src/client/logic/form/reducers/clearFormErrors'
 
 const mockState = {
 	form: {

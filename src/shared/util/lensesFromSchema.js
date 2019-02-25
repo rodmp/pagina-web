@@ -4,8 +4,8 @@ import {
 	add, subtract, over, pathEq, pathOr, without, dissocPath, not, head, tail,
 	pathSatisfies, when, curry,
 } from 'ramda'
-import { variableSchemaKey } from 'sls-aws/src/shared/util/commonLenses'
-import { capitalize } from 'sls-aws/src/shared/util/stringCase'
+import { variableSchemaKey } from 'root/src/shared/util/commonLenses'
+import { capitalize } from 'root/src/shared/util/stringCase'
 
 const argSubstitute = '__'
 

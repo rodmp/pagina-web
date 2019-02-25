@@ -1,8 +1,8 @@
 import { reduce, contains, path } from 'ramda'
 
-import apiRequest from 'sls-aws/src/client/logic/api/thunks/apiRequest'
-import moduleEndpointIdSelector from 'sls-aws/src/client/logic/api/selectors/moduleEndpointIdSelector'
-import moduleRecordPayloadMapSelector from 'sls-aws/src/client/logic/api/selectors/moduleRecordPayloadMapSelector'
+import apiRequest from 'root/src/client/logic/api/thunks/apiRequest'
+import moduleEndpointIdSelector from 'root/src/client/logic/api/selectors/moduleEndpointIdSelector'
+import moduleRecordPayloadMapSelector from 'root/src/client/logic/api/selectors/moduleRecordPayloadMapSelector'
 
 
 export default ({ moduleId, nextRouteObj }) => async (dispatch) => {

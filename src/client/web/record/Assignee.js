@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
-import SubHeader from 'sls-aws/src/client/web/typography/SubHeader'
+import SubHeader from 'root/src/client/web/typography/SubHeader'
 
 const styles = {
 	image: {

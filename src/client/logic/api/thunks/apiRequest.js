@@ -1,21 +1,21 @@
 import { equals } from 'ramda'
 
-import createListStoreKey from 'sls-aws/src/client/logic/api/util/createListStoreKey'
-import createRecordStoreKey from 'sls-aws/src/client/logic/api/util/createRecordStoreKey'
-import { idProp } from 'sls-aws/src/client/logic/api/lenses'
+import createListStoreKey from 'root/src/client/logic/api/util/createListStoreKey'
+import createRecordStoreKey from 'root/src/client/logic/api/util/createRecordStoreKey'
+import { idProp } from 'root/src/client/logic/api/lenses'
 
-import initApiListRequest from 'sls-aws/src/client/logic/api/actions/initApiListRequest'
-import apiListRequestSuccess from 'sls-aws/src/client/logic/api/actions/apiListRequestSuccess'
-import apiListRequestError from 'sls-aws/src/client/logic/api/actions/apiListRequestError'
+import initApiListRequest from 'root/src/client/logic/api/actions/initApiListRequest'
+import apiListRequestSuccess from 'root/src/client/logic/api/actions/apiListRequestSuccess'
+import apiListRequestError from 'root/src/client/logic/api/actions/apiListRequestError'
 
-import initApiRecordRequest from 'sls-aws/src/client/logic/api/actions/initApiRecordRequest'
-import apiRecordRequestSuccess from 'sls-aws/src/client/logic/api/actions/apiRecordRequestSuccess'
-import apiRecordRequestError from 'sls-aws/src/client/logic/api/actions/apiRecordRequestError'
+import initApiRecordRequest from 'root/src/client/logic/api/actions/initApiRecordRequest'
+import apiRecordRequestSuccess from 'root/src/client/logic/api/actions/apiRecordRequestSuccess'
+import apiRecordRequestError from 'root/src/client/logic/api/actions/apiRecordRequestError'
 
-import recordTypeSelector from 'sls-aws/src/client/logic/api/selectors/recordTypeSelector'
-import endpointTypeSelector from 'sls-aws/src/client/logic/api/selectors/endpointTypeSelector'
+import recordTypeSelector from 'root/src/client/logic/api/selectors/recordTypeSelector'
+import endpointTypeSelector from 'root/src/client/logic/api/selectors/endpointTypeSelector'
 
-import invokeApiLambda from 'sls-aws/src/client/logic/api/util/invokeApiLambda'
+import invokeApiLambda from 'root/src/client/logic/api/util/invokeApiLambda'
 
 export const fetchList = async (dispatch, state, endpointId, payload) => {
 	const recordType = recordTypeSelector(endpointId)

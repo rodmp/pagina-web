@@ -1,8 +1,8 @@
-import { AUTH_DETERMINED } from 'sls-aws/src/client/logic/app/actionIds'
+import { AUTH_DETERMINED } from 'root/src/client/logic/app/actionIds'
 
 import {
 	appStoreLenses,
-} from 'sls-aws/src/client/logic/app/lenses'
+} from 'root/src/client/logic/app/lenses'
 
 const { setAuthenticated } = appStoreLenses
 

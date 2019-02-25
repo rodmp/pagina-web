@@ -1,6 +1,7 @@
 const styles = {
 	SocialContainer: {
 		display: 'flex',
+		width: 'calc(100% - 15px)',
 		justifyContent: 'center',
 		height: 54,
 		paddingTop: 25,
@@ -15,8 +16,8 @@ const styles = {
 		justifyContent: 'center',
 		marginRight: 12,
 		'@media (min-width: 375px)': {
-			marginRight: 14.8
-		}
+			marginRight: 14.8,
+		},
 	},
 	Facebook: {
 		backgroundColor: '#3d5a96',
@@ -32,7 +33,7 @@ const styles = {
 	},
 	VK: {
 		backgroundColor: '#4c77a6',
-		marginRight: 0
-	}
+		marginRight: 0,
+	},
 }
 export default styles

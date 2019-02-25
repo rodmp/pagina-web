@@ -1,19 +1,19 @@
 import { isNil, and, length, gt, prop, path, pathOr } from 'ramda'
-import submitForm from 'sls-aws/src/client/logic/form/actions/submitForm'
-import submitFormComplete from 'sls-aws/src/client/logic/form/actions/submitFormComplete'
-import moduleIdFromKey from 'sls-aws/src/client/logic/route/util/moduleIdFromKey'
-import validateForm from 'sls-aws/src/client/logic/form/util/validateForm'
-import setFormErrors from 'sls-aws/src/client/logic/form/actions/setFormErrors'
-import formSubmits from 'sls-aws/src/shared/descriptions/formSubmits'
+import submitForm from 'root/src/client/logic/form/actions/submitForm'
+import submitFormComplete from 'root/src/client/logic/form/actions/submitFormComplete'
+import moduleIdFromKey from 'root/src/client/logic/route/util/moduleIdFromKey'
+import validateForm from 'root/src/client/logic/form/util/validateForm'
+import setFormErrors from 'root/src/client/logic/form/actions/setFormErrors'
+import formSubmits from 'root/src/shared/descriptions/formSubmits'
 
-import recordTypeSelector from 'sls-aws/src/client/logic/api/selectors/recordTypeSelector'
-import createRecordStoreKey from 'sls-aws/src/client/logic/api/util/createRecordStoreKey'
-import generalRecordModification from 'sls-aws/src/client/logic/api/actions/generalRecordModification'
-import subPushRoute from 'sls-aws/src/client/logic/route/thunks/subPushRoute'
+import recordTypeSelector from 'root/src/client/logic/api/selectors/recordTypeSelector'
+import createRecordStoreKey from 'root/src/client/logic/api/util/createRecordStoreKey'
+import generalRecordModification from 'root/src/client/logic/api/actions/generalRecordModification'
+import subPushRoute from 'root/src/client/logic/route/thunks/subPushRoute'
 
-import { idProp } from 'sls-aws/src/client/logic/api/lenses'
+import { idProp } from 'root/src/client/logic/api/lenses'
 
-import moduleDescriptions from 'sls-aws/src/shared/descriptions/modules'
+import moduleDescriptions from 'root/src/shared/descriptions/modules'
 
 export const submitFormHof = (
 	submitFormFn, moduleDescriptionsObj, validateFormFn, setFormErrorsFn,

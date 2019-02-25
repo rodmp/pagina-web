@@ -1,6 +1,6 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import Terms from 'sls-aws/src/client/web/base/StaticLayout'
+import Terms from 'root/src/client/web/base/StaticLayout'
 import styles from './style'
 import rules from './pageContent'
 

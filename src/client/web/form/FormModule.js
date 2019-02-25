@@ -1,19 +1,19 @@
 import React, { memo, useState } from 'react'
 
-import { orNull } from 'sls-aws/src/shared/util/ramdaPlus'
-import { secondaryColor } from 'sls-aws/src/client/web/commonStyles'
+import { orNull } from 'root/src/shared/util/ramdaPlus'
+import { secondaryColor } from 'root/src/client/web/commonStyles'
 
-import Fields from 'sls-aws/src/client/web/form/Fields'
-import Submits from 'sls-aws/src/client/web/form/Submits'
-import Header from 'sls-aws/src/client/web/typography/Header'
-import Link from 'sls-aws/src/client/web/base/Link'
-import Body from 'sls-aws/src/client/web/typography/Body'
-import TertiaryBody from 'sls-aws/src/client/web/typography/TertiaryBody'
-import formModuleConnector from 'sls-aws/src/client/logic/form/connectors/formModuleConnector'
+import Fields from 'root/src/client/web/form/Fields'
+import Submits from 'root/src/client/web/form/Submits'
+import Header from 'root/src/client/web/typography/Header'
+import Link from 'root/src/client/web/base/Link'
+import Body from 'root/src/client/web/typography/Body'
+import TertiaryBody from 'root/src/client/web/typography/TertiaryBody'
+import formModuleConnector from 'root/src/client/logic/form/connectors/formModuleConnector'
 
-import submitFormHandler from 'sls-aws/src/client/logic/form/handlers/submitFormHandler'
+import submitFormHandler from 'root/src/client/logic/form/handlers/submitFormHandler'
 
-import withModuleContext from 'sls-aws/src/client/util/withModuleContext'
+import withModuleContext from 'root/src/client/util/withModuleContext'
 
 import classNames from 'classnames'
 

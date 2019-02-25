@@ -1,7 +1,7 @@
 import { prop } from 'ramda'
 import { Lambda } from 'aws-sdk'
 
-import { region } from 'sls-aws/src/shared/constants/aws'
+import { region } from 'root/src/shared/constants/aws'
 
 export default (fnName, payload) => {
 	const lambda = new Lambda({ region })

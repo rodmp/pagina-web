@@ -1,6 +1,6 @@
-import { INIT_API_LIST_REQUEST } from 'sls-aws/src/client/logic/api/actionIds'
+import { INIT_API_LIST_REQUEST } from 'root/src/client/logic/api/actionIds'
 
-import { apiStoreLenses } from 'sls-aws/src/client/logic/api/lenses'
+import { apiStoreLenses } from 'root/src/client/logic/api/lenses'
 
 const { setListProcessingChild } = apiStoreLenses
 

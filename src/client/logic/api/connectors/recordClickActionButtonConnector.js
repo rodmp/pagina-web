@@ -1,9 +1,9 @@
-import reduxConnector from 'sls-aws/src/shared/util/reduxConnector'
+import reduxConnector from 'root/src/shared/util/reduxConnector'
 
-import recordClickActionLoadingSelector from 'sls-aws/src/client/logic/api/selectors/recordClickActionLoadingSelector'
-import recordClickActionLabelSelector from 'sls-aws/src/client/logic/api/selectors/recordClickActionLabelSelector'
+import recordClickActionLoadingSelector from 'root/src/client/logic/api/selectors/recordClickActionLoadingSelector'
+import recordClickActionLabelSelector from 'root/src/client/logic/api/selectors/recordClickActionLabelSelector'
 
-import recordClickAction from 'sls-aws/src/client/logic/api/thunks/recordClickAction'
+import recordClickAction from 'root/src/client/logic/api/thunks/recordClickAction'
 
 export default reduxConnector(
 	[

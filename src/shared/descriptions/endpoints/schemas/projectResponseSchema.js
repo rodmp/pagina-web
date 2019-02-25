@@ -1,6 +1,6 @@
 import {
 	projectApprovedKey, projectRejectedKey, projectPendingKey,
-} from 'sls-aws/src/server/api/lenses'
+} from 'root/src/server/api/lenses'
 
 export default {
 	type: 'object',

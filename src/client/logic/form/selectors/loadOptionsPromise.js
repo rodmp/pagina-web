@@ -1,11 +1,11 @@
 import { path, prop, map } from 'ramda'
 // import stringFormat from 'string-format'
 
-import ajax from 'sls-aws/src/shared/util/ajax'
-import moduleDescriptions from 'sls-aws/src/shared/descriptions/modules'
-import moduleIdFromKey from 'sls-aws/src/client/logic/route/util/moduleIdFromKey'
+import ajax from 'root/src/shared/util/ajax'
+import moduleDescriptions from 'root/src/shared/descriptions/modules'
+import moduleIdFromKey from 'root/src/client/logic/route/util/moduleIdFromKey'
 
-import { clientId, baseUrlV5 } from 'sls-aws/src/shared/constants/twitch'
+import { clientId, baseUrlV5 } from 'root/src/shared/constants/twitch'
 
 const promiseTypeMap = {
 	twitchChannels: async (input) => {

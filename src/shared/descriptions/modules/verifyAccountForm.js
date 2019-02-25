@@ -1,6 +1,6 @@
-import { VERIFY_ACCOUNT_FORM_MODULE_ID } from 'sls-aws/src/shared/descriptions/modules/moduleIds'
+import { VERIFY_ACCOUNT_FORM_MODULE_ID } from 'root/src/shared/descriptions/modules/moduleIds'
 
-import verifyAccountSchema from 'sls-aws/src/shared/descriptions/formSchemas/verifyAccountSchema'
+import verifyAccountSchema from 'root/src/shared/descriptions/formSchemas/verifyAccountSchema'
 
 export default {
 	[VERIFY_ACCOUNT_FORM_MODULE_ID]: {

@@ -1,18 +1,18 @@
 
 import { prop, reduce, contains, equals } from 'ramda'
 
-import createRecordClickActionStoreKey from 'sls-aws/src/client/logic/api/util/createRecordClickActionStoreKey'
+import createRecordClickActionStoreKey from 'root/src/client/logic/api/util/createRecordClickActionStoreKey'
 
-import initApiRecordClickActionRequest from 'sls-aws/src/client/logic/api/actions/initApiRecordClickActionRequest'
-import apiRecordClickActionRequestSuccess from 'sls-aws/src/client/logic/api/actions/apiRecordClickActionRequestSuccess'
-import apiRecordClickActionRequestError from 'sls-aws/src/client/logic/api/actions/apiRecordClickActionRequestError'
-import generalRecordModification from 'sls-aws/src/client/logic/api/actions/generalRecordModification'
-import recordClickActionDescriptions from 'sls-aws/src/shared/descriptions/recordClickActions'
+import initApiRecordClickActionRequest from 'root/src/client/logic/api/actions/initApiRecordClickActionRequest'
+import apiRecordClickActionRequestSuccess from 'root/src/client/logic/api/actions/apiRecordClickActionRequestSuccess'
+import apiRecordClickActionRequestError from 'root/src/client/logic/api/actions/apiRecordClickActionRequestError'
+import generalRecordModification from 'root/src/client/logic/api/actions/generalRecordModification'
+import recordClickActionDescriptions from 'root/src/shared/descriptions/recordClickActions'
 
-import recordTypeSelector from 'sls-aws/src/client/logic/api/selectors/recordTypeSelector'
-import createRecordStoreKey from 'sls-aws/src/client/logic/api/util/createRecordStoreKey'
+import recordTypeSelector from 'root/src/client/logic/api/selectors/recordTypeSelector'
+import createRecordStoreKey from 'root/src/client/logic/api/util/createRecordStoreKey'
 
-import invokeApiLambda from 'sls-aws/src/client/logic/api/util/invokeApiLambda'
+import invokeApiLambda from 'root/src/client/logic/api/util/invokeApiLambda'
 
 export default (
 	recordClickActionId, recordId,

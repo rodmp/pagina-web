@@ -1,4 +1,4 @@
-import subObj from 'sls-aws/src/shared/util/subObj'
+import subObj from 'root/src/shared/util/subObj'
 
 describe('subObj', () => {
 	test('substitutes values in result object from substitute obj', () => {

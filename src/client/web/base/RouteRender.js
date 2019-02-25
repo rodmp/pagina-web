@@ -1,20 +1,20 @@
 import React from 'react'
 import classNames from 'classnames'
 
-import { ternary } from 'sls-aws/src/shared/util/ramdaPlus'
+import { ternary } from 'root/src/shared/util/ramdaPlus'
 
-import routeRenderConnector from 'sls-aws/src/client/logic/route/connectors/routeRenderConnector'
+import routeRenderConnector from 'root/src/client/logic/route/connectors/routeRenderConnector'
 
-import FormModule from 'sls-aws/src/client/web/form/FormModule'
-import ListModule from 'sls-aws/src/client/web/list/ListModule'
-import RecordModule from 'sls-aws/src/client/web/record/RecordModule'
-import StaticModule from 'sls-aws/src/client/web/static/StaticModule'
-import Navigation from 'sls-aws/src/client/web/base/Navigation'
-import Footer from 'sls-aws/src/client/web/footer/Footer'
-import BannerFooter from 'sls-aws/src/client/web/footer/BannerFooter'
-import BannerHeader from 'sls-aws/src/client/web/header/BannerHeader'
+import FormModule from 'root/src/client/web/form/FormModule'
+import ListModule from 'root/src/client/web/list/ListModule'
+import RecordModule from 'root/src/client/web/record/RecordModule'
+import StaticModule from 'root/src/client/web/static/StaticModule'
+import Navigation from 'root/src/client/web/base/Navigation'
+import Footer from 'root/src/client/web/footer/Footer'
+import BannerFooter from 'root/src/client/web/footer/BannerFooter'
+import BannerHeader from 'root/src/client/web/header/BannerHeader'
 
-import { ModuleContextProvider } from 'sls-aws/src/client/util/withModuleContext'
+import { ModuleContextProvider } from 'root/src/client/util/withModuleContext'
 
 const styles = {
 	content: {

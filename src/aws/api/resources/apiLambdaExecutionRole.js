@@ -1,9 +1,9 @@
-import getAtt from 'sls-aws/src/aws/util/getAtt'
-import join from 'sls-aws/src/aws/util/join'
+import getAtt from 'root/src/aws/util/getAtt'
+import join from 'root/src/aws/util/join'
 
 import {
 	API_LAMBDA_EXECUTION_ROLE, API_DYNAMO_DB_TABLE,
-} from 'sls-aws/src/aws/api/resourceIds'
+} from 'root/src/aws/api/resourceIds'
 
 export default {
 	[API_LAMBDA_EXECUTION_ROLE]: {

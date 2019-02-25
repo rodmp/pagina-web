@@ -1,13 +1,13 @@
 import React from 'react'
-import ANCHORS from 'sls-aws/src/shared/constants/anchors'
-import Link from 'sls-aws/src/client/web/base/Link'
+import ANCHORS from 'root/src/shared/constants/anchors'
+import Link from 'root/src/client/web/base/Link'
 import {
 	COOKIE_POLICY_ROUTE_ID,
 	TERMS_OF_SERVICE_ROUTE_ID,
-} from 'sls-aws/src/shared/descriptions/routes/routeIds'
+} from 'root/src/shared/descriptions/routes/routeIds'
 import {
 	EMAIL,
-} from 'sls-aws/src/shared/constants/pageData'
+} from 'root/src/shared/constants/pageData'
 
 
 const pageContent = classes => [

@@ -1,7 +1,7 @@
-import endpointDescriptions from 'sls-aws/src/shared/descriptions/endpoints'
+import endpointDescriptions from 'root/src/shared/descriptions/endpoints'
 import {
 	endpointDescriptionLenses,
-} from 'sls-aws/src/shared/descriptions/endpoints/lenses'
+} from 'root/src/shared/descriptions/endpoints/lenses'
 
 const { viewRecordType } = endpointDescriptionLenses
 

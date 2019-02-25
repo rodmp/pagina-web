@@ -1,9 +1,9 @@
 import { reduce, pick, prepend, startsWith, split, prop } from 'ramda'
 
-import { skProp, pkProp } from 'sls-aws/src/server/api/lenses'
+import { skProp, pkProp } from 'root/src/server/api/lenses'
 
-import { GET_PROJECT } from 'sls-aws/src/shared/descriptions/endpoints/endpointIds'
-import { getResponseLenses } from 'sls-aws/src/server/api/getEndpointDesc'
+import { GET_PROJECT } from 'root/src/shared/descriptions/endpoints/endpointIds'
+import { getResponseLenses } from 'root/src/server/api/getEndpointDesc'
 
 const responseLenses = getResponseLenses(GET_PROJECT)
 const {

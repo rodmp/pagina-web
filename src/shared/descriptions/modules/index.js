@@ -1,3 +1,4 @@
+
 import loginForm from 'sls-aws/src/shared/descriptions/modules/loginForm'
 import signUpForm from 'sls-aws/src/shared/descriptions/modules/signUpForm'
 import verifyAccountForm from 'sls-aws/src/shared/descriptions/modules/verifyAccountForm'
@@ -58,9 +59,6 @@ const allModules = {
 	...termsOfServiceBannerHeader,
 	...rulesOfUseBannerHeader,
 	...dareCreateSuccess,
-	...bannerFooterMarketplace,
-	...bannerFooterHowItWorks,
-	...bannerFooterYourDare,
 	...bannerFooterDareAccepted,
 	...bannerFooterDareRejectConfirmation,
 	...bannerFooterDareSuccessCreate,
