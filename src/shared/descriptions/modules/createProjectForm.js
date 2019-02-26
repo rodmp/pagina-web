@@ -25,15 +25,17 @@ export default {
 		title: 'Dare a Streamer',
 		fields: [
 			{
-				fieldId: 'streamerUrl',
-				inputType: 'text',
-				label: 'Enter URL',
+				fieldId: 'assignees',
+				maxItems: 10,
+				inputType: 'autoComplete',
+				optionsPromiseType: 'twitchChannels',
+				placeholder: 'Select',
 				labelFieldText: [
 					{
-						text: 'Streamer URL',
+						text: 'Select assignees',
+						required: true,
 					},
 				],
-				extraButton: 'Add Another',
 			},
 			{
 				fieldId: 'title',
@@ -68,7 +70,7 @@ export default {
 				placeholder: 'Select',
 				labelFieldText: [
 					{
-						text: 'Select Video game',
+						text: 'Select video game',
 						required: true,
 					},
 				],
