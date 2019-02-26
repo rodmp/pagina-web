@@ -6,7 +6,7 @@ import rulesOfUse from 'root/src/shared/descriptions/routes/rulesOfUse'
 import auth from 'root/src/shared/descriptions/routes/auth'
 import projects from 'root/src/shared/descriptions/routes/projects'
 import accountSettings from 'root/src/shared/descriptions/routes/accountSettings'
-import dareCreateSuccess from 'root/src/shared/descriptions/routes/dareCreateSuccess';
+import dareCreateSuccess from 'root/src/shared/descriptions/routes/dareCreateSuccess'
 
 export default {
 	...howItWorks,
