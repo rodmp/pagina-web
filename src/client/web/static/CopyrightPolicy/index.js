@@ -5,7 +5,7 @@ import Terms from 'root/src/client/web/base/StaticLayout'
 import styles from './style'
 import pageContent from './pageContent'
 
-const PrivacyPolicy = ({ classes }) => (
+const CopyrightPolicy = ({ classes }) => (
 	<Terms>
 		<section>
 		It is our policy to respond to clear notices of alleged copyright 
