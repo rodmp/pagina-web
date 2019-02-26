@@ -3,6 +3,7 @@ import Link from 'root/src/client/web/base/Link'
 import {
 	PRIVACY_POLICY_ROUTE_ID,
 	COOKIE_POLICY_ROUTE_ID,
+	COPYRIGHT_POLICY_ROUTE_ID,
 	RULES_OF_USE_ROUTE_ID,
 } from 'root/src/shared/descriptions/routes/routeIds'
 import {
@@ -13,12 +14,12 @@ import {
 const pageContent = classes => [
 	{
 		title: '1. Welcome to Double Dog!',
-		paragraph: `
-        This page explains our terms of service. When you use Double Dog, you’re agreeing to all the
-        rules on this page. We’ve done our best to offer you clear and simple explanations of what
-        everything means with brief summaries before each Section. The summaries are not part of
-        the official legal terms.
-    `,
+		paragraph: (<span>
+			This page explains our terms of service. When you use Double Dog, you’re agreeing to all 
+			the rules on this page. We’ve done our best to offer you clear and simple explanations 
+			of what everything means with brief summaries before each Section. The summaries are 
+			not part of the official legal terms.
+		</span>),
 		text: (
 			<React.Fragment>
 				<p>
@@ -54,10 +55,10 @@ const pageContent = classes => [
 	},
 	{
 		title: '2. Creating an Account',
-		paragraph: `
-        To sign up for a Double Dog account, you need to be 18 years old or older. You’re
-        responsible for your account and all the activity on it.
-    `,
+		paragraph: (<span>
+			To sign up for a Double Dog account, you need to be 18 years old or older. You’re 
+			responsible for your account and all the activity on it.
+		</span>),
 		text: (
 			<React.Fragment>
 				<p>
@@ -81,10 +82,10 @@ const pageContent = classes => [
 	},
 	{
 		title: '3. Don’t Do These Things',
-		paragraph: `
-        This Section is a List of things you know you shouldn’t do: lie, break laws, abuse
-        people, steal data, hack other people’s computers, and so on. Please behave yourself.
-    `,
+		paragraph: (<span>
+			This Section is a List of things you know you shouldn’t do: lie, break laws, abuse people, 
+			steal data, hack other people’s computers, and so on. Please behave yourself.
+		</span>),
 		text: (
 			<React.Fragment>
 				<p>
@@ -154,12 +155,12 @@ const pageContent = classes => [
 	{
 		id: 'section-4',
 		title: '4. How Dares Work',
-		paragraph: `
-        Most of our Terms of Service explain your relationship with Double Dog. This section is
-        different — it explains the relationship between creators and backers of Double Dog Dares,
-        and who’s responsible for what. This is what you’re agreeing to when you create, fund,
-        delivers results for a Double Dog Dare.
-    `,
+		paragraph: (<span>
+			Most of our Terms of Service explain your relationship with Double Dog. This section is 
+			different — it explains the relationship between creators and backers of Double Dog Dares, 
+			and who’s responsible for what. This is what you’re agreeing to when you create, fund, 
+			delivers results for a Double Dog Dare.
+		</span>),
 		text: (
 			<React.Fragment>
 				<p>
@@ -195,10 +196,10 @@ const pageContent = classes => [
 	{
 		id: 'section-5',
 		title: '5. How Funding Works',
-		paragraph: `
-        This Section goes over the details of funding and creating Dares. This is how money
-        gets collected, and the details on how and when pledges can be changed or canceled
-    `,
+		paragraph: (<span>
+			This Section goes over the details of funding and creating Dares. This is how money gets 
+			collected, and the details on how and when pledges can be changed or canceled.
+		</span>),
 		text: (
 			<React.Fragment>
 				<p>These are the terms that apply when you’re funding or creating a Dare:</p>
@@ -268,9 +269,9 @@ const pageContent = classes => [
 	},
 	{
 		title: '6. Stuff We Aren’t Responsible For',
-		paragraph: `
-        We don’t oversee Dares’ performance, and we don’t mediate disputes between users.
-    `,
+		paragraph: (<span>
+			We don’t oversee Dares’ performance, and we don’t mediate disputes between users.`,
+		</span>),
 		text: (
 			<p>
         Double Dog isn’t liable for any damages or losses related to your use of the Services. We
@@ -286,10 +287,10 @@ const pageContent = classes => [
 	},
 	{
 		title: '7. Our Fees',
-		paragraph: `
-        Fees are only charged on successfully funded Dares. We charge 5%, in addition to any fees
-        from our payments partners.
-    `,
+		paragraph: (<span>
+			Fees are only charged on successfully funded Dares. We charge 5%, in addition to any fees 
+			from our payments partners.
+		</span>),
 		text: (
 			<React.Fragment>
 				<p>
@@ -312,10 +313,9 @@ const pageContent = classes => [
 	},
 	{
 		title: '8. Other Websites',
-		paragraph: `
-        If you follow a link to another website, what happens there is between you and them — not
-        us.
-    `,
+		paragraph: (<span>
+			If you follow a link to another website, what happens there is between you and them — not us.
+		</span>),
 		text: (
 			<React.Fragment>
 				<p>
@@ -324,22 +324,22 @@ const pageContent = classes => [
           do so at your own risk. We don’t control or endorse those sites.
 				</p>
 				<p>
-          Double Dog partners with other companies (such as <a href="https://stripe.com/" target="__blank">Stripe</a>) for
-          payment processing. When you back or create a Dare, you’re also agreeing to the payment
-          processor’s terms of service.
+          Double Dog partners with other companies (such as <a href="https://stripe.com/" target="__blank">
+					Stripe</a>) for payment processing. When you back or create a Dare, you’re also 
+					agreeing to the payment processor’s terms of service.
 				</p>
 			</React.Fragment>
 		),
 	},
 	{
 		title: '9. Your Intellectual Property',
-		paragraph: `
-        We don’t own the stuff you post on Double Dog. But when you post it, you’re giving us
-        permission to use or copy it however we need in order to run the site, or show people what’s
-        happening on it. (We generally just use this to promote Dares and showcase our community
-        on the website.) You’re responsible for the content you post, and you’re vouching to us that
-        it’s all okay to use.
-    `,
+		paragraph: (<span>
+			We don’t own the stuff you post on Double Dog. But when you post it, you’re giving us 
+			permission to use or copy it however we need in order to run the site, or show people 
+			what’s happening on it. (We generally just use this to promote Dares and showcase our 
+			community on the website.) You’re responsible for the content you post, and you’re vouching 
+			to us that it’s all okay to use.
+			</span>),
 		text: (
 			<React.Fragment>
 				<p>
@@ -399,12 +399,11 @@ const pageContent = classes => [
 	},
 	{
 		title: '10. Double Dog’s Intellectual Property',
-		paragraph: `
-        The content on Double Dog is protected in various ways. You do have the right to use it for
-        certain personal purposes, but you can’t use it for anything commercial without getting
-        permission first.
-    `,
-		text: (
+		paragraph: (<span>The content on Double Dog is protected in various ways. You do have the 
+			right to use it for certain personal purposes, but you can’t use it for anything commercial 
+			without getting permission first.
+		</span>),
+				text: (
 			<React.Fragment>
 				<p>
           Double Dog’s Services are legally protected in various ways, including copyrights,
@@ -428,7 +427,9 @@ const pageContent = classes => [
 	{
 		title: '11. How We Deal with Copyright Issues',
 		paragraph: (<span>
-        We comply with the Digital Millennium <Link routeId={null}>Copyright Act</Link>.
+        We comply with 
+				the <a href="https://www.copyright.gov/legislation/dmca.pdf">
+				Digital Millennium Copyright Act</a>.
               </span>),
 		text: (
 			<React.Fragment>
@@ -437,14 +438,14 @@ const pageContent = classes => [
           Policy. The Digital Millennium Copyright Act lays out a system of legal requirements for
           dealing with allegations of copyright infringement. Double Dog complies with the DMCA, and
           we respond to notices of alleged infringement if they comply with the law and the
-          requirements set forth in our Copyright Policy. We reserve the right to delete or disable
-          content alleged to be infringing, and to terminate accounts for repeat infringers. (We do
-          this when appropriate and at our sole discretion.)
+          requirements set forth in our <Link routeId={COPYRIGHT_POLICY_ROUTE_ID}>Copyright Policy</Link>. 
+					We reserve the right to delete or disable content alleged to be infringing, and to terminate 
+					accounts for repeat infringers. (We do this when appropriate and at our sole discretion.)
 				</p>
 				<p>
           If you’d like to submit a claim of copyright infringement, please visit our{' '}
-					<Link routeId={null}>Copyright Policy</Link>. Our designated agent for notice of alleged
-          copyright infringement is:
+					<Link routeId={COPYRIGHT_POLICY_ROUTE_ID}>Copyright Policy</Link>. Our designated agent 
+					for notice of alleged copyright infringement is:
 				</p>
 				<p>
 					<span>Double Dog</span>
@@ -464,10 +465,10 @@ const pageContent = classes => [
 	},
 	{
 		title: '12. Deleting Your Account',
-		paragraph: `
-        You can delete your account at any time. Deleting your account won’t automatically make some
-        content you’ve already posted go away.
-    `,
+		paragraph: (<span>
+			You can delete your account at any time. Deleting your account won’t automatically make some
+      content you’ve already posted go away.
+		</span>),
 		text: (
 			<React.Fragment>
 				<p>
@@ -490,12 +491,12 @@ const pageContent = classes => [
 	},
 	{
 		title: '13. Our Rights',
-		paragraph: `
+		paragraph: (<span>
         To operate, we need to be able to maintain control over what happens on our website. So in
         this Section, we reserve the right to make decisions to protect the health and integrity
         of our system. We don’t take these powers lightly, and we only use them when we absolutely
         have to.
-    `,
+		</span>),
 		text: (
 			<React.Fragment>
 				<p>Double Dog reserves these rights:</p>
@@ -526,10 +527,10 @@ const pageContent = classes => [
 	},
 	{
 		title: '14. Warranty Disclaimer',
-		paragraph: `
-        We work hard to provide you with great services, but we can’t guarantee everything will
-        always work perfectly. This site is presented as-is, without warranties.
-    `,
+		paragraph: (<span>
+      We work hard to provide you with great services, but we can’t guarantee everything will
+      always work perfectly. This site is presented as-is, without warranties.
+		</span>),
 		text: (
 			<React.Fragment>
 				<p>
@@ -548,9 +549,9 @@ const pageContent = classes => [
 	},
 	{
 		title: '15. Indemnification ',
-		paragraph: `
-        If you do something on Double Dog that winds up getting us sued, you have to help defend us.
-    `,
+		paragraph: (<span>
+      If you do something on Double Dog that winds up getting us sued, you have to help defend us.
+    </span>),
 		text: (
 			<React.Fragment>
 				<p>
@@ -576,9 +577,9 @@ const pageContent = classes => [
 	},
 	{
 		title: '16. Limitation of Liability',
-		paragraph: `
-        If something bad happens as a result of your use Double Dog, we’re not liable.
-    `,
+		paragraph: (<span>
+      If something bad happens as a result of your use Double Dog, we’re not liable.
+		</span>),
 		text: (
 			<p>
         To the fullest extent permitted by law, in no event will Double Dog, its directors,
@@ -592,10 +593,10 @@ const pageContent = classes => [
 	},
 	{
 		title: '17. Dispute Resolution and Governing Law',
-		paragraph: `
-        We’re located in New York, and any disputes with us have to be handled in New York under New
-        York State law.
-    `,
+		paragraph: (<span>
+      We’re located in New York, and any disputes with us have to be handled in New York under New
+      York State law.
+		</span>),
 		text: (
 			<p>
         We at Double Dog encourage you to contact us if you’re having an issue, before resorting to
@@ -619,10 +620,10 @@ const pageContent = classes => [
 	},
 	{
 		title: '18. The Rest',
-		paragraph: `
-        These are our official terms and our rules for how things work. (So if you ever see
-        conflicting information about any of this stuff, the information here is the last word.)
-    `,
+		paragraph: (<span>
+      These are our official terms and our rules for how things work. (So if you ever see
+      conflicting information about any of this stuff, the information here is the last word.)
+		</span>),
 		text: (
 			<React.Fragment>
 				<p>

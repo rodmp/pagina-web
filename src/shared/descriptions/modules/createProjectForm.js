@@ -25,8 +25,8 @@ export default {
 		title: 'Dare a Streamer',
 		fields: [
 			{
-				fieldId: 'streamerName',
-				maxItems: 1,
+				fieldId: 'assignees',
+				maxItems: 10,
 				inputType: 'autoComplete',
 				optionsPromiseType: 'twitchChannels',
 				placeholder: 'Enter Streamer Name',
@@ -34,9 +34,7 @@ export default {
 					{
 						text: 'Streamer',
 					},
-				],
-				extraButton: 'Add Another',
-			},
+				],			},
 			{
 				fieldId: 'title',
 				inputType: 'text',
