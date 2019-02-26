@@ -22,7 +22,6 @@ const styles = {
 		fontSize: 16,
 		fontWeight: 400,
 		lineHeight: '24px',
-		fontFamily: 'Sarabun, sans-serif',
 		paddingTop: 15,
 		paddingBottom: 100,
 		color: '#000',
