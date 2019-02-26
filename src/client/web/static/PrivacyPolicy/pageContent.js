@@ -97,7 +97,7 @@ const pageContent = classes => [
 					<li>
             Information about the ways people visit and interact with our Site, in the form of
             traffic analytics. You can opt out of being included in Google Analytics{' '}
-						<Link routeId={null}>here</Link>. For more information about our use of data analytics to protect
+						<Link href="https://tools.google.com/dlpage/gaoptout">here</Link>. For more information about our use of data analytics to protect
             and improve our Services, see our <Link routeId={COOKIE_POLICY_ROUTE_ID}>Cookie Policy</Link>;
 					</li>
 					<li>
@@ -434,7 +434,9 @@ const pageContent = classes => [
 				<p>To contact our Data Protection Officer, please email Support@DoubleDog.com.</p>
 				<span>You can contact us in writing at:</span>
 				<br />
-				<span>Double Dog</span> <span>320 W 38th st., 1122 </span>
+				<span>Double Dog</span> 
+				<br />
+				<span>320 W 38th st., 1122 </span>
 				<br />
 				<span>New York, NY 10018 </span>
 				<br />

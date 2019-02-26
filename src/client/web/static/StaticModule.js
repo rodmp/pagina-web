@@ -33,7 +33,7 @@ export const StaticModuleUnconnected = memo(({ staticPageType, pageContent }) =>
 		case 'successPage':
 			return <SuccessPage pageContent={pageContent} />
 		default:
-			return <div>Unsuported static page type: {staticPageType}</div>
+			return <div>Unsupported static page type: {staticPageType}</div>
 	}
 })
 

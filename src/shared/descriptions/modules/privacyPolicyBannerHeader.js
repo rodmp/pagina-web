@@ -7,6 +7,6 @@ export default {
 		moduleType: 'bannerHeader',
 		bannerImage: accountSettings,
 		bannerImageText: 'Privacy Policy',
-		bannerSubText: 'Table of Contents',
+		bannerSubText: '',
 	},
 }
