@@ -28,7 +28,9 @@ import dareCreateSuccess from 'root/src/shared/descriptions/modules/dareCreateSu
 import bannerFooterDareAccepted from 'root/src/shared/descriptions/modules/bannerFooterDareAccepted'
 import bannerFooterDareRejectConfirmation from 'root/src/shared/descriptions/modules/bannerFooterDareRejectConfirmation'
 import bannerFooterDareSuccessCreate from 'root/src/shared/descriptions/modules/bannerFooterDareSuccessCreate'
-import changePassword from 'root/src/shared/descriptions/modules/changePassword'
+import changePasswordAuth from 'root/src/shared/descriptions/modules/changePasswordAuth'
+import changePasswordForm from 'root/src/shared/descriptions/modules/changePasswordForm'
+import changePasswordSuccess from 'root/src/shared/descriptions/modules/changePasswordSuccess'
 import managePaymentForm from 'root/src/shared/descriptions/modules/managePaymentForm'
 import managePaymentList from 'root/src/shared/descriptions/modules/managePaymentList'
 
@@ -62,7 +64,9 @@ const allModules = {
 	...bannerFooterDareSuccessCreate,
 	...accountSettings,
 	...accountSettingsBannerHeader,
-	...changePassword,
+	...changePasswordAuth,
+	...changePasswordForm,
+	...changePasswordSuccess,
 	...managePaymentForm,
 	...managePaymentList,
 }
