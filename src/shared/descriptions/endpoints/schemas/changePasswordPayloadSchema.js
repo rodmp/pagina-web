@@ -1,14 +1,13 @@
 export default {
 	type: 'object',
 	properties: {
-		email: {
-			type: 'string',
-			format: 'email',
-		},
 		password: {
 			type: 'string',
 		},
+		password2: {
+			type: 'string',
+		},
 	},
-	required: ['email', 'password'],
+	required: ['password', 'password2'],
 	additionalProperties: false,
 }

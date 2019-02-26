@@ -6,7 +6,7 @@ const styles = {
 	section: {
 		...styled.section,
 		maxWidth: 825,
-		padding: '0 28px',
+		padding: '0 28px 28px 28px',
 		margin: '0 auto',
 		color,
 		'@media (min-width: 600px)': {

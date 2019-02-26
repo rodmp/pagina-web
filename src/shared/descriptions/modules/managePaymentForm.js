@@ -10,7 +10,7 @@ import {
 export default {
 	[MANAGE_PAYMENT_FORM_MODULE_ID]: {
 		moduleType: 'form',
-		formType: 'paymentMethod',
+		formType: 'universalForm',
 		schema: compose(
 			dissocPath(['additionalProperties']),
 			set(

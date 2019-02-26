@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 
-import { orNull } from 'root/src/shared/util/ramdaPlus'
+import { orNull, ternary } from 'root/src/shared/util/ramdaPlus'
 import classNames from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 
@@ -70,14 +70,8 @@ export const InputField = memo(({
 	moduleKey, fieldId, fieldPath, setInput, fieldValue, fieldLabel, fieldError,
 	fieldHasError, fieldType, fieldMultiline, fieldPlaceholder, formType, classes, wasSubmitted,
 }) => {
-	// const [focus, setFocus] = useState()
-	// const [error, setError] = useState(fieldError)
-	// useEffect(() => {
-	// 	setError(fieldError)
-	// }, [fieldHasError])
-
 	switch (formType) {
-		case 'paymentMethod':
+		case 'universalForm':
 			return (
 				<div className={
 					classNames(
@@ -88,9 +82,15 @@ export const InputField = memo(({
 						orNull((fieldId === 'securityCode'), classes.securityCode),
 					)}
 				>
-					<label className={classes.label} htmlFor={fieldId}>
-						{fieldLabel}<span className={classes.redText}>*</span>:
-					</label>
+					{ternary(
+						fieldId === 'email' || fieldId === 'password' || fieldId === 'password2',
+						<label className={classes.label} htmlFor={fieldId}>
+							{fieldLabel}
+						</label>,
+						<label className={classes.label} htmlFor={fieldId}>
+							{fieldLabel}<span className={classes.redText}>*</span>:
+						</label>,
+					)}
 					<input
 						id={fieldId}
 						type={fieldType}
