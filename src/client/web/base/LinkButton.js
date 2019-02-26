@@ -6,9 +6,9 @@ import {
 } from 'root/src/client/web/commonStyles'
 
 import classNames from 'classnames'
+import linkConnector from 'root/src/client/logic/app/connectors/linkConnector'
 
-
-import { withStyles } from '@material-ui/core/styles'
+import linkHandler from 'root/src/client/logic/app/handlers/linkHandler'
 
 const styles = {
 	button: {
@@ -20,18 +20,16 @@ const styles = {
 		width: '100%',
 		height: 48.1,
 	},
-	primarySquareButton: {
+	styledButton: {
 		padding: 10,
 		fontSize: 18,
 		textTransform: 'none',
 		marginBottom: 25,
 		boxShadow: '0 5px 6px 0 rgba(0, 0, 0, 0.16)',
 	},
+	primarySquareButton: {
+	},
 	noBackgroundButton: {
-		padding: 10,
-		fontSize: 18,
-		textTransform: 'none',
-		marginBottom: 25,
 		color: primaryColor,
 		backgroundColor: 'transparent',
 		boxShadow: 'none',
@@ -42,23 +40,25 @@ const styles = {
 	},
 }
 
-export const ButtonUnstyled = memo(({
-	classes, onClick, disabled, children, buttonType, isStyled, disableRipple, additionalClass, formType,
+export const BaseLink = memo(({
+	pushRoute, routeId, routeParams,
+	children, classes, additionalClass,
+	isStyled, buttonType, disabled, disableRipple,
 }) => (
 	<Button
 		className={classNames(
 			classes.button,
 			{ [classes.styledButton]: isStyled },
-			({ [classes.primarySquareButton]: buttonType === 'primarySquareButton' || formType === 'paymentMethod' }),
+			({ [classes.primarySquareButton]: buttonType === 'primarySquareButton' }),
 			({ [classes.noBackgroundButton]: buttonType === 'noBackgroundButton' }),
 			additionalClass,
 		)}
-		onClick={onClick}
+		onClick={linkHandler(routeId, routeParams, pushRoute)}
 		disabled={disabled}
-		disableRipple
+		disableRipple={disableRipple}
 	>
 		{children}
 	</Button>
 ))
 
-export default withStyles(styles)(ButtonUnstyled)
+export default linkConnector(BaseLink, styles)

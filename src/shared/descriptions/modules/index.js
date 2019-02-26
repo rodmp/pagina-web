@@ -1,3 +1,4 @@
+
 import loginForm from 'root/src/shared/descriptions/modules/loginForm'
 import signUpForm from 'root/src/shared/descriptions/modules/signUpForm'
 import verifyAccountForm from 'root/src/shared/descriptions/modules/verifyAccountForm'
@@ -28,6 +29,8 @@ import bannerFooterDareAccepted from 'root/src/shared/descriptions/modules/banne
 import bannerFooterDareRejectConfirmation from 'root/src/shared/descriptions/modules/bannerFooterDareRejectConfirmation'
 import bannerFooterDareSuccessCreate from 'root/src/shared/descriptions/modules/bannerFooterDareSuccessCreate'
 import changePassword from 'root/src/shared/descriptions/modules/changePassword'
+import managePaymentForm from 'root/src/shared/descriptions/modules/managePaymentForm'
+import managePaymentList from 'root/src/shared/descriptions/modules/managePaymentList'
 
 const allModules = {
 	...loginForm,
@@ -60,6 +63,8 @@ const allModules = {
 	...accountSettings,
 	...accountSettingsBannerHeader,
 	...changePassword,
+	...managePaymentForm,
+	...managePaymentList,
 }
 
 export default allModules
