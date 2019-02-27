@@ -28,9 +28,11 @@ const pageContent = classes => [
           affiliates, agents, representatives, consultants, employees, officers, and directors —
           collectively, “Double Dog,” “we,” or “us”), you’re agreeing to these legally binding rules
           (the “Terms”). You’re also agreeing to our{' '}
-					<Link routeId={PRIVACY_POLICY_ROUTE_ID}>Privacy Policy</Link> and{' '}
-					<Link routeId={COOKIE_POLICY_ROUTE_ID}>Cookie Policy</Link>, and agreeing to follow any
-          other rules on the Site, like our <Link routeId={RULES_OF_USE_ROUTE_ID}>rules for starting Dares</Link>.
+					<Link routeId={PRIVACY_POLICY_ROUTE_ID}>Privacy Policy</Link>,
+					<Link routeId={COOKIE_POLICY_ROUTE_ID}>Cookie Policy</Link>, and
+					<Link routeId={COPYRIGHT_POLICY_ROUTE_ID}>Copyright Policy</Link>; 
+					and agreeing to follow any other rules on the Site, like our{' '}
+					<Link routeId={RULES_OF_USE_ROUTE_ID}>Rules of Use</Link>.
 				</p>
 				<p>
           We may change these terms from time to time. If we do, we’ll let you know about any
