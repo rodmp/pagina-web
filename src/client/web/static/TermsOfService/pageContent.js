@@ -56,8 +56,11 @@ const pageContent = classes => [
 	{
 		title: '2. Creating an Account',
 		paragraph: (<span>
-			To sign up for a Double Dog account, you need to be 18 years old or older. You’re 
-			responsible for your account and all the activity on it.
+			To use Double Dog, you need to be 13 years old or older. 
+			If you’re between 13 and 18 (or the legal age of majority for your 
+			jurisdiction), you may only use Double Dof under the supervision of a 
+			parent or legal guardian who agrees to these Terms. You’re responsible 
+			for your account and all the activity on it.
 		</span>),
 		text: (
 			<React.Fragment>
@@ -74,8 +77,11 @@ const pageContent = classes => [
           report it to <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.
 				</p>
 				<p>
-          To sign up for an account, you need to be at least 18 years old, or old enough to form a
-          binding contract where you live. If necessary, we may ask you for proof of your age.
+				To sign up for an account, you need to be at least 18 years old, old 
+				enough to form a binding contract where you live, or at least 13 years 
+				old under the supervision of a parent or guardian who agrees to be 
+				bound by these Terms of Service. If necessary, we may ask you for proof 
+				of your age.
 				</p>
 			</React.Fragment>
 		),
