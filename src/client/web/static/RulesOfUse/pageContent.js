@@ -7,6 +7,11 @@ const rules = [
 	'Pornographic material.',
 	'Projects that promote discrimination, bigotry, or intolerance towards marginalized groups',
 	'Real life weapons, replicas of weapons, and weapon accessories (as opposed to weapons in games, which are allowed).',
+	'Content that invades the privacy of others.',
+	'Impersonating an individual or organization.',
+	'Cheating, hacking, botting, stream sniping, or tampering that gives the account owner an unfair advantage in an online multiplayer game.',
+	'Sharing content you don\'t own or are not authorized to share on Double Dog.',
+	'Broadcasting alpha, beta, or pre-release games without advance consent (requesting to see broadcasts with consent from game developers is permissable).',
 ]
 
 export default rules
