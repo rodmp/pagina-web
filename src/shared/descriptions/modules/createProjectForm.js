@@ -35,6 +35,7 @@ export default {
 						text: 'Streamer',
 					},
 				],			},
+
 			{
 				fieldId: 'title',
 				inputType: 'text',
@@ -68,7 +69,7 @@ export default {
 				placeholder: 'Select',
 				labelFieldText: [
 					{
-						text: 'Select Video game',
+						text: 'Select video game',
 						required: true,
 					},
 				],
