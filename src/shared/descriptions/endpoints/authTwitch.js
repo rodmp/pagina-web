@@ -1,5 +1,5 @@
 import {
-	AUTH_TWITCH,
+	POST_AUTH_TWITCH,
 } from 'root/src/shared/descriptions/endpoints/endpointIds'
 // import { admin } from 'root/src/shared/constants/authenticationTypes'
 
@@ -13,7 +13,7 @@ export const payloadSchema = authTwitchPayloadSchema
 // export const responseSchema = projectResponseSchema
 
 export default {
-	[AUTH_TWITCH]: {
+	[POST_AUTH_TWITCH]: {
 		// authentication: admin,
 		endpointType: externalEndpointType,
 		// recordType: project,

@@ -12,10 +12,13 @@ import initApiRecordRequest from 'root/src/client/logic/api/actions/initApiRecor
 import apiRecordRequestSuccess from 'root/src/client/logic/api/actions/apiRecordRequestSuccess'
 import apiRecordRequestError from 'root/src/client/logic/api/actions/apiRecordRequestError'
 
+import apiExternalRequestSuccess from 'root/src/client/logic/api/actions/apiExternalRequestSuccess'
+
 import recordTypeSelector from 'root/src/client/logic/api/selectors/recordTypeSelector'
 import endpointTypeSelector from 'root/src/client/logic/api/selectors/endpointTypeSelector'
 
 import invokeApiLambda from 'root/src/client/logic/api/util/invokeApiLambda'
+import invokeApiExternal from 'root/src/client/logic/api/util/invokeApiExternal'
 
 export const fetchList = async (dispatch, state, endpointId, payload) => {
 	const recordType = recordTypeSelector(endpointId)
@@ -51,21 +54,21 @@ export const fetchRecord = async (dispatch, state, endpointId, payload) => {
 }
 
 export const fetchExternal = async (dispatch, state, endpointId, payload) => {
-	// const recordType = recordTypeSelector(endpointId)
-	// const recordId = idProp(payload)
-	// if (recordId) { // else creating, don't need record loading state
-	// 	const recordStoreKey = createRecordStoreKey(recordType, recordId)
-	// 	dispatch(initApiRecordRequest(recordStoreKey))
-	// }
-	// const lambdaRes = await invokeApiLambda(endpointId, payload, state)
-	// const { statusCode, body, statusError, generalError } = lambdaRes
-	// if (equals(statusCode, 200)) {
-	// 	dispatch(apiRecordRequestSuccess(recordType, body))
-	// } else if (recordId) { // else creating, don't need record error state
-	// 	const error = { ...statusError, ...generalError }
-	// 	dispatch(apiRecordRequestError(recordType, recordId, error))
-	// }
-	// return lambdaRes
+	const recordType = recordTypeSelector(endpointId)
+	const recordId = idProp(payload)
+	if (recordId) { // else creating, don't need record loading state
+		const recordStoreKey = createRecordStoreKey(recordType, recordId)
+		dispatch(initApiRecordRequest(recordStoreKey))
+	}
+	const externalRes = await invokeApiExternal(endpointId, payload)
+	const { status } = externalRes
+	if (equals(status, 200)) {feature/legal-updates
+		dispatch(apiExternalRequestSuccess(status))
+	} else if (recordId) { // else creating, don't need record error state
+		const error = {}
+		dispatch(apiRecordRequestError(recordType, recordId, error))
+	}
+	return externalRes
 }
 
 const endpointTypeFunctionMap = {
