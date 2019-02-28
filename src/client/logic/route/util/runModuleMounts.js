@@ -11,6 +11,7 @@ import {
 
 import listModuleOnEnter from 'root/src/client/logic/api/thunks/listModuleOnEnter'
 import recordModuleOnEnter from 'root/src/client/logic/api/thunks/recordModuleOnEnter'
+import externalModuleOnEnter from 'root/src/client/logic/api/thunks/externalModuleOnEnter'
 
 const { viewModules } = routeDescriptionLenses
 const { viewModuleType } = moduleDescriptionLenses
@@ -22,6 +23,8 @@ const moduleTypeAction = (moduleType) => {
 			return listModuleOnEnter
 		case 'record':
 			return recordModuleOnEnter
+		case 'external':
+			return externalModuleOnEnter
 		default:
 	}
 }

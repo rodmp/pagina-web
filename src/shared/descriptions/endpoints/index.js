@@ -8,6 +8,8 @@ import pledgeProject from 'root/src/shared/descriptions/endpoints/pledgeProject'
 import getPledgedProjects from 'root/src/shared/descriptions/endpoints/getPledgedProjects'
 import auditProject from 'root/src/shared/descriptions/endpoints/auditProject'
 
+import authTwitch from 'root/src/shared/descriptions/endpoints/authTwitch'
+
 import getActiveProjects from 'root/src/shared/descriptions/endpoints/getActiveProjects'
 import getPendingProjects from 'root/src/shared/descriptions/endpoints/getPendingProjects'
 
@@ -20,6 +22,7 @@ const allEndpoints = {
 	...auditProject,
 	...getActiveProjects,
 	...getPendingProjects,
+	...authTwitch,
 }
 
 export default map(

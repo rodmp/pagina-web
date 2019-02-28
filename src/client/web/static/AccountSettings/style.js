@@ -31,6 +31,10 @@ const styles = {
 		fontSize: 18,
 		fontWeight: 'bold',
 		boxShadow: '0 5px 6px 0 rgba(0, 0, 0, 0.16)',
+		cursor: 'pointer',
+	},
+	link: {
+		textDecoration: 'none',
 	},
 }
 

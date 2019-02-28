@@ -9,7 +9,7 @@ const endpointDescriptionSchema = {
 			type: 'object',
 			properties: {
 				authentication: { type: 'string' },
-				endpointType: { type: 'string', enum: ['list', 'record'] },
+				endpointType: { type: 'string', enum: ['list', 'record', 'external'] },
 				recordType: {
 					type: 'string',
 					enum: [
@@ -28,3 +28,4 @@ export const endpointDescriptionLenses = lensesFromSchema(
 
 export const listEndpointType = 'list'
 export const recordEndpointType = 'record'
+export const externalEndpointType = 'external'

@@ -15,7 +15,7 @@ describe('matchPath', () => {
 	test('Matches plain path', () => {
 		expect(matchPath('/foo')).toEqual({
 			routeId: 'ROUTE_ID_1',
-			routeParams: {}
+			routeParams: {},
 		})
 	})
 
@@ -30,6 +30,14 @@ describe('matchPath', () => {
 		expect(matchPath('/bop/bing/bear')).toEqual({
 			routeId: 'ROUTE_ID_3',
 			routeParams: { buz: 'bing', bees: 'bear' },
+		})
+	})
+
+	test('Matches path with query string', () => {
+		expect(matchPath('/bop/bing/bear/?test=working')).toEqual({
+			routeId: 'ROUTE_ID_3',
+			routeParams: { buz: 'bing', bees: 'bear' },
+			query: { test: 'working' },
 		})
 	})
 

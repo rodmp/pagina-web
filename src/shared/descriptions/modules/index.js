@@ -27,6 +27,7 @@ import dareCreateSuccess from 'root/src/shared/descriptions/modules/dareCreateSu
 import bannerFooterDareAccepted from 'root/src/shared/descriptions/modules/bannerFooterDareAccepted'
 import bannerFooterDareRejectConfirmation from 'root/src/shared/descriptions/modules/bannerFooterDareRejectConfirmation'
 import bannerFooterDareSuccessCreate from 'root/src/shared/descriptions/modules/bannerFooterDareSuccessCreate'
+import twitchOAuth from 'root/src/shared/descriptions/modules/twitchOAuth'
 
 const allModules = {
 	...loginForm,
@@ -58,6 +59,7 @@ const allModules = {
 	...bannerFooterDareSuccessCreate,
 	...accountSettings,
 	...accountSettingsBannerHeader,
+	...twitchOAuth,
 }
 
 export default allModules
