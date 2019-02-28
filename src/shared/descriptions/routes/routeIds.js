@@ -6,6 +6,8 @@ export const RESET_PASSWORD_ROUTE_ID = 'RESET_PASSWORD_ROUTE_ID'
 export const ACCOUNT_SETTINGS_ROUTE_ID = 'ACCOUNT_SETTINGS_ROUTE_ID'
 export const CHANGE_PASSWORD_ROUTE_ID = 'CHANGE_PASSWORD_ROUTE_ID'
 export const MANAGE_PAYMENT_ROUTE_ID = 'MANAGE_PAYMENT_ROUTE_ID'
+export const TWITCH_OAUTH_ROUTE_ID = 'TWITCH_OAUTH_ROUTE_ID'
+export const TWITCH_OAUTH_ROUTE = 'https://id.twitch.tv/oauth2/authorize?client_id=jl2c2hlcyimcmg466n0jscmlmpcb8j&response_type=token&scope=user_read&redirect_uri=http://localhost:8585/twitch-oauth'
 
 export const HOW_IT_WORKS_ROUTE_ID = 'HOW_IT_WORKS_ROUTE_ID'
 export const TERMS_OF_SERVICE_ROUTE_ID = 'TERMS_OF_SERVICE_ROUTE_ID'

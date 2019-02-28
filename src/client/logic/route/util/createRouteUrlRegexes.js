@@ -7,7 +7,7 @@ import {
 
 export const createRouteUrlRegexesHof = memoizeWith(
 	compose(path([0, 0]), toPairs),
-	(pathToRegexpFn) => (allRoutes) => reduce(
+	pathToRegexpFn => allRoutes => reduce(
 		(results, [routeId, routeDesc]) => {
 			const url = view(routeUrlLens, routeDesc)
 			const keys = []
@@ -19,12 +19,12 @@ export const createRouteUrlRegexesHof = memoizeWith(
 					[regexKeysKey]: keys,
 					[toPathKey]: pathToRegexpFn.compile(url),
 				},
-				results
+				results,
 			)
 		},
 		{},
-		toPairs(allRoutes)
-	)
+		toPairs(allRoutes),
+	),
 )
 
 export default createRouteUrlRegexesHof(pathToRegexp)
