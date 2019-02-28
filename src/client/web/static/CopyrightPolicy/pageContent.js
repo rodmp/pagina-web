@@ -64,35 +64,39 @@ const pageContent = classes => [
 	{
 		title: 'Counter-Notification',
 		text: (
-			<React.Fragment>
-			<p>
-				Your counter-notification email must contain the following information
-				(please confirm these requirements with your legal counsel or see the 
-				U.S. Copyright Act, 17 U.S.C. §512(g)(3) for more information. Please 
-				also note that all information must be submitted in English:
-				</p>
-				<ul className={classes.list1}>
-				<li>a physical or electronic signature of the user of the services;
-				</li>
-				<li>identification of the material that has been removed or to which 
-					access has been disabled and the location at which the material 
-					appeared before it was removed or access to it was disabled;
-				</li>
-				<li>a statement made under penalty of perjury that the subscriber 
-						has a good faith belief that the material was removed or disabled 
-						as a result of mistake or misidentification of the material; and
-				</li>
-				<li>the subscriber’s name, address, telephone number, and a statement 
-					that the subscriber consents to the jurisdiction of the Federal 
-					District Court for the judicial district in which the address is 
-					located, or if the subscriber’s address is outside of the United 
-					States, for any judicial district in which the service provider may 
-					be found, and that the user will accept service of process from the 
-					person who provided notification under 17 U.S.C. § 512(c)(3), or an 
-					agent of such person.
-				</li>
-			</ul>
-			<p>
+		<React.Fragment>
+		<p>
+			Your counter-notification email must contain the following information
+			(please confirm these requirements with your legal counsel or see the 
+			U.S. Copyright Act, 17 U.S.C. §512(g)(3) for more information. Please 
+			also note that all information must be submitted in English:
+		</p>
+		<ul className={classes.list1}>
+			<li>
+				a physical or electronic signature of the user of the services;
+			</li>
+			<li>
+				identification of the material that has been removed or to which 
+				access has been disabled and the location at which the material 
+				appeared before it was removed or access to it was disabled;
+			</li>
+			<li>
+				a statement made under penalty of perjury that the subscriber 
+				has a good faith belief that the material was removed or disabled 
+				as a result of mistake or misidentification of the material; and
+			</li>
+			<li>
+				the subscriber’s name, address, telephone number, and a statement 
+				that the subscriber consents to the jurisdiction of the Federal 
+				District Court for the judicial district in which the address is 
+				located, or if the subscriber’s address is outside of the United 
+				States, for any judicial district in which the service provider may 
+				be found, and that the user will accept service of process from the 
+				person who provided notification under 17 U.S.C. § 512(c)(3), or an 
+				agent of such person.
+			</li>
+		</ul>
+		<p>
 		Please note that under Section 512(f) of the Copyright Act, any person 
 		who knowingly materially misrepresents that material or activity was 
 		removed or disabled by mistake or misidentification may be subject to 
