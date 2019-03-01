@@ -1,9 +1,11 @@
 import reduxConnector from 'root/src/shared/util/reduxConnector'
 
-import getExternalSelector from 'root/src/client/logic/api/selectors/getExternalSelector'
+import getExternalDataSelector from 'root/src/client/logic/api/selectors/getExternalDataSelector'
+import getPageContentSelector from 'root/src/client/logic/api/selectors/getPageContentSelector'
 
 export default reduxConnector(
 	[
-		['external', getExternalSelector],
+		['externalData', getExternalDataSelector],
+		['pageContent', getPageContentSelector],
 	],
 )

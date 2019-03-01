@@ -12,8 +12,13 @@ import MaxWidthContainer from 'root/src/client/web/base/MaxWidthContainer'
 import Title from 'root/src/client/web/typography/Title'
 import SubHeader from 'root/src/client/web/typography/SubHeader'
 import Button from 'root/src/client/web/base/Button'
+import { TwitchButton } from 'root/src/client/web/base/CustomButton'
+
+import { twitchApiUrl } from 'root/cfOutput'
 
 import RecordClickActionButton from 'root/src/client/web/base/RecordClickActionButton'
+import storeLocationInStorage from 'root/src/shared/util/storeLocationInStorage'
+import storeAssigneeInStorage from 'root/src/shared/util/storeAssigneeInStorage'
 import { APPROVE_PROJECT } from 'root/src/shared/descriptions/recordClickActions/recordClickActionIds'
 
 import viewProjectConnector from 'root/src/client/logic/project/connectors/viewProjectConnector'
@@ -21,7 +26,7 @@ import withModuleContext from 'root/src/client/util/withModuleContext'
 
 import goToPledgeProjectHandler from 'root/src/client/logic/project/handlers/goToPledgeProjectHandler'
 
-import { orNull } from 'root/src/shared/util/ramdaPlus'
+import { orNull, ternary } from 'root/src/shared/util/ramdaPlus'
 
 const styles = {
 	title: {
@@ -94,7 +99,7 @@ const styles = {
 
 export const ViewProjectModule = memo(({
 	projectId, projectDescription, projectTitle, pledgeAmount, myPledge, status,
-	assignees, gameImage, canApproveProject, pushRoute, canPledgeProject,
+	assignees, gameImage, canApproveProject, pushRoute, canPledgeProject, externalData = {},
 	classes,
 }) => (
 	<div className="flex layout-row layout-align-center-start">
@@ -161,9 +166,28 @@ export const ViewProjectModule = memo(({
 									)}
 								>
 										Pledge
-         </Button>
+									</Button>
 							</div>,
 						)}
+						{ternary(assignees
+							.filter(assignee => assignee.username === externalData.displayName).length > 0,
+						<TwitchButton
+							title="Accept or reject Dare"
+							backgroundColor="#fff"
+							color="#800080"
+						/>,
+						<TwitchButton
+							title="Accept or reject Dare"
+							subtitle="Connect with Twitch"
+							backgroundColor="#fff"
+							color="#800080"
+							withIcon
+							onClick={() => {
+								storeAssigneeInStorage(assignees[0].username)
+								storeLocationInStorage()
+							}}
+							href={twitchApiUrl}
+						/>)}
 					</div>
 
 				</div>

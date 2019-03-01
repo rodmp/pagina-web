@@ -84,8 +84,18 @@ const apiStoreSchema = {
 				externals: {
 					type: 'object',
 					patternProperties: {
-						[variableSchemaKey]: { // recordTypes-recordId
-							// type: 'string', this is really a string
+						[variableSchemaKey]: {
+							type: 'object',
+							properties: {
+
+							},
+						},
+					},
+				},
+				pageContent: {
+					type: 'object',
+					patternProperties: {
+						[variableSchemaKey]: {
 							type: 'object',
 							properties: {},
 						},
