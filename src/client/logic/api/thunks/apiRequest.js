@@ -62,8 +62,8 @@ export const fetchExternal = async (dispatch, state, endpointId, payload) => {
 	}
 	const externalRes = await invokeApiExternal(endpointId, payload)
 	const { status } = externalRes
-	if (equals(status, 200)) {feature/legal-updates
-		dispatch(apiExternalRequestSuccess(status))
+	if (equals(status, 200)) {
+		dispatch(apiExternalRequestSuccess(recordType, externalRes))
 	} else if (recordId) { // else creating, don't need record error state
 		const error = {}
 		dispatch(apiRecordRequestError(recordType, recordId, error))

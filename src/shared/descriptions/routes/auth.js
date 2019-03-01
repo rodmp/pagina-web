@@ -6,7 +6,6 @@ import {
 	RESET_PASSWORD_ROUTE_ID,
 	SIGN_OUT,
 	TWITCH_OAUTH_ROUTE_ID,
-	TWITCH_OAUTH_ROUTE,
 } from 'root/src/shared/descriptions/routes/routeIds'
 
 import {
@@ -52,8 +51,5 @@ export default {
 	[TWITCH_OAUTH_ROUTE_ID]: {
 		url: '/twitch-oauth',
 		modules: [TWITCH_OAUTH_MODULE_ID],
-	},
-	[TWITCH_OAUTH_ROUTE]: {
-		url: 'https://id.twitch.tv/oauth2/authorize?client_id=jl2c2hlcyimcmg466n0jscmlmpcb8j&response_type=token&redirect_uri=http://localhost:8585',
 	},
 }

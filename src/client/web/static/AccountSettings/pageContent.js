@@ -1,8 +1,8 @@
 import {
 	CHANGE_PASSWORD_ROUTE_ID,
 	MANAGE_PAYMENT_ROUTE_ID,
-	TWITCH_OAUTH_ROUTE,
 } from 'root/src/shared/descriptions/routes/routeIds'
+import { twitchApiUrl } from 'root/cfOutput'
 
 export default {
 	lead: 'Select Action',
@@ -17,7 +17,7 @@ export default {
 		},
 		{
 			text: 'Oauth Channel',
-			href: TWITCH_OAUTH_ROUTE,
+			href: twitchApiUrl,
 		},
 	],
 }

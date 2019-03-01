@@ -1,11 +1,11 @@
 import { TWITCH_OAUTH_MODULE_ID } from 'root/src/shared/descriptions/modules/moduleIds'
 // import { ACTIVE_PROJECTS_ROUTE_ID } from 'root/src/shared/descriptions/routes/routeIds'
-import { GET_PROJECT, POST_AUTH_TWITCH } from 'root/src/shared/descriptions/endpoints/endpointIds'
+import { GET_PROJECT, GET_USERS_TWITCH } from 'root/src/shared/descriptions/endpoints/endpointIds'
 
 export default {
 	[TWITCH_OAUTH_MODULE_ID]: {
 		moduleType: 'external',
-		endpointId: POST_AUTH_TWITCH,
+		endpointId: GET_USERS_TWITCH,
 		// endpointId: GET_PROJECT,
 		// pageContent: {
 		// 	title: 'Account Verified',
