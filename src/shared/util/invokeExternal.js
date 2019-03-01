@@ -1,15 +1,25 @@
-import { prop } from 'ramda'
 import axios from 'axios'
+import buildExternalUrl from 'root/src/shared/util/buildExternalUrl'
 
 export default ({ endpointId, payload }) => {
-	const method = endpointId.split('_')[0]
+	const request = endpointId.split('_')
+	const [method, endpoint, api] = request
+	const url = buildExternalUrl(api, endpoint)
 	switch (method) {
 		case 'GET':
-			return axios.get('https://google.pl', false)
-				.then(res => JSON.parse(prop('Payload', res)))
-		case 'POST':
-			return axios.post(`https://id.twitch.tv/oauth2/revoke?client_id=jl2c2hlcyimcmg466n0jscmlmpcb8j&token=${payload.authToken}`)
-				.then(res => res)
+			return axios.get(url, {
+				headers: {
+					Authorization: `Bearer ${payload.authToken}`,
+				},
+			})
+				.then(({ config, status, data: { data } }) => ({
+					displayName: data[0].display_name,
+					login: data[0].login,
+					thumbnail: data[0].profile_image_url,
+					id: data[0].id,
+					token: config.headers.Authorization,
+					status,
+				}))
 		default:
 	}
 }
