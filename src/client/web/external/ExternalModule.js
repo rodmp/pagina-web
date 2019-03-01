@@ -1,20 +1,22 @@
 import React, { memo } from 'react'
 
-// import ViewProject from 'root/src/client/web/record/ViewProject'
 import externalModuleConnector from 'root/src/client/logic/api/connectors/externalModuleConnector'
 
 import withModuleContext from 'root/src/client/util/withModuleContext'
 
-const styles = {}
-// import recordModuleConnector from 'root/src/client/logic/api/connectors/recordModuleConnector'
+import GetUserTwitch from 'root/src/client/web/external/GetUserTwitch'
 
-// eventually make this a switch statement for record types
-export const ExternalModuleUnconnected = memo(() => (
-	// <ViewProject />
-	<div>Dupa</div>
-))
+export const ExternalModuleUnconnected = memo(({
+	externalData: { displayName }, moduleId, pageContent,
+}) => {
+	switch (moduleId) {
+		case 'TWITCH_OAUTH_MODULE_ID':
+			return <GetUserTwitch displayName={displayName} pageContent={pageContent} />
+		default:
+			return <div>No module found</div>
+	}
+})
 
 export default withModuleContext(
-	externalModuleConnector(ExternalModuleUnconnected, styles),
+	externalModuleConnector(ExternalModuleUnconnected),
 )
-// export default withModuleContext(recordModuleConnector(RecordModule))

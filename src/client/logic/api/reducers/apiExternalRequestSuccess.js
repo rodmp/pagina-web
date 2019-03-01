@@ -10,7 +10,6 @@ export const apiExternalRequestSuccess = (
 	state,
 	{ recordType, external },
 ) => {
-	console.log(external)
 	const externalId = idProp(external)
 	const externalStoreId = createExternalStoreKey(recordType, externalId)
 	return compose(

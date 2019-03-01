@@ -1,1 +1,1 @@
-export default (recordType, external) => `${recordType}-${external}`
+export default recordType => recordType.split('_')[2]

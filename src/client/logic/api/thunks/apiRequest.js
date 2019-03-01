@@ -20,6 +20,9 @@ import endpointTypeSelector from 'root/src/client/logic/api/selectors/endpointTy
 import invokeApiLambda from 'root/src/client/logic/api/util/invokeApiLambda'
 import invokeApiExternal from 'root/src/client/logic/api/util/invokeApiExternal'
 
+import matchPath from 'root/src/client/logic/route/util/matchPath'
+import pushRoute from 'root/src/client/logic/route/thunks/pushRoute'
+
 export const fetchList = async (dispatch, state, endpointId, payload) => {
 	const recordType = recordTypeSelector(endpointId)
 	const listStoreKey = createListStoreKey(endpointId, payload)
@@ -63,7 +66,14 @@ export const fetchExternal = async (dispatch, state, endpointId, payload) => {
 	const externalRes = await invokeApiExternal(endpointId, payload)
 	const { status } = externalRes
 	if (equals(status, 200)) {
-		dispatch(apiExternalRequestSuccess(recordType, externalRes))
+		dispatch(apiExternalRequestSuccess(endpointId, externalRes))
+		if (window.localStorage.getItem('redirectUri')
+			&& externalRes.displayName === window.localStorage.getItem('redirectAssignee')) {
+			const { routeId, routeParams } = matchPath(window.localStorage.getItem('redirectUri'))
+			dispatch(pushRoute(routeId, routeParams))
+		}
+		window.localStorage.removeItem('redirectUri')
+		window.localStorage.removeItem('redirectAssignee')
 	} else if (recordId) { // else creating, don't need record error state
 		const error = {}
 		dispatch(apiRecordRequestError(recordType, recordId, error))

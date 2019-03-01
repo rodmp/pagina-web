@@ -1,5 +1,6 @@
 const defaultStyles = {
 	width: '100%',
+	minWidth: 300,
 	maxWidth: 360,
 	outline: 'none',
 	borderRadius: 30,
@@ -15,25 +16,29 @@ const defaultStyles = {
 }
 
 const styledTwitchButton = {
+	link: {
+		textDecoration: 'none',
+	},
 	button: {
 		...defaultStyles,
+		position: 'relative',
 		display: 'flex',
 		justifyContent: 'center',
 		alignItems: 'center',
-		padding: 3,
+		padding: 5,
 		color: '#800080',
 		lineHeight: 1,
 		fontWeight: 500,
-
-		'& i': {
-			fontSize: 25,
-			fontWeight: 700,
-			marginRight: 18,
-		},
-
+		height: 48,
 		'& .button-subtitle': {
 			fontSize: 12,
 			fontWeight: 200,
+		},
+		'& svg': {
+			position: 'absolute',
+			top: '50%',
+			left: '10%',
+			transform: 'translateY(-50%)',
 		},
 	},
 }
