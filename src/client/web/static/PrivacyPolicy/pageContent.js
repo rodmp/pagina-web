@@ -19,7 +19,7 @@ const pageContent = classes => [
         We may update this Policy periodically. If we do, we’ll let you know about any material
         changes, either by notifying you on the Site or by sending you an email. New versions of
         this Policy will never apply retroactively — we’ll tell you the exact date they go into
-        effect. If you keep using Double Dog after a change, that means you accept this Policy.
+        effect. If you keep using Dare Drop after a change, that means you accept this Policy.
 			</p>
 		),
 	},
@@ -28,8 +28,8 @@ const pageContent = classes => [
 		id: ANCHORS.WHO_WE_ARE,
 		text: (
 			<p>
-        Double Dog, PBC (along with its parents, subsidiaries, affiliates, agents, representatives, 
-		consultants, employees, officers, and directors — collectively, “Double Dog,” “we,” or 
+        Dare Drop, PBC (along with its parents, subsidiaries, affiliates, agents, representatives, 
+		consultants, employees, officers, and directors — collectively, “Dare Drop,” “we,” or 
 		“us”) provides services that help people bring creative content to life. Our main service 
 		is a funding platform for creative dares.
 			</p>
@@ -49,7 +49,7 @@ const pageContent = classes => [
           and similar technologies, as described in our <Link routeId={COOKIE_POLICY_ROUTE_ID}>Cookie Policy</Link>.
 				</p>
 				<p>
-          By using the Services offered by Double Dog, you’re acknowledging you have agreed to our
+          By using the Services offered by Dare Drop, you’re acknowledging you have agreed to our
           Terms of Use and that you have read and understood this Privacy Policy and our Cookie
           Policy.
 				</p>
@@ -62,35 +62,35 @@ const pageContent = classes => [
 		text: (
 			<React.Fragment>
 				<p>
-          In order for you to create an account on Double Dog and use our Services, we need to
+          In order for you to create an account on Dare Drop and use our Services, we need to
           collect and process certain information. Depending on your use of the Services, that may
           include:
 				</p>
 				<ul className={classes.list}>
 					<li>
-            Information you provide by completing forms on Double Dog — your name, email and postal
+            Information you provide by completing forms on Dare Drop — your name, email and postal
             addresses, telephone number, country of residence, login, and password details. We may
             ask for this information if you register as a user of the Services, subscribe to our
-            newsletters, upload, pledge or submit content through Double Dog, or if you contact us;
+            newsletters, upload, pledge or submit content through Dare Drop, or if you contact us;
 					</li>
 					<li>
             Information you provide for identity verification purposes when fulfilling a dare,
             including your legal name, business name and Tax ID for business entities, and date of
             birth. In some cases, our payment processor will request that you provide a secure
             upload of an identity document (such as your passport, drivers license or other
-            government-issued ID) to Double Dog;
+            government-issued ID) to Dare Drop;
 					</li>
 					<li>
-            Details of any requests or transactions you make through the Services. Double Dog
+            Details of any requests or transactions you make through the Services. Dare Drop
             partners with other companies (such as Stripe) for payment processing, and the payment
             information you submit is collected and used by them in accordance with their privacy
-            policies (for Stripe’s, click here). Double Dog doesn’t store your payment information
+            policies (for Stripe’s, click here). Dare Drop doesn’t store your payment information
             apart from the last four digits of your credit card or bank account (as applicable),
             expiration date, and country, which we require for tax, government regulatory, and
             security purposes;
 					</li>
 					<li>
-            Information about your activity on and interaction with Double Dog, including use of our
+            Information about your activity on and interaction with Dare Drop, including use of our
             mobile apps (such as your IP address, the type of device or browser you use, and your
             actions on the Site);
 					</li>
@@ -105,7 +105,7 @@ const pageContent = classes => [
             or comments, or report a problem); and
 					</li>
 					<li>
-            Information that you submit on or to Double Dog in the form of comments, contributions
+            Information that you submit on or to Dare Drop in the form of comments, contributions
             to discussions, or messages to other users.
 					</li>
 				</ul>
@@ -136,11 +136,11 @@ const pageContent = classes => [
 					</li>
 					<li>
             To create and administer your account, contact you, and customize your experience on
-            Double Dog (for example, to show you dares that we think may interest you based on
+            Dare Drop (for example, to show you dares that we think may interest you based on
             your previous use); and
 					</li>
 					<li>
-            To track and analyze use of the Services so that we can improve how Double Dog is
+            To track and analyze use of the Services so that we can improve how Dare Drop is
             performing and provide users with the best experience possible.
 					</li>
 				</ul>
@@ -205,10 +205,10 @@ const pageContent = classes => [
 				<p>
 					<strong> Information that’s shared publicly</strong>
 					<span>
-            When you create an account, we create a basic profile page for you on Double Dog,
+            When you create an account, we create a basic profile page for you on Dare Drop,
             containing your username, the date the account was created, and a list of dares you
             have funded or delivered. Your profile is private. Your username appears with dares
-            you create or claim on Double Dog.
+            you create or claim on Dare Drop.
 					</span>
 				</p>
 				<p>
@@ -252,9 +252,9 @@ const pageContent = classes => [
 				<strong>Information that’s shared with trusted third-party services</strong>
 				<span>
           We may share your information with certain trusted third-party services to help us
-          provide, improve, promote, or protect Double Dog’s Services (like when we partner with
+          provide, improve, promote, or protect Dare Drop’s Services (like when we partner with
           payment processors, or use services that help us manage our ads on other sites). When we
-          share data with third-party services that support our delivery of the Double Dog Services,
+          share data with third-party services that support our delivery of the Dare Drop Services,
           we require that they use your information only for the purposes we’ve authorized, and that
           they protect your personal information at least to the same standards we do. We may also
           share information that’s aggregated and anonymized in a way that it doesn’t directly
@@ -278,7 +278,7 @@ const pageContent = classes => [
 				</p>
 				<p>
           If a dare you have backed is successfully funded, the creator will receive the email
-          address associated with your Double Dog account. They may also send you a survey
+          address associated with your Dare Drop account. They may also send you a survey
           requesting information needed to provide any reward. (For instance, they may need your
           mailing address, or T-shirt size.) Any information you provide in such surveys will be
           received by the deliverer.
@@ -310,11 +310,11 @@ const pageContent = classes => [
 		id: ANCHORS.SHARED_WITH_DOUBLE_DOG,
 		text: (
 			<p>
-				<strong>Information that’s shared to protect Double Dog and comply with the law</strong>
+				<strong>Information that’s shared to protect Dare Drop and comply with the law</strong>
 				<span>
           We do reserve the right to disclose personal information when we believe that doing so is
           reasonably necessary to comply with the law or law enforcement, to prevent fraud or abuse,
-          or to protect Double Dog’s legal rights, property, or the safety of Double Dog, its
+          or to protect Dare Drop’s legal rights, property, or the safety of Dare Drop, its
           employees, users, or others.
 				</span>
 			</p>
@@ -328,7 +328,7 @@ const pageContent = classes => [
 				<strong>Links to other websites and services</strong>
 				<span>
           Our Site may include links to other websites or services whose privacy practices may
-          differ from Double Dog’s. When you use a link to an external site or service, the privacy
+          differ from Dare Drop’s. When you use a link to an external site or service, the privacy
           policy and data processing disclosures for that site or service governs.
 				</span>
 			</p>
@@ -344,7 +344,7 @@ const pageContent = classes => [
           you with the Services or as otherwise set forth in this Policy. We will also retain and
           use this information as necessary for the purposes set out in this Policy and to the
           extent necessary to comply with our legal obligations, resolve disputes, enforce our
-          agreements and protect Double Dog’s legal rights.
+          agreements and protect Dare Drop’s legal rights.
 				</p>
 				<p>
           We also collect and maintain aggregated, anonymized or pseudonymized information which we
@@ -359,7 +359,7 @@ const pageContent = classes => [
 		id: ANCHORS.DATA_TRANSFER,
 		text: (
 			<p>
-        Because Double Dog is a US-based company, your information will be collected and processed
+        Because Dare Drop is a US-based company, your information will be collected and processed
         in the United States. The United States has its own laws governing data protection and
         government access to information. The rules that protect your personal information under
         United States law may be different than in your home country. If you choose to use the
@@ -380,7 +380,7 @@ const pageContent = classes => [
           information. These rights are not applicable globally.
 				</p>
 				<p>
-          You can request a downloadable copy of your personal data from Double Dog from your
+          You can request a downloadable copy of your personal data from Dare Drop from your
           account settings page. To modify or delete the personal information you’ve provided to us,
           please log in and update your profile. We may retain certain information as required by
           law or as necessary for our legitimate business purposes.
@@ -398,7 +398,7 @@ const pageContent = classes => [
           a minimum and give you the ability to opt in to any marketing communications we send.
 				</p>
 				<p>
-          We will send you email relating to your transactions on Double Dog. You may also elect to
+          We will send you email relating to your transactions on Dare Drop. You may also elect to
           receive certain marketing email communications, in accordance with your preferences, and
           from which you may opt out at any time. We’ll also send you service-related announcements
           when it’s necessary to do so.
@@ -416,7 +416,7 @@ const pageContent = classes => [
           follow industry-standard practices to protect the data we collect and maintain, including
           using Transport Layer Security (TLS) to encrypt information as it travels over the
           internet. No method of transmission over the internet or electronic storage is completely
-          secure, so Double Dog cannot guarantee its absolute security. Your account information is
+          secure, so Dare Drop cannot guarantee its absolute security. Your account information is
           protected by a password, which you should choose carefully and keep secure.
 				</p>
 				<p>
@@ -434,7 +434,7 @@ const pageContent = classes => [
 				<p>To contact our Data Protection Officer, please email Support@DoubleDog.com.</p>
 				<span>You can contact us in writing at:</span>
 				<br />
-				<span>Double Dog</span> <span>320 W 38th st., 1122 </span>
+				<span>Dare Drop</span> <span>320 W 38th st., 1122 </span>
 				<br />
 				<span>New York, NY 10018 </span>
 				<br />
@@ -450,9 +450,9 @@ const pageContent = classes => [
 			<p>
 				<span>
           Subject to applicable law, if you are a citizen or resident of the European Economic Area,
-          you also have the right to (i) object to Double Dog’s use of your personal information and
+          you also have the right to (i) object to Dare Drop’s use of your personal information and
           (ii) lodge a complaint with your local data protection authority or the United Kingdom
-          Information Commissioner’s Office, which is Double Dog’s lead supervisory authority in the
+          Information Commissioner’s Office, which is Dare Drop’s lead supervisory authority in the
           European Union.
 				</span>
 				<br />
@@ -480,7 +480,7 @@ const pageContent = classes => [
 			<React.Fragment>
 				<p>
           People under 18 (or the legal age in your jurisdiction) are not permitted to use Double
-          Dog on their own. Double Dog does not knowingly collect any personal information from
+          Dog on their own. Dare Drop does not knowingly collect any personal information from
           children under the age of 13 and children under 13 are not permitted to register for an
           account or use our Services.
 				</p>

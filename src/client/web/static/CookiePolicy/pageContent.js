@@ -8,7 +8,7 @@ const pageContent = classes => [
 		title: 'Why we use cookies',
 		text: (
 			<p>
-        Double Dog uses cookies and other technologies to help recognize you as a repeat visitor
+        Dare Drop uses cookies and other technologies to help recognize you as a repeat visitor
         and, to improve the quality of our Services.
 			</p>
 		),
@@ -18,27 +18,27 @@ const pageContent = classes => [
 		text: (
 			<React.Fragment>
 				<p>
-          When you visit Double Dog, our web server sends a cookie to your device, which allows us
+          When you visit Dare Drop, our web server sends a cookie to your device, which allows us
           to recognize your device (but not the specific person using it). By associating the
           identification numbers in the cookies with other account information when, for example,
           you log in to our Services, we know that the cookie information relates to your user
-          account. Similarly, pixel tags on Double Dog and in email communications help us identify
-          how your device is being used to interact with Double Dog content. Some of the tags and
+          account. Similarly, pixel tags on Dare Drop and in email communications help us identify
+          how your device is being used to interact with Dare Drop content. Some of the tags and
           cookies used by our Services are served by us, and some are served by trusted partners who
           are delivering services on our behalf.
 				</p>
-				<p>Some examples of the types of cookies and other technologies Double Dog uses:</p>
+				<p>Some examples of the types of cookies and other technologies Dare Drop uses:</p>
 				<div className={classes.wrapper}>
 					<p>
 						<strong>Authentication</strong>
 						<span>
-              Double Dog uses authentication cookies and similar technologies to tell us when you’re
-              logged in to Double Dog. This lets us show you personalized views related to your
+              Dare Drop uses authentication cookies and similar technologies to tell us when you’re
+              logged in to Dare Drop. This lets us show you personalized views related to your
               interests and connect you with Dares like those you may already have backed.
 						</span>
 						<strong>Security</strong>
 						<span>
-              Cookies also help keep Double Dog secure by facilitating security features and
+              Cookies also help keep Dare Drop secure by facilitating security features and
               allowing us to detect activity that might violate our rules and{' '}
 							<Link routeId={TERMS_OF_SERVICE_ROUTE_ID}>Terms of Service</Link>. These cookies help
               protect your account from being accessed by anyone other than you, alert you and us
@@ -48,11 +48,11 @@ const pageContent = classes => [
 						<strong>Localization</strong>
 						<span>
               Some cookies help us provide localized experiences — for example, by making sure you
-              see Double Dog in your preferred language.
+              see Dare Drop in your preferred language.
 						</span>
 						<strong>Site features and services</strong>
 						<span>
-              Double Dog uses cookies that provide functionality and help us deliver our products
+              Dare Drop uses cookies that provide functionality and help us deliver our products
               and services — for instance, by storing your preferences or by pre-filling the
               username field when you log in.
 						</span>
@@ -68,9 +68,9 @@ const pageContent = classes => [
 						<strong>Analytics and research</strong>
 						<span>
               Cookies and other technologies also help us to understand, improve, and research
-              features and content on the Double Dog site. For example, we may use cookies to
+              features and content on the Dare Drop site. For example, we may use cookies to
               understand how you are discovering Dares or to determine which types of browsers or
-              devices are accessing Double Dog. You can opt-out of being included in Google
+              devices are accessing Dare Drop. You can opt-out of being included in Google
               Analytics <Link href="https://tools.google.com/dlpage/gaoptout">here</Link>.
 						</span>
 						<strong>Social Media Platforms</strong>
@@ -85,8 +85,8 @@ const pageContent = classes => [
 						<strong>Marketing</strong>
 						<span>
               Cookies help us deliver targeted advertisements on social media platforms, based on
-              your activity on Double Dog, including the Dares you’ve backed or creators you’ve
-              followed on Double Dog, and to track the performance of those ads. This is sometimes
+              your activity on Dare Drop, including the Dares you’ve backed or creators you’ve
+              followed on Dare Drop, and to track the performance of those ads. This is sometimes
               referred to as online behavioral advertising. In some cases, our partners may use
               cookies to provide us with information about your interactions with their services.
               Those third-party cookies would be subject to the third party service’s policies. You
