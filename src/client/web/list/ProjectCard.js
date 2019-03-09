@@ -23,7 +23,7 @@ const styles = {
 		boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.2)',
 	},
 	cardBg: {
-		backgroundPosition: 'top',
+		backgroundPosition: 'bottom',
 		backgroundRepeat: 'no-repeat',
 		backgroundSize: 'cover',
 	},
