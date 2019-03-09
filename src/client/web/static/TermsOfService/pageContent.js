@@ -61,11 +61,12 @@ const pageContent = classes => [
 		text: (
 			<React.Fragment>
 				<p>
-          You can browse Dare Drop without registering for an account. But to use some of Double
-          Dog’s functions, you’ll need to register. When you do that, the information you give us
-          has to be accurate and complete. Don’t choose names that are offensive or that violate
-          anyone’s rights, and don’t impersonate anyone. If you don’t follow these rules, we may
-          cancel your account.
+          You can browse Dare Drop without registering for an account. But to 
+					use some of Dare Drop’s functions, you’ll need to register. When you 
+					do that, the information you give us has to be accurate and complete. 
+					Don’t choose names that are offensive or that violate anyone’s 
+					rights, and don’t impersonate anyone. If you don’t follow these 
+					rules, we may cancel your account.
 				</p>
 				<p>
           You’re responsible for all the activity on your account, and for keeping your password

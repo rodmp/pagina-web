@@ -307,7 +307,7 @@ const pageContent = classes => [
 	},
 	{
 		title: null,
-		id: ANCHORS.SHARED_WITH_DOUBLE_DOG,
+		id: ANCHORS.SHARED_WITH_DARE_DROP,
 		text: (
 			<p>
 				<strong>Information that’s shared to protect Dare Drop and comply with the law</strong>
@@ -363,8 +363,8 @@ const pageContent = classes => [
         in the United States. The United States has its own laws governing data protection and
         government access to information. The rules that protect your personal information under
         United States law may be different than in your home country. If you choose to use the
-        Services, you need to agree to our Terms of Use, which set out the contract between Double
-        Dog and its users.
+        Services, you need to agree to our Terms of Use, which set out the contract between Dare
+        Drop and its users.
 			</p>
 		),
 	},
@@ -431,7 +431,8 @@ const pageContent = classes => [
 		id: ANCHORS.DATA_PROTECT_OFFICER,
 		text: (
 			<React.Fragment>
-				<p>To contact our Data Protection Officer, please email Support@DoubleDog.com.</p>
+				<p>To contact our Data Protection Officer, please email {' '}
+					<a href={`mailto:${EMAIL}`}>{EMAIL}</a>.</p>
 				<span>You can contact us in writing at:</span>
 				<br />
 				<span>Dare Drop</span> <span>320 W 38th st., 1122 </span>
@@ -479,8 +480,8 @@ const pageContent = classes => [
 		text: (
 			<React.Fragment>
 				<p>
-          People under 18 (or the legal age in your jurisdiction) are not permitted to use Double
-          Dog on their own. Dare Drop does not knowingly collect any personal information from
+          People under 18 (or the legal age in your jurisdiction) are not permitted to use Dare
+          Drop on their own. Dare Drop does not knowingly collect any personal information from
           children under the age of 13 and children under 13 are not permitted to register for an
           account or use our Services.
 				</p>
