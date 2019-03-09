@@ -58,8 +58,8 @@ const pageContent = classes => [
 						</span>
 						<strong>Performance</strong>
 						<span>
-              Performance cookies help us route traffic between servers and understand how Double
-              Dog is performing, so we can provide you with the best experience possible. We may use
+              Performance cookies help us route traffic between servers and understand how Dare
+              Drop is performing, so we can provide you with the best experience possible. We may use
               third party software development kits (SDK) in our mobile apps to collect information
               about activity in the app, the type of device and operating system it is running on
               and how the app is functioning. For example an SDK may send us a report if the app
