@@ -21,7 +21,7 @@ export default async (status) => {
 					':pk': `project|${status}|${index}`,
 				},
 			}).promise(),
-			range(1, 10),
+			range(1, 11),
 		),
 	)
 	// This can be optimized:

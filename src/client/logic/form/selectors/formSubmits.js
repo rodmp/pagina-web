@@ -2,7 +2,6 @@ import {
 	__, compose, map, addIndex, equals,
 } from 'ramda'
 
-import moduleKeySelector from 'root/src/client/logic/route/selectors/moduleKey'
 import { moduleIdProp } from 'root/src/client/logic/route/lenses'
 import {
 	formModuleLenses, formStoreLenses,
@@ -17,7 +16,7 @@ export default (state, props) => compose(
 		label,
 		submitIndex,
 		equals(
-			viewFormSubmitting(moduleKeySelector(state, props), state),
+			viewFormSubmitting(props.moduleKey, state),
 			submitIndex,
 		),
 	]),

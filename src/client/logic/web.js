@@ -16,7 +16,8 @@ import submitForm from 'root/src/client/logic/form/reducers/submitForm'
 import submitFormComplete from 'root/src/client/logic/form/reducers/submitFormComplete'
 import addSubForm from 'root/src/client/logic/form/reducers/addSubForm'
 import removeSubForm from 'root/src/client/logic/form/reducers/removeSubForm'
-import nextStep from 'root/src/client/logic/form/reducers/nextStep'
+import stepFormNextPage from 'root/src/client/logic/form/reducers/stepFormNextPage'
+import stepFormPrevPage from 'root/src/client/logic/form/reducers/stepFormPrevPage'
 
 // api
 import apiListRequestError from 'root/src/client/logic/api/reducers/apiListRequestError'
@@ -41,7 +42,8 @@ const store = createStore(
 		...setMediaBreakpoints,
 		...changeRoute,
 		...changeInput,
-		...nextStep,
+		...stepFormNextPage,
+		...stepFormPrevPage,
 		...clearFormErrors,
 		...setFormErrors,
 		...submitForm,
