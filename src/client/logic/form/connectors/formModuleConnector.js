@@ -9,13 +9,11 @@ import formPostSubmitText from 'root/src/client/logic/form/selectors/formPostSub
 import formPreSubmitCaption from 'root/src/client/logic/form/selectors/formPreSubmitCaption'
 import formPostSubmitCaption from 'root/src/client/logic/form/selectors/formPostSubmitCaption'
 import backButton from 'root/src/client/logic/form/selectors/backButton'
-import moduleKey from 'root/src/client/logic/route/selectors/moduleKey'
 
 import submitForm from 'root/src/client/logic/form/thunks/submitForm'
 
 export default reduxConnector(
 	[
-		['moduleKey', moduleKey],
 		['formFieldTypes', formFieldTypes],
 		['formSubmits', formSubmits],
 		['formTitle', formTitle],
