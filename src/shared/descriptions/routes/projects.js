@@ -50,7 +50,7 @@ export default {
 		],
 	},
 	[PLEDGE_PROJECT_ROUTE_ID]: {
-		url: '/pledge-project/',
+		url: '/pledge-project/:recordId',
 		modules: [
 			PLEDGE_PROJECT_FORM_MODULE_ID,
 		],
