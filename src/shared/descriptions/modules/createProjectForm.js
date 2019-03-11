@@ -85,7 +85,7 @@ export default {
 		preSubmitCaption: '*We take no responsibility for resolving discrepancies between intended project content and content which meet the requirement as stated.',
 		submits: [
 			{
-				label: 'Create Dare',
+				label: 'Confirm',
 				endpointId: CREATE_PROJECT,
 			},
 		],

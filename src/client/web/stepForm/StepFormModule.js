@@ -3,64 +3,104 @@ import React, { memo } from 'react'
 import Stepper from '@material-ui/core/Stepper'
 import Form from 'root/src/client/web/form/Form'
 import Submits from 'root/src/client/web/form/Submits'
-
+import LoadingButton from 'root/src/client/web/base/LoadingButton'
+import Header from 'root/src/client/web/typography/Header'
 
 import stepFormModuleConnector from 'root/src/client/logic/form/connectors/stepFormModuleConnector'
 import withModuleContext from 'root/src/client/util/withModuleContext'
-import { orNull } from 'root/src/shared/util/ramdaPlus'
+import { orNull, ternary } from 'root/src/shared/util/ramdaPlus'
+
+import classNames from 'classnames'
 
 const styles = {
+	space: {
+		marginTop: 25,
+		marginBottom: 25,
+		textTransform: 'none',
+	},
+	formContainer: {
+		width: 360,
+		marginBottom: 50,
 
+		'@media (max-width: 600px)': {
+			width: 340,
+		},
+	},
+	transformNone: {
+		textTransform: 'none',
+	},
+	submits: {
+		marginTop: 25,
+		marginBottom: 25,
+
+		'& span': {
+			textTransform: 'none',
+		},
+	},
 }
 
 export const StepFormModuleUnconnected = memo(({
 	classes,
-	formFieldTypes, formTitle, formSubmits, submitForm,
-	// preSubmitText, postSubmitText, preSubmitCaption, postSubmitCaption,
-	// classes, subTitle, backButton,
+	formSubmits, submitForm,
 	moduleKey, moduleId, moduleIndex,
-	stepForms, stepFormCurrentPage, onLastStep, onFirstStep,
+	stepFormCurrentPage, onLastStep, onFirstStep,
 	stepFormNextPage, stepFormPrevPage,
 }) => (
-	<div>
-		<Form
-			formIndex={stepFormCurrentPage}
-			moduleKey={moduleKey}
-			moduleId={moduleId}
-			moduleIndex={moduleIndex}
-		/>
-		{orNull(
-			!onFirstStep,
-			<button
-				type="button"
-				onClick={() => {
-					stepFormPrevPage(moduleKey)
-				}}
+	<div className="flex layout-row layout-align-center">
+		<div className={classes.formContainer}>
+			<div
+				className={classNames(
+					classes.space,
+					'layout-row layout-align-center',
+				)}
 			>
-				back
-			</button>,
-		)}
-		{orNull(
-			!onLastStep,
-			<button
-				type="button"
-				onClick={() => {
-					stepFormNextPage(moduleKey)
-				}}
-			>
-				next
-			</button>,
-		)}
-		{orNull(
-			onLastStep,
-			<div className={classes.space}>
-				<Submits
-					moduleKey={moduleKey}
-					formSubmits={formSubmits}
-					submitFormFn={submitForm}
-				/>
-			</div>,
-		)}
+				<Header>{ternary(onFirstStep, 'Dare a Streamer', 'Payement Information')}</Header>
+			</div>
+			<Form
+				formIndex={stepFormCurrentPage}
+				moduleKey={moduleKey}
+				moduleId={moduleId}
+				moduleIndex={moduleIndex}
+			/>
+			{orNull(
+				!onLastStep,
+				<LoadingButton
+					className={classes.submits}
+					loading={false}
+					onClick={() => {
+						stepFormNextPage(moduleKey)
+					}}
+				>
+					<span className={classes.transformNone}>
+						Next
+					</span>
+				</LoadingButton>,
+			)}
+			{orNull(
+				onLastStep,
+				<div className={classes.submits}>
+					<Submits
+						moduleKey={moduleKey}
+						formSubmits={formSubmits}
+						submitFormFn={submitForm}
+					/>
+				</div>,
+			)}
+			{orNull(
+				!onFirstStep,
+				<LoadingButton
+					className={classes.space}
+					loading={false}
+					onClick={() => {
+						stepFormPrevPage(moduleKey)
+					}}
+				>
+					<span className={classes.transformNone}>
+						Go to Back
+					</span>
+				</LoadingButton>,
+			)}
+		</div>
 	</div>
 ))
 
