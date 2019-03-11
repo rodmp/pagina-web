@@ -11,6 +11,7 @@ import changeRoute from 'root/src/client/logic/route/reducers/changeRoute'
 // form
 import changeInput from 'root/src/client/logic/form/reducers/changeInput'
 import clearFormErrors from 'root/src/client/logic/form/reducers/clearFormErrors'
+import clearForm from 'root/src/client/logic/form/reducers/clearForm'
 import setFormErrors from 'root/src/client/logic/form/reducers/setFormErrors'
 import submitForm from 'root/src/client/logic/form/reducers/submitForm'
 import submitFormComplete from 'root/src/client/logic/form/reducers/submitFormComplete'
@@ -45,6 +46,7 @@ const store = createStore(
 		...stepFormNextPage,
 		...stepFormPrevPage,
 		...clearFormErrors,
+		...clearForm,
 		...setFormErrors,
 		...submitForm,
 		...submitFormComplete,
