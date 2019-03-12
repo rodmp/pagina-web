@@ -61,15 +61,25 @@ export default async ({ userId, payload }) => {
 		projectId, serializedProject, userId, pledgeAmount,
 		viewStripeCardId(serializedProject), true,
 	)
-	const params = {
-		RequestItems: {
-			[TABLE_NAME]: map(
-				Item => ({ PutRequest: { Item } }),
-				[project, ...projectAssignees, ...projectGames, pledge],
-			),
-		},
+
+	//  const params = {
+	//  	RequestItems: {
+	//  		[TABLE_NAME]: map(
+	//  			Item => ({ PutRequest: { Item } }),
+	//  			[project, ...projectAssignees, ...projectGames, pledge],
+	//  		),
+	//  	},
+	//  }
+
+	const transactParams = {
+		TransactItems: [map(
+			Item => ({ Put: { Item, TableName: TABLE_NAME } }),
+			[project, ...projectAssignees, ...projectGames, pledge],
+		)],
 	}
-	await documentClient.batchWrite(params).promise()
+
+	await documentClient.transactWrite(transactParams).promise()
+	// await documentClient.batchWrite(params).promise()
 
 	return {
 		id: projectId,
