@@ -54,6 +54,12 @@ Site should be available at:
 #
 ## Server
 
+### Run API tests
+- [Install docker](https://docs.docker.com/v17.09/engine/installation/)
+- `yarn createDdb` (only need to run once)
+- `yarn startDdb`
+- `yarn test dynamoTest`
+
 #
 ## Contributing
 
