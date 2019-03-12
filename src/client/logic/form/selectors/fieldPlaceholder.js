@@ -5,6 +5,6 @@ import moduleIdFromKey from 'root/src/client/logic/route/util/moduleIdFromKey'
 
 export default (state, { moduleKey, fieldDescPath }) => pathOr(
 	'',
-	[moduleIdFromKey(moduleKey), 'fields', ...fieldDescPath, 'placeholder'],
+	[moduleIdFromKey(moduleKey), ...fieldDescPath, 'placeholder'],
 	moduleDescriptions,
 )
