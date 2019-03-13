@@ -12,6 +12,7 @@ export default {
 		pledgeAmount: { type: 'integer' },
 		pledgers: { type: 'integer' },
 		myPledge: { type: 'integer' },
+		created: { type: 'string' },
 		status: {
 			type: 'string',
 			enum: [projectApprovedKey, projectRejectedKey, projectPendingKey],
