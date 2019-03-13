@@ -128,7 +128,6 @@ export const FormModuleUnconnected = memo(({
 				{backButton && (
 					<div className={classes.backButton}>
 						<Button
-							className={classes.backButton}
 							onClick={
 								orNull(
 									recordId,
