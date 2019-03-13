@@ -23,6 +23,7 @@ import withModuleContext from 'root/src/client/util/withModuleContext'
 import goToSignInHandler from 'root/src/client/logic/project/handlers/goToSignInHandler'
 import goToPledgeProjectHandler from 'root/src/client/logic/project/handlers/goToPledgeProjectHandler'
 
+
 const styles = {
 	title: {
 		marginTop: 28,
@@ -101,6 +102,18 @@ const styles = {
 			textOverflow: 'ellipsis',
 		},
 	},
+	flexDeraction: {
+		display: 'flex',
+		'@media (min-width: 1281px)': {
+			flexDirection: 'column',
+		},
+		'@media (min-width: 768px) and (max-width: 1024px)': {
+			flexDirection: 'row',
+		},
+		'@media (min-width: 320px) and (max-width: 700px)': {
+			flexDirection: 'column',
+		},
+	},
 }
 
 
@@ -108,7 +121,7 @@ export const ViewProjectModule = memo(({
 	projectId, projectDescription, projectTitle, pledgeAmount, assignees,
 	gameImage, canApproveProject, canRejectProject, pushRoute, canPledgeProject,
 	classes, isAuthenticated, canEditProjectDetails, updateProject,
-	myPledge, status, canRejectActiveProject, pledgers,
+	myPledge, status, canRejectActiveProject, pledgers, created,
 }) => {
 	const [title, setTitle] = useState(projectTitle)
 	const [description, setDescription] = useState(projectDescription)
@@ -164,6 +177,10 @@ export const ViewProjectModule = memo(({
 								<div className={classNames('flex-50', 'flex-gt-sm-100', classes.sidebarItem)}>
 									<SubHeader>Pledgers</SubHeader>
 									<div className={classNames(classes.text)}>{pledgers}</div>
+								</div>
+								<div className={classNames('flex-30', 'flex-gt-sm-50', classes.sidebarItem)}>
+									<SubHeader>Days to go</SubHeader>
+									<div className={classNames(classes.text)}>{created}</div>
 								</div>
 							</div>
 							<div
