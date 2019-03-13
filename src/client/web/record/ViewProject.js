@@ -1,6 +1,7 @@
 import { map, addIndex } from 'ramda'
 import React, { memo } from 'react'
 import classNames from 'classnames'
+import { orNull, ternary } from 'root/src/shared/util/ramdaPlus'
 
 import {
 	smMediaQuery, gtSmMediaQuery,
@@ -18,10 +19,8 @@ import { APPROVE_PROJECT } from 'root/src/shared/descriptions/recordClickActions
 
 import viewProjectConnector from 'root/src/client/logic/project/connectors/viewProjectConnector'
 import withModuleContext from 'root/src/client/util/withModuleContext'
-
+import goToSignInHandler from 'root/src/client/logic/project/handlers/goToSignInHandler'
 import goToPledgeProjectHandler from 'root/src/client/logic/project/handlers/goToPledgeProjectHandler'
-
-import { orNull } from 'root/src/shared/util/ramdaPlus'
 
 const styles = {
 	title: {
@@ -106,6 +105,7 @@ const styles = {
 export const ViewProjectModule = memo(({
 	projectId, projectDescription, projectTitle, pledgeAmount, assignees,
 	gameImage, canApproveProject, pushRoute, canPledgeProject, classes,
+	isAuthenticated,
 }) => (
 	<div className="flex layout-row layout-align-center-start">
 		<MaxWidthContainer>
@@ -164,18 +164,18 @@ export const ViewProjectModule = memo(({
 								/>
 							</div>,
 						)}
-						{orNull(
-							canPledgeProject,
-							<div className={classes.sidebarItem}>
-								<Button
-									onClick={goToPledgeProjectHandler(
-										projectId, pushRoute,
+						<div className={classes.sidebarItem}>
+							<Button
+								onClick={
+									ternary(
+										isAuthenticated,
+										goToPledgeProjectHandler(projectId, pushRoute),
+										goToSignInHandler(pushRoute),
 									)}
-								>
+							>
 									Pledge
-								</Button>
-							</div>,
-						)}
+							</Button>
+						</div>
 					</div>
 
 				</div>
