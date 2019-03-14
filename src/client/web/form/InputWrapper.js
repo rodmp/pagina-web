@@ -4,7 +4,6 @@ import { orNull } from 'root/src/shared/util/ramdaPlus'
 
 import TertiaryBody from 'root/src/client/web/typography/TertiaryBody'
 import TitleFormText from 'root/src/client/web/typography/TitleFormText'
-import ExtraButton from 'root/src/client/web/base/ExtraButton'
 
 import { withStyles } from '@material-ui/core/styles'
 
@@ -18,16 +17,12 @@ const styles = {
 	labelFieldText: {
 		marginBottom: 8,
 	},
-	extraButton: {
-		marginTop: 9,
-	},
 }
 
 const Fields = memo(
 	({
 		subFieldText,
 		labelFieldText,
-		extraButton,
 		classes,
 		children,
 	}) => (
@@ -39,14 +34,6 @@ const Fields = memo(
 				</div>,
 			)}
 			{children}
-			{orNull(
-				extraButton,
-				<div className={classes.extraButton}>
-					<ExtraButton>
-						{extraButton}
-					</ExtraButton>
-				</div>,
-			)}
 			{orNull(
 				subFieldText,
 				<div className={classes.subFieldText}>

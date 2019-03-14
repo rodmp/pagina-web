@@ -1,16 +1,18 @@
 import React, { memo } from 'react'
 
+
 import { orNull } from 'root/src/shared/util/ramdaPlus'
-import { secondaryColor } from 'root/src/client/web/commonStyles'
+import { secondaryColor, primaryColor } from 'root/src/client/web/commonStyles'
 
 import Fields from 'root/src/client/web/form/Fields'
 import Submits from 'root/src/client/web/form/Submits'
-import Header from 'root/src/client/web/typography/Header'
-import Link from 'root/src/client/web/base/Link'
+import FormTitle from 'root/src/client/web/typography/FormTitle'
+import Button from 'root/src/client/web/base/Button'
 import Body from 'root/src/client/web/typography/Body'
 import TertiaryBody from 'root/src/client/web/typography/TertiaryBody'
 import formModuleConnector from 'root/src/client/logic/form/connectors/formModuleConnector'
 
+import backToPrevHandler from 'root/src/client/logic/form/handlers/backToPrevHandler'
 import submitFormHandler from 'root/src/client/logic/form/handlers/submitFormHandler'
 
 import withModuleContext from 'root/src/client/util/withModuleContext'
@@ -33,11 +35,16 @@ const styles = {
 		textAlign: 'center',
 		marginBottom: 35,
 
-		'& span': {
+		'& button': {
 			color: secondaryColor,
 			backgroundColor: 'transparent',
 			textTransform: 'none',
 			fontSize: 18,
+
+			'&:hover': {
+				color: primaryColor,
+				backgroundColor: 'transparent',
+			},
 		},
 	},
 }
@@ -57,7 +64,7 @@ export const FormModuleUnconnected = memo(({
 						'layout-row layout-align-center',
 					)}
 				>
-					<Header>{formTitle}</Header>
+					<FormTitle>{formTitle}</FormTitle>
 				</div>,
 			)}
 			{orNull(
@@ -123,9 +130,7 @@ export const FormModuleUnconnected = memo(({
 				)}
 				{backButton && (
 					<div className={classes.backButton}>
-						<Link routeId={backButton.routeId}>
-							<span>{backButton.label}</span>
-						</Link>
+						<Button onClick={backToPrevHandler}>{backButton.label}</Button>
 					</div>
 				)}
 				<input type="submit" className="hide" />
