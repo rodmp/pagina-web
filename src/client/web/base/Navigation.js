@@ -46,7 +46,7 @@ export const NavigationUnstyled = memo(({ classes }) => (
 						classes.logo,
 					)}
 				>
-					Double Dog
+					Dare Drop
 				</div>
 			</Link>
 
