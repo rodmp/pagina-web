@@ -43,8 +43,8 @@ const Anchors = ({ classes }) => (
 					</a>
 				</li>
 				<li>
-					<a href={`#${ANCHORS.SHARED_WITH_DOUBLE_DOG}`}>
-            Information that’s shared to protect DoubleDog and comply with the law
+					<a href={`#${ANCHORS.SHARED_WITH_DARE_DROP}`}>
+            Information that’s shared to protect Dare Drop and comply with the law
 					</a>
 				</li>
 				<li>
