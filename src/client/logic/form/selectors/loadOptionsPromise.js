@@ -30,12 +30,14 @@ const promiseTypeMap = {
 		}
 	},
 	twitchGames: async (input) => {
+		console.log(input)
 		try {
 			const searchResults = await ajax({
 				url: `${baseUrlV5}search/games`,
 				headers: { 'Client-ID': clientId },
 				queryParams: { query: input, type: 'suggest' },
 			})
+			console.log(searchResults)
 			return map(
 				({ name, _id, box }) => ({
 					label: name,
@@ -58,7 +60,7 @@ const promiseTypeMap = {
 export default (state, { moduleKey, fieldDescPath }) => {
 	const promiseType = path(
 		[
-			moduleIdFromKey(moduleKey), 'fields', ...fieldDescPath,
+			moduleIdFromKey(moduleKey), ...fieldDescPath,
 			'optionsPromiseType',
 		],
 		moduleDescriptions,

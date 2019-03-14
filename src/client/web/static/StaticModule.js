@@ -5,6 +5,7 @@ import TermsOfService from 'root/src/client/web/static/TermsOfService'
 import PrivacyPolicy from 'root/src/client/web/static/PrivacyPolicy'
 import CookiePolicy from 'root/src/client/web/static/CookiePolicy'
 import RulesOfUse from 'root/src/client/web/static/RulesOfUse'
+import CopyrightPolicy from 'root/src/client/web/static/CopyrightPolicy'
 import AccountSettings from 'root/src/client/web/static/AccountSettings'
 import SuccessPage from 'root/src/client/web/static/SuccessPage'
 
@@ -25,12 +26,14 @@ export const StaticModuleUnconnected = memo(({ staticPageType, pageContent }) =>
 			return <CookiePolicy />
 		case 'rulesOfUse':
 			return <RulesOfUse />
+		case 'copyrightPolicy':
+			return <CopyrightPolicy />
 		case 'accountSettings':
 			return <AccountSettings />
 		case 'successPage':
 			return <SuccessPage pageContent={pageContent} />
 		default:
-			return <div>Unsuported static page type: {staticPageType}</div>
+			return <div>Unsupported static page type: {staticPageType}</div>
 	}
 })
 

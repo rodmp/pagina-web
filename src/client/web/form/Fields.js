@@ -17,14 +17,12 @@ const Fields = memo(({
 	fieldId,
 	subFieldText,
 	labelFieldText,
-	extraButton,
 	fieldValue,
 	fieldMax,
 ]) => {
 	const wrapperProps = {
 		subFieldText,
 		labelFieldText,
-		extraButton,
 		key: fieldId,
 	}
 	const props = {

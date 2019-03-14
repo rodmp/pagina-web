@@ -42,7 +42,7 @@ export const InputField = memo(({
 		<TextField
 			id={fieldId}
 			label={fieldLabel}
-			type="number"
+			type="text"
 			multiline={fieldMultiline}
 			variant="outlined"
 			value={fieldValue}

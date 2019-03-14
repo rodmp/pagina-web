@@ -5,6 +5,6 @@ import moduleIdFromKey from 'root/src/client/logic/route/util/moduleIdFromKey'
 
 export default (state, { moduleKey, fieldDescPath }) => pathOr(
 	false,
-	[moduleIdFromKey(moduleKey), 'fields', ...fieldDescPath, 'multiline'],
+	[moduleIdFromKey(moduleKey), ...fieldDescPath, 'multiline'],
 	moduleDescriptions,
 )
