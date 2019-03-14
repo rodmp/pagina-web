@@ -5,10 +5,11 @@ import {
 
 import { ternary } from 'root/src/shared/util/ramdaPlus'
 
+import userEmail from 'root/src/client/logic/auth/selectors/userEmail'
+import showMobileNavSelector from 'root/src/client/logic/app/selectors/showMobileNavSelector'
 import isAuthenticated from 'root/src/client/logic/auth/selectors/isAuthenticated'
 import userEmail from 'root/src/client/logic/auth/selectors/userEmail'
 import isAdminSelector from 'root/src/client/logic/auth/selectors/isAdminSelector'
-import showMobileNavSelector from 'root/src/client/logic/app/selectors/showMobileNavSelector'
 
 export default (state, props) => ternary(
 	showMobileNavSelector(state, props),
