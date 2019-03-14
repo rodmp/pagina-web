@@ -7,6 +7,7 @@ import CookiePolicy from 'root/src/client/web/static/CookiePolicy'
 import RulesOfUse from 'root/src/client/web/static/RulesOfUse'
 import AccountSettings from 'root/src/client/web/static/AccountSettings'
 import SuccessPage from 'root/src/client/web/static/SuccessPage'
+import StepHeaderModule from 'root/src/client/web/static/SteperHeaderModule'
 
 import withModuleContext from 'root/src/client/util/withModuleContext'
 
@@ -29,6 +30,8 @@ export const StaticModuleUnconnected = memo(({ staticPageType, pageContent }) =>
 			return <AccountSettings />
 		case 'successPage':
 			return <SuccessPage pageContent={pageContent} />
+		case 'SteperHeaderModule':
+			return <StepHeaderModule />
 		default:
 			return <div>Unsuported static page type: {staticPageType}</div>
 	}

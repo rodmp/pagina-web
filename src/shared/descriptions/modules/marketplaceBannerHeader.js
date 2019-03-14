@@ -1,4 +1,3 @@
-import React from 'react'
 import {
 	MARKETPLACE_BANNER_HEADER_MODULE_ID,
 } from 'root/src/shared/descriptions/modules/moduleIds'
@@ -9,7 +8,6 @@ import {
 
 import marketplace from 'root/src/client/assets/Marketplace.png'
 
-import SubBanner from 'root/src/client/web/header/MarketplaceSubBanner'
 
 export default {
 	[MARKETPLACE_BANNER_HEADER_MODULE_ID]: {
@@ -17,12 +15,6 @@ export default {
 		bannerImage: marketplace,
 		bannerImageText: 'Dare A Streamer',
 		bannerImageSubText: 'Pledge to a Dare you like, or create your own!',
-		bannerSubText: 'Active Dares',
-		link: {
-			routeId: CREATE_PROJECT_ROUTE_ID,
-			label: 'Create a New Dare +',
-		},
-		createNewDareActive: true,
 		textWithBg: true,
 	},
 }
