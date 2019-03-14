@@ -6,6 +6,7 @@ import {
 } from 'root/src/client/web/commonStyles'
 
 import { withStyles } from '@material-ui/core/styles'
+import classNames from 'classnames'
 
 const styles = {
 	button: {
@@ -20,10 +21,10 @@ const styles = {
 }
 
 export const ButtonUnstyled = memo(({
-	classes, onClick, disabled, children,
+	classes, onClick, disabled, children, style,
 }) => (
 	<Button
-		className={classes.button}
+		className={classNames(classes.button, style)}
 		onClick={onClick}
 		disabled={disabled}
 	>
