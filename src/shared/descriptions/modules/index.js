@@ -27,6 +27,8 @@ import dareCreateSuccess from 'root/src/shared/descriptions/modules/dareCreateSu
 import bannerFooterDareAccepted from 'root/src/shared/descriptions/modules/bannerFooterDareAccepted'
 import bannerFooterDareRejectConfirmation from 'root/src/shared/descriptions/modules/bannerFooterDareRejectConfirmation'
 import bannerFooterDareSuccessCreate from 'root/src/shared/descriptions/modules/bannerFooterDareSuccessCreate'
+import steperHeaderModule from 'root/src/shared/descriptions/modules/steperHeaderModule'
+import titleHeaderMarketplace from 'root/src/shared/descriptions/modules/titleHeaderMarketplace'
 
 const allModules = {
 	...loginForm,
@@ -58,6 +60,8 @@ const allModules = {
 	...bannerFooterDareSuccessCreate,
 	...accountSettings,
 	...accountSettingsBannerHeader,
+	...steperHeaderModule,
+	...titleHeaderMarketplace,
 }
 
 export default allModules
