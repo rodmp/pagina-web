@@ -6,6 +6,7 @@ import { ternary } from 'root/src/shared/util/ramdaPlus'
 import routeRenderConnector from 'root/src/client/logic/route/connectors/routeRenderConnector'
 
 import FormModule from 'root/src/client/web/form/FormModule'
+import StepFormModule from 'root/src/client/web/stepForm/StepFormModule'
 import ListModule from 'root/src/client/web/list/ListModule'
 import RecordModule from 'root/src/client/web/record/RecordModule'
 import StaticModule from 'root/src/client/web/static/StaticModule'
@@ -23,17 +24,27 @@ const styles = {
 	},
 }
 
-export const RenderModules = ({ moduleTypes }) => (
+export const RenderModules = ({ moduleTypes, routeId }) => (
 	moduleTypes.map(([moduleId, moduleType, moduleIndex]) => {
 		const moduleProps = {
 			key: moduleId,
-			value: { moduleId, moduleIndex },
+			value: {
+				moduleId,
+				moduleIndex,
+				moduleKey: `${routeId}-${moduleId}-${moduleIndex}`,
+			},
 		}
 		switch (moduleType) {
 			case 'form':
 				return (
 					<ModuleContextProvider {...moduleProps}>
 						<FormModule />
+					</ModuleContextProvider>
+				)
+			case 'stepForm':
+				return (
+					<ModuleContextProvider {...moduleProps}>
+						<StepFormModule />
 					</ModuleContextProvider>
 				)
 			case 'list':
@@ -81,7 +92,7 @@ export const RenderModules = ({ moduleTypes }) => (
 )
 
 export const RouteRender = ({
-	currentRouteModuleTypes, noRoute, classes,
+	currentRouteModuleTypes, noRoute, currentRouteId, classes,
 }) => ternary(
 	noRoute,
 	<div>loading</div>,
@@ -93,7 +104,10 @@ export const RouteRender = ({
 	>
 		<Navigation />
 		<div className="flex layout-column layout-align-start-stretch">
-			<RenderModules moduleTypes={currentRouteModuleTypes} />
+			<RenderModules
+				moduleTypes={currentRouteModuleTypes}
+				routeId={currentRouteId}
+			/>
 		</div>
 		<Footer />
 	</div>,
