@@ -4,7 +4,7 @@ import classNames from 'classnames'
 import { orNull, ternary } from 'root/src/shared/util/ramdaPlus'
 
 import {
-	smMediaQuery, gtSmMediaQuery,
+	gtXsMediaQuery, gtSmMediaQuery, gtMdMediaQuery, smMediaQuery,
 } from 'root/src/client/web/commonStyles'
 
 import Assignee from 'root/src/client/web/record/Assignee'
@@ -43,10 +43,19 @@ const styles = {
 	sidebarItem: {
 		marginTop: 10,
 		marginBottom: 20,
+		'& > button': {
+			borderRadius: 20,
+		},
+		'& span': {
+			textTransform: 'none',
+		},
+		'& div': {
+			fontSize: 16,
+		},
 	},
 	descriptionContainer: {
-		marginTop: 20,
-		marginBottom: 32,
+		marginTop: 19,
+		marginBottom: 18,
 	},
 	descriptionTitle: {
 		width: 96,
@@ -66,7 +75,7 @@ const styles = {
 		fontSize: 20,
 		lineHeight: 1.2,
 		color: '#000000',
-		marginTop: 20,
+		marginTop: 8,
 	},
 	progressOuter: {
 		width: '100%',
@@ -104,15 +113,18 @@ const styles = {
 	},
 	flexDeraction: {
 		display: 'flex',
-		'@media (min-width: 1281px)': {
-			flexDirection: 'column',
-		},
-		'@media (min-width: 768px) and (max-width: 1024px)': {
+		[gtXsMediaQuery]: {
 			flexDirection: 'row',
 		},
-		'@media (min-width: 320px) and (max-width: 700px)': {
+		[gtSmMediaQuery]: {
+			flexDirection: 'row',
+		},
+		[gtMdMediaQuery]: {
 			flexDirection: 'column',
 		},
+	},
+	streamerTitle: {
+		marginBottom: 0,
 	},
 }
 
@@ -182,6 +194,9 @@ export const ViewProjectModule = memo(({
 									<SubHeader>Days to go</SubHeader>
 									<div className={classNames(classes.text)}>{created}</div>
 								</div>
+							</div>
+							<div className={classNames(classes.sidebarItem, classes.streamerTitle)}>
+								<SubHeader>Streamer challenged: </SubHeader>
 							</div>
 							<div
 								className={classNames(
