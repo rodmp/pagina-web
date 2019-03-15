@@ -27,7 +27,10 @@ import goToPledgeProjectHandler from 'root/src/client/logic/project/handlers/goT
 const styles = {
 	title: {
 		marginTop: 28,
-		marginBottom: 25,
+		marginBottom: 20,
+		'@media (min-width: 1284px)': {
+			marginBottom: 25,
+		},
 	},
 	image: {
 		width: '100%',
@@ -49,13 +52,29 @@ const styles = {
 		'& span': {
 			textTransform: 'none',
 		},
-		'& div': {
+		'& > div': {
 			fontSize: 16,
+			fontWeight: 'bold',
 		},
+	},
+	text: {
+		marginTop: 15,
+		height: 17,
+		fontFamily: 'Roboto',
+		fontSize: '14px !important',
+		lineHeight: 1.21,
+		color: '#000000',
+		fontWeight: '500 !important',
 	},
 	descriptionContainer: {
 		marginTop: 19,
-		marginBottom: 18,
+		marginBottom: 18.5,
+		'@media (min-width: 768px)': {
+			marginBottom: 10.5,
+		},
+		'@media (min-width: 1284px)': {
+			marginBottom: 32,
+		},
 	},
 	descriptionTitle: {
 		width: 96,
@@ -84,7 +103,7 @@ const styles = {
 		border: '1px solid rgba(128, 0, 128, 0.2)',
 		backgroundColor: '#ffffff',
 		boxSixing: 'border-box',
-		marginBottom: 20,
+		marginBottom: 18.5,
 	},
 	progressInner: {
 		width: '25%',
@@ -92,17 +111,10 @@ const styles = {
 		borderRadius: 8,
 		backgroundColor: '#800080',
 	},
-	text: {
-		marginTop: 15,
-		height: 17,
-		fontFamily: 'Roboto',
-		fontSize: 14,
-		lineHeight: 1.21,
-		color: '#000000',
-	},
 	titleText: {
 		'& div': {
 			maxWidth: 400,
+			marginBottom: 0,
 			display: '-webkit-box',
 			WebkitLineClamp: 1,
 			wordBreak: 'break-all',
@@ -116,15 +128,31 @@ const styles = {
 		[gtXsMediaQuery]: {
 			flexDirection: 'row',
 		},
-		[gtSmMediaQuery]: {
+		'@media (min-width: 768px) and (max-width: 1284px)': {
 			flexDirection: 'row',
 		},
-		[gtMdMediaQuery]: {
+		'@media (min-width: 1284px)': {
 			flexDirection: 'column',
 		},
 	},
 	streamerTitle: {
+		marginTop: 9,
 		marginBottom: 0,
+		'& div': {
+			fontWeight: 'bold',
+			fontStyle: 'normal',
+			fontStretch: 'normal',
+			fontSize: 16,
+		},
+	},
+	'mb-10': {
+		marginBottom: 10,
+	},
+	sidebarItemText: {
+		fontSize: 14,
+	},
+	pledgeButton: {
+		marginBottom: 65,
 	},
 }
 
