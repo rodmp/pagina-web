@@ -133,6 +133,7 @@ const styles = {
 		},
 		'@media (min-width: 1284px)': {
 			flexDirection: 'column',
+			flexWrap: 'nowrap',
 		},
 	},
 	streamerTitle: {
@@ -152,7 +153,16 @@ const styles = {
 		fontSize: 14,
 	},
 	pledgeButton: {
-		marginBottom: 65,
+		marginBottom: 71,
+		[smMediaQuery]: {
+			marginBottom: 65,
+		},
+		[gtSmMediaQuery]: {
+			marginBottom: 0,
+		},
+		'& span': {
+			fontSize: 18,
+		},
 	},
 }
 
