@@ -47,6 +47,15 @@ const styles = {
 		backgroundColor: 'rgba(128, 0, 128, 0.7)',
 		borderRadius: 30,
 		margin: '0 auto',
+		maxWidth: 405,
+
+		'@media (max-width: 750px)': {
+			maxWidth: 360,
+		},
+
+		'@media (max-width: 600px)': {
+			maxWidth: 345,
+		},
 	},
 	overlay: {
 		backgroundColor: 'rgba(128, 0, 128, 0.41)',
