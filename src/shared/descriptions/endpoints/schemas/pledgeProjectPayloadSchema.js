@@ -9,9 +9,8 @@ export default {
 				minimum: 'Pledge amount must be at least $5.',
 			},
 		},
-		cardName: { type: 'string' },
 		stripeCardId: { type: 'string' },
 	},
-	required: ['pledgeAmount', 'cardName', 'stripeCardId'],
+	required: ['pledgeAmount', 'stripeCardId'],
 	additionalProperties: false,
 }

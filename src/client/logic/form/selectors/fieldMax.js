@@ -5,6 +5,6 @@ import moduleIdFromKey from 'root/src/client/logic/route/util/moduleIdFromKey'
 
 export default (state, { moduleKey, fieldDescPath }) => pathOr(
 	false,
-	[moduleIdFromKey(moduleKey), 'fields', ...fieldDescPath, 'inputMaxLength'],
+	[moduleIdFromKey(moduleKey), ...fieldDescPath, 'inputMaxLength'],
 	moduleDescriptions,
 )
