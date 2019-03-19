@@ -2,18 +2,17 @@ import { compose } from 'ramda'
 
 import { API_EXTERNAL_REQUEST_SUCCESS } from 'root/src/client/logic/api/actionIds'
 import createExternalStoreKey from 'root/src/client/logic/api/util/createExternalStoreKey'
-import { apiStoreLenses, idProp } from 'root/src/client/logic/api/lenses'
+import { apiStoreLenses } from 'root/src/client/logic/api/lenses'
 
-const { setExternalsChild } = apiStoreLenses
+const { setUserDataChild } = apiStoreLenses
 
 export const apiExternalRequestSuccess = (
 	state,
-	{ recordType, external },
+	{ recordType, lambda },
 ) => {
-	const externalId = idProp(external)
-	const externalStoreId = createExternalStoreKey(recordType, externalId)
+	const externalStoreId = createExternalStoreKey(recordType, lambda.body)
 	return compose(
-		setExternalsChild(externalStoreId, external),
+		setUserDataChild(externalStoreId, lambda.body),
 	)(state)
 }
 

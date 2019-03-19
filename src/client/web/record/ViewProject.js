@@ -99,7 +99,7 @@ const styles = {
 
 export const ViewProjectModule = memo(({
 	projectId, projectDescription, projectTitle, pledgeAmount, myPledge, status,
-	assignees, gameImage, canApproveProject, pushRoute, canPledgeProject, externalData = {},
+	assignees, gameImage, canApproveProject, pushRoute, canPledgeProject, userData = {},
 	classes,
 }) => (
 	<div className="flex layout-row layout-align-center-start">
@@ -170,7 +170,7 @@ export const ViewProjectModule = memo(({
 							</div>,
 						)}
 						{ternary(assignees
-							.filter(assignee => assignee.username === externalData.displayName).length > 0,
+							.filter(assignee => assignee.username === userData.displayName).length > 0,
 						<TwitchButton
 							title="Accept or reject Dare"
 							backgroundColor="#fff"

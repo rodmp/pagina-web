@@ -33,6 +33,8 @@ import initApiRecordClickActionRequest from 'root/src/client/logic/api/reducers/
 
 import apiExternalRequestSuccess from 'root/src/client/logic/api/reducers/apiExternalRequestSuccess'
 
+import apiFetchUserDataSuccess from 'root/src/client/logic/api/reducers/apiFetchUserDataSuccess'
+
 // listeners
 import popStateListener from 'root/src/client/logic/route/listeners/popStateListener'
 import windowSizeListener from 'root/src/client/logic/app/listeners/windowSizeListener'
@@ -61,6 +63,7 @@ const store = createStore(
 		...initApiRecordClickActionRequest,
 		...generalRecordModification,
 		...apiExternalRequestSuccess,
+		...apiFetchUserDataSuccess,
 	}, // reducer object
 	// [], // sagas
 	[

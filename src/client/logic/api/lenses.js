@@ -92,6 +92,17 @@ const apiStoreSchema = {
 						},
 					},
 				},
+				userData: {
+					type: 'object',
+					patternProperties: {
+						[variableSchemaKey]: {
+							type: 'object',
+							properties: {
+
+							},
+						},
+					},
+				},
 				pageContent: {
 					type: 'object',
 					patternProperties: {
@@ -118,6 +129,7 @@ export const generalApiModuleDescriptionSchema = {
 				endpointId: { type: 'string' },
 				recordType: { type: 'string' },
 				externalType: { type: 'string' },
+				userDataType: { type: 'string' },
 				recordPayloadMap: { type: 'array' },
 				externalPayloadMap: { type: 'array' },
 			},
