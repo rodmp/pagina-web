@@ -1,4 +1,4 @@
-import { equals } from 'ramda'
+import { equals, forEach } from 'ramda'
 
 import createListStoreKey from 'root/src/client/logic/api/util/createListStoreKey'
 import createRecordStoreKey from 'root/src/client/logic/api/util/createRecordStoreKey'
@@ -14,6 +14,8 @@ import apiRecordRequestError from 'root/src/client/logic/api/actions/apiRecordRe
 
 import apiExternalRequestSuccess from 'root/src/client/logic/api/actions/apiExternalRequestSuccess'
 
+import apiFetchUserDataSuccess from 'root/src/client/logic/api/actions/apiFetchUserDataSuccess'
+
 import recordTypeSelector from 'root/src/client/logic/api/selectors/recordTypeSelector'
 import endpointTypeSelector from 'root/src/client/logic/api/selectors/endpointTypeSelector'
 
@@ -22,6 +24,9 @@ import invokeApiExternal from 'root/src/client/logic/api/util/invokeApiExternal'
 
 import matchPath from 'root/src/client/logic/route/util/matchPath'
 import pushRoute from 'root/src/client/logic/route/thunks/pushRoute'
+
+import endpointMappings from 'root/src/client/logic/api/util/endpointMappings'
+import determineToken from 'root/src/client/logic/api/util/determineToken'
 
 export const fetchList = async (dispatch, state, endpointId, payload) => {
 	const recordType = recordTypeSelector(endpointId)
@@ -57,16 +62,13 @@ export const fetchRecord = async (dispatch, state, endpointId, payload) => {
 }
 
 export const fetchExternal = async (dispatch, state, endpointId, payload) => {
-	const recordType = recordTypeSelector(endpointId)
-	const recordId = idProp(payload)
-	if (recordId) { // else creating, don't need record loading state
-		const recordStoreKey = createRecordStoreKey(recordType, recordId)
-		dispatch(initApiRecordRequest(recordStoreKey))
-	}
 	const externalRes = await invokeApiExternal(endpointId, payload)
+	externalRes.tokenId = determineToken(endpointId)
+	const lambdaEndpoint = endpointMappings(endpointId, payload)
+	const lambdaRes = await invokeApiLambda(lambdaEndpoint, externalRes, state)
 	const { status } = externalRes
 	if (equals(status, 200)) {
-		dispatch(apiExternalRequestSuccess(endpointId, externalRes))
+		dispatch(apiExternalRequestSuccess(endpointId, lambdaRes))
 		if (window.localStorage.getItem('redirectUri')
 			&& externalRes.displayName === window.localStorage.getItem('redirectAssignee')) {
 			const { routeId, routeParams } = matchPath(window.localStorage.getItem('redirectUri'))
@@ -74,17 +76,31 @@ export const fetchExternal = async (dispatch, state, endpointId, payload) => {
 		}
 		window.localStorage.removeItem('redirectUri')
 		window.localStorage.removeItem('redirectAssignee')
-	} else if (recordId) { // else creating, don't need record error state
-		const error = {}
-		dispatch(apiRecordRequestError(recordType, recordId, error))
+	} else {
+		// TODO
 	}
 	return externalRes
+}
+
+export const fetchUserData = async (dispatch, state, endpointId, payload) => {
+	const recordType = recordTypeSelector(endpointId)
+	const lambdaRes = await invokeApiLambda(endpointId, payload, state)
+	if (lambdaRes.body.length > 0) {
+		forEach((res) => {
+			const recordStoreKey = createRecordStoreKey(endpointId, (`${res.pk}-${res.sk.split('|')[0]}`))
+			dispatch(apiFetchUserDataSuccess(recordStoreKey, recordType, res))
+		}, lambdaRes.body)
+	} else {
+		// TODO
+	}
+	return lambdaRes
 }
 
 const endpointTypeFunctionMap = {
 	list: fetchList,
 	record: fetchRecord,
 	external: fetchExternal,
+	userData: fetchUserData,
 }
 
 export default (endpointId, payload) => async (dispatch, getState) => {

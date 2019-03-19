@@ -1,13 +1,13 @@
 import React, { memo } from 'react'
 
-import externalModuleConnector from 'root/src/client/logic/api/connectors/externalModuleConnector'
+import userDataModuleConnector from 'root/src/client/logic/api/connectors/userDataModuleConnector'
 
 import withModuleContext from 'root/src/client/util/withModuleContext'
 
-import GetUserTwitch from 'root/src/client/web/external/GetUserTwitch'
+import GetUserTwitch from 'root/src/client/web/userData/GetUserTwitch'
 
-export const ExternalModuleUnconnected = memo(({
-	externalData: { displayName }, moduleId, pageContent,
+export const UserDataModuleUnconnected = memo(({
+	userData: { displayName }, moduleId, pageContent,
 }) => {
 	switch (moduleId) {
 		case 'TWITCH_OAUTH_MODULE_ID':
@@ -18,5 +18,5 @@ export const ExternalModuleUnconnected = memo(({
 })
 
 export default withModuleContext(
-	externalModuleConnector(ExternalModuleUnconnected),
+	userDataModuleConnector(UserDataModuleUnconnected),
 )
