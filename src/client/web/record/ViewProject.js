@@ -90,12 +90,23 @@ const styles = {
 		lineHeight: 1.21,
 		color: '#000000',
 	},
+	titleText: {
+		'& div': {
+			maxWidth: 400,
+			display: '-webkit-box',
+			WebkitLineClamp: 1,
+			wordBreak: 'break-all',
+			WebkitBoxOrient: 'vertical',
+			overflow: 'hidden',
+			textOverflow: 'ellipsis',
+		},
+	},
 }
 
 export const ViewProjectModule = memo(({
-	projectId, projectDescription, projectTitle, pledgeAmount, myPledge, status,
-	assignees, gameImage, canApproveProject, pushRoute, canPledgeProject,
-	classes,
+	myPledge, status, assignees, projectId, projectDescription, projectTitle, pledgeAmount,
+	gameImage, canApproveProject, pushRoute, canPledgeProject, classes,
+
 }) => (
 	<div className="flex layout-row layout-align-center-start">
 		<MaxWidthContainer>
@@ -105,7 +116,9 @@ export const ViewProjectModule = memo(({
 					'layout-align-center', classes.title,
 				)}
 				>
-					<Title>{projectTitle}</Title>
+					<div className={classes.titleText}>
+						<Title>{projectTitle}</Title>
+					</div>
 				</div>
 				<div className="flex-100 flex-gt-sm-60 flex-order-1">
 					<img alt="Game" src={gameImage} className={classes.image} />
@@ -161,7 +174,7 @@ export const ViewProjectModule = memo(({
 									)}
 								>
 										Pledge
-         </Button>
+								</Button>
 							</div>,
 						)}
 					</div>

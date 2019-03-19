@@ -1,1 +1,1 @@
-export const EMAIL = 'support@DoubleDog.tv'
+export const EMAIL = 'support@DareDrop.com'
