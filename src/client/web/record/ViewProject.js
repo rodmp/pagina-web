@@ -25,7 +25,6 @@ import viewProjectConnector from 'root/src/client/logic/project/connectors/viewP
 import withModuleContext from 'root/src/client/util/withModuleContext'
 
 import goToPledgeProjectHandler from 'root/src/client/logic/project/handlers/goToPledgeProjectHandler'
-import goToClaimProjectHandler from 'root/src/client/logic/project/handlers/goToClaimProjectHandler'
 
 import { orNull, ternary } from 'root/src/shared/util/ramdaPlus'
 
@@ -189,9 +188,6 @@ export const ViewProjectModule = memo(({
 							title="Accept or reject Dare"
 							backgroundColor="#fff"
 							color="#800080"
-							onClick={goToClaimProjectHandler(
-								projectId, pushRoute,
-							)}
 						/>,
 						<TwitchButton
 							title="Accept or reject Dare"
