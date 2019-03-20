@@ -30,6 +30,7 @@ import bannerFooterDareAccepted from 'root/src/shared/descriptions/modules/banne
 import bannerFooterDareRejectConfirmation from 'root/src/shared/descriptions/modules/bannerFooterDareRejectConfirmation'
 import bannerFooterDareSuccessCreate from 'root/src/shared/descriptions/modules/bannerFooterDareSuccessCreate'
 import twitchOAuth from 'root/src/shared/descriptions/modules/twitchOAuth'
+import twitchOAuthFailure from 'root/src/shared/descriptions/modules/twitchOAuthFailure'
 
 const allModules = {
 	...loginForm,
@@ -64,6 +65,7 @@ const allModules = {
 	...accountSettings,
 	...accountSettingsBannerHeader,
 	...twitchOAuth,
+	...twitchOAuthFailure,
 }
 
 export default allModules
