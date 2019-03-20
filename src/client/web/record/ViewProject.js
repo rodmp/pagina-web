@@ -27,8 +27,6 @@ import withModuleContext from 'root/src/client/util/withModuleContext'
 // import goToSignInHandler from 'root/src/client/logic/project/handlers/goToSignInHandler'
 import goToPledgeProjectHandler from 'root/src/client/logic/project/handlers/goToPledgeProjectHandler'
 
-import { orNull, ternary } from 'root/src/shared/util/ramdaPlus'
-
 const styles = {
 	title: {
 		marginTop: 28,
