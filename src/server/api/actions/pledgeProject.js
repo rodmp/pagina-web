@@ -54,7 +54,6 @@ export default async ({ userId, payload }) => {
 		Item: newPledge,
 	}
 	await documentClient.put(pledgeParams).promise()
-
 	const updateProjectParams = {
 		TableName: TABLE_NAME,
 		Key: {
