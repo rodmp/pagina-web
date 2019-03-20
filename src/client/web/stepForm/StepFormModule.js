@@ -5,7 +5,7 @@ import Form from 'root/src/client/web/form/Form'
 import Submits from 'root/src/client/web/form/Submits'
 import LoadingButton from 'root/src/client/web/base/LoadingButton'
 import Header from 'root/src/client/web/typography/Header'
-
+import Button from 'root/src/client/web/base/Button'
 import stepFormModuleConnector from 'root/src/client/logic/form/connectors/stepFormModuleConnector'
 import withModuleContext from 'root/src/client/util/withModuleContext'
 import { orNull, ternary } from 'root/src/shared/util/ramdaPlus'
@@ -26,9 +26,6 @@ const styles = {
 			width: 340,
 		},
 	},
-	transformNone: {
-		textTransform: 'none',
-	},
 	submits: {
 		marginTop: 25,
 		marginBottom: 25,
@@ -36,6 +33,20 @@ const styles = {
 		'& span': {
 			textTransform: 'none',
 		},
+	},
+	backButton: {
+		textAlign: 'center',
+		marginBottom: 35,
+		'& span': {
+			backgroundColor: 'white',
+		},
+
+	},
+	backButtonText: {
+		color: '#800080',
+		textTransform: 'none',
+		fontSize: 18,
+		zIndex: 2,
 	},
 }
 
@@ -88,17 +99,17 @@ export const StepFormModuleUnconnected = memo(({
 			)}
 			{orNull(
 				!onFirstStep,
-				<LoadingButton
-					className={classes.space}
-					loading={false}
-					onClick={() => {
-						stepFormPrevPage(moduleKey)
-					}}
-				>
-					<span className={classes.transformNone}>
-						Go to Back
-					</span>
-				</LoadingButton>,
+				<div className={classes.backButton}>
+					<Button
+						onClick={() => {
+							stepFormPrevPage(moduleKey)
+						}}
+					>
+						<span className={classes.backButtonText}>
+							Go to Back
+						</span>
+					</Button>
+				</div>,
 			)}
 		</div>
 	</div>
