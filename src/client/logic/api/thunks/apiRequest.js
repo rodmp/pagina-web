@@ -30,6 +30,7 @@ import endpointMappings from 'root/src/client/logic/api/util/endpointMappings'
 import determineToken from 'root/src/client/logic/api/util/determineToken'
 
 import { TWITCH_OAUTH_FAILURE_ROUTE_ID } from 'root/src/shared/descriptions/routes/routeIds'
+import { GET_OAUTH_TOKENS } from 'root/src/shared/descriptions/endpoints/endpointIds'
 
 export const fetchList = async (dispatch, state, endpointId, payload) => {
 	const recordType = recordTypeSelector(endpointId)
@@ -72,12 +73,18 @@ export const fetchExternal = async (dispatch, state, endpointId, payload) => {
 		const lambdaRes = await invokeApiLambda(lambdaEndpoint, externalRes, state)
 		const { status } = externalRes
 		if (equals(status, 200)) {
-			dispatch(apiExternalRequestSuccess(endpointId, lambdaRes))
 			if (window.localStorage.getItem('redirectUri')
 				&& externalRes.displayName === window.localStorage.getItem('redirectAssignee')) {
 				const { routeId, routeParams } = matchPath(window.localStorage.getItem('redirectUri'))
 				dispatch(pushRoute(routeId, routeParams))
+				dispatch(apiExternalRequestSuccess(endpointId, lambdaRes))
+			} else if (window.localStorage.getItem('redirectUri')
+				&& externalRes.displayName !== window.localStorage.getItem('redirectAssignee')) {
+				dispatch(apiExternalRequestSuccess(endpointId, lambdaRes, true))
+			} else {
+				dispatch(apiExternalRequestSuccess(endpointId, lambdaRes))
 			}
+
 			window.localStorage.removeItem('redirectUri')
 			window.localStorage.removeItem('redirectAssignee')
 		}
@@ -85,10 +92,12 @@ export const fetchExternal = async (dispatch, state, endpointId, payload) => {
 	} catch (error) {
 		dispatch(pushRoute(TWITCH_OAUTH_FAILURE_ROUTE_ID))
 		dispatch(apiExternalRequestError(error))
+		return error
 	}
 }
 
 export const fetchUserData = async (dispatch, state, endpointId, payload) => {
+	if (endpointId === GET_OAUTH_TOKENS) return
 	const recordType = recordTypeSelector(endpointId)
 	const lambdaRes = await invokeApiLambda(endpointId, payload, state)
 	if (lambdaRes.body.length > 0) {

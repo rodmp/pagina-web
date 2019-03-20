@@ -7,11 +7,11 @@ import withModuleContext from 'root/src/client/util/withModuleContext'
 import GetUserTwitch from 'root/src/client/web/userData/GetUserTwitch'
 
 export const UserDataModuleUnconnected = memo(({
-	userData: { displayName }, moduleId, pageContent,
+	userData, moduleId, pageContent,
 }) => {
 	switch (moduleId) {
 		case 'TWITCH_OAUTH_MODULE_ID':
-			return <GetUserTwitch displayName={displayName} pageContent={pageContent} />
+			return <GetUserTwitch userData={userData} pageContent={pageContent} />
 		default:
 			return <div>No module found</div>
 	}
