@@ -180,10 +180,9 @@ export const ViewProjectModule = memo(({
 									)}
 							>
 									Pledge
-        </Button>
-						</div>,
-								)}
-							{ternary(assignees
+							</Button>
+						</div>
+						{ternary(assignees
 							.filter(assignee => assignee.username === userData.displayName).length > 0,
 						<TwitchButton
 							title="Accept or reject Dare"
