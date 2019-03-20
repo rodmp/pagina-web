@@ -14,7 +14,7 @@ import Navigation from 'root/src/client/web/base/Navigation'
 import Footer from 'root/src/client/web/footer/Footer'
 import BannerFooter from 'root/src/client/web/footer/BannerFooter'
 import BannerHeader from 'root/src/client/web/header/BannerHeader'
-import ExternalModule from 'root/src/client/web/external/ExternalModule'
+import UserDataModule from 'root/src/client/web/userData/UserDataModule'
 
 import { ModuleContextProvider } from 'root/src/client/util/withModuleContext'
 
@@ -81,7 +81,7 @@ export const RenderModules = ({ moduleTypes, routeId }) => (
 			case 'external':
 				return (
 					<ModuleContextProvider {...moduleProps}>
-						<ExternalModule />
+						<UserDataModule />
 					</ModuleContextProvider>
 				)
 			default:

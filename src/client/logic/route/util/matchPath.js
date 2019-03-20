@@ -39,7 +39,6 @@ export const matchPathHof = (allRoutes) => {
 				view(regexKeysLens, prop(1, foundRoutePair)),
 			)
 			const parsedQuery = parse(queryString)
-
 			return {
 				[routeIdKey]: prop(0, foundRoutePair),
 				[routeParamsKey]: routeParams,

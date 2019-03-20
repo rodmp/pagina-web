@@ -3,6 +3,6 @@ import subObj from 'root/src/shared/util/subObj'
 
 export default (
 	routeId, routeParamsArr = [], substitutes = {},
-) => dispatch => dispatch(pushRoute(
-	routeId, subObj(substitutes, routeParamsArr),
-))
+) => (dispatch) => dispatch(pushRoute(
+		routeId, subObj(substitutes, routeParamsArr),
+	))
