@@ -44,6 +44,7 @@ const styles = {
 		},
 	},
 	link: {
+		marginBottom: 30,
 		fontWeight: 'bold',
 		textDecoration: 'underline',
 		fontSize: 18,
@@ -64,10 +65,8 @@ const styles = {
 			minHeight: '300px !important',
 		},
 		'@media (min-width: 1280px)': {
+			backgroundPosition: '50% 30%',
 			minHeight: '330px !important',
-		},
-		'@media (min-width: 1440px)': {
-			backgroundPosition: '50% 15%',
 		},
 	},
 	icons: {

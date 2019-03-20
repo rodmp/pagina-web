@@ -34,6 +34,7 @@ import apiRecordClickActionRequestSuccess from 'root/src/client/logic/api/reduce
 import initApiRecordClickActionRequest from 'root/src/client/logic/api/reducers/initApiRecordClickActionRequest'
 
 import apiExternalRequestSuccess from 'root/src/client/logic/api/reducers/apiExternalRequestSuccess'
+import apiExternalRequestError from 'root/src/client/logic/api/reducers/apiExternalRequestError'
 
 import apiFetchUserDataSuccess from 'root/src/client/logic/api/reducers/apiFetchUserDataSuccess'
 
@@ -67,6 +68,7 @@ const store = createStore(
 		...initApiRecordClickActionRequest,
 		...generalRecordModification,
 		...apiExternalRequestSuccess,
+		...apiExternalRequestError,
 		...apiFetchUserDataSuccess,
 	}, // reducer object
 	// [], // sagas

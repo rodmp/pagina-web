@@ -7,6 +7,8 @@ import { withStyles } from '@material-ui/core/styles'
 import classNames from 'classnames'
 
 import SocialIconSet from 'root/src/client/web/static/reusable/socialIconSet'
+import { orNull } from 'root/src/shared/util/ramdaPlus'
+import renderParagraphWithLinks from 'root/src/client/util/renderParagraphWithLinks'
 
 import styles from './style'
 
@@ -18,21 +20,22 @@ const SuccessPage = ({ classes, pageContent }) => (
 				<h3 className={classes.sectionTitle}>{pageContent.title}</h3>
 				<ul className={classes.list}>
 					{pageContent.paragraphs.map((paragraph, idx) => (
-						<li key={idx}>{paragraph}</li>
+						<li key={idx}>{renderParagraphWithLinks(paragraph, pageContent.additionalLinks)}</li>
 					))}
 				</ul>
-				<Link routeId={pageContent.link}>
-					<p className={classes.link}>{pageContent.linkLabel}</p>
-				</Link>
 			</div>
 		</section>
 		<div className={classes.space} />
+		<Link routeId={pageContent.link}>
+			<p className={classes.link}>{pageContent.linkLabel}</p>
+		</Link>
 		<div
 			style={{ backgroundImage: `url(${pageContent.bannerFooterImage}` }}
 			className={classNames(classes.imageWrapper, 'flex flex-column layout-align-end')}
 		>
 			<div className={classes.imageContainer}>
-				<SocialIconSet className={classes.icons} />
+				{orNull(!pageContent.withoutSocialIcons,
+					<SocialIconSet className={classes.icons} />)}
 			</div>
 		</div>
 	</div>

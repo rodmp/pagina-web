@@ -7,6 +7,7 @@ import Submits from 'root/src/client/web/form/Submits'
 import Header from 'root/src/client/web/typography/Header'
 import Body from 'root/src/client/web/typography/Body'
 import Button from 'root/src/client/web/base/Button'
+import FormTitle from 'root/src/client/web/typography/FormTitle'
 import TertiaryBody from 'root/src/client/web/typography/TertiaryBody'
 import formModuleConnector from 'root/src/client/logic/form/connectors/formModuleConnector'
 
