@@ -24,7 +24,7 @@ import { APPROVE_PROJECT } from 'root/src/shared/descriptions/recordClickActions
 
 import viewProjectConnector from 'root/src/client/logic/project/connectors/viewProjectConnector'
 import withModuleContext from 'root/src/client/util/withModuleContext'
-// import goToSignInHandler from 'root/src/client/logic/project/handlers/goToSignInHandler'
+import goToSignInHandler from 'root/src/client/logic/project/handlers/goToSignInHandler'
 import goToPledgeProjectHandler from 'root/src/client/logic/project/handlers/goToPledgeProjectHandler'
 
 const styles = {
@@ -180,10 +180,10 @@ export const ViewProjectModule = memo(({
 									)}
 							>
 									Pledge
-							</Button>
+        </Button>
 						</div>,
-							)}
-						{ternary(assignees
+								)}
+							{ternary(assignees
 							.filter(assignee => assignee.username === userData.displayName).length > 0,
 						<TwitchButton
 							title="Accept or reject Dare"
