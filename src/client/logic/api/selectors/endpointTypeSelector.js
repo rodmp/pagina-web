@@ -5,8 +5,6 @@ import {
 
 const { viewEndpointType } = endpointDescriptionLenses
 
-export const endpointTypeSelectorHof = endpointDescriptionsObj => endpointId => (
-	viewEndpointType(endpointId, endpointDescriptionsObj)
-)
+export const endpointTypeSelectorHof = endpointDescriptionsObj => endpointId => viewEndpointType(endpointId, endpointDescriptionsObj)
 
 export default endpointTypeSelectorHof(endpointDescriptions)

@@ -1,6 +1,6 @@
 import {
 	GET_PROJECT, CREATE_PROJECT, PLEDGE_PROJECT, GET_PLEDGED_PROJECTS,
-	AUDIT_PROJECT, GET_ACTIVE_PROJECTS, GET_PENDING_PROJECTS,
+	AUDIT_PROJECT, GET_ACTIVE_PROJECTS, GET_PENDING_PROJECTS, GET_OAUTH_TOKENS, ADD_OAUTH_TOKEN,
 } from 'root/src/shared/descriptions/endpoints/endpointIds'
 
 import getProject from 'root/src/server/api/actions/getProject'
@@ -10,6 +10,8 @@ import getPledgedProjects from 'root/src/server/api/actions/getPledgedProjects'
 import auditProject from 'root/src/server/api/actions/auditProject'
 import getActiveProjects from 'root/src/server/api/actions/getActiveProjects'
 import getPendingProjects from 'root/src/server/api/actions/getPendingProjects'
+import getOAuthTokens from 'root/src/server/api/actions/getOAuthTokens'
+import addOAuthToken from 'root/src/server/api/actions/addOAuthToken'
 
 export default {
 	[CREATE_PROJECT]: createProject,
@@ -22,4 +24,7 @@ export default {
 
 	[GET_ACTIVE_PROJECTS]: getActiveProjects,
 	[GET_PENDING_PROJECTS]: getPendingProjects,
+
+	[GET_OAUTH_TOKENS]: getOAuthTokens,
+	[ADD_OAUTH_TOKEN]: addOAuthToken,
 }

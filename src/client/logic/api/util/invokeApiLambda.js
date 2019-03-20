@@ -9,5 +9,6 @@ export default (endpointId, payload, state) => {
 		payload,
 		...(jwtToken ? { authentication: jwtToken } : {}),
 	}
+
 	return invokeLambda(apiFunctionArn, lambdaPayload)
 }
