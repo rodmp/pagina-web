@@ -24,7 +24,6 @@ export const ListItemUnconnected = memo(({
 	<div className={classNames('flex layout-row layout-align-space-between-center', classes.root)}>
 		<div className={classNames('flex layout-column', classes.cardDetails)}>
 			<strong>{card.cardBrand} ****{card.lastFour}</strong>
-			<span>{card.cardName}</span>
 			<span>Expires {card.expMonth}/{card.expYear}</span>
 		</div>
 		<Button
@@ -36,7 +35,7 @@ export const ListItemUnconnected = memo(({
 			disableRipple
 		>
 				Remove
-   </Button>
+		</Button>
 	</div>
 ))
 
