@@ -105,11 +105,7 @@ const styles = {
 export const ViewProjectModule = memo(({
 	myPledge, status, assignees, projectId, projectDescription, projectTitle, pledgeAmount,
 	gameImage, canApproveProject, pushRoute, canPledgeProject, classes,
-<<<<<<< HEAD
-
-=======
 	isAuthenticated,
->>>>>>> b226df7d99b49cdb82b527659cf4625bfc14d46b
 }) => (
 	<div className="flex layout-row layout-align-center-start">
 		<MaxWidthContainer>
@@ -176,18 +172,10 @@ export const ViewProjectModule = memo(({
 										goToPledgeProjectHandler(projectId, pushRoute),
 										goToSignInHandler(pushRoute),
 									)}
-<<<<<<< HEAD
-								>
-										Pledge
-								</Button>
-							</div>,
-						)}
-=======
 							>
 									Pledge
-							</Button>
+        </Button>
 						</div>
->>>>>>> b226df7d99b49cdb82b527659cf4625bfc14d46b
 					</div>
 
 				</div>
