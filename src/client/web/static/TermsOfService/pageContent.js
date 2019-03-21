@@ -60,7 +60,7 @@ const pageContent = classes => [
 		paragraph: (<span>
 			To use Dare Drop, you need to be 13 years old or older. 
 			If you’re between 13 and 18 (or the legal age of majority for your 
-			jurisdiction), you may only use Double Dof under the supervision of a 
+			jurisdiction), you may only use Dare Drop under the supervision of a 
 			parent or legal guardian who agrees to these Terms. You’re responsible 
 			for your account and all the activity on it.
 		</span>),
