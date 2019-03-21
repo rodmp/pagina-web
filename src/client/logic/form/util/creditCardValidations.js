@@ -29,7 +29,7 @@ export const securityCodeValidation = (value) => {
 	return value
 }
 
-export const expirationDateValidation = (value) => {
+export const expirationDateValidation = (value, previousValue) => {
 	let pattern
 	switch (value.length) {
 		case 1:
@@ -53,5 +53,17 @@ export const expirationDateValidation = (value) => {
 	if (!value.match(pattern)) {
 		return value.slice(0, value.length - 1)
 	}
+	if (value.length === 2) {
+		if (previousValue.length === 3) {
+			return value.slice(0, value.length - 1)
+		}
+		return `${value}/`
+	}
 	return value
+}
+
+export const zipCodeValidation = (value) => {
+	if (value.length > 5) {
+		return value.slice(0, 5)
+	} return value
 }

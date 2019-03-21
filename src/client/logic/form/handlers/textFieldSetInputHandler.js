@@ -2,9 +2,10 @@ import {
 	cardNumberValidation,
 	securityCodeValidation,
 	expirationDateValidation,
+	zipCodeValidation,
 } from 'root/src/client/logic/form/util/creditCardValidations'
 
-export default (moduleKey, fieldPath, action, fieldType) => (e) => {
+export default (moduleKey, fieldPath, action, fieldType, setPreviousValue, previousValue) => async (e) => {
 	e.preventDefault()
 	let { value } = e.target
 	if (fieldType === 'number') {
@@ -17,7 +18,11 @@ export default (moduleKey, fieldPath, action, fieldType) => (e) => {
 		value = securityCodeValidation(value)
 	}
 	if (fieldPath[0] === 'expirationDate') {
-		value = expirationDateValidation(value)
+		value = expirationDateValidation(value, previousValue)
+	}
+	if (fieldPath[0] === 'zipCode') {
+		value = zipCodeValidation(value)
 	}
 	action(moduleKey, fieldPath, value)
+	await setPreviousValue(value.slice(0, value.length))
 }

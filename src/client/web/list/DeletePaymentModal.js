@@ -25,14 +25,14 @@ export const DeletePaymentModal = memo(({
 		<DialogContent
 			className={classes.modalBody}
 		>
-				Are you sure to delete this Credit Card?
-				it will be deleted from your Account.
-   </DialogContent>
+				Are you sure you want to delete this credit card?
+				It will be deleted from your account
+			</DialogContent>
 		<Button
 			additionalClass={classes.modalButton}
 			buttonType="primarySquareButton"
 		>Confirm
-		</Button>
+   </Button>
 	</Dialog>
 ))
 

@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useState } from 'react'
 
 import { orNull } from 'root/src/shared/util/ramdaPlus'
 import classNames from 'classnames'
@@ -70,12 +70,7 @@ export const InputField = memo(({
 	moduleKey, fieldId, fieldPath, setInput, fieldValue, fieldLabel, fieldError,
 	fieldHasError, fieldType, fieldMultiline, fieldPlaceholder, formType, classes, wasSubmitted,
 }) => {
-	// const [focus, setFocus] = useState()
-	// const [error, setError] = useState(fieldError)
-	// useEffect(() => {
-	// 	setError(fieldError)
-	// }, [fieldHasError])
-
+	const [previousValue, setPreviousValue] = useState()
 	switch (formType) {
 		case 'paymentMethod':
 			return (
@@ -97,7 +92,7 @@ export const InputField = memo(({
 						className={classes.input}
 						placeholder={fieldPlaceholder}
 						onChange={textFieldSetInputHandler(
-							moduleKey, fieldPath, setInput, fieldType,
+							moduleKey, fieldPath, setInput, fieldType, setPreviousValue, previousValue,
 						)}
 						value={fieldValue}
 					/>
@@ -121,9 +116,7 @@ export const InputField = memo(({
 					error={fieldHasError}
 					helperText={fieldError}
 					placeholder={fieldPlaceholder}
-					onChange={textFieldSetInputHandler(
-						moduleKey, fieldPath, setInput, fieldType,
-					)}
+					onChange={textFieldSetInputHandler(moduleKey, fieldPath, setInput, fieldType)}
 				/>
 			)
 	}
