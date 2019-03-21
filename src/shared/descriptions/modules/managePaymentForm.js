@@ -30,12 +30,6 @@ export default {
 				placeholder: '4242 4242 4242 4242',
 			},
 			{
-				fieldId: 'cardName',
-				inputType: 'text',
-				label: 'Name on Credit Card',
-				placeholder: 'Name',
-			},
-			{
 				fieldId: 'expirationDate',
 				inputType: 'text',
 				label: 'Expiration',
