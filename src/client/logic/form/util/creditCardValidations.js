@@ -50,7 +50,17 @@ export const expirationDateValidation = (value) => {
 		default:
 			pattern = /^$/
 	}
+	if (value.length === 2) {
+		return `${value}/`
+	}
 	if (!value.match(pattern)) {
+		return value.slice(0, value.length - 1)
+	}
+	return value
+}
+
+export const zipCodeValidation = (value) => {
+	if (value.length === 6) {
 		return value.slice(0, value.length - 1)
 	}
 	return value

@@ -70,6 +70,7 @@ export const InputField = memo(({
 	moduleKey, fieldId, fieldPath, setInput, fieldValue, fieldLabel, fieldError,
 	fieldHasError, fieldType, fieldMultiline, fieldPlaceholder, formType, classes, wasSubmitted,
 }) => {
+	let prevValue
 	switch (formType) {
 		case 'universalForm':
 			return (
