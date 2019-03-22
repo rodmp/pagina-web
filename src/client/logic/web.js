@@ -28,6 +28,7 @@ import apiRecordRequestSuccess from 'root/src/client/logic/api/reducers/apiRecor
 import initApiListRequest from 'root/src/client/logic/api/reducers/initApiListRequest'
 import initApiRecordRequest from 'root/src/client/logic/api/reducers/initApiRecordRequest'
 import generalRecordModification from 'root/src/client/logic/api/reducers/generalRecordModification'
+import apiDbSaveSuccess from 'root/src/client/logic/api/reducers/apiDbSaveSuccess'
 
 import apiRecordClickActionRequestError from 'root/src/client/logic/api/reducers/apiRecordClickActionRequestError'
 import apiRecordClickActionRequestSuccess from 'root/src/client/logic/api/reducers/apiRecordClickActionRequestSuccess'
@@ -62,6 +63,7 @@ const store = createStore(
 		...apiRecordClickActionRequestSuccess,
 		...initApiRecordClickActionRequest,
 		...generalRecordModification,
+		...apiDbSaveSuccess,
 	}, // reducer object
 	// [], // sagas
 	[

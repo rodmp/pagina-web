@@ -12,3 +12,4 @@ export const SET_FORM_STRIPE = 'actionId/SET_FORM_STRIPE'
 
 export const STEP_FORM_NEXT_PAGE = 'actionId/STEP_FORM_NEXT_PAGE'
 export const STEP_FORM_PREV_PAGE = 'actionId/STEP_FORM_PREV_PAGE'
+export const SAVE_PARTIAL_FORM = 'actionId/SAVE_PARTIAL_FORM'
