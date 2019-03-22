@@ -8,6 +8,7 @@ import Header from 'root/src/client/web/typography/Header'
 import Body from 'root/src/client/web/typography/Body'
 import Button from 'root/src/client/web/base/Button'
 import TertiaryBody from 'root/src/client/web/typography/TertiaryBody'
+import FormTitle from 'root/src/client/web/typography/FormTitle'
 import formModuleConnector from 'root/src/client/logic/form/connectors/formModuleConnector'
 
 import backToPrevHandler from 'root/src/client/logic/form/handlers/backToPrevHandler'
