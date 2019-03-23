@@ -11,6 +11,7 @@ import clearPartialFormKeys from 'root/src/client/logic/form/actions/clearPartia
 
 import formSubmits from 'root/src/shared/descriptions/formSubmits'
 
+import userIdFromPartialEntries from 'root/src/client/logic/form/selectors/userIdFromPartialEntries'
 import recordTypeSelector from 'root/src/client/logic/api/selectors/recordTypeSelector'
 import createRecordStoreKey from 'root/src/client/logic/api/util/createRecordStoreKey'
 import generalRecordModification from 'root/src/client/logic/api/actions/generalRecordModification'
@@ -51,7 +52,8 @@ export const submitFormHof = (
 			if (onSuccessFn) {
 				const partialFormEntries = viewFormChild(`db-${moduleKey}`, state)
 				const partialKeys = Object.keys(partialFormEntries)
-				const userId = partialFormEntries[partialKeys[0]].pk
+				const userId = userIdFromPartialEntries(partialFormEntries)
+				
 				invokeApiLambda(
 					CLEAR_PARTIAL_FORM_KEYS,
 					{ userId, partialKeys },
