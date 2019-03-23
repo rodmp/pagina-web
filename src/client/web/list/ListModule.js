@@ -18,7 +18,6 @@ import List from '@material-ui/core/List'
 
 import listModuleConnector from 'root/src/client/logic/api/connectors/listModuleConnector'
 
-import mockCardList from 'root/src/server/api/mocks/creditCardsMock'
 import { DeletePaymentModal } from './DeletePaymentModal'
 
 const styles = {
@@ -47,6 +46,7 @@ export const ListModuleUnconnected = memo(({
 	list, listType, classes, listTitle, listSubtitle, listControls,
 }) => {
 	const [modalOpen, setModalOpen] = useState(false)
+	const [modalRecordId, setModalRecordId] = useState(null)
 	switch (listType) {
 		case 'card':
 			return (
@@ -72,14 +72,25 @@ export const ListModuleUnconnected = memo(({
 				<List className={classNames('layout-column layout-align-start-center', classes.list)}>
 					<DeletePaymentModal
 						open={modalOpen}
-						closeModal={() => setModalOpen(false)}
+						closeModal={() => {
+							setModalRecordId(null)
+							setModalOpen(false)
+						}}
 						classes={classes}
+						modalRecordId={modalRecordId}
 					/>
 					<Title notUpperCase>{listTitle}</Title>
 					<SubTitle additionalClass={classes.subtitle}>{listSubtitle}</SubTitle>
-					{map(card => (
-						<PaymentMethod key={card.lastFour} card={card} openModal={() => setModalOpen(true)} />
-					), mockCardList)}
+					{map(recordId => (
+						<PaymentMethod
+							key={recordId}
+							recordId={recordId}
+							openModal={() => {
+								setModalRecordId(recordId)
+								setModalOpen(true)
+							}}
+						/>
+					), list)}
 					<div className={classes.buttons}>
 						{map(({ title, routeId, buttonType }) => (
 							<LinkButton

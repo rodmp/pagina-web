@@ -33,7 +33,7 @@ export const expirationDateValidation = (value, previousValue) => {
 	let pattern
 	switch (value.length) {
 		case 1:
-			pattern = /^(0|1)$/
+			pattern = /^([0-9])$/
 			break
 		case 2:
 			pattern = /^(0[1-9]|1[0-2])$/
@@ -52,6 +52,9 @@ export const expirationDateValidation = (value, previousValue) => {
 	}
 	if (!value.match(pattern)) {
 		return value.slice(0, value.length - 1)
+	}
+	if (value.length === 1 && value != 0 && value != 1) {
+		return `0${value}/`
 	}
 	if (value.length === 2) {
 		if (previousValue.length === 3) {

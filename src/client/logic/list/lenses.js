@@ -19,6 +19,7 @@ export const listModuleSchema = {
 				listTitle: { type: 'string' },
 				listSubtitle: { type: 'string' },
 				listControls: { type: 'array' },
+				listSubmits: { type: 'array' },
 			},
 		},
 	},

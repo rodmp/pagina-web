@@ -5,6 +5,7 @@ import forgotPassword from 'root/src/shared/descriptions/formSubmits/forgotPassw
 import resetPassword from 'root/src/shared/descriptions/formSubmits/resetPassword'
 import verifyAccountForm from 'root/src/shared/descriptions/formSubmits/verifyAccountForm'
 import createPledgeForm from 'root/src/shared/descriptions/formSubmits/createPledgeForm'
+import addPaymentForm from 'root/src/shared/descriptions/formSubmits/addPaymentForm'
 
 export default {
 	...createProjectForm,
@@ -14,4 +15,5 @@ export default {
 	...createPledgeForm,
 	...forgotPassword,
 	...resetPassword,
+	...addPaymentForm,
 }

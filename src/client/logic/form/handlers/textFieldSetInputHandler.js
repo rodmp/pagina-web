@@ -17,7 +17,7 @@ export default (moduleKey, fieldPath, action, fieldType, setPreviousValue, previ
 	if (fieldPath[0] === 'securityCode') {
 		value = securityCodeValidation(value)
 	}
-	if (fieldPath[0] === 'expirationDate') {
+	if (fieldPath[0] === 'expDate') {
 		value = expirationDateValidation(value, previousValue)
 	}
 	if (fieldPath[0] === 'zipCode') {

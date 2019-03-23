@@ -22,8 +22,8 @@ const validateOrNah = (schemaType, endpointId, schema) => (payload) => {
 				return payload
 			}
 			const errors = ajvErrors(schema, prop('errors', res))
-			const errorType = schemaType === 'payloadSchema' ?
-				payloadSchemaError(errors) : responseSchemaError(errors)
+			const errorType = schemaType === 'payloadSchema'
+				? payloadSchemaError(errors) : responseSchemaError(errors)
 			throw errorType
 		})
 	}

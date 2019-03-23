@@ -78,8 +78,8 @@ export const InputField = memo(({
 					classNames(
 						'flex layout-column',
 						classes.field,
-						orNull((fieldId === 'expirationDate' || fieldId === 'securityCode'), classes.halfField),
-						orNull((fieldId === 'expirationDate'), classes.expDate),
+						orNull((fieldId === 'expDate' || fieldId === 'securityCode'), classes.halfField),
+						orNull((fieldId === 'expDate'), classes.expDate),
 						orNull((fieldId === 'securityCode'), classes.securityCode),
 					)}
 				>
