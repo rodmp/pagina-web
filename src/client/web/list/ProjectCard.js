@@ -111,7 +111,7 @@ export const ListItemUnconnected = memo(({
 						onClick={goToViewProjectHandler(recordId, pushRoute)}
 					>
 							pledge
-					</Button>
+						</Button>
 				</div>
 			</div>
 		</div>

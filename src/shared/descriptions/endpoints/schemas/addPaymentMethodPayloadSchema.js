@@ -8,7 +8,7 @@ export default {
 				minLength: 'Invalid card number',
 			},
 		},
-		expirationDate: {
+		expDate: {
 			type: 'string',
 			minLength: 5,
 			errorMessage: {
@@ -24,6 +24,6 @@ export default {
 		},
 		zipCode: { type: 'string' },
 	},
-	required: ['cardNumber', 'expirationDate', 'securityCode', 'zipCode'],
+	required: ['cardNumber', 'expDate', 'securityCode', 'zipCode'],
 	additionalProperties: false,
 }
