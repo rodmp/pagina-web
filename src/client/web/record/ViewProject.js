@@ -14,7 +14,7 @@ import SubHeader from 'root/src/client/web/typography/SubHeader'
 import Button from 'root/src/client/web/base/Button'
 
 import RecordClickActionButton from 'root/src/client/web/base/RecordClickActionButton'
-import { APPROVE_PROJECT } from 'root/src/shared/descriptions/recordClickActions/recordClickActionIds'
+import { APPROVE_PROJECT, REJECT_PROJECT } from 'root/src/shared/descriptions/recordClickActions/recordClickActionIds'
 
 import viewProjectConnector from 'root/src/client/logic/project/connectors/viewProjectConnector'
 import withModuleContext from 'root/src/client/util/withModuleContext'
@@ -105,9 +105,11 @@ const styles = {
 
 export const ViewProjectModule = memo(({
 	projectId, projectDescription, projectTitle, pledgeAmount, assignees,
-	gameImage, canApproveProject, pushRoute, canPledgeProject, classes,
+	gameImage, canApproveProject, canRejectProject, pushRoute, canPledgeProject, classes,
 }) => (
 	<div className="flex layout-row layout-align-center-start">
+		{console.log(projectId, projectDescription, projectTitle, pledgeAmount, assignees,
+			gameImage, canApproveProject, canRejectProject, pushRoute, canPledgeProject, classes,)}
 		<MaxWidthContainer>
 			<div className="flex layout-row layout-wrap">
 				<div className={classNames(
@@ -164,6 +166,17 @@ export const ViewProjectModule = memo(({
 								/>
 							</div>,
 						)}
+						{
+							orNull(
+								canRejectProject,
+								<div className={classes.sidebarItem}>
+									<RecordClickActionButton
+										recordClickActionId={REJECT_PROJECT}
+										recordId={projectId}
+									/>
+								</div>,
+							)
+						}
 						{orNull(
 							canPledgeProject,
 							<div className={classes.sidebarItem}>
