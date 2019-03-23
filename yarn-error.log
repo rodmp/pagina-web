@@ -1,24 +1,24 @@
 Arguments: 
-  /usr/bin/node /usr/bin/yarn install
+  /usr/bin/node /usr/bin/yarn add aws-sdk --save
 
 PATH: 
-  /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+  /home/domo/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/java/jdk1.8.0_201/bin:/home/domo/Android/Sdk/emulator:/home/domo/Android/Sdk/tools:/home/domo/Android/Sdk/tools/bin:/home/domo/Android/Sdk/platform-tools:/depot_tools
 
 Yarn version: 
   1.13.0
 
 Node version: 
-  8.15.0
+  8.15.1
 
 Platform: 
   linux x64
 
 Trace: 
-  Error: EACCES: permission denied, mkdir '/home/domo/Documents/Workspace/sls-aws/node_modules/@babel/generator/node_modules/source-map'
+  Error: EACCES: permission denied, unlink '/home/domo/Documents/Workspace/sls-aws/node_modules/.yarn-integrity'
 
 npm manifest: 
   {
-    "name": "sls-aws",
+    "name": "root",
     "version": "1.0.0",
     "main": "/",
     "license": "MIT",
@@ -27,6 +27,7 @@ npm manifest:
       "start": "./node_modules/.bin/webpack-dev-server --progress --colors --hot --content-base build --inline --config webpack.config.js --port 8585",
       "buildTemplate": "./node_modules/.bin/babel-node ./src/aws/util/buildTemplate --presets=env,stage-0 --plugins=package-name-import > cfTemplate.json",
       "deploy": "./node_modules/.bin/babel-node --presets=env,stage-0 ./src/aws/util/cfCli deploy",
+      "update": "./node_modules/.bin/babel-node --presets=env,stage-0 ./src/aws/util/cfCli update",
       "delete": "./node_modules/.bin/babel-node --presets=env,stage-0 ./src/aws/util/cfCli remove",
       "outputs": "./node_modules/.bin/babel-node --presets=env,stage-0 ./src/aws/util/cfCli outputs",
       "createDdb": "docker run --name dynamodb -p 9000:8000 amazon/dynamodb-local",
@@ -35,6 +36,7 @@ npm manifest:
     "dependencies": {
       "@fortawesome/fontawesome-svg-core": "^1.2.15",
       "@fortawesome/free-brands-svg-icons": "^5.7.2",
+      "@fortawesome/free-regular-svg-icons": "^5.7.2",
       "@fortawesome/free-solid-svg-icons": "^5.7.2",
       "@fortawesome/react-fontawesome": "^0.1.4",
       "@material-ui/core": "^3.8.1",
@@ -320,6 +322,13 @@ Lockfile:
     version "5.7.2"
     resolved "https://registry.yarnpkg.com/@fortawesome/free-brands-svg-icons/-/free-brands-svg-icons-5.7.2.tgz#80ea37f12d22a281a5eadcd0cd3c870683e5dec1"
     integrity sha512-91rIjo00vy7PNrXg5auDsPOSTjmgzc+UUqMyUZHmIrXG5OXMHgjAYMTgEIgs91Lm5XcJtggFZCQz1u5fGFnj2A==
+    dependencies:
+      "@fortawesome/fontawesome-common-types" "^0.2.15"
+  
+  "@fortawesome/free-regular-svg-icons@^5.7.2":
+    version "5.7.2"
+    resolved "https://registry.yarnpkg.com/@fortawesome/free-regular-svg-icons/-/free-regular-svg-icons-5.7.2.tgz#7113bf9df5a970918b8cac8eb45e5ad120818741"
+    integrity sha512-ZO+zQcncfT7omTsTIjBkugj/dFXiSnoK44I5p0/WAoNX8aX2Au7j+uxq1qFX4bevkfGFGsPeJUYU1+Q1PB/5pQ==
     dependencies:
       "@fortawesome/fontawesome-common-types" "^0.2.15"
   
