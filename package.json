@@ -27,7 +27,7 @@
     "ajv-errors": "^1.0.0",
     "amazon-cognito-identity-js": "^2.0.20",
     "aws-config": "^1.2.0",
-    "aws-sdk": "^2.279.1",
+    "aws-sdk": "^2.426.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.5",

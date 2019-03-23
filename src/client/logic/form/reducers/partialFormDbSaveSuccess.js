@@ -1,12 +1,10 @@
-import { compose } from 'ramda'
-
-import { API_DB_SAVE_SUCCESS } from 'root/src/client/logic/api/actionIds'
+import { PARTIAL_FORM_DB_SAVE_SUCCESS } from 'root/src/client/logic/form/actionIds'
 import createDbSaveStoreKey from 'root/src/client/logic/api/util/createDbSaveStoreKey'
 import { formStoreLenses } from 'root/src/client/logic/form/lenses'
 
 const { viewFormChild, setFormChild } = formStoreLenses
 
-export const apiRecordRequestSuccess = (
+const partialFormDbSaveSuccess = (
 	state,
 	{ dbSaveKey, moduleKey, lambdaRes },
 ) => {
@@ -19,5 +17,5 @@ export const apiRecordRequestSuccess = (
 }
 
 export default {
-	[API_DB_SAVE_SUCCESS]: apiRecordRequestSuccess,
+	[PARTIAL_FORM_DB_SAVE_SUCCESS]: partialFormDbSaveSuccess,
 }

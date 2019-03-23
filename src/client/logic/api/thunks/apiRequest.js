@@ -15,7 +15,6 @@ import apiRecordRequestError from 'root/src/client/logic/api/actions/apiRecordRe
 import recordTypeSelector from 'root/src/client/logic/api/selectors/recordTypeSelector'
 import endpointTypeSelector from 'root/src/client/logic/api/selectors/endpointTypeSelector'
 
-import apiDbSaveSuccess from 'root/src/client/logic/api/actions/apiDbSaveSuccess'
 
 import invokeApiLambda from 'root/src/client/logic/api/util/invokeApiLambda'
 
@@ -70,25 +69,25 @@ export const fetchExternal = async (dispatch, state, endpointId, payload) => {
 	// return lambdaRes
 }
 
-export const dbSave = async (dispatch, state, endpointId, payload) => {
-	const lambdaRes = await invokeApiLambda(endpointId, payload, state)
-	const { statusCode, body, statusError, generalError } = lambdaRes
-	if (equals(statusCode, 200)) {
-		dispatch(apiDbSaveSuccess(payload.id, payload.moduleKey, body))
-	} else {
-		const error = { ...statusError, ...generalError }
-		// TODO
+// export const dbSave = async (dispatch, state, endpointId, payload) => {
+// 	const lambdaRes = await invokeApiLambda(endpointId, payload, state)
+// 	const { statusCode, body, statusError, generalError } = lambdaRes
+// 	if (equals(statusCode, 200)) {
+// 		dispatch(apiDbSaveSuccess(payload.id, payload.moduleKey, body))
+// 	} else {
+// 		const error = { ...statusError, ...generalError }
+// 		// TODO
 
-		// dispatch(apiRecordRequestError(recordType,recordId, error))
-	}
-	return lambdaRes
-}
+// 		// dispatch(apiRecordRequestError(recordType,recordId, error))
+// 	}
+// 	return lambdaRes
+// }
 
 const endpointTypeFunctionMap = {
 	list: fetchList,
 	record: fetchRecord,
 	external: fetchExternal,
-	dbSave,
+	// dbSave,
 }
 
 export default (endpointId, payload) => async (dispatch, getState) => {
