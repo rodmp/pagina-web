@@ -8,7 +8,7 @@ export default async (userId, cardId) => {
 		KeyConditionExpression: `${PARTITION_KEY} = :pk and  ${SORT_KEY} = :card`,
 		ExpressionAttributeValues: {
 			':pk': userId,
-			':card': `creditCard|${cardId}`,
+			':card': cardId,
 		},
 		ConsistentRead: true,
 	}

@@ -5,7 +5,6 @@ import lastFourSelector from 'root/src/client/logic/paymentMethod/selectors/last
 import expDateSelector from 'root/src/client/logic/paymentMethod/selectors/expDateSelector'
 import zipCodeSelector from 'root/src/client/logic/paymentMethod/selectors/zipCodeSelector'
 
-import deletePaymentMethod from 'root/src/client/logic/paymentMethod/thunks/deletePaymentMethod'
 
 export default reduxConnector(
 	[
@@ -13,7 +12,5 @@ export default reduxConnector(
 		['cardType', cardTypeSelector],
 		['expDate', expDateSelector],
 		['zipCode', zipCodeSelector],
-		['deletePaymentMethod', deletePaymentMethod],
 	],
-	[['deletePaymentMethod', deletePaymentMethod]],
 )

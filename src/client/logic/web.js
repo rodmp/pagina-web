@@ -30,9 +30,7 @@ import generalRecordModification from 'root/src/client/logic/api/reducers/genera
 import apiRecordClickActionRequestError from 'root/src/client/logic/api/reducers/apiRecordClickActionRequestError'
 import apiRecordClickActionRequestSuccess from 'root/src/client/logic/api/reducers/apiRecordClickActionRequestSuccess'
 import initApiRecordClickActionRequest from 'root/src/client/logic/api/reducers/initApiRecordClickActionRequest'
-
-// paymentMethod
-import deletePaymentMethod from 'root/src/client/logic/paymentMethod/reducers/deletePaymentMethod'
+import deletePaymentMethodOnSuccess from 'root/src/client/logic/list/reducers/deletePaymentMethodOnSuccess'
 
 // listeners
 import popStateListener from 'root/src/client/logic/route/listeners/popStateListener'
@@ -61,7 +59,7 @@ const store = createStore(
 		...apiRecordClickActionRequestSuccess,
 		...initApiRecordClickActionRequest,
 		...generalRecordModification,
-		...deletePaymentMethod,
+		...deletePaymentMethodOnSuccess,
 	}, // reducer object
 	// [], // sagas
 	[
