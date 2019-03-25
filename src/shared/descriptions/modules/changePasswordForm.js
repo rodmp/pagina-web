@@ -28,7 +28,7 @@ export default {
 				placeholder: 'Current Password',
 			},
 			{
-				fieldId: 'password2',
+				fieldId: 'newPassword',
 				inputType: 'password',
 				label: 'New Password',
 				placeholder: 'New Password',

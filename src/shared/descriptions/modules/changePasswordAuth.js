@@ -2,8 +2,8 @@ import { dissocPath, compose, set, lensProp, without, view } from 'ramda'
 import {
 	CHANGE_PASSWORD_AUTH_MODULE_ID,
 } from 'root/src/shared/descriptions/modules/moduleIds'
-import changePasswordPayloadSchema from 'root/src/shared/descriptions/endpoints/schemas/changePasswordPayloadSchema'
-import ACCOUNT_SETTINGS_ROUTE_ID from 'root/src/shared/descriptions/routes/routeIds'
+import changePasswordAuthSchema from 'root/src/shared/descriptions/formSchemas/changePasswordAuthSchema'
+import { ACCOUNT_SETTINGS_ROUTE_ID } from 'root/src/shared/descriptions/routes/routeIds'
 
 export default {
 	[CHANGE_PASSWORD_AUTH_MODULE_ID]: {
@@ -15,10 +15,10 @@ export default {
 				lensProp('required'),
 				without(
 					[],
-					view(lensProp('required'), changePasswordPayloadSchema),
+					view(lensProp('required'), changePasswordAuthSchema),
 				),
 			),
-		)(changePasswordPayloadSchema),
+		)(changePasswordAuthSchema),
 		title: 'Login & Security',
 		fields: [
 			{
@@ -41,8 +41,8 @@ export default {
 			},
 		],
 		backButton: {
-			label: 'Go Back',
 			routeId: ACCOUNT_SETTINGS_ROUTE_ID,
+			label: 'Go Back',
 		},
 	},
 }

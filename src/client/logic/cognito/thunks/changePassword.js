@@ -16,7 +16,7 @@ const AuthenticateUserError = reject => (error) => {
 	reject(fieldError)
 }
 
-export default ({ password, password2 }) => dispatch => new Promise(
+export default ({ password, newPassword }) => dispatch => new Promise(
 	(resolve, reject) => {
 		let user
 		const re = /^CognitoIdentityServiceProvider.*.idToken$/
@@ -36,7 +36,7 @@ export default ({ password, password2 }) => dispatch => new Promise(
 		})
 		cognitoUser.authenticateUser(authenticationDetails, {
 			onSuccess: () => {
-				cognitoUser.changePassword(password, password2, (err, resp) => {
+				cognitoUser.changePassword(password, newPassword, (err, resp) => {
 					if (err) {
 						AuthenticateUserError(reject)
 					} else if (resp === 'SUCCESS') {
