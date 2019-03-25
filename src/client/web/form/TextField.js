@@ -84,7 +84,7 @@ export const InputField = memo(({
 					)}
 				>
 					{ternary(
-						fieldId === 'email' || fieldId === 'password' || fieldId === 'password2',
+						fieldId === 'email' || fieldId === 'password' || fieldId === 'newPassword',
 						<label className={classes.label} htmlFor={fieldId}>
 							{fieldLabel}
 						</label>,
