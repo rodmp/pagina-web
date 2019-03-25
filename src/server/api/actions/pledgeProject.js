@@ -60,9 +60,10 @@ export default async ({ userId, payload }) => {
 			[PARTITION_KEY]: projectToPledge[PARTITION_KEY],
 			[SORT_KEY]: projectToPledge[SORT_KEY],
 		},
-		UpdateExpression: 'SET pledgeAmount = :newPledgeAmount',
+		UpdateExpression: 'SET pledgeAmount = :newPledgeAmount, pledgers = pledgers + :newPledgers',
 		ExpressionAttributeValues: {
 			':newPledgeAmount': pledgeAmount + newPledgeAmount,
+			':newPledgers': 1,
 		},
 	}
 
@@ -98,5 +99,6 @@ export default async ({ userId, payload }) => {
 			viewPledgeAmount(newProject),
 			newPledgeAmount,
 		),
+		pledgers: add(newProject.pledgers, 1),
 	}
 }
