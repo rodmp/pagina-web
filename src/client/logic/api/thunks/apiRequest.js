@@ -58,9 +58,7 @@ const endpointTypeFunctionMap = {
 export default (endpointId, payload) => async (dispatch, getState) => {
 	try {
 		const state = getState()
-		console.log(endpointId)
 		const endpointType = endpointTypeSelector(endpointId)
-		console.log(endpointType)
 		return endpointTypeFunctionMap[endpointType](
 			dispatch, state, endpointId, payload,
 		)

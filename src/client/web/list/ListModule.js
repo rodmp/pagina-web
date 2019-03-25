@@ -43,7 +43,7 @@ const styles = {
 
 
 export const ListModuleUnconnected = memo(({
-	list, listType, classes, listTitle, listSubtitle, listControls,
+	list, listType, classes, listTitle, listSubtitle, listControls, deletePaymentMethod,
 }) => {
 	const [modalOpen, setModalOpen] = useState(false)
 	const [modalRecordId, setModalRecordId] = useState(null)
@@ -78,6 +78,7 @@ export const ListModuleUnconnected = memo(({
 						}}
 						classes={classes}
 						modalRecordId={modalRecordId}
+						deletePaymentMethod={deletePaymentMethod}
 					/>
 					<Title notUpperCase>{listTitle}</Title>
 					<SubTitle additionalClass={classes.subtitle}>{listSubtitle}</SubTitle>
@@ -85,7 +86,7 @@ export const ListModuleUnconnected = memo(({
 						<PaymentMethod
 							key={recordId}
 							recordId={recordId}
-							openModal={() => {
+							openModal={async () => {
 								setModalRecordId(recordId)
 								setModalOpen(true)
 							}}
