@@ -143,7 +143,6 @@ export const FormModuleUnconnected = memo(({
 					)}
 					{backButton && (
 						<div className={classes.backButton}>
-							{console.log(backButton)}
 							<Link routeId={backButton.routeId}>
 								<span>{backButton.label}</span>
 							</Link>
