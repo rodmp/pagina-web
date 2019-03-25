@@ -17,6 +17,7 @@ import pledgeDynamoObj from 'root/src/server/api/actionUtil/pledgeDynamoObj'
 import randomNumber from 'root/src/shared/util/randomNumber'
 import { projectPendingKey, projectApprovedKey } from 'root/src/server/api/lenses'
 import getUserEmail from 'root/src/server/api/actionUtil/getUserEmail'
+import moment from 'moment'
 
 const payloadLenses = getPayloadLenses(CREATE_PROJECT)
 const {
@@ -32,8 +33,7 @@ export default async ({ userId, payload }) => {
 
 	const projectCommon = projectDenormalizeFields(serializedProject)
 
-	const created = String(new Date())
-
+	const created = moment().format()
 
 	const pledgeAmount = viewPledgeAmount(serializedProject)
 	const project = {
