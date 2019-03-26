@@ -6,6 +6,10 @@ import addPaymentMethodPayloadSchema from 'root/src/shared/descriptions/endpoint
 import {
 	MANAGE_PAYMENT_LIST_ROUTE_ID,
 } from 'root/src/shared/descriptions/routes/routeIds'
+import {
+	ADD_PAYMENT_METHOD,
+} from 'root/src/shared/descriptions/endpoints/endpointIds'
+
 
 export default {
 	[MANAGE_PAYMENT_FORM_MODULE_ID]: {
@@ -30,7 +34,7 @@ export default {
 				placeholder: '4242 4242 4242 4242',
 			},
 			{
-				fieldId: 'expirationDate',
+				fieldId: 'expDate',
 				inputType: 'text',
 				label: 'Expiration',
 				placeholder: '01/12',
@@ -51,6 +55,7 @@ export default {
 		submits: [
 			{
 				label: 'Confirm',
+				endpointId: ADD_PAYMENT_METHOD,
 				buttonType: 'primarySquareButton',
 			},
 		],

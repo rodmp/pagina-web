@@ -1,7 +1,6 @@
 export default {
 	type: 'object',
 	properties: {
-		cardName: { type: 'string' },
 		cardNumber: {
 			type: 'string',
 			minLength: 18,
@@ -9,7 +8,7 @@ export default {
 				minLength: 'Invalid card number',
 			},
 		},
-		expirationDate: {
+		expDate: {
 			type: 'string',
 			minLength: 5,
 			errorMessage: {
@@ -25,6 +24,6 @@ export default {
 		},
 		zipCode: { type: 'string' },
 	},
-	required: ['cardName', 'cardNumber', 'expirationDate', 'securityCode', 'zipCode'],
+	required: ['cardNumber', 'expDate', 'securityCode', 'zipCode'],
 	additionalProperties: false,
 }

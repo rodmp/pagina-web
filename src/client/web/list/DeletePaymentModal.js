@@ -7,9 +7,8 @@ import CloseIcon from '@material-ui/icons/Close'
 import SubHeader from 'root/src/client/web/typography/SubHeader'
 import Button from 'root/src/client/web/base/Button'
 
-
 export const DeletePaymentModal = memo(({
-	open, closeModal, children, classes,
+	open, closeModal, children, classes, modalRecordId, deletePaymentMethod,
 }) => (
 	<Dialog
 		className={classes.modal}
@@ -25,14 +24,18 @@ export const DeletePaymentModal = memo(({
 		<DialogContent
 			className={classes.modalBody}
 		>
-				Are you sure to delete this Credit Card?
-				it will be deleted from your Account.
-   </DialogContent>
+				Are you sure you want to delete this credit card?
+				It will be deleted from your account
+		</DialogContent>
 		<Button
 			additionalClass={classes.modalButton}
 			buttonType="primarySquareButton"
+			onClick={async () => {
+				await deletePaymentMethod(modalRecordId)
+				closeModal()
+			}}
 		>Confirm
-		</Button>
+			</Button>
 	</Dialog>
 ))
 
