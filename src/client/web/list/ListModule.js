@@ -79,7 +79,7 @@ export const ListModuleUnconnected = memo(({
 					<SubTitle additionalClass={classes.subtitle}>{listSubtitle}</SubTitle>
 					{map(card => (
 						<PaymentMethod key={card.lastFour} card={card} openModal={() => setModalOpen(true)} />
-					), mockCardList)}
+					), list)}
 					<div className={classes.buttons}>
 						{map(({ title, routeId, buttonType }) => (
 							<LinkButton
