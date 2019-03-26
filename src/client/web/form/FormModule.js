@@ -2,6 +2,7 @@ import React, { memo, useState } from 'react'
 
 import { orNull } from 'root/src/shared/util/ramdaPlus'
 import { secondaryColor } from 'root/src/client/web/commonStyles'
+import { universalForm } from 'root/src/client/web/componentTypes'
 
 import Fields from 'root/src/client/web/form/Fields'
 import Submits from 'root/src/client/web/form/Submits'
@@ -71,11 +72,11 @@ export const FormModuleUnconnected = memo(({
 					<div
 						className={classNames(
 							classes.space,
-							{ [classes.noMarginTop]: (formType === 'universalForm') },
+							{ [classes.noMarginTop]: (formType === universalForm) },
 							'layout-row layout-align-center',
 						)}
 					>
-						<Header additionalClass={classNames({ [classes.paymentTitle]: (formType === 'universalForm') })}>{formTitle}</Header>
+						<Header additionalClass={classNames({ [classes.paymentTitle]: (formType === universalForm) })}>{formTitle}</Header>
 					</div>,
 				)}
 				{orNull(
@@ -91,7 +92,7 @@ export const FormModuleUnconnected = memo(({
 				)}
 				<form
 					onSubmit={submitFormHandler(submitForm, moduleKey, null, setWasSubmitted)}
-					className={classNames({ 'layout-column layout-align-center-stretch': (formType !== 'universalForm') })}
+					className={classNames({ 'layout-column layout-align-center-stretch': (formType !== universalForm) })}
 				>
 					<Fields
 						moduleKey={moduleKey}
@@ -124,7 +125,7 @@ export const FormModuleUnconnected = memo(({
 					)}
 					<div className={classNames(
 						classes.space,
-						{ [classes.noMarginBottom]: (formType === 'universalForm') },
+						{ [classes.noMarginBottom]: (formType === universalForm) },
 					)}
 					>
 						<Submits
