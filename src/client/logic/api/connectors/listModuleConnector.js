@@ -17,7 +17,5 @@ export default reduxConnector(
 		['listSubtitle', listSubtitleSelector],
 		['listControls', listControlsSelector],
 	],
-	// [
 	[['deletePaymentMethod', deletePaymentMethod]],
-	// ],
 )
