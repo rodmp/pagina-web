@@ -67,8 +67,8 @@ const styles = {
 }
 
 export const InputField = memo(({
-	moduleKey, fieldId, fieldPath, setInput, fieldValue, fieldLabel, fieldError,
-	fieldHasError, fieldType, fieldMultiline, fieldPlaceholder, formType, classes, wasSubmitted,
+	moduleKey, fieldId, fieldPath, setInput, fieldValue, fieldLabel, fieldError, fieldHasError,
+	fieldType, fieldMultiline, fieldPlaceholder, formType, classes, wasSubmitted, fieldMax,
 }) => {
 	const [previousValue, setPreviousValue] = useState()
 	switch (formType) {
@@ -105,19 +105,29 @@ export const InputField = memo(({
 			)
 		default:
 			return (
-				<TextField
-					fullWidth
-					id={fieldId}
-					label={fieldLabel}
-					type={fieldType}
-					multiline={fieldMultiline}
-					variant="outlined"
-					value={fieldValue}
-					error={fieldHasError}
-					helperText={fieldError}
-					placeholder={fieldPlaceholder}
-					onChange={textFieldSetInputHandler(moduleKey, fieldPath, setInput, fieldType)}
-				/>
+				<div>
+					<TextField
+						fullWidth
+						id={fieldId}
+						label={fieldLabel}
+						type={fieldType}
+						multiline={fieldMultiline}
+						variant="outlined"
+						value={fieldValue}
+						error={fieldHasError}
+						helperText={fieldError}
+						placeholder={fieldPlaceholder}
+						onChange={textFieldSetInputHandler(
+							moduleKey, fieldPath, setInput, fieldType,
+						)}
+					/>
+					{orNull(
+						fieldMax,
+						<div className={classes.fieldMax}>
+							<MinMaxLength>{`${fieldValue.length}/${fieldMax}`}</MinMaxLength>
+						</div>,
+					)}
+				</div>
 			)
 	}
 })

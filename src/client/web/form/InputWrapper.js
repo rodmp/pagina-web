@@ -33,9 +33,9 @@ const Fields = memo(
 	}) => (
 		<div className={classNames(classes.space, { [classes.inline]: (formType === 'paymentMethod') })}>
 			{orNull(
-				subFieldText,
-				<div className={classes.subFieldText}>
-					<TitleFormText>{subFieldText}</TitleFormText>
+				labelFieldText,
+				<div className={classes.labelFieldText}>
+					<TitleFormText>{labelFieldText}</TitleFormText>
 				</div>,
 			)}
 			{children}
