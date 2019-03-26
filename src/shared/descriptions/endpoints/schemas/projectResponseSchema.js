@@ -34,6 +34,7 @@ export default {
 				additionalProperties: false,
 			},
 		},
+		created: { type: 'string' },
 		games: {
 			type: 'array',
 			items: {

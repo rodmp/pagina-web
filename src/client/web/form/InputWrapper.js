@@ -5,7 +5,6 @@ import classNames from 'classnames'
 
 import TertiaryBody from 'root/src/client/web/typography/TertiaryBody'
 import TitleFormText from 'root/src/client/web/typography/TitleFormText'
-import ExtraButton from 'root/src/client/web/base/ExtraButton'
 
 import { withStyles } from '@material-ui/core/styles'
 
@@ -22,36 +21,24 @@ const styles = {
 	labelFieldText: {
 		marginBottom: 8,
 	},
-	extraButton: {
-		marginTop: 9,
-	},
 }
 
 const Fields = memo(
 	({
 		subFieldText,
 		labelFieldText,
-		extraButton,
 		classes,
 		children,
 		formType,
 	}) => (
 		<div className={classNames(classes.space, { [classes.inline]: (formType === 'universalForm') })}>
 			{orNull(
-				subFieldText,
-				<div className={classes.subFieldText}>
-					<TitleFormText>{subFieldText}</TitleFormText>
+				labelFieldText,
+				<div className={classes.labelFieldText}>
+					<TitleFormText>{labelFieldText}</TitleFormText>
 				</div>,
 			)}
 			{children}
-			{orNull(
-				extraButton,
-				<div className={classes.extraButton}>
-					<ExtraButton>
-						{extraButton}
-					</ExtraButton>
-				</div>,
-			)}
 			{orNull(
 				subFieldText,
 				<div className={classes.subFieldText}>
