@@ -9,8 +9,8 @@ import {
 } from 'root/src/aws/staticHosting/outputIds'
 
 export default {
-	 [DOMAIN_NAME]: {
-	 	Description: 'Route53 RecordSet domain name',
-	 	Value: ref(RECORD_SET),
-	},
+	//  [DOMAIN_NAME]: {
+	//  	Description: 'Route53 RecordSet domain name',
+	//  	Value: ref(RECORD_SET),
+	// },
 }

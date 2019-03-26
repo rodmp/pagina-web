@@ -5,6 +5,7 @@ import {
 	zipCodeValidation,
 } from 'root/src/client/logic/form/util/creditCardValidations'
 
+const number = 'number'
 const cardNumber = 'cardNumber'
 const securityCode = 'securityCode'
 const expDate = 'expDate'
@@ -13,7 +14,7 @@ const zipCode = 'zipCode'
 export default (moduleKey, fieldPath, action, fieldType, setPreviousValue, previousValue) => async (e) => {
 	e.preventDefault()
 	let { value } = e.target
-	if (fieldType === 'number') {
+	if (fieldType === number) {
 		const re = /\D/
 		const input = value[value.length - 1]
 		if (input !== undefined && input.match(re)) {
