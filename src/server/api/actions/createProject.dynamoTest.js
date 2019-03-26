@@ -23,7 +23,7 @@ describe('createProject', () => {
 	test('createProject', async () => {
 		const res = await apiFn(event)
 		const tableScan = await scanTable()
-		console.log(tableScan)
+		// console.log(tableScan)
 		expect(res).toEqual({})
 	})
 })

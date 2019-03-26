@@ -19,7 +19,7 @@ const { viewProjectId, viewAudit } = payloadLenses
 export default async ({ userId, payload }) => {
 	const projectId = viewProjectId(payload)
 	const [
-		projectToPledgeDdb, assigneesDdb, gamesDdb, myPledgeDdb,
+		projectToPledgeDdb, /* assigneesDdb, gamesDdb, */ myPledgeDdb,
 	] = await dynamoQueryProject(
 		userId, projectId,
 	)
@@ -28,40 +28,40 @@ export default async ({ userId, payload }) => {
 		throw generalError('Project doesn\'t exist')
 	}
 
-	const auditParams = {
-		RequestItems: {
-			[TABLE_NAME]: [
-				{
-					DeleteRequest: {
-						Key: {
-							[PARTITION_KEY]: projectToPledge[PARTITION_KEY],
-							[SORT_KEY]: projectToPledge[SORT_KEY],
-						},
+	const params = {
+		TransactItems: [
+			{
+				Delete: {
+					TableName: TABLE_NAME,
+					Key: {
+						[PARTITION_KEY]: projectToPledge[PARTITION_KEY],
+						[SORT_KEY]: projectToPledge[SORT_KEY],
 					},
 				},
-				{
-					PutRequest: {
-						Item: {
-							...projectToPledge,
-							[SORT_KEY]: replace(
-								projectPendingKey,
-								viewAudit(payload),
-								projectToPledge[SORT_KEY],
-							),
-						},
+			},
+			{
+				Put: {
+					TableName: TABLE_NAME,
+					Item: {
+						...projectToPledge,
+						[SORT_KEY]: replace(
+							projectPendingKey,
+							viewAudit(payload),
+							projectToPledge[SORT_KEY],
+						),
 					},
 				},
-			],
-		},
+			}],
 	}
-	await documentClient.batchWrite(auditParams).promise()
 
+	await documentClient.transactWrite(params).promise()
 	const newProject = projectSerializer([
 		...projectToPledgeDdb,
-		...assigneesDdb,
-		...gamesDdb,
+		// ...assigneesDdb,
+		// ...gamesDdb,
 		...myPledgeDdb,
 	])
+
 	return {
 		...newProject,
 		status: projectApprovedKey,
