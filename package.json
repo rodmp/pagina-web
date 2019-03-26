@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "test": "./node_modules/.bin/jest",
-    "start": "./node_modules/.bin/webpack-dev-server --progress --colors --hot --content-base build --inline --config webpack.config.js --port 8585",
+    "start": "./node_modules/.bin/webpack-dev-server --progress --colors --hot --content-base build --inline --config webpack.config.js --port 8586",
     "buildTemplate": "./node_modules/.bin/babel-node ./src/aws/util/buildTemplate --presets=env,stage-0 --plugins=package-name-import > cfTemplate.json",
     "deploy": "./node_modules/.bin/babel-node --presets=env,stage-0 ./src/aws/util/cfCli deploy",
     "delete": "./node_modules/.bin/babel-node --presets=env,stage-0 ./src/aws/util/cfCli remove",
