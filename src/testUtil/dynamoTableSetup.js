@@ -71,3 +71,5 @@ afterAll(async () => {
 	// console.info(tablesGone)
 	await dynamoDb.deleteTable({ TableName: TABLE_NAME }).promise()
 })
+
+jest.setTimeout(10000)

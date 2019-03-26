@@ -23,7 +23,7 @@ const Streamer = ({ classes }) => (
 		</Card>
 		<Card title="Stream" icon={TvIcon}>
 			<p>When the Bounty reaches your goal we will let you know.</p><p>Then, 
-				live stream and upload video proof to Double Dog within 30 days.
+				live stream and upload video proof to Dare Drop within 30 days.
 			</p>
 		</Card>
 		<Card title="Reward" icon={HeartIcon}>

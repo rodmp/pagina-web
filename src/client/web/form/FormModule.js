@@ -6,12 +6,14 @@ import { secondaryColor } from 'root/src/client/web/commonStyles'
 import Fields from 'root/src/client/web/form/Fields'
 import Submits from 'root/src/client/web/form/Submits'
 import Header from 'root/src/client/web/typography/Header'
-// import Link from 'root/src/client/web/base/Link'
-import LinkButton from 'root/src/client/web/base/LinkButton'
 import Body from 'root/src/client/web/typography/Body'
+import Link from 'root/src/client/web/base/Link'
 import TertiaryBody from 'root/src/client/web/typography/TertiaryBody'
+import FormTitle from 'root/src/client/web/typography/FormTitle'
 import formModuleConnector from 'root/src/client/logic/form/connectors/formModuleConnector'
 
+import backToPrevHandler from 'root/src/client/logic/form/handlers/backToPrevHandler'
+import goToViewProjectHandler from 'root/src/client/logic/project/handlers/goToViewProjectHandler'
 import submitFormHandler from 'root/src/client/logic/form/handlers/submitFormHandler'
 
 import withModuleContext from 'root/src/client/util/withModuleContext'
@@ -42,13 +44,16 @@ const styles = {
 	backButton: {
 		textAlign: 'center',
 		marginBottom: 35,
-
 		'& span': {
-			color: secondaryColor,
-			backgroundColor: 'transparent',
-			textTransform: 'none',
-			fontSize: 18,
+			backgroundColor: 'white',
 		},
+
+	},
+	backButtonText: {
+		color: '#800080',
+		textTransform: 'none',
+		fontSize: 18,
+		zIndex: 2,
 	},
 }
 
@@ -66,11 +71,11 @@ export const FormModuleUnconnected = memo(({
 					<div
 						className={classNames(
 							classes.space,
-							{ [classes.noMarginTop]: (formType === 'universalForm') },
+							{ [classes.noMarginTop]: (formType === 'paymentMethod') },
 							'layout-row layout-align-center',
 						)}
 					>
-						<Header additionalClass={classNames({ [classes.paymentTitle]: (formType === 'universalForm') })}>{formTitle}</Header>
+						<Header additionalClass={classNames({ [classes.paymentTitle]: (formType === 'paymentMethod') })}>{formTitle}</Header>
 					</div>,
 				)}
 				{orNull(
@@ -86,7 +91,7 @@ export const FormModuleUnconnected = memo(({
 				)}
 				<form
 					onSubmit={submitFormHandler(submitForm, moduleKey, null, setWasSubmitted)}
-					className={classNames({ 'layout-column layout-align-center-stretch': (formType !== 'universalForm') })}
+					className={classNames({ 'layout-column layout-align-center-stretch': (formType !== 'paymentMethod') })}
 				>
 					<Fields
 						moduleKey={moduleKey}
@@ -119,7 +124,7 @@ export const FormModuleUnconnected = memo(({
 					)}
 					<div className={classNames(
 						classes.space,
-						{ [classes.noMarginBottom]: (formType === 'universalForm') },
+						{ [classes.noMarginBottom]: (formType === 'paymentMethod') },
 					)}
 					>
 						<Submits
@@ -143,15 +148,11 @@ export const FormModuleUnconnected = memo(({
 						</div>,
 					)}
 					{backButton && (
-						<LinkButton
-							type="button"
-							key={backButton.routeId}
-							buttonType="noBackgroundButton"
-							routeId={backButton.routeId}
-							isStyled
-						>
-							{backButton.label}
-						</LinkButton>
+						<div className={classes.backButton}>
+							<Link routeId={backButton.routeId}>
+								<span className={classes.backButtonText}>{backButton.label}</span>
+							</Link>
+						</div>
 					)}
 					<input type="submit" className="hide" />
 				</form>
