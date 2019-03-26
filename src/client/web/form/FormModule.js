@@ -6,7 +6,8 @@ import { secondaryColor } from 'root/src/client/web/commonStyles'
 import Fields from 'root/src/client/web/form/Fields'
 import Submits from 'root/src/client/web/form/Submits'
 import Header from 'root/src/client/web/typography/Header'
-import Link from 'root/src/client/web/base/Link'
+// import Link from 'root/src/client/web/base/Link'
+import LinkButton from 'root/src/client/web/base/LinkButton'
 import Body from 'root/src/client/web/typography/Body'
 import TertiaryBody from 'root/src/client/web/typography/TertiaryBody'
 import formModuleConnector from 'root/src/client/logic/form/connectors/formModuleConnector'
@@ -142,11 +143,15 @@ export const FormModuleUnconnected = memo(({
 						</div>,
 					)}
 					{backButton && (
-						<div className={classes.backButton}>
-							<Link routeId={backButton.routeId}>
-								<span>{backButton.label}</span>
-							</Link>
-						</div>
+						<LinkButton
+							type="button"
+							key={backButton.routeId}
+							buttonType="noBackgroundButton"
+							routeId={backButton.routeId}
+							isStyled
+						>
+							{backButton.label}
+						</LinkButton>
 					)}
 					<input type="submit" className="hide" />
 				</form>
