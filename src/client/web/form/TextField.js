@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useState } from 'react'
 
 import { orNull, ternary } from 'root/src/shared/util/ramdaPlus'
 import classNames from 'classnames'
@@ -67,10 +67,10 @@ const styles = {
 }
 
 export const InputField = memo(({
-	moduleKey, fieldId, fieldPath, setInput, fieldValue, fieldLabel, fieldError,
-	fieldHasError, fieldType, fieldMultiline, fieldPlaceholder, formType, classes, wasSubmitted,
+	moduleKey, fieldId, fieldPath, setInput, fieldValue, fieldLabel, fieldError, fieldHasError,
+	fieldType, fieldMultiline, fieldPlaceholder, formType, classes, wasSubmitted, fieldMax,
 }) => {
-	let prevValue
+	const [previousValue, setPreviousValue] = useState()
 	switch (formType) {
 		case 'universalForm':
 			return (
@@ -78,8 +78,8 @@ export const InputField = memo(({
 					classNames(
 						'flex layout-column',
 						classes.field,
-						orNull((fieldId === 'expirationDate' || fieldId === 'securityCode'), classes.halfField),
-						orNull((fieldId === 'expirationDate'), classes.expDate),
+						orNull((fieldId === 'expDate' || fieldId === 'securityCode'), classes.halfField),
+						orNull((fieldId === 'expDate'), classes.expDate),
 						orNull((fieldId === 'securityCode'), classes.securityCode),
 					)}
 				>
@@ -98,7 +98,7 @@ export const InputField = memo(({
 						className={classes.input}
 						placeholder={fieldPlaceholder}
 						onChange={textFieldSetInputHandler(
-							moduleKey, fieldPath, setInput, fieldType,
+							moduleKey, fieldPath, setInput, fieldType, setPreviousValue, previousValue,
 						)}
 						value={fieldValue}
 					/>
@@ -111,21 +111,29 @@ export const InputField = memo(({
 			)
 		default:
 			return (
-				<TextField
-					fullWidth
-					id={fieldId}
-					label={fieldLabel}
-					type={fieldType}
-					multiline={fieldMultiline}
-					variant="outlined"
-					value={fieldValue}
-					error={fieldHasError}
-					helperText={fieldError}
-					placeholder={fieldPlaceholder}
-					onChange={textFieldSetInputHandler(
-						moduleKey, fieldPath, setInput, fieldType,
+				<div>
+					<TextField
+						fullWidth
+						id={fieldId}
+						label={fieldLabel}
+						type={fieldType}
+						multiline={fieldMultiline}
+						variant="outlined"
+						value={fieldValue}
+						error={fieldHasError}
+						helperText={fieldError}
+						placeholder={fieldPlaceholder}
+						onChange={textFieldSetInputHandler(
+							moduleKey, fieldPath, setInput, fieldType,
+						)}
+					/>
+					{orNull(
+						fieldMax,
+						<div className={classes.fieldMax}>
+							<MinMaxLength>{`${fieldValue.length}/${fieldMax}`}</MinMaxLength>
+						</div>,
 					)}
-				/>
+				</div>
 			)
 	}
 })

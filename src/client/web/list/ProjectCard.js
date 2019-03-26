@@ -149,7 +149,7 @@ export const ListItemUnconnected = memo(({
 						style={classes.button}
 					>
 							pledge
-					</Button>
+						</Button>
 				</div>
 			</div>
 		</div>

@@ -1,9 +1,7 @@
-import { GET_PAYMENT_METHODS } from 'root/src/shared/descriptions/endpoints/endpointIds'
+import { GET_PAYMENT_METHODS, DELETE_PAYMENT_METHOD } from 'root/src/shared/descriptions/endpoints/endpointIds'
 import { MANAGE_PAYMENT_LIST_MODULE_ID } from 'root/src/shared/descriptions/modules/moduleIds'
 import { paymentMethod } from 'root/src/shared/descriptions/endpoints/recordTypes'
 import { ACCOUNT_SETTINGS_ROUTE_ID, MANAGE_PAYMENT_FORM_ROUTE_ID } from 'root/src/shared/descriptions/routes/routeIds'
-import pushRoute from 'root/src/client/logic/route/thunks/pushRoute'
-
 
 export default {
 	[MANAGE_PAYMENT_LIST_MODULE_ID]: {

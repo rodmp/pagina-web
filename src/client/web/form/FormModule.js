@@ -71,11 +71,11 @@ export const FormModuleUnconnected = memo(({
 					<div
 						className={classNames(
 							classes.space,
-							{ [classes.noMarginTop]: (formType === 'paymentMethod') },
+							{ [classes.noMarginTop]: (formType === 'universalForm') },
 							'layout-row layout-align-center',
 						)}
 					>
-						<Header additionalClass={classNames({ [classes.paymentTitle]: (formType === 'paymentMethod') })}>{formTitle}</Header>
+						<Header additionalClass={classNames({ [classes.paymentTitle]: (formType === 'universalForm') })}>{formTitle}</Header>
 					</div>,
 				)}
 				{orNull(
@@ -91,7 +91,7 @@ export const FormModuleUnconnected = memo(({
 				)}
 				<form
 					onSubmit={submitFormHandler(submitForm, moduleKey, null, setWasSubmitted)}
-					className={classNames({ 'layout-column layout-align-center-stretch': (formType !== 'paymentMethod') })}
+					className={classNames({ 'layout-column layout-align-center-stretch': (formType !== 'universalForm') })}
 				>
 					<Fields
 						moduleKey={moduleKey}
@@ -124,7 +124,7 @@ export const FormModuleUnconnected = memo(({
 					)}
 					<div className={classNames(
 						classes.space,
-						{ [classes.noMarginBottom]: (formType === 'paymentMethod') },
+						{ [classes.noMarginBottom]: (formType === 'universalForm') },
 					)}
 					>
 						<Submits

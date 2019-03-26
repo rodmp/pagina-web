@@ -1,5 +1,10 @@
 import React, { memo } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import cardDateSelector from 'root/src/client/web/list/util/cardDateSelector'
+import cardTypeSelector from 'root/src/client/web/list/util/cardTypeSelector'
+import lastFourSelector from 'root/src/client/web/list/util/lastFourSelector'
+import paymentMethodListItemConnector from 'root/src/client/logic/paymentMethod/connectors/paymentMethodListItemConnector'
+import withModuleContext from 'root/src/client/util/withModuleContext'
+
 
 import classNames from 'classnames'
 
@@ -19,12 +24,12 @@ const styles = {
 }
 
 export const ListItemUnconnected = memo(({
-	classes, card, openModal,
+	cardType, classes, expDate, lastFour, openModal,
 }) => (
 	<div className={classNames('flex layout-row layout-align-space-between-center', classes.root)}>
 		<div className={classNames('flex layout-column', classes.cardDetails)}>
-			<strong>{card.cardBrand} ****{card.lastFour}</strong>
-			<span>Expires {card.expMonth}/{card.expYear}</span>
+			<strong>{cardTypeSelector(cardType)} {lastFourSelector(lastFour)}</strong>
+			<span>Expires {cardDateSelector(expDate)}</span>
 		</div>
 		<Button
 			type="button"
@@ -39,5 +44,6 @@ export const ListItemUnconnected = memo(({
 	</div>
 ))
 
-
-export default withStyles(styles)(ListItemUnconnected)
+export default withModuleContext(
+	paymentMethodListItemConnector(ListItemUnconnected, styles),
+)

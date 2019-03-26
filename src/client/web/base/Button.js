@@ -47,7 +47,7 @@ export const ButtonUnstyled = memo(({
 		className={classNames(
 			classes.button,
 			{ [classes.styledButton]: isStyled },
-			({ [classes.primarySquareButton]: buttonType === 'primarySquareButton' || formType === 'paymentMethod' }),
+			({ [classes.primarySquareButton]: buttonType === 'primarySquareButton' || formType === 'universalForm' }),
 			({ [classes.noBackgroundButton]: buttonType === 'noBackgroundButton' }),
 			additionalClass,
 		)}
