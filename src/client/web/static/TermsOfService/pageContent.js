@@ -3,6 +3,7 @@ import Link from 'root/src/client/web/base/Link'
 import {
 	PRIVACY_POLICY_ROUTE_ID,
 	COOKIE_POLICY_ROUTE_ID,
+	COPYRIGHT_POLICY_ROUTE_ID,
 	RULES_OF_USE_ROUTE_ID,
 } from 'root/src/shared/descriptions/routes/routeIds'
 import {
@@ -12,34 +13,37 @@ import {
 
 const pageContent = classes => [
 	{
-		title: '1. Welcome to Double Dog!',
-		paragraph: `
-        This page explains our terms of service. When you use Double Dog, you’re agreeing to all the
-        rules on this page. We’ve done our best to offer you clear and simple explanations of what
-        everything means with brief summaries before each Section. The summaries are not part of
-        the official legal terms.
-    `,
+		title: '1. Welcome to Dare Drop!',
+		paragraph: (<span>
+        This page explains our terms of service. When you use Dare Drop, you’re 
+				agreeing to all the rules on this page. We’ve done our best to offer 
+				you clear and simple explanations of what everything means with brief 
+				summaries before each Section. The summaries are not part of the 
+				official legal terms.
+				</span>),
 		text: (
 			<React.Fragment>
 				<p>
-          Welcome to Double Dog. By using this website (the “Site”) and services (together with the
-          Site, the “Services”) offered by Double Dog (together with its parents, subsidiaries,
+          Welcome to Dare Drop. By using this website (the “Site”) and services (together with the
+          Site, the “Services”) offered by Dare Drop (together with its parents, subsidiaries,
           affiliates, agents, representatives, consultants, employees, officers, and directors —
-          collectively, “Double Dog,” “we,” or “us”), you’re agreeing to these legally binding rules
+          collectively, “Dare Drop,” “we,” or “us”), you’re agreeing to these legally binding rules
           (the “Terms”). You’re also agreeing to our{' '}
-					<Link routeId={PRIVACY_POLICY_ROUTE_ID}>Privacy Policy</Link> and{' '}
-					<Link routeId={COOKIE_POLICY_ROUTE_ID}>Cookie Policy</Link>, and agreeing to follow any
-          other rules on the Site, like our <Link routeId={RULES_OF_USE_ROUTE_ID}>rules for starting Dares</Link>.
+					<Link routeId={PRIVACY_POLICY_ROUTE_ID}>Privacy Policy</Link>,{' '}
+					<Link routeId={COOKIE_POLICY_ROUTE_ID}>Cookie Policy</Link>, and{' '}
+					<Link routeId={COPYRIGHT_POLICY_ROUTE_ID}>Copyright Policy</Link>; 
+					and agreeing to follow any other rules on the Site, like our{' '}
+					<Link routeId={RULES_OF_USE_ROUTE_ID}>Rules of Use</Link>.
 				</p>
 				<p>
           We may change these terms from time to time. If we do, we’ll let you know about any
           material changes, either by notifying you on the Site or by sending you an email. New
           versions of the terms will never apply retroactively and we’ll tell you the exact date
-          they go into effect. If you keep using Double Dog after a change, that means you accept
+          they go into effect. If you keep using Dare Drop after a change, that means you accept
           the new terms.
 				</p>
 				<p>
-          Double Dog is for your personal, non-commercial use, except as explained in{' '}
+          Dare Drop is for your personal, non-commercial use, except as explained in{' '}
 					<a href="#section-4">
             Section 4
 					</a>{' '}
@@ -54,18 +58,22 @@ const pageContent = classes => [
 	},
 	{
 		title: '2. Creating an Account',
-		paragraph: `
-        To sign up for a Double Dog account, you need to be 18 years old or older. You’re
-        responsible for your account and all the activity on it.
-    `,
+		paragraph: (<span>
+			To use Dare Drop, you need to be 13 years old or older. 
+			If you’re between 13 and 18 (or the legal age of majority for your 
+			jurisdiction), you may only use Dare Drop under the supervision of a 
+			parent or legal guardian who agrees to these Terms. You’re responsible 
+			for your account and all the activity on it.
+		</span>),
 		text: (
 			<React.Fragment>
 				<p>
-          You can browse Double Dog without registering for an account. But to use some of Double
-          Dog’s functions, you’ll need to register. When you do that, the information you give us
-          has to be accurate and complete. Don’t choose names that are offensive or that violate
-          anyone’s rights, and don’t impersonate anyone. If you don’t follow these rules, we may
-          cancel your account.
+          You can browse Dare Drop without registering for an account. But to 
+					use some of Dare Drop’s functions, you’ll need to register. When you 
+					do that, the information you give us has to be accurate and complete. 
+					Don’t choose names that are offensive or that violate anyone’s 
+					rights, and don’t impersonate anyone. If you don’t follow these 
+					rules, we may cancel your account.
 				</p>
 				<p>
           You’re responsible for all the activity on your account, and for keeping your password
@@ -73,22 +81,25 @@ const pageContent = classes => [
           report it to <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.
 				</p>
 				<p>
-          To sign up for an account, you need to be at least 18 years old, or old enough to form a
-          binding contract where you live. If necessary, we may ask you for proof of your age.
+				To sign up for an account, you need to be at least 18 years old, old 
+				enough to form a binding contract where you live, or at least 13 years 
+				old under the supervision of a parent or guardian who agrees to be 
+				bound by these Terms of Service. If necessary, we may ask you for proof 
+				of your age.
 				</p>
 			</React.Fragment>
 		),
 	},
 	{
 		title: '3. Don’t Do These Things',
-		paragraph: `
-        This Section is a List of things you know you shouldn’t do: lie, break laws, abuse
-        people, steal data, hack other people’s computers, and so on. Please behave yourself.
-    `,
+		paragraph: (<span>
+			This Section is a List of things you know you shouldn’t do: lie, break laws, abuse people, 
+			steal data, hack other people’s computers, and so on. Please behave yourself.
+		</span>),
 		text: (
 			<React.Fragment>
 				<p>
-          Many people use Double Dog. We expect all of them to help keep this a nice place. Don’t do
+          Many people use Dare Drop. We expect all of them to help keep this a nice place. Don’t do
           any of these things on the Site:
 				</p>
 				<ul className={classes.termsList}>
@@ -109,7 +120,7 @@ const pageContent = classes => [
 					<li>
 						<strong>Don’t solicit use of prohibited items of activities. </strong>
             Don’t post Dares that include or encourage illegal actions or items, violate any of
-            Double Dog’s policies, rules, or guidelines, or violate any applicable law, statute,
+            Dare Drop’s policies, rules, or guidelines, or violate any applicable law, statute,
             ordinance, or regulation.
 					</li>
 					<li>
@@ -120,7 +131,7 @@ const pageContent = classes => [
 					<li>
 						<strong> Don’t harm anyone’s computer. </strong>Don’t distribute software viruses, or
             anything else (code, films, programs) designed to interfere with the proper function of
-            any software, hardware, or equipment on the Site (whether it belongs to Double Dog or
+            any software, hardware, or equipment on the Site (whether it belongs to Dare Drop or
             another party).
 					</li>
 				</ul>
@@ -133,7 +144,7 @@ const pageContent = classes => [
 					<li>Don’t bypass any measures we’ve put in place to secure the Services.</li>
 					<li>
             Don’t try to damage or get unauthorized access to any system, data, password, or other
-            information, whether it belongs to Double Dog or another party.
+            information, whether it belongs to Dare Drop or another party.
 					</li>
 					<li>
             Don’t take any action that imposes an unreasonable load on our infrastructure, or on our
@@ -144,7 +155,7 @@ const pageContent = classes => [
             or “spider” any part of the Site.
 					</li>
 					<li>
-            Don’t take apart or reverse engineer any aspect of Double Dog in an effort to access
+            Don’t take apart or reverse engineer any aspect of Dare Drop in an effort to access
             things like source code, underlying ideas, or algorithms.
 					</li>
 				</ul>
@@ -154,22 +165,22 @@ const pageContent = classes => [
 	{
 		id: 'section-4',
 		title: '4. How Dares Work',
-		paragraph: `
-        Most of our Terms of Service explain your relationship with Double Dog. This section is
-        different — it explains the relationship between creators and backers of Double Dog Dares,
+		paragraph: (<span>
+        Most of our Terms of Service explain your relationship with Dare Drop. This section is
+        different — it explains the relationship between creators and backers of Dare Drop Dares,
         and who’s responsible for what. This is what you’re agreeing to when you create, fund,
-        delivers results for a Double Dog Dare.
-    `,
+        delivers results for a Dare Drop Dare.
+				</span>),
 		text: (
 			<React.Fragment>
 				<p>
-          Double Dog provides a funding platform for creative Dares. When a creator fulfills a
-          Dare on Double Dog or a funder backs a Dare on Double Dog, they’re inviting other
+          Dare Drop provides a funding platform for creative Dares. When a creator fulfills a
+          Dare on Dare Drop or a funder backs a Dare on Dare Drop, they’re inviting other
           people to form a contract with them. Anyone who delivers the result for a Dare is
           accepting the creator’s and funder’s offer, and forming that contract
 				</p>
 				<p>
-          Double Dog is not a part of this contract — the contract is a direct legal agreement
+          Dare Drop is not a part of this contract — the contract is a direct legal agreement
           between creators and backers. Here are the terms that govern that agreement:
 				</p>
 				<p>
@@ -195,10 +206,10 @@ const pageContent = classes => [
 	{
 		id: 'section-5',
 		title: '5. How Funding Works',
-		paragraph: `
-        This Section goes over the details of funding and creating Dares. This is how money
-        gets collected, and the details on how and when pledges can be changed or canceled
-    `,
+		paragraph: (<span>
+			This Section goes over the details of funding and creating Dares. This is how money gets 
+			collected, and the details on how and when pledges can be changed or canceled.
+		</span>),
 		text: (
 			<React.Fragment>
 				<p>These are the terms that apply when you’re funding or creating a Dare:</p>
@@ -207,11 +218,11 @@ const pageContent = classes => [
             You’re only charged if the Dare is delivered. You’ll provide your payment information
             when you pledge, but you won’t be charged. Your payment will only be collected if, at
             the time of the Dare’s funding deadline, the Dare has been delivered. The exact
-            amount you pledged is the amount Double Dog will collect. If the Dare hasn’t been
+            amount you pledged is the amount Dare Drop will collect. If the Dare hasn’t been
             delivered, you won’t be charged, and no money will change hands.
 					</li>
 					<li>
-            In some cases we’ll reserve the charge on your card. Double Dog and its payment partners
+            In some cases we’ll reserve the charge on your card. Dare Drop and its payment partners
             may authorize or reserve a charge on your credit card (or whatever payment method you
             use) for any amount up to the full pledge, at any time between the pledge and the
             collection of funds.
@@ -225,8 +236,8 @@ const pageContent = classes => [
             streaming the video which will be used to deliver on the Dare.
 					</li>
 					<li>
-            Double Dog doesn’t offer refunds. Responsibility for finishing a Dare lies entirely
-            with the Dare deliverer. Double Dog doesn’t hold funds on deliverers’ behalf, cannot
+            Dare Drop doesn’t offer refunds. Responsibility for finishing a Dare lies entirely
+            with the Dare deliverer. Dare Drop doesn’t hold funds on deliverers’ behalf, cannot
             guarantee deliverers’ work, and does not offer refunds.
 					</li>
 				</ul>
@@ -235,7 +246,7 @@ const pageContent = classes => [
 				</p>
 				<ul className={classes.termsList}>
 					<li>
-						<b>We’ll charge our fees before putting funds in your account</b>. Double Dog and its
+						<b>We’ll charge our fees before putting funds in your account</b>. Dare Drop and its
             payment partners will subtract fees before transmitting the proceeds of a Dare.
 					</li>
 					<li>
@@ -268,16 +279,16 @@ const pageContent = classes => [
 	},
 	{
 		title: '6. Stuff We Aren’t Responsible For',
-		paragraph: `
-        We don’t oversee Dares’ performance, and we don’t mediate disputes between users.
-    `,
+		paragraph: (<span>
+			We don’t oversee Dares’ performance, and we don’t mediate disputes between users.
+		</span>),
 		text: (
 			<p>
-        Double Dog isn’t liable for any damages or losses related to your use of the Services. We
+        Dare Drop isn’t liable for any damages or losses related to your use of the Services. We
         don’t become involved in disputes between users, or between users and any third party
         relating to the use of the Services. We don’t oversee the performance or punctuality of
         Dares, and we don’t endorse any content users submit to the Site. When you use the
-        Services, you release Double Dog from claims, damages, and demands of every kind — known or
+        Services, you release Dare Drop from claims, damages, and demands of every kind — known or
         unknown, suspected or unsuspected, Dsclosed or undisclosed — arising out of or in any way
         related to such disputes and the Services. All content you access through the Services is at
         your own risk. You’re solely responsible for any resulting damage or loss to any party.
@@ -286,45 +297,44 @@ const pageContent = classes => [
 	},
 	{
 		title: '7. Our Fees',
-		paragraph: `
-        Fees are only charged on successfully funded Dares. We charge 5%, in addition to any fees
-        from our payments partners.
-    `,
+		paragraph: (<span>
+			Fees are only charged on successfully funded Dares. We charge 5%, in addition to any fees 
+			from our payments partners.
+		</span>),
 		text: (
 			<React.Fragment>
 				<p>
-          Creating an account on Double Dog is free. If you create, fund or deliver on a Dare
+          Creating an account on Dare Drop is free. If you create, fund or deliver on a Dare
           that is successfully funded, we (and our payment partners) collect fees. Our partners’
           fees may vary slightly based on your location.
 				</p>
 				<p>
           We will not collect any fees without giving you a chance to review and accept them. If our
           fees ever change, we’ll announce that on our Site. Some funds pledged by backers are
-          collected by payment providers. Each payment provider is its own company, and Double Dog
+          collected by payment providers. Each payment provider is its own company, and Dare Drop
           isn’t responsible for its performance.
 				</p>
 				<p>
           You’re responsible for paying any additional fees or taxes associated with your use of
-          Double Dog.
+          Dare Drop.
 				</p>
 			</React.Fragment>
 		),
 	},
 	{
 		title: '8. Other Websites',
-		paragraph: `
-        If you follow a link to another website, what happens there is between you and them — not
-        us.
-    `,
+		paragraph: (<span>
+			If you follow a link to another website, what happens there is between you and them — not us.
+		</span>),
 		text: (
 			<React.Fragment>
 				<p>
-          Double Dog may contain links to other websites (for instance, Dare pages, and user
+          Dare Drop may contain links to other websites (for instance, Dare pages, and user
           profiles may link to other sites). When you access third-party websites, you
           do so at your own risk. We don’t control or endorse those sites.
 				</p>
 				<p>
-          Double Dog partners with other companies (such as <a href="https://stripe.com/" target="__blank">Stripe</a>) for
+          Dare Drop partners with other companies (such as <a href="https://stripe.com/" target="__blank">Stripe</a>) for
           payment processing. When you back or create a Dare, you’re also agreeing to the payment
           processor’s terms of service.
 				</p>
@@ -333,17 +343,17 @@ const pageContent = classes => [
 	},
 	{
 		title: '9. Your Intellectual Property',
-		paragraph: `
-        We don’t own the stuff you post on Double Dog. But when you post it, you’re giving us
+		paragraph: (<span>
+        We don’t own the stuff you post on Dare Drop. But when you post it, you’re giving us
         permission to use or copy it however we need in order to run the site, or show people what’s
         happening on it. (We generally just use this to promote Dares and showcase our community
         on the website.) You’re responsible for the content you post, and you’re vouching to us that
         it’s all okay to use.
-    `,
+				</span>),
 		text: (
 			<React.Fragment>
 				<p>
-          Double Dog doesn’t own content you submit to us (your “Content”). But we do need certain
+          Dare Drop doesn’t own content you submit to us (your “Content”). But we do need certain
           licenses from you in order to perform our Services. When you submit delivery on a Dare
           or submit a new Dare for review, you agree to these terms:
 				</p>
@@ -366,19 +376,19 @@ const pageContent = classes => [
             . Your Content will not contain third-party copyrighted material, or material that is
             subject to other third-party proprietary rights, unless you have permission from the
             rightful owner of the material, or you are otherwise legally entitled to post the
-            material (and to grant Double Dog all the license rights outlined here).
+            material (and to grant Dare Drop all the license rights outlined here).
 					</li>
 					<li>
 						<b>Any royalties or licensing on your Content are your responsibility</b>. You will pay
             all royalties and other amounts owed to any person or entity based on your Content, or
-            on Double Dog’s hosting of that Content.
+            on Dare Drop’s hosting of that Content.
 					</li>
 					<li>
 						<b>
               You promise that if we use your Content, we’re not violating anyone’s rights or
               copyrights
 						</b>
-            . If Double Dog or its users exploit or make use of your submission in the ways
+            . If Dare Drop or its users exploit or make use of your submission in the ways
             contemplated in this agreement, you promise that this will not infringe or violate the
             rights of any third party, including (without limitation) any privacy rights, publicity
             rights, copyrights, contract rights, or any other intellectual property or proprietary
@@ -390,7 +400,7 @@ const pageContent = classes => [
             person from whom that content originated.
 					</li>
 					<li>
-						<b>We’re not responsible for mistakes in your content</b>. Double Dog will not be liable
+						<b>We’re not responsible for mistakes in your content</b>. Dare Drop will not be liable
             for any errors or omissions in any content.
 					</li>
 				</ul>
@@ -398,27 +408,27 @@ const pageContent = classes => [
 		),
 	},
 	{
-		title: '10. Double Dog’s Intellectual Property',
-		paragraph: `
-        The content on Double Dog is protected in various ways. You do have the right to use it for
+		title: '10. Dare Drop’s Intellectual Property',
+		paragraph: (<span>
+        The content on Dare Drop is protected in various ways. You do have the right to use it for
         certain personal purposes, but you can’t use it for anything commercial without getting
         permission first.
-    `,
+				</span>),
 		text: (
 			<React.Fragment>
 				<p>
-          Double Dog’s Services are legally protected in various ways, including copyrights,
+          Dare Drop’s Services are legally protected in various ways, including copyrights,
           trademarks, service marks, patents, trade secrets, and other rights and laws. You agree to
           respect all copyright and other legal notices, information, and restrictions contained in
           any content accessed through the Site. You also agree not to change, translate, or
           otherwise create derivative works of the Service.
 				</p>
 				<p>
-          Double Dog grants you a license to reproduce content from the Services for personal use
-          only. This license covers both Double Dog’s own protected content and user-generated
+          Dare Drop grants you a license to reproduce content from the Services for personal use
+          only. This license covers both Dare Drop’s own protected content and user-generated
           content on the Site. (This license is worldwide, non-exclusive, non-sublicensable, and
           non-transferable.) If you want to use, reproduce, modify, distribute, or store any of this
-          content for a commercial purpose, you need prior written permission from Double Dog or the
+          content for a commercial purpose, you need prior written permission from Dare Drop or the
           relevant copyright holder. A “commercial purpose” means you intend to use, sell, license,
           rent, or otherwise exploit content for commercial use, in any way.
 				</p>
@@ -428,26 +438,28 @@ const pageContent = classes => [
 	{
 		title: '11. How We Deal with Copyright Issues',
 		paragraph: (<span>
-        We comply with the Digital Millennium <Link routeId={null}>Copyright Act</Link>.
+        We comply with 
+				the <a href="https://www.copyright.gov/legislation/dmca.pdf">
+				Digital Millennium Copyright Act</a>.
               </span>),
 		text: (
 			<React.Fragment>
 				<p>
           To learn more about how we deal with claims of copyright infringement, read our Copyright
           Policy. The Digital Millennium Copyright Act lays out a system of legal requirements for
-          dealing with allegations of copyright infringement. Double Dog complies with the DMCA, and
+          dealing with allegations of copyright infringement. Dare Drop complies with the DMCA, and
           we respond to notices of alleged infringement if they comply with the law and the
-          requirements set forth in our Copyright Policy. We reserve the right to delete or disable
-          content alleged to be infringing, and to terminate accounts for repeat infringers. (We do
-          this when appropriate and at our sole discretion.)
+          requirements set forth in our <Link routeId={COPYRIGHT_POLICY_ROUTE_ID}>Copyright Policy</Link>. 
+					We reserve the right to delete or disable content alleged to be infringing, and to terminate 
+					accounts for repeat infringers. (We do this when appropriate and at our sole discretion.)
 				</p>
 				<p>
           If you’d like to submit a claim of copyright infringement, please visit our{' '}
-					<Link routeId={null}>Copyright Policy</Link>. Our designated agent for notice of alleged
-          copyright infringement is:
+					<Link routeId={COPYRIGHT_POLICY_ROUTE_ID}>Copyright Policy</Link>. Our designated agent 
+					for notice of alleged copyright infringement is:
 				</p>
 				<p>
-					<span>Double Dog</span>
+					<span>Dare Drop</span>
 					<br />
 					<span>Attn: Copyright Office</span>
 					<br />
@@ -464,10 +476,10 @@ const pageContent = classes => [
 	},
 	{
 		title: '12. Deleting Your Account',
-		paragraph: `
-        You can delete your account at any time. Deleting your account won’t automatically make some
-        content you’ve already posted go away.
-    `,
+		paragraph: (<span>
+			You can delete your account at any time. Deleting your account won’t automatically make some
+      content you’ve already posted go away.
+		</span>),
 		text: (
 			<React.Fragment>
 				<p>
@@ -490,24 +502,24 @@ const pageContent = classes => [
 	},
 	{
 		title: '13. Our Rights',
-		paragraph: `
+		paragraph: (<span>
         To operate, we need to be able to maintain control over what happens on our website. So in
         this Section, we reserve the right to make decisions to protect the health and integrity
         of our system. We don’t take these powers lightly, and we only use them when we absolutely
         have to.
-    `,
+		</span>),
 		text: (
 			<React.Fragment>
-				<p>Double Dog reserves these rights:</p>
+				<p>Dare Drop reserves these rights:</p>
 				<ul className={classes.termsList}>
 					<li>
-            We can make changes to the Double Dog Site and Services without notice or liability.
+            We can make changes to the Dare Drop Site and Services without notice or liability.
 					</li>
 					<li>
-            We have the right to decide who’s eligible to use Double Dog. We can cancel accounts or
+            We have the right to decide who’s eligible to use Dare Drop. We can cancel accounts or
             decline to offer our Services (especially if you’re abusing them). We can change our
             eligibility criteria at any time. If these things are prohibited by law where you live,
-            then we revoke your right to use Double Dog in that jurisdiction.
+            then we revoke your right to use Dare Drop in that jurisdiction.
 					</li>
 					<li>
             We have the right to cancel any pledge to any Dare, at any time and for any reason.
@@ -518,7 +530,7 @@ const pageContent = classes => [
 					</li>
 				</ul>
 				<p>
-          Double Dog is not liable for any damages as a result of any of these actions, and it is
+          Dare Drop is not liable for any damages as a result of any of these actions, and it is
           our policy not to comment on the reasons for any such action.
 				</p>
 			</React.Fragment>
@@ -526,10 +538,10 @@ const pageContent = classes => [
 	},
 	{
 		title: '14. Warranty Disclaimer',
-		paragraph: `
-        We work hard to provide you with great services, but we can’t guarantee everything will
-        always work perfectly. This site is presented as-is, without warranties.
-    `,
+		paragraph: (<span>
+      We work hard to provide you with great services, but we can’t guarantee everything will
+      always work perfectly. This site is presented as-is, without warranties.
+		</span>),
 		text: (
 			<React.Fragment>
 				<p>
@@ -537,10 +549,10 @@ const pageContent = classes => [
           available” and <em>without warranty of any kind</em>, express or implied.
 				</p>
 				<p>
-          DOUBLE DOG SPECIFICALLY DISCLAIMS ANY AND ALL WARRANTIES AND CONDITIONS OF
+          DARE DROP SPECIFICALLY DISCLAIMS ANY AND ALL WARRANTIES AND CONDITIONS OF
           MERCHANTABILITY, NON-INFRINGEMENT, AND FITNESS FOR A PARTICULAR PURPOSE, AND ANY
           WARRANTIES IMPLIED BY ANY COURSE OF DEALING, COURSE OF PERFORMANCE, OR USAGE OF TRADE. NO
-          ADVICE OR INFORMATION (ORAL OR WRITTEN) OBTAINED BY YOU FROM DOUBLE DOG SHALL CREATE ANY
+          ADVICE OR INFORMATION (ORAL OR WRITTEN) OBTAINED BY YOU FROM Dare Drop SHALL CREATE ANY
           WARRANTY.
 				</p>
 			</React.Fragment>
@@ -548,16 +560,16 @@ const pageContent = classes => [
 	},
 	{
 		title: '15. Indemnification ',
-		paragraph: `
-        If you do something on Double Dog that winds up getting us sued, you have to help defend us.
-    `,
+		paragraph: (<span>
+        If you do something on Dare Drop that winds up getting us sued, you have to help defend us.
+				</span>),
 		text: (
 			<React.Fragment>
 				<p>
           If you do something that gets us sued, or break any of the promises you make in this
           agreement, you agree to defend, indemnify, and hold us harmless from all liabilities,
           claims, and expenses (including reasonable attorneys’ fees and other legal costs) that
-          arise from or relate to your use or misuse of Double Dog. We reserve the right to assume
+          arise from or relate to your use or misuse of Dare Drop. We reserve the right to assume
           the exclusive defense and control of any matter otherwise subject to this indemnification
           clause, in which case you agree that you’ll cooperate and help us in asserting any
           defenses.
@@ -566,7 +578,7 @@ const pageContent = classes => [
           If you do something that gets us sued, or break any of the promises you make in this
           agreement, you agree to defend, indemnify, and hold us harmless from all liabilities,
           claims, and expenses (including reasonable attorneys’ fees and other legal costs) that
-          arise from or relate to your use or misuse of Double Dog. We reserve the right to assume
+          arise from or relate to your use or misuse of Dare Drop. We reserve the right to assume
           the exclusive defense and control of any matter otherwise subject to this indemnification
           clause, in which case you agree that you’ll cooperate and help us in asserting any
           defenses.
@@ -576,12 +588,12 @@ const pageContent = classes => [
 	},
 	{
 		title: '16. Limitation of Liability',
-		paragraph: `
-        If something bad happens as a result of your use Double Dog, we’re not liable.
-    `,
+		paragraph: (<span>
+      If something bad happens as a result of your use Dare Drop, we’re not liable.
+		</span>),
 		text: (
 			<p>
-        To the fullest extent permitted by law, in no event will Double Dog, its directors,
+        To the fullest extent permitted by law, in no event will Dare Drop, its directors,
         employees, partners, suppliers, or content providers be liable for any indirect, incidental,
         punitive, consequential, special, or exemplary damages of any kind, including but not
         limited to damages (i) resulting from your access to, use of, or inability to access or use
@@ -592,24 +604,24 @@ const pageContent = classes => [
 	},
 	{
 		title: '17. Dispute Resolution and Governing Law',
-		paragraph: `
-        We’re located in New York, and any disputes with us have to be handled in New York under New
-        York State law.
-    `,
+		paragraph: (<span>
+      We’re located in New York, and any disputes with us have to be handled in New York under New
+      York State law.
+		</span>),
 		text: (
 			<p>
-        We at Double Dog encourage you to contact us if you’re having an issue, before resorting to
+        We at Dare Drop encourage you to contact us if you’re having an issue, before resorting to
         the courts. In the unfortunate situation where legal action does arise, these Terms (and all
         other rules, policies, or guidelines incorporated by reference) will be governed by and
         construed in accordance with the laws of the State of New York and the United States,
         without giving effect to any principles of conflicts of law, and without application of the
         Uniform Computer Information Transaction Act or the United Nations Convention of Controls
-        for International Sale of Goods. You agree that Double Dog and its Services are deemed a
-        passive website that does not give rise to jurisdiction over Double Dog or its parents,
+        for International Sale of Goods. You agree that Dare Drop and its Services are deemed a
+        passive website that does not give rise to jurisdiction over Dare Drop or its parents,
         subsidiaries, affiliates, assigns, employees, agents, directors, officers, or shareholders,
         either specific or general, in any jurisdiction other than the State of New York. You agree
         that any action at law or in equity arising out of or relating to these Terms, or your use
-        or non-use of Double Dog, shall be filed only in the state or federal courts located in New
+        or non-use of Dare Drop, shall be filed only in the state or federal courts located in New
         York County in the State of New York, and you hereby consent and submit to the personal
         jurisdiction of these courts for the purposes of litigating any such action. You hereby
         irrevocably waive any right you may have to trial by jury in any dispute, action, or
@@ -619,27 +631,27 @@ const pageContent = classes => [
 	},
 	{
 		title: '18. The Rest',
-		paragraph: `
-        These are our official terms and our rules for how things work. (So if you ever see
-        conflicting information about any of this stuff, the information here is the last word.)
-    `,
+		paragraph: (<span>
+      These are our official terms and our rules for how things work. (So if you ever see
+      conflicting information about any of this stuff, the information here is the last word.)
+		</span>),
 		text: (
 			<React.Fragment>
 				<p>
           These Terms and the other material referenced in them are the entire agreement between you
-          and Double Dog with respect to the Services. They supersede all other communications and
-          proposals (whether oral, written, or electronic) between you and Double Dog with respect
+          and Dare Drop with respect to the Services. They supersede all other communications and
+          proposals (whether oral, written, or electronic) between you and Dare Drop with respect
           to the Services and govern our future relationship. If any provision of these Terms is
           found to be invalid under the law, that provision will be limited or eliminated to the
           minimum extent necessary so that the Terms otherwise will remain in full force and effect
-          and enforceable. The failure of either you or Double Dog to exercise any right provided
+          and enforceable. The failure of either you or Dare Drop to exercise any right provided
           for in these Terms in any way won’t be deemed a waiver of any other rights.
 				</p>
 				<p>
           These Terms are personal to you. You can’t assign them, transfer them, or sublicense them
-          unless you get Double Dog’s prior written consent. Double Dog has the right to assign,
+          unless you get Dare Drop’s prior written consent. Dare Drop has the right to assign,
           transfer, or delegate any of its rights and obligations under these Terms without your
-          consent. Double Dog will provide you notice via email, written notice, or by conspicuously
+          consent. Dare Drop will provide you notice via email, written notice, or by conspicuously
           posting the notice on our Site.
 				</p>
 			</React.Fragment>

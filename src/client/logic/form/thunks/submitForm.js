@@ -1,9 +1,13 @@
 import { isNil, and, length, gt, prop, path, pathOr } from 'ramda'
+import validateForm from 'root/src/client/logic/form/util/validateForm'
+
 import submitForm from 'root/src/client/logic/form/actions/submitForm'
 import submitFormComplete from 'root/src/client/logic/form/actions/submitFormComplete'
 import moduleIdFromKey from 'root/src/client/logic/route/util/moduleIdFromKey'
-import validateForm from 'root/src/client/logic/form/util/validateForm'
+
 import setFormErrors from 'root/src/client/logic/form/actions/setFormErrors'
+import clearForm from 'root/src/client/logic/form/actions/clearForm'
+
 import formSubmits from 'root/src/shared/descriptions/formSubmits'
 
 import recordTypeSelector from 'root/src/client/logic/api/selectors/recordTypeSelector'
@@ -17,7 +21,7 @@ import moduleDescriptions from 'root/src/shared/descriptions/modules'
 
 export const submitFormHof = (
 	submitFormFn, moduleDescriptionsObj, validateFormFn, setFormErrorsFn,
-	submitFormCompleteFn, formSubmitsObj,
+	clearFormFn, submitFormCompleteFn, formSubmitsObj,
 ) => (moduleKey, submitIndex) => (dispatch, getState) => {
 	const nullSubmitIndex = isNil(submitIndex)
 	const moduleId = moduleIdFromKey(moduleKey)
@@ -71,6 +75,7 @@ export const submitFormHof = (
 			}
 
 			Promise.all(successPromises).then(() => {
+				dispatch(clearFormFn(moduleKey))
 				dispatch(submitFormCompleteFn(moduleKey))
 			})
 		}).catch((errors) => {
@@ -88,6 +93,6 @@ export const submitFormHof = (
 }
 
 export default submitFormHof(
-	submitForm, moduleDescriptions, validateForm, setFormErrors,
+	submitForm, moduleDescriptions, validateForm, setFormErrors, clearForm,
 	submitFormComplete, formSubmits,
 )

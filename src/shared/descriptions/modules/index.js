@@ -14,6 +14,7 @@ import howItWorks from 'root/src/shared/descriptions/modules/howItWorks'
 import termsOfService from 'root/src/shared/descriptions/modules/termsOfService'
 import privacyPolicy from 'root/src/shared/descriptions/modules/privacyPolicy'
 import cookiePolicy from 'root/src/shared/descriptions/modules/cookiePolicy'
+import copyrightPolicy from 'root/src/shared/descriptions/modules/copyrightPolicy'
 import rulesOfUse from 'root/src/shared/descriptions/modules/rulesOfUse'
 import accountSettings from 'root/src/shared/descriptions/modules/accountSettings'
 import marketplaceBannerHeader from 'root/src/shared/descriptions/modules/marketplaceBannerHeader'
@@ -21,6 +22,7 @@ import myProjectsBannerHeader from 'root/src/shared/descriptions/modules/myProje
 import howItWorkBannerHeader from 'root/src/shared/descriptions/modules/howItWorkBannerHeader'
 import privacyPolicyBannerHeader from 'root/src/shared/descriptions/modules/privacyPolicyBannerHeader'
 import cookiePolicyBannerHeader from 'root/src/shared/descriptions/modules/cookiePolicyBannerHeader'
+import copyrightPolicyBannerHeader from 'root/src/shared/descriptions/modules/copyrightPolicyBannerHeader'
 import termsOfServiceBannerHeader from 'root/src/shared/descriptions/modules/termsOfServiceBannerHeader'
 import rulesOfUseBannerHeader from 'root/src/shared/descriptions/modules/rulesOfUseBannerHeader'
 import accountSettingsBannerHeader from 'root/src/shared/descriptions/modules/accountSettingsBannerHeader'
@@ -49,9 +51,11 @@ const allModules = {
 	...myProjectsBannerHeader,
 	...privacyPolicy,
 	...cookiePolicy,
+	...copyrightPolicy,
 	...rulesOfUse,
 	...howItWorkBannerHeader,
 	...cookiePolicyBannerHeader,
+	...copyrightPolicyBannerHeader,
 	...privacyPolicyBannerHeader,
 	...termsOfServiceBannerHeader,
 	...rulesOfUseBannerHeader,

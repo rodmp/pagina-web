@@ -6,11 +6,14 @@ import { secondaryColor } from 'root/src/client/web/commonStyles'
 import Fields from 'root/src/client/web/form/Fields'
 import Submits from 'root/src/client/web/form/Submits'
 import Header from 'root/src/client/web/typography/Header'
-import Link from 'root/src/client/web/base/Link'
 import Body from 'root/src/client/web/typography/Body'
+import Link from 'root/src/client/web/base/Link'
 import TertiaryBody from 'root/src/client/web/typography/TertiaryBody'
+import FormTitle from 'root/src/client/web/typography/FormTitle'
 import formModuleConnector from 'root/src/client/logic/form/connectors/formModuleConnector'
 
+import backToPrevHandler from 'root/src/client/logic/form/handlers/backToPrevHandler'
+import goToViewProjectHandler from 'root/src/client/logic/project/handlers/goToViewProjectHandler'
 import submitFormHandler from 'root/src/client/logic/form/handlers/submitFormHandler'
 
 import withModuleContext from 'root/src/client/util/withModuleContext'
@@ -41,13 +44,16 @@ const styles = {
 	backButton: {
 		textAlign: 'center',
 		marginBottom: 35,
-
 		'& span': {
-			color: secondaryColor,
-			backgroundColor: 'transparent',
-			textTransform: 'none',
-			fontSize: 18,
+			backgroundColor: 'white',
 		},
+
+	},
+	backButtonText: {
+		color: '#800080',
+		textTransform: 'none',
+		fontSize: 18,
+		zIndex: 2,
 	},
 }
 
@@ -144,7 +150,7 @@ export const FormModuleUnconnected = memo(({
 					{backButton && (
 						<div className={classes.backButton}>
 							<Link routeId={backButton.routeId}>
-								<span>{backButton.label}</span>
+								<span className={classes.backButtonText}>{backButton.label}</span>
 							</Link>
 						</div>
 					)}
