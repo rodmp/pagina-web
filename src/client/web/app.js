@@ -14,5 +14,5 @@ render(
 	<Provider store={webStore}>
 		<RouteRender />
 	</Provider>,
-	document.getElementById('app')
+	document.getElementById('app'),
 )

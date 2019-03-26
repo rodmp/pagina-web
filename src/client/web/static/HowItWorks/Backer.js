@@ -33,7 +33,7 @@ const Backer = ({ classes }) => (
 		<Card title="Watch" icon={WatchIcon}>
 			<p>
 		  Once that Bounty goal is pledged, the streamer will submit video 
-		  proof to Double Dog.</p><p> We’ll verify the proof, then you pay your pledge
+		  proof to Dare Drop.</p><p> We’ll verify the proof, then you pay your pledge
 		  and watch your Dare delivered! 
 			</p>
 		</Card>

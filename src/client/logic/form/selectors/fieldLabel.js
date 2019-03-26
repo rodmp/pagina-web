@@ -4,6 +4,6 @@ import moduleDescriptions from 'root/src/shared/descriptions/modules'
 import moduleIdFromKey from 'root/src/client/logic/route/util/moduleIdFromKey'
 
 export default (state, { moduleKey, fieldDescPath }) => path(
-	[moduleIdFromKey(moduleKey), 'fields', ...fieldDescPath, 'label'],
+	[moduleIdFromKey(moduleKey), ...fieldDescPath, 'label'],
 	moduleDescriptions,
 )

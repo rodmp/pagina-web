@@ -1,7 +1,6 @@
 const styles = {
 	SocialContainer: {
 		display: 'flex',
-		width: 'calc(100% - 15px)',
 		justifyContent: 'center',
 		height: 54,
 		paddingTop: 25,
@@ -15,7 +14,7 @@ const styles = {
 		alignItems: 'center',
 		justifyContent: 'center',
 		marginRight: 12,
-		'@media (min-width: 375px)': {
+		'@media (min-width: 375px):not(:last-of-type)': {
 			marginRight: 14.8,
 		},
 	},

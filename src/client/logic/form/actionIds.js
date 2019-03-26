@@ -10,4 +10,5 @@ export const REMOVE_SUB_FORM = 'actionId/REMOVE_SUB_FORM'
 
 export const SET_FORM_STRIPE = 'actionId/SET_FORM_STRIPE'
 
-export const NEXT_STEP = 'actionId/NEXT_STEP'
+export const STEP_FORM_NEXT_PAGE = 'actionId/STEP_FORM_NEXT_PAGE'
+export const STEP_FORM_PREV_PAGE = 'actionId/STEP_FORM_PREV_PAGE'

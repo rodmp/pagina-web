@@ -13,33 +13,49 @@ import classNames from 'classnames'
 
 const styles = {
 	cardRoot: {
-		padding: [[0, 10, 20]],
+		margin: [[0, 10, 20]],
 		color: 'white',
+		width: '280px',
+		alignSelf: 'center',
+		height: '310px',
+		borderRadius: '4px',
+		overflow: 'hidden',
+		boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.2)',
 	},
 	cardBg: {
-		backgroundPosition: 'center',
+		backgroundPosition: 'bottom',
 		backgroundRepeat: 'no-repeat',
 		backgroundSize: 'cover',
 	},
 	cardHeader: {
-		height: 70,
+		height: 60,
 		backgroundColor: 'rgba(0, 0, 0, 0.74)',
 		padding: [[0, 16]],
 	},
 	headerText: {
+		fontSize: '20px',
 		display: '-webkit-box',
 		WebkitLineClamp: 2,
 		WebkitBoxOrient: 'vertical',
 		overflow: 'hidden',
 		textOverflow: 'ellipsis',
 	},
+	headerTextH3: {
+		fontSize: '20px',
+		fontFamily: 'Roboto',
+		fontWeight: '500',
+		fontStyle: 'normal',
+		fontStretch: 'normal',
+		lineHeight: '1.2',
+		letterSpacing: '0.3px',
+	},
 	cardFooter: {
-		height: 145,
+		height: 135,
 		backgroundColor: 'rgba(0, 0, 0, 0.74)',
-		padding: [[10, 16]],
+		padding: [[11, 16, 8]],
 	},
 	cardGameTitle: {
-		paddingBottom: 5,
+		marginBottom: 10,
 	},
 	description: {
 		height: 40,
@@ -50,8 +66,29 @@ const styles = {
 		textOverflow: 'ellipsis',
 	},
 	assigneeImg: {
+		margin: [[6, 0, 9, 0]],
 		width: 100,
 		height: 100,
+	},
+	descriptionText: {
+		fontWeight: 'normal',
+		fontStyle: 'normal',
+		fontStretch: 'normal',
+		lineHeight: '1.25',
+		letterSpacing: '0.3px',
+		fontFamily: 'Roboto',
+	},
+	buttonContainer: {
+		textAlign: 'center',
+		marginTop: 11,
+	},
+	button: {
+		width: '93px',
+		height: '36px',
+		borderRadius: '20px',
+	},
+	shareIcon: {
+		margin: [[12, -12, 0]],
 	},
 }
 
@@ -59,11 +96,9 @@ export const ListItemUnconnected = memo(({
 	recordId, pushRoute, projectTitle, projectDescription, classes,
 	projectGameImage, projectAssigneesImages, projectShareUrl, projectGames,
 }) => (
-	<div
+	<section
 		className={classNames(
 			classes.cardRoot,
-			'flex-xs-100 flex-sm-100 flex-md-50 flex-lg-25 flex-xl-25',
-			'layout-column layout-align-start-stretch',
 		)}
 	>
 		<div
@@ -80,9 +115,11 @@ export const ListItemUnconnected = memo(({
 				)}
 			>
 				<div className={classNames(classes.headerText, 'flex')}>
-					<Header>{projectTitle}</Header>
+					<h3 className={classNames(classes.headerTextH3)}>{projectTitle}</h3>
 				</div>
-				<ShareMenu url={projectShareUrl} />
+				<div className={classes.shareIcon}>
+					<ShareMenu url={projectShareUrl} />
+				</div>
 			</div>
 			<div className="layout-row layout-align-center">
 				{projectAssigneesImages.map((imgSrc, i) => (
@@ -104,18 +141,19 @@ export const ListItemUnconnected = memo(({
 					<TertiaryBody>{projectGames.map(({ name }) => name)}</TertiaryBody>
 				</div>
 				<div className={classes.description}>
-					<Body>{projectDescription}</Body>
+					<Body style={classes.descriptionText}>{projectDescription}</Body>
 				</div>
-				<div>
+				<div className={classes.buttonContainer}>
 					<Button
 						onClick={goToViewProjectHandler(recordId, pushRoute)}
+						style={classes.button}
 					>
 							pledge
 						</Button>
 				</div>
 			</div>
 		</div>
-	</div>
+	</section>
 ))
 
 export default withModuleContext(

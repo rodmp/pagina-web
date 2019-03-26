@@ -4,5 +4,5 @@ import projectGameImageSelector from 'root/src/client/logic/project/selectors/pr
 
 export default (state, props) => stringFormat(
 	projectGameImageSelector(state, props),
-	{ width: 144, height: 240 },
+	{ width: 280, height: 309 },
 )

@@ -5,10 +5,8 @@ import {
 	primaryColor, secondaryColor,
 } from 'root/src/client/web/commonStyles'
 
-import classNames from 'classnames'
-
-
 import { withStyles } from '@material-ui/core/styles'
+import classNames from 'classnames'
 
 const styles = {
 	button: {

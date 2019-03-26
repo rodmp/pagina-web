@@ -12,7 +12,8 @@ export default {
 	[MY_PROJECT_BANNER_HEADER_MODULE_ID]: {
 		moduleType: 'bannerHeader',
 		bannerImage: myprojects,
-		bannerImageText: 'YOUR DARES',
+		bannerImageText: 'Your Dares',
+		bannerImageSubText: 'Keep track of your Dares, Pledges, and Videos',
 		textWithBg: true,
 		bannerSubText: 'Select a Dare',
 		link: {

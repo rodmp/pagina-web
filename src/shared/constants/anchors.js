@@ -9,7 +9,7 @@ const SHARED_PUBLICY = 'shared-publicy'
 const NOT_SHARED_PUBLICY = 'not-shared-publicy'
 const SHARED_WITH_TRUSTED = 'shared-with-trusted'
 const SHARED_WITH_CREATORS = 'shared-with-creators'
-const SHARED_WITH_DOUBLE_DOG = 'shared-double-dog'
+const SHARED_WITH_DARE_DROP = 'shared-dare-drop'
 const LINKS_TO_SERVICE = 'links-to-services'
 const RETENTION = 'retention'
 const DATA_TRANSFER = 'data-transfer'
@@ -33,7 +33,7 @@ export default {
 	NOT_SHARED_PUBLICY,
 	SHARED_WITH_CREATORS,
 	SHARED_WITH_TRUSTED,
-	SHARED_WITH_DOUBLE_DOG,
+	SHARED_WITH_DARE_DROP,
 	LINKS_TO_SERVICE,
 	RETENTION,
 	DATA_TRANSFER,
