@@ -1,9 +1,10 @@
 import React from 'react'
 import Link from 'root/src/client/web/base/Link'
+import { map } from 'ramda'
 
 export default (paragraph, additionalLinks) => {
 	if (additionalLinks && additionalLinks.length) {
-		return paragraph.map((p, idx) => {
+		return map((p, idx) => {
 			let text
 			additionalLinks.forEach((link) => {
 				if (idx === link.linkIndex) {
@@ -15,7 +16,7 @@ export default (paragraph, additionalLinks) => {
 				}
 			})
 			return text
-		})
+		}, paragraph)
 	}
 	return paragraph
 }
