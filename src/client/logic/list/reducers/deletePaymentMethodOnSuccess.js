@@ -14,7 +14,6 @@ export default {
 	[DELETE_PAYMENT_METHOD_ON_SUCCESS]: (state, { paymentMethodId }) => {
 		const paymentMethodStoreKey = createPaymentMethodStoreKey(paymentMethodId)
 		const listStoreKey = createListStoreKey(GET_PAYMENT_METHODS, {})
-		// return overRecordsChild(paymentMethodStoreKey, remove(0, 1), state)
 		// DIDNT KNEW HOW TO IMPLEMENT THIS WITH LENSES SO DID IT CLASSIC WAY
 		// TO COMPLETELY DELETE RECORD FROM VIEW THERE IS A NEED TO DELETE
 		// state.api.lists[listStoreKey].items
