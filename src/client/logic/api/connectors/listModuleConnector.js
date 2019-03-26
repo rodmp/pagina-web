@@ -15,7 +15,4 @@ export default reduxConnector(
 		['listSubtitle', listSubtitleSelector],
 		['listControls', listControlsSelector],
 	],
-	// [
-	// 	['addSubForm', addSubForm],
-	// ],
 )

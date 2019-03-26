@@ -5,10 +5,8 @@ import {
 	primaryColor, secondaryColor,
 } from 'root/src/client/web/commonStyles'
 
-import classNames from 'classnames'
-
-
 import { withStyles } from '@material-ui/core/styles'
+import classNames from 'classnames'
 
 const styles = {
 	button: {
@@ -49,7 +47,7 @@ export const ButtonUnstyled = memo(({
 		className={classNames(
 			classes.button,
 			{ [classes.styledButton]: isStyled },
-			({ [classes.primarySquareButton]: buttonType === 'primarySquareButton' || formType === 'universalForm' }),
+			({ [classes.primarySquareButton]: buttonType === 'primarySquareButton' || formType === 'paymentMethod' }),
 			({ [classes.noBackgroundButton]: buttonType === 'noBackgroundButton' }),
 			additionalClass,
 		)}

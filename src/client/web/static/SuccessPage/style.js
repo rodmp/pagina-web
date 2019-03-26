@@ -17,16 +17,8 @@ const styles = {
 		},
 		justifyContent: 'space-between',
 	},
-	content: {
-		'@media (min-width: 768px) and (orientation: portrait)': {
-			marginBottom: 150,
-		},
-		'@media (min-width: 1024px) and (orientation: portrait)': {
-			marginBottom: 150,
-		},
-		'@media (min-height: 1366px) and (orientation: portrait)': {
-			marginBottom: 330,
-		},
+	space: {
+		flexGrow: 1,
 	},
 	sectionTitle: {
 		fontSize: 32,
@@ -60,24 +52,23 @@ const styles = {
 		color,
 	},
 	imageWrapper: {
-		marginTop: 'auto',
-		position: 'relative',
+		flexGrow: 1,
+		backgroundPosition: 'top',
+		backgroundSize: 'cover',
+		backgroundRepeat: 'no-repeat',
 		minHeight: '150px !important',
-		height: '100%',
-		overflow: 'hidden',
-		'@media (orientation: landscape) and (min-width: 1024px)': {
+		'@media (max-width: 636px)': {
+			minHeight: '200px !important',
+		},
+		'@media (min-width: 636px)': {
 			minHeight: '300px !important',
 		},
-	},
-	imageContainer: {
-		marginTop: 'auto',
-	},
-	image: {
-		position: 'absolute',
-		zIndex: -1,
-		width: '100%',
-		flexGrow: 1,
-		overflow: 'hidden',
+		'@media (min-width: 1280px)': {
+			minHeight: '330px !important',
+		},
+		'@media (min-width: 1440px)': {
+			backgroundPosition: '50% 15%',
+		},
 	},
 	icons: {
 		margin: '0 auto',

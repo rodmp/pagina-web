@@ -23,7 +23,12 @@ import { DeletePaymentModal } from './DeletePaymentModal'
 
 const styles = {
 	paddingOffset: {
-		margin: [[0, -10]],
+		justifyContent: 'center',
+		borderRadius: 5,
+		boxShadow: '0 3px 26px 0 rgba(0, 0, 0, 0.16)',
+		border: 'solid 0.2px #800080',
+		backgroundColor: '#ffffff',
+		padding: 20,
 	},
 	list: {
 		width: 340,
@@ -79,7 +84,7 @@ export const ListModuleUnconnected = memo(({
 					<SubTitle additionalClass={classes.subtitle}>{listSubtitle}</SubTitle>
 					{map(card => (
 						<PaymentMethod key={card.lastFour} card={card} openModal={() => setModalOpen(true)} />
-					), mockCardList)}
+					), list)}
 					<div className={classes.buttons}>
 						{map(({ title, routeId, buttonType }) => (
 							<LinkButton

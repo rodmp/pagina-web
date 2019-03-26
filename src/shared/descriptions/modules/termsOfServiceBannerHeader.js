@@ -7,6 +7,6 @@ export default {
 		moduleType: 'bannerHeader',
 		bannerImage: accountSettings,
 		bannerImageText: 'Terms Of Service',
-		bannerSubText: 'Rules for your use of Double Dog',
+		bannerSubText: 'Rules for your use of Dare Drop',
 	},
 }

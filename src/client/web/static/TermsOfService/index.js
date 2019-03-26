@@ -22,7 +22,7 @@ const TermsOfService = ({ classes }) => (
 		)}
 		<p className={classes.info}>
       	These updated terms will go into effect on February 11, 2019, at 12 a.m. Eastern
-      	Time, and apply to all Dares launched on Double Dog on or after that date.
+      	Time, and apply to all Dares launched on Dare Drop on or after that date.
 		</p>
 	</Terms>
 )

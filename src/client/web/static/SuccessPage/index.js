@@ -1,3 +1,4 @@
+
 import React from 'react'
 
 import Link from 'root/src/client/web/base/Link'
@@ -26,17 +27,15 @@ const SuccessPage = ({ classes, pageContent }) => (
 				</Link>
 			</div>
 		</section>
-		{orNull(pageContent.bannerFooterImage,
-			<div className={classNames(classes.imageWrapper, 'flex flex-column layout-align-end')}>
-				<div className={classes.imageContainer}>
-					<img
-						className={classNames(classes.image)}
-						src={pageContent.bannerFooterImage}
-						alt={pageContent.title}
-					/>
-					<SocialIconSet className={classes.icons} />
-				</div>
-			</div>)}
+		<div className={classes.space} />
+		<div
+			style={{ backgroundImage: `url(${pageContent.bannerFooterImage}` }}
+			className={classNames(classes.imageWrapper, 'flex flex-column layout-align-end')}
+		>
+			<div className={classes.imageContainer}>
+				<SocialIconSet className={classes.icons} />
+			</div>
+		</div>
 	</div>
 
 )
