@@ -4,11 +4,19 @@ import { orNull, ternary } from 'root/src/shared/util/ramdaPlus'
 import classNames from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 
+import {
+	expDate,
+	universalForm,
+	securityCode,
+	email,
+	password,
+	newPassword,
+} from 'root/src/client/web/componentTypes'
+
 import TextField from '@material-ui/core/TextField'
 import fieldInputConnector from 'root/src/client/logic/form/connectors/fieldInputConnector'
 import textFieldSetInputHandler from 'root/src/client/logic/form/handlers/textFieldSetInputHandler'
 import MinMaxLength from 'root/src/client/web/base/MinMaxLength'
-import withModuleContext from 'root/src/client/util/withModuleContext'
 
 
 const styles = {
@@ -66,75 +74,85 @@ const styles = {
 	},
 }
 
-export const InputField = memo(({
+const UniversalFormTextField = ({
 	moduleKey, fieldId, fieldPath, setInput, fieldValue, fieldLabel, fieldError, fieldHasError,
-	fieldType, fieldMultiline, fieldPlaceholder, formType, classes, wasSubmitted, fieldMax,
-}) => {
-	const [previousValue, setPreviousValue] = useState()
-	switch (formType) {
-		case 'universalForm':
-			return (
-				<div className={
-					classNames(
-						'flex layout-column',
-						classes.field,
-						orNull((fieldId === 'expDate' || fieldId === 'securityCode'), classes.halfField),
-						orNull((fieldId === 'expDate'), classes.expDate),
-						orNull((fieldId === 'securityCode'), classes.securityCode),
-					)}
-				>
-					{ternary(
-						fieldId === 'email' || fieldId === 'password' || fieldId === 'newPassword',
-						<label className={classes.label} htmlFor={fieldId}>
-							{fieldLabel}
-						</label>,
-						<label className={classes.label} htmlFor={fieldId}>
-							{fieldLabel}<span className={classes.redText}>*</span>:
-						</label>,
-					)}
-					<input
-						id={fieldId}
-						type={fieldType}
-						className={classes.input}
-						placeholder={fieldPlaceholder}
-						onChange={textFieldSetInputHandler(
-							moduleKey, fieldPath, setInput, fieldType, setPreviousValue, previousValue,
-						)}
-						value={fieldValue}
-					/>
-					{orNull(fieldHasError && wasSubmitted,
-						<p className={classNames(classes.error, classes.redText)}>
-							{fieldError}
-						</p>)}
-				</div>
+	fieldType, fieldPlaceholder, classes, wasSubmitted }) => {
+	const [previousValue, setPreviousValue] = useState('')
+	return (
+		<div className={
+			classNames(
+				'flex layout-column',
+				classes.field,
+				orNull((fieldId === expDate || fieldId === securityCode), classes.halfField),
+				orNull((fieldId === expDate), classes.expDate),
+				orNull((fieldId === securityCode), classes.securityCode),
+			)}
+		>
+			{
+				ternary(
+					fieldId === email || fieldId === password || fieldId === newPassword,
+					<label className={classes.label} htmlFor={fieldId}>
+						{fieldLabel}
+					</label>,
+					<label className={classes.label} htmlFor={fieldId}>
+						{fieldLabel}<span className={classes.redText}>*</span>:
+					</label>,
+				)}
+			<input
+				id={fieldId}
+				type={fieldType}
+				className={classes.input}
+				placeholder={fieldPlaceholder}
+				onChange={textFieldSetInputHandler(
+					moduleKey, fieldPath, setInput, fieldType, setPreviousValue, previousValue,
+				)}
+				value={fieldValue}
+			/>
+			{
+				orNull(fieldHasError && wasSubmitted,
+					<p className={classNames(classes.error, classes.redText)}>
+						{fieldError}
+					</p>)
+			}
+		</div>
+	)
+}
 
-			)
+const StyledTextField = ({
+	moduleKey, fieldId, fieldPath, setInput, fieldValue, fieldLabel, fieldError, fieldHasError,
+	fieldType, fieldMultiline, fieldPlaceholder, classes, fieldMax,
+}) => (
+	<div>
+		<TextField
+			fullWidth
+			id={fieldId}
+			label={fieldLabel}
+			type={fieldType}
+			multiline={fieldMultiline}
+			variant="outlined"
+			value={fieldValue}
+			error={fieldHasError}
+			helperText={fieldError}
+			placeholder={fieldPlaceholder}
+			onChange={textFieldSetInputHandler(
+				moduleKey, fieldPath, setInput, fieldType,
+			)}
+		/>
+		{orNull(
+			fieldMax,
+			<div className={classes.fieldMax}>
+				<MinMaxLength>{`${fieldValue.length}/${fieldMax}`}</MinMaxLength>
+			</div>,
+		)}
+	</div>
+)
+
+export const InputField = memo((props) => {
+	switch (props.formType) {
+		case universalForm:
+			return UniversalFormTextField(props)
 		default:
-			return (
-				<div>
-					<TextField
-						fullWidth
-						id={fieldId}
-						label={fieldLabel}
-						type={fieldType}
-						multiline={fieldMultiline}
-						variant="outlined"
-						value={fieldValue}
-						error={fieldHasError}
-						helperText={fieldError}
-						placeholder={fieldPlaceholder}
-						onChange={textFieldSetInputHandler(
-							moduleKey, fieldPath, setInput, fieldType,
-						)}
-					/>
-					{orNull(
-						fieldMax,
-						<div className={classes.fieldMax}>
-							<MinMaxLength>{`${fieldValue.length}/${fieldMax}`}</MinMaxLength>
-						</div>,
-					)}
-				</div>
-			)
+			return StyledTextField(props)
 	}
 })
 
