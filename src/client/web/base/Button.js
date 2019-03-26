@@ -4,6 +4,11 @@ import Button from '@material-ui/core/Button'
 import {
 	primaryColor, secondaryColor,
 } from 'root/src/client/web/commonStyles'
+import {
+	primarySquareButton,
+	universalForm,
+	noBackgroundButton,
+} from 'root/src/client/web/componentTypes'
 
 import { withStyles } from '@material-ui/core/styles'
 import classNames from 'classnames'
@@ -47,8 +52,8 @@ export const ButtonUnstyled = memo(({
 		className={classNames(
 			classes.button,
 			{ [classes.styledButton]: isStyled },
-			({ [classes.primarySquareButton]: buttonType === 'primarySquareButton' || formType === 'universalForm' }),
-			({ [classes.noBackgroundButton]: buttonType === 'noBackgroundButton' }),
+			({ [classes.primarySquareButton]: buttonType === primarySquareButton || formType === universalForm }),
+			({ [classes.noBackgroundButton]: buttonType === noBackgroundButton }),
 			additionalClass,
 		)}
 		onClick={onClick}
