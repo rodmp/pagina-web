@@ -6,8 +6,6 @@ import CloseIcon from '@material-ui/icons/Close'
 
 import SubHeader from 'root/src/client/web/typography/SubHeader'
 import Button from 'root/src/client/web/base/Button'
-// import paymentMethodListItemConnector from 'root/src/client/logic/paymentMethod/connectors/paymentMethodListItemConnector'
-// import withModuleContext from 'root/src/client/util/withModuleContext'
 
 export const DeletePaymentModal = memo(({
 	open, closeModal, children, classes, modalRecordId, deletePaymentMethod,
@@ -40,7 +38,5 @@ export const DeletePaymentModal = memo(({
 			</Button>
 	</Dialog>
 ))
-// /withModuleContext(
-// paymentMethodListItemConnector(
 
 export default DeletePaymentModal
