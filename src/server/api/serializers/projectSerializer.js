@@ -12,6 +12,7 @@ const {
 
 export default projectArr => reduce(
 	(result, projectPart) => {
+		console.log(result);
 		const sk = skProp(projectPart)
 		if (startsWith('pledge', sk)) {
 			return setMyPledge(viewPledgeAmount(projectPart), result)

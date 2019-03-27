@@ -14,10 +14,10 @@ import {
 } from 'root/src/server/api/lenses'
 
 const payloadLenses = getPayloadLenses(AUDIT_PROJECT)
-const { viewProjectId, viewAudit } = payloadLenses
+const { viewAudit } = payloadLenses
 
 export default async ({ userId, payload }) => {
-	const projectId = viewProjectId(payload)
+	const { projectId } = payload
 	const [
 		projectToPledgeDdb, /* assigneesDdb, gamesDdb, */ myPledgeDdb,
 	] = await dynamoQueryProject(

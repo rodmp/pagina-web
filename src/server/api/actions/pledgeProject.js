@@ -12,28 +12,33 @@ import dynamoQueryProject from 'root/src/server/api/actionUtil/dynamoQueryProjec
 import projectSerializer from 'root/src/server/api/serializers/projectSerializer'
 
 const payloadLenses = getPayloadLenses(PLEDGE_PROJECT)
-const { viewProjectId, viewPledgeAmount, viewStripeCardId } = payloadLenses
+const { viewPledgeAmount, viewStripeCardId } = payloadLenses
 
 export default async ({ userId, payload }) => {
-	const projectId = viewProjectId(payload)
+	const { projectId } = payload
 	const [
-		projectToPledgeDdb, assigneesDdb, gamesDdb, myPledgeDdb,
+		projectToPledgeDdb, myPledgeDdb,
 	] = await dynamoQueryProject(
 		userId, projectId,
 	)
+
 	const projectToPledge = head(projectToPledgeDdb)
 	if (!projectToPledge) {
 		throw generalError('Project doesn\'t exist')
 	}
-	const myPledge = head(myPledgeDdb)
+
+	const myPledge = head(myPledgeDdb || []);
+
 	if (myPledge) {
 		throw generalError('You\'ve already pledged this project')
 	}
+
 	const newPledgeAmount = viewPledgeAmount(payload)
 	const newPledge = pledgeDynamoObj(
 		projectId, projectToPledge, userId,
 		newPledgeAmount, viewStripeCardId(payload),
 	)
+	// TODO: Check pledge amount
 	const pledgeParams = {
 		TableName: TABLE_NAME,
 		Item: newPledge,
@@ -51,11 +56,13 @@ export default async ({ userId, payload }) => {
 			':newPledgeAmount': newPledgeAmount,
 		},
 	}
-	await documentClient.update(updateProjectParams).promise()
+
+	await documentClient.update(updateProjectParams).promise();
+
 	const newProject = projectSerializer([
 		...projectToPledgeDdb,
-		...assigneesDdb,
-		...gamesDdb,
+		//...assigneesDdb,
+		//...gamesDdb,
 		newPledge,
 	])
 	return {
