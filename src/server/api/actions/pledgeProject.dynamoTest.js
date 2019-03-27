@@ -5,6 +5,7 @@ import { PLEDGE_PROJECT } from 'root/src/shared/descriptions/endpoints/endpointI
 import createProject from 'root/src/server/api/actions/createProject'
 import createProjectPayload from 'root/src/server/api/mocks/createProjectPayload'
 import { mockUserId } from 'root/src/server/api/mocks/contextMock'
+import { internet } from 'faker'
 
 describe('pledgeProject', () => {
 	test('Can\'t pledge a project I\'ve already pleged', async () => {
@@ -29,7 +30,7 @@ describe('pledgeProject', () => {
 	})
 	test('successfully pledge a project', async () => {
 		const newProject = await createProject({
-			userId: 'user-differentuserid',
+			userId: internet.username,
 			payload: createProjectPayload(),
 		})
 		const pledgeAmount = 1234
@@ -43,6 +44,7 @@ describe('pledgeProject', () => {
 			authentication: mockUserId,
 		}
 		const res = await apiFn(event)
+
 		expect(res).toEqual({
 			statusCode: 200,
 			body: {
