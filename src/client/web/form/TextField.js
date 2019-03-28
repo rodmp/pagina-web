@@ -9,8 +9,9 @@ import {
 	universalForm,
 	securityCode,
 	email,
-	password,
+	currentPassword,
 	newPassword,
+	confirmPassword,
 } from 'root/src/client/web/componentTypes'
 
 import TextField from '@material-ui/core/TextField'
@@ -90,7 +91,7 @@ const UniversalFormTextField = ({
 		>
 			{
 				ternary(
-					fieldId === email || fieldId === password || fieldId === newPassword,
+					fieldId === email || fieldId === currentPassword || fieldId === newPassword || fieldId === confirmPassword,
 					<label className={classes.label} htmlFor={fieldId}>
 						{fieldLabel}
 					</label>,
