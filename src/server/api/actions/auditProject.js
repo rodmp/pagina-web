@@ -54,7 +54,7 @@ export default async ({ userId, payload }) => {
 			}],
 	}
 
-	await documentClient.transactWrite(params).promise()
+	await documentClient.batchWrite(params).promise()
 	const newProject = projectSerializer([
 		...projectToPledgeDdb,
 		// ...assigneesDdb,

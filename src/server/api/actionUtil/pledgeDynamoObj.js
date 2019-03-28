@@ -14,10 +14,6 @@ export default (
 		...(created ? { created: true } : {}),
 		...projectDenormalizeFields(project),
 	};
-	console.log(projectId, project, userId, pledgeAmount, stripeCardId, created);
-	console.log('##############');
-	console.log(data);
-	console.log('##############');
 
 	return data;
 }
