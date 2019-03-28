@@ -27,11 +27,11 @@ export default async ({ userId, payload }) => {
 		throw generalError('Project doesn\'t exist')
 	}
 
-	const myPledge = head(myPledgeDdb || []);
+	/*const myPledge = head(myPledgeDdb || []);
 
 	if (myPledge) {
 		throw generalError('You\'ve already pledged this project')
-	}
+	}*/
 
 	const newPledgeAmount = viewPledgeAmount(payload)
 	const newPledge = pledgeDynamoObj(
