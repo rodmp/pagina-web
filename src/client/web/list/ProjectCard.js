@@ -3,9 +3,10 @@ import React, { memo } from 'react'
 import withModuleContext from 'root/src/client/util/withModuleContext'
 import projectListItemConnector from 'root/src/client/logic/project/connectors/projectListItemConnector'
 import goToViewProjectHandler from 'root/src/client/logic/project/handlers/goToViewProjectHandler'
-
+import goToPledgeProjectHandler from 'root/src/client/logic/project/handlers/goToPledgeProjectHandler'
 import Button from 'root/src/client/web/base/Button'
 import ShareMenu from 'root/src/client/web/base/ShareMenu'
+import Link from 'root/src/client/web/base/Link'
 import Header from 'root/src/client/web/typography/Header'
 import Body from 'root/src/client/web/typography/Body'
 import TertiaryBody from 'root/src/client/web/typography/TertiaryBody'
@@ -17,15 +18,33 @@ const styles = {
 		color: 'white',
 		width: '280px',
 		alignSelf: 'center',
-		height: '310px',
+		height: '322px',
 		borderRadius: '4px',
 		overflow: 'hidden',
 		boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.2)',
+		cursor: 'pointer',
+		'&:hover': {
+			boxShadow: '0 1px 26px 0 #000000',
+		},
 	},
 	cardBg: {
 		backgroundPosition: 'bottom',
 		backgroundRepeat: 'no-repeat',
 		backgroundSize: 'cover',
+		marginTop: 6,
+		height: 310,
+		'&:hover': {
+			marginTop: 0,
+			height: 322,
+
+			'> div:first-child': {
+				height: 63,
+			},
+			'> div:last-child': {
+				height: 151,
+
+			},
+		},
 	},
 	cardHeader: {
 		height: 60,
@@ -50,7 +69,7 @@ const styles = {
 		letterSpacing: '0.3px',
 	},
 	cardFooter: {
-		height: 135,
+		height: 147,
 		backgroundColor: 'rgba(0, 0, 0, 0.74)',
 		padding: [[11, 16, 8]],
 	},
@@ -64,6 +83,7 @@ const styles = {
 		WebkitBoxOrient: 'vertical',
 		overflow: 'hidden',
 		textOverflow: 'ellipsis',
+		marginBottom: 38,
 	},
 	assigneeImg: {
 		margin: [[6, 0, 9, 0]],
@@ -80,7 +100,7 @@ const styles = {
 	},
 	buttonContainer: {
 		textAlign: 'center',
-		marginTop: 11,
+		marginTop: -42,
 	},
 	button: {
 		width: '93px',
@@ -90,6 +110,9 @@ const styles = {
 	shareIcon: {
 		margin: [[12, -12, 0]],
 	},
+	link: {
+
+	},
 }
 
 export const ListItemUnconnected = memo(({
@@ -97,9 +120,7 @@ export const ListItemUnconnected = memo(({
 	projectGameImage, projectAssigneesImages, projectShareUrl, projectGames,
 }) => (
 	<section
-		className={classNames(
-			classes.cardRoot,
-		)}
+		className={classNames(classes.cardRoot)}
 	>
 		<div
 			className={classNames(
@@ -107,6 +128,7 @@ export const ListItemUnconnected = memo(({
 				classes.cardBg,
 			)}
 			style={{ backgroundImage: `url(${projectGameImage})` }}
+			onClick={goToViewProjectHandler(recordId, pushRoute)}
 		>
 			<div
 				className={classNames(
@@ -143,15 +165,15 @@ export const ListItemUnconnected = memo(({
 				<div className={classes.description}>
 					<Body style={classes.descriptionText}>{projectDescription}</Body>
 				</div>
-				<div className={classes.buttonContainer}>
-					<Button
-						onClick={goToViewProjectHandler(recordId, pushRoute)}
-						style={classes.button}
-					>
-							pledge
-					</Button>
-				</div>
 			</div>
+		</div>
+		<div className={classes.buttonContainer}>
+			<Button
+				onClick={goToPledgeProjectHandler(recordId, pushRoute)}
+				style={classes.button}
+			>
+							pledge
+			</Button>
 		</div>
 	</section>
 ))
