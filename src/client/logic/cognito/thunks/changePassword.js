@@ -16,7 +16,7 @@ const AuthenticateUserError = reject => (error) => {
 	reject(fieldError)
 }
 
-export default ({ password, newPassword }) => dispatch => new Promise(
+export default ({ currentPassword, newPassword, confirmPassword }) => dispatch => new Promise(
 	(resolve, reject) => {
 		let user
 		const re = /^CognitoIdentityServiceProvider.*.idToken$/
@@ -25,10 +25,10 @@ export default ({ password, newPassword }) => dispatch => new Promise(
 		if (matchingKey.length > 0) {
 			user = window.localStorage[matchingKey]
 		}
-		const { email } = (JWT.decode(user))
+		const { email } = JWT.decode(user)
 		const authenticationDetails = new AuthenticationDetails({
 			Username: email,
-			Password: password,
+			Password: currentPassword,
 		})
 		const cognitoUser = new CognitoUser({
 			Pool: userPool,
@@ -36,7 +36,7 @@ export default ({ password, newPassword }) => dispatch => new Promise(
 		})
 		cognitoUser.authenticateUser(authenticationDetails, {
 			onSuccess: () => {
-				cognitoUser.changePassword(password, newPassword, (err, resp) => {
+				cognitoUser.changePassword(currentPassword, newPassword, (err, resp) => {
 					if (err) {
 						AuthenticateUserError(reject)
 					} else if (resp === 'SUCCESS') {

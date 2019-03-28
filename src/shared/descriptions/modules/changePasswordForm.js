@@ -20,18 +20,22 @@ export default {
 			),
 		)(changePasswordPayloadSchema),
 		title: 'Change Password',
+		subTitle: 'Enter your new password',
 		fields: [
 			{
-				fieldId: 'password',
+				fieldId: 'currentPassword',
 				inputType: 'password',
-				label: 'Password',
 				placeholder: 'Current Password',
 			},
 			{
 				fieldId: 'newPassword',
 				inputType: 'password',
-				label: 'New Password',
 				placeholder: 'New Password',
+			},
+			{
+				fieldId: 'confirmPassword',
+				inputType: 'password',
+				placeholder: 'Confirm Password',
 			},
 		],
 		submits: [
