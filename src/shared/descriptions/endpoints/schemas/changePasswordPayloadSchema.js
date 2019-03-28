@@ -6,23 +6,23 @@ export default {
 		},
 		newPassword: {
 			type: 'string',
-			minLength: 6,
-			pattern: '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[\[\~\`\[#$^+\\\\=\\\]!*\_()@%&\{\}\?\/\.\>\,\<\;\:\'\"\|-]).{6,}$',
+			minLength: 8,
+			pattern: '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[\[\~\`\[#$^+\\\\=\\\]!*\_()@%&\{\}\?\/\.\>\,\<\;\:\'\"\|-]).{8,}$',
 			errorMessage: {
-				minLength: 'New password is too short',
-				pattern: 'New password must contain at least one uppercase letter, one lowercase letter, one number and one special character',
+				minLength: 'New password must be at least 8 characters long and contain one uppercase letter, one lowercase letter, one number and one special character',
+				pattern: 'New password must be at least 8 characters long and contain one uppercase letter, one lowercase letter, one number and one special character',
 			},
 		},
 		confirmPassword: {
 			type: 'string',
-			minLength: 6,
-			pattern: '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[\[\~\`\[#$^+\\\\=\\\]!*\_()@%&\{\}\?\/\.\>\,\<\;\:\'\"\|-]).{6,}$',
+			minLength: 8,
+			pattern: '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[\[\~\`\[#$^+\\\\=\\\]!*\_()@%&\{\}\?\/\.\>\,\<\;\:\'\"\|-]).{8,}$',
 			const: {
 				$data: '1/newPassword',
 			},
 			errorMessage: {
-				minLength: 'New password is too short',
-				pattern: 'New password must contain at least one uppercase letter, one lowercase letter, one number and one special character',
+				minLength: 'New password must be at least 8 characters long and contain one uppercase letter, one lowercase letter, one number and one special character',
+				pattern: 'New password must be at least 8 characters long and contain one uppercase letter, one lowercase letter, one number and one special character',
 				const: 'Passwords must match',
 			},
 		},
