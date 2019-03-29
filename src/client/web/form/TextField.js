@@ -9,7 +9,7 @@ import {
 	universalForm,
 	securityCode,
 	email,
-	currentPassword,
+	password,
 	newPassword,
 	confirmPassword,
 } from 'root/src/client/web/componentTypes'
@@ -91,7 +91,7 @@ const UniversalFormTextField = ({
 		>
 			{
 				ternary(
-					fieldId === email || fieldId === currentPassword || fieldId === newPassword || fieldId === confirmPassword,
+					fieldId === email || fieldId === password || fieldId === newPassword || fieldId === confirmPassword,
 					<label className={classes.label} htmlFor={fieldId}>
 						{fieldLabel}
 					</label>,

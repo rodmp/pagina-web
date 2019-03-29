@@ -1,7 +1,7 @@
 export default {
 	type: 'object',
 	properties: {
-		currentPassword: {
+		password: {
 			type: 'string',
 		},
 		newPassword: {
@@ -27,6 +27,6 @@ export default {
 			},
 		},
 	},
-	required: ['currentPassword', 'newPassword', 'confirmPassword'],
+	required: ['password', 'newPassword', 'confirmPassword'],
 	additionalProperties: false,
 }
