@@ -13,5 +13,5 @@ export default (state, props) => {
 	)
 	const diff = moment().diff(created, 'days')
 
-	return `${diff}`
+	return `${30 - diff}`
 }
