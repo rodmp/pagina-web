@@ -19,6 +19,7 @@ import addSubForm from 'root/src/client/logic/form/reducers/addSubForm'
 import removeSubForm from 'root/src/client/logic/form/reducers/removeSubForm'
 import stepFormNextPage from 'root/src/client/logic/form/reducers/stepFormNextPage'
 import stepFormPrevPage from 'root/src/client/logic/form/reducers/stepFormPrevPage'
+import clearAllForms from 'root/src/client/logic/form/reducers/clearAllForms'
 
 // api
 import apiListRequestError from 'root/src/client/logic/api/reducers/apiListRequestError'
@@ -48,6 +49,7 @@ const store = createStore(
 		...stepFormPrevPage,
 		...clearFormErrors,
 		...clearForm,
+		...clearAllForms,
 		...setFormErrors,
 		...submitForm,
 		...submitFormComplete,

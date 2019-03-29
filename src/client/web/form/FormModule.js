@@ -56,6 +56,14 @@ const styles = {
 		fontSize: 18,
 		zIndex: 2,
 	},
+	submits: {
+		marginTop: 25,
+		marginBottom: 25,
+
+		'& span': {
+			textTransform: 'none',
+		},
+	},
 }
 
 export const FormModuleUnconnected = memo(({
@@ -124,7 +132,7 @@ export const FormModuleUnconnected = memo(({
 						</div>,
 					)}
 					<div className={classNames(
-						classes.space,
+						classes.space, classes.submits,
 						{ [classes.noMarginBottom]: (formType === universalForm) },
 					)}
 					>

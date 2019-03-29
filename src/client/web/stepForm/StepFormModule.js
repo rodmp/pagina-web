@@ -83,8 +83,8 @@ export const StepFormModuleUnconnected = memo(({
 					}}
 				>
 					<span className={classes.transformNone}>
-						Next
-					</span>
+							Next
+						</span>
 				</LoadingButton>,
 			)}
 			{orNull(
@@ -106,8 +106,8 @@ export const StepFormModuleUnconnected = memo(({
 						}}
 					>
 						<span className={classes.backButtonText}>
-							Go to Back
-						</span>
+								Go to Back
+							</span>
 					</Button>
 				</div>,
 			)}

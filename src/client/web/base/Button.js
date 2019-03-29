@@ -27,7 +27,6 @@ const styles = {
 		padding: 10,
 		fontSize: 18,
 		textTransform: 'none',
-		marginBottom: 25,
 		boxShadow: '0 5px 6px 0 rgba(0, 0, 0, 0.16)',
 	},
 	noBackgroundButton: {
@@ -38,6 +37,7 @@ const styles = {
 		color: primaryColor,
 		backgroundColor: 'transparent',
 		boxShadow: 'none',
+		marginTop: 25,
 		'&:hover': {
 			color: secondaryColor,
 			backgroundColor: 'transparent',

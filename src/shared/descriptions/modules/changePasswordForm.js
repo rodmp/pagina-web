@@ -23,7 +23,7 @@ export default {
 		subTitle: 'Enter your new password',
 		fields: [
 			{
-				fieldId: 'currentPassword',
+				fieldId: 'password',
 				inputType: 'password',
 				placeholder: 'Current Password',
 			},
