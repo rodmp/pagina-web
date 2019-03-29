@@ -55,13 +55,13 @@ const styles = {
 	},
 }
 
-export default withStyles(styles)(memo(({ classes, url }) => {
+export default withStyles(styles)(memo(({ classes, url, onClose, onOpen }) => {
 	const [anchorEl, setAnchorEl] = React.useState(null)
 	const open = Boolean(anchorEl)
 
-	const handleClick = event => setAnchorEl(event.currentTarget)
+	const handleClick = (event) => { onOpen(); return setAnchorEl(event.currentTarget) }
 
-	const handleClose = () => setAnchorEl(null)
+	const handleClose = () => { onClose(); return setAnchorEl(null) }
 
 	return (
 		<div>
