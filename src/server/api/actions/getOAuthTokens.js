@@ -6,5 +6,6 @@ export default async ({ payload: { payload, userId } }) => {
 	const [tokenDdb] = await dynamoQueryOAuth(
 		userId, payload,
 	)
+
 	return map(oAuthTokenSerializer, tokenDdb)
 }
