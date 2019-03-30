@@ -3,6 +3,7 @@ import { PARTITION_KEY, SORT_KEY } from 'root/src/shared/constants/apiDynamoInde
 import { dynamoItemsProp } from 'root/src/server/api/lenses'
 
 export default (async (userId) => {
+
 	const oAuthParams = {
 		TableName: TABLE_NAME,
 		KeyConditionExpression: `${PARTITION_KEY} = :pk and begins_with(${SORT_KEY}, :token)`,
