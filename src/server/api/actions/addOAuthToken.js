@@ -23,6 +23,7 @@ export default async ({ userId, payload }) => {
 			),
 		},
 	}
+
 	await documentClient.batchWrite(params).promise()
 
 	return oAuthTokenSerializer(oAuthToken)

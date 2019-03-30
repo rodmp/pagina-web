@@ -12,9 +12,11 @@ export default (async (userId) => {
 		},
 		ConsistentRead: true,
 	}
+
 	const [oAuthDb] = await Promise.all([
 		documentClient.query(oAuthParams).promise(),
 	])
+
 	return [
 		dynamoItemsProp(oAuthDb),
 	]
