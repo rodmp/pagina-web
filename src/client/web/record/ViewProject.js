@@ -15,7 +15,7 @@ import SubHeader from 'root/src/client/web/typography/SubHeader'
 import Button from 'root/src/client/web/base/Button'
 import { TwitchButton } from 'root/src/client/web/base/CustomButton'
 
-import { twitchApiUrl } from 'root/cfOutput'
+import { twitchOauthUrl } from 'root/src/shared/constants/twitch'
 
 import RecordClickActionButton from 'root/src/client/web/base/RecordClickActionButton'
 import { storageSet } from 'root/src/shared/util/storage'
@@ -26,8 +26,6 @@ import viewProjectConnector from 'root/src/client/logic/project/connectors/viewP
 import withModuleContext from 'root/src/client/util/withModuleContext'
 import goToSignInHandler from 'root/src/client/logic/project/handlers/goToSignInHandler'
 import goToPledgeProjectHandler from 'root/src/client/logic/project/handlers/goToPledgeProjectHandler'
-
-import { orNull, ternary } from 'root/src/shared/util/ramdaPlus'
 
 const styles = {
 	title: {
@@ -181,7 +179,7 @@ export const ViewProjectModule = memo(({
 									)}
 							>
 									Pledge
-								</Button>
+        </Button>
 						</div>
 						{ternary(isOneOfAssigneesSelector(assignees, userData),
 							<TwitchButton
@@ -195,7 +193,7 @@ export const ViewProjectModule = memo(({
 									storageSet('redirectAssignee', assignees[0].username)
 									storageSet('redirectUri', window.location.pathname)
 								}}
-								href={twitchApiUrl}
+								href={twitchOauthUrl}
 							/>)}
 					</div>
 
