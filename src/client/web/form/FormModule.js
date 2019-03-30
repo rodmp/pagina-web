@@ -1,18 +1,18 @@
 import React, { memo } from 'react'
-
-
-import { orNull } from 'root/src/shared/util/ramdaPlus'
-import { secondaryColor, primaryColor } from 'root/src/client/web/commonStyles'
+import { orNull, ternary } from 'root/src/shared/util/ramdaPlus'
+import { secondaryColor } from 'root/src/client/web/commonStyles'
 
 import Fields from 'root/src/client/web/form/Fields'
 import Submits from 'root/src/client/web/form/Submits'
-import FormTitle from 'root/src/client/web/typography/FormTitle'
-import Button from 'root/src/client/web/base/Button'
+import Header from 'root/src/client/web/typography/Header'
 import Body from 'root/src/client/web/typography/Body'
+import Button from 'root/src/client/web/base/Button'
 import TertiaryBody from 'root/src/client/web/typography/TertiaryBody'
+import FormTitle from 'root/src/client/web/typography/FormTitle'
 import formModuleConnector from 'root/src/client/logic/form/connectors/formModuleConnector'
 
 import backToPrevHandler from 'root/src/client/logic/form/handlers/backToPrevHandler'
+import goToViewProjectHandler from 'root/src/client/logic/project/handlers/goToViewProjectHandler'
 import submitFormHandler from 'root/src/client/logic/form/handlers/submitFormHandler'
 
 import withModuleContext from 'root/src/client/util/withModuleContext'
@@ -34,25 +34,23 @@ const styles = {
 	backButton: {
 		textAlign: 'center',
 		marginBottom: 35,
-
-		'& button': {
-			color: secondaryColor,
-			backgroundColor: 'transparent',
-			textTransform: 'none',
-			fontSize: 18,
-
-			'&:hover': {
-				color: primaryColor,
-				backgroundColor: 'transparent',
-			},
+		'& span': {
+			backgroundColor: 'white',
 		},
+
+	},
+	backButtonText: {
+		color: '#800080',
+		textTransform: 'none',
+		fontSize: 18,
+		zIndex: 2,
 	},
 }
 
 export const FormModuleUnconnected = memo(({
 	formFieldTypes, formTitle, formSubmits, moduleId, moduleKey, submitForm,
 	preSubmitText, postSubmitText, preSubmitCaption, postSubmitCaption,
-	classes, subTitle, backButton,
+	classes, subTitle, backButton, recordId, pushRoute,
 }) => (
 	<div className="flex layout-row layout-align-center">
 		<div className={classes.formContainer}>
@@ -130,7 +128,16 @@ export const FormModuleUnconnected = memo(({
 				)}
 				{backButton && (
 					<div className={classes.backButton}>
-						<Button onClick={backToPrevHandler}>{backButton.label}</Button>
+						<Button
+							onClick={
+								orNull(
+									recordId,
+									goToViewProjectHandler(recordId, pushRoute),
+								)
+							}
+						>
+							<span className={classes.backButtonText}>{backButton.label}</span>
+						</Button>
 					</div>
 				)}
 				<input type="submit" className="hide" />
