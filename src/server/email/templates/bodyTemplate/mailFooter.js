@@ -1,74 +1,4 @@
-<html>
-  
-  <head>
-    <style>
-      @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,700');
-    </style>
-  </head>
-
-  <body>
-    <table align="center" border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse;margin-left:auto;margin-right:auto;margin-top:0;margin-bottom:0;padding:0;font-family:Roboto,sans-serif;width:600px;" width="600">
-      <tbody>
-        <tr>
-          <td align="center">
-            <center>
-              
-              <!-- mail header -->
-              <table align="center" border="0" cellpadding="0" cellspacing="0" style="margin:0;padding:0;background-color:#000000;color:#ffffff;" width="100%">
-                <tbody>
-                  <tr>
-                    <td height="105" style="margin:0;padding:0;" width="60"></td>
-                    <td height="105" style="margin:0;padding:0;" width="480">
-                      <a href="/" target="_blank">
-                        <img src="icons/logo.png" alt="Dare Drop" width="77" border="0" style="border:0;">
-                      </a>
-                    </td>
-                    <td height="105" style="margin:0;padding:0;" width="60"></td>
-                  </tr>
-                </tbody>
-              </table>
-              <!-- mail header END-->
-              
-              
-              <!-- mail content -->
-              <table border="0" cellpadding="0" cellspacing="0" style="margin-top:0;margin-bottom:0;margin-left:auto;margin-right:auto;padding:0;color:#354052;font-family:Roboto,sans-serif;font-size:26px;line-height:1.25;" width="480" class="content">
-                <tbody>
-                  <tr>
-                    <td height="50" style="margin:0;padding:0;" width="100%"></td>
-                  </tr>
-                  <tr>
-                    <td style="margin:0;padding:0;" width="100%">
-                      <p style="font-weight:bold;font-size:40px;line-height:1;margin:0;">Dare Rejected</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td height="50" style="margin:0;padding:0;" width="100%"></td>
-                  </tr>
-                  
-                  <tr>
-                    <td style="margin:0;padding:0;" width="100%">
-                      <p style="margin:0;padding:0;">We couldn’t bring your Dare &lt;dare title&gt; live because it didn’t follow our <a href="/" style="text-decoration:none;color:#1976d2;">Rules of Use</a>.</p>
-                    </td>
-                  </tr>
-                  
-                  <tr>
-                    <td height="50" style="margin:0;padding:0;" width="100%"></td>
-                  </tr>
-                  
-                  <tr>
-                    <td style="margin:0; padding:0;" width="100%">
-                      <p style="margin:0;padding:0;">The Dare Drop Team</p>
-                    </td>
-                  </tr>
-                  
-                  <tr>
-                    <td height="50" style="margin:0;padding:0;" width="100%"></td>
-                  </tr>
-                </tbody>
-              </table>
-              <!-- mail content END-->
-              
-              
+export default (survey, ourName, ourEmail) => `
               <!-- mail footer -->
               <table border="0" cellpadding="0" cellspacing="0" style="margin-top:0;margin-bottom:0;margin-left:auto;margin-right:auto;padding:0;color:#354052;font-size:26px;line-height:1.25;background-color:#f5f5f5;" width="100%">
                 <tbody>
@@ -88,7 +18,7 @@
                           <tr>
                             <td style="margin:0;padding:0;" width="100%">
                               <p style="font-size:19px;line-height:1;margin:0;">
-                                Help us improve by sharing your feedback in this short <a href="" style="text-decoration:none;color:#354052;border-bottom:solid 1px #354052;line-height:1;">survey</a>.
+                                Help us improve by sharing your feedback in this short <a href="${survey}" style="text-decoration:none;color:#354052;border-bottom:solid 1px #354052;line-height:1;">survey</a>.
                               </p>
                             </td>
                           </tr>
@@ -108,13 +38,13 @@
                           <tr>
                             <td style="margin:0;padding:0;" width="100%">
                               <p style="font-weight:300;font-size:14px;line-height:1.56;margin:0;margin-bottom:10px;">
-                                Copyright © 2018 <b>*name*</b>. All Rights Reserved.
+                                Copyright © 2018 <b>${ourName}</b>. All Rights Reserved.
                               </p>
                             </td>
                           </tr>
                           <tr>
                             <td style="margin:0;padding:0;" width="100%">
-                              <a href="/" target="_blank" style="display:inline-block;text-decoration:none;color:#354052;font-weight:300;font-size:14px;line-height:1.56;">*email*</a>
+                              <a href="/" target="_blank" style="display:inline-block;text-decoration:none;color:#354052;font-weight:300;font-size:14px;line-height:1.56;">${ourEmail}</a>
                             </td>
                           </tr>
                           
@@ -139,4 +69,4 @@
       </tbody>
     </table>
   </body>
-</html>
+</html>`
