@@ -3,12 +3,14 @@ import React, { memo, useState } from 'react'
 import withModuleContext from 'root/src/client/util/withModuleContext'
 import projectListItemConnector from 'root/src/client/logic/project/connectors/projectListItemConnector'
 import goToViewProjectHandler from 'root/src/client/logic/project/handlers/goToViewProjectHandler'
+import goToSignInHandler from 'root/src/client/logic/project/handlers/goToSignInHandler'
 import goToPledgeProjectHandler from 'root/src/client/logic/project/handlers/goToPledgeProjectHandler'
 import Button from 'root/src/client/web/base/Button'
 import ShareMenu from 'root/src/client/web/base/ShareMenu'
 import Body from 'root/src/client/web/typography/Body'
 import TertiaryBody from 'root/src/client/web/typography/TertiaryBody'
 import classNames from 'classnames'
+import { ternary } from 'root/src/shared/util/ramdaPlus'
 
 const styles = {
 	cardRoot: {
@@ -123,7 +125,7 @@ const styles = {
 
 export const ListItemUnconnected = memo(({
 	recordId, pushRoute, projectTitle, projectDescription, classes,
-	projectGameImage, projectAssigneesImages, projectShareUrl, projectGames,
+	projectGameImage, projectAssigneesImages, projectShareUrl, projectGames, isAuthenticated,
 }) => {
 	const [hover, setHover] = useState(false)
 	const [over, setOver] = useState(false)
@@ -194,7 +196,11 @@ export const ListItemUnconnected = memo(({
 			</div>
 			<div className={classes.buttonContainer}>
 				<Button
-					onClick={goToPledgeProjectHandler(recordId, pushRoute)}
+					onClick={ternary(
+						isAuthenticated,
+						goToPledgeProjectHandler(recordId, pushRoute),
+						goToSignInHandler(pushRoute),
+					)}
 					style={classes.button}
 				>
 							Pledge
