@@ -64,10 +64,12 @@ const styles = {
 			minHeight: '300px !important',
 		},
 		'@media (min-width: 1280px)': {
-			minHeight: '330px !important',
+			minHeight: '399px !important',
+			backgroundPositionY: '33%',
 		},
-		'@media (min-width: 1440px)': {
-			backgroundPosition: '50% 15%',
+		'@media (min-width: 1600px)': {
+			minHeight: '600px !important',
+			backgroundPositionY: '33%',
 		},
 	},
 	icons: {
