@@ -1,6 +1,7 @@
 import { map, addIndex } from 'ramda'
 import React, { memo } from 'react'
 import classNames from 'classnames'
+import { orNull, ternary } from 'root/src/shared/util/ramdaPlus'
 
 import {
 	smMediaQuery, gtSmMediaQuery,
@@ -18,10 +19,8 @@ import { APPROVE_PROJECT, REJECT_PROJECT } from 'root/src/shared/descriptions/re
 
 import viewProjectConnector from 'root/src/client/logic/project/connectors/viewProjectConnector'
 import withModuleContext from 'root/src/client/util/withModuleContext'
-
+import goToSignInHandler from 'root/src/client/logic/project/handlers/goToSignInHandler'
 import goToPledgeProjectHandler from 'root/src/client/logic/project/handlers/goToPledgeProjectHandler'
-
-import { orNull } from 'root/src/shared/util/ramdaPlus'
 
 const styles = {
 	title: {
@@ -105,7 +104,8 @@ const styles = {
 
 export const ViewProjectModule = memo(({
 	projectId, projectDescription, projectTitle, pledgeAmount, assignees,
-	gameImage, canApproveProject, canRejectProject, pushRoute, canPledgeProject, classes,
+	gameImage, canApproveProject, canRejectProject, pushRoute, canPledgeProject, 
+  classes,
 }) => (
 	<div className="flex layout-row layout-align-center-start">
 		{console.log(projectId, projectDescription, projectTitle, pledgeAmount, assignees,
@@ -184,11 +184,10 @@ export const ViewProjectModule = memo(({
 									onClick={goToPledgeProjectHandler(
 										projectId, pushRoute,
 									)}
-								>
+							>
 									Pledge
-								</Button>
-							</div>,
-						)}
+							</Button>
+						</div>
 					</div>
 
 				</div>

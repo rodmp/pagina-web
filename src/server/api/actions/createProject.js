@@ -61,14 +61,16 @@ export default async ({ userId, payload }) => {
 		projectId, serializedProject, userId, pledgeAmount,
 		viewStripeCardId(serializedProject), true,
 	)
+
 	const params = {
 		RequestItems: {
 			[TABLE_NAME]: map(
-				Item => ({ PutRequest: { Item } }),
+				Item => ({PutRequest: {Item}}),
 				[project, ...projectAssignees, ...projectGames, pledge],
 			),
 		},
 	}
+
 	await documentClient.batchWrite(params).promise()
 
 	return {

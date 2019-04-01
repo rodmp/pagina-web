@@ -9,8 +9,10 @@ import formPostSubmitText from 'root/src/client/logic/form/selectors/formPostSub
 import formPreSubmitCaption from 'root/src/client/logic/form/selectors/formPreSubmitCaption'
 import formPostSubmitCaption from 'root/src/client/logic/form/selectors/formPostSubmitCaption'
 import backButton from 'root/src/client/logic/form/selectors/backButton'
+import currentRouterParamsRecordId from 'root/src/client/logic/route/selectors/currentRouteParamsRecordId'
 
 import submitForm from 'root/src/client/logic/form/thunks/submitForm'
+import pushRoute from 'root/src/client/logic/route/thunks/pushRoute'
 
 export default reduxConnector(
 	[
@@ -18,6 +20,7 @@ export default reduxConnector(
 		['formSubmits', formSubmits],
 		['formTitle', formTitle],
 		['subTitle', formSubTitle],
+		['recordId', currentRouterParamsRecordId],
 		['preSubmitText', formPreSubmitText],
 		['postSubmitText', formPostSubmitText],
 		['preSubmitCaption', formPreSubmitCaption],
@@ -26,5 +29,6 @@ export default reduxConnector(
 	],
 	[
 		['submitForm', submitForm],
+		['pushRoute', pushRoute],
 	],
 )
