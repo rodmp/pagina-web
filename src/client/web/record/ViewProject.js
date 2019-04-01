@@ -109,7 +109,7 @@ export const ViewProjectModule = memo(({
 }) => (
 	<div className="flex layout-row layout-align-center-start">
 		{console.log(projectId, projectDescription, projectTitle, pledgeAmount, assignees,
-			gameImage, canApproveProject, canRejectProject, pushRoute, canPledgeProject, classes,)}
+			gameImage, canApproveProject, canRejectProject, pushRoute, canPledgeProject, classes)}
 		<MaxWidthContainer>
 			<div className="flex layout-row layout-wrap">
 				<div className={classNames(
@@ -184,10 +184,11 @@ export const ViewProjectModule = memo(({
 									onClick={goToPledgeProjectHandler(
 										projectId, pushRoute,
 									)}
-							>
-									Pledge
-        </Button>
-						</div>
+								>
+										Pledge
+         </Button>
+							</div>,
+						)}
 					</div>
 				</div>
 				<div className={classNames(
