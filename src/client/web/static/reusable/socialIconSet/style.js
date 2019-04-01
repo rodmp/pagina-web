@@ -13,7 +13,7 @@ const styles = {
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'center',
-		marginRight: 12,
+		marginRight: 14.8,
 		'@media (min-width: 375px):not(:last-of-type)': {
 			marginRight: 14.8,
 		},

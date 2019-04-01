@@ -15,7 +15,7 @@ import SubHeader from 'root/src/client/web/typography/SubHeader'
 import Button from 'root/src/client/web/base/Button'
 
 import RecordClickActionButton from 'root/src/client/web/base/RecordClickActionButton'
-import { APPROVE_PROJECT } from 'root/src/shared/descriptions/recordClickActions/recordClickActionIds'
+import { APPROVE_PROJECT, REJECT_PROJECT } from 'root/src/shared/descriptions/recordClickActions/recordClickActionIds'
 
 import viewProjectConnector from 'root/src/client/logic/project/connectors/viewProjectConnector'
 import withModuleContext from 'root/src/client/util/withModuleContext'
@@ -108,6 +108,8 @@ export const ViewProjectModule = memo(({
 	isAuthenticated,
 }) => (
 	<div className="flex layout-row layout-align-center-start">
+		{console.log(projectId, projectDescription, projectTitle, pledgeAmount, assignees,
+			gameImage, canApproveProject, canRejectProject, pushRoute, canPledgeProject, classes,)}
 		<MaxWidthContainer>
 			<div className="flex layout-row layout-wrap">
 				<div className={classNames(
@@ -164,20 +166,29 @@ export const ViewProjectModule = memo(({
 								/>
 							</div>,
 						)}
-						<div className={classes.sidebarItem}>
-							<Button
-								onClick={
-									ternary(
-										isAuthenticated,
-										goToPledgeProjectHandler(projectId, pushRoute),
-										goToSignInHandler(pushRoute),
+						{
+							orNull(
+								canRejectProject,
+								<div className={classes.sidebarItem}>
+									<RecordClickActionButton
+										recordClickActionId={REJECT_PROJECT}
+										recordId={projectId}
+									/>
+								</div>,
+							)
+						}
+						{orNull(
+							canPledgeProject,
+							<div className={classes.sidebarItem}>
+								<Button
+									onClick={goToPledgeProjectHandler(
+										projectId, pushRoute,
 									)}
 							>
 									Pledge
         </Button>
 						</div>
 					</div>
-
 				</div>
 				<div className={classNames(
 					'flex-100', 'flex-order-2', 'flex-order-gt-sm-3',
