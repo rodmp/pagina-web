@@ -8,32 +8,12 @@ import { mockUserId } from 'root/src/server/api/mocks/contextMock'
 import { internet } from 'faker'
 
 describe('pledgeProject', () => {
-	test('Can\'t pledge a project I\'ve already pleged', async () => {
-		const newProject = await createProject({
-			userId: mockUserId,
-			payload: createProjectPayload(),
-		})
-		const event = {
-			endpointId: PLEDGE_PROJECT,
-			payload: {
-				projectId: newProject.id,
-				pledgeAmount: 1234,
-				stripeCardId: 'mockStripeCardId',
-			},
-			authentication: mockUserId,
-		}
-		const res = await apiFn(event)
-		expect(res).toEqual({
-			statusCode: 500,
-			generalErrors: "You've already pledged this project",
-		})
-	})
 	test('successfully pledge a project', async () => {
 		const newProject = await createProject({
 			userId: internet.username,
-			payload: createProjectPayload(),
+			payload: {...createProjectPayload(), status: 'approved' },
 		})
-		const pledgeAmount = 1234
+		const pledgeAmount = 20
 		const event = {
 			endpointId: PLEDGE_PROJECT,
 			payload: {
@@ -44,7 +24,6 @@ describe('pledgeProject', () => {
 			authentication: mockUserId,
 		}
 		const res = await apiFn(event)
-
 		expect(res).toEqual({
 			statusCode: 200,
 			body: {
