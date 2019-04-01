@@ -1,8 +1,13 @@
-import { head, replace } from 'ramda'
+import { head, replace, equals } from 'ramda'
 
 import { TABLE_NAME, documentClient } from 'root/src/server/api/dynamoClient'
 
 import { PARTITION_KEY, SORT_KEY } from 'root/src/shared/constants/apiDynamoIndexes'
+
+import sendEmail from 'root/src/server/email/actions/sendEmail'
+import dareApprovedMail from 'root/src/server/email/templates/dareApproved'
+import { dareApprovedTitle } from 'root/src/server/email/util/emailTitles'
+import projectHrefBuilder from 'root/src/server/api/actionUtil/projectHrefBuilder'
 
 import { AUDIT_PROJECT } from 'root/src/shared/descriptions/endpoints/endpointIds'
 import { getPayloadLenses } from 'root/src/server/api/getEndpointDesc'
@@ -54,13 +59,19 @@ export default async ({ userId, payload }) => {
 			}],
 	}
 
-	await documentClient.batchWrite(params).promise()
+
+	// await documentClient.transactWrite(params).promise()
 	const newProject = projectSerializer([
 		...projectToPledgeDdb,
 		// ...assigneesDdb,
 		// ...gamesDdb,
 		...myPledgeDdb,
 	])
+
+	if (equals(viewAudit(payload), 'approved')) {
+		const emailData = {}
+		sendEmail(emailData, dareApprovedMail)
+	}
 
 	return {
 		...newProject,

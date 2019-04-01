@@ -1,4 +1,4 @@
-export default (survey, ourName, ourEmail) => `
+export default (survey, ourName, ourEmail, ourUrl) => `
               <!-- mail footer -->
               <table border="0" cellpadding="0" cellspacing="0" style="margin-top:0;margin-bottom:0;margin-left:auto;margin-right:auto;padding:0;color:#354052;font-size:26px;line-height:1.25;background-color:#f5f5f5;" width="100%">
                 <tbody>
@@ -18,27 +18,27 @@ export default (survey, ourName, ourEmail) => `
                           <tr>
                             <td style="margin:0;padding:0;" width="100%">
                               <p style="font-size:19px;line-height:1;margin:0;">
-                                Help us improve by sharing your feedback in this short <a href="${survey}" style="text-decoration:none;color:#354052;border-bottom:solid 1px #354052;line-height:1;">survey</a>.
+                                Help us improve by sharing your feedback in this short <a href="https://${survey}" style="text-decoration:none;color:#354052;border-bottom:solid 1px #354052;line-height:1;">survey</a>.
                               </p>
                             </td>
                           </tr>
                           <tr height="80">
                             <td style="margin:0;padding:0;" align="center" width="100%">
-                              <a href="/" target="_blank" style="display:inline-block;margin-left:10px;margin-right:10px;vertical-align:middle;">
-                                <img src="icons/facebook.png" alt="facebook" width="21" border="0" style="border:0;">
+                              <a href="/" target="_blank" width="21" height="21" style="display:inline-block;margin-left:10px;margin-right:10px;vertical-align:middle;">
+                                <img src="https://${ourUrl}/facebook.png" alt="facebook" title="facebook" width="21" height="21" border="0" style="display: block; border:0;">
                               </a>
-                              <a href="/" target="_blank" style="display:inline-block;margin-left:10px;margin-right:10px;vertical-align:middle;">
-                                <img src="icons/twitter.png" alt="twitter" width="22" border="0" style="border:0;">
+                              <a href="/" target="_blank" width="22" height="22" style="display:inline-block;margin-left:10px;margin-right:10px;vertical-align:middle;">
+                                <img src="https://${ourUrl}/twitter.png" alt="twitter" title="twitter" width="22" height="22" border="0" style="display: block; border:0;">
                               </a>
-                              <a href="/" target="_blank" style="display:inline-block;margin-left:10px;margin-right:10px;vertical-align:middle;">
-                                <img src="icons/instagram.png" alt="instagram" width="22" border="0" style="border:0;">
+                              <a href="/" target="_blank" width="22" height="22" style="display:inline-block;margin-left:10px;margin-right:10px;vertical-align:middle;">
+                                <img src="https://${ourUrl}/instagram.png" alt="instagram" title="instagram" width="22" height="22" border="0" style="display: block; border:0;">
                               </a>
                             </td>
                           </tr>
                           <tr>
                             <td style="margin:0;padding:0;" width="100%">
                               <p style="font-weight:300;font-size:14px;line-height:1.56;margin:0;margin-bottom:10px;">
-                                Copyright © 2018 <b>${ourName}</b>. All Rights Reserved.
+                                Copyright © ${new Date().getFullYear()} <b>${ourName}</b>. All Rights Reserved.
                               </p>
                             </td>
                           </tr>

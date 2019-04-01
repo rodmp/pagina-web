@@ -45,6 +45,15 @@ export default {
 							{
 								Effect: 'Allow',
 								Action: [
+									'ses:SendEmail',
+								],
+								Resource: [
+									'arn:aws:ses:*:*:*',
+								],
+							},
+							{
+								Effect: 'Allow',
+								Action: [
 									'dynamodb:DescribeTable',
 									'dynamodb:Query',
 									'dynamodb:Scan',
@@ -53,6 +62,7 @@ export default {
 									'dynamodb:UpdateItem',
 									'dynamodb:DeleteItem',
 									'dynamodb:BatchWriteItem',
+									'dynamodb:BatchGetItem',
 									'dynamodb:BatchGetItem',
 								],
 								// For ARN/index/x_index

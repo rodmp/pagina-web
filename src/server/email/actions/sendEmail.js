@@ -22,8 +22,10 @@ export default (emailData, emailTemplate) => {
 		},
 		Source: ourEmail,
 	}
-	ses.sendEmail(params, (err, data) => {
-		if (err) console.log(err, err.stack) // an error occurred
-		else console.log(data) // successful response
-	})
+
+
+	ses.sendEmail(params, (err, data) => new Promise((resolve, reject) => {
+		if (err) reject(err, err.stack) // an error occurred
+		else resolve(data) // successful response
+	}))
 }

@@ -1,8 +1,13 @@
-import { head, add } from 'ramda'
+import { head, add, map, prop, compose } from 'ramda'
 
 import { TABLE_NAME, documentClient } from 'root/src/server/api/dynamoClient'
 
 import { PARTITION_KEY, SORT_KEY } from 'root/src/shared/constants/apiDynamoIndexes'
+
+import sendEmail from 'root/src/server/email/actions/sendEmail'
+import pledgeMadeMail from 'root/src/server/email/templates/pledgeMade'
+import { pledgeMadeTitle } from 'root/src/server/email/util/emailTitles'
+import projectHrefBuilder from 'root/src/server/api/actionUtil/projectHrefBuilder'
 
 import { PLEDGE_PROJECT } from 'root/src/shared/descriptions/endpoints/endpointIds'
 import { getPayloadLenses } from 'root/src/server/api/getEndpointDesc'
@@ -14,7 +19,7 @@ import projectSerializer from 'root/src/server/api/serializers/projectSerializer
 const payloadLenses = getPayloadLenses(PLEDGE_PROJECT)
 const { viewPledgeAmount, viewStripeCardId } = payloadLenses
 
-export default async ({ userId, payload }) => {
+export default async ({ userId, payload, email }) => {
 	const { projectId } = payload
 	const [
 		projectToPledgeDdb, myPledgeDdb,
@@ -27,7 +32,7 @@ export default async ({ userId, payload }) => {
 		throw generalError('Project doesn\'t exist')
 	}
 
-	const myPledge = head(myPledgeDdb || []);
+	const myPledge = head(myPledgeDdb || [])
 
 	if (myPledge) {
 		throw generalError('You\'ve already pledged this project')
@@ -57,14 +62,29 @@ export default async ({ userId, payload }) => {
 		},
 	}
 
-	await documentClient.update(updateProjectParams).promise();
+	await documentClient.update(updateProjectParams).promise()
 
 	const newProject = projectSerializer([
 		...projectToPledgeDdb,
-		//...assigneesDdb,
-		//...gamesDdb,
+		// ...assigneesDdb,
+		// ...gamesDdb,
 		newPledge,
 	])
+
+	const emailData = {
+		title: pledgeMadeTitle,
+		dareTitle: prop('title', newProject),
+		recipients: [email],
+		// TODO EMAIL
+		// expiry time in seconds
+		dareHref: projectHrefBuilder(prop('id', newProject)),
+		streamers: compose(map(prop('username')), prop('assignees'))(newProject),
+		// TODO EMAIL
+		// notClaimedAlready
+	}
+
+	sendEmail(emailData, pledgeMadeMail)
+
 	return {
 		...newProject,
 		pledgeAmount: add(

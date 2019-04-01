@@ -31,7 +31,7 @@ export default ({ dareDescription, dareTitle, bountyAmount, goal, expiryTime, da
                   
                   <tr>
                     <td style="margin:0; padding:0;" width="100%">
-                      <p style="margin:0;padding:0;">You have ${expiryCalculator(expiryTime)} to deliver before the Dare <a href="${dareHref}">${dareTitle}</a> and pledges expire. It’s time for you to show them what you got!</p>
+                      <p style="margin:0;padding:0;">You have ${expiryCalculator(expiryTime)} to deliver before the Dare <a href="http://${dareHref}">${dareTitle}</a> and pledges expire. It’s time for you to show them what you got!</p>
                     </td>
                   </tr>
                   
