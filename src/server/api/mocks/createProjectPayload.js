@@ -1,6 +1,6 @@
 
 import { map } from 'ramda'
-import { hacker, lorem, random } from 'faker'
+import { hacker, lorem, random, name } from 'faker'
 import { randomArrayElements } from 'root/src/shared/util/randomNumber'
 
 const twitchStreamers = [
@@ -18,7 +18,7 @@ const gameIds = [
 ]
 
 export default ({ assigneeCount = 1 } = {}) => ({
-	title: hacker.phrase(),
+	title: name.title(), // Changing this one because is generates a title more than 60 char.
 	description: lorem.paragraph(),
 	stripeCardId: random.uuid(),
 	pledgeAmount: random.number(),
