@@ -43,7 +43,7 @@ export const apiHof = (
 		const action = prop(endpointId, serverEndpointsObj)
 		const payloadSchema = getPayloadSchemaFn(endpointId)
 		const resultSchema = getResultSchemaFn(endpointId)
-		const userId = await authorizeRequestFn(endpointId, authentication)
+		const [userId, email] = await authorizeRequestFn(endpointId, authentication)
 		const validatePayload = validateOrNah(
 			'payloadSchema', endpointId, payloadSchema,
 		)
@@ -52,7 +52,7 @@ export const apiHof = (
 		)
 
 		await validatePayload(payload)
-		const res = await action({ userId, payload })
+		const res = await action({ userId, payload, email })
 		await validateResult(res)
 		return { statusCode: 200, body: res }
 	} catch (error) {

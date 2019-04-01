@@ -34,7 +34,7 @@ export default ({ dareTitle, expiryTime, dareHref, streamers, notClaimedAlready 
                   <tr>
                     <td style="margin:0;padding:0;" width="100%">
                       <p style="margin:0;padding:0;">
-                        <a href="${dareHref}">${dareTitle}</a>
+                        <a href="http://${dareHref}">${dareTitle}</a>
                       </p>
                     </td>
                   </tr>
@@ -48,7 +48,7 @@ export default ({ dareTitle, expiryTime, dareHref, streamers, notClaimedAlready 
                   <tr>
                     <td style="margin:0;padding:0;" width="100%">
                       <p style="margin:0;padding:0;">
-                        &lt;if not claimed already: We’ll let you know if the streamer accepts the dare and sets a target bounty amount.&gt;
+                        We’ll let you know if the streamer accepts the dare and sets a target bounty amount
                       </p>
                     </td>
                   </tr>

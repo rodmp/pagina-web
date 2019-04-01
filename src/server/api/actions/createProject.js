@@ -6,6 +6,10 @@ import { TABLE_NAME, documentClient } from 'root/src/server/api/dynamoClient'
 import { PARTITION_KEY, SORT_KEY } from 'root/src/shared/constants/apiDynamoIndexes'
 import assigneeSerializer from 'root/src/server/api/serializers/assigneeSerializer'
 
+import sendEmail from 'root/src/server/email/actions/sendEmail'
+import dareCreatedEmail from 'root/src/server/email/templates/dareCreated'
+import { dareCreatedTitle } from 'root/src/server/email/util/emailTitles'
+
 import { CREATE_PROJECT } from 'root/src/shared/descriptions/endpoints/endpointIds'
 import { getPayloadLenses } from 'root/src/server/api/getEndpointDesc'
 import projectDenormalizeFields from 'root/src/server/api/actionUtil/projectDenormalizeFields'
@@ -18,7 +22,7 @@ const {
 	viewStripeCardId, viewPledgeAmount, viewAssignees, viewGames,
 } = payloadLenses
 
-export default async ({ userId, payload }) => {
+export default async ({ userId, payload, email }) => {
 	const serializedProject = await assigneeSerializer({
 		project: payload, payloadLenses,
 	})
@@ -65,13 +69,22 @@ export default async ({ userId, payload }) => {
 	const params = {
 		RequestItems: {
 			[TABLE_NAME]: map(
-				Item => ({PutRequest: {Item}}),
+				Item => ({ PutRequest: { Item } }),
 				[project, ...projectAssignees, ...projectGames, pledge],
 			),
 		},
 	}
 
 	await documentClient.batchWrite(params).promise()
+
+	const emailData = {
+		dareTitle: project.title,
+		recipients: [email],
+		title: dareCreatedTitle,
+	}
+
+
+	sendEmail(emailData, dareCreatedEmail)
 
 	return {
 		id: projectId,

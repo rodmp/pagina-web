@@ -50,7 +50,7 @@ export default ({ dareTitle }) => {
 
                   <tr>
                     <td style="margin:0; padding:0;" width="100%">
-                      <p style="margin:0;padding:0;">What’s the next thing you want to see? Dare another streamer or <a href="${marketplaceUrl}" style="text-decoration:none;color:#1976d2;">checkout our marketplace</a> to support more great content. We dare you.</p>
+                      <p style="margin:0;padding:0;">What’s the next thing you want to see? Dare another streamer or <a href="http://${marketplaceUrl}" style="text-decoration:none;color:#1976d2;">checkout our marketplace</a> to support more great content. We dare you.</p>
                     </td>
                   </tr>
                   
