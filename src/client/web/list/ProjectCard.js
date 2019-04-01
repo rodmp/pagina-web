@@ -83,10 +83,34 @@ const styles = {
 		transition: '0s',
 	},
 	assigneeImg: {
-		margin: [[6, 0, 9, 0]],
 		width: 100,
 		height: 100,
 		transition: '0s',
+		border: 'grey 1px solid',
+		'&:nth-last-child(n+3), &:nth-last-child(n+3) ~ img': {
+			width: 90,
+			height: 90,
+		},
+		'&:nth-last-child(n+4), &:nth-last-child(n+4) ~ img': {
+			width: 70,
+			height: 70,
+		},
+		'&:nth-last-child(n+5), &:nth-last-child(n+5) ~ img': {
+			width: 50,
+			height: 50,
+		},
+		'&:nth-last-child(n+11), &:nth-last-child(n+11) ~ img': {
+			width: 25,
+			height: 25,
+		},
+		'&:nth-last-child(n+41), &:nth-last-child(n+41) ~ img': {
+			width: 15,
+			height: 15,
+		},
+		'&:nth-last-child(n+101), &:nth-last-child(n+101) ~ img': {
+			width: 7,
+			height: 7,
+		},
 	},
 	descriptionText: {
 		fontWeight: 'normal',
@@ -102,6 +126,13 @@ const styles = {
 		marginTop: -42,
 		margin: '0 auto',
 		width: '93px',
+	},
+	projectAssigne: {
+		display: 'flex',
+		flexWrap: 'wrap',
+		maxHeight: 116,
+		marginBottom: 7,
+		marginTop: 8,
 	},
 	button: {
 		width: '93px',
@@ -169,7 +200,11 @@ export const ListItemUnconnected = memo(({
 				<div
 					onClick={goToViewProjectHandler(recordId, pushRoute)}
 				>
-					<div className="layout-row layout-align-center">
+					<div className={classNames(
+						'layout-row layout-align-center',
+						classes.projectAssigne,
+					)}
+					>
 						{projectAssigneesImages.map((imgSrc, i) => (
 							<img
 								key={i}
