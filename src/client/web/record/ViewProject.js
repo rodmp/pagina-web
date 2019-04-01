@@ -187,9 +187,9 @@ export const ViewProjectModule = memo(({
 							>
 									Pledge
 							</Button>
-						</div>
+							</div>
+						)}
 					</div>
-
 				</div>
 				<div className={classNames(
 					'flex-100', 'flex-order-2', 'flex-order-gt-sm-3',
