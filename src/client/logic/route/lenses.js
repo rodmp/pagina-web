@@ -7,6 +7,7 @@ export const currentRouteIndex = 0
 
 export const routeIdKey = 'routeId'
 export const routeParamsKey = 'routeParams'
+export const routeQueryKey = 'query'
 
 export const authKey = 'authentication'
 export const authValue = 'authenticated'
@@ -49,6 +50,15 @@ export const routeStoreLenses = lensesFromSchema({
 						properties: {
 							routeId: { type: 'string' },
 							routeParams: {
+								type: 'object',
+								patternProperties: {
+									[variableSchemaKey]: {
+										type: 'object',
+										properties: {},
+									},
+								},
+							},
+							routeQuery: {
 								type: 'object',
 								patternProperties: {
 									[variableSchemaKey]: {
