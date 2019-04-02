@@ -87,33 +87,35 @@ const styles = {
 		height: 98,
 		transition: '0s',
 		border: 'grey 1px solid',
+		'&:not(:only-of-type)': {
+			marginRight: -1,
+		},
 		'&:nth-last-child(n+3), &:nth-last-child(n+3) ~ img': {
-			width: 88,
-			height: 88,
+			width: 87,
+			height: 87,
 		},
 		'&:nth-last-child(n+4), &:nth-last-child(n+4) ~ img': {
 			width: 67,
 			height: 67,
 		},
 		'&:nth-last-child(n+5), &:nth-last-child(n+5) ~ img': {
-			width: 48,
-			height: 48,
+			width: 47,
+			height: 47,
 		},
-		'&:nth-last-child(n+6)': {
-			borderBottom: 'none',
-			height: 48,
+		'&:nth-child(n+6), &:nth-child(n+6) ~ img': {
+			marginTop: -2,
 		},
 		'&:nth-last-child(n+11), &:nth-last-child(n+11) ~ img': {
-			width: 23,
-			height: 23,
+			width: 22,
+			height: 22,
 		},
 		'&:nth-last-child(n+41), &:nth-last-child(n+41) ~ img': {
-			width: 13,
-			height: 13,
+			width: 12,
+			height: 12,
 		},
 		'&:nth-last-child(n+101), &:nth-last-child(n+101) ~ img': {
-			width: 5,
-			height: 5,
+			width: 4,
+			height: 4,
 		},
 	},
 	descriptionText: {
@@ -136,7 +138,7 @@ const styles = {
 		flexWrap: 'wrap',
 		alignItems: 'center',
 		padding: '0 auto',
-		height: 99,
+		height: 100,
 		marginBottom: 7,
 		marginTop: 7,
 	},
@@ -160,7 +162,7 @@ const styles = {
 	},
 	projectUnsetJustify: {
 		justifyContent: 'start !important',
-		marginLeft: 17,
+		marginLeft: 18,
 	},
 }
 
