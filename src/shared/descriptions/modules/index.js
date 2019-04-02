@@ -29,6 +29,8 @@ import dareCreateSuccess from 'root/src/shared/descriptions/modules/dareCreateSu
 import bannerFooterDareAccepted from 'root/src/shared/descriptions/modules/bannerFooterDareAccepted'
 import bannerFooterDareRejectConfirmation from 'root/src/shared/descriptions/modules/bannerFooterDareRejectConfirmation'
 import bannerFooterDareSuccessCreate from 'root/src/shared/descriptions/modules/bannerFooterDareSuccessCreate'
+import managePaymentForm from 'root/src/shared/descriptions/modules/managePaymentForm'
+import managePaymentList from 'root/src/shared/descriptions/modules/managePaymentList'
 
 const allModules = {
 	...loginForm,
@@ -62,6 +64,8 @@ const allModules = {
 	...bannerFooterDareSuccessCreate,
 	...accountSettings,
 	...accountSettingsBannerHeader,
+	...managePaymentForm,
+	...managePaymentList,
 }
 
 export default allModules
