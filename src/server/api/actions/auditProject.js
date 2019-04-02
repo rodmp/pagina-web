@@ -1,4 +1,4 @@
-import { head, replace, equals } from 'ramda'
+import { head, replace, equals, prop, compose, map } from 'ramda'
 
 import { TABLE_NAME, documentClient } from 'root/src/server/api/dynamoClient'
 
@@ -21,7 +21,7 @@ import {
 const payloadLenses = getPayloadLenses(AUDIT_PROJECT)
 const { viewAudit } = payloadLenses
 
-export default async ({ userId, payload }) => {
+export default async ({ userId, payload, email }) => {
 	const { projectId } = payload
 	const [
 		projectToPledgeDdb, /* assigneesDdb, gamesDdb, */ myPledgeDdb,
@@ -69,7 +69,13 @@ export default async ({ userId, payload }) => {
 	])
 
 	if (equals(viewAudit(payload), 'approved')) {
-		const emailData = {}
+		const emailData = {
+			title: dareApprovedTitle,
+			dareTitle: prop('title', newProject),
+			recipients: [email],
+			dareHref: projectHrefBuilder(prop('id', newProject)),
+			streamers: compose(map(prop('username')), prop('assignees'))(newProject),
+		}
 		sendEmail(emailData, dareApprovedMail)
 	}
 
