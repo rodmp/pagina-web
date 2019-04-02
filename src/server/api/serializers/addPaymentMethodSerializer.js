@@ -6,4 +6,5 @@ export default ({ stripeCardId, brand, expMonth, expYear, lastFour }) => ({
 	expMonth,
 	expYear,
 	lastFour,
+	isDefault: false,
 })
