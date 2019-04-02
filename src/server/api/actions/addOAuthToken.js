@@ -1,4 +1,4 @@
-import { map } from 'ramda'
+import { map, toLower } from 'ramda'
 
 import { TABLE_NAME, documentClient } from 'root/src/server/api/dynamoClient'
 import oAuthTokenSerializer from 'root/src/server/api/serializers/oAuthTokenSerializer'
@@ -8,7 +8,7 @@ export default async ({ userId, payload }) => {
 	const { displayName, login, thumbnail, id, token, tokenId } = payload
 	const oAuthToken = {
 		[PARTITION_KEY]: userId,
-		[SORT_KEY]: `token-${tokenId}|${id}`,
+		[SORT_KEY]: `token-${toLower(tokenId)}|${id}`,
 		login,
 		thumbnail,
 		displayName,

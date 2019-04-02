@@ -9,11 +9,10 @@ export default (
 	const data = {
 		[PARTITION_KEY]: projectId,
 		[SORT_KEY]: `pledge|${userId}`,
-		pledgeAmount,
 		stripeCardId,
 		...(created ? { created: true } : {}),
 		...projectDenormalizeFields(project),
+		pledgeAmount,
 	};
-
 	return data;
 }

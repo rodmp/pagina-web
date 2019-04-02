@@ -20,7 +20,7 @@ import { twitchOauthUrl } from 'root/src/shared/constants/twitch'
 import RecordClickActionButton from 'root/src/client/web/base/RecordClickActionButton'
 import { storageSet } from 'root/src/shared/util/storage'
 import isOneOfAssigneesSelector from 'root/src/client/logic/project/selectors/isOneOfAssigneesSelector'
-import { APPROVE_PROJECT } from 'root/src/shared/descriptions/recordClickActions/recordClickActionIds'
+import { APPROVE_PROJECT, REJECT_PROJECT } from 'root/src/shared/descriptions/recordClickActions/recordClickActionIds'
 
 import viewProjectConnector from 'root/src/client/logic/project/connectors/viewProjectConnector'
 import withModuleContext from 'root/src/client/util/withModuleContext'
@@ -108,9 +108,10 @@ const styles = {
 }
 
 export const ViewProjectModule = memo(({
-	myPledge, status, userData = {}, projectId, projectDescription,
-	projectTitle, pledgeAmount, assignees, gameImage, canApproveProject,
-	pushRoute, canPledgeProject, classes, isAuthenticated,
+	myPledge, status, userData = {}, isAuthenticated,
+	projectId, projectDescription, projectTitle, pledgeAmount, assignees,
+	gameImage, canApproveProject, canRejectProject, pushRoute, canPledgeProject,
+	classes,
 }) => (
 	<div className="flex layout-row layout-align-center-start">
 		<MaxWidthContainer>
@@ -169,18 +170,29 @@ export const ViewProjectModule = memo(({
 								/>
 							</div>,
 						)}
-						<div className={classes.sidebarItem}>
-							<Button
-								onClick={
-									ternary(
-										isAuthenticated,
-										goToPledgeProjectHandler(projectId, pushRoute),
-										goToSignInHandler(pushRoute),
+						{
+							orNull(
+								canRejectProject,
+								<div className={classes.sidebarItem}>
+									<RecordClickActionButton
+										recordClickActionId={REJECT_PROJECT}
+										recordId={projectId}
+									/>
+								</div>,
+							)
+						}
+						{orNull(
+							canPledgeProject,
+							<div className={classes.sidebarItem}>
+								<Button
+									onClick={goToPledgeProjectHandler(
+										projectId, pushRoute,
 									)}
-							>
-									Pledge
-        </Button>
-						</div>
+								>
+										Pledge
+									</Button>
+							</div>,
+						)}
 						{ternary(isOneOfAssigneesSelector(assignees, userData),
 							<TwitchButton
 								title="Accept or reject Dare"
@@ -196,7 +208,6 @@ export const ViewProjectModule = memo(({
 								href={twitchOauthUrl}
 							/>)}
 					</div>
-
 				</div>
 				<div className={classNames(
 					'flex-100', 'flex-order-2', 'flex-order-gt-sm-3',
