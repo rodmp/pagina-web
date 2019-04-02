@@ -24,5 +24,8 @@ export default async ({ userId, payload }) => {
 	if (!(diff > 30 && Number(nowHours) > 17 && respons.status === projectApprovedKey)) {
 		return respons
 	}
-	return {}
+	return {
+		status: 410,
+		message: 'This dare is expire',
+	}
 }
