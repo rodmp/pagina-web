@@ -12,6 +12,5 @@ export default (state, props) => {
 		getRecordSelector(state, props),
 	)
 	const diff = moment().diff(created, 'days')
-
 	return `${30 - diff}`
 }

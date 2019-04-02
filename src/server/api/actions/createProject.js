@@ -94,5 +94,6 @@ export default async ({ userId, payload }) => {
 		userId,
 		status: projectPendingKey,
 		...projectCommon,
+		created,
 	}
 }

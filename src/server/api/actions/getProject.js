@@ -21,7 +21,6 @@ export default async ({ userId, payload }) => {
 
 	const diff = moment().diff(respons.created, 'days')
 	const nowHours = moment(respons.created).day()
-
 	if (!(diff > 30 && Number(nowHours) > 17 && respons.status === projectApprovedKey)) {
 		return respons
 	}
