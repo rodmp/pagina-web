@@ -2,7 +2,7 @@ import { map } from 'ramda'
 import React, { memo, useState } from 'react'
 
 import classNames from 'classnames'
-
+import InfiniteScroll from 'react-infinite-scroller'
 import { ternary } from 'root/src/shared/util/ramdaPlus'
 import PaymentMethod from 'root/src/client/web/list/PaymentMethod'
 import ProjectCard from 'root/src/client/web/list/ProjectCard'
@@ -46,22 +46,31 @@ const styles = {
 	...modalStyle,
 }
 
-const CardList = ({
-	list, classes,
-}) => (
+export const ListModuleUnconnected = memo(({
+	list, listType, currentPage, hasMore, classes, getNextPage,
+}) => ternary(
+	listType === 'card',
 	<div className="flex layout-row layout-align-center-start">
 		<MaxWidthContainer>
 			<div className="flex layout-row layout-align-center">
-				<div
-					className={classNames(
-						classes.paddingOffset,
-						'layout-row layout-wrap',
-					)}
+				<InfiniteScroll
+					pageStart={0}
+					loadMore={() => getNextPage(currentPage)}
+					hasMore={hasMore}
 				>
-					{map(recordId => (
-						<ProjectCard key={recordId} recordId={recordId} />
-					), list)}
-				</div>
+					<div
+						className={classNames(
+							classes.paddingOffset,
+							'layout-row layout-wrap',
+						)}
+					>
+
+						{map(recordId => (
+							<ProjectCard key={recordId} recordId={recordId} />
+						), list)}
+
+					</div>
+				</InfiniteScroll>
 			</div>
 		</MaxWidthContainer>
 	</div>

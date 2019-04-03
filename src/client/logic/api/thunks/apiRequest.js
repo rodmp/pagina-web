@@ -1,5 +1,6 @@
 import { equals } from 'ramda'
 
+import { ternary } from 'root/src/shared/util/ramdaPlus'
 import createListStoreKey from 'root/src/client/logic/api/util/createListStoreKey'
 import createRecordStoreKey from 'root/src/client/logic/api/util/createRecordStoreKey'
 import { idProp } from 'root/src/client/logic/api/lenses'
@@ -7,6 +8,8 @@ import { idProp } from 'root/src/client/logic/api/lenses'
 import initApiListRequest from 'root/src/client/logic/api/actions/initApiListRequest'
 import apiListRequestSuccess from 'root/src/client/logic/api/actions/apiListRequestSuccess'
 import apiListRequestError from 'root/src/client/logic/api/actions/apiListRequestError'
+import setCurrentPage from 'root/src/client/logic/list/actions/setCurrentPage'
+import setHasMore from 'root/src/client/logic/list/actions/setHasMore'
 
 import initApiRecordRequest from 'root/src/client/logic/api/actions/initApiRecordRequest'
 import apiRecordRequestSuccess from 'root/src/client/logic/api/actions/apiRecordRequestSuccess'
@@ -25,6 +28,12 @@ export const fetchList = async (dispatch, state, endpointId, payload) => {
 	const lambdaRes = await invokeApiLambda(endpointId, payload, state)
 	const { statusCode, body, statusError, generalError } = lambdaRes
 	if (equals(statusCode, 200)) {
+		dispatch(setCurrentPage(body.currentPage))
+		ternary(
+			body.currentPage === body.allPage,
+			dispatch(setHasMore(false)),
+			dispatch(setHasMore(true)),
+		)
 		dispatch(apiListRequestSuccess(listStoreKey, recordType, body))
 	} else {
 		const error = { ...statusError, ...generalError }
