@@ -1,4 +1,4 @@
-import { head, add, map, prop, compose } from 'ramda'
+import { head, add, prop, compose, map } from 'ramda'
 
 import { TABLE_NAME, documentClient } from 'root/src/server/api/dynamoClient'
 
@@ -22,7 +22,7 @@ const { viewPledgeAmount, viewStripeCardId } = payloadLenses
 export default async ({ userId, payload, email }) => {
 	const { projectId } = payload
 	const [
-		projectToPledgeDdb, myPledgeDdb,
+		projectToPledgeDdb,
 	] = await dynamoQueryProject(
 		userId, projectId,
 	)
@@ -32,17 +32,14 @@ export default async ({ userId, payload, email }) => {
 		throw generalError('Project doesn\'t exist')
 	}
 
-	const myPledge = head(myPledgeDdb || [])
-
-	if (myPledge) {
-		throw generalError('You\'ve already pledged this project')
-	}
-
 	const newPledgeAmount = viewPledgeAmount(payload)
 	const newPledge = pledgeDynamoObj(
 		projectId, projectToPledge, userId,
 		newPledgeAmount, viewStripeCardId(payload),
 	)
+
+	const { pledgeAmount } = projectToPledge
+
 	// TODO: Check pledge amount
 	const pledgeParams = {
 		TableName: TABLE_NAME,
@@ -56,9 +53,9 @@ export default async ({ userId, payload, email }) => {
 			[PARTITION_KEY]: projectToPledge[PARTITION_KEY],
 			[SORT_KEY]: projectToPledge[SORT_KEY],
 		},
-		UpdateExpression: 'set pledgeAmount = pledgeAmount + :newPledgeAmount',
+		UpdateExpression: 'SET pledgeAmount = :newPledgeAmount',
 		ExpressionAttributeValues: {
-			':newPledgeAmount': newPledgeAmount,
+			':newPledgeAmount': pledgeAmount + newPledgeAmount,
 		},
 	}
 
@@ -66,8 +63,6 @@ export default async ({ userId, payload, email }) => {
 
 	const newProject = projectSerializer([
 		...projectToPledgeDdb,
-		// ...assigneesDdb,
-		// ...gamesDdb,
 		newPledge,
 	])
 
@@ -89,7 +84,7 @@ export default async ({ userId, payload, email }) => {
 		...newProject,
 		pledgeAmount: add(
 			viewPledgeAmount(newProject),
-			viewPledgeAmount(newPledge),
+			newPledgeAmount,
 		),
 	}
 }

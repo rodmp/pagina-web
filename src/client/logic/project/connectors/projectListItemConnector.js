@@ -7,7 +7,7 @@ import projectGameImagePortraitSelector from 'root/src/client/logic/project/sele
 import projectAssigneesImagesSelector from 'root/src/client/logic/project/selectors/projectAssigneesImagesSelector'
 import projectShareUrlSelector from 'root/src/client/logic/project/selectors/projectShareUrlSelector'
 import projectGamesSelector from 'root/src/client/logic/project/selectors/projectGamesSelector'
-
+import isAuthenticated from 'root/src/client/logic/auth/selectors/isAuthenticated'
 import pushRoute from 'root/src/client/logic/route/thunks/pushRoute'
 
 export default reduxConnector(
@@ -19,6 +19,7 @@ export default reduxConnector(
 		['projectAssigneesImages', projectAssigneesImagesSelector],
 		['projectShareUrl', projectShareUrlSelector],
 		['projectGames', projectGamesSelector],
+		['isAuthenticated', isAuthenticated],
 	],
 	[['pushRoute', pushRoute]],
 )

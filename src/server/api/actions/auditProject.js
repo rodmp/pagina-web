@@ -33,34 +33,34 @@ export default async ({ userId, payload, email }) => {
 		throw generalError('Project doesn\'t exist')
 	}
 
-	const params = {
-		TransactItems: [
-			{
-				Delete: {
-					TableName: TABLE_NAME,
-					Key: {
-						[PARTITION_KEY]: projectToPledge[PARTITION_KEY],
-						[SORT_KEY]: projectToPledge[SORT_KEY],
+	const auditParams = {
+		RequestItems: {
+			[TABLE_NAME]: [
+				{
+					DeleteRequest: {
+						Key: {
+							[PARTITION_KEY]: projectToPledge[PARTITION_KEY],
+							[SORT_KEY]: projectToPledge[SORT_KEY],
+						},
 					},
 				},
-			},
-			{
-				Put: {
-					TableName: TABLE_NAME,
-					Item: {
-						...projectToPledge,
-						[SORT_KEY]: replace(
-							projectPendingKey,
-							viewAudit(payload),
-							projectToPledge[SORT_KEY],
-						),
+				{
+					PutRequest: {
+						Item: {
+							...projectToPledge,
+							[SORT_KEY]: replace(
+								projectPendingKey,
+								viewAudit(payload),
+								projectToPledge[SORT_KEY],
+							),
+						},
 					},
 				},
-			}],
+			],
+		},
 	}
 
-
-	// await documentClient.transactWrite(params).promise()
+	await documentClient.batchWrite(auditParams).promise()
 	const newProject = projectSerializer([
 		...projectToPledgeDdb,
 		// ...assigneesDdb,
@@ -68,16 +68,16 @@ export default async ({ userId, payload, email }) => {
 		...myPledgeDdb,
 	])
 
-	if (equals(viewAudit(payload), 'approved')) {
-		const emailData = {
-			title: dareApprovedTitle,
-			dareTitle: prop('title', newProject),
-			recipients: [email],
-			dareHref: projectHrefBuilder(prop('id', newProject)),
-			streamers: compose(map(prop('username')), prop('assignees'))(newProject),
-		}
-		sendEmail(emailData, dareApprovedMail)
-	}
+	// if (equals(viewAudit(payload), 'approved')) {
+	// 	const emailData = {
+	// 		title: dareApprovedTitle,
+	// 		dareTitle: prop('title', newProject),
+	// 		recipients: [email],
+	// 		dareHref: projectHrefBuilder(prop('id', newProject)),
+	// 		streamers: compose(map(prop('username')), prop('assignees'))(newProject),
+	// 	}
+	// 	sendEmail(emailData, dareApprovedMail)
+	// }
 
 	return {
 		...newProject,

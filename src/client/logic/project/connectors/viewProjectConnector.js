@@ -10,6 +10,7 @@ import statusSelector from 'root/src/client/logic/project/selectors/statusSelect
 import projectAssigneesSelector from 'root/src/client/logic/project/selectors/projectAssigneesSelector'
 import projectGameImageSquareSelector from 'root/src/client/logic/project/selectors/projectGameImageSquareSelector'
 import canApproveProjectSelector from 'root/src/client/logic/project/selectors/canApproveProjectSelector'
+import canRejectProjectSelector from 'root/src/client/logic/project/selectors/canRejectProjectSelector'
 import canPledgeProjectSelector from 'root/src/client/logic/project/selectors/canPledgeProjectSelector'
 import isAuthenticatedSelector from 'root/src/client/logic/auth/selectors/isAuthenticated'
 import pushRoute from 'root/src/client/logic/route/thunks/pushRoute'
@@ -26,6 +27,7 @@ export default reduxConnector(
 		['gameImage', projectGameImageSquareSelector],
 		['canApproveProject', canApproveProjectSelector],
 		['canPledgeProject', canPledgeProjectSelector],
+		['canRejectProject', canRejectProjectSelector],
 		['isAuthenticated', isAuthenticatedSelector],
 	],
 	[['pushRoute', pushRoute]],
