@@ -1,70 +1,80 @@
-import { head, add } from 'ramda'
+import { equals, head, pick, prop, split } from 'ramda'
 
-import { TABLE_NAME, documentClient } from 'root/src/server/api/dynamoClient'
+import { documentClient, TABLE_NAME } from 'root/src/server/api/dynamoClient'
 
 import { PARTITION_KEY, SORT_KEY } from 'root/src/shared/constants/apiDynamoIndexes'
 
-import { UPATE_PROJECT } from 'root/src/shared/descriptions/endpoints/endpointIds'
-import { getPayloadLenses } from 'root/src/server/api/getEndpointDesc'
-// import pledgeDynamoObj from 'root/src/server/api/actionUtil/pledgeDynamoObj'
+import updateDynamoObj from 'root/src/server/api/actionUtil/updateDynamoObj'
 import { generalError } from 'root/src/server/api/errors'
 import dynamoQueryProject from 'root/src/server/api/actionUtil/dynamoQueryProject'
-// import projectSerializer from 'root/src/server/api/serializers/projectSerializer'
 
-// const payloadLenses = getPayloadLenses(PLEDGE_PROJECT)
-// const { viewPledgeAmount, viewStripeCardId } = payloadLenses
-
+/**
+ * Updates the project (dare) description
+ * @param userId
+ * @param payload
+ * @returns {Promise<void>}
+ */
 export default async ({ userId, payload }) => {
-    const { projectId } = payload
-    const project = await dynamoQueryProject(
-        userId, projectId,
-    )
-    console.log(project);
+	const { projectId, description, stripeCardId } = payload
 
-    /*const projectToPledge = head(projectToPledgeDdb)
-    if (!projectToPledge) {
-        throw generalError('Project doesn\'t exist')
-    }
+	const [ project ] = await dynamoQueryProject(
+		userId, projectId,
+	)
+	// Checks if the descriptions are equal, if so, we avoid a database call
+	if (equals(description, project.description)) {
+		throw generalError('Project description is the same, please make sure you change it');
+	}
 
-    const newPledgeAmount = viewPledgeAmount(payload)
-    const newPledge = pledgeDynamoObj(
-        projectId, projectToPledge, userId,
-        newPledgeAmount, viewStripeCardId(payload),
-    )
+	const projectToUpdate = head(project)
 
-    const { pledgeAmount } = projectToPledge
+	if (!projectToUpdate) {
+		throw generalError('Project doesn\'t exist')
+	}
 
-    // TODO: Check pledge amount
-    const pledgeParams = {
-        TableName: TABLE_NAME,
-        Item: newPledge,
-    }
-    await documentClient.put(pledgeParams).promise()
+	const newUpdate = updateDynamoObj(
+		projectId, project, userId,
+		description, stripeCardId,
+	)
 
-    const updateProjectParams = {
-        TableName: TABLE_NAME,
-        Key: {
-            [PARTITION_KEY]: projectToPledge[PARTITION_KEY],
-            [SORT_KEY]: projectToPledge[SORT_KEY],
-        },
-        UpdateExpression: 'SET pledgeAmount = :newPledgeAmount',
-        ExpressionAttributeValues: {
-            ':newPledgeAmount': pledgeAmount + newPledgeAmount,
-        },
-    }
+	// TODO: Check pledge amount
+	const updateParams = {
+		TableName: TABLE_NAME,
+		Item: newUpdate,
+	}
 
-    await documentClient.update(updateProjectParams).promise();
+	await documentClient.put(updateParams).promise()
 
-    const newProject = projectSerializer([
-        ...projectToPledgeDdb,
-        newPledge,
-    ])
+	const updateProjectParams = {
+		TableName: TABLE_NAME,
+		Key: {
+			[PARTITION_KEY]: projectToUpdate[PARTITION_KEY],
+			[SORT_KEY]: projectToUpdate[SORT_KEY],
+		},
+		UpdateExpression: 'SET description = :new_description',
+		ExpressionAttributeValues: {
+			':new_description': description,
+		},
+	}
 
-    return {
-        ...newProject,
-        pledgeAmount: add(
-            viewPledgeAmount(newProject),
-            newPledgeAmount,
-        ),
-    }*/
+	await documentClient.update(updateProjectParams).promise();
+
+	const newProject = {
+		...projectToUpdate,
+		...newUpdate,
+	}
+
+	const serialize = pick([
+		'title', 'image', 'description', 'pledgeAmount',
+		'assignees', 'games', 'status',
+	], newProject)
+
+	const newProjectSerialized = {
+		...serialize,
+		id: projectId,
+		status: prop(1, split('|', projectToUpdate.sk)),
+	}
+
+	return {
+		...newProjectSerialized,
+	}
 }

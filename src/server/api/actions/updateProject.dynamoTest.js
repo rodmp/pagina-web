@@ -14,20 +14,44 @@ describe('Update project', () => {
 			userId: mockUserId,
 			payload: { ...createProjectPayload(), status: 'approved' },
 		})
-
+		const description = 'This is a new description'
 		const event = {
 			endpointId: UPDATE_PROJECT,
 			payload: {
 				projectId: newProject.id,
 				stripeCardId: 'mockStripeCardId',
+				description,
 			},
 			authentication: mockUserId,
 		}
 		const res = await apiFn(event)
-		//console.log(res);
-		expect(res).toEqual(true)
+
+		expect(res).toEqual({
+			statusCode: 200,
+			body: {
+				...newProject,
+				description,
+			},
+		})
 	})
-	test('Doesn\'t update newly created project if you are NOT and admin', async () => {
-		expect(true).toEqual(true)
-	})
+	// TODO: check this test case
+	// test('Doesn\'t update created project if you are NOT and admin', async () => {
+	// 	const newProject = await createProject({
+	// 		userId: mockUserId,
+	// 		payload: { ...createProjectPayload(), status: 'approved' },
+	// 	})
+	// 	const description = 'This is a new description'
+	// 	const event = {
+	// 		endpointId: UPDATE_PROJECT,
+	// 		payload: {
+	// 			projectId: newProject.sdd,
+	// 			stripeCardId: 'mockStripeCardId',
+	// 			description,
+	// 		},
+	// 		authentication: mockUserId,
+	// 	}
+	// 	const res = await apiFn(event)
+	//
+	// 	expect(res).toEqual({ statusCode: 400, generalErrors: 'User not an admin' })
+	// })
 })
