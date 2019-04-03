@@ -18,9 +18,9 @@ export const pushInitialRouteHof = (
 	const state = getState()
 	if (nextRoute) {
 		nextRoute = auditRouteFn(nextRoute, state)
-			? nextRoute : defaultRouteFn(state)
+			? nextRoute : defaultRouteFn()
 	} else {
-		nextRoute = defaultRouteFn(state)
+		nextRoute = defaultRouteFn()
 	}
 	dispatch(runModuleMountsFn(nextRoute, state))
 	return dispatchCommittedRouteFn(nextRoute, dispatch, browserHistoryReplace)
