@@ -54,6 +54,15 @@ export default {
 							{
 								Effect: 'Allow',
 								Action: [
+									'cognito-idp:AdminGetUser',
+								],
+								Resource: [
+									'arn:aws:cognito-idp:*:*:*',
+								],
+							},
+							{
+								Effect: 'Allow',
+								Action: [
 									'dynamodb:DescribeTable',
 									'dynamodb:Query',
 									'dynamodb:Scan',

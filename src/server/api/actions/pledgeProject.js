@@ -15,11 +15,12 @@ import pledgeDynamoObj from 'root/src/server/api/actionUtil/pledgeDynamoObj'
 import { generalError } from 'root/src/server/api/errors'
 import dynamoQueryProject from 'root/src/server/api/actionUtil/dynamoQueryProject'
 import projectSerializer from 'root/src/server/api/serializers/projectSerializer'
+import getUserEmail from 'root/src/server/api/actionUtil/getUserEmail'
 
 const payloadLenses = getPayloadLenses(PLEDGE_PROJECT)
 const { viewPledgeAmount, viewStripeCardId } = payloadLenses
 
-export default async ({ userId, payload, email }) => {
+export default async ({ userId, payload }) => {
 	const { projectId } = payload
 	const [
 		projectToPledgeDdb,
@@ -66,19 +67,23 @@ export default async ({ userId, payload, email }) => {
 		newPledge,
 	])
 
-	const emailData = {
-		title: pledgeMadeTitle,
-		dareTitle: prop('title', newProject),
-		recipients: [email],
-		// TODO EMAIL
-		// expiry time in seconds
-		dareHref: projectHrefBuilder(prop('id', newProject)),
-		streamers: compose(map(prop('username')), prop('assignees'))(newProject),
-		// TODO EMAIL
-		// notClaimedAlready
-	}
+	try {
+		const email = await getUserEmail(userId)
 
-	sendEmail(emailData, pledgeMadeMail)
+		const emailData = {
+			title: pledgeMadeTitle,
+			dareTitle: prop('title', newProject),
+			recipients: [email],
+			// TODO EMAIL
+			// expiry time in seconds
+			dareHref: projectHrefBuilder(prop('id', newProject)),
+			streamers: compose(map(prop('username')), prop('assignees'))(newProject),
+			// TODO EMAIL
+			// notClaimedAlready
+		}
+
+		sendEmail(emailData, pledgeMadeMail)
+	} catch (err) { }
 
 	return {
 		...newProject,
