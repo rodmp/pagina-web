@@ -16,13 +16,14 @@ import projectDenormalizeFields from 'root/src/server/api/actionUtil/projectDeno
 import pledgeDynamoObj from 'root/src/server/api/actionUtil/pledgeDynamoObj'
 import randomNumber from 'root/src/shared/util/randomNumber'
 import { projectPendingKey } from 'root/src/server/api/lenses'
+import getUserEmail from 'root/src/server/api/actionUtil/getUserEmail'
 
 const payloadLenses = getPayloadLenses(CREATE_PROJECT)
 const {
 	viewStripeCardId, viewPledgeAmount, viewAssignees, viewGames,
 } = payloadLenses
 
-export default async ({ userId, payload, email }) => {
+export default async ({ userId, payload }) => {
 	const serializedProject = await assigneeSerializer({
 		project: payload, payloadLenses,
 	})
@@ -77,14 +78,16 @@ export default async ({ userId, payload, email }) => {
 
 	await documentClient.batchWrite(params).promise()
 
-	const emailData = {
-		dareTitle: project.title,
-		recipients: [email],
-		title: dareCreatedTitle,
-	}
+	try {
+		const email = await getUserEmail(userId)
 
-
-	sendEmail(emailData, dareCreatedEmail)
+		const emailData = {
+			dareTitle: project.title,
+			recipients: [email],
+			title: dareCreatedTitle,
+		}
+		sendEmail(emailData, dareCreatedEmail)
+	} catch (err) { }
 
 	return {
 		id: projectId,

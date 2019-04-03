@@ -17,11 +17,12 @@ import projectSerializer from 'root/src/server/api/serializers/projectSerializer
 import {
 	projectPendingKey, projectApprovedKey,
 } from 'root/src/server/api/lenses'
+import getUserEmail from 'root/src/server/api/actionUtil/getUserEmail'
 
 const payloadLenses = getPayloadLenses(AUDIT_PROJECT)
 const { viewAudit } = payloadLenses
 
-export default async ({ userId, payload, email }) => {
+export default async ({ userId, payload }) => {
 	const { projectId } = payload
 	const [
 		projectToPledgeDdb, /* assigneesDdb, gamesDdb, */ myPledgeDdb,
@@ -68,16 +69,19 @@ export default async ({ userId, payload, email }) => {
 		...myPledgeDdb,
 	])
 
-	// if (equals(viewAudit(payload), 'approved')) {
-	// 	const emailData = {
-	// 		title: dareApprovedTitle,
-	// 		dareTitle: prop('title', newProject),
-	// 		recipients: [email],
-	// 		dareHref: projectHrefBuilder(prop('id', newProject)),
-	// 		streamers: compose(map(prop('username')), prop('assignees'))(newProject),
-	// 	}
-	// 	sendEmail(emailData, dareApprovedMail)
-	// }
+	try {
+		const email = await getUserEmail(userId)
+
+		if (equals(viewAudit(payload), 'approved')) {
+			const emailData = {
+				title: dareApprovedTitle,
+				dareTitle: prop('title', newProject),
+				recipients: [email],
+				streamers: compose(map(prop('username')), prop('assignees'))(newProject),
+			}
+			sendEmail(emailData, dareApprovedMail)
+		}
+	} catch (err) { }
 
 	return {
 		...newProject,
