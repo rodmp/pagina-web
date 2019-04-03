@@ -26,7 +26,7 @@ export const authorizeRequestHof = (
 			throw authorizationError('Must be admin user')
 		}
 	}
-	return [cognitoUser && userPk(prop('sub', cognitoUser)), cognitoUser.email]
+	return cognitoUser && userPk(prop('sub', cognitoUser))
 }
 
 export default authorizeRequestHof(getAuthentication, getCognitoUser)
