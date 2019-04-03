@@ -4,7 +4,15 @@ import { variableSchemaKey } from 'root/src/shared/util/commonLenses'
 
 const listSchema = {
 	type: 'object',
-	properties: {},
+	properties: {
+		list: {
+			type: 'object',
+			properties: {
+				currentPage: { type: 'integer' },
+				hasMore: { type: 'boolean' },
+			},
+		},
+	},
 }
 
 export const listStoreLenses = lensesFromSchema(listSchema)
