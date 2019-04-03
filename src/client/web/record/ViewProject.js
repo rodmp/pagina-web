@@ -104,12 +104,10 @@ const styles = {
 
 export const ViewProjectModule = memo(({
 	projectId, projectDescription, projectTitle, pledgeAmount, assignees,
-	gameImage, canApproveProject, canRejectProject, pushRoute, canPledgeProject, 
-  classes,
+	gameImage, canApproveProject, canRejectProject, pushRoute, canPledgeProject,
+	classes, isAuthenticated,
 }) => (
 	<div className="flex layout-row layout-align-center-start">
-		{console.log(projectId, projectDescription, projectTitle, pledgeAmount, assignees,
-			gameImage, canApproveProject, canRejectProject, pushRoute, canPledgeProject, classes,)}
 		<MaxWidthContainer>
 			<div className="flex layout-row layout-wrap">
 				<div className={classNames(
@@ -177,18 +175,19 @@ export const ViewProjectModule = memo(({
 								</div>,
 							)
 						}
-						{orNull(
-							canPledgeProject,
+						{
 							<div className={classes.sidebarItem}>
 								<Button
-									onClick={goToPledgeProjectHandler(
-										projectId, pushRoute,
+									onClick={ternary(
+										isAuthenticated,
+										goToPledgeProjectHandler(projectId, pushRoute),
+										goToSignInHandler(pushRoute),
 									)}
-							>
+								>
 									Pledge
-							</Button>
+								</Button>
 							</div>
-						)}
+						}
 					</div>
 				</div>
 				<div className={classNames(
