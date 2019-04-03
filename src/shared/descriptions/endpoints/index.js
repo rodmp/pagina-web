@@ -7,6 +7,7 @@ import getProject from 'root/src/shared/descriptions/endpoints/getProject'
 import pledgeProject from 'root/src/shared/descriptions/endpoints/pledgeProject'
 import getPledgedProjects from 'root/src/shared/descriptions/endpoints/getPledgedProjects'
 import auditProject from 'root/src/shared/descriptions/endpoints/auditProject'
+import updateProject from 'root/src/shared/descriptions/endpoints/updateProject'
 
 import getPaymentMethods from 'root/src/shared/descriptions/endpoints/getPaymentMethods'
 import getPaymentMethod from 'root/src/shared/descriptions/endpoints/getPaymentMethod'
@@ -31,6 +32,7 @@ const allEndpoints = {
 	...addPaymentMethod,
 	...deletePaymentMethod,
 	...setDefaultPaymentMethod,
+	...updateProject,
 }
 
 export default map(
