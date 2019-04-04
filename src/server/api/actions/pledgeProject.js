@@ -2,7 +2,7 @@ import { head, add, prop, compose, map } from 'ramda'
 
 import { TABLE_NAME, documentClient } from 'root/src/server/api/dynamoClient'
 
-import { PARTITION_KEY, SORT_KEY } from 'root/src/shared/constants/apiDynamoIndexes'
+import { PARTITION_KEY, SORT_KEY, GSI1_INDEX_NAME, GSI1_PARTITION_KEY } from 'root/src/shared/constants/apiDynamoIndexes'
 
 import sendEmail from 'root/src/server/email/actions/sendEmail'
 import pledgeMadeMail from 'root/src/server/email/templates/pledgeMade'
@@ -46,6 +46,17 @@ export default async ({ userId, payload }) => {
 		newPledgeAmount, sourceId,
 	)
 
+	const myPledge = await documentClient.query({
+		TableName: TABLE_NAME,
+		KeyConditionExpression: `${PARTITION_KEY} = :pk and ${SORT_KEY} = :pledgeUserId`,
+		ExpressionAttributeValues: {
+			':pk': projectId,
+			':pledgeUserId': `pledge|${userId}`,
+		},
+		ConsistentRead: true,
+	}).promise()
+
+
 	const { pledgeAmount } = projectToPledge
 
 	// TODO: Check pledge amount
@@ -53,7 +64,11 @@ export default async ({ userId, payload }) => {
 		TableName: TABLE_NAME,
 		Item: newPledge,
 	}
+
 	await documentClient.put(pledgeParams).promise()
+
+	const addPledgers = myPledge.Count > 0 ? 0 : 1
+
 	const updateProjectParams = {
 		TableName: TABLE_NAME,
 		Key: {
@@ -63,7 +78,7 @@ export default async ({ userId, payload }) => {
 		UpdateExpression: 'SET pledgeAmount = :newPledgeAmount, pledgers = pledgers + :newPledgers',
 		ExpressionAttributeValues: {
 			':newPledgeAmount': pledgeAmount + newPledgeAmount,
-			':newPledgers': 1,
+			':newPledgers': addPledgers,
 		},
 	}
 
@@ -99,6 +114,6 @@ export default async ({ userId, payload }) => {
 			viewPledgeAmount(newProject),
 			newPledgeAmount,
 		),
-		pledgers: add(newProject.pledgers, 1),
+		pledgers: add(newProject.pledgers, addPledgers),
 	}
 }
