@@ -46,6 +46,7 @@ export default {
 		},
 		stripeCardId: { type: 'string' },
 		pledgeAmount: { type: 'integer', minimum: 5, maximum: 999999 },
+		favoritesAmount: { type: 'integer' },
 	},
 	required: ['title', 'games'],
 	additionalProperties: false,

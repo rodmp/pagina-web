@@ -7,10 +7,10 @@ import { recordEndpointType } from 'root/src/shared/descriptions/endpoints/lense
 import { project } from 'root/src/shared/descriptions/endpoints/recordTypes'
 
 import addToFavoritesPayloadSchema from 'root/src/shared/descriptions/endpoints/schemas/addToFavoritesPayloadSchema'
-import getFavoritesListPayloadSchema from 'root/src/shared/descriptions/endpoints/schemas/getFavoritesListPayloadSchema'
+import projectResponseSchema from 'root/src/shared/descriptions/endpoints/schemas/projectResponseSchema'
 
 export const payloadSchema = addToFavoritesPayloadSchema
-export const responseSchema = getFavoritesListPayloadSchema
+export const responseSchema = projectResponseSchema
 
 export default {
 	[ADD_TO_FAVORITES]: {
