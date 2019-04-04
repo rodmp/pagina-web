@@ -1,9 +1,14 @@
 import ReactGA from 'react-ga'
-import { googleTag } from 'root/src/shared/constants/pageData'
+import { developmentGoogleTag, productionGoogleTag } from 'root/src/shared/constants/pageData'
 
-
+ 
 export default () => {
-	ReactGA.initialize(googleTag)
+	if (window.location.host === 'daredrop.com') {
+		ReactGA.initialize(productionGoogleTag)
+	} else {
+		ReactGA.initialize(developmentGoogleTag)
+	}
+
 	ReactGA.pageview(window.location.pathname + window.location.search)
 }
 
