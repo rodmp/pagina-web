@@ -43,16 +43,37 @@ export default async (userId, projectId) => {
 		ConsistentRead: true,
 	}
 
-	const [projectDdb, /* assigneesDdb, gamesDdb, */ myPledgeDdb] = await Promise.all([
+	const myFavoritesParams = {
+		TableName: TABLE_NAME,
+		KeyConditionExpression: `${PARTITION_KEY} = :pk and ${SORT_KEY} = :favoritesUserId`,
+		ExpressionAttributeValues: {
+			':pk': projectId,
+			':favoritesUserId': `favorites|${userId}`,
+		},
+		ConsistentRead: true,
+	}
+
+	const [projectDdb, /* assigneesDdb, gamesDdb, */ myPledgeDdb, myFavoritesDdb] = await Promise.all([
 		documentClient.query(projectParams).promise(),
 		// documentClient.query(assigneeParams).promise(),
 		// documentClient.query(gameParams).promise(),
 		documentClient.query(myPledgeParams).promise(),
+		documentClient.query(myFavoritesParams).promise(),
 	])
+
+	console.log('projectDdb: ', projectDdb)
+	console.log('myPledgeDdb: ', myPledgeDdb)
+	console.log('myFavoritesParams: ', myFavoritesDdb)
+
+	console.log('dynamoItemsProp(projectDdb): ', projectDdb)
+	console.log('dynamoItemsProp(myPledgeDdb): ', myPledgeDdb)
+	console.log('dynamoItemsProp(myFavoritesParams): ', myFavoritesDdb)
+
 	return [
 		dynamoItemsProp(projectDdb),
 		// dynamoItemsProp(assigneesDdb),
 		// dynamoItemsProp(gamesDdb),
 		dynamoItemsProp(myPledgeDdb),
+		dynamoItemsProp(myFavoritesDdb),
 	]
 }

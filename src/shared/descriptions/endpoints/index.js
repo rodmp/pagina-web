@@ -12,6 +12,7 @@ import updateProject from 'root/src/shared/descriptions/endpoints/updateProject'
 import getActiveProjects from 'root/src/shared/descriptions/endpoints/getActiveProjects'
 import getPendingProjects from 'root/src/shared/descriptions/endpoints/getPendingProjects'
 
+import addToFavorites from 'root/src/shared/descriptions/endpoints/addToFavorites'
 
 const allEndpoints = {
 	...createProject,
@@ -22,6 +23,7 @@ const allEndpoints = {
 	...getActiveProjects,
 	...getPendingProjects,
 	...updateProject,
+	...addToFavorites,
 }
 
 export default map(

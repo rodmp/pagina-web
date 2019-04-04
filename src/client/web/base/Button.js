@@ -17,19 +17,21 @@ const styles = {
 		},
 		width: '100%',
 		height: 48.1,
+		textTransform: 'none',
+		fontSize: 20
 	},
 }
 
 export const ButtonUnstyled = memo(({
 	classes, onClick, disabled, children, style,
 }) => (
-	<Button
-		className={classNames(classes.button, style)}
-		onClick={onClick}
-		disabled={disabled}
-	>
-		{children}
-	</Button>
-))
+		<Button
+			className={classNames(classes.button, style)}
+			onClick={onClick}
+			disabled={disabled}
+		>
+			{children}
+		</Button>
+	))
 
 export default withStyles(styles)(ButtonUnstyled)
