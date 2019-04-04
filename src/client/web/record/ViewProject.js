@@ -4,7 +4,7 @@ import classNames from 'classnames'
 import { orNull, ternary } from 'root/src/shared/util/ramdaPlus'
 
 import {
-	smMediaQuery, gtSmMediaQuery,
+	smMediaQuery, gtSmMediaQuery, primaryColor, secondaryColor,
 } from 'root/src/client/web/commonStyles'
 
 import Assignee from 'root/src/client/web/record/Assignee'
@@ -21,6 +21,10 @@ import viewProjectConnector from 'root/src/client/logic/project/connectors/viewP
 import withModuleContext from 'root/src/client/util/withModuleContext'
 import goToSignInHandler from 'root/src/client/logic/project/handlers/goToSignInHandler'
 import goToPledgeProjectHandler from 'root/src/client/logic/project/handlers/goToPledgeProjectHandler'
+
+import goToAddFavoritesHandler from 'root/src/client/logic/project/handlers/goToAddFavoritesHandler'
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+
 
 const styles = {
 	title: {
@@ -42,6 +46,38 @@ const styles = {
 		marginTop: 10,
 		marginBottom: 20,
 	},
+
+	btnRound: {
+		borderRadius: 20,
+		boxShadow: '0 5px 6px 0 rgba(0, 0, 0, 0.16)',
+	},
+	btnEmptyRound: {
+		color: primaryColor,
+		backgroundColor: 'white',
+		'&:hover': {
+			color: '#bb00bb',
+			backgroundColor: 'white',
+			border: '1px solid #bb00bb',
+		},
+		width: '100%',
+		height: 48.1,
+		borderRadius: 20,
+		border: '1px solid #800080',
+	},
+	btnEmpty: {
+		color: primaryColor,
+		backgroundColor: 'white',
+		'&:hover': {
+			color: '#bb00bb',
+			backgroundColor: 'white',
+		},
+		width: '100%',
+		height: 48.1,
+	},
+	leftIcon: {
+		marginRight: 10,
+	},
+
 	descriptionContainer: {
 		marginTop: 20,
 		marginBottom: 32,
@@ -107,103 +143,120 @@ export const ViewProjectModule = memo(({
 	gameImage, canApproveProject, canRejectProject, pushRoute, canPledgeProject,
 	classes, isAuthenticated,
 }) => (
-	<div className="flex layout-row layout-align-center-start">
-		<MaxWidthContainer>
-			<div className="flex layout-row layout-wrap">
-				<div className={classNames(
-					'flex-100', 'layout-row',
-					'layout-align-center', classes.title,
-				)}
-				>
-					<div className={classes.titleText}>
-						<Title>{projectTitle}</Title>
-					</div>
-				</div>
-				<div className="flex-100 flex-gt-sm-60 flex-order-1">
-					<img alt="Game" src={gameImage} className={classes.image} />
-				</div>
-				<div
-					className={classNames(
-						'flex-100 flex-gt-sm-40',
-						'flex-order-3 flex-order-gt-sm-2',
-						'layout-column',
+		<div className="flex layout-row layout-align-center-start">
+			<MaxWidthContainer>
+				<div className="flex layout-row layout-wrap">
+					<div className={classNames(
+						'flex-100', 'layout-row',
+						'layout-align-center', classes.title,
 					)}
-				>
-					<div
-						className={classNames(classes.sidebar, 'layout-column')}
 					>
-						<div className={classNames(classes.progressOuter)}>
-							<div className={classNames(classes.progressInner)} />
+						<div className={classes.titleText}>
+							<Title>{projectTitle}</Title>
 						</div>
-						<div className={classNames('flex', 'layout-row', 'layout-wrap')}>
-							<div className={classNames('flex-50', 'flex-gt-sm-100', classes.sidebarItem)}>
-								<SubHeader>Total Pledged</SubHeader>
-								<div className={classNames(classes.text)}>{pledgeAmount}</div>
-							</div>
-							<div className={classNames('flex-50', 'flex-gt-sm-100', classes.sidebarItem)}>
-								<SubHeader>Pledgers</SubHeader>
-								<div className={classNames(classes.text)}>{assignees.length}</div>
-							</div>
-						</div>
-						<div
-							className={classNames(
-								classes.sidebarItem,
-								'layout-row layout-wrap',
-							)}
-						>
-							{addIndex(map)((assignee, i) => (
-								<Assignee key={i} {...assignee} />
-							), assignees)}
-						</div>
-						{orNull(
-							canApproveProject,
-							<div className={classes.sidebarItem}>
-								<RecordClickActionButton
-									recordClickActionId={APPROVE_PROJECT}
-									recordId={projectId}
-								/>
-							</div>,
+					</div>
+					<div className="flex-100 flex-gt-sm-60 flex-order-1">
+						<img alt="Game" src={gameImage} className={classes.image} />
+					</div>
+					<div
+						className={classNames(
+							'flex-100 flex-gt-sm-40',
+							'flex-order-3 flex-order-gt-sm-2',
+							'layout-column',
 						)}
-						{
-							orNull(
-								canRejectProject,
+					>
+						<div
+							className={classNames(classes.sidebar, 'layout-column')}
+						>
+							<div className={classNames(classes.progressOuter)}>
+								<div className={classNames(classes.progressInner)} />
+							</div>
+							<div className={classNames('flex', 'layout-row', 'layout-wrap')}>
+								<div className={classNames('flex-50', 'flex-gt-sm-100', classes.sidebarItem)}>
+									<SubHeader>Total Pledged</SubHeader>
+									<div className={classNames(classes.text)}>{pledgeAmount}</div>
+								</div>
+								<div className={classNames('flex-50', 'flex-gt-sm-100', classes.sidebarItem)}>
+									<SubHeader>Pledgers</SubHeader>
+									<div className={classNames(classes.text)}>{assignees.length}</div>
+								</div>
+							</div>
+							<div
+								className={classNames(
+									classes.sidebarItem,
+									'layout-row layout-wrap',
+								)}
+							>
+								{addIndex(map)((assignee, i) => (
+									<Assignee key={i} {...assignee} />
+								), assignees)}
+							</div>
+							{orNull(
+								canApproveProject,
 								<div className={classes.sidebarItem}>
 									<RecordClickActionButton
-										recordClickActionId={REJECT_PROJECT}
+										recordClickActionId={APPROVE_PROJECT}
 										recordId={projectId}
 									/>
 								</div>,
-							)
-						}
-						{
+							)}
+							{
+								orNull(
+									canRejectProject,
+									<div className={classes.sidebarItem}>
+										<RecordClickActionButton
+											recordClickActionId={REJECT_PROJECT}
+											recordId={projectId}
+										/>
+									</div>,
+								)
+							}
+							{
+								<div className={classes.sidebarItem}>
+									<Button
+										style={classes.btnRound}
+										onClick={ternary(
+											isAuthenticated,
+											goToPledgeProjectHandler(projectId, pushRoute),
+											goToSignInHandler(pushRoute),
+										)}
+									>
+										Pledge
+								</Button>
+								</div>
+							}
+
 							<div className={classes.sidebarItem}>
 								<Button
-									onClick={ternary(
-										isAuthenticated,
-										goToPledgeProjectHandler(projectId, pushRoute),
-										goToSignInHandler(pushRoute),
-									)}
+									style={classes.btnEmpty}
+									onClick={
+										ternary(
+											isAuthenticated,
+											goToAddFavoritesHandler(projectId, pushRoute),
+											goToSignInHandler(pushRoute),
+										)}
 								>
-									Pledge
+									<FavoriteBorderIcon className={classes.leftIcon} />
+									Add to Favorites
 								</Button>
 							</div>
-						}
+
+						</div>
+					</div>
+					<div className={classNames(
+						'flex-100', 'flex-order-2', 'flex-order-gt-sm-3',
+						classes.descriptionContainer,
+					)}
+					>
+						<div className={classNames(classes.descriptionTitle)}>Description</div>
+						<div className={classes.description}>
+							{projectDescription}
+						</div>
 					</div>
 				</div>
-				<div className={classNames(
-					'flex-100', 'flex-order-2', 'flex-order-gt-sm-3',
-					classes.descriptionContainer,
-				)}
-				>
-					<div className={classNames(classes.descriptionTitle)}>Description</div>
-					<div className={classes.description}>
-						{projectDescription}
-					</div>
-				</div>
-			</div>
-		</MaxWidthContainer>
-	</div>
-))
+			</MaxWidthContainer>
+		</div>
+	))
 
 export default withModuleContext(
 	viewProjectConnector(ViewProjectModule, styles),
