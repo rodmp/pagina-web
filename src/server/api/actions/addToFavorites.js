@@ -1,4 +1,4 @@
-import { head, add } from 'ramda'
+import { head, add, isNil } from 'ramda'
 
 import { TABLE_NAME, documentClient } from 'root/src/server/api/dynamoClient'
 
@@ -13,7 +13,7 @@ import projectSerializer from 'root/src/server/api/serializers/projectSerializer
 export default async ({ userId, payload }) => {
 	const { projectId } = payload
 	const [
-		projectToFavoritesDdb, myPledgeDdb, myFavoritesDdb,
+		projectToFavoritesDdb,
 	] = await dynamoQueryProject(
 		userId, projectId,
 	)
@@ -23,15 +23,15 @@ export default async ({ userId, payload }) => {
 		throw generalError('Project doesn\'t exist')
 	}
 
-	const myFavorites = head(myFavoritesDdb || []);
-
-	if (myFavorites) {
-		throw generalError('You\'ve already added this project to your favorites')
-	}
-
 	const newFavorites = favoritesDynamoObj(
 		projectId, projectToFavorites, userId,
 	)
+
+	console.log(projectToFavorites)
+
+	const favoritesAmount = isNil(projectToFavorites.favoritesAmount) ? 0 : projectToFavorites.favoritesAmount
+
+	console.log('userId, favoritesAmount//////////////////////', userId, favoritesAmount, isNil(projectToFavorites.favoritesAmount))
 
 	// TODO: Check favorites
 	const favoritesParams = {
@@ -46,18 +46,20 @@ export default async ({ userId, payload }) => {
 			[PARTITION_KEY]: projectToFavorites[PARTITION_KEY],
 			[SORT_KEY]: projectToFavorites[SORT_KEY],
 		},
-		UpdateExpression: 'set favoritesAmount = favoritesAmount + 1',
+		UpdateExpression: 'set favoritesAmount = :newFavoritesAmount',
+		ExpressionAttributeValues: {
+			':newFavoritesAmount': favoritesAmount + 1,
+		},
 	}
 
 	await documentClient.update(updateProjectParams).promise();
 
 	const newProject = projectSerializer([
 		...projectToFavoritesDdb,
-		//...assigneesDdb,
-		//...gamesDdb,
 		newFavorites,
 	])
 	return {
-		...newProject
+		...newProject,
+		favoritesAmount: add(favoritesAmount, 1)
 	}
 }

@@ -61,14 +61,6 @@ export default async (userId, projectId) => {
 		documentClient.query(myFavoritesParams).promise(),
 	])
 
-	console.log('projectDdb: ', projectDdb)
-	console.log('myPledgeDdb: ', myPledgeDdb)
-	console.log('myFavoritesParams: ', myFavoritesDdb)
-
-	console.log('dynamoItemsProp(projectDdb): ', projectDdb)
-	console.log('dynamoItemsProp(myPledgeDdb): ', myPledgeDdb)
-	console.log('dynamoItemsProp(myFavoritesParams): ', myFavoritesDdb)
-
 	return [
 		dynamoItemsProp(projectDdb),
 		// dynamoItemsProp(assigneesDdb),
