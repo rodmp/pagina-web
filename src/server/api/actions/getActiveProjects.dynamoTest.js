@@ -14,6 +14,7 @@ import auditProject from 'root/src/server/api/actions/auditProject'
 
 describe('getActiveProjects', () => {
 	test('Successfully get active projects', async () => {
+		await wait(20000)
 		const projectArr = await Promise.all(
 			map(
 				() => createProject({
