@@ -1,4 +1,4 @@
-import { head, add, isNil } from 'ramda'
+import { head, add } from 'ramda'
 
 import { TABLE_NAME, documentClient } from 'root/src/server/api/dynamoClient'
 
@@ -23,15 +23,14 @@ export default async ({ userId, payload }) => {
 		throw generalError('Project doesn\'t exist')
 	}
 
+	const favoritesCreatedAt = Date.now()
+	const newFavoritesAmount = 1
+
 	const newFavorites = favoritesDynamoObj(
-		projectId, projectToFavorites, userId,
+		projectId, projectToFavorites, userId, newFavoritesAmount, favoritesCreatedAt
 	)
 
-	console.log(projectToFavorites)
-
-	const favoritesAmount = isNil(projectToFavorites.favoritesAmount) ? 0 : projectToFavorites.favoritesAmount
-
-	console.log('userId, favoritesAmount//////////////////////', userId, favoritesAmount, isNil(projectToFavorites.favoritesAmount))
+	const { favoritesAmount } = projectToFavorites
 
 	// TODO: Check favorites
 	const favoritesParams = {

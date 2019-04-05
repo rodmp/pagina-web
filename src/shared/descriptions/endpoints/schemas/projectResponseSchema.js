@@ -12,6 +12,7 @@ export default {
 		pledgeAmount: { type: 'integer' },
 		favoritesAmount: { type: 'integer' },
 		myPledge: { type: 'integer' },
+		myFavorites: { type: 'integer' },
 		status: {
 			type: 'string',
 			enum: [projectApprovedKey, projectRejectedKey, projectPendingKey],

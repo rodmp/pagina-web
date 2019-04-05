@@ -33,7 +33,7 @@ export default async ({ userId, payload }) => {
 		newPledgeAmount, viewStripeCardId(payload),
 	)
 
-    const { pledgeAmount } = projectToPledge
+	const { pledgeAmount } = projectToPledge
 
 	// TODO: Check pledge amount
 	const pledgeParams = {
@@ -65,7 +65,7 @@ export default async ({ userId, payload }) => {
 		...newProject,
 		pledgeAmount: add(
 			viewPledgeAmount(newProject),
-            newPledgeAmount,
+			newPledgeAmount,
 		),
 	}
 }

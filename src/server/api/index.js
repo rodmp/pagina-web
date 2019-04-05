@@ -55,8 +55,6 @@ export const apiHof = (
 		await validatePayload(payload)
 		const res = await action({ userId, payload })
 
-		console.log('///////////////////// await action success ////////////////////')
-
 		await validateResult(res)
 		return { statusCode: 200, body: res }
 	} catch (error) {

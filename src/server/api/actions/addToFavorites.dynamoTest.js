@@ -1,5 +1,4 @@
 import { apiFn } from 'root/src/server/api'
-import { isNil } from 'ramda'
 
 import { ADD_TO_FAVORITES } from 'root/src/shared/descriptions/endpoints/endpointIds'
 
@@ -27,11 +26,14 @@ describe('addToFavorites', () => {
 		}
 		const res = await apiFn(event)
 
+		console.log(res)
+
 		expect(res).toEqual({
 			statusCode: 200,
 			body: {
 				...newProject,
-				favoritesAmount: isNil(newProject.favoritesAmount) ? 1 : newProject.favoritesAmount + 1,
+				favoritesAmount: newProject.favoritesAmount + 1,
+				myFavorites: 1
 			},
 		})
 	})
