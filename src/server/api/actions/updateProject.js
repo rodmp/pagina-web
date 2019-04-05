@@ -17,7 +17,7 @@ import dynamoQueryProject from 'root/src/server/api/actionUtil/dynamoQueryProjec
 export default async ({ userId, payload }) => {
 	const { projectId, description, stripeCardId } = payload
 
-	const [ project ] = await dynamoQueryProject(
+	const [project] = await dynamoQueryProject(
 		userId, projectId,
 	)
 	// Checks if the descriptions are equal, if so, we avoid a database call
@@ -65,7 +65,7 @@ export default async ({ userId, payload }) => {
 
 	const serialize = pick([
 		'title', 'image', 'description', 'pledgeAmount',
-		'assignees', 'games', 'status',
+		'assignees', 'games', 'status', 'favoritesAmount'
 	], newProject)
 
 	const newProjectSerialized = {

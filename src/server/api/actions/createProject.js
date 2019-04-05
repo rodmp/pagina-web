@@ -65,7 +65,7 @@ export default async ({ userId, payload }) => {
 	const params = {
 		RequestItems: {
 			[TABLE_NAME]: map(
-				Item => ({PutRequest: {Item}}),
+				Item => ({ PutRequest: { Item } }),
 				[project, ...projectAssignees, ...projectGames, pledge],
 			),
 		},

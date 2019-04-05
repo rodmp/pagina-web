@@ -7,14 +7,21 @@ import { getResponseLenses } from 'root/src/server/api/getEndpointDesc'
 
 const responseLenses = getResponseLenses(GET_PROJECT)
 const {
-	overAssignees, setMyPledge, viewPledgeAmount, overGames,
+	overAssignees, setMyPledge, viewPledgeAmount, overGames, setMyFavorites, viewFavoritesAmount
 } = responseLenses
 
 export default projectArr => reduce(
 	(result, projectPart) => {
+
 		const sk = skProp(projectPart)
+
+		console.log(projectPart)
+
 		if (startsWith('pledge', sk)) {
 			return setMyPledge(viewPledgeAmount(projectPart), result)
+		}
+		if (startsWith('favorites', sk)) {
+			return setMyFavorites(viewFavoritesAmount(projectPart), result)
 		}
 		if (startsWith('assignee', sk)) {
 			const [, platform, platformId] = split('|', sk)
@@ -38,7 +45,7 @@ export default projectArr => reduce(
 			const projectObj = pick(
 				[
 					'title', 'image', 'description', 'pledgeAmount',
-					'assignees', 'games',
+					'assignees', 'games', 'favoritesAmount'
 				],
 				projectPart,
 			)

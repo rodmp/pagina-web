@@ -6,7 +6,7 @@ import dynamoQueryProject from 'root/src/server/api/actionUtil/dynamoQueryProjec
 
 export default async ({ userId, payload }) => {
 	const projectId = prop('projectId', payload)
-	const [project, /* assignee, games, */ myPledge] = await dynamoQueryProject(
+	const [project, /* assignee, games, */ myPledge, myFavorites] = await dynamoQueryProject(
 		userId, projectId,
 	)
 	return projectSerializer([
@@ -14,5 +14,6 @@ export default async ({ userId, payload }) => {
 		// ...assignee,
 		// ...games,
 		...myPledge,
+		...myFavorites
 	])
 }
