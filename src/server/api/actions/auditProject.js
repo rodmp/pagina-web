@@ -64,6 +64,7 @@ export default async ({ userId, payload }) => {
 	])
 
 	return {
+		userId,
 		...newProject,
 		status: projectApprovedKey,
 	}
