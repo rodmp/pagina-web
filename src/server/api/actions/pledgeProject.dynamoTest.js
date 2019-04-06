@@ -34,6 +34,7 @@ describe('pledgeProject', () => {
 				...newProject,
 				pledgeAmount: newProject.pledgeAmount + pledgeAmount,
 				myPledge: pledgeAmount,
+				userId: mockUserId,
 			},
 		})
 	})
@@ -59,6 +60,7 @@ describe('pledgeProject', () => {
 				// Don't like the solution below, there is a better way for sure.
 				pledgeAmount: newProject.pledgeAmount + (pledgeAmount * 2),
 				myPledge: pledgeAmount,
+				userId: mockUserId,
 			},
 		})
 	})
