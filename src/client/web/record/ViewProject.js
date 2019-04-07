@@ -15,7 +15,7 @@ import SubHeader from 'root/src/client/web/typography/SubHeader'
 import Button from 'root/src/client/web/base/Button'
 
 import RecordClickActionButton from 'root/src/client/web/base/RecordClickActionButton'
-import { APPROVE_PROJECT } from 'root/src/shared/descriptions/recordClickActions/recordClickActionIds'
+import { APPROVE_PROJECT, REJECT_PROJECT, REJECT_ACTIVE_PROJECT } from 'root/src/shared/descriptions/recordClickActions/recordClickActionIds'
 
 import viewProjectConnector from 'root/src/client/logic/project/connectors/viewProjectConnector'
 import withModuleContext from 'root/src/client/util/withModuleContext'
@@ -104,8 +104,8 @@ const styles = {
 
 export const ViewProjectModule = memo(({
 	projectId, projectDescription, projectTitle, pledgeAmount, assignees,
-	gameImage, canApproveProject, pushRoute, canPledgeProject, classes,
-	isAuthenticated,
+	gameImage, canApproveProject, canRejectProject, pushRoute, canPledgeProject,
+	classes, isAuthenticated, canRejectActiveProject,
 }) => (
 	<div className="flex layout-row layout-align-center-start">
 		<MaxWidthContainer>
@@ -164,20 +164,42 @@ export const ViewProjectModule = memo(({
 								/>
 							</div>,
 						)}
-						<div className={classes.sidebarItem}>
-							<Button
-								onClick={
-									ternary(
+						{
+							orNull(
+								canRejectProject,
+								<div className={classes.sidebarItem}>
+									<RecordClickActionButton
+										recordClickActionId={REJECT_PROJECT}
+										recordId={projectId}
+									/>
+								</div>,
+							)
+						}
+						{
+							orNull(
+								canRejectActiveProject,
+								<div className={classes.sidebarItem}>
+									<RecordClickActionButton
+										recordClickActionId={REJECT_ACTIVE_PROJECT}
+										recordId={projectId}
+									/>
+								</div>,
+							)
+						}
+						{
+							<div className={classes.sidebarItem}>
+								<Button
+									onClick={ternary(
 										isAuthenticated,
 										goToPledgeProjectHandler(projectId, pushRoute),
 										goToSignInHandler(pushRoute),
 									)}
-							>
-									Pledge
-							</Button>
-						</div>
+								>
+										Pledge
+									</Button>
+							</div>
+						}
 					</div>
-
 				</div>
 				<div className={classNames(
 					'flex-100', 'flex-order-2', 'flex-order-gt-sm-3',
