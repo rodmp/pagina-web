@@ -1,14 +1,14 @@
 import { map, range, reduce } from 'ramda'
 
-import { TABLE_NAME, documentClient } from 'sls-aws/src/server/api/dynamoClient'
-import { dynamoItemsProp } from 'sls-aws/src/server/api/lenses'
+import { TABLE_NAME, documentClient } from 'root/src/server/api/dynamoClient'
+import { dynamoItemsProp } from 'root/src/server/api/lenses'
 
-import listResults from 'sls-aws/src/server/api/actionUtil/listResults'
-import projectSerializer from 'sls-aws/src/server/api/serializers/projectSerializer'
+import listResults from 'root/src/server/api/actionUtil/listResults'
+import projectSerializer from 'root/src/server/api/serializers/projectSerializer'
 
 import {
 	GSI1_INDEX_NAME, GSI1_PARTITION_KEY,
-} from 'sls-aws/src/constants/apiDynamoIndexes'
+} from 'root/src/shared/constants/apiDynamoIndexes'
 
 export default async (status) => {
 	const shardedProjects = await Promise.all(
@@ -21,7 +21,7 @@ export default async (status) => {
 					':pk': `project|${status}|${index}`,
 				},
 			}).promise(),
-			range(1, 10),
+			range(1, 11),
 		),
 	)
 	// This can be optimized:

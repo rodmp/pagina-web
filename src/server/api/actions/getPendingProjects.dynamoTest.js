@@ -1,14 +1,14 @@
 import { map, range } from 'ramda'
 
-import { apiFn } from 'sls-aws/src/server/api'
+import { apiFn } from 'root/src/server/api'
 
-import wait from 'sls-aws/src/testUtil/wait'
+import wait from 'root/src/testUtil/wait'
 
-import { GET_PENDING_PROJECTS } from 'sls-aws/src/descriptions/endpoints/endpointIds'
-import createProjectPayload from 'sls-aws/src/server/api/mocks/createProjectPayload'
-import createProject from 'sls-aws/src/server/api/actions/createProject'
+import { GET_PENDING_PROJECTS } from 'root/src/shared/descriptions/endpoints/endpointIds'
+import createProjectPayload from 'root/src/server/api/mocks/createProjectPayload'
+import createProject from 'root/src/server/api/actions/createProject'
 
-import { mockUserId } from 'sls-aws/src/server/api/mocks/contextMock'
+import { mockUserId } from 'root/src/server/api/mocks/contextMock'
 
 describe('getPendingProjects', () => {
 	test('Successfully get pending projects', async () => {

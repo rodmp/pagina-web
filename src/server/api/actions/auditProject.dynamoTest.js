@@ -1,13 +1,13 @@
-import { apiFn } from 'sls-aws/src/server/api'
+import { apiFn } from 'root/src/server/api'
 
-import { AUDIT_PROJECT } from 'sls-aws/src/descriptions/endpoints/endpointIds'
+import { AUDIT_PROJECT } from 'root/src/shared/descriptions/endpoints/endpointIds'
 
-import createProject from 'sls-aws/src/server/api/actions/createProject'
-import createProjectPayload from 'sls-aws/src/server/api/mocks/createProjectPayload'
+import createProject from 'root/src/server/api/actions/createProject'
+import createProjectPayload from 'root/src/server/api/mocks/createProjectPayload'
 
 import {
 	projectApprovedKey, projectPendingKey,
-} from 'sls-aws/src/server/api/lenses'
+} from 'root/src/server/api/lenses'
 
 describe('auditProject', () => {
 	test('successfully audit a project', async () => {
@@ -16,6 +16,7 @@ describe('auditProject', () => {
 			payload: createProjectPayload(),
 		})
 		expect(newProject.status).toEqual(projectPendingKey)
+
 		const event = {
 			endpointId: AUDIT_PROJECT,
 			payload: {

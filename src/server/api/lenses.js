@@ -1,7 +1,7 @@
 import { prop, propOr } from 'ramda'
 import {
     PARTITION_KEY, SORT_KEY, GSI1_INDEX_NAME, GSI1_PARTITION_KEY, GSI1_SORT_KEY,
-} from 'sls-aws/src/constants/apiDynamoIndexes'
+} from 'root/src/shared/constants/apiDynamoIndexes'
 
 export const authenticationProp = prop('authentication')
 export const payloadSchemaProp = prop('payloadSchema')

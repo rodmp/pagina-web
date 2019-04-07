@@ -1,14 +1,18 @@
-import { PARTITION_KEY, SORT_KEY } from 'sls-aws/src/constants/apiDynamoIndexes'
+import { PARTITION_KEY, SORT_KEY } from 'root/src/shared/constants/apiDynamoIndexes'
 
-import projectDenormalizeFields from 'sls-aws/src/server/api/actionUtil/projectDenormalizeFields'
+import projectDenormalizeFields from 'root/src/server/api/actionUtil/projectDenormalizeFields'
 
 export default (
 	projectId, project, userId, pledgeAmount, stripeCardId, created = false,
-) => ({
-	[PARTITION_KEY]: projectId,
-	[SORT_KEY]: `pledge|${userId}`,
-	pledgeAmount,
-	stripeCardId,
-	...(created ? { created: true } : {}),
-	...projectDenormalizeFields(project),
-})
+) => {
+
+	const data = {
+		[PARTITION_KEY]: projectId,
+		[SORT_KEY]: `pledge|${userId}`,
+		stripeCardId,
+		...(created ? { created: true } : {}),
+		...projectDenormalizeFields(project),
+		pledgeAmount,
+	};
+	return data;
+}

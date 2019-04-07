@@ -7,7 +7,7 @@ module.exports = {
 			],
 		},
 		{
-			displayName: 'dynamo',
+			displayName: 'ddb',
 			testMatch: [
 				'<rootDir>/**/*.dynamoTest.js',
 			],

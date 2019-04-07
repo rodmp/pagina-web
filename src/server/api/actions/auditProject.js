@@ -1,25 +1,25 @@
 import { head, replace } from 'ramda'
 
-import { TABLE_NAME, documentClient } from 'sls-aws/src/server/api/dynamoClient'
+import { TABLE_NAME, documentClient } from 'root/src/server/api/dynamoClient'
 
-import { PARTITION_KEY, SORT_KEY } from 'sls-aws/src/constants/apiDynamoIndexes'
+import { PARTITION_KEY, SORT_KEY } from 'root/src/shared/constants/apiDynamoIndexes'
 
-import { AUDIT_PROJECT } from 'sls-aws/src/descriptions/endpoints/endpointIds'
-import { getPayloadLenses } from 'sls-aws/src/server/api/getEndpointDesc'
-import { generalError } from 'sls-aws/src/server/api/errors'
-import dynamoQueryProject from 'sls-aws/src/server/api/actionUtil/dynamoQueryProject'
-import projectSerializer from 'sls-aws/src/server/api/serializers/projectSerializer'
+import { AUDIT_PROJECT } from 'root/src/shared/descriptions/endpoints/endpointIds'
+import { getPayloadLenses } from 'root/src/server/api/getEndpointDesc'
+import { generalError } from 'root/src/server/api/errors'
+import dynamoQueryProject from 'root/src/server/api/actionUtil/dynamoQueryProject'
+import projectSerializer from 'root/src/server/api/serializers/projectSerializer'
 import {
 	projectPendingKey, projectApprovedKey,
-} from 'sls-aws/src/server/api/lenses'
+} from 'root/src/server/api/lenses'
 
 const payloadLenses = getPayloadLenses(AUDIT_PROJECT)
-const { viewProjectId, viewAudit } = payloadLenses
+const { viewAudit } = payloadLenses
 
 export default async ({ userId, payload }) => {
-	const projectId = viewProjectId(payload)
+	const { projectId } = payload
 	const [
-		projectToPledgeDdb, assigneesDdb, myPledgeDdb,
+		projectToPledgeDdb, /* assigneesDdb, gamesDdb, */ myPledgeDdb,
 	] = await dynamoQueryProject(
 		userId, projectId,
 	)
@@ -54,13 +54,15 @@ export default async ({ userId, payload }) => {
 			],
 		},
 	}
-	await documentClient.batchWrite(auditParams).promise()
 
+	await documentClient.batchWrite(auditParams).promise()
 	const newProject = projectSerializer([
 		...projectToPledgeDdb,
-		...assigneesDdb,
+		// ...assigneesDdb,
+		// ...gamesDdb,
 		...myPledgeDdb,
 	])
+
 	return {
 		...newProject,
 		status: projectApprovedKey,

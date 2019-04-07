@@ -1,20 +1,22 @@
 // docker run --name dynamodb -p 9000:8000 amazon/dynamodb-local
 
-import { merge, propOr, prop, head, values, compose, set, lensPath, map } from 'ramda'
+import {
+	merge, propOr, prop, head, values, compose, set, lensPath, map, dissoc,
+} from 'ramda'
 
-import apiTableConfig from 'sls-aws/src/aws/api/resources/apiDynamoDbTable'
+import apiTableConfig from 'root/src/aws/api/resources/apiDynamoDbTable'
 
-jest.mock('sls-aws/src/server/api/dynamoClient', () => {
-	// eslint-disable-next-line
+jest.mock('root/src/server/api/dynamoClient', () => {
+	/* eslint-disable global-require */
 	const uuid = require('uuid/v1')
-	const tableName = `TEST_TABLE_${uuid()}`
 	const { DynamoDB } = require('aws-sdk')
+	/* eslint-enable */
+	const tableName = `TEST_TABLE_${uuid()}`
 	const mockConfig = {
 		endpoint: 'http://localhost:9000',
 		accessKeyId: 'dynamo',
 		secretAccessKey: 'devDummyKey',
 		region: 'dev',
-		apiVersion: '2012-08-10',
 	}
 	return {
 		TABLE_NAME: tableName,
@@ -26,21 +28,25 @@ jest.mock('sls-aws/src/server/api/dynamoClient', () => {
 // Normally authentication is a JWT that gets decoded and returns a user id.
 // For tests I'm mocking the authorizeRequest which does the jwt decoding and
 // just returning whatever you put for authentication as the userId
-jest.mock('sls-aws/src/server/api/authorizeRequest', () => (
+jest.mock('root/src/server/api/authorizeRequest', () => (
 	endpointId, authentication,
 ) => Promise.resolve(authentication))
 
 const tableParams = tableName => merge(
 	{ TableName: tableName },
+	// Can't use BillingMode in the aws-sdk yet
 	compose(
-		set(lensPath(['ProvisionedThroughput', 'ReadCapacityUnits']), 100),
-		set(lensPath(['ProvisionedThroughput', 'WriteCapacityUnits']), 100),
+		dissoc('BillingMode'),
+		set(lensPath(['GlobalSecondaryIndexes', 0, 'ProvisionedThroughput', 'ReadCapacityUnits']), 1),
+		set(lensPath(['GlobalSecondaryIndexes', 0, 'ProvisionedThroughput', 'WriteCapacityUnits']), 1),
+		set(lensPath(['ProvisionedThroughput', 'ReadCapacityUnits']), 1),
+		set(lensPath(['ProvisionedThroughput', 'WriteCapacityUnits']), 1),
 	)(prop('Properties', head(values(apiTableConfig)))),
 )
 
 const {
 	TABLE_NAME, dynamoDb,
-} = require('sls-aws/src/server/api/dynamoClient')
+} = require('root/src/server/api/dynamoClient')
 
 beforeAll(async () => {
 	await dynamoDb.createTable(tableParams(TABLE_NAME)).promise()
@@ -59,10 +65,11 @@ const deleteAllTables = tables => Promise.all(
 
 afterAll(async () => {
 	// const tables = await getTables()
-	// console.log(tables)
+	// console.info(tables)
 	// await deleteAllTables(tables)
 	// const tablesGone = await getTables()
-	// console.log(tablesGone)
-
+	// console.info(tablesGone)
 	await dynamoDb.deleteTable({ TableName: TABLE_NAME }).promise()
 })
+
+jest.setTimeout(10000)

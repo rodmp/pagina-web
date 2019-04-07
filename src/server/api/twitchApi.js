@@ -1,23 +1,15 @@
-import nodeAjax from 'sls-aws/src/util/nodeAjax'
+import nodeAjax from 'root/src/shared/util/nodeAjax'
 
-const clientId = 'bywvja4ootazhbae0qcpwpsnu8glaa'
-const baseUrlNewApi = 'https://api.twitch.tv/helix/'
-const baseUrlV5 = 'https://api.twitch.tv/kraken/'
+import { clientId, baseUrlNewApi } from 'root/src/shared/constants/twitch'
 
 export const getUserData = loginArray => nodeAjax({
 	url: `${baseUrlNewApi}users`,
 	headers: { 'Client-ID': clientId },
-	queryParams: { login: loginArray },
+	queryParams: { id: loginArray },
 })
 
-export const getGame = gameId => nodeAjax({
-	url: `${baseUrlNewApi}search/games`,
+export const getGameData = gameIds => nodeAjax({
+	url: `${baseUrlNewApi}games`,
 	headers: { 'Client-ID': clientId },
-	queryParams: { id: gameId },
-})
-
-export const searchGames = searchTerm => nodeAjax({
-	url: `${baseUrlV5}games`,
-	headers: { 'Client-ID': clientId },
-	queryParams: { query: searchTerm },
+	queryParams: { id: gameIds },
 })

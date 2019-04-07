@@ -1,22 +1,22 @@
 import { composeP } from 'ramda'
 
-import createS3DeploymentBucket from 'sls-aws/src/aws/util/cfCli/createS3DeploymentBucket'
-import createNewStack from 'sls-aws/src/aws/util/cfCli/createNewStack'
+import createS3DeploymentBucket from 'root/src/aws/util/cfCli/createS3DeploymentBucket'
+import createNewStack from 'root/src/aws/util/cfCli/createNewStack'
 
-import webpackLambda from 'sls-aws/src/aws/util/cfCli/webpackLambda'
-import saveCfTemplate from 'sls-aws/src/aws/util/cfCli/saveCfTemplate'
-import templateLambdaUpload from 'sls-aws/src/aws/util/cfCli/templateLambdaUpload'
+import webpackLambda from 'root/src/aws/util/cfCli/webpackLambda'
+import saveCfTemplate from 'root/src/aws/util/cfCli/saveCfTemplate'
+import templateLambdaUpload from 'root/src/aws/util/cfCli/templateLambdaUpload'
 
-import updateStack from 'sls-aws/src/aws/util/cfCli/updateStack'
-import validateTemplate from 'sls-aws/src/aws/util/cfCli/validateTemplate'
+import updateStack from 'root/src/aws/util/cfCli/updateStack'
+import validateTemplate from 'root/src/aws/util/cfCli/validateTemplate'
 
-import emptyDeleteBuckets from 'sls-aws/src/aws/util/cfCli/emptyDeleteBuckets'
-import deleteStack from 'sls-aws/src/aws/util/cfCli/deleteStack'
+import emptyDeleteBuckets from 'root/src/aws/util/cfCli/emptyDeleteBuckets'
+import deleteStack from 'root/src/aws/util/cfCli/deleteStack'
 
-import getStackProgress from 'sls-aws/src/aws/util/cfCli/getStackProgress'
-import saveStackOutputs from 'sls-aws/src/aws/util/cfCli/saveStackOutputs'
+import getStackProgress from 'root/src/aws/util/cfCli/getStackProgress'
+import saveStackOutputs from 'root/src/aws/util/cfCli/saveStackOutputs'
 
-import uploadStatics from 'sls-aws/src/aws/util/cfCli/uploadStatics'
+import uploadStatics from 'root/src/aws/util/cfCli/uploadStatics'
 
 const afterCreateOrUpdate = [
 	{

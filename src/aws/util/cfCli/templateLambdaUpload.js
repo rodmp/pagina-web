@@ -1,5 +1,5 @@
 import { map } from 'ramda'
-import s3Upload from 'sls-aws/src/aws/util/cfCli/s3Upload'
+import s3Upload from 'root/src/aws/util/cfCli/s3Upload'
 
 
 export default ({
