@@ -31,6 +31,8 @@ import bannerFooterDareRejectConfirmation from 'root/src/shared/descriptions/mod
 import bannerFooterDareSuccessCreate from 'root/src/shared/descriptions/modules/bannerFooterDareSuccessCreate'
 import managePaymentForm from 'root/src/shared/descriptions/modules/managePaymentForm'
 import managePaymentList from 'root/src/shared/descriptions/modules/managePaymentList'
+import steperHeaderModule from 'root/src/shared/descriptions/modules/steperHeaderModule'
+import titleHeaderMarketplace from 'root/src/shared/descriptions/modules/titleHeaderMarketplace'
 
 const allModules = {
 	...loginForm,
@@ -66,6 +68,8 @@ const allModules = {
 	...accountSettingsBannerHeader,
 	...managePaymentForm,
 	...managePaymentList,
+	...steperHeaderModule,
+	...titleHeaderMarketplace,
 }
 
 export default allModules
