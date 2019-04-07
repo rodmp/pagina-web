@@ -30,6 +30,7 @@ import dareCreateSuccess from 'root/src/shared/descriptions/modules/dareCreateSu
 import bannerFooterDareAccepted from 'root/src/shared/descriptions/modules/bannerFooterDareAccepted'
 import bannerFooterDareRejectConfirmation from 'root/src/shared/descriptions/modules/bannerFooterDareRejectConfirmation'
 import bannerFooterDareSuccessCreate from 'root/src/shared/descriptions/modules/bannerFooterDareSuccessCreate'
+import twitchOAuth from 'root/src/shared/descriptions/modules/twitchOAuth'
 import changePasswordAuth from 'root/src/shared/descriptions/modules/changePasswordAuth'
 import changePasswordForm from 'root/src/shared/descriptions/modules/changePasswordForm'
 import changePasswordSuccess from 'root/src/shared/descriptions/modules/changePasswordSuccess'
@@ -70,6 +71,7 @@ const allModules = {
 	...bannerFooterDareSuccessCreate,
 	...accountSettings,
 	...accountSettingsBannerHeader,
+	...twitchOAuth,
 	...changePasswordAuth,
 	...changePasswordForm,
 	...changePasswordSuccess,

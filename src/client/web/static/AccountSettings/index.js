@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles'
 
 import Settings from 'root/src/client/web/base/StaticLayout'
 
-import LinkButton from 'root/src/client/web/base/LinkButton'
+import Button from './Button'
 import styles from './style'
 import content from './pageContent'
 
@@ -15,8 +15,8 @@ const AccountSettings = ({ classes }) => (
 		<section className={classes.section}>
 			<h3 className={classes.sectionTitle}>{lead}</h3>
 			<div className={classes.buttons}>
-				{buttons.map(({ text, routeId }) => (
-					<LinkButton additionalClass={classes.button} styled key={routeId} routeId={routeId}>{text}</LinkButton>
+				{buttons.map(({ text, routeId, href }) => (
+					<Button key={routeId || href} routeId={routeId} href={href}>{text}</Button>
 				))}
 			</div>
 		</section>

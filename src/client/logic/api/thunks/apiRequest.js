@@ -15,6 +15,7 @@ import apiRecordRequestError from 'root/src/client/logic/api/actions/apiRecordRe
 import recordTypeSelector from 'root/src/client/logic/api/selectors/recordTypeSelector'
 import endpointTypeSelector from 'root/src/client/logic/api/selectors/endpointTypeSelector'
 
+
 import invokeApiLambda from 'root/src/client/logic/api/util/invokeApiLambda'
 
 export const fetchList = async (dispatch, state, endpointId, payload) => {
@@ -50,9 +51,43 @@ export const fetchRecord = async (dispatch, state, endpointId, payload) => {
 	return lambdaRes
 }
 
+export const fetchExternal = async (dispatch, state, endpointId, payload) => {
+	// const recordType = recordTypeSelector(endpointId)
+	// const recordId = idProp(payload)
+	// if (recordId) { // else creating, don't need record loading state
+	// 	const recordStoreKey = createRecordStoreKey(recordType, recordId)
+	// 	dispatch(initApiRecordRequest(recordStoreKey))
+	// }
+	// const lambdaRes = await invokeApiLambda(endpointId, payload, state)
+	// const { statusCode, body, statusError, generalError } = lambdaRes
+	// if (equals(statusCode, 200)) {
+	// 	dispatch(apiRecordRequestSuccess(recordType, body))
+	// } else if (recordId) { // else creating, don't need record error state
+	// 	const error = { ...statusError, ...generalError }
+	// 	dispatch(apiRecordRequestError(recordType, recordId, error))
+	// }
+	// return lambdaRes
+}
+
+// export const dbSave = async (dispatch, state, endpointId, payload) => {
+// 	const lambdaRes = await invokeApiLambda(endpointId, payload, state)
+// 	const { statusCode, body, statusError, generalError } = lambdaRes
+// 	if (equals(statusCode, 200)) {
+// 		dispatch(apiDbSaveSuccess(payload.id, payload.moduleKey, body))
+// 	} else {
+// 		const error = { ...statusError, ...generalError }
+// 		// TODO
+
+// 		// dispatch(apiRecordRequestError(recordType,recordId, error))
+// 	}
+// 	return lambdaRes
+// }
+
 const endpointTypeFunctionMap = {
 	list: fetchList,
 	record: fetchRecord,
+	external: fetchExternal,
+	// dbSave,
 }
 
 export default (endpointId, payload) => async (dispatch, getState) => {

@@ -103,9 +103,9 @@ const styles = {
 }
 
 export const ViewProjectModule = memo(({
-	projectId, projectDescription, projectTitle, pledgeAmount, assignees,
-	gameImage, canApproveProject, canRejectProject, pushRoute, canPledgeProject,
-	classes, isAuthenticated, canRejectActiveProject,
+	myPledge, status, projectId, projectDescription, projectTitle,
+	pledgeAmount, assignees, gameImage, canApproveProject, canRejectProject,
+	pushRoute, canPledgeProject, classes, isAuthenticated, canRejectActiveProject,
 }) => (
 	<div className="flex layout-row layout-align-center-start">
 		<MaxWidthContainer>
