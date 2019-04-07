@@ -7,7 +7,7 @@ import { parse } from 'qs'
 import routes from 'root/src/shared/descriptions/routes'
 import createRouteUrlRegexes from 'root/src/client/logic/route/util/createRouteUrlRegexes'
 import {
-	regexLens, regexKeysLens, routeIdKey, routeParamsKey,
+	regexLens, regexKeysLens, routeIdKey, routeParamsKey, routeQueryKey,
 } from 'root/src/client/logic/route/lenses'
 
 export const matchPathHof = (allRoutes) => {
@@ -43,7 +43,7 @@ export const matchPathHof = (allRoutes) => {
 			return {
 				[routeIdKey]: prop(0, foundRoutePair),
 				[routeParamsKey]: routeParams,
-				...(isEmpty(parsedQuery) ? {} : { routeParams: { ...routeParams, ...parsedQuery } }),
+				...(isEmpty(parsedQuery) ? {} : { [routeQueryKey]: { ...parsedQuery } }),
 			}
 		}
 		return undefined

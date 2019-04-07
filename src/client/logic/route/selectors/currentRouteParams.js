@@ -4,6 +4,4 @@ import {
 
 const { viewRouteParams } = routeStoreLenses
 
-export default () => {
-	viewRouteParams(currentRouteIndex)
-}
+export default viewRouteParams(currentRouteIndex)
