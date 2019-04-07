@@ -102,12 +102,13 @@ export const StepFormModuleUnconnected = memo(({
 				!onFirstStep,
 				<div className={classes.backButton}>
 					<Button
+						unstyled
 						onClick={() => {
 							stepFormPrevPage(moduleKey)
 						}}
 					>
 						<span className={classes.backButtonText}>
-								Go to Back
+								Go Back
 						</span>
 					</Button>
 				</div>,
