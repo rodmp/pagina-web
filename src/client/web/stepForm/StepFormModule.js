@@ -54,8 +54,8 @@ export const StepFormModuleUnconnected = memo(({
 	classes,
 	formSubmits, submitForm,
 	moduleKey, moduleId, moduleIndex,
-	stepFormCurrentPage, onLastStep, onFirstStep,
-	stepFormNextPage, stepFormPrevPage,
+	stepFormCurrentPage, onLastStep, onFirstStep, onStep,
+	stepFormNextPage, stepFormPrevPage, savePartialForm,
 }) => (
 	<div className="flex layout-row layout-align-center">
 		<div className={classes.formContainer}>
@@ -79,11 +79,12 @@ export const StepFormModuleUnconnected = memo(({
 					className={classes.submits}
 					loading={false}
 					onClick={() => {
+						savePartialForm(moduleKey, onStep)
 						stepFormNextPage(moduleKey)
 					}}
 				>
 					<span className={classes.transformNone}>
-						Next
+							Next
 					</span>
 				</LoadingButton>,
 			)}
@@ -101,12 +102,13 @@ export const StepFormModuleUnconnected = memo(({
 				!onFirstStep,
 				<div className={classes.backButton}>
 					<Button
+						unstyled
 						onClick={() => {
 							stepFormPrevPage(moduleKey)
 						}}
 					>
 						<span className={classes.backButtonText}>
-							Go to Back
+								Go Back
 						</span>
 					</Button>
 				</div>,

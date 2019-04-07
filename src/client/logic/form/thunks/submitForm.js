@@ -7,17 +7,26 @@ import moduleIdFromKey from 'root/src/client/logic/route/util/moduleIdFromKey'
 
 import setFormErrors from 'root/src/client/logic/form/actions/setFormErrors'
 import clearForm from 'root/src/client/logic/form/actions/clearForm'
+import clearPartialFormKeys from 'root/src/client/logic/form/actions/clearPartialFormKeys'
 
 import formSubmits from 'root/src/shared/descriptions/formSubmits'
 
+import userIdFromPartialEntries from 'root/src/client/logic/form/selectors/userIdFromPartialEntries'
 import recordTypeSelector from 'root/src/client/logic/api/selectors/recordTypeSelector'
 import createRecordStoreKey from 'root/src/client/logic/api/util/createRecordStoreKey'
 import generalRecordModification from 'root/src/client/logic/api/actions/generalRecordModification'
 import subPushRoute from 'root/src/client/logic/route/thunks/subPushRoute'
 
+import invokeApiLambda from 'root/src/client/logic/api/util/invokeApiLambda'
+import { CLEAR_PARTIAL_FORM_KEYS } from 'root/src/shared/descriptions/endpoints/endpointIds'
+
 import { idProp } from 'root/src/client/logic/api/lenses'
 
 import moduleDescriptions from 'root/src/shared/descriptions/modules'
+
+import { formStoreLenses } from 'root/src/client/logic/form/lenses'
+
+const { viewFormChild } = formStoreLenses
 
 export const submitFormHof = (
 	submitFormFn, moduleDescriptionsObj, validateFormFn, setFormErrorsFn,
@@ -41,7 +50,18 @@ export const submitFormHof = (
 				[correctedSubmitIndex, 'onSuccess'], submits,
 			)
 			if (onSuccessFn) {
-				successPromises.push(dispatch(onSuccessFn(res)))
+				const partialFormEntries = viewFormChild(`db-${moduleKey}`, state)
+				const partialKeys = Object.keys(partialFormEntries)
+				const userId = userIdFromPartialEntries(partialFormEntries)
+				
+				invokeApiLambda(
+					CLEAR_PARTIAL_FORM_KEYS,
+					{ userId, partialKeys },
+					state,
+				).then(() => {
+					dispatch(clearPartialFormKeys(moduleKey))
+					successPromises.push(dispatch(onSuccessFn(res)))
+				})
 			}
 
 			const {
