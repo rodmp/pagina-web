@@ -21,6 +21,7 @@ import stepFormNextPage from 'root/src/client/logic/form/reducers/stepFormNextPa
 import stepFormPrevPage from 'root/src/client/logic/form/reducers/stepFormPrevPage'
 import partialFormDbSaveSuccess from 'root/src/client/logic/form/reducers/partialFormDbSaveSuccess'
 import clearPartialFormKeys from 'root/src/client/logic/form/reducers/clearPartialFormKeys'
+import clearAllForms from 'root/src/client/logic/form/reducers/clearAllForms'
 
 // api
 import apiListRequestError from 'root/src/client/logic/api/reducers/apiListRequestError'
@@ -34,6 +35,7 @@ import generalRecordModification from 'root/src/client/logic/api/reducers/genera
 import apiRecordClickActionRequestError from 'root/src/client/logic/api/reducers/apiRecordClickActionRequestError'
 import apiRecordClickActionRequestSuccess from 'root/src/client/logic/api/reducers/apiRecordClickActionRequestSuccess'
 import initApiRecordClickActionRequest from 'root/src/client/logic/api/reducers/initApiRecordClickActionRequest'
+import deletePaymentMethodOnSuccess from 'root/src/client/logic/list/reducers/deletePaymentMethodOnSuccess'
 
 // listeners
 import popStateListener from 'root/src/client/logic/route/listeners/popStateListener'
@@ -49,6 +51,7 @@ const store = createStore(
 		...stepFormPrevPage,
 		...clearFormErrors,
 		...clearForm,
+		...clearAllForms,
 		...setFormErrors,
 		...submitForm,
 		...submitFormComplete,
@@ -66,6 +69,7 @@ const store = createStore(
 		...generalRecordModification,
 		...partialFormDbSaveSuccess,
 		...clearPartialFormKeys,
+		...deletePaymentMethodOnSuccess,
 	}, // reducer object
 	// [], // sagas
 	[

@@ -1,23 +1,23 @@
 import {
-	CHANGE_PASSWORD_ROUTE_ID,
-	MANAGE_PAYMENT_ROUTE_ID,
-	TWITCH_OAUTH_ROUTE,
+	CHANGE_PASSWORD_FORM_ROUTE_ID,
+	MANAGE_PAYMENT_LIST_ROUTE_ID,
 } from 'root/src/shared/descriptions/routes/routeIds'
+import { twitchOauthUrl } from 'root/src/shared/constants/twitch'
 
 export default {
 	lead: 'Select Action',
 	buttons: [
 		{
 			text: 'Change Password',
-			routeId: CHANGE_PASSWORD_ROUTE_ID,
+			routeId: CHANGE_PASSWORD_FORM_ROUTE_ID,
 		},
 		{
 			text: 'Manage Payment',
-			routeId: MANAGE_PAYMENT_ROUTE_ID,
+			routeId: MANAGE_PAYMENT_LIST_ROUTE_ID,
 		},
 		{
 			text: 'Oauth Channel',
-			href: TWITCH_OAUTH_ROUTE,
+			href: twitchOauthUrl,
 		},
 	],
 }

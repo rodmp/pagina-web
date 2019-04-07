@@ -1,3 +1,4 @@
+
 import loginForm from 'root/src/shared/descriptions/modules/loginForm'
 import signUpForm from 'root/src/shared/descriptions/modules/signUpForm'
 import verifyAccountForm from 'root/src/shared/descriptions/modules/verifyAccountForm'
@@ -30,6 +31,11 @@ import bannerFooterDareAccepted from 'root/src/shared/descriptions/modules/banne
 import bannerFooterDareRejectConfirmation from 'root/src/shared/descriptions/modules/bannerFooterDareRejectConfirmation'
 import bannerFooterDareSuccessCreate from 'root/src/shared/descriptions/modules/bannerFooterDareSuccessCreate'
 import twitchOAuth from 'root/src/shared/descriptions/modules/twitchOAuth'
+import changePasswordAuth from 'root/src/shared/descriptions/modules/changePasswordAuth'
+import changePasswordForm from 'root/src/shared/descriptions/modules/changePasswordForm'
+import changePasswordSuccess from 'root/src/shared/descriptions/modules/changePasswordSuccess'
+import managePaymentForm from 'root/src/shared/descriptions/modules/managePaymentForm'
+import managePaymentList from 'root/src/shared/descriptions/modules/managePaymentList'
 import steperHeaderModule from 'root/src/shared/descriptions/modules/steperHeaderModule'
 import titleHeaderMarketplace from 'root/src/shared/descriptions/modules/titleHeaderMarketplace'
 
@@ -66,6 +72,11 @@ const allModules = {
 	...accountSettings,
 	...accountSettingsBannerHeader,
 	...twitchOAuth,
+	...changePasswordAuth,
+	...changePasswordForm,
+	...changePasswordSuccess,
+	...managePaymentForm,
+	...managePaymentList,
 	...steperHeaderModule,
 	...titleHeaderMarketplace,
 }
