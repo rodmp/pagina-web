@@ -1,4 +1,4 @@
-import { head, add } from 'ramda'
+import { head, add, isNil } from 'ramda'
 
 import { TABLE_NAME, documentClient } from 'root/src/server/api/dynamoClient'
 
@@ -30,7 +30,7 @@ export default async ({ userId, payload }) => {
 		projectId, projectToFavorites, userId, newFavoritesAmount, favoritesCreatedAt
 	)
 
-	const { favoritesAmount } = projectToFavorites
+	const favoritesAmount = isNil(projectToFavorites.favoritesAmount) ? 0 : projectToFavorites.favoritesAmount
 
 	// TODO: Check favorites
 	const favoritesParams = {

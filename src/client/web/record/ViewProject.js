@@ -1,4 +1,4 @@
-import { map, addIndex } from 'ramda'
+import { map, addIndex, isNil } from 'ramda'
 import React, { memo } from 'react'
 import classNames from 'classnames'
 import { orNull, ternary } from 'root/src/shared/util/ramdaPlus'
@@ -141,7 +141,7 @@ const styles = {
 export const ViewProjectModule = memo(({
 	projectId, projectDescription, projectTitle, pledgeAmount, assignees,
 	gameImage, canApproveProject, canRejectProject, pushRoute, canPledgeProject,
-	classes, isAuthenticated,
+	classes, isAuthenticated, addToFavorites, favoritesAmount, myFavorites,
 }) => (
 		<div className="flex layout-row layout-align-center-start">
 			<MaxWidthContainer>
@@ -222,25 +222,32 @@ export const ViewProjectModule = memo(({
 										)}
 									>
 										Pledge
-								</Button>
+									</Button>
 								</div>
 							}
-
-							<div className={classes.sidebarItem}>
-								<Button
-									style={classes.btnEmpty}
-									onClick={
-										ternary(
-											isAuthenticated,
-											goToAddFavoritesHandler(projectId, pushRoute),
-											goToSignInHandler(pushRoute),
-										)}
-								>
-									<FavoriteBorderIcon className={classes.leftIcon} />
-									Add to Favorites
-								</Button>
-							</div>
-
+							{
+								isNil(myFavorites) ?
+									<div className={classes.sidebarItem}>
+										<Button
+											style={classes.btnEmpty}
+											onClick={
+												ternary(
+													isAuthenticated,
+													goToAddFavoritesHandler(addToFavorites),
+													goToSignInHandler(pushRoute),
+												)}
+										>
+											<FavoriteBorderIcon className={classes.leftIcon} />
+											Add to Favorites({favoritesAmount === 'undefined' ? 0 : favoritesAmount})
+										</Button>
+									</div>
+									:
+									<div className={classes.sidebarItem}>
+										<Button style={classes.btnEmpty}>
+											Added to your Favorites({favoritesAmount === 'undefined' ? 0 : favoritesAmount})
+										</Button>
+									</div>
+							}
 						</div>
 					</div>
 					<div className={classNames(
