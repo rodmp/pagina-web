@@ -83,10 +83,40 @@ const styles = {
 		transition: '0s',
 	},
 	assigneeImg: {
-		margin: [[6, 0, 9, 0]],
-		width: 100,
-		height: 100,
+		width: 98,
+		height: 98,
 		transition: '0s',
+		border: 'grey 1px solid',
+		'&:not(:only-of-type)': {
+			marginRight: -1,
+		},
+		'&:nth-last-child(n+3), &:nth-last-child(n+3) ~ img': {
+			width: 87,
+			height: 87,
+		},
+		'&:nth-last-child(n+4), &:nth-last-child(n+4) ~ img': {
+			width: 67,
+			height: 67,
+		},
+		'&:nth-last-child(n+5), &:nth-last-child(n+5) ~ img': {
+			width: 47,
+			height: 47,
+		},
+		'&:nth-child(n+6), &:nth-child(n+6) ~ img': {
+			marginTop: -2,
+		},
+		'&:nth-last-child(n+11), &:nth-last-child(n+11) ~ img': {
+			width: 22,
+			height: 22,
+		},
+		'&:nth-last-child(n+41), &:nth-last-child(n+41) ~ img': {
+			width: 12,
+			height: 12,
+		},
+		'&:nth-last-child(n+101), &:nth-last-child(n+101) ~ img': {
+			width: 4,
+			height: 4,
+		},
 	},
 	descriptionText: {
 		fontWeight: 'normal',
@@ -102,6 +132,15 @@ const styles = {
 		marginTop: -42,
 		margin: '0 auto',
 		width: '93px',
+	},
+	projectAssigne: {
+		display: 'flex',
+		flexWrap: 'wrap',
+		alignItems: 'center',
+		padding: '0 auto',
+		height: 100,
+		marginBottom: 7,
+		marginTop: 7,
 	},
 	button: {
 		width: '93px',
@@ -120,6 +159,10 @@ const styles = {
 	},
 	inLineBlock: {
 		display: 'inline',
+	},
+	projectUnsetJustify: {
+		justifyContent: 'start !important',
+		marginLeft: 18,
 	},
 }
 
@@ -169,7 +212,12 @@ export const ListItemUnconnected = memo(({
 				<div
 					onClick={goToViewProjectHandler(recordId, pushRoute)}
 				>
-					<div className="layout-row layout-align-center">
+					<div className={classNames(
+						'layout-row layout-align-center',
+						classes.projectAssigne,
+						projectAssigneesImages.length > 5 && classes.projectUnsetJustify,
+					)}
+					>
 						{projectAssigneesImages.map((imgSrc, i) => (
 							<img
 								key={i}

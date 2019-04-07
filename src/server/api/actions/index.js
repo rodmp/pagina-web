@@ -1,7 +1,7 @@
 import {
 	GET_PROJECT, CREATE_PROJECT, PLEDGE_PROJECT, GET_PLEDGED_PROJECTS,
-	AUDIT_PROJECT, GET_ACTIVE_PROJECTS, GET_PENDING_PROJECTS, SAVE_PARTIAL_DARE_FORM,
-	CLEAR_PARTIAL_FORM_KEYS,
+	SAVE_PARTIAL_DARE_FORM, CLEAR_PARTIAL_FORM_KEYS, AUDIT_PROJECT,
+	GET_ACTIVE_PROJECTS, GET_PENDING_PROJECTS, UPDATE_PROJECT,
 } from 'root/src/shared/descriptions/endpoints/endpointIds'
 
 import getProject from 'root/src/server/api/actions/getProject'
@@ -13,10 +13,12 @@ import getActiveProjects from 'root/src/server/api/actions/getActiveProjects'
 import getPendingProjects from 'root/src/server/api/actions/getPendingProjects'
 import savePartialDareForm from 'root/src/server/api/actions/savePartialDareForm'
 import clearPartialFormKeys from 'root/src/server/api/actions/clearPartialFormKeys'
+import updateProject from 'root/src/server/api/actions/updateProject'
 
 export default {
 	[CREATE_PROJECT]: createProject,
 	[GET_PROJECT]: getProject,
+	[UPDATE_PROJECT]: updateProject,
 
 	[PLEDGE_PROJECT]: pledgeProject,
 	[GET_PLEDGED_PROJECTS]: getPledgedProjects,
