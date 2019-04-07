@@ -16,6 +16,7 @@ import { generalError } from 'root/src/server/api/errors'
 import dynamoQueryProject from 'root/src/server/api/actionUtil/dynamoQueryProject'
 import projectSerializer from 'root/src/server/api/serializers/projectSerializer'
 import getUserEmail from 'root/src/server/api/actionUtil/getUserEmail'
+import validateStripeSourceId from 'root/src/server/api/actionUtil/validateStripeSourceId'
 
 const payloadLenses = getPayloadLenses(PLEDGE_PROJECT)
 const { viewPledgeAmount, viewStripeCardId } = payloadLenses
@@ -34,9 +35,15 @@ export default async ({ userId, payload }) => {
 	}
 
 	const newPledgeAmount = viewPledgeAmount(payload)
+
+	const sourceId = viewStripeCardId(payload)
+	if (!validateStripeSourceId(sourceId)) {
+		throw payloadSchemaError({ stripeCardId: 'Invalid source id' })
+	}
+
 	const newPledge = pledgeDynamoObj(
 		projectId, projectToPledge, userId,
-		newPledgeAmount, viewStripeCardId(payload),
+		newPledgeAmount, sourceId,
 	)
 
 	const { pledgeAmount } = projectToPledge
