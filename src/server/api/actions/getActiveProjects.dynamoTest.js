@@ -14,13 +14,13 @@ import auditProject from 'root/src/server/api/actions/auditProject'
 
 describe('getActiveProjects', () => {
 	test('Successfully get active projects', async () => {
-		const [newProject1, newProject2] = await Promise.all(
+		const projectArr = await Promise.all(
 			map(
 				() => createProject({
 					userId: 'user-differentuserid',
 					payload: createProjectPayload(),
 				}),
-				range(1, 5),
+				range(1, 10),
 			),
 		)
 		await Promise.all(
@@ -32,7 +32,7 @@ describe('getActiveProjects', () => {
 						audit: projectApprovedKey,
 					},
 				}),
-				[newProject1, newProject2],
+				projectArr,
 			),
 		)
 		// So this kinda sucks, but there is no way to ConsistenRead on a GSI.
@@ -41,10 +41,12 @@ describe('getActiveProjects', () => {
 		await wait(750)
 		const event = {
 			endpointId: GET_ACTIVE_PROJECTS,
+			payload: { currentPage: 1 },
 		}
 		const res = await apiFn(event, contextMock)
-		expect(res.body.items.length).toEqual(2)
-		expect(res.body.items[0].sk).toEqual(newProject1.sk)
-		expect(res.body.items[1].sk).toEqual(newProject2.sk)
+		expect(res.body.items.length).toEqual(8)
+		expect(res.body.items[0].sk).toEqual(projectArr[0].sk)
+		expect(res.body.items[1].sk).toEqual(projectArr[1].sk)
+		expect(res.body.allPage).toEqual(2)
 	})
 })
