@@ -1,3 +1,4 @@
+
 import loginForm from 'root/src/shared/descriptions/modules/loginForm'
 import signUpForm from 'root/src/shared/descriptions/modules/signUpForm'
 import verifyAccountForm from 'root/src/shared/descriptions/modules/verifyAccountForm'
@@ -29,6 +30,11 @@ import dareCreateSuccess from 'root/src/shared/descriptions/modules/dareCreateSu
 import bannerFooterDareAccepted from 'root/src/shared/descriptions/modules/bannerFooterDareAccepted'
 import bannerFooterDareRejectConfirmation from 'root/src/shared/descriptions/modules/bannerFooterDareRejectConfirmation'
 import bannerFooterDareSuccessCreate from 'root/src/shared/descriptions/modules/bannerFooterDareSuccessCreate'
+import changePasswordAuth from 'root/src/shared/descriptions/modules/changePasswordAuth'
+import changePasswordForm from 'root/src/shared/descriptions/modules/changePasswordForm'
+import changePasswordSuccess from 'root/src/shared/descriptions/modules/changePasswordSuccess'
+import managePaymentForm from 'root/src/shared/descriptions/modules/managePaymentForm'
+import managePaymentList from 'root/src/shared/descriptions/modules/managePaymentList'
 import steperHeaderModule from 'root/src/shared/descriptions/modules/steperHeaderModule'
 import titleHeaderMarketplace from 'root/src/shared/descriptions/modules/titleHeaderMarketplace'
 
@@ -64,6 +70,11 @@ const allModules = {
 	...bannerFooterDareSuccessCreate,
 	...accountSettings,
 	...accountSettingsBannerHeader,
+	...changePasswordAuth,
+	...changePasswordForm,
+	...changePasswordSuccess,
+	...managePaymentForm,
+	...managePaymentList,
 	...steperHeaderModule,
 	...titleHeaderMarketplace,
 }
