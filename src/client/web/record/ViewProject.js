@@ -15,7 +15,7 @@ import SubHeader from 'root/src/client/web/typography/SubHeader'
 import Button from 'root/src/client/web/base/Button'
 
 import RecordClickActionButton from 'root/src/client/web/base/RecordClickActionButton'
-import { APPROVE_PROJECT, REJECT_PROJECT } from 'root/src/shared/descriptions/recordClickActions/recordClickActionIds'
+import { APPROVE_PROJECT, REJECT_PROJECT, REJECT_ACTIVE_PROJECT } from 'root/src/shared/descriptions/recordClickActions/recordClickActionIds'
 
 import viewProjectConnector from 'root/src/client/logic/project/connectors/viewProjectConnector'
 import withModuleContext from 'root/src/client/util/withModuleContext'
@@ -46,38 +46,9 @@ const styles = {
 		marginTop: 10,
 		marginBottom: 20,
 	},
-
-	btnRound: {
-		borderRadius: 20,
-		boxShadow: '0 5px 6px 0 rgba(0, 0, 0, 0.16)',
-	},
-	btnEmptyRound: {
-		color: primaryColor,
-		backgroundColor: 'white',
-		'&:hover': {
-			color: '#bb00bb',
-			backgroundColor: 'white',
-			border: '1px solid #bb00bb',
-		},
-		width: '100%',
-		height: 48.1,
-		borderRadius: 20,
-		border: '1px solid #800080',
-	},
-	btnEmpty: {
-		color: primaryColor,
-		backgroundColor: 'white',
-		'&:hover': {
-			color: '#bb00bb',
-			backgroundColor: 'white',
-		},
-		width: '100%',
-		height: 48.1,
-	},
 	leftIcon: {
 		marginRight: 10,
 	},
-
 	descriptionContainer: {
 		marginTop: 20,
 		marginBottom: 32,
@@ -139,9 +110,10 @@ const styles = {
 }
 
 export const ViewProjectModule = memo(({
-	projectId, projectDescription, projectTitle, pledgeAmount, assignees,
-	gameImage, canApproveProject, canRejectProject, pushRoute, canPledgeProject,
-	classes, isAuthenticated, addToFavorites, favoritesAmount, myFavorites,
+	addToFavorites, favoritesAmount, myFavorites,
+	myPledge, status, projectId, projectDescription, projectTitle,
+	pledgeAmount, assignees, gameImage, canApproveProject, canRejectProject,
+	pushRoute, canPledgeProject, classes, isAuthenticated, canRejectActiveProject,
 }) => (
 		<div className="flex layout-row layout-align-center-start">
 			<MaxWidthContainer>
@@ -202,10 +174,10 @@ export const ViewProjectModule = memo(({
 							)}
 							{
 								orNull(
-									canRejectProject,
+									canRejectActiveProject,
 									<div className={classes.sidebarItem}>
 										<RecordClickActionButton
-											recordClickActionId={REJECT_PROJECT}
+											recordClickActionId={REJECT_ACTIVE_PROJECT}
 											recordId={projectId}
 										/>
 									</div>,
@@ -214,7 +186,6 @@ export const ViewProjectModule = memo(({
 							{
 								<div className={classes.sidebarItem}>
 									<Button
-										style={classes.btnRound}
 										onClick={ternary(
 											isAuthenticated,
 											goToPledgeProjectHandler(projectId, pushRoute),
@@ -229,7 +200,7 @@ export const ViewProjectModule = memo(({
 								isNil(myFavorites) ?
 									<div className={classes.sidebarItem}>
 										<Button
-											style={classes.btnEmpty}
+											buttonType="noBackgroundButton"
 											onClick={
 												ternary(
 													isAuthenticated,
@@ -243,7 +214,9 @@ export const ViewProjectModule = memo(({
 									</div>
 									:
 									<div className={classes.sidebarItem}>
-										<Button style={classes.btnEmpty}>
+										<Button
+											buttonType="noBackgroundButton"
+										>
 											Added to your Favorites({favoritesAmount === 'undefined' ? 0 : favoritesAmount})
 										</Button>
 									</div>
