@@ -7,7 +7,7 @@ import {
 	MANAGE_PAYMENT_FORM_ROUTE_ID,
 } from 'root/src/shared/descriptions/routes/routeIds'
 
-
+ 
 import {
 	ACCOUNT_SETTINGS_MODULE_ID,
 	ACCOUNT_SETTINGS_BANNER_HEADER_MODULE_ID,

@@ -19,6 +19,8 @@ import addSubForm from 'root/src/client/logic/form/reducers/addSubForm'
 import removeSubForm from 'root/src/client/logic/form/reducers/removeSubForm'
 import stepFormNextPage from 'root/src/client/logic/form/reducers/stepFormNextPage'
 import stepFormPrevPage from 'root/src/client/logic/form/reducers/stepFormPrevPage'
+import partialFormDbSaveSuccess from 'root/src/client/logic/form/reducers/partialFormDbSaveSuccess'
+import clearPartialFormKeys from 'root/src/client/logic/form/reducers/clearPartialFormKeys'
 import clearAllForms from 'root/src/client/logic/form/reducers/clearAllForms'
 
 // api
@@ -65,6 +67,8 @@ const store = createStore(
 		...apiRecordClickActionRequestSuccess,
 		...initApiRecordClickActionRequest,
 		...generalRecordModification,
+		...partialFormDbSaveSuccess,
+		...clearPartialFormKeys,
 		...deletePaymentMethodOnSuccess,
 	}, // reducer object
 	// [], // sagas
