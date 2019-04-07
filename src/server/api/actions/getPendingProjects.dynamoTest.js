@@ -27,6 +27,7 @@ describe('getPendingProjects', () => {
 		await wait(750)
 		const event = {
 			endpointId: GET_PENDING_PROJECTS,
+			payload: { currentPage: 1 },
 		}
 		const res = await apiFn(event)
 		expect(res.body.items.length).toEqual(2)
