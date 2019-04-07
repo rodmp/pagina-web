@@ -7,7 +7,6 @@ import textWithBg from 'root/src/client/logic/header/selectors/textWithBg'
 import createNewDareActive from 'root/src/client/logic/header/selectors/createNewDareActive'
 import linkLabelSelector from 'root/src/client/logic/header/selectors/linkLabelSelector'
 import linkRouteIdSelector from 'root/src/client/logic/header/selectors/linkRouteIdSelector'
-
 import pushRoute from 'root/src/client/logic/route/thunks/pushRoute'
 import bannerImageSubTextSelector from '../selectors/bannerImageSubTextSelector'
 

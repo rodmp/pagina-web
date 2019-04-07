@@ -30,6 +30,8 @@ import bannerFooterDareAccepted from 'root/src/shared/descriptions/modules/banne
 import bannerFooterDareRejectConfirmation from 'root/src/shared/descriptions/modules/bannerFooterDareRejectConfirmation'
 import bannerFooterDareSuccessCreate from 'root/src/shared/descriptions/modules/bannerFooterDareSuccessCreate'
 import twitchOAuth from 'root/src/shared/descriptions/modules/twitchOAuth'
+import steperHeaderModule from 'root/src/shared/descriptions/modules/steperHeaderModule'
+import titleHeaderMarketplace from 'root/src/shared/descriptions/modules/titleHeaderMarketplace'
 
 const allModules = {
 	...loginForm,
@@ -64,6 +66,8 @@ const allModules = {
 	...accountSettings,
 	...accountSettingsBannerHeader,
 	...twitchOAuth,
+	...steperHeaderModule,
+	...titleHeaderMarketplace,
 }
 
 export default allModules
