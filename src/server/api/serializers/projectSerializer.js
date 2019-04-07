@@ -1,12 +1,14 @@
 import { reduce, pick, prepend, startsWith, split, prop } from 'ramda'
 
-import { skProp, pkProp } from 'sls-aws/src/server/api/lenses'
+import { skProp, pkProp } from 'root/src/server/api/lenses'
 
-import { GET_PROJECT } from 'sls-aws/src/descriptions/endpoints/endpointIds'
-import { getResponseLenses } from 'sls-aws/src/server/api/getEndpointDesc'
+import { GET_PROJECT } from 'root/src/shared/descriptions/endpoints/endpointIds'
+import { getResponseLenses } from 'root/src/server/api/getEndpointDesc'
 
 const responseLenses = getResponseLenses(GET_PROJECT)
-const { overAssignees, setMyPledge, viewPledgeAmount } = responseLenses
+const {
+	overAssignees, setMyPledge, viewPledgeAmount, overGames,
+} = responseLenses
 
 export default projectArr => reduce(
 	(result, projectPart) => {
@@ -25,9 +27,19 @@ export default projectArr => reduce(
 				result,
 			)
 		}
+		if (startsWith('game', sk)) {
+			const game = pick(
+				['boxArtTemplateUrl', 'name'],
+				projectPart,
+			)
+			return overGames(prepend(game), result)
+		}
 		if (startsWith('project', sk)) {
 			const projectObj = pick(
-				['title', 'image', 'description', 'pledgeAmount'],
+				[
+					'title', 'image', 'description', 'pledgeAmount',
+					'assignees', 'games',
+				],
 				projectPart,
 			)
 			return {

@@ -1,7 +1,7 @@
-import ref from 'sls-aws/src/aws/util/ref'
+import ref from 'root/src/aws/util/ref'
 import {
 	BUCKET_POLICY, STATIC_BUCKET,
-} from 'sls-aws/src/aws/staticHosting/resourceIds'
+} from 'root/src/aws/staticHosting/resourceIds'
 
 export default {
 	[BUCKET_POLICY]: {

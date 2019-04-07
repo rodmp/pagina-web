@@ -1,5 +1,5 @@
-import { camelCase } from 'sls-aws/src/util/stringCase'
-import packageJson from 'sls-aws/package.json'
+import { camelCase } from 'root/src/shared/util/stringCase'
+import packageJson from 'root/appConfig.json'
 
 const stage = process.env.stage || 'dev'
 

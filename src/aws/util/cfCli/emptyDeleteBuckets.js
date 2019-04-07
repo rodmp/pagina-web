@@ -1,7 +1,7 @@
 import {
 	map, prop, propOr, splitEvery, concat, propEq, reduce, append,
 } from 'ramda'
-import listAllStackResources from 'sls-aws/src/aws/util/cfCli/listAllStackResources'
+import listAllStackResources from 'root/src/aws/util/cfCli/listAllStackResources'
 
 export const getAllBucketNames = (
 	cloudFormationClient, stackName,

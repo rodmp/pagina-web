@@ -1,6 +1,6 @@
 import {
 	schemaToAttributeDefinitions,
-} from 'sls-aws/src/aws/util/dynamoTablesFromSchemas'
+} from 'root/src/aws/util/dynamoTablesFromSchemas'
 
 describe('dynamoTablesFromSchema', () => {
 	test('schemaToAttributeDefinitions', () => {

@@ -1,6 +1,6 @@
-import { TABLE_NAME, documentClient } from 'sls-aws/src/server/api/dynamoClient'
-import { PARTITION_KEY, SORT_KEY } from 'sls-aws/src/constants/apiDynamoIndexes'
-import { dynamoItemsProp } from 'sls-aws/src/server/api/lenses'
+import { TABLE_NAME, documentClient } from 'root/src/server/api/dynamoClient'
+import { PARTITION_KEY, SORT_KEY } from 'root/src/shared/constants/apiDynamoIndexes'
+import { dynamoItemsProp } from 'root/src/server/api/lenses'
 
 
 export default async (userId, projectId) => {
@@ -13,15 +13,26 @@ export default async (userId, projectId) => {
 		},
 		ConsistentRead: true,
 	}
-	const assigneeParams = {
-		TableName: TABLE_NAME,
-		KeyConditionExpression: `${PARTITION_KEY} = :pk and begins_with(${SORT_KEY}, :assignee)`,
-		ExpressionAttributeValues: {
-			':pk': projectId,
-			':assignee': 'assignee',
-		},
-		ConsistentRead: true,
-	}
+	// Don't have to grab these anymore cause they are de-normalized on project
+	// ...may have to make a toggle for this fn though
+	// const assigneeParams = {
+	// 	TableName: TABLE_NAME,
+	// 	KeyConditionExpression: `${PARTITION_KEY} = :pk and begins_with(${SORT_KEY}, :assignee)`,
+	// 	ExpressionAttributeValues: {
+	// 		':pk': projectId,
+	// 		':assignee': 'assignee',
+	// 	},
+	// 	ConsistentRead: true,
+	// }
+	// const gameParams = {
+	// 	TableName: TABLE_NAME,
+	// 	KeyConditionExpression: `${PARTITION_KEY} = :pk and begins_with(${SORT_KEY}, :game)`,
+	// 	ExpressionAttributeValues: {
+	// 		':pk': projectId,
+	// 		':game': 'game',
+	// 	},
+	// 	ConsistentRead: true,
+	// }
 	const myPledgeParams = {
 		TableName: TABLE_NAME,
 		KeyConditionExpression: `${PARTITION_KEY} = :pk and ${SORT_KEY} = :pledgeUserId`,
@@ -32,14 +43,16 @@ export default async (userId, projectId) => {
 		ConsistentRead: true,
 	}
 
-	const [projectDdb, assigneesDdb, myPledgeDdb] = await Promise.all([
+	const [projectDdb, /* assigneesDdb, gamesDdb, */ myPledgeDdb] = await Promise.all([
 		documentClient.query(projectParams).promise(),
-		documentClient.query(assigneeParams).promise(),
+		// documentClient.query(assigneeParams).promise(),
+		// documentClient.query(gameParams).promise(),
 		documentClient.query(myPledgeParams).promise(),
 	])
 	return [
 		dynamoItemsProp(projectDdb),
-		dynamoItemsProp(assigneesDdb),
+		// dynamoItemsProp(assigneesDdb),
+		// dynamoItemsProp(gamesDdb),
 		dynamoItemsProp(myPledgeDdb),
 	]
 }

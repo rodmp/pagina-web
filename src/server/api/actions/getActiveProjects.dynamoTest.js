@@ -1,16 +1,16 @@
 import { map, range } from 'ramda'
 
-import wait from 'sls-aws/src/testUtil/wait'
+import wait from 'root/src/testUtil/wait'
 
-import { apiFn } from 'sls-aws/src/server/api'
+import { apiFn } from 'root/src/server/api'
 
-import { GET_ACTIVE_PROJECTS } from 'sls-aws/src/descriptions/endpoints/endpointIds'
-import createProjectPayload from 'sls-aws/src/server/api/mocks/createProjectPayload'
-import createProject from 'sls-aws/src/server/api/actions/createProject'
+import { GET_ACTIVE_PROJECTS } from 'root/src/shared/descriptions/endpoints/endpointIds'
+import createProjectPayload from 'root/src/server/api/mocks/createProjectPayload'
+import createProject from 'root/src/server/api/actions/createProject'
 
-import contextMock, { mockUserId } from 'sls-aws/src/server/api/mocks/contextMock'
-import { projectApprovedKey } from 'sls-aws/src/server/api/lenses'
-import auditProject from 'sls-aws/src/server/api/actions/auditProject'
+import contextMock, { mockUserId } from 'root/src/server/api/mocks/contextMock'
+import { projectApprovedKey } from 'root/src/server/api/lenses'
+import auditProject from 'root/src/server/api/actions/auditProject'
 
 describe('getActiveProjects', () => {
 	test('Successfully get active projects', async () => {

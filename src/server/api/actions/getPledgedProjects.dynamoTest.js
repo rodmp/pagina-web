@@ -1,12 +1,12 @@
-import { apiFn } from 'sls-aws/src/server/api'
+import { apiFn } from 'root/src/server/api'
 
-import { GET_PLEDGED_PROJECTS } from 'sls-aws/src/descriptions/endpoints/endpointIds'
+import { GET_PLEDGED_PROJECTS } from 'root/src/shared/descriptions/endpoints/endpointIds'
 
-import createProject from 'sls-aws/src/server/api/actions/createProject'
-import pledgeProject from 'sls-aws/src/server/api/actions/pledgeProject'
-import createProjectPayload from 'sls-aws/src/server/api/mocks/createProjectPayload'
-import createPledgeProjectPayload from 'sls-aws/src/server/api/mocks/createPledgeProjectPayload'
-import { mockUserId } from 'sls-aws/src/server/api/mocks/contextMock'
+import createProject from 'root/src/server/api/actions/createProject'
+import pledgeProject from 'root/src/server/api/actions/pledgeProject'
+import createProjectPayload from 'root/src/server/api/mocks/createProjectPayload'
+import createPledgeProjectPayload from 'root/src/server/api/mocks/createPledgeProjectPayload'
+import { mockUserId } from 'root/src/server/api/mocks/contextMock'
 
 describe('getPledgedProjects', () => {
 	test('Successfully get pledged projects', async () => {

@@ -1,10 +1,10 @@
-import { apiFn } from 'sls-aws/src/server/api'
+import { apiFn } from 'root/src/server/api'
 
-import { TABLE_NAME, documentClient } from 'sls-aws/src/server/api/dynamoClient'
+import { TABLE_NAME, documentClient } from 'root/src/server/api/dynamoClient'
 
-import { CREATE_PROJECT } from 'sls-aws/src/descriptions/endpoints/endpointIds'
-import createProjectPayload from 'sls-aws/src/server/api/mocks/createProjectPayload'
-import { mockUserId } from 'sls-aws/src/server/api/mocks/contextMock'
+import { CREATE_PROJECT } from 'root/src/shared/descriptions/endpoints/endpointIds'
+import createProjectPayload from 'root/src/server/api/mocks/createProjectPayload'
+import { mockUserId } from 'root/src/server/api/mocks/contextMock'
 
 const scanTable = () => {
 	const params = {
@@ -22,8 +22,9 @@ const event = {
 describe('createProject', () => {
 	test('createProject', async () => {
 		const res = await apiFn(event)
-		const tableScan = await scanTable()
-		console.log(tableScan)
-		expect(res).toEqual({})
+		// const tableScan = await scanTable()
+		// This fails to create the right filter for the test
+		// const card = tableScan.Items.filter(item => item.pk === res.body.id);
+		expect(res.statusCode).toEqual(200);
 	})
 })

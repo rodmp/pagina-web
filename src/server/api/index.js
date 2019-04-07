@@ -1,16 +1,16 @@
 import { prop, pick } from 'ramda'
 
-import validateSchema from 'sls-aws/src/util/validateSchema'
+import validateSchema from 'root/src/shared/util/validateSchema'
 import {
 	customError, payloadSchemaError, responseSchemaError,
 	notFoundError,
-} from 'sls-aws/src/server/api/errors'
-import ajvErrors from 'sls-aws/src/util/ajvErrors'
+} from 'root/src/server/api/errors'
+import ajvErrors from 'root/src/shared/util/ajvErrors'
 import {
 	getPayloadSchema, getResultSchema, testEndpointExists,
-} from 'sls-aws/src/server/api/getEndpointDesc'
-import serverEndpoints from 'sls-aws/src/server/api/actions'
-import authorizeRequest from 'sls-aws/src/server/api/authorizeRequest'
+} from 'root/src/server/api/getEndpointDesc'
+import serverEndpoints from 'root/src/server/api/actions'
+import authorizeRequest from 'root/src/server/api/authorizeRequest'
 
 
 const validateOrNah = (schemaType, endpointId, schema) => (payload) => {
@@ -22,8 +22,8 @@ const validateOrNah = (schemaType, endpointId, schema) => (payload) => {
 				return payload
 			}
 			const errors = ajvErrors(schema, prop('errors', res))
-			const errorType = schemaType === 'payloadSchema' ?
-				payloadSchemaError(errors) : responseSchemaError(errors)
+			const errorType = schemaType === 'payloadSchema'
+				? payloadSchemaError(errors) : responseSchemaError(errors)
 			throw errorType
 		})
 	}
@@ -43,9 +43,7 @@ export const apiHof = (
 		const action = prop(endpointId, serverEndpointsObj)
 		const payloadSchema = getPayloadSchemaFn(endpointId)
 		const resultSchema = getResultSchemaFn(endpointId)
-
 		const userId = await authorizeRequestFn(endpointId, authentication)
-
 		const validatePayload = validateOrNah(
 			'payloadSchema', endpointId, payloadSchema,
 		)
@@ -56,11 +54,9 @@ export const apiHof = (
 		await validatePayload(payload)
 		const res = await action({ userId, payload })
 		await validateResult(res)
-
 		return { statusCode: 200, body: res }
 	} catch (error) {
 		const errorMessage = error.message
-		// console.warn(error)
 		return customError(error.statusCode || 500, {
 			...(errorMessage ? { generalErrors: errorMessage } : {}),
 			...pick(['generalErrors', 'schemaErrors'], error),

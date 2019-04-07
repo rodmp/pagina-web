@@ -1,6 +1,6 @@
-import { authorizeRequestHof } from 'sls-aws/src/server/api/authorizeRequest'
+import { authorizeRequestHof } from 'root/src/server/api/authorizeRequest'
 
-import { authenticated, admin } from 'sls-aws/src/constants/authenticationTypes'
+import { authenticated, admin } from 'root/src/shared/constants/authenticationTypes'
 
 const getAuthenticationFn = jest.fn()
 const getCognitoUserFn = jest.fn()
