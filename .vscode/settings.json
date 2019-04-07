@@ -1,0 +1,11 @@
+{
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/**": true,
+        "node_modules/**": true
+    },
+    "eslint.enable": true,
+    "eslint.options": {"configFile": ".eslintrc"},
+    "eslint.nodePath": "node_modules"
+}
