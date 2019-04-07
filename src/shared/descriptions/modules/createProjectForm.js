@@ -11,20 +11,21 @@ import { formCommon } from 'root/src/shared/descriptions/modules/pledgeProjectFo
 export default {
 	[CREATE_PROJECT_FORM_MODULE_ID]: {
 		moduleType: 'stepForm',
+		schema: compose(
+			dissocPath(['properties', 'projectId']),
+			dissocPath(['properties', 'stripeCardId']),
+			dissocPath(['additionalProperties']),
+			set(
+				lensProp('required'),
+				without(
+					['stripeCardId'],
+					view(lensProp('required'), createProjectPayloadSchema),
+				),
+			),
+		)(createProjectPayloadSchema),
 		forms: [
 			{
-				schema: compose(
-					dissocPath(['properties', 'projectId']),
-					dissocPath(['properties', 'stripeCardId']),
-					dissocPath(['additionalProperties']),
-					set(
-						lensProp('required'),
-						without(
-							['stripeCardId'],
-							view(lensProp('required'), createProjectPayloadSchema),
-						),
-					),
-				)(createProjectPayloadSchema),
+
 				title: 'Dare a Streamer',
 				fields: [
 					{
