@@ -10,6 +10,7 @@ import pledgeDynamoObj from 'root/src/server/api/actionUtil/pledgeDynamoObj'
 import { generalError } from 'root/src/server/api/errors'
 import dynamoQueryProject from 'root/src/server/api/actionUtil/dynamoQueryProject'
 import projectSerializer from 'root/src/server/api/serializers/projectSerializer'
+import validateStripeSourceId from 'root/src/server/api/actionUtil/validateStripeSourceId'
 
 const payloadLenses = getPayloadLenses(PLEDGE_PROJECT)
 const { viewPledgeAmount, viewStripeCardId } = payloadLenses
@@ -17,7 +18,7 @@ const { viewPledgeAmount, viewStripeCardId } = payloadLenses
 export default async ({ userId, payload }) => {
 	const { projectId } = payload
 	const [
-		projectToPledgeDdb, myPledgeDdb,
+		projectToPledgeDdb,
 	] = await dynamoQueryProject(
 		userId, projectId,
 	)
@@ -27,17 +28,20 @@ export default async ({ userId, payload }) => {
 		throw generalError('Project doesn\'t exist')
 	}
 
-	const myPledge = head(myPledgeDdb || []);
+	const newPledgeAmount = viewPledgeAmount(payload)
 
-	if (myPledge) {
-		throw generalError('You\'ve already pledged this project')
+	const sourceId = viewStripeCardId(payload)
+	if (!validateStripeSourceId(sourceId)) {
+		throw payloadSchemaError({ stripeCardId: 'Invalid source id' })
 	}
 
-	const newPledgeAmount = viewPledgeAmount(payload)
 	const newPledge = pledgeDynamoObj(
 		projectId, projectToPledge, userId,
-		newPledgeAmount, viewStripeCardId(payload),
+		newPledgeAmount, sourceId,
 	)
+
+    const { pledgeAmount } = projectToPledge
+
 	// TODO: Check pledge amount
 	const pledgeParams = {
 		TableName: TABLE_NAME,
@@ -51,9 +55,9 @@ export default async ({ userId, payload }) => {
 			[PARTITION_KEY]: projectToPledge[PARTITION_KEY],
 			[SORT_KEY]: projectToPledge[SORT_KEY],
 		},
-		UpdateExpression: 'set pledgeAmount = pledgeAmount + :newPledgeAmount',
+		UpdateExpression: 'SET pledgeAmount = :newPledgeAmount',
 		ExpressionAttributeValues: {
-			':newPledgeAmount': newPledgeAmount,
+			':newPledgeAmount': pledgeAmount + newPledgeAmount,
 		},
 	}
 
@@ -61,15 +65,14 @@ export default async ({ userId, payload }) => {
 
 	const newProject = projectSerializer([
 		...projectToPledgeDdb,
-		//...assigneesDdb,
-		//...gamesDdb,
 		newPledge,
 	])
+
 	return {
 		...newProject,
 		pledgeAmount: add(
 			viewPledgeAmount(newProject),
-			viewPledgeAmount(newPledge),
+            newPledgeAmount,
 		),
 	}
 }

@@ -80,9 +80,9 @@ export const BannerHeaderUnconnected = memo(({
 	bannerImage, bannerImageText, bannerImageSubText, textWithBg, bannerSubText, linkLabel, linkRouteId,
 	classes, createNewDareActive,
 }) => (
-	<Fragment>
-		<div className={classNames(classes.bottomMargin, 'layout-column')}>
-			<div
+	<div className={classNames(classes.bottomMargin, 'layout-column')}>
+		{orNull(bannerImage,
+			(<div
 				className={classNames(classes.banner, 'layout-row')}
 			>
 				<div
@@ -97,7 +97,8 @@ export const BannerHeaderUnconnected = memo(({
 					</div>
 				</div>
 			</div>
-		</div>
+			))
+		}
 		<div className="layout-row layout-align-center">
 			<MaxWidthContainer>
 				<div className="flex layout-column">
@@ -115,7 +116,7 @@ export const BannerHeaderUnconnected = memo(({
 				</div>
 			</MaxWidthContainer>
 		</div>
-	</Fragment>
+	</div>
 ))
 
 export default withModuleContext(

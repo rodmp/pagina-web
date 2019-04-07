@@ -35,6 +35,8 @@ import changePasswordForm from 'root/src/shared/descriptions/modules/changePassw
 import changePasswordSuccess from 'root/src/shared/descriptions/modules/changePasswordSuccess'
 import managePaymentForm from 'root/src/shared/descriptions/modules/managePaymentForm'
 import managePaymentList from 'root/src/shared/descriptions/modules/managePaymentList'
+import steperHeaderModule from 'root/src/shared/descriptions/modules/steperHeaderModule'
+import titleHeaderMarketplace from 'root/src/shared/descriptions/modules/titleHeaderMarketplace'
 
 const allModules = {
 	...loginForm,
@@ -73,6 +75,8 @@ const allModules = {
 	...changePasswordSuccess,
 	...managePaymentForm,
 	...managePaymentList,
+	...steperHeaderModule,
+	...titleHeaderMarketplace,
 }
 
 export default allModules
