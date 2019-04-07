@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, Fragment } from 'react'
 import classNames from 'classnames'
 
 import { orNull } from 'root/src/shared/util/ramdaPlus'

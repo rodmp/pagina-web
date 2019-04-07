@@ -19,6 +19,7 @@ import addSubForm from 'root/src/client/logic/form/reducers/addSubForm'
 import removeSubForm from 'root/src/client/logic/form/reducers/removeSubForm'
 import stepFormNextPage from 'root/src/client/logic/form/reducers/stepFormNextPage'
 import stepFormPrevPage from 'root/src/client/logic/form/reducers/stepFormPrevPage'
+import clearAllForms from 'root/src/client/logic/form/reducers/clearAllForms'
 
 // api
 import apiListRequestError from 'root/src/client/logic/api/reducers/apiListRequestError'
@@ -32,6 +33,7 @@ import generalRecordModification from 'root/src/client/logic/api/reducers/genera
 import apiRecordClickActionRequestError from 'root/src/client/logic/api/reducers/apiRecordClickActionRequestError'
 import apiRecordClickActionRequestSuccess from 'root/src/client/logic/api/reducers/apiRecordClickActionRequestSuccess'
 import initApiRecordClickActionRequest from 'root/src/client/logic/api/reducers/initApiRecordClickActionRequest'
+import deletePaymentMethodOnSuccess from 'root/src/client/logic/list/reducers/deletePaymentMethodOnSuccess'
 
 // listeners
 import popStateListener from 'root/src/client/logic/route/listeners/popStateListener'
@@ -47,6 +49,7 @@ const store = createStore(
 		...stepFormPrevPage,
 		...clearFormErrors,
 		...clearForm,
+		...clearAllForms,
 		...setFormErrors,
 		...submitForm,
 		...submitFormComplete,
@@ -62,6 +65,7 @@ const store = createStore(
 		...apiRecordClickActionRequestSuccess,
 		...initApiRecordClickActionRequest,
 		...generalRecordModification,
+		...deletePaymentMethodOnSuccess,
 	}, // reducer object
 	// [], // sagas
 	[
