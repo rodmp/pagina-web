@@ -7,6 +7,8 @@ import listSubtitleSelector from 'root/src/client/logic/list/selectors/listSubti
 import listControlsSelector from 'root/src/client/logic/list/selectors/listControlsSelector'
 
 import deletePaymentMethod from 'root/src/client/logic/list/thunks/deletePaymentMethod'
+import setDefaultPaymentMethod from 'root/src/client/logic/list/thunks/setDefaultPaymentMethod'
+import addPaymentOnSuccess from 'root/src/client/logic/list/thunks/addPaymentOnSuccess'
 
 
 export default reduxConnector(
@@ -17,5 +19,9 @@ export default reduxConnector(
 		['listSubtitle', listSubtitleSelector],
 		['listControls', listControlsSelector],
 	],
-	[['deletePaymentMethod', deletePaymentMethod]],
+	[
+		['deletePaymentMethod', deletePaymentMethod],
+		['setDefaultPaymentMethod', setDefaultPaymentMethod],
+		['addPaymentOnSuccess', addPaymentOnSuccess],
+	],
 )

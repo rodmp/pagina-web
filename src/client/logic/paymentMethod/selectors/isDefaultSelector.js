@@ -4,6 +4,6 @@ import { GET_PAYMENT_METHOD } from 'root/src/shared/descriptions/endpoints/endpo
 import { getResponseLenses } from 'root/src/server/api/getEndpointDesc'
 
 const responseLenses = getResponseLenses(GET_PAYMENT_METHOD)
-const { viewCardType } = responseLenses
+const { viewIsDefault } = responseLenses
 
-export default (state, props) => viewCardType(getRecordSelector(state, props))
+export default (state, props) => viewIsDefault(getRecordSelector(state, props))
