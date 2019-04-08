@@ -15,6 +15,7 @@ import canPledgeProjectSelector from 'root/src/client/logic/project/selectors/ca
 import canEditProjectDetailsSelector from 'root/src/client/logic/project/selectors/canEditProjectDetailsSelector'
 import isAuthenticatedSelector from 'root/src/client/logic/auth/selectors/isAuthenticated'
 import pushRoute from 'root/src/client/logic/route/thunks/pushRoute'
+import updateProject from 'root/src/client/logic/project/thunks/updateProject'
 
 export default reduxConnector(
 	[
@@ -32,5 +33,8 @@ export default reduxConnector(
 		['isAuthenticated', isAuthenticatedSelector],
 		['canEditProjectDetails', canEditProjectDetailsSelector],
 	],
-	[['pushRoute', pushRoute]],
+	[
+		['pushRoute', pushRoute],
+		['updateProject', updateProject]
+	],
 )

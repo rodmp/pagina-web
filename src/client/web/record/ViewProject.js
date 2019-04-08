@@ -106,7 +106,7 @@ const styles = {
 export const ViewProjectModule = memo(({
 	projectId, projectDescription, projectTitle, pledgeAmount, assignees,
 	gameImage, canApproveProject, canRejectProject, pushRoute, canPledgeProject,
-	classes, isAuthenticated, canEditProjectDetails,
+	classes, isAuthenticated, canEditProjectDetails, updateProject,
 }) => {
 	const [title, setTitle] = useState(projectTitle)
 	const [description, setDescription] = useState(projectDescription)
@@ -214,21 +214,29 @@ export const ViewProjectModule = memo(({
 						classes.descriptionContainer,
 					)}
 					>
-						<div className={classNames(classes.descriptionTitle, 'flex-90', 'layout-row')}>Description</div>
-						{ternary(canEditProjectDetails,
-							<TextField
-								type="textarea"
-								value={description || ''}
-								onChange={e => setDescription(e.target.value)}
-								variant="outlined"
-								fullWidth
-							/>,
-							<div className={classes.description}>
-								{projectDescription}
-							</div>)}
-						{orNull(canEditProjectDetails,
-							<button>Dupa</button>)}
-
+						<div className={classNames(classes.descriptionTitle)}>Description</div>
+						<div className={classNames('flex-100', 'layout-row')}>
+							<div className={classNames('flex-90')}>
+								{ternary(canEditProjectDetails,
+									<TextField
+										type="textarea"
+										value={description || ''}
+										onChange={e => setDescription(e.target.value)}
+										variant="outlined"
+										fullWidth
+									/>,
+									<div className={classes.description}>
+										{projectDescription}
+									</div>)}
+							</div>
+							{orNull(canEditProjectDetails,
+								<Button
+									onClick={() => updateProject({ title, description, projectId })}
+									isSmallButton
+								>
+									Save
+								</Button>)}
+						</div>
 					</div>
 				</div>
 			</MaxWidthContainer>
