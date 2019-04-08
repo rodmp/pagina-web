@@ -2,12 +2,13 @@
 export default {
 	type: 'object',
 	properties: {
+		stripeCardId: { type: 'string' },
 		lastFour: { type: 'string' },
-		cardType: { type: 'string' },
-		expDate: { type: 'number' },
-		id: { type: 'string' },
-		zipCode: { type: 'string' },
+		expMonth: { type: 'number' },
+		expYear: { type: 'number' },
+		brand: { type: 'string' },
+		isDefault: { type: 'boolean' },
 	},
-	required: ['lastFour', 'cardType', 'expDate', 'id', 'zipCode'],
+	stripeCardId: ['stripeCardId', 'lastFour', 'expMonth', 'expYear', 'brand', 'isDefault'],
 	additionalProperties: false,
 }

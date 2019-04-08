@@ -1,7 +1,5 @@
 import React, { memo } from 'react'
 import cardDateSelector from 'root/src/client/web/list/util/cardDateSelector'
-import cardTypeSelector from 'root/src/client/web/list/util/cardTypeSelector'
-import lastFourSelector from 'root/src/client/web/list/util/lastFourSelector'
 import paymentMethodListItemConnector from 'root/src/client/logic/paymentMethod/connectors/paymentMethodListItemConnector'
 import withModuleContext from 'root/src/client/util/withModuleContext'
 
@@ -9,11 +7,13 @@ import withModuleContext from 'root/src/client/util/withModuleContext'
 import classNames from 'classnames'
 
 import Button from 'root/src/client/web/base/Button'
+import RadioButton from 'root/src/client/web/base/RadioButton'
 
 const styles = {
 	root: {
 		width: '100%',
 		marginBottom: 27,
+		cursor: 'pointer',
 	},
 	cardDetails: {
 	},
@@ -23,14 +23,23 @@ const styles = {
 	},
 }
 
-export const ListItemUnconnected = memo(({
-	cardType, classes, expDate, lastFour, openModal,
+export const PaymentMethodUnconnected = memo(({
+	classes, expMonth, expYear, lastFour, openModal, isDefault, onClick, recordId,
 }) => (
-	<div className={classNames('flex layout-row layout-align-space-between-center', classes.root)}>
-		<div className={classNames('flex layout-column', classes.cardDetails)}>
-			<strong>{cardTypeSelector(cardType)} {lastFourSelector(lastFour)}</strong>
-			<span>Expires {cardDateSelector(expDate)}</span>
+	<div
+		className={classNames('flex layout-row layout-align-space-between-center', classes.root)}
+	>
+		<div
+			onClick={() => onClick(recordId)}
+			className={classNames('flex layout-row layout-align-space-between-center')}
+		>
+			<RadioButton checked={isDefault} />
+			<div className={classNames('flex layout-column', classes.cardDetails)}>
+				<strong>********{lastFour}</strong>
+				<span>Expires {cardDateSelector(expMonth, expYear)}</span>
+			</div>
 		</div>
+
 		<Button
 			type="button"
 			onClick={() => openModal()}
@@ -45,5 +54,5 @@ export const ListItemUnconnected = memo(({
 ))
 
 export default withModuleContext(
-	paymentMethodListItemConnector(ListItemUnconnected, styles),
+	paymentMethodListItemConnector(PaymentMethodUnconnected, styles),
 )

@@ -10,10 +10,13 @@ export default async ({ userId, payload }) => {
 		userId, projectId,
 	)
 
-	return projectSerializer([
-		...project,
-		// ...assignee,
-		// ...game,
-		...myPledge,
-	])
+	return {
+		userId,
+		...projectSerializer([
+			...project,
+			// ...assignee,
+			// ...game,
+			...myPledge,
+		]),
+	}
 }
