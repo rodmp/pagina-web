@@ -7,6 +7,7 @@ export const currentRouteIndex = 0
 
 export const routeIdKey = 'routeId'
 export const routeParamsKey = 'routeParams'
+export const routeQueryKey = 'query'
 
 export const authKey = 'authentication'
 export const authValue = 'authenticated'
