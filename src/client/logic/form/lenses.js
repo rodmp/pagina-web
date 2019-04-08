@@ -103,6 +103,38 @@ export const formModuleSchema = {
 		[variableSchemaKey]: {
 			type: 'object',
 			properties: {
+				title: { type: 'string' },
+				subTitle: { type: 'string' },
+				preSubmitText: { type: 'string' },
+				postSubmitText: { type: 'string' },
+				preSubmitCaption: { type: 'string' },
+				postSubmitCaption: { type: 'string' },
+				formType: { type: 'string' },
+				schema: {
+					type: 'object',
+					properties: {},
+				},
+				fields: {
+					type: 'array',
+					items: {
+						type: 'object',
+						properties: {
+							fieldId: { type: 'string' },
+							inputType: {
+								type: 'string',
+								enum: [
+									'text', 'password', 'email', 'number',
+									'subForm',
+								],
+							},
+							label: { type: 'string' },
+							// copy of fields
+							subFormFields: {
+								type: 'array',
+							},
+						},
+					},
+				},
 				...formModuleCommon,
 				submits: {
 					type: 'array',
