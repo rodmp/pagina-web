@@ -4,7 +4,7 @@ import { ACTIVE_PROJECTS_ROUTE_ID } from 'root/src/shared/descriptions/routes/ro
 
 export default {
 	[TWITCH_OAUTH_MODULE_ID]: {
-		moduleType: 'userData',
+		moduleType: 'external',
 		endpointId: GET_USERS_TWITCH,
 		externalPayloadMap: [
 			['authToken', ':access_token'],
