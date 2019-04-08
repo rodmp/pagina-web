@@ -45,6 +45,8 @@ describe('getActiveProjects', () => {
 			payload: { currentPage: 1 },
 		}
 		const res = await apiFn(event, contextMock)
+
+		console.log(res)
 		expect(res.body.items.length).toEqual(8)
 		expect(res.body.items[0].sk).toEqual(projectArr[0].sk)
 		expect(res.body.items[1].sk).toEqual(projectArr[1].sk)
