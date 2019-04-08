@@ -15,7 +15,6 @@
     "deploy": "./node_modules/.bin/babel-node --presets=env,stage-0 ./src/aws/util/cfCli deploy",
     "update": "./node_modules/.bin/babel-node --presets=env,stage-0 ./src/aws/util/cfCli update",
     "delete": "./node_modules/.bin/babel-node --presets=env,stage-0 ./src/aws/util/cfCli remove",
-    "update": "./node_modules/.bin/babel-node --presets=env,stage-0 ./src/aws/util/cfCli update",
     "outputs": "./node_modules/.bin/babel-node --presets=env,stage-0 ./src/aws/util/cfCli outputs",
     "createDdb": "docker run --name dynamodb -p 9000:8000 amazon/dynamodb-local",
     "startDdb": "docker start dynamodb"

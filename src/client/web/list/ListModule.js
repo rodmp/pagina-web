@@ -46,10 +46,9 @@ const styles = {
 	...modalStyle,
 }
 
-export const ListModuleUnconnected = memo(({
-	list, listType, currentPage, hasMore, classes, getNextPage,
-}) => ternary(
-	listType === 'card',
+export const CardList = ({
+	list, currentPage, hasMore, classes, getNextPage,
+}) => (
 	<div className="flex layout-row layout-align-center-start">
 		<MaxWidthContainer>
 			<div className="flex layout-row layout-align-center">
