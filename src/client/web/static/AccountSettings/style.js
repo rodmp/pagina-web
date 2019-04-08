@@ -27,6 +27,10 @@ const styles = {
 		fontSize: 18,
 		boxShadow: '0 5px 6px 0 rgba(0, 0, 0, 0.16)',
 		textTransform: 'none',
+		cursor: 'pointer',
+	},
+	link: {
+		textDecoration: 'none',
 	},
 }
 

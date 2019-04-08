@@ -5,7 +5,7 @@ import LoadingButton from 'root/src/client/web/base/LoadingButton'
 import submitFormHandler from 'root/src/client/logic/form/handlers/submitFormHandler'
 
 export const SubmitsUnstyled = memo(({
-	formSubmits, moduleKey, submitFormFn,
+	formSubmits, moduleKey, submitFormFn, formType, setWasSubmitted, classes
 }) => (
 	<div>
 		{formSubmits.map(([label, submitIndex, submitting]) => (
@@ -13,8 +13,9 @@ export const SubmitsUnstyled = memo(({
 				key={submitIndex}
 				loading={submitting}
 				onClick={
-					submitFormHandler(submitFormFn, moduleKey, submitIndex)
+					submitFormHandler(submitFormFn, moduleKey, submitIndex, setWasSubmitted)
 				}
+				formType={formType}
 			>
 				{label}
 			</LoadingButton>

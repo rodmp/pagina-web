@@ -49,7 +49,7 @@ export const PaymentMethodUnconnected = memo(({
 			disableRipple
 		>
 				Remove
-   </Button>
+		</Button>
 	</div>
 ))
 

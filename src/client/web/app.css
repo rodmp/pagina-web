@@ -13,6 +13,10 @@ body {
 	overflow-y: scroll !important; 
 }
 
+.mui-fixed {
+	padding: 0 !important;
+}
+
 .hide {
 	display: none;
 }
