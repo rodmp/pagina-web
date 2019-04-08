@@ -17,12 +17,12 @@ import dynamoQueryProject from 'root/src/server/api/actionUtil/dynamoQueryProjec
 export default async ({ userId, payload }) => {
 	const { projectId, description, stripeCardId } = payload
 
-	const [ project ] = await dynamoQueryProject(
+	const [project] = await dynamoQueryProject(
 		userId, projectId,
 	)
 	// Checks if the descriptions are equal, if so, we avoid a database call
 	if (equals(description, project.description)) {
-		throw generalError('Project description is the same, please make sure you change it');
+		throw generalError('Project description is the same, please make sure you change it')
 	}
 
 	const projectToUpdate = head(project)
@@ -56,7 +56,7 @@ export default async ({ userId, payload }) => {
 		},
 	}
 
-	await documentClient.update(updateProjectParams).promise();
+	await documentClient.update(updateProjectParams).promise()
 
 	const newProject = {
 		...projectToUpdate,
@@ -75,6 +75,7 @@ export default async ({ userId, payload }) => {
 	}
 
 	return {
+		userId,
 		...newProjectSerialized,
 	}
 }

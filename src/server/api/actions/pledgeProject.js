@@ -40,7 +40,7 @@ export default async ({ userId, payload }) => {
 		newPledgeAmount, sourceId,
 	)
 
-    const { pledgeAmount } = projectToPledge
+	const { pledgeAmount } = projectToPledge
 
 	// TODO: Check pledge amount
 	const pledgeParams = {
@@ -61,7 +61,7 @@ export default async ({ userId, payload }) => {
 		},
 	}
 
-	await documentClient.update(updateProjectParams).promise();
+	await documentClient.update(updateProjectParams).promise()
 
 	const newProject = projectSerializer([
 		...projectToPledgeDdb,
@@ -70,9 +70,10 @@ export default async ({ userId, payload }) => {
 
 	return {
 		...newProject,
+		userId,
 		pledgeAmount: add(
 			viewPledgeAmount(newProject),
-            newPledgeAmount,
+			newPledgeAmount,
 		),
 	}
 }
