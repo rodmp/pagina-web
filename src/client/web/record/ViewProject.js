@@ -1,5 +1,5 @@
 import { map, addIndex } from 'ramda'
-import React, { memo } from 'react'
+import React, { memo, useState, useEffect } from 'react'
 import classNames from 'classnames'
 import { orNull, ternary } from 'root/src/shared/util/ramdaPlus'
 
@@ -13,6 +13,7 @@ import MaxWidthContainer from 'root/src/client/web/base/MaxWidthContainer'
 import Title from 'root/src/client/web/typography/Title'
 import SubHeader from 'root/src/client/web/typography/SubHeader'
 import Button from 'root/src/client/web/base/Button'
+import TextField from '@material-ui/core/TextField'
 
 import RecordClickActionButton from 'root/src/client/web/base/RecordClickActionButton'
 import { APPROVE_PROJECT, REJECT_PROJECT } from 'root/src/shared/descriptions/recordClickActions/recordClickActionIds'
@@ -106,7 +107,16 @@ export const ViewProjectModule = memo(({
 	projectId, projectDescription, projectTitle, pledgeAmount, assignees,
 	gameImage, canApproveProject, canRejectProject, pushRoute, canPledgeProject,
 	classes, isAuthenticated, canEditProjectDetails,
-}) => (
+}) => {
+	const [title, setTitle] = useState(projectTitle)
+	const [description, setDescription] = useState(projectDescription)
+
+	useEffect(() => {
+		setTitle(projectTitle)
+		setDescription(projectDescription)
+	}, [projectTitle, projectDescription])
+
+	return (
 		<div className="flex layout-row layout-align-center-start">
 			<MaxWidthContainer>
 				<div className="flex layout-row layout-wrap">
@@ -115,11 +125,18 @@ export const ViewProjectModule = memo(({
 						'layout-align-center', classes.title,
 					)}
 					>
-						<div className={classes.titleText}>
-							{ternary(canEditProjectDetails,
-								<input type="text" value={projectTitle} />,
-								<Title>{projectTitle}</Title>)}
-						</div>
+						{ternary(canEditProjectDetails,
+							<TextField
+								label="Title"
+								type="text"
+								value={title || ''}
+								onChange={e => setTitle(e.target.value)}
+								variant="outlined"
+							/>,
+							<div className={classes.titleText}>
+								<Title>{title}</Title>
+							</div>)}
+
 					</div>
 					<div className="flex-100 flex-gt-sm-60 flex-order-1">
 						<img alt="Game" src={gameImage} className={classes.image} />
@@ -187,7 +204,7 @@ export const ViewProjectModule = memo(({
 										)}
 									>
 										Pledge
-								</Button>
+									</Button>
 								</div>
 							}
 						</div>
@@ -197,15 +214,27 @@ export const ViewProjectModule = memo(({
 						classes.descriptionContainer,
 					)}
 					>
-						<div className={classNames(classes.descriptionTitle)}>Description</div>
-						<div className={classes.description}>
-							{projectDescription}
-						</div>
+						<div className={classNames(classes.descriptionTitle, 'flex-90', 'layout-row')}>Description</div>
+						{ternary(canEditProjectDetails,
+							<TextField
+								type="textarea"
+								value={description || ''}
+								onChange={e => setDescription(e.target.value)}
+								variant="outlined"
+								fullWidth
+							/>,
+							<div className={classes.description}>
+								{projectDescription}
+							</div>)}
+						{orNull(canEditProjectDetails,
+							<button>Dupa</button>)}
+
 					</div>
 				</div>
 			</MaxWidthContainer>
 		</div>
-	))
+	)
+})
 
 export default withModuleContext(
 	viewProjectConnector(ViewProjectModule, styles),
