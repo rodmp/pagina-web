@@ -42,7 +42,6 @@ export const matchPathHof = (allRoutes) => {
 			return {
 				[routeIdKey]: prop(0, foundRoutePair),
 				[routeParamsKey]: routeParams,
-				// [routeQueryKey]: isEmpty(parsedQuery) ? {} : { ...parsedQuery },
 				...(isEmpty(parsedQuery) ? {} : { [routeQueryKey]: { ...parsedQuery } }),
 			}
 		}

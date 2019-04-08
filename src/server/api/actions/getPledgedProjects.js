@@ -18,6 +18,7 @@ export default async ({ userId }) => {
 	const dynamoResults = await documentClient.query(
 		userProjectIdParams,
 	).promise()
+
 	return listResults({
 		dynamoResults,
 		serializer: pledgeSerializer,

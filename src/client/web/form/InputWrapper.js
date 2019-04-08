@@ -1,6 +1,7 @@
 import React, { memo } from 'react'
 
 import { orNull } from 'root/src/shared/util/ramdaPlus'
+import classNames from 'classnames'
 
 import TertiaryBody from 'root/src/client/web/typography/TertiaryBody'
 import TitleFormText from 'root/src/client/web/typography/TitleFormText'
@@ -14,6 +15,9 @@ const styles = {
 	subFieldText: {
 		marginTop: 8,
 	},
+	inline: {
+		display: 'inline',
+	},
 	labelFieldText: {
 		marginBottom: 8,
 	},
@@ -25,8 +29,9 @@ const Fields = memo(
 		labelFieldText,
 		classes,
 		children,
+		formType,
 	}) => (
-		<div className={classes.space}>
+		<div className={classNames(classes.space, { [classes.inline]: (formType === 'universalForm') })}>
 			{orNull(
 				labelFieldText,
 				<div className={classes.labelFieldText}>
