@@ -8,12 +8,13 @@ import getProject from 'root/src/shared/descriptions/endpoints/getProject'
 import pledgeProject from 'root/src/shared/descriptions/endpoints/pledgeProject'
 import getPledgedProjects from 'root/src/shared/descriptions/endpoints/getPledgedProjects'
 import auditProject from 'root/src/shared/descriptions/endpoints/auditProject'
+import updateProject from 'root/src/shared/descriptions/endpoints/updateProject'
+
 import getPaymentMethods from 'root/src/shared/descriptions/endpoints/getPaymentMethods'
 import getPaymentMethod from 'root/src/shared/descriptions/endpoints/getPaymentMethod'
 import addPaymentMethod from 'root/src/shared/descriptions/endpoints/addPaymentMethod'
 import deletePaymentMethod from 'root/src/shared/descriptions/endpoints/deletePaymentMethod'
-import updateProject from 'root/src/shared/descriptions/endpoints/updateProject'
-
+import setDefaultPaymentMethod from 'root/src/shared/descriptions/endpoints/setDefaultPaymentMethod'
 import authTwitch from 'root/src/shared/descriptions/endpoints/authTwitch'
 import getAuthTokens from 'root/src/shared/descriptions/endpoints/getAuthTokens'
 
@@ -36,6 +37,7 @@ const allEndpoints = {
 	...getPaymentMethod,
 	...addPaymentMethod,
 	...deletePaymentMethod,
+	...setDefaultPaymentMethod,
 	...updateProject,
 }
 
