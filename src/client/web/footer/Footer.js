@@ -34,7 +34,7 @@ export const FooterUnconnected = memo(({ classes, currentYear }) => (
 					</Link>
 				</div>
 				<div className={classNames(classes.text, 'margin')}>
-					<Link routeId={''}>
+					<Link routeId="">
 						<span>Contact Us</span>
 					</Link>
 				</div>
@@ -74,7 +74,7 @@ export const FooterUnconnected = memo(({ classes, currentYear }) => (
 						<Link routeId={PRIVACY_POLICY_ROUTE_ID}><span>Privacy Policy</span></Link>
 					</div>
 					<div className={classNames(classes.text, 'margin')}>
-						<Link href={`mailto:${EMAIL}`}><span>Dare Drop &copy;{ currentYear }</span></Link>
+						<Link href={`mailto:${EMAIL}`}><span>Dare Drop &copy;{currentYear}</span></Link>
 					</div>
 				</div>
 			</div>
