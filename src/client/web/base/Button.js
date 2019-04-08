@@ -18,13 +18,18 @@ const styles = {
 		width: '100%',
 		height: 48.1,
 	},
+	smallButton: {
+		width: '20%',
+		margin: 'auto 0',
+		marginLeft: '5px',
+	},
 }
 
 export const ButtonUnstyled = memo(({
-	classes, onClick, disabled, children, style,
+	classes, onClick, disabled, children, style, isSmallButton,
 }) => (
 	<Button
-		className={classNames(classes.button, style)}
+		className={classNames(classes.button, style, { [classes.smallButton]: isSmallButton })}
 		onClick={onClick}
 		disabled={disabled}
 	>
