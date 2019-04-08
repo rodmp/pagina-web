@@ -7,7 +7,7 @@ import {
 import {
 	primarySquareButton,
 	universalForm,
-	noBackgroundButton, 
+	noBackgroundButton,
 } from 'root/src/client/web/componentTypes'
 
 import { withStyles } from '@material-ui/core/styles'
@@ -43,15 +43,24 @@ const styles = {
 			backgroundColor: 'transparent',
 		},
 	},
+	unstyled: {
+		color: primaryColor,
+		backgroundColor: 'transparent',
+		boxShadow: 'none',
+		'&:hover': {
+			color: primaryColor,
+			backgroundColor: 'transparent',
+		},
+	},
 }
 
 export const ButtonUnstyled = memo(({
-	classes, onClick, disabled, children, buttonType, isStyled, disableRipple, additionalClass, formType,
+	classes, onClick, disabled, children, buttonType, unstyled, disableRipple, additionalClass, formType,
 }) => (
 	<Button
 		className={classNames(
 			classes.button,
-			{ [classes.styledButton]: isStyled },
+			{ [classes.unstyled]: unstyled },
 			({ [classes.primarySquareButton]: buttonType === primarySquareButton || formType === universalForm }),
 			({ [classes.noBackgroundButton]: buttonType === noBackgroundButton }),
 			additionalClass,

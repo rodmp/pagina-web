@@ -16,5 +16,6 @@ export default reduxConnector(
 		['expMonth', expMonthSelector],
 		['expYear', expYearSelector],
 		['isDefault', isDefaultSelector],
+		['lastFour', lastFourSelector],
 	],
 )

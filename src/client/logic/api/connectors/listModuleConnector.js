@@ -10,6 +10,7 @@ import deletePaymentMethod from 'root/src/client/logic/list/thunks/deletePayment
 import setDefaultPaymentMethod from 'root/src/client/logic/list/thunks/setDefaultPaymentMethod'
 import addPaymentOnSuccess from 'root/src/client/logic/list/thunks/addPaymentOnSuccess'
 
+
 export default reduxConnector(
 	[
 		['list', getListSelector],
