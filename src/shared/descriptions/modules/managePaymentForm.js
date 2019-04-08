@@ -1,4 +1,5 @@
 import { dissocPath, compose, set, lensProp, without, view } from 'ramda'
+
 import {
 	MANAGE_PAYMENT_FORM_MODULE_ID,
 } from 'root/src/shared/descriptions/modules/moduleIds'
@@ -14,13 +15,18 @@ import {
 export default {
 	[MANAGE_PAYMENT_FORM_MODULE_ID]: {
 		moduleType: 'form',
-		formType: 'universalForm',
 		schema: compose(
+			dissocPath(['properties', 'stripeCardId']),
+			dissocPath(['properties', 'brand']),
+			dissocPath(['properties', 'lastFour']),
+			dissocPath(['properties', 'expMonth']),
+			dissocPath(['properties', 'expYear']),
+			dissocPath(['properties', 'isDefault']),
 			dissocPath(['additionalProperties']),
 			set(
 				lensProp('required'),
 				without(
-					[],
+					['stripeCardId', 'brand', 'lastFour', 'expMonth', 'expYear', 'isDefault'],
 					view(lensProp('required'), addPaymentMethodPayloadSchema),
 				),
 			),
@@ -28,28 +34,9 @@ export default {
 		title: 'Payment Information',
 		fields: [
 			{
-				fieldId: 'cardNumber',
-				inputType: 'text',
-				label: 'Credit Card Number',
-				placeholder: '4242 4242 4242 4242',
-			},
-			{
-				fieldId: 'expDate',
-				inputType: 'text',
-				label: 'Expiration',
-				placeholder: '01/12',
-			},
-			{
-				fieldId: 'securityCode',
-				inputType: 'text',
-				label: 'Security Code',
-				placeholder: '456',
-			},
-			{
-				fieldId: 'zipCode',
-				inputType: 'text',
-				label: 'Zip Code',
-				placeholder: '90210',
+				fieldId: 'stripeCardId',
+				inputType: 'stripeCard',
+				label: 'Credit Card',
 			},
 		],
 		submits: [

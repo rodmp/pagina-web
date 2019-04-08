@@ -36,6 +36,8 @@ import apiRecordClickActionRequestError from 'root/src/client/logic/api/reducers
 import apiRecordClickActionRequestSuccess from 'root/src/client/logic/api/reducers/apiRecordClickActionRequestSuccess'
 import initApiRecordClickActionRequest from 'root/src/client/logic/api/reducers/initApiRecordClickActionRequest'
 import deletePaymentMethodOnSuccess from 'root/src/client/logic/list/reducers/deletePaymentMethodOnSuccess'
+import setDefaultPaymentMethodOnSuccess from 'root/src/client/logic/list/reducers/setDefaultPaymentMethodOnSuccess'
+import addPaymentMethodOnSuccess from 'root/src/client/logic/list/reducers/addPaymentMethodOnSuccess'
 
 // listeners
 import popStateListener from 'root/src/client/logic/route/listeners/popStateListener'
@@ -67,6 +69,9 @@ const store = createStore(
 		...apiRecordClickActionRequestSuccess,
 		...initApiRecordClickActionRequest,
 		...generalRecordModification,
+		...addPaymentMethodOnSuccess,
+		...deletePaymentMethodOnSuccess,
+		...setDefaultPaymentMethodOnSuccess,
 		...partialFormDbSaveSuccess,
 		...clearPartialFormKeys,
 		...deletePaymentMethodOnSuccess,
