@@ -20,7 +20,7 @@ import { twitchOauthUrl } from 'root/src/shared/constants/twitch'
 import RecordClickActionButton from 'root/src/client/web/base/RecordClickActionButton'
 import { storageSet } from 'root/src/shared/util/storage'
 import isOneOfAssigneesSelector from 'root/src/client/logic/project/selectors/isOneOfAssigneesSelector'
-import { APPROVE_PROJECT, REJECT_PROJECT } from 'root/src/shared/descriptions/recordClickActions/recordClickActionIds'
+import { APPROVE_PROJECT, REJECT_PROJECT, REJECT_ACTIVE_PROJECT } from 'root/src/shared/descriptions/recordClickActions/recordClickActionIds'
 
 import viewProjectConnector from 'root/src/client/logic/project/connectors/viewProjectConnector'
 import withModuleContext from 'root/src/client/util/withModuleContext'
@@ -108,90 +108,100 @@ const styles = {
 }
 
 export const ViewProjectModule = memo(({
-	myPledge, status, userData = {}, isAuthenticated,
-	projectId, projectDescription, projectTitle, pledgeAmount, assignees,
-	gameImage, canApproveProject, canRejectProject, pushRoute, canPledgeProject,
-	classes,
+	userData = {}, classes, myPledge, status, projectId, projectDescription, projectTitle,
+	pledgeAmount, assignees, gameImage, canApproveProject, canRejectProject,
+	pushRoute, canPledgeProject, isAuthenticated, canRejectActiveProject,
 }) => (
-		<div className="flex layout-row layout-align-center-start">
-			<MaxWidthContainer>
-				<div className="flex layout-row layout-wrap">
-					<div className={classNames(
-						'flex-100', 'layout-row',
-						'layout-align-center', classes.title,
+	<div className="flex layout-row layout-align-center-start">
+		<MaxWidthContainer>
+			<div className="flex layout-row layout-wrap">
+				<div className={classNames(
+					'flex-100', 'layout-row',
+					'layout-align-center', classes.title,
+				)}
+				>
+					<div className={classes.titleText}>
+						<Title>{projectTitle}</Title>
+					</div>
+				</div>
+				<div className="flex-100 flex-gt-sm-60 flex-order-1">
+					<img alt="Game" src={gameImage} className={classes.image} />
+				</div>
+				<div
+					className={classNames(
+						'flex-100 flex-gt-sm-40',
+						'flex-order-3 flex-order-gt-sm-2',
+						'layout-column',
 					)}
-					>
-						<div className={classes.titleText}>
-							<Title>{projectTitle}</Title>
-						</div>
-					</div>
-					<div className="flex-100 flex-gt-sm-60 flex-order-1">
-						<img alt="Game" src={gameImage} className={classes.image} />
-					</div>
+				>
 					<div
-						className={classNames(
-							'flex-100 flex-gt-sm-40',
-							'flex-order-3 flex-order-gt-sm-2',
-							'layout-column',
-						)}
+						className={classNames(classes.sidebar, 'layout-column')}
 					>
+						<div className={classNames(classes.progressOuter)}>
+							<div className={classNames(classes.progressInner)} />
+						</div>
+						<div className={classNames('flex', 'layout-row', 'layout-wrap')}>
+							<div className={classNames('flex-50', 'flex-gt-sm-100', classes.sidebarItem)}>
+								<SubHeader>Total Pledged</SubHeader>
+								<div className={classNames(classes.text)}>{pledgeAmount}</div>
+							</div>
+							<div className={classNames('flex-50', 'flex-gt-sm-100', classes.sidebarItem)}>
+								<SubHeader>Pledgers</SubHeader>
+								<div className={classNames(classes.text)}>{assignees.length}</div>
+							</div>
+						</div>
 						<div
-							className={classNames(classes.sidebar, 'layout-column')}
+							className={classNames(
+								classes.sidebarItem,
+								'layout-row layout-wrap',
+							)}
 						>
-							<div className={classNames(classes.progressOuter)}>
-								<div className={classNames(classes.progressInner)} />
-							</div>
-							<div className={classNames('flex', 'layout-row', 'layout-wrap')}>
-								<div className={classNames('flex-50', 'flex-gt-sm-100', classes.sidebarItem)}>
-									<SubHeader>Total Pledged</SubHeader>
-									<div className={classNames(classes.text)}>{pledgeAmount}</div>
-								</div>
-								<div className={classNames('flex-50', 'flex-gt-sm-100', classes.sidebarItem)}>
-									<SubHeader>Pledgers</SubHeader>
-									<div className={classNames(classes.text)}>{assignees.length}</div>
-								</div>
-							</div>
-							<div
-								className={classNames(
-									classes.sidebarItem,
-									'layout-row layout-wrap',
-								)}
-							>
-								{addIndex(map)((assignee, i) => (
-									<Assignee key={i} {...assignee} />
-								), assignees)}
-							</div>
-							{orNull(
-								canApproveProject,
+							{addIndex(map)((assignee, i) => (
+								<Assignee key={i} {...assignee} />
+							), assignees)}
+						</div>
+						{orNull(
+							canApproveProject,
+							<div className={classes.sidebarItem}>
+								<RecordClickActionButton
+									recordClickActionId={APPROVE_PROJECT}
+									recordId={projectId}
+								/>
+							</div>,
+						)}
+						{
+							orNull(
+								canRejectProject,
 								<div className={classes.sidebarItem}>
 									<RecordClickActionButton
-										recordClickActionId={APPROVE_PROJECT}
+										recordClickActionId={REJECT_PROJECT}
 										recordId={projectId}
 									/>
 								</div>,
-							)}
-							{
-								orNull(
-									canRejectProject,
-									<div className={classes.sidebarItem}>
-										<RecordClickActionButton
-											recordClickActionId={REJECT_PROJECT}
-											recordId={projectId}
-										/>
-									</div>,
-								)
-							}
+							)
+						}
+						<div className={classes.sidebarItem}>
+							<Button
+								onClick={ternary(
+									isAuthenticated,
+									goToPledgeProjectHandler(projectId, pushRoute),
+									goToSignInHandler(pushRoute),
+								)}
+							>
+									Pledge
+								</Button>
+						</div>
+						{
+							orNull(
+								canRejectActiveProject,
 								<div className={classes.sidebarItem}>
-									<Button
-										onClick={ternary(
-											isAuthenticated,
-											goToPledgeProjectHandler(projectId, pushRoute),
-											goToSignInHandler(pushRoute),
-										)}
-									>
-										Pledge
-									</Button>
-								</div>
+									<RecordClickActionButton
+										recordClickActionId={REJECT_ACTIVE_PROJECT}
+										recordId={projectId}
+									/>
+								</div>,
+							)
+						}
 						{ternary(isOneOfAssigneesSelector(assignees, userData),
 							<TwitchButton
 								title="Accept or reject Dare"
@@ -207,21 +217,21 @@ export const ViewProjectModule = memo(({
 								href={twitchOauthUrl}
 							/>)}
 					</div>
-					</div>
-					<div className={classNames(
-						'flex-100', 'flex-order-2', 'flex-order-gt-sm-3',
-						classes.descriptionContainer,
-					)}
-					>
-						<div className={classNames(classes.descriptionTitle)}>Description</div>
-						<div className={classes.description}>
-							{projectDescription}
-						</div>
+				</div>
+				<div className={classNames(
+					'flex-100', 'flex-order-2', 'flex-order-gt-sm-3',
+					classes.descriptionContainer,
+				)}
+				>
+					<div className={classNames(classes.descriptionTitle)}>Description</div>
+					<div className={classes.description}>
+						{projectDescription}
 					</div>
 				</div>
-			</MaxWidthContainer>
-		</div>
-	))
+			</div>
+		</MaxWidthContainer>
+	</div>
+))
 
 export default withModuleContext(
 	viewProjectConnector(ViewProjectModule, styles),

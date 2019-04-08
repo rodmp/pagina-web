@@ -78,7 +78,7 @@ export const RenderModules = ({ moduleTypes, routeId }) => (
 						<BannerFooter />
 					</ModuleContextProvider>
 				)
-			case 'external':
+			case 'userData':
 				return (
 					<ModuleContextProvider {...moduleProps}>
 						<UserDataModule />

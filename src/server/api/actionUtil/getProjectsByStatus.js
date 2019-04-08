@@ -10,7 +10,9 @@ import {
 	GSI1_INDEX_NAME, GSI1_PARTITION_KEY,
 } from 'root/src/shared/constants/apiDynamoIndexes'
 
-export default async (status) => {
+const PageItemLedngth = 8
+
+export default async (status, payload) => {
 	const shardedProjects = await Promise.all(
 		map(
 			index => documentClient.query({
@@ -30,8 +32,28 @@ export default async (status) => {
 		[],
 		shardedProjects,
 	)
-	return listResults({
-		dynamoResults: { Items: map(project => [project], combinedProjects) },
-		serializer: projectSerializer,
-	})
+
+
+	const allPage = combinedProjects.length % PageItemLedngth > 0
+		? Math.round(combinedProjects.length / PageItemLedngth) + 1
+		: Math.round(combinedProjects.length / PageItemLedngth)
+
+	let { currentPage } = payload.payload
+	if (currentPage === undefined) {
+		currentPage = 1
+	}
+	const projects = combinedProjects.slice(
+		(currentPage - 1) * PageItemLedngth,
+		currentPage * PageItemLedngth,
+	)
+
+	return {
+		allPage,
+		currentPage: payload.currentPage,
+		interval: PageItemLedngth,
+		...listResults({
+			dynamoResults: { Items: map(project => [project], projects) },
+			serializer: projectSerializer,
+		}),
+	}
 }

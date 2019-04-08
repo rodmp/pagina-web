@@ -1,7 +1,5 @@
 const defaultStyles = {
 	width: '100%',
-	minWidth: 300,
-	maxWidth: 360,
 	outline: 'none',
 	borderRadius: 30,
 	background: 'none',
@@ -9,10 +7,6 @@ const defaultStyles = {
 	fontSize: 18,
 	cursor: 'pointer',
 	boxShadow: '0 5px 6px 0 rgba(0, 0, 0, 0.16)',
-
-	'@media (max-width: 600px)': {
-		maxWidth: 342,
-	},
 }
 
 const styledTwitchButton = {
@@ -26,10 +20,12 @@ const styledTwitchButton = {
 		justifyContent: 'center',
 		alignItems: 'center',
 		padding: 5,
+		marginBottom: 20,
 		color: '#800080',
 		lineHeight: 1,
 		fontWeight: 500,
 		height: 48,
+		minWidth: 278,
 		'& .button-subtitle': {
 			fontSize: 12,
 			fontWeight: 200,
