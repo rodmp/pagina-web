@@ -15,6 +15,7 @@
     "deploy": "./node_modules/.bin/babel-node --presets=env,stage-0 ./src/aws/util/cfCli deploy",
     "update": "./node_modules/.bin/babel-node --presets=env,stage-0 ./src/aws/util/cfCli update",
     "delete": "./node_modules/.bin/babel-node --presets=env,stage-0 ./src/aws/util/cfCli remove",
+    "update": "./node_modules/.bin/babel-node --presets=env,stage-0 ./src/aws/util/cfCli update",
     "outputs": "./node_modules/.bin/babel-node --presets=env,stage-0 ./src/aws/util/cfCli outputs",
     "createDdb": "docker run --name dynamodb -p 9000:8000 amazon/dynamodb-local",
     "startDdb": "docker start dynamodb"
@@ -87,6 +88,7 @@
     "redux-devtools-extension": "^2.13.5",
     "redux-thunk": "^2.3.0",
     "s3-stream-upload": "^2.0.2",
+    "stripe": "^6.19.0",
     "string-format": "^2.0.0",
     "uuid": "^3.3.2",
     "webpack": "^4.12.2",

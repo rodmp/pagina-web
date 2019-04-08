@@ -16,7 +16,7 @@ import Button from 'root/src/client/web/base/Button'
 import TextField from '@material-ui/core/TextField'
 
 import RecordClickActionButton from 'root/src/client/web/base/RecordClickActionButton'
-import { APPROVE_PROJECT, REJECT_PROJECT } from 'root/src/shared/descriptions/recordClickActions/recordClickActionIds'
+import { APPROVE_PROJECT, REJECT_PROJECT, REJECT_ACTIVE_PROJECT } from 'root/src/shared/descriptions/recordClickActions/recordClickActionIds'
 
 import viewProjectConnector from 'root/src/client/logic/project/connectors/viewProjectConnector'
 import withModuleContext from 'root/src/client/util/withModuleContext'
@@ -103,10 +103,12 @@ const styles = {
 	},
 }
 
+
 export const ViewProjectModule = memo(({
 	projectId, projectDescription, projectTitle, pledgeAmount, assignees,
 	gameImage, canApproveProject, canRejectProject, pushRoute, canPledgeProject,
 	classes, isAuthenticated, canEditProjectDetails, updateProject,
+	myPledge, status, canRejectActiveProject,
 }) => {
 	const [title, setTitle] = useState(projectTitle)
 	const [description, setDescription] = useState(projectDescription)
@@ -206,6 +208,17 @@ export const ViewProjectModule = memo(({
 										Pledge
 									</Button>
 								</div>
+							}
+							{
+								orNull(
+									canRejectActiveProject,
+									<div className={classes.sidebarItem}>
+										<RecordClickActionButton
+											recordClickActionId={REJECT_ACTIVE_PROJECT}
+											recordId={projectId}
+										/>
+									</div>,
+								)
 							}
 						</div>
 					</div>

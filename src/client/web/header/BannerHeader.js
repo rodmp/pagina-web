@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, Fragment } from 'react'
 import classNames from 'classnames'
 
 import { orNull } from 'root/src/shared/util/ramdaPlus'
@@ -81,21 +81,24 @@ export const BannerHeaderUnconnected = memo(({
 	classes, createNewDareActive,
 }) => (
 	<div className={classNames(classes.bottomMargin, 'layout-column')}>
-		<div
-			className={classNames(classes.banner, 'layout-row')}
-		>
-			<div
-				className={classNames(classes.bannerBg, 'flex')}
-				style={{ backgroundImage: `url(${bannerImage})` }}
-			/>
-			<div className={classes.overlay} />
-			<div className={classes.textOverlay}>
-				<div className={classNames({ [classes.textBox]: textWithBg })}>
-					<Title>{bannerImageText}</Title>
-					<SubTitle>{bannerImageSubText}</SubTitle>
+		{orNull(bannerImage,
+			(<div
+				className={classNames(classes.banner, 'layout-row')}
+			>
+				<div
+					className={classNames(classes.bannerBg, 'flex')}
+					style={{ backgroundImage: `url(${bannerImage})` }}
+				/>
+				<div className={classes.overlay} />
+				<div className={classes.textOverlay}>
+					<div className={classNames({ [classes.textBox]: textWithBg })}>
+						<Title>{bannerImageText}</Title>
+						<SubTitle>{bannerImageSubText}</SubTitle>
+					</div>
 				</div>
 			</div>
-		</div>
+			))
+		}
 		<div className="layout-row layout-align-center">
 			<MaxWidthContainer>
 				<div className="flex layout-column">

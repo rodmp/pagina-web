@@ -16,6 +16,10 @@ export const listModuleSchema = {
 			type: 'object',
 			properties: {
 				listType: { type: 'string', enum: ['card', 'list'] },
+				listTitle: { type: 'string' },
+				listSubtitle: { type: 'string' },
+				listControls: { type: 'array' },
+				listSubmits: { type: 'array' },
 			},
 		},
 	},
