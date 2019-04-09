@@ -24,6 +24,7 @@ import goToSignInHandler from 'root/src/client/logic/project/handlers/goToSignIn
 import goToPledgeProjectHandler from 'root/src/client/logic/project/handlers/goToPledgeProjectHandler'
 
 import goToAddFavoritesHandler from 'root/src/client/logic/project/handlers/goToAddFavoritesHandler'
+import goToRemoveFavoritesHandler from 'root/src/client/logic/project/handlers/goToRemoveFavoritesHandler'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
 
@@ -112,7 +113,7 @@ const styles = {
 
 
 export const ViewProjectModule = memo(({
-	addToFavorites, favoritesAmount, myFavorites,
+	addToFavorites, removeToFavorites, favoritesAmount, myFavorites,
 	projectId, projectDescription, projectTitle, pledgeAmount, assignees,
 	gameImage, canApproveProject, canRejectProject, pushRoute, canPledgeProject,
 	classes, isAuthenticated, canEditProjectDetails, updateProject,
@@ -229,7 +230,7 @@ export const ViewProjectModule = memo(({
 								)
 							}
 							{
-								isNil(myFavorites) ?
+								isNil(myFavorites) || myFavorites == 0 ?
 									<div className={classes.sidebarItem}>
 										<Button
 											buttonType="noBackgroundButton"
@@ -248,6 +249,12 @@ export const ViewProjectModule = memo(({
 									<div className={classes.sidebarItem}>
 										<Button
 											buttonType="noBackgroundButton"
+											onClick={
+												ternary(
+													isAuthenticated,
+													goToRemoveFavoritesHandler(removeToFavorites),
+													goToSignInHandler(pushRoute),
+												)}
 										>
 											Added to your Favorites({favoritesAmount === 'undefined' ? 0 : favoritesAmount})
 										</Button>

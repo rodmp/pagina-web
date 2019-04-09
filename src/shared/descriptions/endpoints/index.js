@@ -21,6 +21,7 @@ import getActiveProjects from 'root/src/shared/descriptions/endpoints/getActiveP
 import getPendingProjects from 'root/src/shared/descriptions/endpoints/getPendingProjects'
 
 import addToFavorites from 'root/src/shared/descriptions/endpoints/addToFavorites'
+import removeToFavorites from 'root/src/shared/descriptions/endpoints/removeToFavorites'
 
 const allEndpoints = {
 	...createProject,
@@ -39,6 +40,7 @@ const allEndpoints = {
 	...setDefaultPaymentMethod,
 	...updateProject,
 	...addToFavorites,
+	...removeToFavorites,
 }
 
 export default map(
