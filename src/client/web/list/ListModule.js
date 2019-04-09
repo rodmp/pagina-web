@@ -54,7 +54,7 @@ export const CardList = ({
 			<div className="flex layout-row layout-align-center">
 				<InfiniteScroll
 					pageStart={0}
-					loadMore={() => getNextPage(currentPage)}
+					loadMore={() => getNextPage(currentPage, hasMore)}
 					hasMore={hasMore}
 				>
 					<div
