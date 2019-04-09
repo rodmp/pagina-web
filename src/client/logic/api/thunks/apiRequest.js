@@ -28,13 +28,13 @@ export const fetchList = async (dispatch, state, endpointId, payload) => {
 	const lambdaRes = await invokeApiLambda(endpointId, payload, state)
 	const { statusCode, body, statusError, generalError } = lambdaRes
 	if (equals(statusCode, 200)) {
-		dispatch(setCurrentPage(body.currentPage))
-		ternary(
-			body.currentPage === body.allPage,
-			dispatch(setHasMore(false)),
-			dispatch(setHasMore(true)),
-		)
 		dispatch(apiListRequestSuccess(listStoreKey, recordType, body))
+		if (payload.currentPage >= body.allPage) {
+			dispatch(setHasMore(false))
+		} else {
+			dispatch(setHasMore(true))
+		}
+		dispatch(setCurrentPage(payload.currentPage))
 	} else {
 		const error = { ...statusError, ...generalError }
 		dispatch(apiListRequestError(listStoreKey, error))

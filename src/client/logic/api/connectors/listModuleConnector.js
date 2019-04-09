@@ -12,7 +12,7 @@ import addPaymentOnSuccess from 'root/src/client/logic/list/thunks/addPaymentOnS
 
 import currentPageSelector from 'root/src/client/logic/list/selectors/currentPageSelector'
 import hasMoreSelector from 'root/src/client/logic/list/selectors/hasMoreSelector'
-import getNextPage from 'root/src/client/logic/list/thunk/getNextPage'
+import getNextPage from 'root/src/client/logic/list/thunks/getNextPage'
 
 export default reduxConnector(
 	[
