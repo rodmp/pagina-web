@@ -10,6 +10,9 @@ import deletePaymentMethod from 'root/src/client/logic/list/thunks/deletePayment
 import setDefaultPaymentMethod from 'root/src/client/logic/list/thunks/setDefaultPaymentMethod'
 import addPaymentOnSuccess from 'root/src/client/logic/list/thunks/addPaymentOnSuccess'
 
+import currentPageSelector from 'root/src/client/logic/list/selectors/currentPageSelector'
+import hasMoreSelector from 'root/src/client/logic/list/selectors/hasMoreSelector'
+import getNextPage from 'root/src/client/logic/list/thunks/getNextPage'
 
 export default reduxConnector(
 	[
@@ -18,10 +21,13 @@ export default reduxConnector(
 		['listTitle', listTitleSelector],
 		['listSubtitle', listSubtitleSelector],
 		['listControls', listControlsSelector],
+		['currentPage', currentPageSelector],
+		['hasMore', hasMoreSelector],
 	],
 	[
 		['deletePaymentMethod', deletePaymentMethod],
 		['setDefaultPaymentMethod', setDefaultPaymentMethod],
 		['addPaymentOnSuccess', addPaymentOnSuccess],
+		['getNextPage', getNextPage],
 	],
 )
