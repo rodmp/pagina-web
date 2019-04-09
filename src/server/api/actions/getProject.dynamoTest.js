@@ -24,6 +24,7 @@ describe('getProject', () => {
 			body: {
 				...newProject,
 				myPledge: newProjectPayload.pledgeAmount,
+				favoritesAmount: newProjectPayload.favoritesAmount,
 			},
 		})
 	})

@@ -9,11 +9,14 @@ export default async ({ userId, payload }) => {
 	const [project, /* assignee, games, */ myPledge, myFavorites] = await dynamoQueryProject(
 		userId, projectId,
 	)
-	return projectSerializer([
-		...project,
-		// ...assignee,
-		// ...games,
-		...myPledge,
-		...myFavorites
-	])
+	return {
+		userId,
+		...projectSerializer([
+			...project,
+			// ...assignee,
+			// ...games,
+			...myPledge,
+			...myFavorites
+		]),
+	}
 }
