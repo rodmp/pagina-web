@@ -23,6 +23,11 @@ const styles = {
 		width: '100%',
 		height: 48.1,
 	},
+	smallButton: {
+		width: '20%',
+		margin: 'auto 0',
+		marginLeft: '5px',
+	},
 	primarySquareButton: {
 		padding: 10,
 		fontSize: 18,
@@ -55,7 +60,8 @@ const styles = {
 }
 
 export const ButtonUnstyled = memo(({
-	classes, onClick, disabled, children, buttonType, unstyled, disableRipple, additionalClass, formType,
+	classes, onClick, disabled, children, style, isSmallButton,
+	buttonType, unstyled, disableRipple, additionalClass, formType,
 }) => (
 	<Button
 		className={classNames(
@@ -63,6 +69,7 @@ export const ButtonUnstyled = memo(({
 			{ [classes.unstyled]: unstyled },
 			({ [classes.primarySquareButton]: buttonType === primarySquareButton || formType === universalForm }),
 			({ [classes.noBackgroundButton]: buttonType === noBackgroundButton }),
+			({ [classes.smallButton]: isSmallButton }),
 			additionalClass,
 		)}
 		onClick={onClick}

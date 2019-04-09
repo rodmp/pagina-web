@@ -1,5 +1,5 @@
 import { map, addIndex } from 'ramda'
-import React, { memo } from 'react'
+import React, { memo, useState, useEffect } from 'react'
 import classNames from 'classnames'
 import { orNull, ternary } from 'root/src/shared/util/ramdaPlus'
 
@@ -13,6 +13,7 @@ import MaxWidthContainer from 'root/src/client/web/base/MaxWidthContainer'
 import Title from 'root/src/client/web/typography/Title'
 import SubHeader from 'root/src/client/web/typography/SubHeader'
 import Button from 'root/src/client/web/base/Button'
+import TextField from '@material-ui/core/TextField'
 
 import RecordClickActionButton from 'root/src/client/web/base/RecordClickActionButton'
 import { APPROVE_PROJECT, REJECT_PROJECT, REJECT_ACTIVE_PROJECT } from 'root/src/shared/descriptions/recordClickActions/recordClickActionIds'
@@ -102,119 +103,159 @@ const styles = {
 	},
 }
 
+
 export const ViewProjectModule = memo(({
-	myPledge, status, projectId, projectDescription, projectTitle,
-	pledgeAmount, assignees, gameImage, canApproveProject, canRejectProject,
-	pushRoute, canPledgeProject, classes, isAuthenticated, canRejectActiveProject,
-}) => (
-	<div className="flex layout-row layout-align-center-start">
-		<MaxWidthContainer>
-			<div className="flex layout-row layout-wrap">
-				<div className={classNames(
-					'flex-100', 'layout-row',
-					'layout-align-center', classes.title,
-				)}
-				>
-					<div className={classes.titleText}>
-						<Title>{projectTitle}</Title>
-					</div>
-				</div>
-				<div className="flex-100 flex-gt-sm-60 flex-order-1">
-					<img alt="Game" src={gameImage} className={classes.image} />
-				</div>
-				<div
-					className={classNames(
-						'flex-100 flex-gt-sm-40',
-						'flex-order-3 flex-order-gt-sm-2',
-						'layout-column',
+	projectId, projectDescription, projectTitle, pledgeAmount, assignees,
+	gameImage, canApproveProject, canRejectProject, pushRoute, canPledgeProject,
+	classes, isAuthenticated, canEditProjectDetails, updateProject,
+	myPledge, status, canRejectActiveProject,
+}) => {
+	const [title, setTitle] = useState(projectTitle)
+	const [description, setDescription] = useState(projectDescription)
+
+	useEffect(() => {
+		setTitle(projectTitle)
+		setDescription(projectDescription)
+	}, [projectTitle, projectDescription])
+
+	return (
+		<div className="flex layout-row layout-align-center-start">
+			<MaxWidthContainer>
+				<div className="flex layout-row layout-wrap">
+					<div className={classNames(
+						'flex-100', 'layout-row',
+						'layout-align-center', classes.title,
 					)}
-				>
-					<div
-						className={classNames(classes.sidebar, 'layout-column')}
 					>
-						<div className={classNames(classes.progressOuter)}>
-							<div className={classNames(classes.progressInner)} />
-						</div>
-						<div className={classNames('flex', 'layout-row', 'layout-wrap')}>
-							<div className={classNames('flex-50', 'flex-gt-sm-100', classes.sidebarItem)}>
-								<SubHeader>Total Pledged</SubHeader>
-								<div className={classNames(classes.text)}>{pledgeAmount}</div>
-							</div>
-							<div className={classNames('flex-50', 'flex-gt-sm-100', classes.sidebarItem)}>
-								<SubHeader>Pledgers</SubHeader>
-								<div className={classNames(classes.text)}>{assignees.length}</div>
-							</div>
-						</div>
-						<div
-							className={classNames(
-								classes.sidebarItem,
-								'layout-row layout-wrap',
-							)}
-						>
-							{addIndex(map)((assignee, i) => (
-								<Assignee key={i} {...assignee} />
-							), assignees)}
-						</div>
-						{orNull(
-							canApproveProject,
-							<div className={classes.sidebarItem}>
-								<RecordClickActionButton
-									recordClickActionId={APPROVE_PROJECT}
-									recordId={projectId}
-								/>
-							</div>,
+						{ternary(canEditProjectDetails,
+							<TextField
+								label="Title"
+								type="text"
+								value={title || ''}
+								onChange={e => setTitle(e.target.value)}
+								variant="outlined"
+							/>,
+							<div className={classes.titleText}>
+								<Title>{title}</Title>
+							</div>)}
+
+					</div>
+					<div className="flex-100 flex-gt-sm-60 flex-order-1">
+						<img alt="Game" src={gameImage} className={classes.image} />
+					</div>
+					<div
+						className={classNames(
+							'flex-100 flex-gt-sm-40',
+							'flex-order-3 flex-order-gt-sm-2',
+							'layout-column',
 						)}
-						{
-							orNull(
-								canRejectProject,
+					>
+						<div
+							className={classNames(classes.sidebar, 'layout-column')}
+						>
+							<div className={classNames(classes.progressOuter)}>
+								<div className={classNames(classes.progressInner)} />
+							</div>
+							<div className={classNames('flex', 'layout-row', 'layout-wrap')}>
+								<div className={classNames('flex-50', 'flex-gt-sm-100', classes.sidebarItem)}>
+									<SubHeader>Total Pledged</SubHeader>
+									<div className={classNames(classes.text)}>{pledgeAmount}</div>
+								</div>
+								<div className={classNames('flex-50', 'flex-gt-sm-100', classes.sidebarItem)}>
+									<SubHeader>Pledgers</SubHeader>
+									<div className={classNames(classes.text)}>{assignees.length}</div>
+								</div>
+							</div>
+							<div
+								className={classNames(
+									classes.sidebarItem,
+									'layout-row layout-wrap',
+								)}
+							>
+								{addIndex(map)((assignee, i) => (
+									<Assignee key={i} {...assignee} />
+								), assignees)}
+							</div>
+							{orNull(
+								canApproveProject,
 								<div className={classes.sidebarItem}>
 									<RecordClickActionButton
-										recordClickActionId={REJECT_PROJECT}
+										recordClickActionId={APPROVE_PROJECT}
 										recordId={projectId}
 									/>
 								</div>,
-							)
-						}
-						{
-							orNull(
-								canRejectActiveProject,
+							)}
+							{
+								orNull(
+									canRejectProject,
+									<div className={classes.sidebarItem}>
+										<RecordClickActionButton
+											recordClickActionId={REJECT_PROJECT}
+											recordId={projectId}
+										/>
+									</div>,
+								)
+							}
+							{
 								<div className={classes.sidebarItem}>
-									<RecordClickActionButton
-										recordClickActionId={REJECT_ACTIVE_PROJECT}
-										recordId={projectId}
-									/>
-								</div>,
-							)
-						}
-						{
-							<div className={classes.sidebarItem}>
-								<Button
-									onClick={ternary(
-										isAuthenticated,
-										goToPledgeProjectHandler(projectId, pushRoute),
-										goToSignInHandler(pushRoute),
-									)}
-								>
+									<Button
+										onClick={ternary(
+											isAuthenticated,
+											goToPledgeProjectHandler(projectId, pushRoute),
+											goToSignInHandler(pushRoute),
+										)}
+									>
 										Pledge
 									</Button>
+								</div>
+							}
+							{
+								orNull(
+									canRejectActiveProject,
+									<div className={classes.sidebarItem}>
+										<RecordClickActionButton
+											recordClickActionId={REJECT_ACTIVE_PROJECT}
+											recordId={projectId}
+										/>
+									</div>,
+								)
+							}
+						</div>
+					</div>
+					<div className={classNames(
+						'flex-100', 'flex-order-2', 'flex-order-gt-sm-3',
+						classes.descriptionContainer,
+					)}
+					>
+						<div className={classNames(classes.descriptionTitle)}>Description</div>
+						<div className={classNames('flex-100', 'layout-row')}>
+							<div className={classNames('flex-90')}>
+								{ternary(canEditProjectDetails,
+									<TextField
+										type="textarea"
+										value={description || ''}
+										onChange={e => setDescription(e.target.value)}
+										variant="outlined"
+										fullWidth
+									/>,
+									<div className={classes.description}>
+										{projectDescription}
+									</div>)}
 							</div>
-						}
+							{orNull(canEditProjectDetails,
+								<Button
+									onClick={() => updateProject({ title, description, projectId })}
+									isSmallButton
+								>
+									Save
+								</Button>)}
+						</div>
 					</div>
 				</div>
-				<div className={classNames(
-					'flex-100', 'flex-order-2', 'flex-order-gt-sm-3',
-					classes.descriptionContainer,
-				)}
-				>
-					<div className={classNames(classes.descriptionTitle)}>Description</div>
-					<div className={classes.description}>
-						{projectDescription}
-					</div>
-				</div>
-			</div>
-		</MaxWidthContainer>
-	</div>
-))
+			</MaxWidthContainer>
+		</div>
+	)
+})
 
 export default withModuleContext(
 	viewProjectConnector(ViewProjectModule, styles),
