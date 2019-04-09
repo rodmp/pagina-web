@@ -72,4 +72,4 @@ afterAll(async () => {
 	await dynamoDb.deleteTable({ TableName: TABLE_NAME }).promise()
 })
 
-jest.setTimeout(10000)
+jest.setTimeout(40000)
