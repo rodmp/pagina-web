@@ -10,6 +10,7 @@ export default {
 		image: { type: 'string' },
 		description: { type: 'string' },
 		pledgeAmount: { type: 'integer' },
+		pledgers: { type: 'integer' },
 		myPledge: { type: 'integer' },
 		status: {
 			type: 'string',

@@ -27,7 +27,6 @@ export default async ({ userId, payload }) => {
 	const serializedProject = await assigneeSerializer({
 		project: payload, payloadLenses,
 	})
-
 	const projectId = `project-${uuid()}`
 
 	const projectCommon = projectDenormalizeFields(serializedProject)
@@ -41,6 +40,7 @@ export default async ({ userId, payload }) => {
 		[SORT_KEY]: `project|${projectPendingKey}|${randomNumber(1, 10)}`,
 		created,
 		...projectCommon,
+		pledgers: 1,
 	}
 
 	const projectAssignees = map(assignee => ({
@@ -94,5 +94,6 @@ export default async ({ userId, payload }) => {
 		userId,
 		status: projectPendingKey,
 		...projectCommon,
+		pledgers: 1,
 	}
 }
