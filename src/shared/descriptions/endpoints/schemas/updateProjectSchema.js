@@ -3,7 +3,8 @@ export default {
 	properties: {
 		projectId: { type: 'string' },
 		description: { type: 'string' },
+		title: { type: 'string' },
 	},
-	required: ['projectId', 'description'],
+	required: ['projectId', 'title', 'description'],
 	additionalProperties: false,
 }

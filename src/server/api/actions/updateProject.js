@@ -15,14 +15,14 @@ import dynamoQueryProject from 'root/src/server/api/actionUtil/dynamoQueryProjec
  * @returns {Promise<void>}
  */
 export default async ({ userId, payload }) => {
-	const { projectId, description, stripeCardId } = payload
+	const { projectId, description, title, stripeCardId } = payload
 
 	const [project] = await dynamoQueryProject(
 		userId, projectId,
 	)
 	// Checks if the descriptions are equal, if so, we avoid a database call
 	if (equals(description, project.description)) {
-		throw generalError('Project description is the same, please make sure you change it');
+		throw generalError('Project description is the same, please make sure you change it')
 	}
 
 	const projectToUpdate = head(project)
@@ -33,7 +33,7 @@ export default async ({ userId, payload }) => {
 
 	const newUpdate = updateDynamoObj(
 		projectId, project, userId,
-		description, stripeCardId,
+		description, stripeCardId, null, title,
 	)
 
 	// TODO: Check pledge amount
@@ -50,13 +50,14 @@ export default async ({ userId, payload }) => {
 			[PARTITION_KEY]: projectToUpdate[PARTITION_KEY],
 			[SORT_KEY]: projectToUpdate[SORT_KEY],
 		},
-		UpdateExpression: 'SET description = :new_description',
+		UpdateExpression: 'SET description = :new_description, title = :new_title',
 		ExpressionAttributeValues: {
 			':new_description': description,
+			':new_title': title,
 		},
 	}
 
-	await documentClient.update(updateProjectParams).promise();
+	await documentClient.update(updateProjectParams).promise()
 
 	const newProject = {
 		...projectToUpdate,
@@ -75,6 +76,7 @@ export default async ({ userId, payload }) => {
 	}
 
 	return {
+		userId,
 		...newProjectSerialized,
 	}
 }

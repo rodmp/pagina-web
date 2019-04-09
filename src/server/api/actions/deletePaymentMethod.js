@@ -5,16 +5,16 @@ import dynamoQueryPaymentMethod from 'root/src/server/api/actionUtil/dynamoQuery
 export default async ({ userId, payload }) => {
 	const paymentMethod = await dynamoQueryPaymentMethod(userId, payload)
 	if (paymentMethod.Count === 0) {
-		throw new Error({
+		return {
 			statusCode: 404,
 			generalErrors: 'Payment method not found',
-		})
+		}
 	}
 	const paymentMethodParams = {
 		TableName: TABLE_NAME,
 		Key: {
 			[PARTITION_KEY]: userId,
-			[SORT_KEY]: payload,
+			[SORT_KEY]: `paymentMethod|${payload}`,
 		},
 	}
 	await documentClient.delete(paymentMethodParams).promise()

@@ -68,7 +68,7 @@ const CardList = ({
 )
 
 const UniversalList = ({
-	list, classes, listTitle, listSubtitle, listControls, deletePaymentMethod,
+	list, classes, listTitle, listSubtitle, listControls, deletePaymentMethod, setDefaultPaymentMethod,
 }) => {
 	const [modalOpen, setModalOpen] = useState(false)
 	const [modalRecordId, setModalRecordId] = useState(null)
@@ -94,6 +94,7 @@ const UniversalList = ({
 						setModalRecordId(recordId)
 						setModalOpen(true)
 					}}
+					onClick={setDefaultPaymentMethod}
 				/>
 			), list)}
 			<div className={classes.buttons}>
@@ -126,7 +127,8 @@ export const ListModuleUnconnected = memo((props) => {
 					{map(recordId => (
 						<ProjectCard key={recordId} recordId={recordId} />
 					), props.list)}
-				</List>)
+				</List>
+			)
 	}
 })
 
