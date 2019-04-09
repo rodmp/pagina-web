@@ -94,8 +94,6 @@ const styles = {
 		'& div': {
 			maxWidth: 400,
 			display: '-webkit-box',
-			WebkitLineClamp: 1,
-			wordBreak: 'break-all',
 			WebkitBoxOrient: 'vertical',
 			overflow: 'hidden',
 			textOverflow: 'ellipsis',
