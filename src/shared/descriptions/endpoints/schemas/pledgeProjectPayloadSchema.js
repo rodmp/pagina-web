@@ -11,6 +11,7 @@ export default {
 			},
 		},
 		stripeCardId: { type: 'string' },
+		projectId: { type: 'string' },
 	},
 	required: ['pledgeAmount', 'stripeCardId'],
 	additionalProperties: false,
