@@ -11,6 +11,7 @@ export default {
 		description: { type: 'string' },
 		pledgeAmount: { type: 'integer' },
 		favoritesAmount: { type: 'integer' },
+		pledgers: { type: 'integer' },
 		myPledge: { type: 'integer' },
 		myFavorites: { type: 'integer' },
 		status: {
