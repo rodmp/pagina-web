@@ -1,5 +1,5 @@
 import { apiFn } from 'root/src/server/api'
-import moment from 'moment'
+
 import { GET_PROJECT } from 'root/src/shared/descriptions/endpoints/endpointIds'
 
 import createProject from 'root/src/server/api/actions/createProject'
@@ -26,21 +26,5 @@ describe('getProject', () => {
 				myPledge: newProjectPayload.pledgeAmount,
 			},
 		})
-	})
-	test('time diff should be 0 days', async () => {
-		const newProjectPayload = createProjectPayload()
-		const newProject = await createProject({
-			userId: mockUserId,
-			payload: newProjectPayload,
-		})
-		const event = {
-			endpointId: GET_PROJECT,
-			payload: { projectId: newProject.id },
-			authentication: mockUserId,
-		}
-		const res = await apiFn(event)
-		const { created } = res.body
-		const diff = moment().diff(created, 'days')
-		expect(diff).toEqual(0)
 	})
 })
