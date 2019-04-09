@@ -6,12 +6,17 @@ import { TABLE_NAME, documentClient } from 'root/src/server/api/dynamoClient'
 import { PARTITION_KEY, SORT_KEY } from 'root/src/shared/constants/apiDynamoIndexes'
 import assigneeSerializer from 'root/src/server/api/serializers/assigneeSerializer'
 
+import sendEmail from 'root/src/server/email/actions/sendEmail'
+import dareCreatedEmail from 'root/src/server/email/templates/dareCreated'
+import { dareCreatedTitle } from 'root/src/server/email/util/emailTitles'
+
 import { CREATE_PROJECT } from 'root/src/shared/descriptions/endpoints/endpointIds'
 import { getPayloadLenses } from 'root/src/server/api/getEndpointDesc'
 import projectDenormalizeFields from 'root/src/server/api/actionUtil/projectDenormalizeFields'
 import pledgeDynamoObj from 'root/src/server/api/actionUtil/pledgeDynamoObj'
 import randomNumber from 'root/src/shared/util/randomNumber'
 import { projectPendingKey } from 'root/src/server/api/lenses'
+import getUserEmail from 'root/src/server/api/actionUtil/getUserEmail'
 
 const payloadLenses = getPayloadLenses(CREATE_PROJECT)
 const {
@@ -73,8 +78,20 @@ export default async ({ userId, payload }) => {
 
 	await documentClient.batchWrite(params).promise()
 
+	try {
+		const email = await getUserEmail(userId)
+
+		const emailData = {
+			dareTitle: project.title,
+			recipients: [email],
+			title: dareCreatedTitle,
+		}
+		sendEmail(emailData, dareCreatedEmail)
+	} catch (err) { }
+
 	return {
 		id: projectId,
+		userId,
 		status: projectPendingKey,
 		...projectCommon,
 	}

@@ -42,26 +42,31 @@ export const submitFormHof = (
 	const correctedSubmitIndex = nullSubmitIndex ? 0 : submitIndex
 	dispatch(submitFormFn(moduleKey, submitIndex))
 	const state = getState()
-	return validateFormFn(moduleKey, state).then((formData) => {
+	return validateFormFn(moduleKey, state, submitIndex).then((formData) => {
 		const submitAction = path([correctedSubmitIndex, 'action'], submits)
 		return dispatch(submitAction(formData)).then((res) => {
 			const successPromises = []
 			const onSuccessFn = path(
 				[correctedSubmitIndex, 'onSuccess'], submits,
 			)
+
 			if (onSuccessFn) {
 				const partialFormEntries = viewFormChild(`db-${moduleKey}`, state)
-				const partialKeys = Object.keys(partialFormEntries)
-				const userId = userIdFromPartialEntries(partialFormEntries)
-				
-				invokeApiLambda(
-					CLEAR_PARTIAL_FORM_KEYS,
-					{ userId, partialKeys },
-					state,
-				).then(() => {
-					dispatch(clearPartialFormKeys(moduleKey))
+				if (partialFormEntries) {
+					const partialKeys = Object.keys(partialFormEntries)
+					const userId = userIdFromPartialEntries(partialFormEntries)
+
+					invokeApiLambda(
+						CLEAR_PARTIAL_FORM_KEYS,
+						{ userId, partialKeys },
+						state,
+					).then(() => {
+						dispatch(clearPartialFormKeys(moduleKey))
+						successPromises.push(dispatch(onSuccessFn(res)))
+					})
+				} else {
 					successPromises.push(dispatch(onSuccessFn(res)))
-				})
+				}
 			}
 
 			const {
