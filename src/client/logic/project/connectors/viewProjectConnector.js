@@ -19,6 +19,7 @@ import canEditProjectDetailsSelector from 'root/src/client/logic/project/selecto
 import isAuthenticatedSelector from 'root/src/client/logic/auth/selectors/isAuthenticated'
 import pushRoute from 'root/src/client/logic/route/thunks/pushRoute'
 import addToFavorites from 'root/src/client/logic/project/thunks/addToFavorites'
+import removeToFavorites from 'root/src/client/logic/project/thunks/removeToFavorites'
 import updateProject from 'root/src/client/logic/project/thunks/updateProject'
 
 export default reduxConnector(
@@ -44,5 +45,6 @@ export default reduxConnector(
 		['pushRoute', pushRoute],
 		['updateProject', updateProject],
 		['addToFavorites', addToFavorites],
+		['removeToFavorites', removeToFavorites],
 	],
 )

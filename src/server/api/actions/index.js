@@ -1,5 +1,5 @@
 import {
-	GET_PROJECT, CREATE_PROJECT, PLEDGE_PROJECT, GET_PLEDGED_PROJECTS, ADD_TO_FAVORITES,
+	GET_PROJECT, CREATE_PROJECT, PLEDGE_PROJECT, GET_PLEDGED_PROJECTS, ADD_TO_FAVORITES, REMOVE_TO_FAVORITES,
 	GET_PAYMENT_METHODS, ADD_PAYMENT_METHOD, DELETE_PAYMENT_METHOD, SET_DEFAULT_PAYMENT_METHOD,
 	AUDIT_PROJECT, GET_ACTIVE_PROJECTS, GET_PENDING_PROJECTS, UPDATE_PROJECT,
 	SAVE_PARTIAL_DARE_FORM, CLEAR_PARTIAL_FORM_KEYS,
@@ -20,6 +20,7 @@ import savePartialDareForm from 'root/src/server/api/actions/savePartialDareForm
 import clearPartialFormKeys from 'root/src/server/api/actions/clearPartialFormKeys'
 import updateProject from 'root/src/server/api/actions/updateProject'
 import addToFavorites from 'root/src/server/api/actions/addToFavorites'
+import removeToFavorites from 'root/src/server/api/actions/removeToFavorites'
 
 export default {
 	[CREATE_PROJECT]: createProject,
@@ -30,6 +31,7 @@ export default {
 	[GET_PLEDGED_PROJECTS]: getPledgedProjects,
 
 	[ADD_TO_FAVORITES]: addToFavorites,
+	[REMOVE_TO_FAVORITES]: removeToFavorites,
 
 	[AUDIT_PROJECT]: auditProject,
 
