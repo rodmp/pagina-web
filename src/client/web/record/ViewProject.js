@@ -97,6 +97,7 @@ const styles = {
 			WebkitBoxOrient: 'vertical',
 			overflow: 'hidden',
 			textOverflow: 'ellipsis',
+			textTransform: 'none',
 		},
 	},
 }
