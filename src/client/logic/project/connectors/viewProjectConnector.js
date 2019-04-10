@@ -17,6 +17,8 @@ import canRejectActiveProjectSelector from 'root/src/client/logic/project/select
 import canPledgeProjectSelector from 'root/src/client/logic/project/selectors/canPledgeProjectSelector'
 import canEditProjectDetailsSelector from 'root/src/client/logic/project/selectors/canEditProjectDetailsSelector'
 import isAuthenticatedSelector from 'root/src/client/logic/auth/selectors/isAuthenticated'
+import pledgersSelector from 'root/src/client/logic/project/selectors/pledgersSelector'
+
 import pushRoute from 'root/src/client/logic/route/thunks/pushRoute'
 import addToFavorites from 'root/src/client/logic/project/thunks/addToFavorites'
 import removeToFavorites from 'root/src/client/logic/project/thunks/removeToFavorites'
@@ -32,6 +34,7 @@ export default reduxConnector(
 		['favoritesAmount', favoritesAmountSelector],
 		['myFavorites', myFavoritesSelector],
 		['status', statusSelector],
+		['pledgers', pledgersSelector],
 		['assignees', projectAssigneesSelector],
 		['gameImage', projectGameImageSquareSelector],
 		['canApproveProject', canApproveProjectSelector],
