@@ -43,7 +43,7 @@ export default projectArr => reduce(
 			const projectObj = pick(
 				[
 					'title', 'image', 'description', 'pledgeAmount',
-					'assignees', 'games', 'favoritesAmount', 'pledgers',
+					'assignees', 'games', 'pledgers', 'created', 'favoritesAmount',
 				],
 				projectPart,
 			)

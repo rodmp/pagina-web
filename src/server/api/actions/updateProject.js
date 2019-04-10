@@ -66,7 +66,7 @@ export default async ({ userId, payload }) => {
 
 	const serialize = pick([
 		'title', 'image', 'description', 'pledgeAmount',
-		'assignees', 'games', 'status', 'favoritesAmount', 'pledgers',
+		'assignees', 'games', 'status', 'favoritesAmount', 'pledgers', 'created',
 	], newProject)
 
 	const newProjectSerialized = {

@@ -4,7 +4,7 @@ import classNames from 'classnames'
 import { orNull, ternary } from 'root/src/shared/util/ramdaPlus'
 
 import {
-	smMediaQuery, gtSmMediaQuery, primaryColor, secondaryColor,
+	gtXsMediaQuery, gtSmMediaQuery, gtMdMediaQuery, smMediaQuery,
 } from 'root/src/client/web/commonStyles'
 
 import Assignee from 'root/src/client/web/record/Assignee'
@@ -31,7 +31,10 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 const styles = {
 	title: {
 		marginTop: 28,
-		marginBottom: 25,
+		marginBottom: 20,
+		'@media (min-width: 1284px)': {
+			marginBottom: 25,
+		},
 	},
 	image: {
 		width: '100%',
@@ -47,13 +50,38 @@ const styles = {
 	sidebarItem: {
 		marginTop: 10,
 		marginBottom: 20,
+		'& > button': {
+			borderRadius: 20,
+		},
+		'& span': {
+			textTransform: 'none',
+		},
+		'& > div': {
+			fontSize: 16,
+			fontWeight: 'bold',
+		},
+	},
+	text: {
+		marginTop: 15,
+		height: 17,
+		fontFamily: 'Roboto',
+		fontSize: '14px !important',
+		lineHeight: 1.21,
+		color: '#000000',
+		fontWeight: '500 !important',
 	},
 	leftIcon: {
 		marginRight: 10,
 	},
 	descriptionContainer: {
-		marginTop: 20,
-		marginBottom: 32,
+		marginTop: 19,
+		marginBottom: 18.5,
+		'@media (min-width: 768px)': {
+			marginBottom: 10.5,
+		},
+		'@media (min-width: 1284px)': {
+			marginBottom: 32,
+		},
 	},
 	descriptionTitle: {
 		width: 96,
@@ -73,7 +101,7 @@ const styles = {
 		fontSize: 20,
 		lineHeight: 1.2,
 		color: '#000000',
-		marginTop: 20,
+		marginTop: 8,
 	},
 	progressOuter: {
 		width: '100%',
@@ -82,7 +110,7 @@ const styles = {
 		border: '1px solid rgba(128, 0, 128, 0.2)',
 		backgroundColor: '#ffffff',
 		boxSixing: 'border-box',
-		marginBottom: 20,
+		marginBottom: 18.5,
 	},
 	progressInner: {
 		width: '25%',
@@ -90,24 +118,47 @@ const styles = {
 		borderRadius: 8,
 		backgroundColor: '#800080',
 	},
-	text: {
-		marginTop: 15,
-		height: 17,
-		fontFamily: 'Roboto',
-		fontSize: 14,
-		lineHeight: 1.21,
-		color: '#000000',
-	},
 	titleText: {
 		'& div': {
 			maxWidth: 400,
+			marginBottom: 0,
 			display: '-webkit-box',
-			WebkitLineClamp: 1,
-			wordBreak: 'break-all',
 			WebkitBoxOrient: 'vertical',
 			overflow: 'hidden',
 			textOverflow: 'ellipsis',
+			textTransform: 'none',
 		},
+	},
+	flexDeraction: {
+		display: 'flex',
+		[gtXsMediaQuery]: {
+			flexDirection: 'row',
+		},
+		'@media (min-width: 768px) and (max-width: 1284px)': {
+			flexDirection: 'row',
+		},
+		'@media (min-width: 1284px)': {
+			flexDirection: 'column',
+		},
+	},
+	streamerTitle: {
+		marginTop: 9,
+		marginBottom: 0,
+		'& div': {
+			fontWeight: 'bold',
+			fontStyle: 'normal',
+			fontStretch: 'normal',
+			fontSize: 16,
+		},
+	},
+	'mb-10': {
+		marginBottom: 10,
+	},
+	sidebarItemText: {
+		fontSize: 14,
+	},
+	pledgeButton: {
+		marginBottom: 65,
 	},
 }
 
@@ -117,7 +168,7 @@ export const ViewProjectModule = memo(({
 	projectId, projectDescription, projectTitle, pledgeAmount, assignees,
 	gameImage, canApproveProject, canRejectProject, pushRoute, canPledgeProject,
 	classes, isAuthenticated, canEditProjectDetails, updateProject,
-	myPledge, status, canRejectActiveProject, pledgers,
+	myPledge, status, canRejectActiveProject, pledgers, created,
 }) => {
 	const [title, setTitle] = useState(projectTitle)
 	const [description, setDescription] = useState(projectDescription)
@@ -166,14 +217,21 @@ export const ViewProjectModule = memo(({
 								<div className={classNames(classes.progressInner)} />
 							</div>
 							<div className={classNames('flex', 'layout-row', 'layout-wrap')}>
-								<div className={classNames('flex-50', 'flex-gt-sm-100', classes.sidebarItem)}>
+								<div className={classNames('flex-40', 'flex-gt-sm-100', classes.sidebarItem)}>
 									<SubHeader>Total Pledged</SubHeader>
 									<div className={classNames(classes.text)}>{pledgeAmount}</div>
 								</div>
-								<div className={classNames('flex-50', 'flex-gt-sm-100', classes.sidebarItem)}>
+								<div className={classNames('flex-30', 'flex-gt-sm-100', classes.sidebarItem)}>
 									<SubHeader>Pledgers</SubHeader>
 									<div className={classNames(classes.text)}>{pledgers}</div>
 								</div>
+								<div className={classNames('flex-30', 'flex-gt-sm-50', classes.sidebarItem)}>
+									<SubHeader>Days to go</SubHeader>
+									<div className={classNames(classes.text)}>{created}</div>
+								</div>
+							</div>
+							<div className={classNames(classes.sidebarItem, classes.streamerTitle)}>
+								<SubHeader>Streamer challenged: </SubHeader>
 							</div>
 							<div
 								className={classNames(
