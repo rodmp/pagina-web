@@ -1,7 +1,7 @@
 import {
 	GET_PROJECT, CREATE_PROJECT, PLEDGE_PROJECT, GET_PLEDGED_PROJECTS, ADD_TO_FAVORITES, REMOVE_TO_FAVORITES,
 	GET_PAYMENT_METHODS, ADD_PAYMENT_METHOD, DELETE_PAYMENT_METHOD, SET_DEFAULT_PAYMENT_METHOD,
-	AUDIT_PROJECT, GET_ACTIVE_PROJECTS, GET_PENDING_PROJECTS, UPDATE_PROJECT,
+	AUDIT_PROJECT, GET_ACTIVE_PROJECTS, GET_PENDING_PROJECTS, GET_FAVORITES_LIST, UPDATE_PROJECT,
 	SAVE_PARTIAL_DARE_FORM, CLEAR_PARTIAL_FORM_KEYS,
 } from 'root/src/shared/descriptions/endpoints/endpointIds'
 
@@ -12,6 +12,7 @@ import getPledgedProjects from 'root/src/server/api/actions/getPledgedProjects'
 import auditProject from 'root/src/server/api/actions/auditProject'
 import getActiveProjects from 'root/src/server/api/actions/getActiveProjects'
 import getPendingProjects from 'root/src/server/api/actions/getPendingProjects'
+import getFavoritesList from 'root/src/server/api/actions/getFavoritesList'
 import getPaymentMethods from 'root/src/server/api/actions/getPaymentMethods'
 import addPaymentMethod from 'root/src/server/api/actions/addPaymentMethod'
 import deletePaymentMethod from 'root/src/server/api/actions/deletePaymentMethod'
@@ -37,6 +38,7 @@ export default {
 
 	[GET_ACTIVE_PROJECTS]: getActiveProjects,
 	[GET_PENDING_PROJECTS]: getPendingProjects,
+	[GET_FAVORITES_LIST]: getFavoritesList,
 	[SAVE_PARTIAL_DARE_FORM]: savePartialDareForm,
 	[CLEAR_PARTIAL_FORM_KEYS]: clearPartialFormKeys,
 
