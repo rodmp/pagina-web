@@ -15,8 +15,9 @@ import { getPayloadLenses } from 'root/src/server/api/getEndpointDesc'
 import projectDenormalizeFields from 'root/src/server/api/actionUtil/projectDenormalizeFields'
 import pledgeDynamoObj from 'root/src/server/api/actionUtil/pledgeDynamoObj'
 import randomNumber from 'root/src/shared/util/randomNumber'
-import { projectPendingKey } from 'root/src/server/api/lenses'
+import { projectPendingKey, projectApprovedKey } from 'root/src/server/api/lenses'
 import getUserEmail from 'root/src/server/api/actionUtil/getUserEmail'
+import moment from 'moment'
 
 const payloadLenses = getPayloadLenses(CREATE_PROJECT)
 const {
@@ -31,10 +32,9 @@ export default async ({ userId, payload }) => {
 
 	const projectCommon = projectDenormalizeFields(serializedProject)
 
-	const created = Date.now()
+	const created = moment().format()
 
 	const pledgeAmount = viewPledgeAmount(serializedProject)
-
 	const project = {
 		[PARTITION_KEY]: projectId,
 		[SORT_KEY]: `project|${projectPendingKey}|${randomNumber(1, 10)}`,
@@ -87,7 +87,7 @@ export default async ({ userId, payload }) => {
 			title: dareCreatedTitle,
 		}
 		sendEmail(emailData, dareCreatedEmail)
-	} catch (err) { }
+	} catch (err) {}
 
 	return {
 		id: projectId,
@@ -95,5 +95,6 @@ export default async ({ userId, payload }) => {
 		status: projectPendingKey,
 		...projectCommon,
 		pledgers: 1,
+		created,
 	}
 }

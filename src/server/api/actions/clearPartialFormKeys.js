@@ -6,20 +6,21 @@ export default async ({ payload: { userId, partialKeys } }) => {
 	const partialIds = map(key => `dareFormPartial|${key}`, partialKeys)
 
 	const transactParams = {
-		TransactItems: [...map(
-			id => ({
-				Delete: {
-					TableName: TABLE_NAME,
-					Key: {
-						[PARTITION_KEY]: userId,
-						[SORT_KEY]: id,
+		RequestItems: {
+			[TABLE_NAME]: map(
+				id => ({
+					DeleteRequest: {
+						Key: {
+							[PARTITION_KEY]: userId,
+							[SORT_KEY]: id,
+						},
 					},
-				},
-			}),
-			partialIds,
-		)],
+				}),
+				partialIds,
+			),
+		},
 	}
 
-	await documentClient.transactWrite(transactParams).promise()
+	await documentClient.batchWrite(transactParams).promise()
 	return { message: 'success' }
 }
