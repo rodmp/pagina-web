@@ -22,7 +22,7 @@ const { viewAudit } = payloadLenses
 export default async ({ userId, payload }) => {
 	const { projectId } = payload
 	const [
-		projectToPledgeDdb, /* assigneesDdb, gamesDdb, */ myPledgeDdb,
+		projectToPledgeDdb, myPledgeDdb,
 	] = await dynamoQueryProject(
 		userId, projectId,
 	)
@@ -60,10 +60,9 @@ export default async ({ userId, payload }) => {
 		},
 	}
 	await documentClient.batchWrite(auditParams).promise()
+
 	const newProject = projectSerializer([
 		...projectToPledgeDdb,
-		// ...assigneesDdb,
-		// ...gamesDdb,
 		...myPledgeDdb,
 	])
 
