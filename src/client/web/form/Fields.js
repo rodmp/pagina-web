@@ -9,7 +9,7 @@ import AutoComplete from 'root/src/client/web/form/AutoComplete'
 import InputWrapper from 'root/src/client/web/form/InputWrapper'
 
 const Fields = memo(({
-	formFieldTypes, moduleKey, formType, wasSubmitted,
+	formFieldTypes, moduleKey, formType, wasSubmitted, moduleId,
 }) => formFieldTypes.map(([
 	fieldPath,
 	fieldDescPath,
@@ -36,6 +36,7 @@ const Fields = memo(({
 		fieldValue,
 		fieldMax,
 		wasSubmitted,
+		moduleId,
 	}
 	switch (inputType) {
 		case 'text':
