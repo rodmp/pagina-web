@@ -131,4 +131,12 @@ export const useStyles = makeStyles({
 	formConrol: {
 		width: 360,
 	},
+	cardItem: {
+		height: 57,
+		marginBottom: 7,
+	},
+	cardList: {
+		marginTop: 20,
+		marginBottom: 20,
+	},
 })

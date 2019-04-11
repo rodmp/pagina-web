@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button'
 import Radio from '@material-ui/core/Radio'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import TitleStrideText from 'root/src/client/web/typography/TitleStrideText'
+import cardDateSelector from 'root/src/client/web/list/util/cardDateSelector'
 import { useStyles } from './stripeStyles'
 
 
@@ -24,9 +25,11 @@ const StripeLists = memo(({ stripe, setInput, moduleKey, fieldPath, list, setVie
 			<RadioGroup
 				onChange={event => setValue(event.target.value)}
 				value={radiovalue}
+				className={classes.cardList}
 			>
 				{mapIndexed(({ lastFour, expMonth, expYear, brand, id }, ind) => (
 					<FormControlLabel
+						className={classes.cardItem}
 						value={id}
 						key={ind}
 						control={(
@@ -34,8 +37,8 @@ const StripeLists = memo(({ stripe, setInput, moduleKey, fieldPath, list, setVie
 						)}
 						label={(
 							<div>
-								<div className={classes.cardTitle}>{brand}: ********{lastFour}</div>
-								<div>Expire: {expMonth}/{expYear} </div>
+								<div className={classes.cardTitle}>{brand}: ****{lastFour}</div>
+								<div>Expires: {cardDateSelector(expMonth, expYear)} </div>
 							</div>
 						)}
 					/>
