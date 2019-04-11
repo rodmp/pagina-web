@@ -1,6 +1,7 @@
-import { contains, filter, reduce } from 'ramda'
+import { contains, filter, reduce, map } from 'ramda'
 import { apiStoreLenses } from 'root/src/client/logic/api/lenses'
 import moduleEndpointIdSelector from 'root/src/client/logic/api/selectors/moduleEndpointIdSelector'
+import getRecordSelector from 'root/src/client/logic/api/selectors/getRecordSelector'
 
 const { viewItems, viewListProcessing } = apiStoreLenses
 
@@ -15,6 +16,6 @@ export default (state, { moduleId }) => {
 		[],
 		moduleProcess,
 	)
-
-	return list
+	const paymentList = map(item => getRecordSelector(state, { moduleId, recordId: item }), list)
+	return paymentList
 }

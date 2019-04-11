@@ -16,8 +16,8 @@ const StripeLists = memo(({ stripe, setInput, moduleKey, fieldPath, list, setVie
 	const classes = useStyles()
 	const [radiovalue = list[0].id, setValue] = useState()
 	useEffect(() => {
-		setInput(moduleKey, fieldPath, stripe)
-	}, [stripe])
+		setInput(moduleKey, fieldPath, radiovalue)
+	}, [radiovalue])
 	return (
 		<FormControl className={classes.formConrol}>
 			<TitleStrideText icon>Credit Card Number:</TitleStrideText>
@@ -25,18 +25,17 @@ const StripeLists = memo(({ stripe, setInput, moduleKey, fieldPath, list, setVie
 				onChange={event => setValue(event.target.value)}
 				value={radiovalue}
 			>
-				{mapIndexed(({ cardType, last4, pk, sk, expireMonth, expireYear, id }, ind) => (
+				{mapIndexed(({ lastFour, expMonth, expYear, brand, id }, ind) => (
 					<FormControlLabel
-						key={ind}
 						value={id}
+						key={ind}
 						control={(
 							<Radio className={classes.itemList} />
 						)}
 						label={(
 							<div>
-								<div className={classes.cardTitle}>{cardType}: {last4}</div>
-								<div>{pk} {sk}</div>
-								<div>Expire: {expireMonth}/{expireYear} </div>
+								<div className={classes.cardTitle}>{brand}: ********{lastFour}</div>
+								<div>Expire: {expMonth}/{expYear} </div>
 							</div>
 						)}
 					/>

@@ -9,44 +9,21 @@ import fieldInputConnector from 'root/src/client/logic/form/connectors/fieldInpu
 import StripeFields from 'root/src/client/web/form/StripeFields'
 import StripeList from 'root/src/client/web/form/StripeFields/StripeLists'
 import { ternary } from 'root/src/shared/util/ramdaPlus'
-
-
-const list = [
-	{
-		cardType: 'Visa',
-		last4: '4242 4242 4242 4242',
-		pk: 'John',
-		sk: 'Doe',
-		cvv: '7777',
-		expireMonth: '01',
-		expireYear: '30',
-		id: '3454443',
-	},
-	{
-		cardType: 'Mastercard',
-		last4: '4242 4242 4242 4242',
-		pk: 'John',
-		sk: 'Doe',
-		expireMonth: '01',
-		expireYear: '30',
-		cvv: '7777',
-		id: '54345433',
-	},
-]
+import stripeFieldConnector from 'root/src/client/logic/form/connectors/stripeFieldConnector'
 
 export const StripeCardUnconnected = memo(({
-	moduleKey, fieldPath, setInput,
+	moduleKey, fieldPath, setInput, cardList,
 }) => {
-	const [listView = true, setListView] = useState()
+	const [listView = cardList.length > 0, setListView] = useState()
 	return (
 		<StripeProvider apiKey={stripeClientId}>
 			<div>
 				{ternary(
-					listView && list.length > 0,
+					listView,
 					(
 						<Elements>
 							<StripeList
-								list={list}
+								list={cardList}
 								setView={setListView}
 								moduleKey={moduleKey}
 								fieldPath={fieldPath}
@@ -70,4 +47,4 @@ export const StripeCardUnconnected = memo(({
 	)
 })
 
-export default fieldInputConnector(StripeCardUnconnected)
+export default stripeFieldConnector(StripeCardUnconnected)
