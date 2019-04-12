@@ -5,7 +5,7 @@ import { documentClient, TABLE_NAME } from 'root/src/server/api/dynamoClient'
 import createProject from 'root/src/server/api/actions/createProject'
 import createProjectPayload from 'root/src/server/api/mocks/createProjectPayload'
 import { mockUserId } from 'root/src/server/api/mocks/contextMock'
-import { UPDATE_PROJECT } from '../../../shared/descriptions/endpoints/endpointIds';
+import { UPDATE_PROJECT } from '../../../shared/descriptions/endpoints/endpointIds'
 
 
 describe('Update project', () => {
@@ -15,12 +15,15 @@ describe('Update project', () => {
 			payload: { ...createProjectPayload(), status: 'approved' },
 		})
 		const description = 'This is a new description'
+		const title = 'This is the new title'
+
 		const event = {
 			endpointId: UPDATE_PROJECT,
 			payload: {
 				projectId: newProject.id,
 				stripeCardId: 'mockStripeCardId',
 				description,
+				title,
 			},
 			authentication: mockUserId,
 		}
@@ -31,6 +34,7 @@ describe('Update project', () => {
 			body: {
 				...newProject,
 				description,
+				title,
 			},
 		})
 	})

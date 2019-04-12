@@ -6,7 +6,7 @@ import {
 	CREATE_PROJECT_ROUTE_ID,
 } from 'root/src/shared/descriptions/routes/routeIds'
 
-import marketplace from 'root/src/client/assets/Marketplace.png'
+import marketplace from 'root/src/client/assets/Marketplace.jpg'
 
 
 export default {

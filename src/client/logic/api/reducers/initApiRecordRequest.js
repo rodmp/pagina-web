@@ -15,6 +15,7 @@ export const initApiRecordRequest = (
 	state,
 )
 
+
 export default {
 	[INIT_API_RECORD_REQUEST]: initApiRecordRequest,
 }
