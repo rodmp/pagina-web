@@ -83,39 +83,38 @@ const styles = {
 		transition: '0s',
 	},
 	assigneeImg: {
-		width: 98,
-		height: 98,
+		width: 100,
+		height: 100,
 		transition: '0s',
-		border: 'grey 1px solid',
 		'&:not(:only-of-type)': {
-			marginRight: -1,
+			marginRight: -2,
 		},
 		'&:nth-last-child(n+3), &:nth-last-child(n+3) ~ img': {
-			width: 87,
-			height: 87,
+			width: 90,
+			height: 90,
 		},
 		'&:nth-last-child(n+4), &:nth-last-child(n+4) ~ img': {
-			width: 67,
-			height: 67,
+			width: 70,
+			height: 70,
 		},
 		'&:nth-last-child(n+5), &:nth-last-child(n+5) ~ img': {
-			width: 47,
-			height: 47,
+			width: 50,
+			height: 50,
 		},
 		'&:nth-child(n+6), &:nth-child(n+6) ~ img': {
-			marginTop: -2,
+			marginTop: -5,
 		},
 		'&:nth-last-child(n+11), &:nth-last-child(n+11) ~ img': {
-			width: 22,
-			height: 22,
+			width: 25,
+			height: 25,
 		},
 		'&:nth-last-child(n+41), &:nth-last-child(n+41) ~ img': {
-			width: 12,
-			height: 12,
+			width: 15,
+			height: 15,
 		},
 		'&:nth-last-child(n+101), &:nth-last-child(n+101) ~ img': {
-			width: 4,
-			height: 4,
+			width: 7,
+			height: 7,
 		},
 	},
 	descriptionText: {
