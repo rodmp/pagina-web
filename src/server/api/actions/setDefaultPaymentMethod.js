@@ -19,13 +19,15 @@ export default async ({ userId, payload }) => {
 
 	const cardSet = map(setDefault, prop('Items', userPaymentMethods))
 
-	const transactParams = {
-		TransactItems: [...map(
-			Item => ({ Put: { Item, TableName: TABLE_NAME } }),
-			cardSet,
-		)],
+	const batchParams = {
+		RequestItems: {
+			[TABLE_NAME]: map(
+				Item => ({ PutRequest: { Item } }),
+				cardSet,
+			),
+		},
 	}
 
-	await documentClient.transactWrite(transactParams).promise()
+	await documentClient.batchWrite(batchParams).promise()
 	return cardSet
 }
