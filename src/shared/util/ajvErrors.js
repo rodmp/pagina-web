@@ -75,6 +75,22 @@ export default (schema, errors) => reduce((result, error) => {
 				result,
 			)
 		}
+		case 'minItems': {
+			const errorPath = dataPathKey(error)
+			return set(
+				lensPath(errorPath),
+				`${propTitle(errorPath)} must be at least ${errorLimit(error)} items`,
+				result,
+			)
+		}
+		case 'maxItems': {
+			const errorPath = dataPathKey(error)
+			return set(
+				lensPath(errorPath),
+				`${propTitle(errorPath)} must be at most ${errorLimit(error)} items`,
+				result,
+			)
+		}
 		case 'format': {
 			const errorPath = dataPathKey(error)
 			return set(

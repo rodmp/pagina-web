@@ -1,6 +1,6 @@
 import { HOW_IT_WORK_BANNER_HEADER_MODULE_ID } from 'root/src/shared/descriptions/modules/moduleIds'
 
-import howItWorks from 'root/src/client/assets/How-it-works.png'
+import howItWorks from 'root/src/client/assets/How-it-works.jpg'
 
 export default {
 	[HOW_IT_WORK_BANNER_HEADER_MODULE_ID]: {

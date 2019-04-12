@@ -12,11 +12,11 @@ export default {
 		description: { type: 'string' },
 		games: {
 			type: 'array',
+			minItems: 1,
+			maxItems: 1,
+			uniqueItems: true,
 			items: {
 				type: 'object',
-				minItems: 1,
-				maxItems: 1,
-				uniqueItems: true,
 				properties: {
 					id: { type: 'integer' },
 				},
@@ -25,11 +25,11 @@ export default {
 		},
 		assignees: {
 			type: 'array',
+			minItems: 1,
+			maxItems: 10,
+			uniqueItems: true,
 			items: {
 				type: 'object',
-				minItems: 1,
-				maxItems: 10,
-				uniqueItems: true,
 				properties: {
 					id: {
 						type: 'integer',
@@ -40,9 +40,13 @@ export default {
 				},
 				required: ['id'],
 			},
+			errorMessage: {
+				maxItems: 'You may only add 10 streamers.',
+			},
 		},
 		stripeCardId: { type: 'string' },
 		pledgeAmount: { type: 'integer', minimum: 5, maximum: 999999 },
+		partialFormId: { type: 'string' },
 	},
 	required: ['title', 'games'],
 	additionalProperties: false,

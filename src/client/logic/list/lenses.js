@@ -4,7 +4,15 @@ import { variableSchemaKey } from 'root/src/shared/util/commonLenses'
 
 const listSchema = {
 	type: 'object',
-	properties: {},
+	properties: {
+		list: {
+			type: 'object',
+			properties: {
+				currentPage: { type: 'integer' },
+				hasMore: { type: 'boolean' },
+			},
+		},
+	},
 }
 
 export const listStoreLenses = lensesFromSchema(listSchema)
@@ -16,6 +24,10 @@ export const listModuleSchema = {
 			type: 'object',
 			properties: {
 				listType: { type: 'string', enum: ['card', 'list'] },
+				listTitle: { type: 'string' },
+				listSubtitle: { type: 'string' },
+				listControls: { type: 'array' },
+				listSubmits: { type: 'array' },
 			},
 		},
 	},

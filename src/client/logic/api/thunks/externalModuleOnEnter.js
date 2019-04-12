@@ -9,7 +9,7 @@ export default ({ moduleId, nextRouteObj }) => async (dispatch) => {
 	const endpointId = moduleEndpointIdSelector({ /* state */ }, { moduleId })
 	const param = datermineParam(endpointId)
 	const payloadSubs = {
-		access_token: path(['routeParams', param], nextRouteObj),
+		access_token: path(['query', param], nextRouteObj),
 	}
 	const payloadItems = moduleExternalPayloadMapSelector(
 		{ /* state */ }, { moduleId },
