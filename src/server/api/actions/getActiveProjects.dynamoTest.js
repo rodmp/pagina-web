@@ -14,6 +14,7 @@ import auditProject from 'root/src/server/api/actions/auditProject'
 
 describe('getActiveProjects', () => {
 	test('Successfully get active projects', async () => {
+		await wait(20000)
 		const projectArr = await Promise.all(
 			map(
 				() => createProject({
@@ -44,6 +45,8 @@ describe('getActiveProjects', () => {
 			payload: { currentPage: 1 },
 		}
 		const res = await apiFn(event, contextMock)
+
+		console.log(res)
 		expect(res.body.items.length).toEqual(8)
 		expect(res.body.items[0].sk).toEqual(projectArr[0].sk)
 		expect(res.body.items[1].sk).toEqual(projectArr[1].sk)

@@ -1,6 +1,6 @@
 import { TERMS_OF_SERVICE_BANNER_HEADER_MODULE_ID } from 'root/src/shared/descriptions/modules/moduleIds'
 
-import accountSettings from 'root/src/client/assets/accountSettings.png'
+import accountSettings from 'root/src/client/assets/accountSettings.jpg'
 
 export default {
 	[TERMS_OF_SERVICE_BANNER_HEADER_MODULE_ID]: {

@@ -15,8 +15,13 @@ import canRejectActiveProjectSelector from 'root/src/client/logic/project/select
 import canPledgeProjectSelector from 'root/src/client/logic/project/selectors/canPledgeProjectSelector'
 import getUserDataSelector from 'root/src/client/logic/api/selectors/getUserDataSelector'
 
+import canEditProjectDetailsSelector from 'root/src/client/logic/project/selectors/canEditProjectDetailsSelector'
 import isAuthenticatedSelector from 'root/src/client/logic/auth/selectors/isAuthenticated'
+import pledgersSelector from 'root/src/client/logic/project/selectors/pledgersSelector'
+import createdSelector from 'root/src/client/logic/project/selectors/createdSelector'
+
 import pushRoute from 'root/src/client/logic/route/thunks/pushRoute'
+import updateProject from 'root/src/client/logic/project/thunks/updateProject'
 
 export default reduxConnector(
 	[
@@ -24,8 +29,10 @@ export default reduxConnector(
 		['projectDescription', projectDescriptionSelector],
 		['projectTitle', projectTitleSelector],
 		['pledgeAmount', pledgeAmountSelector],
+		['created', createdSelector],
 		['myPledge', myPledgeSelector],
 		['status', statusSelector],
+		['pledgers', pledgersSelector],
 		['assignees', projectAssigneesSelector],
 		['gameImage', projectGameImageSquareSelector],
 		['canApproveProject', canApproveProjectSelector],
@@ -34,6 +41,10 @@ export default reduxConnector(
 		['canRejectProject', canRejectProjectSelector],
 		['canRejectActiveProject', canRejectActiveProjectSelector],
 		['isAuthenticated', isAuthenticatedSelector],
+		['canEditProjectDetails', canEditProjectDetailsSelector],
 	],
-	[['pushRoute', pushRoute]],
+	[
+		['pushRoute', pushRoute],
+		['updateProject', updateProject],
+	],
 )

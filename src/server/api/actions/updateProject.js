@@ -15,7 +15,7 @@ import dynamoQueryProject from 'root/src/server/api/actionUtil/dynamoQueryProjec
  * @returns {Promise<void>}
  */
 export default async ({ userId, payload }) => {
-	const { projectId, description, stripeCardId } = payload
+	const { projectId, description, title, stripeCardId } = payload
 
 	const [project] = await dynamoQueryProject(
 		userId, projectId,
@@ -33,7 +33,7 @@ export default async ({ userId, payload }) => {
 
 	const newUpdate = updateDynamoObj(
 		projectId, project, userId,
-		description, stripeCardId,
+		description, stripeCardId, null, title,
 	)
 
 	// TODO: Check pledge amount
@@ -50,9 +50,10 @@ export default async ({ userId, payload }) => {
 			[PARTITION_KEY]: projectToUpdate[PARTITION_KEY],
 			[SORT_KEY]: projectToUpdate[SORT_KEY],
 		},
-		UpdateExpression: 'SET description = :new_description',
+		UpdateExpression: 'SET description = :new_description, title = :new_title',
 		ExpressionAttributeValues: {
 			':new_description': description,
+			':new_title': title,
 		},
 	}
 
@@ -65,7 +66,7 @@ export default async ({ userId, payload }) => {
 
 	const serialize = pick([
 		'title', 'image', 'description', 'pledgeAmount',
-		'assignees', 'games', 'status',
+		'assignees', 'games', 'status', 'pledgers', 'created',
 	], newProject)
 
 	const newProjectSerialized = {

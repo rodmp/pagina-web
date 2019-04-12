@@ -31,6 +31,7 @@ import apiRecordRequestSuccess from 'root/src/client/logic/api/reducers/apiRecor
 import initApiListRequest from 'root/src/client/logic/api/reducers/initApiListRequest'
 import initApiRecordRequest from 'root/src/client/logic/api/reducers/initApiRecordRequest'
 import generalRecordModification from 'root/src/client/logic/api/reducers/generalRecordModification'
+import currentListPayload from 'root/src/client/logic/api/reducers/currentListPayload'
 
 import apiRecordClickActionRequestError from 'root/src/client/logic/api/reducers/apiRecordClickActionRequestError'
 import apiRecordClickActionRequestSuccess from 'root/src/client/logic/api/reducers/apiRecordClickActionRequestSuccess'
@@ -42,6 +43,9 @@ import addPaymentMethodOnSuccess from 'root/src/client/logic/list/reducers/addPa
 import apiExternalRequestSuccess from 'root/src/client/logic/api/reducers/apiExternalRequestSuccess'
 
 import apiFetchUserDataSuccess from 'root/src/client/logic/api/reducers/apiFetchUserDataSuccess'
+// list
+import currentPage from 'root/src/client/logic/list/reducers/currentPage'
+import hasMore from 'root/src/client/logic/list/reducers/hasMore'
 
 // listeners
 import popStateListener from 'root/src/client/logic/route/listeners/popStateListener'
@@ -81,6 +85,9 @@ const store = createStore(
 		...partialFormDbSaveSuccess,
 		...clearPartialFormKeys,
 		...deletePaymentMethodOnSuccess,
+		...currentListPayload,
+		...currentPage,
+		...hasMore,
 	}, // reducer object
 	// [], // sagas
 	[
