@@ -19,6 +19,7 @@ import setDafaultPaymentMethod from 'root/src/server/api/actions/setDefaultPayme
 import savePartialDareForm from 'root/src/server/api/actions/savePartialDareForm'
 import clearPartialFormKeys from 'root/src/server/api/actions/clearPartialFormKeys'
 import updateProject from 'root/src/server/api/actions/updateProject'
+import getMyProjects from 'root/src/server/api/actions/getMyProjects'
 
 export default {
 	[CREATE_PROJECT]: createProject,
@@ -27,6 +28,7 @@ export default {
 
 	[PLEDGE_PROJECT]: pledgeProject,
 	[GET_PLEDGED_PROJECTS]: getPledgedProjects,
+	// [GET_MY_PROJECTS]: getMyProjects,
 
 	[AUDIT_PROJECT]: auditProject,
 
