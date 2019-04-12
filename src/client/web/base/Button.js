@@ -65,6 +65,7 @@ export const ButtonUnstyled = memo(({
 }) => (
 	<Button
 		className={classNames(
+			style,
 			classes.button,
 			{ [classes.unstyled]: unstyled },
 			({ [classes.primarySquareButton]: buttonType === primarySquareButton || formType === universalForm }),
