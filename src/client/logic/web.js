@@ -19,6 +19,9 @@ import addSubForm from 'root/src/client/logic/form/reducers/addSubForm'
 import removeSubForm from 'root/src/client/logic/form/reducers/removeSubForm'
 import stepFormNextPage from 'root/src/client/logic/form/reducers/stepFormNextPage'
 import stepFormPrevPage from 'root/src/client/logic/form/reducers/stepFormPrevPage'
+import partialFormDbSaveSuccess from 'root/src/client/logic/form/reducers/partialFormDbSaveSuccess'
+import clearPartialFormKeys from 'root/src/client/logic/form/reducers/clearPartialFormKeys'
+import clearAllForms from 'root/src/client/logic/form/reducers/clearAllForms'
 
 // api
 import apiListRequestError from 'root/src/client/logic/api/reducers/apiListRequestError'
@@ -28,15 +31,22 @@ import apiRecordRequestSuccess from 'root/src/client/logic/api/reducers/apiRecor
 import initApiListRequest from 'root/src/client/logic/api/reducers/initApiListRequest'
 import initApiRecordRequest from 'root/src/client/logic/api/reducers/initApiRecordRequest'
 import generalRecordModification from 'root/src/client/logic/api/reducers/generalRecordModification'
+import currentListPayload from 'root/src/client/logic/api/reducers/currentListPayload'
 
 import apiRecordClickActionRequestError from 'root/src/client/logic/api/reducers/apiRecordClickActionRequestError'
 import apiRecordClickActionRequestSuccess from 'root/src/client/logic/api/reducers/apiRecordClickActionRequestSuccess'
 import initApiRecordClickActionRequest from 'root/src/client/logic/api/reducers/initApiRecordClickActionRequest'
+import deletePaymentMethodOnSuccess from 'root/src/client/logic/list/reducers/deletePaymentMethodOnSuccess'
+import setDefaultPaymentMethodOnSuccess from 'root/src/client/logic/list/reducers/setDefaultPaymentMethodOnSuccess'
+import addPaymentMethodOnSuccess from 'root/src/client/logic/list/reducers/addPaymentMethodOnSuccess'
 
 import apiExternalRequestSuccess from 'root/src/client/logic/api/reducers/apiExternalRequestSuccess'
 import apiExternalRequestError from 'root/src/client/logic/api/reducers/apiExternalRequestError'
 
 import apiFetchUserDataSuccess from 'root/src/client/logic/api/reducers/apiFetchUserDataSuccess'
+// list
+import currentPage from 'root/src/client/logic/list/reducers/currentPage'
+import hasMore from 'root/src/client/logic/list/reducers/hasMore'
 
 // listeners
 import popStateListener from 'root/src/client/logic/route/listeners/popStateListener'
@@ -52,6 +62,7 @@ const store = createStore(
 		...stepFormPrevPage,
 		...clearFormErrors,
 		...clearForm,
+		...clearAllForms,
 		...setFormErrors,
 		...submitForm,
 		...submitFormComplete,
@@ -70,6 +81,15 @@ const store = createStore(
 		...apiExternalRequestSuccess,
 		...apiExternalRequestError,
 		...apiFetchUserDataSuccess,
+		...addPaymentMethodOnSuccess,
+		...deletePaymentMethodOnSuccess,
+		...setDefaultPaymentMethodOnSuccess,
+		...partialFormDbSaveSuccess,
+		...clearPartialFormKeys,
+		...deletePaymentMethodOnSuccess,
+		...currentListPayload,
+		...currentPage,
+		...hasMore,
 	}, // reducer object
 	// [], // sagas
 	[

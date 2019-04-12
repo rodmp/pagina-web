@@ -6,9 +6,9 @@ import { faTwitch } from '@fortawesome/free-brands-svg-icons'
 import { orNull } from 'root/src/shared/util/ramdaPlus'
 import { styledTwitchButton } from './style'
 
-const Button = ({ title, subtitle, backgroundColor, color, classes, withIcon, href, onClick }) => (
+const Button = ({ title, subtitle, classes, withIcon, href, onClick }) => (
 	<a className={classes.link} href={href}>
-		<button onClick={() => onClick()} type="button" className={classes.button} style={{ color, backgroundColor }}>
+		<button onClick={() => onClick()} type="button" className={classes.button}>
 			{orNull(withIcon,
 				<FontAwesomeIcon icon={faTwitch} size="lg" color="#800080" />)}
 			<div>
@@ -22,14 +22,9 @@ const Button = ({ title, subtitle, backgroundColor, color, classes, withIcon, hr
 Button.propTypes = {
 	title: PropTypes.string.isRequired,
 	subtitle: PropTypes.string,
-	backgroundColor: PropTypes.string,
-	color: PropTypes.string,
 }
 
-
 Button.defaultProps = {
-	backgroundColor: '#800080',
-	color: '#fff',
 	subtitle: '',
 }
 export default withStyles(styledTwitchButton)(Button)

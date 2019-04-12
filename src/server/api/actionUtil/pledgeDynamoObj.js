@@ -4,11 +4,14 @@ import projectDenormalizeFields from 'root/src/server/api/actionUtil/projectDeno
 
 export default (
 	projectId, project, userId, pledgeAmount, stripeCardId, created = false,
-) => ({
-	[PARTITION_KEY]: projectId,
-	[SORT_KEY]: `pledge|${userId}`,
-	pledgeAmount,
-	stripeCardId,
-	...(created ? { created: true } : {}),
-	...projectDenormalizeFields(project),
-})
+) => {
+	const data = {
+		[PARTITION_KEY]: projectId,
+		[SORT_KEY]: `pledge|${userId}`,
+		stripeCardId,
+		...(created ? { created: true } : {}),
+		...projectDenormalizeFields(project),
+		pledgeAmount,
+	}
+	return data
+}

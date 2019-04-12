@@ -1,14 +1,17 @@
-import React, { memo } from 'react'
-import { orNull, ternary } from 'root/src/shared/util/ramdaPlus'
+import React, { memo, useState } from 'react'
+
+import { orNull } from 'root/src/shared/util/ramdaPlus'
 import { secondaryColor } from 'root/src/client/web/commonStyles'
+import { universalForm } from 'root/src/client/web/componentTypes'
 
 import Fields from 'root/src/client/web/form/Fields'
 import Submits from 'root/src/client/web/form/Submits'
 import Header from 'root/src/client/web/typography/Header'
 import Body from 'root/src/client/web/typography/Body'
 import Button from 'root/src/client/web/base/Button'
-import FormTitle from 'root/src/client/web/typography/FormTitle'
+import Link from 'root/src/client/web/base/Link'
 import TertiaryBody from 'root/src/client/web/typography/TertiaryBody'
+import FormTitle from 'root/src/client/web/typography/FormTitle'
 import formModuleConnector from 'root/src/client/logic/form/connectors/formModuleConnector'
 
 import backToPrevHandler from 'root/src/client/logic/form/handlers/backToPrevHandler'
@@ -23,6 +26,15 @@ const styles = {
 	space: {
 		marginTop: 25,
 		marginBottom: 25,
+	},
+	noMarginTop: {
+		marginTop: 0,
+	},
+	noMarginBottom: {
+		marginBottom: 0,
+	},
+	paymentTitle: {
+		fontSize: 32,
 	},
 	formContainer: {
 		width: 360,
@@ -45,106 +57,119 @@ const styles = {
 		fontSize: 18,
 		zIndex: 2,
 	},
+	submits: {
+		marginTop: 25,
+		marginBottom: 25,
+
+		'& span': {
+			textTransform: 'none',
+		},
+	},
 }
 
 export const FormModuleUnconnected = memo(({
 	formFieldTypes, formTitle, formSubmits, moduleId, moduleKey, submitForm,
 	preSubmitText, postSubmitText, preSubmitCaption, postSubmitCaption,
-	classes, subTitle, backButton, recordId, pushRoute,
-}) => (
-	<div className="flex layout-row layout-align-center">
-		<div className={classes.formContainer}>
-			{orNull(
-				formTitle,
-				<div
-					className={classNames(
-						classes.space,
-						'layout-row layout-align-center',
-					)}
-				>
-					<FormTitle>{formTitle}</FormTitle>
-				</div>,
-			)}
-			{orNull(
-				subTitle,
-				<div
-					className={classNames(
-						classes.space,
-						'layout-row layout-align-center',
-					)}
-				>
-					<Body>{subTitle}</Body>
-				</div>,
-			)}
-			<form
-				onSubmit={submitFormHandler(submitForm, moduleKey)}
-				className="layout-column layout-align-center-stretch"
-			>
-				<Fields
-					moduleKey={moduleKey}
-					moduleId={moduleId}
-					formFieldTypes={formFieldTypes}
-				/>
+	classes, subTitle, formType, backButton,
+}) => {
+	const [wasSubmitted, setWasSubmitted] = useState(false)
+	return (
+		<div className="flex layout-row layout-align-center">
+			<div className={classes.formContainer}>
 				{orNull(
-					preSubmitText,
+					formTitle,
+					<div
+						className={classNames(
+							classes.space,
+							{ [classes.noMarginTop]: (formType === universalForm) },
+							'layout-row layout-align-center',
+						)}
+					>
+						<Header additionalClass={classNames({ [classes.paymentTitle]: (formType === universalForm) })}>{formTitle}</Header>
+					</div>,
+				)}
+				{orNull(
+					subTitle,
 					<div
 						className={classNames(
 							classes.space,
 							'layout-row layout-align-center',
 						)}
 					>
-						<Body>{preSubmitText}</Body>
+						<Body>{subTitle}</Body>
 					</div>,
 				)}
-				{orNull(
-					preSubmitCaption,
-					<div
-						className={classNames(
-							classes.space,
-							'layout-row layout-align-center',
-						)}
-					>
-						<TertiaryBody>{preSubmitCaption}</TertiaryBody>
-					</div>,
-				)}
-				<div className={classes.space}>
-					<Submits
+				<form
+					onSubmit={submitFormHandler(submitForm, moduleKey, null, setWasSubmitted)}
+					className={classNames({ 'layout-column layout-align-center-stretch': (formType !== universalForm) })}
+				>
+					<Fields
 						moduleKey={moduleKey}
-						formSubmits={formSubmits}
-						submitFormFn={submitForm}
+						moduleId={moduleId}
+						formFieldTypes={formFieldTypes}
+						formType={formType}
+						wasSubmitted={wasSubmitted}
 					/>
-				</div>
-				{orNull(
-					postSubmitText,
-					<div className="flex layout-row layout-align-center">
-						<Body>{postSubmitText}</Body>
-					</div>,
-				)}
-				{orNull(
-					postSubmitCaption,
-					<div className="flex layout-row layout-align-center">
-						<TertiaryBody>{postSubmitCaption}</TertiaryBody>
-					</div>,
-				)}
-				{backButton && (
-					<div className={classes.backButton}>
-						<Button
-							onClick={
-								orNull(
-									recordId,
-									goToViewProjectHandler(recordId, pushRoute),
-								)
-							}
+					{orNull(
+						preSubmitText,
+						<div
+							className={classNames(
+								classes.space,
+								'layout-row layout-align-center',
+							)}
 						>
-							<span className={classes.backButtonText}>{backButton.label}</span>
-						</Button>
+							<Body>{preSubmitText}</Body>
+						</div>,
+					)}
+					{orNull(
+						preSubmitCaption,
+						<div
+							className={classNames(
+								classes.space,
+								'layout-row layout-align-center',
+							)}
+						>
+							<TertiaryBody>{preSubmitCaption}</TertiaryBody>
+						</div>,
+					)}
+					<div className={classNames(
+						classes.space, classes.submits,
+						{ [classes.noMarginBottom]: (formType === universalForm) },
+					)}
+					>
+						<Submits
+							moduleKey={moduleKey}
+							formSubmits={formSubmits}
+							submitFormFn={submitForm}
+							formType={formType}
+							setWasSubmitted={setWasSubmitted}
+						/>
 					</div>
-				)}
-				<input type="submit" className="hide" />
-			</form>
+					{orNull(
+						postSubmitText,
+						<div className="flex layout-row layout-align-center">
+							<Body>{postSubmitText}</Body>
+						</div>,
+					)}
+					{orNull(
+						postSubmitCaption,
+						<div className="flex layout-row layout-align-center">
+							<TertiaryBody>{postSubmitCaption}</TertiaryBody>
+						</div>,
+					)}
+					{backButton && (
+						<div className={classes.backButton}>
+							<Link routeId={backButton.routeId}>
+								<span className={classes.backButtonText}>{backButton.label}</span>
+							</Link>
+						</div>
+					)}
+					<input type="submit" className="hide" />
+				</form>
+			</div>
 		</div>
-	</div>
-))
+	)
+})
 
 export default withModuleContext(
 	formModuleConnector(FormModuleUnconnected, styles),

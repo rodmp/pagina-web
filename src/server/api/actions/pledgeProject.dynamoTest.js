@@ -5,34 +5,19 @@ import { PLEDGE_PROJECT } from 'root/src/shared/descriptions/endpoints/endpointI
 import createProject from 'root/src/server/api/actions/createProject'
 import createProjectPayload from 'root/src/server/api/mocks/createProjectPayload'
 import { mockUserId } from 'root/src/server/api/mocks/contextMock'
+import { internet } from 'faker'
+
+const project = createProject({
+	userId: internet.username,
+	payload: { ...createProjectPayload(), status: 'approved' },
+})
 
 describe('pledgeProject', () => {
-	test('Can\'t pledge a project I\'ve already pleged', async () => {
-		const newProject = await createProject({
-			userId: mockUserId,
-			payload: createProjectPayload(),
-		})
-		const event = {
-			endpointId: PLEDGE_PROJECT,
-			payload: {
-				projectId: newProject.id,
-				pledgeAmount: 1234,
-				stripeCardId: 'mockStripeCardId',
-			},
-			authentication: mockUserId,
-		}
-		const res = await apiFn(event)
-		expect(res).toEqual({
-			statusCode: 500,
-			generalErrors: "You've already pledged this project",
-		})
-	})
 	test('successfully pledge a project', async () => {
-		const newProject = await createProject({
-			userId: 'user-differentuserid',
-			payload: createProjectPayload(),
-		})
-		const pledgeAmount = 1234
+		const newProject = await project
+
+		const pledgeAmount = 20
+
 		const event = {
 			endpointId: PLEDGE_PROJECT,
 			payload: {
@@ -49,6 +34,35 @@ describe('pledgeProject', () => {
 				...newProject,
 				pledgeAmount: newProject.pledgeAmount + pledgeAmount,
 				myPledge: pledgeAmount,
+				userId: mockUserId,
+				pledgers: newProject.pledgers + 1,
+			},
+		})
+	})
+	test('successfully pledge to the same project', async () => {
+		const newProject = await project
+
+		const pledgeAmount = 20
+
+		const event = {
+			endpointId: PLEDGE_PROJECT,
+			payload: {
+				projectId: newProject.id,
+				pledgeAmount,
+				stripeCardId: 'mockStripeCardId',
+			},
+			authentication: mockUserId,
+		}
+		const res = await apiFn(event)
+		expect(res).toEqual({
+			statusCode: 200,
+			body: {
+				...newProject,
+				// Don't like the solution below, there is a better way for sure.
+				pledgeAmount: newProject.pledgeAmount + (pledgeAmount * 2),
+				pledgers: newProject.pledgers + 1,
+				myPledge: pledgeAmount,
+				userId: mockUserId,
 			},
 		})
 	})

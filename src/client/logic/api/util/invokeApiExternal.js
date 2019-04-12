@@ -6,6 +6,6 @@ export default (endpointId, payload) => {
 	const requestPayload = {
 		endpointId,
 		payload,
-  }
+	}
 	return invokeExternal(requestPayload)
 }

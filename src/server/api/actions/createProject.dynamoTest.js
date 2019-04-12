@@ -22,8 +22,9 @@ const event = {
 describe('createProject', () => {
 	test('createProject', async () => {
 		const res = await apiFn(event)
-		const tableScan = await scanTable()
-		// console.log(tableScan)
-		expect(res).toEqual({})
+		// const tableScan = await scanTable()
+		// This fails to create the right filter for the test
+		// const card = tableScan.Items.filter(item => item.pk === res.body.id);
+		expect(res.statusCode).toEqual(200)
 	})
 })
