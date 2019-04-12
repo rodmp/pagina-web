@@ -11,7 +11,7 @@ const pageContent = classes => [
 		It is our policy to respond to clear notices of alleged copyright 
 		infringement in accordance with 
 		the <a href="https://www.copyright.gov/legislation/dmca.pdf">
-		Digital Millennium Copyright Act of 1998.</a> Double Dog removes 
+		Digital Millennium Copyright Act of 1998.</a> Dare Drop removes 
 		material that is the subject of a compliant DMCA takedown notice. 
 		Section 512 of the DMCA provides the rules for reporting copyright 
 		infringement and for filing a counter-notification.
@@ -23,7 +23,7 @@ const pageContent = classes => [
 		text: (
 			<React.Fragment>
 			<p>
-	If you're not sure whether material on Double Dog infringes on your copyright, 
+	If you're not sure whether material on Dare Drop infringes on your copyright, 
 	please consult with an attorney before filing a DMCA notification. 
 	Misrepresenting that material infringes on your copyright may subject you to 
 	liability for damages, including costs and attorneys' fees incurred by streamers
@@ -41,7 +41,7 @@ const pageContent = classes => [
 	<li>a description of the copyrighted work that you claim has been infringed;
 	</li>
 	<li>a description of where the material that you claim is infringing is 
-		located on the Site, sufficient for Double Dog to locate the material;
+		located on the Site, sufficient for Dare Drop to locate the material;
 	</li>
 	<li>your address, telephone number, and email address;
 	</li>

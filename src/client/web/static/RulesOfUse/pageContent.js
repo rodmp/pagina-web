@@ -10,7 +10,7 @@ const rules = [
 	'Content that invades the privacy of others.',
 	'Impersonating an individual or organization.',
 	'Cheating, hacking, botting, stream sniping, or tampering that gives the account owner an unfair advantage in an online multiplayer game.',
-	'Sharing content you don\'t own or are not authorized to share on Double Dog.',
+	'Sharing content you don\'t own or are not authorized to share on Dare Drop.',
 	'Broadcasting alpha, beta, or pre-release games without advance consent (requesting to see broadcasts with consent from game developers is permissable).',
 ]
 
