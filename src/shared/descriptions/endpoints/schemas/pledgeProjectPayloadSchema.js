@@ -1,6 +1,7 @@
 export default {
 	type: 'object',
 	properties: {
+		projectId: { type: 'string' },
 		pledgeAmount: {
 			type: 'integer',
 			minimum: 5,

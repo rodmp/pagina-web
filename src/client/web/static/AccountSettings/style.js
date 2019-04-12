@@ -1,4 +1,7 @@
 import styled from 'root/src/client/web/base/StaticLayout/style'
+import {
+	primaryColor, secondaryColor,
+} from 'root/src/client/web/commonStyles'
 
 const styles = {
 	section: {
@@ -23,15 +26,18 @@ const styles = {
 		width: '100%',
 		maxWidth: 360,
 		marginTop: 45,
-		height: 48,
-		backgroundColor: '#800080',
-		color: '#fff',
-		border: 'none',
 		borderRadius: 20,
 		fontSize: 18,
-		fontWeight: 'bold',
 		boxShadow: '0 5px 6px 0 rgba(0, 0, 0, 0.16)',
+		textTransform: 'none',
 		cursor: 'pointer',
+		color: 'white',
+		border: 'none',
+		backgroundColor: primaryColor,
+		'&:hover': {
+			backgroundColor: secondaryColor,
+		},
+		height: 48.1,
 	},
 	link: {
 		textDecoration: 'none',

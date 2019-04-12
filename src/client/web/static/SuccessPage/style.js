@@ -6,8 +6,8 @@ const styles = {
 	section: {
 		...styled.section,
 		maxWidth: 825,
-		padding: '0 28px',
-		margin: '0 auto auto auto',
+		padding: '0 28px 28px 28px',
+		margin: '0 auto',
 		color,
 		'@media (min-width: 600px)': {
 			padding: '0 84px',
@@ -60,13 +60,19 @@ const styles = {
 		minHeight: '150px !important',
 		'@media (max-width: 636px)': {
 			minHeight: '200px !important',
+			backgroundPositionY: '33% !important',
 		},
 		'@media (min-width: 636px)': {
 			minHeight: '300px !important',
+			backgroundPositionY: '33% !important',
 		},
 		'@media (min-width: 1280px)': {
-			backgroundPosition: '50% 30%',
-			minHeight: '330px !important',
+			minHeight: '399px !important',
+			backgroundPositionY: '33% !important',
+		},
+		'@media (min-width: 1600px)': {
+			minHeight: '600px !important',
+			backgroundPositionY: '33% !important',
 		},
 	},
 	icons: {

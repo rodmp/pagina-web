@@ -13,7 +13,6 @@ export default {
 			'You have an account?',
 			{ text: 'Sign In', routeId: LOGIN_ROUTE_ID },
 		],
-		preSubmitCaption: 'You will receive an email to verify your information',
 		postSubmitCaption: join('', [
 			'By signing up, you agree to our terms of use, privacy policy, and',
 			'cookie policy. Our policies explain how we use your data to',

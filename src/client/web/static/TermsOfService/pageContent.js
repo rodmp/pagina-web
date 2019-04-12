@@ -14,12 +14,13 @@ import {
 const pageContent = classes => [
 	{
 		title: '1. Welcome to Dare Drop!',
-		paragraph: `
-        This page explains our terms of service. When you use Dare Drop, you’re agreeing to all the
-        rules on this page. We’ve done our best to offer you clear and simple explanations of what
-        everything means with brief summaries before each Section. The summaries are not part of
-        the official legal terms.
-    `,
+		paragraph: (<span>
+        This page explains our terms of service. When you use Dare Drop, you’re 
+				agreeing to all the rules on this page. We’ve done our best to offer 
+				you clear and simple explanations of what everything means with brief 
+				summaries before each Section. The summaries are not part of the 
+				official legal terms.
+				</span>),
 		text: (
 			<React.Fragment>
 				<p>
@@ -60,7 +61,7 @@ const pageContent = classes => [
 		paragraph: (<span>
 			To use Dare Drop, you need to be 13 years old or older. 
 			If you’re between 13 and 18 (or the legal age of majority for your 
-			jurisdiction), you may only use Double Dof under the supervision of a 
+			jurisdiction), you may only use Dare Drop under the supervision of a 
 			parent or legal guardian who agrees to these Terms. You’re responsible 
 			for your account and all the activity on it.
 		</span>),
@@ -164,12 +165,12 @@ const pageContent = classes => [
 	{
 		id: 'section-4',
 		title: '4. How Dares Work',
-		paragraph: `
+		paragraph: (<span>
         Most of our Terms of Service explain your relationship with Dare Drop. This section is
         different — it explains the relationship between creators and backers of Dare Drop Dares,
         and who’s responsible for what. This is what you’re agreeing to when you create, fund,
         delivers results for a Dare Drop Dare.
-    `,
+				</span>),
 		text: (
 			<React.Fragment>
 				<p>
@@ -279,7 +280,7 @@ const pageContent = classes => [
 	{
 		title: '6. Stuff We Aren’t Responsible For',
 		paragraph: (<span>
-			We don’t oversee Dares’ performance, and we don’t mediate disputes between users.`,
+			We don’t oversee Dares’ performance, and we don’t mediate disputes between users.
 		</span>),
 		text: (
 			<p>
@@ -342,13 +343,13 @@ const pageContent = classes => [
 	},
 	{
 		title: '9. Your Intellectual Property',
-		paragraph: `
+		paragraph: (<span>
         We don’t own the stuff you post on Dare Drop. But when you post it, you’re giving us
         permission to use or copy it however we need in order to run the site, or show people what’s
         happening on it. (We generally just use this to promote Dares and showcase our community
         on the website.) You’re responsible for the content you post, and you’re vouching to us that
         it’s all okay to use.
-    `,
+				</span>),
 		text: (
 			<React.Fragment>
 				<p>
@@ -408,11 +409,11 @@ const pageContent = classes => [
 	},
 	{
 		title: '10. Dare Drop’s Intellectual Property',
-		paragraph: `
+		paragraph: (<span>
         The content on Dare Drop is protected in various ways. You do have the right to use it for
         certain personal purposes, but you can’t use it for anything commercial without getting
         permission first.
-    `,
+				</span>),
 		text: (
 			<React.Fragment>
 				<p>
@@ -548,7 +549,7 @@ const pageContent = classes => [
           available” and <em>without warranty of any kind</em>, express or implied.
 				</p>
 				<p>
-          Dare Drop SPECIFICALLY DISCLAIMS ANY AND ALL WARRANTIES AND CONDITIONS OF
+          DARE DROP SPECIFICALLY DISCLAIMS ANY AND ALL WARRANTIES AND CONDITIONS OF
           MERCHANTABILITY, NON-INFRINGEMENT, AND FITNESS FOR A PARTICULAR PURPOSE, AND ANY
           WARRANTIES IMPLIED BY ANY COURSE OF DEALING, COURSE OF PERFORMANCE, OR USAGE OF TRADE. NO
           ADVICE OR INFORMATION (ORAL OR WRITTEN) OBTAINED BY YOU FROM Dare Drop SHALL CREATE ANY
@@ -559,9 +560,9 @@ const pageContent = classes => [
 	},
 	{
 		title: '15. Indemnification ',
-		paragraph: `
+		paragraph: (<span>
         If you do something on Dare Drop that winds up getting us sued, you have to help defend us.
-    `,
+				</span>),
 		text: (
 			<React.Fragment>
 				<p>
