@@ -107,4 +107,36 @@ export const useStyles = makeStyles({
 			borderColor: '#5665b7',
 		},
 	},
+	itemList: {
+		display: 'flex',
+		marginTop: 10,
+		marginBottom: 17,
+		'& div': {
+			fontSize: 16,
+		},
+		'& span': {
+			color: '#800080',
+		},
+	},
+	cardTitle: {
+		fontWeight: 'bold',
+	},
+	addNewPaymentMethod: {
+		fontSize: 18,
+		color: '#800080',
+		textTransform: 'none',
+		display: 'flex',
+		justifyContent: 'center',
+	},
+	formConrol: {
+		width: 360,
+	},
+	cardItem: {
+		height: 57,
+		marginBottom: 7,
+	},
+	cardList: {
+		marginTop: 20,
+		marginBottom: 20,
+	},
 })

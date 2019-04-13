@@ -17,13 +17,6 @@ export const pushInitialRouteHof = (
 	let nextRoute = matchPathFn(getPathFromUrlFn())
 	const state = getState()
 	if (nextRoute) {
-		// CODE BELOW IS BAD
-		// if (window.location.hash) {
-		// 	const y = (window.location.hash.split('&'))
-		// 	const x = y.map(r => r.split('='))
-		// 	x.forEach(r => nextRoute.routeParams[r[0]] = r[1])
-		// }
-		// CODE ABOVE IS BAD
 		nextRoute = auditRouteFn(nextRoute, state)
 			? nextRoute : defaultRouteFn()
 	} else {

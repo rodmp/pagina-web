@@ -6,7 +6,6 @@ const { viewItems, viewListProcessing } = apiStoreLenses
 
 export default (state, { moduleId }) => {
 	const endpointId = moduleEndpointIdSelector(state, { moduleId })
-
 	const listProcessing = Object.keys(viewListProcessing(state) || [])
 
 	const moduleProcess = filter(process => contains(endpointId, process), listProcessing)

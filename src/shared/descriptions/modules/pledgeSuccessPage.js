@@ -2,7 +2,7 @@ import {
 	PLEDGE_SUCCESS_PAGE_MODULE_ID,
 } from 'root/src/shared/descriptions/modules/moduleIds'
 import { ACTIVE_PROJECTS_ROUTE_ID } from 'root/src/shared/descriptions/routes/routeIds'
-import bannerFooterImage from 'root/src/client/assets/pledge-success-page.jpg'
+import bannerFooterImage from 'root/src/client/assets/pledge-success.jpg'
 
 export default {
 	[PLEDGE_SUCCESS_PAGE_MODULE_ID]: {
