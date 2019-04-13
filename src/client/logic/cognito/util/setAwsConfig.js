@@ -29,6 +29,7 @@ export default session => new Promise((resolve, reject) => {
 			creds.params.Logins = {
 				[cognitoLoginKey]: session.getIdToken().getJwtToken(),
 			}
+			// console.log(session.getIdToken().payload['cognito:username'])
 		}
 		creds.expired = true
 		resolve(session)

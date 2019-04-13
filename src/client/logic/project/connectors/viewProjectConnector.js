@@ -13,6 +13,8 @@ import canApproveProjectSelector from 'root/src/client/logic/project/selectors/c
 import canRejectProjectSelector from 'root/src/client/logic/project/selectors/canRejectProjectSelector'
 import canRejectActiveProjectSelector from 'root/src/client/logic/project/selectors/canRejectActiveProjectSelector'
 import canPledgeProjectSelector from 'root/src/client/logic/project/selectors/canPledgeProjectSelector'
+import getUserDataSelector from 'root/src/client/logic/api/selectors/getUserDataSelector'
+
 import canEditProjectDetailsSelector from 'root/src/client/logic/project/selectors/canEditProjectDetailsSelector'
 import isAuthenticatedSelector from 'root/src/client/logic/auth/selectors/isAuthenticated'
 import pledgersSelector from 'root/src/client/logic/project/selectors/pledgersSelector'
@@ -35,6 +37,7 @@ export default reduxConnector(
 		['gameImage', projectGameImageSquareSelector],
 		['canApproveProject', canApproveProjectSelector],
 		['canPledgeProject', canPledgeProjectSelector],
+		['userData', getUserDataSelector],
 		['canRejectProject', canRejectProjectSelector],
 		['canRejectActiveProject', canRejectActiveProjectSelector],
 		['isAuthenticated', isAuthenticatedSelector],
@@ -42,6 +45,6 @@ export default reduxConnector(
 	],
 	[
 		['pushRoute', pushRoute],
-		['updateProject', updateProject]
+		['updateProject', updateProject],
 	],
 )

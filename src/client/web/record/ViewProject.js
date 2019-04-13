@@ -13,9 +13,14 @@ import MaxWidthContainer from 'root/src/client/web/base/MaxWidthContainer'
 import Title from 'root/src/client/web/typography/Title'
 import SubHeader from 'root/src/client/web/typography/SubHeader'
 import Button from 'root/src/client/web/base/Button'
+import { TwitchButton } from 'root/src/client/web/base/CustomButton'
+
+import { twitchOauthUrl } from 'root/src/shared/constants/twitch'
 import TextField from '@material-ui/core/TextField'
 
 import RecordClickActionButton from 'root/src/client/web/base/RecordClickActionButton'
+import { storageSet } from 'root/src/shared/util/storage'
+import isOneOfAssigneesSelector from 'root/src/client/logic/project/selectors/isOneOfAssigneesSelector'
 import { APPROVE_PROJECT, REJECT_PROJECT, REJECT_ACTIVE_PROJECT } from 'root/src/shared/descriptions/recordClickActions/recordClickActionIds'
 
 import viewProjectConnector from 'root/src/client/logic/project/connectors/viewProjectConnector'
@@ -161,6 +166,7 @@ export const ViewProjectModule = memo(({
 	gameImage, canApproveProject, canRejectProject, pushRoute, canPledgeProject,
 	classes, isAuthenticated, canEditProjectDetails, updateProject,
 	myPledge, status, canRejectActiveProject, pledgers, created,
+	userData = {},
 }) => {
 	const [title, setTitle] = useState(projectTitle)
 	const [description, setDescription] = useState(projectDescription)
@@ -243,37 +249,50 @@ export const ViewProjectModule = memo(({
 										recordId={projectId}
 									/>
 								</div>,
-							)}
-							{
-								orNull(
-									canRejectProject,
-									<div className={classes.sidebarItem}>
-										<RecordClickActionButton
-											recordClickActionId={REJECT_PROJECT}
-											recordId={projectId}
-										/>
-									</div>,
-								)
+							)
 							}
-							{
-								<div className={classes.sidebarItem}>
-									<Button
-										onClick={ternary(
-											isAuthenticated,
-											goToPledgeProjectHandler(projectId, pushRoute),
-											goToSignInHandler(pushRoute),
-										)}
-									>
-										Pledge
-									</Button>
-								</div>
-							}
+							<div className={classes.sidebarItem}>
+								<Button
+									onClick={ternary(
+										isAuthenticated,
+										goToPledgeProjectHandler(projectId, pushRoute),
+										goToSignInHandler(pushRoute),
+									)}
+								>
+									Pledge
+								</Button>
+							</div>
 							{
 								orNull(
 									canRejectActiveProject,
 									<div className={classes.sidebarItem}>
 										<RecordClickActionButton
 											recordClickActionId={REJECT_ACTIVE_PROJECT}
+											recordId={projectId}
+										/>
+									</div>,
+								)
+							}
+							{ternary(isOneOfAssigneesSelector(assignees, userData),
+								<TwitchButton
+									title="Accept or reject Dare"
+								/>,
+								<TwitchButton
+									title="Accept or reject Dare"
+									subtitle="Connect with Twitch"
+									withIcon
+									onClick={() => {
+										storageSet('redirectAssignee', assignees[0].username)
+										storageSet('redirectUri', window.location.pathname)
+									}}
+									href={twitchOauthUrl}
+								/>)}
+							{
+								orNull(
+									canRejectProject,
+									<div className={classes.sidebarItem}>
+										<RecordClickActionButton
+											recordClickActionId={REJECT_PROJECT}
 											recordId={projectId}
 										/>
 									</div>,

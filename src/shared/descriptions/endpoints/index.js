@@ -16,6 +16,7 @@ import addPaymentMethod from 'root/src/shared/descriptions/endpoints/addPaymentM
 import deletePaymentMethod from 'root/src/shared/descriptions/endpoints/deletePaymentMethod'
 import setDefaultPaymentMethod from 'root/src/shared/descriptions/endpoints/setDefaultPaymentMethod'
 import authTwitch from 'root/src/shared/descriptions/endpoints/authTwitch'
+import getAuthTokens from 'root/src/shared/descriptions/endpoints/getAuthTokens'
 
 import getActiveProjects from 'root/src/shared/descriptions/endpoints/getActiveProjects'
 import getPendingProjects from 'root/src/shared/descriptions/endpoints/getPendingProjects'
@@ -30,6 +31,7 @@ const allEndpoints = {
 	...getActiveProjects,
 	...getPendingProjects,
 	...authTwitch,
+	...getAuthTokens,
 	...savePartialDareForm,
 	...getPaymentMethods,
 	...getPaymentMethod,

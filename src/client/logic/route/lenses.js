@@ -58,6 +58,15 @@ export const routeStoreLenses = lensesFromSchema({
 									},
 								},
 							},
+							routeQuery: {
+								type: 'object',
+								patternProperties: {
+									[variableSchemaKey]: {
+										type: 'object',
+										properties: {},
+									},
+								},
+							},
 						},
 					},
 				},

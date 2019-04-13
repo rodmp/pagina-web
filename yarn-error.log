@@ -52,11 +52,16 @@ npm manifest:
       "ajv-errors": "^1.0.0",
       "amazon-cognito-identity-js": "^2.0.20",
       "aws-config": "^1.2.0",
+<<<<<<< HEAD
+      "aws-sdk": "^2.279.1",
+      "axios": "^0.18.0",
+=======
   <<<<<<< HEAD
       "aws-sdk": "^2.426.0",
   =======
       "aws-sdk": "^2.427.0",
   >>>>>>> master
+>>>>>>> master
       "babel-cli": "^6.26.0",
       "babel-core": "^6.26.3",
       "babel-eslint": "^8.2.5",
@@ -306,6 +311,13 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/@fortawesome/free-regular-svg-icons/-/free-regular-svg-icons-5.8.1.tgz#9477a973fe3f681f871375fa95ff32a87dcb5111"
     dependencies:
       "@fortawesome/fontawesome-common-types" "^0.2.17"
+  
+  "@fortawesome/free-regular-svg-icons@^5.7.2":
+    version "5.7.2"
+    resolved "https://registry.yarnpkg.com/@fortawesome/free-regular-svg-icons/-/free-regular-svg-icons-5.7.2.tgz#7113bf9df5a970918b8cac8eb45e5ad120818741"
+    integrity sha512-ZO+zQcncfT7omTsTIjBkugj/dFXiSnoK44I5p0/WAoNX8aX2Au7j+uxq1qFX4bevkfGFGsPeJUYU1+Q1PB/5pQ==
+    dependencies:
+      "@fortawesome/fontawesome-common-types" "^0.2.15"
   
   "@fortawesome/free-solid-svg-icons@^5.7.2":
     version "5.8.1"
