@@ -1,3 +1,4 @@
+import { pathOr } from 'ramda'
 import createExternalStoreKey from 'root/src/client/logic/api/util/createExternalStoreKey'
 import { apiStoreLenses } from 'root/src/client/logic/api/lenses'
 import moduleEndpointIdSelector from 'root/src/client/logic/api/selectors/moduleEndpointIdSelector'
@@ -9,7 +10,7 @@ export default (state, props = {}) => {
 	const { moduleId } = props
 	const endpointId = moduleEndpointIdSelector(state, { moduleId })
 	const token = determineToken(endpointId)
-	const { username } = state.app.authenticated.accessToken.payload
+	const username = pathOr(undefined, ['app', 'authenticated', 'accessToken', 'payload', 'username'], state)
 	const data = {
 		pk: `user-${username}`,
 		sk: token,
