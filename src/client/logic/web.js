@@ -41,6 +41,7 @@ import setDefaultPaymentMethodOnSuccess from 'root/src/client/logic/list/reducer
 import addPaymentMethodOnSuccess from 'root/src/client/logic/list/reducers/addPaymentMethodOnSuccess'
 
 import apiExternalRequestSuccess from 'root/src/client/logic/api/reducers/apiExternalRequestSuccess'
+import apiExternalRequestError from 'root/src/client/logic/api/reducers/apiExternalRequestError'
 
 import apiFetchUserDataSuccess from 'root/src/client/logic/api/reducers/apiFetchUserDataSuccess'
 // list
@@ -78,6 +79,7 @@ const store = createStore(
 		...initApiRecordClickActionRequest,
 		...generalRecordModification,
 		...apiExternalRequestSuccess,
+		...apiExternalRequestError,
 		...apiFetchUserDataSuccess,
 		...addPaymentMethodOnSuccess,
 		...deletePaymentMethodOnSuccess,
