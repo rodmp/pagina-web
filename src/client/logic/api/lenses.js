@@ -111,6 +111,8 @@ export const generalApiModuleDescriptionSchema = {
 				recordPayloadMap: { type: 'array' },
 				externalPayloadMap: { type: 'array' },
 				listPayload: { type: 'object' },
+				formType: { type: 'string' },
+				formPayload: { type: 'object' },
 			},
 		},
 	},
