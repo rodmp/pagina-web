@@ -9,6 +9,10 @@ export const storageSet = (key, value) => Result.try(
 	() => localStorage.setItem(key, value),
 ).mapError(reportError)
 
+export const storageClearItem = (key) => Result.try(
+	() => localStorage.removeItem(key),
+).mapError(reportError)
+
 export const storageClear = () => Result.try(
 	() => localStorage.clear(),
 ).mapError(reportError)
