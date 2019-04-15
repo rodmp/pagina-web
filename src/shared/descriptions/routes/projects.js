@@ -13,7 +13,7 @@ import {
 	MY_PROJECT_BANNER_HEADER_MODULE_ID, DELIVER_DARE_SUCCESS_MODULE_ID,
 	PLEDGE_SUCCESS_PAGE_MODULE_ID,
 	BANNER_FOOTER_MARKETPLACE_MODULE_ID,
-	BANNER_FOOTER_YOUR_DARE_MODULE_ID,
+	BANNER_FOOTER_YOUR_DARE_MODULE_ID, MY_PROJECTS_LIST_MODULE_ID
 } from 'root/src/shared/descriptions/modules/moduleIds'
 
 import { authValue } from 'root/src/client/logic/route/lenses'
@@ -52,7 +52,7 @@ export default {
 		url: '/my-projects',
 		modules: [
 			MY_PROJECT_BANNER_HEADER_MODULE_ID,
-			ACTIVE_PROJECTS_LIST_MODULE_ID,
+			MY_PROJECTS_LIST_MODULE_ID,
 		],
 	},
 	[PLEDGE_PROJECT_ROUTE_ID]: {
