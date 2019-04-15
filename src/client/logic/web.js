@@ -41,6 +41,7 @@ import setDefaultPaymentMethodOnSuccess from 'root/src/client/logic/list/reducer
 import addPaymentMethodOnSuccess from 'root/src/client/logic/list/reducers/addPaymentMethodOnSuccess'
 
 // list
+import setFirstPage from 'root/src/client/logic/list/reducers/setFirstPage'
 import currentPage from 'root/src/client/logic/list/reducers/currentPage'
 import hasMore from 'root/src/client/logic/list/reducers/hasMore'
 
@@ -83,6 +84,7 @@ const store = createStore(
 		...currentListPayload,
 		...currentPage,
 		...hasMore,
+		...setFirstPage,
 	}, // reducer object
 	// [], // sagas
 	[

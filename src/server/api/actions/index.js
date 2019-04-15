@@ -2,7 +2,7 @@ import {
 	GET_PROJECT, CREATE_PROJECT, PLEDGE_PROJECT, GET_PLEDGED_PROJECTS,
 	GET_PAYMENT_METHODS, ADD_PAYMENT_METHOD, DELETE_PAYMENT_METHOD, SET_DEFAULT_PAYMENT_METHOD,
 	AUDIT_PROJECT, GET_ACTIVE_PROJECTS, GET_PENDING_PROJECTS, UPDATE_PROJECT,
-	SAVE_PARTIAL_DARE_FORM, CLEAR_PARTIAL_FORM_KEYS,
+	SAVE_PARTIAL_DARE_FORM, CLEAR_PARTIAL_FORM_KEYS, GET_MY_PROJECTS,
 } from 'root/src/shared/descriptions/endpoints/endpointIds'
 
 import getProject from 'root/src/server/api/actions/getProject'
@@ -28,7 +28,7 @@ export default {
 
 	[PLEDGE_PROJECT]: pledgeProject,
 	[GET_PLEDGED_PROJECTS]: getPledgedProjects,
-	// [GET_MY_PROJECTS]: getMyProjects,
+	[GET_MY_PROJECTS]: getMyProjects,
 
 	[AUDIT_PROJECT]: auditProject,
 
