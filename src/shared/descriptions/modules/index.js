@@ -38,6 +38,7 @@ import managePaymentForm from 'root/src/shared/descriptions/modules/managePaymen
 import managePaymentList from 'root/src/shared/descriptions/modules/managePaymentList'
 import steperHeaderModule from 'root/src/shared/descriptions/modules/steperHeaderModule'
 import titleHeaderMarketplace from 'root/src/shared/descriptions/modules/titleHeaderMarketplace'
+import myProjectsList from 'root/src/shared/descriptions/modules/myProjectsList'
 
 const allModules = {
 	...loginForm,
@@ -79,6 +80,7 @@ const allModules = {
 	...managePaymentList,
 	...steperHeaderModule,
 	...titleHeaderMarketplace,
+	...myProjectsList,
 }
 
 export default allModules
