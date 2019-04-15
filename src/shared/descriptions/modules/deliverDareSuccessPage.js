@@ -11,7 +11,9 @@ export default {
 		pageContent: {
 			title: 'Delivered!',
 			paragraphs: [
-				`We'll verify  your video based on the dare description. Once it's verified we'll let your backers know, charge them & pay you! If there are any issues verifying, we'll let you know. 
+				`We'll verify  your video based on the dare description. Once it's verified we'll let your backers know, charge them & pay you! 
+
+				If there are any issues verifying, we'll let you know. 
 				This usually takes less than 48 hours.`,
 			],
 			link: ACTIVE_PROJECTS_ROUTE_ID,
