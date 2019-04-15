@@ -5,7 +5,7 @@ const color = 'rgba(0, 0, 0, 0.87)'
 const styles = {
 	section: {
 		...styled.section,
-		maxWidth: 825,
+		maxWidth: 940,
 		padding: '0 28px 28px 28px',
 		margin: '0 auto',
 		color,
