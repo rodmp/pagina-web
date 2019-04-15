@@ -1,10 +1,10 @@
 import { contains } from 'ramda'
 import Result from 'folktale/result'
 import reportError from 'root/src/shared/util/reportError'
-import createHistory from 'history/createBrowserHistory'
+import { createBrowserHistory } from 'history'
 import googleAnalytics from 'root/src/client/logic/analytics/thunks/googleAnalytics'
 
-const history = createHistory()
+const history = createBrowserHistory()
 
 export const changeBrowserHistory = (
 	historyChangeType, url, { routeId, routeParams },

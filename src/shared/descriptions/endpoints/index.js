@@ -20,6 +20,7 @@ import authTwitch from 'root/src/shared/descriptions/endpoints/authTwitch'
 import getActiveProjects from 'root/src/shared/descriptions/endpoints/getActiveProjects'
 import getPendingProjects from 'root/src/shared/descriptions/endpoints/getPendingProjects'
 import getFavoritesList from 'root/src/shared/descriptions/endpoints/getFavoritesList'
+import getMyProjects from 'root/src/shared/descriptions/endpoints/getMyProjects'
 
 import addToFavorites from 'root/src/shared/descriptions/endpoints/addToFavorites'
 import removeToFavorites from 'root/src/shared/descriptions/endpoints/removeToFavorites'
@@ -43,6 +44,7 @@ const allEndpoints = {
 	...updateProject,
 	...addToFavorites,
 	...removeToFavorites,
+	...getMyProjects,
 }
 
 export default map(
