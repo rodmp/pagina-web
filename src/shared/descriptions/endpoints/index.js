@@ -19,6 +19,7 @@ import authTwitch from 'root/src/shared/descriptions/endpoints/authTwitch'
 
 import getActiveProjects from 'root/src/shared/descriptions/endpoints/getActiveProjects'
 import getPendingProjects from 'root/src/shared/descriptions/endpoints/getPendingProjects'
+import getMyProjects from 'root/src/shared/descriptions/endpoints/getMyProjects'
 
 
 const allEndpoints = {
@@ -37,6 +38,7 @@ const allEndpoints = {
 	...deletePaymentMethod,
 	...setDefaultPaymentMethod,
 	...updateProject,
+	...getMyProjects,
 }
 
 export default map(
