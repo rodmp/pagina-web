@@ -56,6 +56,7 @@ export const fetchRecord = async (dispatch, state, endpointId, payload) => {
 		const error = { ...statusError, ...generalError }
 		dispatch(apiRecordRequestError(recordType, recordId, error))
 	}
+
 	return lambdaRes
 }
 
