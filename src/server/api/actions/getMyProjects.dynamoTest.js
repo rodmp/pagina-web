@@ -11,8 +11,8 @@ import createProject from 'root/src/server/api/actions/createProject'
 
 import contextMock, { mockUserId } from 'root/src/server/api/mocks/contextMock'
 
-describe('getActiveProjects', () => {
-	test('Successfully get active projects', async () => {
+describe('getMyProjects', () => {
+	test('Successfully get my projects', async () => {
 		await Promise.all(
 			map(
 				() => createProject({
