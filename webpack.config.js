@@ -3,6 +3,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 const CircularDependencyPlugin = require('circular-dependency-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
 
 // const appConstants = require('./src/shared/constants/app')
 const colorConstants = require('./src/shared/constants/color')
@@ -78,4 +79,7 @@ module.exports = {
 		// 	cwd: process.cwd(),
 		// }),
 	],
+	optimization: {
+		minimizer: [new TerserPlugin()],
+	},
 }
