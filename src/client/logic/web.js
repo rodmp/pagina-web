@@ -45,6 +45,7 @@ import apiExternalRequestError from 'root/src/client/logic/api/reducers/apiExter
 
 import apiFetchUserDataSuccess from 'root/src/client/logic/api/reducers/apiFetchUserDataSuccess'
 // list
+import setFirstPage from 'root/src/client/logic/list/reducers/setFirstPage'
 import currentPage from 'root/src/client/logic/list/reducers/currentPage'
 import hasMore from 'root/src/client/logic/list/reducers/hasMore'
 
@@ -90,6 +91,7 @@ const store = createStore(
 		...currentListPayload,
 		...currentPage,
 		...hasMore,
+		...setFirstPage,
 	}, // reducer object
 	// [], // sagas
 	[

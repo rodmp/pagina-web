@@ -22,6 +22,7 @@ export default ({ assigneeCount = 1 } = {}) => ({
 	description: lorem.paragraph(),
 	stripeCardId: random.uuid(),
 	pledgeAmount: random.number(),
+	favoritesAmount: random.number(),
 	assignees: twitchStreamerIds,
 	games: gameIds,
 })

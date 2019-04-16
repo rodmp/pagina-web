@@ -1,4 +1,4 @@
-import { map, addIndex } from 'ramda'
+import { map, addIndex, isNil } from 'ramda'
 import React, { memo, useState, useEffect } from 'react'
 import classNames from 'classnames'
 import { orNull, ternary } from 'root/src/shared/util/ramdaPlus'
@@ -27,6 +27,8 @@ import viewProjectConnector from 'root/src/client/logic/project/connectors/viewP
 import withModuleContext from 'root/src/client/util/withModuleContext'
 import goToSignInHandler from 'root/src/client/logic/project/handlers/goToSignInHandler'
 import goToPledgeProjectHandler from 'root/src/client/logic/project/handlers/goToPledgeProjectHandler'
+
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
 
 const styles = {
@@ -70,6 +72,9 @@ const styles = {
 		lineHeight: 1.21,
 		color: '#000000',
 		fontWeight: '500 !important',
+	},
+	leftIcon: {
+		marginRight: 10,
 	},
 	descriptionContainer: {
 		marginTop: 19,
@@ -162,6 +167,7 @@ const styles = {
 
 
 export const ViewProjectModule = memo(({
+	addToFavorites, removeToFavorites, favoritesAmount, myFavorites,
 	projectId, projectDescription, projectTitle, pledgeAmount, assignees,
 	gameImage, canApproveProject, canRejectProject, pushRoute, canPledgeProject,
 	classes, isAuthenticated, canEditProjectDetails, updateProject,
@@ -215,11 +221,11 @@ export const ViewProjectModule = memo(({
 								<div className={classNames(classes.progressInner)} />
 							</div>
 							<div className={classNames('flex', 'layout-row', 'layout-wrap')}>
-								<div className={classNames('flex-50', 'flex-gt-sm-100', classes.sidebarItem)}>
+								<div className={classNames('flex-40', 'flex-gt-sm-100', classes.sidebarItem)}>
 									<SubHeader>Total Pledged</SubHeader>
 									<div className={classNames(classes.text)}>{pledgeAmount}</div>
 								</div>
-								<div className={classNames('flex-50', 'flex-gt-sm-100', classes.sidebarItem)}>
+								<div className={classNames('flex-30', 'flex-gt-sm-100', classes.sidebarItem)}>
 									<SubHeader>Pledgers</SubHeader>
 									<div className={classNames(classes.text)}>{pledgers}</div>
 								</div>
@@ -297,6 +303,37 @@ export const ViewProjectModule = memo(({
 										/>
 									</div>,
 								)
+							}
+							{
+								isNil(myFavorites) || myFavorites == 0 ?
+									<div className={classes.sidebarItem}>
+										<Button
+											buttonType="noBackgroundButton"
+											onClick={
+												ternary(
+													isAuthenticated,
+													addToFavorites,
+													goToSignInHandler(pushRoute),
+												)}
+										>
+											<FavoriteBorderIcon className={classes.leftIcon} />
+											Add to Favorites({favoritesAmount === 'undefined' ? 0 : favoritesAmount})
+										</Button>
+									</div>
+									:
+									<div className={classes.sidebarItem}>
+										<Button
+											buttonType="noBackgroundButton"
+											onClick={
+												ternary(
+													isAuthenticated,
+													removeToFavorites,
+													goToSignInHandler(pushRoute),
+												)}
+										>
+											Added to your Favorites({favoritesAmount === 'undefined' ? 0 : favoritesAmount})
+										</Button>
+									</div>
 							}
 						</div>
 					</div>

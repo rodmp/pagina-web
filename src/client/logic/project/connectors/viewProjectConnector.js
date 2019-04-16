@@ -6,6 +6,8 @@ import projectTitleSelector from 'root/src/client/logic/project/selectors/projec
 import projectDescriptionSelector from 'root/src/client/logic/project/selectors/projectDescriptionSelector'
 import pledgeAmountSelector from 'root/src/client/logic/project/selectors/pledgeAmountSelector'
 import myPledgeSelector from 'root/src/client/logic/project/selectors/myPledgeSelector'
+import favoritesAmountSelector from 'root/src/client/logic/project/selectors/favoritesAmountSelector'
+import myFavoritesSelector from 'root/src/client/logic/project/selectors/myFavoritesSelector'
 import statusSelector from 'root/src/client/logic/project/selectors/statusSelector'
 import projectAssigneesSelector from 'root/src/client/logic/project/selectors/projectAssigneesSelector'
 import projectGameImageSquareSelector from 'root/src/client/logic/project/selectors/projectGameImageSquareSelector'
@@ -21,6 +23,8 @@ import pledgersSelector from 'root/src/client/logic/project/selectors/pledgersSe
 import createdSelector from 'root/src/client/logic/project/selectors/createdSelector'
 
 import pushRoute from 'root/src/client/logic/route/thunks/pushRoute'
+import addToFavorites from 'root/src/client/logic/project/thunks/addToFavorites'
+import removeToFavorites from 'root/src/client/logic/project/thunks/removeToFavorites'
 import updateProject from 'root/src/client/logic/project/thunks/updateProject'
 
 export default reduxConnector(
@@ -31,6 +35,8 @@ export default reduxConnector(
 		['pledgeAmount', pledgeAmountSelector],
 		['created', createdSelector],
 		['myPledge', myPledgeSelector],
+		['favoritesAmount', favoritesAmountSelector],
+		['myFavorites', myFavoritesSelector],
 		['status', statusSelector],
 		['pledgers', pledgersSelector],
 		['assignees', projectAssigneesSelector],
@@ -47,5 +53,7 @@ export default reduxConnector(
 	[
 		['pushRoute', pushRoute],
 		['updateProject', updateProject],
+		['addToFavorites', addToFavorites],
+		['removeToFavorites', removeToFavorites],
 	],
 )
