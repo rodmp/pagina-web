@@ -4,9 +4,7 @@
   "main": "/",
   "license": "MIT",
   "husky": {
-    "hooks": {
-      "pre-push": "yarn test"
-    }
+    "hooks": {}
   },
   "scripts": {
     "test": "./node_modules/.bin/jest",
