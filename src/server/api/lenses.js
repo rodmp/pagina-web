@@ -1,6 +1,6 @@
 import { prop, propOr } from 'ramda'
 import {
-	PARTITION_KEY, SORT_KEY, GSI1_INDEX_NAME, GSI1_PARTITION_KEY, GSI1_SORT_KEY,
+    PARTITION_KEY, SORT_KEY, GSI1_INDEX_NAME, GSI1_PARTITION_KEY, GSI1_SORT_KEY,
 } from 'root/src/shared/constants/apiDynamoIndexes'
 
 export const authenticationProp = prop('authentication')
@@ -26,8 +26,3 @@ export const dynamoItemsProp = prop('Items')
 export const projectPendingKey = 'pending'
 export const projectApprovedKey = 'approved'
 export const projectRejectedKey = 'rejected'
-export const projectAcceptedKey = 'accepted'
-export const projectStreamerRejectedKey = 'streamerRejected'
-export const projectExpiredKey = 'expired'
-export const projectDeliveryPendingKey = 'deliveryPending'
-export const projectDeliveredKey = 'delivered'

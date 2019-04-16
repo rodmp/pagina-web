@@ -40,15 +40,14 @@ import deletePaymentMethodOnSuccess from 'root/src/client/logic/list/reducers/de
 import setDefaultPaymentMethodOnSuccess from 'root/src/client/logic/list/reducers/setDefaultPaymentMethodOnSuccess'
 import addPaymentMethodOnSuccess from 'root/src/client/logic/list/reducers/addPaymentMethodOnSuccess'
 
-// list
-import setFirstPage from 'root/src/client/logic/list/reducers/setFirstPage'
-import currentPage from 'root/src/client/logic/list/reducers/currentPage'
-import hasMore from 'root/src/client/logic/list/reducers/hasMore'
-
 import apiExternalRequestSuccess from 'root/src/client/logic/api/reducers/apiExternalRequestSuccess'
 import apiExternalRequestError from 'root/src/client/logic/api/reducers/apiExternalRequestError'
 
 import apiFetchUserDataSuccess from 'root/src/client/logic/api/reducers/apiFetchUserDataSuccess'
+// list
+import setFirstPage from 'root/src/client/logic/list/reducers/setFirstPage'
+import currentPage from 'root/src/client/logic/list/reducers/currentPage'
+import hasMore from 'root/src/client/logic/list/reducers/hasMore'
 
 // listeners
 import popStateListener from 'root/src/client/logic/route/listeners/popStateListener'
@@ -81,11 +80,8 @@ const store = createStore(
 		...initApiRecordClickActionRequest,
 		...generalRecordModification,
 		...apiExternalRequestSuccess,
-		...apiFetchUserDataSuccess,
-		...partialFormDbSaveSuccess,
-		...clearPartialFormKeys,
-		...deletePaymentMethodOnSuccess,
 		...apiExternalRequestError,
+		...apiFetchUserDataSuccess,
 		...addPaymentMethodOnSuccess,
 		...deletePaymentMethodOnSuccess,
 		...setDefaultPaymentMethodOnSuccess,
