@@ -1,6 +1,0 @@
-export const apiDynamoTableName = 'arn:aws:dynamodb:us-east-1:685756249129:table/dareMeDev-dareMeDevApiDynamoDbTable-5OTTQPZG5KJV'
-export const clientId = 'op56iho98u8sf5bmqphtv1q76'
-export const apiFunctionArn = 'arn:aws:lambda:us-east-1:685756249129:function:dareMeDev-dareMeDevApiLambdaFunction-167B8YFBDGEYN'
-export const domainName = 'dev.watt.tv'
-export const userPoolId = 'us-east-1_S8cDjcbXm'
-export const identityPoolId = 'us-east-1:b1c7e233-bade-47b8-b877-1573ff41e063'
