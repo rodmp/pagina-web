@@ -5,7 +5,7 @@ import {
 	GET_PAYMENT_METHODS, ADD_PAYMENT_METHOD, DELETE_PAYMENT_METHOD, 
 	UPDATE_PROJECT, SAVE_PARTIAL_DARE_FORM, SET_DEFAULT_PAYMENT_METHOD,
 	GET_FAVORITES_LIST, ADD_TO_FAVORITES, REMOVE_TO_FAVORITES,
-	CLEAR_PARTIAL_FORM_KEYS, GET_MY_PROJECTS,
+	GET_MY_PROJECTS,
 } from 'root/src/shared/descriptions/endpoints/endpointIds'
 
 import getProject from 'root/src/server/api/actions/getProject'
