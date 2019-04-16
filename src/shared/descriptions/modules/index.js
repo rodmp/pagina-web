@@ -32,6 +32,7 @@ import bannerFooterDareAccepted from 'root/src/shared/descriptions/modules/banne
 import bannerFooterDareRejectConfirmation from 'root/src/shared/descriptions/modules/bannerFooterDareRejectConfirmation'
 import bannerFooterDareSuccessCreate from 'root/src/shared/descriptions/modules/bannerFooterDareSuccessCreate'
 import twitchOAuth from 'root/src/shared/descriptions/modules/twitchOAuth'
+import twitchOAuthFailure from 'root/src/shared/descriptions/modules/twitchOAuthFailure'
 import changePasswordAuth from 'root/src/shared/descriptions/modules/changePasswordAuth'
 import changePasswordForm from 'root/src/shared/descriptions/modules/changePasswordForm'
 import changePasswordSuccess from 'root/src/shared/descriptions/modules/changePasswordSuccess'
@@ -39,8 +40,6 @@ import managePaymentForm from 'root/src/shared/descriptions/modules/managePaymen
 import managePaymentList from 'root/src/shared/descriptions/modules/managePaymentList'
 import steperHeaderModule from 'root/src/shared/descriptions/modules/steperHeaderModule'
 import titleHeaderMarketplace from 'root/src/shared/descriptions/modules/titleHeaderMarketplace'
-import claimProject from 'root/src/shared/descriptions/modules/claimProject'
-import claimProjectForm from 'root/src/shared/descriptions/modules/claimProjectForm'
 import deliverDareSuccessPage from 'root/src/shared/descriptions/modules/deliverDareSuccessPage'
 import myProjectsList from 'root/src/shared/descriptions/modules/myProjectsList'
 
@@ -79,6 +78,7 @@ const allModules = {
 	...accountSettings,
 	...accountSettingsBannerHeader,
 	...twitchOAuth,
+	...twitchOAuthFailure,
 	...changePasswordAuth,
 	...changePasswordForm,
 	...changePasswordSuccess,
@@ -86,8 +86,6 @@ const allModules = {
 	...managePaymentList,
 	...steperHeaderModule,
 	...titleHeaderMarketplace,
-	...claimProject,
-	...claimProjectForm,
 	...deliverDareSuccessPage,
 	...myProjectsList,
 }

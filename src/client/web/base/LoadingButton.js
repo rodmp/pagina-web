@@ -30,7 +30,6 @@ const wrapperStyles = {
 	wrapper: {
 		position: 'relative',
 		width: '100%',
-		marginBottom: 12,
 	},
 }
 
@@ -38,17 +37,17 @@ export default withStyles(wrapperStyles)(
 	({
 		children, onClick, classes, loading, formType,
 	}) => (
-			<div className="flex layout-row layout-align-center">
-				<div className={classes.wrapper}>
-					<Button
-						disabled={loading}
-						onClick={onClick}
-						formType={formType}
-					>
-						{children}
-					</Button>
-					<RenderLoading loading={loading} />
-				</div>
+		<div className="flex layout-row layout-align-center">
+			<div className={classes.wrapper}>
+				<Button
+					disabled={loading}
+					onClick={onClick}
+					formType={formType}
+				>
+					{children}
+				</Button>
+				<RenderLoading loading={loading} />
 			</div>
-		),
+		</div>
+	),
 )

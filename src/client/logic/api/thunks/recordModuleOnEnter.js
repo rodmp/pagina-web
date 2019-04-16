@@ -14,17 +14,15 @@ export default ({ moduleId, nextRouteObj }) => async (dispatch) => {
 		{ /* state */ }, { moduleId },
 	)
 	// @TODO replace this with util/subObj (also in recordClickAction)
-	if (payloadItems) {
-		const payload = reduce(
-			(result, [key, value]) => {
-				if (contains(':', value)) {
-					return { ...result, [key]: payloadSubs[value.substr(1)] }
-				}
-				return { ...result, [key]: value }
-			},
-			{},
-			payloadItems,
-		)
-		return dispatch(apiRequest(endpointId, payload))
-	}
+	const payload = reduce(
+		(result, [key, value]) => {
+			if (contains(':', value)) {
+				return { ...result, [key]: payloadSubs[value.substr(1)] }
+			}
+			return { ...result, [key]: value }
+		},
+		{},
+		payloadItems,
+	)
+	return dispatch(apiRequest(endpointId, payload))
 }

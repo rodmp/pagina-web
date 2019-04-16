@@ -14,9 +14,6 @@ import getPaymentMethods from 'root/src/shared/descriptions/endpoints/getPayment
 import getPaymentMethod from 'root/src/shared/descriptions/endpoints/getPaymentMethod'
 import addPaymentMethod from 'root/src/shared/descriptions/endpoints/addPaymentMethod'
 import deletePaymentMethod from 'root/src/shared/descriptions/endpoints/deletePaymentMethod'
-import acceptProject from 'root/src/shared/descriptions/endpoints/acceptProject'
-import rejectProject from 'root/src/shared/descriptions/endpoints/rejectProject'
-
 import setDefaultPaymentMethod from 'root/src/shared/descriptions/endpoints/setDefaultPaymentMethod'
 import authTwitch from 'root/src/shared/descriptions/endpoints/authTwitch'
 import getAuthTokens from 'root/src/shared/descriptions/endpoints/getAuthTokens'
@@ -47,8 +44,6 @@ const allEndpoints = {
 	...deletePaymentMethod,
 	...setDefaultPaymentMethod,
 	...updateProject,
-	...acceptProject,
-	...rejectProject,
 	...addToFavorites,
 	...removeToFavorites,
 	...getMyProjects,

@@ -8,17 +8,18 @@ import moduleIdFromKey from 'root/src/client/logic/route/util/moduleIdFromKey'
 
 import ajvErrors from 'root/src/shared/util/ajvErrors'
 
-export default (moduleKey, state, submitKey) => new Promise((resolve, reject) => {
+export default (moduleKey, state) => new Promise((resolve, reject) => {
 	const moduleId = moduleIdFromKey(moduleKey)
-	const formSchema = getFormSchema(null /* no state needed */, { moduleId, submitKey })
+	const formSchema = getFormSchema(null /* no state needed */, { moduleId })
 	const formData = getFormData(state, { moduleKey })
+
 	Object.keys(formData).forEach((key) => {
 		if (isEmpty(formData[key]) && not(equals(formData[key], 0))) {
 			delete formData[key]
 		}
 	})
 
-	return validateSchema(moduleId, formSchema, formData, submitKey).then(
+	return validateSchema(moduleId, formSchema, formData).then(
 		({ valid, errors }) => {
 			if (valid) {
 				resolve(formData)
