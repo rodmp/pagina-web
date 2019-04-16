@@ -92,16 +92,6 @@ const apiStoreSchema = {
 						},
 					},
 				},
-				externalErrors: {
-					type: 'object',
-					patternProperties: {
-						[variableSchemaKey]: {
-							// type: 'string', this is really a string
-							type: 'object',
-							properties: {},
-						},
-					},
-				},
 				userData: {
 					type: 'object',
 					patternProperties: {

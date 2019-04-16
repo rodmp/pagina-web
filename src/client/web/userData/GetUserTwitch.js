@@ -29,16 +29,12 @@ const styles = {
 	},
 }
 
-const GetUserTwitch = memo(({ userData: { displayName, isNotListed }, pageContent, classes }) => (
+const GetUserTwitch = memo(({ displayName, pageContent, classes }) => (
 	<div>
 		{orNull(displayName,
 			<section className={classes.section}>
 				<h3 className={classes.title}>{pageContent.title}</h3>
-				<p className={classes.text}>
-					{pageContent.text} {displayName}!<br />
-					{orNull(isNotListed,
-						"You aren't listed for this dare.")}
-				</p>
+				<p className={classes.text}>{pageContent.text} {displayName}!</p>
 				<Link routeId={pageContent.link}>
 					<p className={classes.link}>{pageContent.linkLabel}</p>
 				</Link>

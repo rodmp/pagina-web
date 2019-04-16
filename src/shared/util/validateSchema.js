@@ -12,7 +12,11 @@ ajvErrors(ajv)
 
 export default (schemaId, schema, data) => new Promise((resolve) => {
 	let validate = ajv.getSchema(schemaId)
-	if (!validate) {
+	if (validate) {
+		ajv.removeSchema(schemaId)
+		ajv.addSchema({ $async: true, ...schema }, schemaId)
+		validate = ajv.getSchema(schemaId)
+	} else {
 		ajv.addSchema({ $async: true, ...schema }, schemaId)
 		validate = ajv.getSchema(schemaId)
 	}

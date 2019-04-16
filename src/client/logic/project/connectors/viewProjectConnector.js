@@ -16,9 +16,9 @@ import canRejectProjectSelector from 'root/src/client/logic/project/selectors/ca
 import canRejectActiveProjectSelector from 'root/src/client/logic/project/selectors/canRejectActiveProjectSelector'
 import canPledgeProjectSelector from 'root/src/client/logic/project/selectors/canPledgeProjectSelector'
 import getUserDataSelector from 'root/src/client/logic/api/selectors/getUserDataSelector'
-import isAuthenticatedSelector from 'root/src/client/logic/auth/selectors/isAuthenticated'
 
 import canEditProjectDetailsSelector from 'root/src/client/logic/project/selectors/canEditProjectDetailsSelector'
+import isAuthenticatedSelector from 'root/src/client/logic/auth/selectors/isAuthenticated'
 import pledgersSelector from 'root/src/client/logic/project/selectors/pledgersSelector'
 import createdSelector from 'root/src/client/logic/project/selectors/createdSelector'
 
@@ -44,7 +44,6 @@ export default reduxConnector(
 		['canApproveProject', canApproveProjectSelector],
 		['canPledgeProject', canPledgeProjectSelector],
 		['userData', getUserDataSelector],
-		['isAuthenticated', isAuthenticatedSelector],
 		['canRejectProject', canRejectProjectSelector],
 		['canRejectActiveProject', canRejectActiveProjectSelector],
 		['isAuthenticated', isAuthenticatedSelector],

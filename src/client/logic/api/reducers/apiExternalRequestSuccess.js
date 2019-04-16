@@ -8,11 +8,11 @@ const { setUserDataChild } = apiStoreLenses
 
 export const apiExternalRequestSuccess = (
 	state,
-	{ recordType, lambda, isNotListed },
+	{ recordType, lambda },
 ) => {
 	const externalStoreId = createExternalStoreKey(recordType, lambda.body)
 	return compose(
-		setUserDataChild(externalStoreId, { ...lambda.body, isNotListed }),
+		setUserDataChild(externalStoreId, lambda.body),
 	)(state)
 }
 
