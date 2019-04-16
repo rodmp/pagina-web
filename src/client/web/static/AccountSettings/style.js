@@ -1,7 +1,4 @@
 import styled from 'root/src/client/web/base/StaticLayout/style'
-import {
-	primaryColor, secondaryColor,
-} from 'root/src/client/web/commonStyles'
 
 const styles = {
 	section: {
@@ -31,13 +28,6 @@ const styles = {
 		boxShadow: '0 5px 6px 0 rgba(0, 0, 0, 0.16)',
 		textTransform: 'none',
 		cursor: 'pointer',
-		color: 'white',
-		border: 'none',
-		backgroundColor: primaryColor,
-		'&:hover': {
-			backgroundColor: secondaryColor,
-		},
-		height: 48.1,
 	},
 	link: {
 		textDecoration: 'none',

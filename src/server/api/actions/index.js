@@ -1,11 +1,11 @@
 import {
-	GET_PROJECT, CREATE_PROJECT, PLEDGE_PROJECT, GET_PLEDGED_PROJECTS, 
+	GET_PROJECT, CREATE_PROJECT, PLEDGE_PROJECT, GET_PLEDGED_PROJECTS,
 	GET_OAUTH_TOKENS, ADD_OAUTH_TOKEN, CLEAR_PARTIAL_FORM_KEYS,
 	AUDIT_PROJECT, GET_ACTIVE_PROJECTS, GET_PENDING_PROJECTS,
-	GET_PAYMENT_METHODS, ADD_PAYMENT_METHOD, DELETE_PAYMENT_METHOD, 
-	UPDATE_PROJECT, SAVE_PARTIAL_DARE_FORM, SET_DEFAULT_PAYMENT_METHOD,
-	GET_FAVORITES_LIST, ADD_TO_FAVORITES, REMOVE_TO_FAVORITES,
-	GET_MY_PROJECTS,
+	GET_PAYMENT_METHODS, ADD_PAYMENT_METHOD, DELETE_PAYMENT_METHOD, UPDATE_PROJECT,
+	SAVE_PARTIAL_DARE_FORM, ACCEPT_PROJECT, REJECT_PROJECT,
+	SET_DEFAULT_PAYMENT_METHOD, ADD_TO_FAVORITES, REMOVE_TO_FAVORITES,
+	GET_FAVORITES_LIST, GET_MY_PROJECTS,
 } from 'root/src/shared/descriptions/endpoints/endpointIds'
 
 import getProject from 'root/src/server/api/actions/getProject'
@@ -25,6 +25,8 @@ import addPaymentMethod from 'root/src/server/api/actions/addPaymentMethod'
 import deletePaymentMethod from 'root/src/server/api/actions/deletePaymentMethod'
 import setDafaultPaymentMethod from 'root/src/server/api/actions/setDefaultPaymentMethod'
 import updateProject from 'root/src/server/api/actions/updateProject'
+import acceptProject from 'root/src/server/api/actions/acceptProject'
+import rejectProject from 'root/src/server/api/actions/rejectProject'
 import addToFavorites from 'root/src/server/api/actions/addToFavorites'
 import removeToFavorites from 'root/src/server/api/actions/removeToFavorites'
 import getMyProjects from 'root/src/server/api/actions/getMyProjects'
@@ -55,5 +57,8 @@ export default {
 	[GET_PAYMENT_METHODS]: getPaymentMethods,
 	[ADD_PAYMENT_METHOD]: addPaymentMethod,
 	[DELETE_PAYMENT_METHOD]: deletePaymentMethod,
+
+	[ACCEPT_PROJECT]: acceptProject,
+	[REJECT_PROJECT]: rejectProject,
 	[SET_DEFAULT_PAYMENT_METHOD]: setDafaultPaymentMethod,
 }

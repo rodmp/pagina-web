@@ -27,6 +27,7 @@ import viewProjectConnector from 'root/src/client/logic/project/connectors/viewP
 import withModuleContext from 'root/src/client/util/withModuleContext'
 import goToSignInHandler from 'root/src/client/logic/project/handlers/goToSignInHandler'
 import goToPledgeProjectHandler from 'root/src/client/logic/project/handlers/goToPledgeProjectHandler'
+import goToClaimProjectHandler from 'root/src/client/logic/project/handlers/goToClaimProjectHandler'
 
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
@@ -171,8 +172,7 @@ export const ViewProjectModule = memo(({
 	projectId, projectDescription, projectTitle, pledgeAmount, assignees,
 	gameImage, canApproveProject, canRejectProject, pushRoute, canPledgeProject,
 	classes, isAuthenticated, canEditProjectDetails, updateProject,
-	myPledge, status, canRejectActiveProject, pledgers, created,
-	userData = {},
+	myPledge, status, canRejectActiveProject, pledgers, created, userData = {},
 }) => {
 	const [title, setTitle] = useState(projectTitle)
 	const [description, setDescription] = useState(projectDescription)
@@ -255,19 +255,31 @@ export const ViewProjectModule = memo(({
 										recordId={projectId}
 									/>
 								</div>,
-							)
+							)}
+							{
+								orNull(
+									canRejectProject,
+									<div className={classes.sidebarItem}>
+										<RecordClickActionButton
+											recordClickActionId={REJECT_PROJECT}
+											recordId={projectId}
+										/>
+									</div>,
+								)
 							}
-							<div className={classes.sidebarItem}>
-								<Button
-									onClick={ternary(
-										isAuthenticated,
-										goToPledgeProjectHandler(projectId, pushRoute),
-										goToSignInHandler(pushRoute),
-									)}
-								>
-									Pledge
-								</Button>
-							</div>
+							{
+								<div className={classes.sidebarItem}>
+									<Button
+										onClick={ternary(
+											isAuthenticated,
+											goToPledgeProjectHandler(projectId, pushRoute),
+											goToSignInHandler(pushRoute),
+										)}
+									>
+										Pledge
+									</Button>
+								</div>
+							}
 							{
 								orNull(
 									canRejectActiveProject,
@@ -282,6 +294,9 @@ export const ViewProjectModule = memo(({
 							{ternary(isOneOfAssigneesSelector(assignees, userData),
 								<TwitchButton
 									title="Accept or reject Dare"
+									onClick={goToClaimProjectHandler(
+										projectId, pushRoute,
+									)}
 								/>,
 								<TwitchButton
 									title="Accept or reject Dare"
@@ -293,17 +308,6 @@ export const ViewProjectModule = memo(({
 									}}
 									href={twitchOauthUrl}
 								/>)}
-							{
-								orNull(
-									canRejectProject,
-									<div className={classes.sidebarItem}>
-										<RecordClickActionButton
-											recordClickActionId={REJECT_PROJECT}
-											recordId={projectId}
-										/>
-									</div>,
-								)
-							}
 							{
 								isNil(myFavorites) || myFavorites == 0 ?
 									<div className={classes.sidebarItem}>
