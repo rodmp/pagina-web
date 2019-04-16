@@ -3,7 +3,7 @@ const styles = {
 		display: 'flex',
 		justifyContent: 'center',
 		height: 54,
-		paddingTop: 25,
+		paddingTop: 10,
 	},
 	SocialIcon: {
 		width: 54,

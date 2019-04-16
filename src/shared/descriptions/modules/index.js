@@ -8,6 +8,7 @@ import createProjectForm from 'root/src/shared/descriptions/modules/createProjec
 import viewProject from 'root/src/shared/descriptions/modules/viewProject'
 import pendingProjectsList from 'root/src/shared/descriptions/modules/pendingProjectsList'
 import activeProjectsList from 'root/src/shared/descriptions/modules/activeProjectsList'
+import getFavoritesList from 'root/src/shared/descriptions/modules/getFavoritesList'
 import pledgeProjectForm from 'root/src/shared/descriptions/modules/pledgeProjectForm'
 import pledgeSuccessPage from 'root/src/shared/descriptions/modules/pledgeSuccessPage'
 import howItWorks from 'root/src/shared/descriptions/modules/howItWorks'
@@ -39,6 +40,9 @@ import managePaymentForm from 'root/src/shared/descriptions/modules/managePaymen
 import managePaymentList from 'root/src/shared/descriptions/modules/managePaymentList'
 import steperHeaderModule from 'root/src/shared/descriptions/modules/steperHeaderModule'
 import titleHeaderMarketplace from 'root/src/shared/descriptions/modules/titleHeaderMarketplace'
+import deliverDareSuccessPage from 'root/src/shared/descriptions/modules/deliverDareSuccessPage'
+import myProjectsList from 'root/src/shared/descriptions/modules/myProjectsList'
+
 
 const allModules = {
 	...loginForm,
@@ -50,6 +54,7 @@ const allModules = {
 	...viewProject,
 	...pendingProjectsList,
 	...activeProjectsList,
+	...getFavoritesList,
 	...pledgeProjectForm,
 	...pledgeSuccessPage,
 	...howItWorks,
@@ -81,6 +86,8 @@ const allModules = {
 	...managePaymentList,
 	...steperHeaderModule,
 	...titleHeaderMarketplace,
+	...deliverDareSuccessPage,
+	...myProjectsList,
 }
 
 export default allModules

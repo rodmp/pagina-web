@@ -22,6 +22,8 @@ const styles = {
 		},
 		width: '100%',
 		height: 48.1,
+		textTransform: 'none',
+		fontSize: 20
 	},
 	smallButton: {
 		width: '20%',

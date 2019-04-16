@@ -10,8 +10,10 @@ export default {
 		image: { type: 'string' },
 		description: { type: 'string' },
 		pledgeAmount: { type: 'integer' },
+		favoritesAmount: { type: 'integer' },
 		pledgers: { type: 'integer' },
 		myPledge: { type: 'integer' },
+		myFavorites: { type: 'integer' },
 		created: { type: 'string' },
 		status: {
 			type: 'string',
@@ -50,6 +52,6 @@ export default {
 			},
 		},
 	},
-	required: ['id', 'title', 'image', 'description', 'pledgeAmount', 'status'],
+	required: ['id', 'title', 'image', 'description', 'pledgeAmount', 'status', 'favoritesAmount'],
 	additionalProperties: false,
 }
