@@ -44,7 +44,6 @@ const styles = {
 		},
 	},
 	link: {
-		marginBottom: 30,
 		fontWeight: 'bold',
 		textDecoration: 'underline',
 		fontSize: 18,
