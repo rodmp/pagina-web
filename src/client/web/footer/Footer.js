@@ -43,22 +43,22 @@ export const FooterUnconnected = memo(({ classes, currentYear }) => (
 			<div className={classes.bottom}>
 				<div className={classes.socialContainerSmall}>
 					<div className={classes.socialIconSmall}>
-						<Link href="https://facebook.com">
+						<Link href="https://www.facebook.com/daredrops">
 							<img src={facebookFooter} alt="facebook" />
 						</Link>
 					</div>
 					<div className={classes.socialIconSmall}>
-						<Link href="https://instagram.com">
+						<Link href="https://www.instagram.com/dare.drop/">
 							<img src={instagramFooter} alt="instagram" />
 						</Link>
 					</div>
 					<div className={classes.socialIconSmall}>
-						<Link href="https://youtube.com">
+						<Link href="https://www.youtube.com/channel/UC9HaIflzLYyMTWaoMyok3VQ">
 							<img src={youtubeFooter} alt="youtube" />
 						</Link>
 					</div>
 					<div className={classes.socialIconSmall}>
-						<Link href="https://twitter.com">
+						<Link href="https://twitter.com/daredrops">
 							<img src={twitterFooter} alt="twitter" />
 						</Link>
 					</div>
