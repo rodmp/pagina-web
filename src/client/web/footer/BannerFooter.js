@@ -22,28 +22,28 @@ export const BannerFooterUnconnected = memo(({ classes, bannerFooterImage, isSuc
 			isSuccessPage,
 			<div className={classes.socialContainer}>
 				<div className={classes.socialIcon}>
-					<Link href="https://facebook.com">
+					<Link href="https://www.facebook.com/daredrops">
 						<img src={facebook} alt="facebook" />
 					</Link>
 				</div>
 				<div className={classes.socialIcon}>
-					<Link href="https://twitter.com">
+					<Link href="https://twitter.com/daredrops">
 						<img src={twitter} alt="twitter" />
 					</Link>
 				</div>
 				<div className={classes.socialIcon}>
-					<Link href="https://youtube.com">
+					<Link href="https://www.youtube.com/channel/UC9HaIflzLYyMTWaoMyok3VQ">
 						<img src={youtube} alt="youtube" />
 					</Link>
 				</div>
 				<div className={classes.socialIcon}>
-					<Link href="https://instagram.com">
+					<Link href="https://www.instagram.com/dare.drop/">
 						<img src={instagram} alt="instagram" />
 					</Link>
 				</div>
 				<div className={classes.socialIcon}>
-					<Link href="https://vk.com">
-						<img src={vk} alt="vk" />
+					<Link href="https://www.twitch.tv/dare_drop">
+						<img src={twitch} alt="twitch" />
 					</Link>
 				</div>
 			</div>,
