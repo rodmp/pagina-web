@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "*": ["node_modules/*"],
+      "~/*": ["src/*"]
+    },
+    // "module": "commonjs",
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "outDir": "dist",
+    "jsx": "preserve"
+  },
+  "files": ["src/electron-main.ts", "src/globals.d.ts"]
+}

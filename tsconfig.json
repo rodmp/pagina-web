@@ -1,0 +1,30 @@
+{
+  "extends": "./tsconfig.electron.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+
+    // "allowJs": true,
+    // "allowSyntheticDefaultImports": true,
+    // "lib": ["dom", "es2017"],
+    // "module": "esnext",
+    // "moduleResolution": "node",
+    // "preserveConstEnums": true,
+    // "removeComments": false,
+    // "skipLibCheck": true,
+    // "target": "esnext"
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "src/.next",
+    "src/out"
+  ]
+}

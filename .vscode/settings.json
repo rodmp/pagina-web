@@ -1,0 +1,6 @@
+{
+  "files.exclude": {
+    "src/.next": true,
+    "src/out": true
+  }
+}
