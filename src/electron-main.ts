@@ -5,16 +5,18 @@ import {
   BrowserWindow
 } from 'electron'
 import isDev from 'electron-is-dev'
-import prepareNext from 'electron-next'
+// @ts-ignore: Cannot find module
+// TODO: waiting for update here: https://github.com/leo/electron-next/pull/26
+import prepareRenderer from 'electron-next'
 import { format } from 'url'
 
 dotenv({ path: '.env.local' })
 dotenv()
 
-const { PORT } = process.env
+const { PORT = 4000 } = process.env
 
 app.on('ready', async () => {
-  await prepareNext('./src', PORT)
+  await prepareRenderer('./src', PORT)
 
   const mainWindow = new BrowserWindow({
     height: 600,

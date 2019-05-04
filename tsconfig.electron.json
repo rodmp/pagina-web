@@ -2,14 +2,23 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "*": ["node_modules/*"],
-      "~/*": ["src/*"]
+      "*": ["node_modules/*", "types/*"],
+      "~/*": ["src/*"],
+      "@types": ["types"]
     },
     // "module": "commonjs",
     "esModuleInterop": true,
     "sourceMap": true,
     "outDir": "dist",
-    "jsx": "preserve"
+    "jsx": "preserve",
+
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true
   },
-  "files": ["src/electron-main.ts", "src/globals.d.ts"]
+  "files": ["src/electron-main.ts"]
 }

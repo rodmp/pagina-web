@@ -6,5 +6,13 @@
       "dist",
       "src/out"
     ]
+  },
+  "rules": {
+    "no-submodule-imports": false,
+    "no-implicit-dependencies": false,
+    "interface-name": false,
+    "space-before-function-paren": true,
+    "semicolon": [true, "never"],
+    "no-trailing-whitespace": true
   }
 }

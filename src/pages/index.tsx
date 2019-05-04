@@ -1,5 +1,10 @@
 import React from 'react'
+import DataInbox from '~/pages/data_inbox'
 
-export default () => (
-  <span>This is Next.js speaking</span>
-)
+const Index = () => {
+  return(
+    <DataInbox/>
+  )
+}
+
+export default Index
