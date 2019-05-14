@@ -25,7 +25,8 @@ const Field: FieldType = ({ name, type, defaultValue = '' }: Props) => {
     // e.persist()
     setValue(e.target.value)
   }
-  // TODO: use label instead of div, and make it optional, by passing arg 'label={"Some label"}'
+  // TODO:X use label instead of div, and make it optional, as a prop (`label={"Some label"}`)
+  // https://github.com/prometheonsystems/bedrock-client2/issues/12
   return(
     <>
       <div>{capitalizeFirstLetter(name)}</div>

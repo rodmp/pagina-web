@@ -1,27 +1,17 @@
-import axios from 'axios'
+import { AppLayoutProps } from '@types'
 import { useRouter } from 'next/router'
-import React, { ReactNode, useEffect, useMemo } from 'react'
+import React, {
+  useEffect,
+  useMemo,
+} from 'react'
 import { RequestProvider } from 'react-request-hook'
 import Navigation from '~/components/Navigation'
+import getAxiosInstance from '~/helpers/getAxiosInstance'
 import { FormProvider } from '~/lib/forms'
 
-const { BACKEND_URL: baseURL } = process.env
+const AppLayout = (props: AppLayoutProps) => {
+  const { Page, authToken, pageProps } = props
 
-interface Props {
-  children: ReactNode,
-  authToken?: string
-}
-
-const getAxiosInstance = (token?: string) => axios.create({
-  baseURL,
-  headers: {
-    Accept: 'application/json',
-    ...( token && { Authorization: `Bearer ${token}` } )
-  }
-})
-
-const AppLayout = (props: Props) => {
-  const { children, authToken } = props
   const isAuth = Boolean(authToken)
   const router = useRouter()
   useEffect(() => {
@@ -29,14 +19,15 @@ const AppLayout = (props: Props) => {
       router.push('/login')
     }
   }, [router.asPath, isAuth])
-  const axiosInstance = useMemo(() => getAxiosInstance(authToken), [authToken])
+
+  const axios = useMemo(() => getAxiosInstance(authToken), [authToken])
 
   return(
     <div>
-      <RequestProvider value={axiosInstance}>
+      <RequestProvider value={axios}>
         <FormProvider>
           <Navigation/>
-          { children }
+          <Page {...pageProps}/>
         </FormProvider>
       </RequestProvider>
     </div>

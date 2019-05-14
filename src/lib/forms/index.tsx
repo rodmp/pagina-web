@@ -12,26 +12,19 @@ interface FormDataType {
   [inputKey: string]: string
 }
 
-type SetStateValueType = string | FormDataType
-
-// TODO: use these interfaces A and B for the SetStateProps ?
-
-// interface A {
-//   x: number,
-//   y?: undefined
-// }
-// interface B {
-//   x?: undefined,
-//   y: number
-// }
-
-// type Z = A | B;
-
-interface SetStateProps<V extends SetStateValueType = SetStateValueType> {
+interface SetStateProps1 {
   formName: string,
-  inputName?: string
-  value: V
+  inputName?: undefined,
+  value: FormDataType
 }
+
+interface SetStateProps2 {
+  formName: string,
+  inputName: string
+  value: string
+}
+
+type SetStateProps = SetStateProps1 | SetStateProps2
 
 type setStateType = (props: SetStateProps) => void
 
@@ -65,12 +58,12 @@ export const FormProvider = ({ children }: Props) => {
             typeof inputName === 'string' && typeof value === 'string'
             ? {
               ...prevStore.state[formName],
-              [inputName]: value
+              [inputName]: value,
             }
             : value as FormDataType
-          )
-        }
-      }
+          ),
+        },
+      },
     }))
   }
   return(
@@ -93,9 +86,9 @@ export const useInput: useInputType = (args: UseInputArgs) => {
   const { state, setState } = useContext(FormContext)
   const [, setInitialized] = useState(false)
   useEffect(() => {
-    // TODO: context instead of state here? (use `setState`, not `setInitialized`)
     setInitialized(true)
   }, [])
+
   if (inputRef.current && inputRef.current.form) {
     const formName = inputRef.current.form.name
     const inputName = inputRef.current.name

@@ -6,7 +6,6 @@ import React, {
 import { Request, RequestDispatcher } from 'react-request-hook'
 import { useForm } from '../'
 
-// interface Props extends FormHTMLAttributes {
 interface Props {
   children: ReactElement | ReactElement[],
   onSubmit?: RequestDispatcher<Request>,
@@ -15,7 +14,8 @@ interface Props {
 
 const Form = ({ children, onSubmit, name }: Props) => {
   const formRef = useRef<HTMLFormElement>(null)
-  // TODO: useForm doesn't create persistent storage, i.e. it clears after hotReload, need to fix
+  // TODO:X useForm doesn't create persistent storage, i.e. it clears after hotReload, need to fix
+  // https://github.com/prometheonsystems/bedrock-client2/issues/6
   const values = useForm({ formRef })
   useEffect(() => {
     const form = (formRef.current) as HTMLFormElement

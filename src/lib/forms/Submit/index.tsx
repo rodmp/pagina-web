@@ -7,7 +7,6 @@ interface Props {
 }
 
 const Submit = ({ children, value, isLoading }: Props) => {
-  // TODO: add a loading icon to the button, instead of '...'
   const buttonName = `${value || 'Submit'}${isLoading && '...' || ''}`
   return(
     <input type='submit' value={buttonName}>

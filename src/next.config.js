@@ -3,29 +3,32 @@ const {
   pipe,
   mergeDeepRight
 } = require('ramda')
-const { resolve } = require('app-root-path')
+const { resolve } = require('path')
+
+// TODO: move all these to a lib
 
 const buildWebpackConfig = (previousNextConfig, webpackConfig, options) => {
   return typeof previousNextConfig.webpack === 'function'
     ? previousNextConfig.webpack(webpackConfig, options)
     : webpackConfig
 }
-
-const withElectron = previousNextConfig => Object.assign({}, previousNextConfig, {
+const withElectron = previousNextConfig => ({
+  ...previousNextConfig,
   webpack(previousWebpackConfig, options) {
-    const webpackConfig = Object.assign(previousWebpackConfig, { target: 'electron-renderer' })
+    const webpackConfig = {
+      ...previousWebpackConfig,
+      target: 'electron-renderer'
+    }
     return buildWebpackConfig(previousNextConfig, webpackConfig, options)
   }
 })
 
-const withCustomAliases = alias => previousNextConfig => Object.assign({}, previousNextConfig, {
+const withCustomAliases = alias => previousNextConfig => ({
+  ...previousNextConfig,
   webpack(previousWebpackConfig, options) {
     const webpackConfig = mergeDeepRight(previousWebpackConfig, {
-      resolve: {
-        alias
-      }
+      resolve: { alias }
     })
-  
     return buildWebpackConfig(previousNextConfig, webpackConfig, options)
   }
 })

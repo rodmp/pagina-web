@@ -8,10 +8,10 @@
     "prestart": "tsc -b tsconfig.electron.json",
     "build": "next build src && next export src",
     "dist": "yarn build && bundle",
-    "lint": "tsc && tslint 'src/**/*.{ts,tsx}'"
+    "lint": "tsc; tslint '{src,types}/**/*.{ts,tsx}'"
   },
   "dependencies": {
-    "app-root-path": "2.2.1",
+    "@types/ramda": "0.26.8",
     "axios": "0.18.0",
     "date-fns": "1.30.1",
     "dotenv": "7.0.0",
@@ -26,13 +26,11 @@
     "react-request-hook": "2.0.1"
   },
   "devDependencies": {
-    "@types/app-root-path": "1.2.4",
     "@types/dom-inputevent": "1.0.4",
     "@types/dotenv": "6.1.1",
     "@types/js-cookie": "2.2.2",
     "@types/luxon": "1.12.0",
     "@types/next": "8.0.5",
-    "@types/next-server": "8.1.1",
     "@types/react": "16.8.14",
     "@zeit/next-typescript": "1.1.1",
     "husky": "1.3.1",

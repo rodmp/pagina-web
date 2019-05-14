@@ -2,16 +2,15 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "*": ["node_modules/*", "types/*"],
-      "~/*": ["src/*"],
-      "@types": ["types"]
+      "~/*": ["./src/*"],
+      "@types": ["./types"],
+      "@types/*": ["./types/*"],
+      "@assets/*": ["./assets/*"]
     },
-    // "module": "commonjs",
     "esModuleInterop": true,
     "sourceMap": true,
     "outDir": "dist",
     "jsx": "preserve",
-
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,

@@ -1,3 +1,4 @@
+import { PageType } from '@types'
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
 import { useResource } from 'react-request-hook'
@@ -9,9 +10,10 @@ import {
   Submit,
 } from '~/lib/forms'
 
-const Login = () => {
+const Login: PageType = () => {
   const router = useRouter()
-  const [{ data: token, isLoading }, getToken] = useResource(Api.login)
+  const [tokenData, getToken] = useResource(Api.login)
+  const { data: token, isLoading } = tokenData
   useEffect(loginEffect({ token, router }), [token])
   return(
     <div>

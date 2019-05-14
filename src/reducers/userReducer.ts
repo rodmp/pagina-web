@@ -1,4 +1,4 @@
-// TODO: remove ?
+// this is just an example, as we get some real reducer, need to remove it
 
 import { createContext } from 'react'
 
@@ -16,9 +16,6 @@ interface State {
   token?: string,
   user?: User
 }
-
-// interface Payload {
-// }
 
 interface Action {
   type: string,
