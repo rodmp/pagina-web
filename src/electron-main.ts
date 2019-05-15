@@ -17,7 +17,7 @@ dotenv()
 const { PORT = 4000 } = process.env
 
 app.on('ready', async () => {
-  await prepareRenderer('./src', PORT)
+  await prepareRenderer('.', PORT)
 
   const mainWindow = new BrowserWindow({
     height: 600,
@@ -27,7 +27,7 @@ app.on('ready', async () => {
   const devPath = `http://localhost:${PORT}/index`
 
   const prodPath = format({
-    pathname: resolve('src/out/index/index.html'),
+    pathname: resolve('out/index/index.html'),
     protocol: 'file:',
     slashes: true,
   })

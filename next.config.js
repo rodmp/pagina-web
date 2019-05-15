@@ -1,24 +1,29 @@
+const { withPlugins, optional } = require('next-compose-plugins')
 const withTypescript = require('@zeit/next-typescript')
-const {
-  pipe,
-  mergeDeepRight
-} = require('ramda')
+const { mergeDeepRight } = require('ramda')
 const { resolve } = require('path')
 
-// TODO: move all these to a lib
+const {
+  PHASE_PRODUCTION_BUILD,
+  // PHASE_PRODUCTION_SERVER,
+  // PHASE_DEVELOPMENT_SERVER,
+  // PHASE_EXPORT,
+} = require('next/constants')
+
+const nextConfig = {
+  [PHASE_PRODUCTION_BUILD]: { target: 'serverless' }
+}
 
 const buildWebpackConfig = (previousNextConfig, webpackConfig, options) => {
   return typeof previousNextConfig.webpack === 'function'
     ? previousNextConfig.webpack(webpackConfig, options)
     : webpackConfig
 }
+
 const withElectron = previousNextConfig => ({
   ...previousNextConfig,
   webpack(previousWebpackConfig, options) {
-    const webpackConfig = {
-      ...previousWebpackConfig,
-      target: 'electron-renderer'
-    }
+    const webpackConfig = { ...previousWebpackConfig, target: 'electron-renderer' }
     return buildWebpackConfig(previousNextConfig, webpackConfig, options)
   }
 })
@@ -33,15 +38,12 @@ const withCustomAliases = alias => previousNextConfig => ({
   }
 })
 
-const configuration = (phase, { defaultConfig: defaultNextConfig }) => {
-  return pipe(
-    withElectron,
-    withTypescript,
-    withCustomAliases({
-      '~': resolve('src'),
-      '@types': resolve('types')
-    }),
-  )(defaultNextConfig)
-}
-
-module.exports = configuration
+module.exports = withPlugins([
+  withElectron,
+  withTypescript,
+  withCustomAliases({
+    '~': resolve('src'),
+    '@types': resolve('types'),
+    "@assets": resolve("assets")
+  })
+], nextConfig)

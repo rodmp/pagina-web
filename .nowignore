@@ -1,0 +1,20 @@
+# Standard gitignore
+
+.DS_Store
+.env.local
+.next
+node_modules
+dist
+out
+
+# Nowignore
+
+.vscode
+.huskyrc.json
+.nvmrc
+.nowignore
+types
+wiki
+README.md
+tslint.json
+now.json

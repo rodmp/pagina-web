@@ -6,9 +6,10 @@
   "scripts": {
     "start": "electron .",
     "prestart": "tsc -b tsconfig.electron.json",
-    "build": "next build src && next export src",
+    "now-build": "next build",
+    "build": "next build && next export",
     "dist": "yarn build && bundle",
-    "lint": "tsc; tslint '{src,types}/**/*.{ts,tsx}'"
+    "lint": "tsc; tslint '{src,pages,types}/**/*.{ts,tsx}'"
   },
   "dependencies": {
     "@types/ramda": "0.26.8",
@@ -26,6 +27,7 @@
     "react-request-hook": "2.0.1"
   },
   "devDependencies": {
+    "@now/next": "0.3.2",
     "@types/dom-inputevent": "1.0.4",
     "@types/dotenv": "6.1.1",
     "@types/js-cookie": "2.2.2",
@@ -34,6 +36,7 @@
     "@types/react": "16.8.14",
     "@zeit/next-typescript": "1.1.1",
     "husky": "1.3.1",
+    "next-compose-plugins": "2.2.0",
     "tslint": "5.16.0",
     "tslint-config-prettier": "1.18.0",
     "tslint-react": "4.0.0",

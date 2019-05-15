@@ -2,7 +2,6 @@
   "extends": "./tsconfig.electron.json",
   "compilerOptions": {
     "noEmit": true,
-
     // "allowJs": true,
     // "lib": ["dom", "es2017"],
     // "removeComments": false,
@@ -11,10 +10,10 @@
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
-    "types/**/*.d.ts"
+    "pages/**/*.tsx",
+    "types/**/*.d.ts",
   ],
   "exclude": [
-    "src/.next",
-    "src/out"
+    "src/.next"
   ]
 }

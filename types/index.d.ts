@@ -16,7 +16,7 @@ import { Request } from 'react-request-hook'
 // https://github.com/prometheonsystems/bedrock-client2/issues/23
 
 /**
- * Every component from `src/pages` must be this type of function.
+ * Every component from `pages` must be this type of function.
  *
  * For static pages which does not request any data, they may not have type:
  *

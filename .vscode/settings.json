@@ -4,4 +4,7 @@
   "typescript.tsdk": "node_modules/typescript/lib",
   "tslint.alwaysShowRuleFailuresAsWarnings": false,
   "tslint.ignoreDefinitionFiles": false,
+  "files.associations": {
+    ".nowignore": "gitignore",
+  },
 }
