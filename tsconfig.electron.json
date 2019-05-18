@@ -1,23 +1,22 @@
+// TODO: move the rules to tsconfig.json, extend it here (not vice-versa)
+
 {
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
       "~/*": ["./src/*"],
+      "@assets/*": ["./assets/*"],
       "@types": ["./types"],
-      "@types/*": ["./types/*"],
-      "@assets/*": ["./assets/*"]
+      "@types/*": ["./types/*"]
     },
-    "esModuleInterop": true,
-    "sourceMap": true,
-    "outDir": "dist",
     "jsx": "preserve",
-    "strict": true,
+    "outDir": "dist",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitReturns": true
+    "sourceMap": true,
+    "strict": true
   },
   "files": ["src/electron-main.ts"]
 }

@@ -1,8 +1,8 @@
 # Standard gitignore
 
 .DS_Store
-.env.local
+.env
 .next
-node_modules
 dist
+node_modules
 out

@@ -1,7 +1,11 @@
 {
   "version": 2,
-  "name": "bedrock",
+  "name": "client",
+  "scope": "bedrock",
   "builds": [
     { "src": "next.config.js", "use": "@now/next" }
-  ]
+  ],
+  "github": {
+    "silent": true
+  }
 }

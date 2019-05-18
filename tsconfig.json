@@ -12,8 +12,5 @@
     "src/**/*.tsx",
     "pages/**/*.tsx",
     "types/**/*.d.ts",
-  ],
-  "exclude": [
-    "src/.next"
   ]
 }

@@ -1,4 +1,4 @@
-const { withPlugins, optional } = require('next-compose-plugins')
+const { withPlugins } = require('next-compose-plugins')
 const withTypescript = require('@zeit/next-typescript')
 const { mergeDeepRight } = require('ramda')
 const { resolve } = require('path')
@@ -44,6 +44,6 @@ module.exports = withPlugins([
   withCustomAliases({
     '~': resolve('src'),
     '@types': resolve('types'),
-    "@assets": resolve("assets")
+    '@assets': resolve('assets')
   })
 ], nextConfig)
