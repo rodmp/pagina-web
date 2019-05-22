@@ -1,12 +1,6 @@
-import {
-  AppProps,
-  NextAppContext,
-  PageType,
-} from '@types'
+import { AppProps, NextAppContext, PageType } from '@types'
 import Cookies from 'js-cookie'
-import NextApp, {
-  Container,
-} from 'next/app'
+import NextApp, { Container } from 'next/app'
 import * as R from 'ramda'
 import React from 'react'
 import AppLayout from '~/components/AppLayout'
@@ -21,7 +15,7 @@ import Login from './login'
 // TODO:W app should receive context too: App<P = {}, S = {}, C = {}>
 // https://github.com/Microsoft/TypeScript/issues/14600
 class App extends NextApp<AppProps> {
-  public static async getInitialProps (props: NextAppContext) {
+  public static async getInitialProps(props: NextAppContext) {
     const { Component, ctx } = props
 
     const cookie = ctx.req && ctx.req.headers.cookie
@@ -37,21 +31,15 @@ class App extends NextApp<AppProps> {
     return { pageProps, authToken }
   }
 
-  public render () {
-    const {
-      Component,
-      pageProps,
-      authToken,
-    } = this.props
+  public render() {
+    const { Component, pageProps, authToken } = this.props
 
-    const Page = authToken
-      ? Component as PageType
-      : Login
+    const Page = authToken ? (Component as PageType) : Login
     const layoutProps = { authToken }
 
     return (
       <Container>
-        <AppLayout {...layoutProps} Page={Page} pageProps={pageProps}/>
+        <AppLayout {...layoutProps} Page={Page} pageProps={pageProps} />
       </Container>
     )
   }

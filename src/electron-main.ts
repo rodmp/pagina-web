@@ -1,8 +1,5 @@
 import { config as dotenv } from 'dotenv'
-import {
-  app,
-  BrowserWindow,
-} from 'electron'
+import { app, BrowserWindow } from 'electron'
 import isDev from 'electron-is-dev'
 // @ts-ignore: Cannot find module
 // TODO:W waiting this PR to be merged:

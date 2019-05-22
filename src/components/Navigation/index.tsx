@@ -2,7 +2,7 @@ import Link from 'next/link'
 import React from 'react'
 
 const Navigation = () => {
-  return(
+  return (
     <>
       <Link href='/data_inbox'>
         <a>Data Inbox</a>

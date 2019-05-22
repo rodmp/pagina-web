@@ -1,12 +1,10 @@
 import { AppLayoutProps } from '@types'
+import axios from 'axios'
 import { useRouter } from 'next/router'
-import React, {
-  useEffect,
-  useMemo,
-} from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { RequestProvider } from 'react-request-hook'
 import Navigation from '~/components/Navigation'
-import getAxiosInstance from '~/helpers/getAxiosInstance'
+import getAxiosConfig from '~/helpers/getAxiosConfig'
 import { FormProvider } from '~/lib/forms'
 
 const AppLayout = (props: AppLayoutProps) => {
@@ -20,14 +18,16 @@ const AppLayout = (props: AppLayoutProps) => {
     }
   }, [router.asPath, isAuth])
 
-  const axios = useMemo(() => getAxiosInstance(authToken), [authToken])
+  const axiosInstance = useMemo(() => axios.create(getAxiosConfig(authToken)), [
+    authToken,
+  ])
 
-  return(
+  return (
     <div>
-      <RequestProvider value={axios}>
+      <RequestProvider value={axiosInstance}>
         <FormProvider>
-          <Navigation/>
-          <Page {...pageProps}/>
+          <Navigation />
+          <Page {...pageProps} />
         </FormProvider>
       </RequestProvider>
     </div>

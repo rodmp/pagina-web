@@ -13,13 +13,13 @@ interface User {
 }
 
 interface State {
-  token?: string,
+  token?: string
   user?: User
 }
 
 interface Action {
-  type: string,
-  action: {},
+  type: string
+  action: {}
 }
 
 const userReducer = (state: State, action: Action) => {
@@ -28,7 +28,8 @@ const userReducer = (state: State, action: Action) => {
     case TYPES.USER_LOGIN_REQUEST: {
       return {}
     }
-    default: return state
+    default:
+      return state
   }
 }
 

@@ -1,8 +1,8 @@
 import { Token } from '@types'
 import { request } from 'react-request-hook'
 
-const Api = {
-  login: ({ email, password }: { email: string, password: string }) => {
+export default {
+  login: ({ email, password }: { email: string; password: string }) => {
     const params = {
       email,
       grant_type: 'password',
@@ -36,12 +36,18 @@ const Api = {
     // fields,
     offset,
   }: {
-    limit?: number,
+    limit?: number
     // include?: string[],
     // fields?: string[],
-    offset?: number,
+    offset?: number
   }) => {
-    const fields = [ 'id', 'title', 'entity_type', 'created_at', 'originally_created_at']
+    const fields = [
+      'id',
+      'title',
+      'entity_type',
+      'created_at',
+      'originally_created_at',
+    ]
     const include: string[] = []
     const params = {
       fields,
@@ -71,5 +77,3 @@ const Api = {
   //   })
   // },
 }
-
-export default Api

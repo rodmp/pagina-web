@@ -1,10 +1,10 @@
 import { Token } from '@types'
 import { addSeconds } from 'date-fns'
 import Cookies from 'js-cookie'
-import { RouterProps } from 'next-server/router'
+import { RouterProps } from 'next/router'
 
 interface Args {
-  token?: Token | null,
+  token?: Token | null
   router: RouterProps
 }
 

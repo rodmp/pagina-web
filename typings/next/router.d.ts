@@ -4,6 +4,6 @@
 
 declare module 'next/router' {
   import { RouterProps } from 'next-server/router'
-  export function useRouter (): RouterProps
+  export function useRouter(): RouterProps
   export * from 'next-server/router'
 }

@@ -1,4 +1,8 @@
 {
+  "editor.codeActionsOnSave": {
+    "source.fixAll.tslint": true
+  },
+  "editor.formatOnSave": true,
   "files.associations": {
     ".*ignore": "gitignore",
     ".env*": "dotenv"
@@ -6,6 +10,9 @@
   "files.trimTrailingWhitespace": true,
   "search.useGlobalIgnoreFiles": true,
   "search.useIgnoreFiles": true,
+  // TODO:W links are not clickable https://github.com/Microsoft/vscode/issues/586
+  "todohighlight.include": ["src", "pages", "types", "typings", "wiki"],
+  "todohighlight.keywordsPattern": "TODO: ",
   "tslint.alwaysShowRuleFailuresAsWarnings": false,
   "tslint.ignoreDefinitionFiles": false,
   "typescript.format.enable": true,

@@ -1,7 +1,20 @@
 {
-  "extends": "./tsconfig.electron.json",
   "compilerOptions": {
-    "noEmit": true,
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./src/*"],
+      "@assets/*": ["./assets/*"],
+      "@types": ["./types"],
+      "@types/*": ["./types/*"]
+    },
+    "jsx": "preserve",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "sourceMap": true,
+    "strict": true,
+    "noEmit": true
     // "allowJs": true,
     // "lib": ["dom", "es2017"],
     // "removeComments": false,
@@ -12,5 +25,6 @@
     "src/**/*.tsx",
     "pages/**/*.tsx",
     "types/**/*.d.ts",
+    "typings/**/*.d.ts"
   ]
 }

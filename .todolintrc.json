@@ -1,0 +1,16 @@
+{
+  "root": ["src", "pages", "types", "typings", "wiki"],
+  "tags": [
+    {
+      "label": "✓ TODO",
+      "name": "TODO",
+      "regex": "TODO: ",
+      "style": ["cyan"]
+    }
+  ],
+  "warn": {
+    "fail": true,
+    "message": "You have TODOs!",
+    "tags": ["TODO"]
+  }
+}

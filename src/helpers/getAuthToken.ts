@@ -16,7 +16,7 @@ const getAuthToken = (cookie?: string) => {
     const expiresIn = tokenData.expires_in
     const createdAt = tokenData.created_at
     const expiresAt = createdAt + expiresIn
-    const currentAt = Number((Number(new Date) / 1000).toFixed(0))
+    const currentAt = Number((Number(new Date()) / 1000).toFixed(0))
     const isTokenUnexpired = currentAt < expiresAt
 
     // TODO:X reuse refreshToken if needed (to generate accessToken)? but not in this place?

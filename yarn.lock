@@ -4220,6 +4220,11 @@ posix-character-classes@^0.1.0:
   resolved "https://registry.yarnpkg.com/posix-character-classes/-/posix-character-classes-0.1.1.tgz#01eac0fe3b5af71a2a6c02feabb8c1fef7e00eab"
   integrity sha1-AerA/jta9xoqbAL+q7jB/vfgDqs=
 
+prettier@1.17.1:
+  version "1.17.1"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.17.1.tgz#ed64b4e93e370cb8a25b9ef7fef3e4fd1c0995db"
+  integrity sha512-TzGRNvuUSmPgwivDqkZ9tM/qTGW9hqDKWOE9YHiyQdixlKbv7kvEqsmDPrcHJTKwthU774TQwZXVtaQ/mMsvjg==
+
 pretty-bytes@^1.0.2:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/pretty-bytes/-/pretty-bytes-1.0.4.tgz#0a22e8210609ad35542f8c8d5d2159aff0751c84"
@@ -5318,6 +5323,14 @@ to-regex@^3.0.1, to-regex@^3.0.2:
     extend-shallow "^3.0.2"
     regex-not "^1.0.2"
     safe-regex "^1.1.0"
+
+todolint@1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/todolint/-/todolint-1.0.4.tgz#53d2f493ca48ab19d10e159286b639eff0639874"
+  integrity sha512-KGHpZvyrrb7Rc6Sj6SXaLB2xLjnI3/hSTvEhIaCvnoCo51ZKuruLgcm3o2amxXex9h8UOrut35YQSQP3k6Aztw==
+  dependencies:
+    chalk "^2.3.0"
+    minimatch "^3.0.4"
 
 tough-cookie@~2.4.3:
   version "2.4.3"
