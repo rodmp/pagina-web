@@ -11,7 +11,11 @@ import * as R from 'ramda'
 import React from 'react'
 import AppLayout from '~/components/AppLayout'
 import getAuthToken from '~/helpers/getAuthToken'
+import shouldUpdateAuthToken from '~/helpers/shouldUpdateAuthToken'
+import getInitialPropsBy from '~/helpers/getInitialPropsBy'
 import Login from './login'
+import Api from '~/Api';
+import updateAuthToken from '~/helpers/updateAuthToken';
 
 /**
  * This is very root component and in 95% cases it should not be touched, try to use AppLayout instead
@@ -25,8 +29,22 @@ class App extends NextApp<AppProps> {
     const { Component, ctx } = props
 
     const cookie = ctx.req && ctx.req.headers.cookie
-    const authToken = getAuthToken(cookie)
-    ctx.authToken = authToken
+    let authToken = getAuthToken(cookie)
+
+    if (authToken && shouldUpdateAuthToken(authToken)) {
+      const request = getInitialPropsBy(Api.refreshToken, [{refreshToken: authToken.refresh_token}])
+      const { resource: { initialResponse } } = await request({...ctx, authToken: authToken.access_token})
+
+      if (initialResponse && initialResponse.data && !initialResponse.error) {
+        authToken = updateAuthToken(initialResponse.data) || authToken
+      } else if (initialResponse && initialResponse.error) {
+        // handle update token error ?
+      }
+    }
+
+    const accessToken = authToken && authToken.access_token
+
+    ctx.authToken = accessToken
 
     let pageProps = {}
 
@@ -34,7 +52,7 @@ class App extends NextApp<AppProps> {
       pageProps = await Component.getInitialProps(ctx)
     }
 
-    return { pageProps, authToken }
+    return { pageProps, authToken: accessToken }
   }
 
   public render () {

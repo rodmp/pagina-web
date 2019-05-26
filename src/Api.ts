@@ -16,14 +16,10 @@ const Api = {
   },
 
   refreshToken: ({ refreshToken }: { refreshToken: string }) => {
-    const params = {
-      grant_type: 'refresh_token',
-      refreshToken,
-    }
     return request<Token>({
       method: 'POST',
-      params,
       url: '/oauth/token',
+      transformRequest: () => `grant_type=refresh_token&refresh_token=${refreshToken}`,
     })
   },
 
