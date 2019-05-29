@@ -6,6 +6,4 @@ jobs:
     steps:
       - checkout
       - run: yarn install
-      - run:
-        command: yarn lint
-        when: always
+      - run: yarn lint
