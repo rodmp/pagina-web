@@ -5,4 +5,7 @@ jobs:
       - image: circleci/node:dubnium
     steps:
       - checkout
-      - run: yarn lint
+      - run: yarn install
+      - run:
+        command: yarn lint
+        when: always
