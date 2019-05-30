@@ -2,7 +2,6 @@
   "name": "bedrock-client",
   "version": "1.0.0",
   "main": "dist/electron-main.js",
-  "repository": "https://github.com/prometheonsystems/bedrock-client2",
   "license": "UNLICENSED",
   "scripts": {
     "start": "electron .",
@@ -48,13 +47,13 @@
     "markdownlint-cli": "0.16.0",
     "next-compose-plugins": "2.2.0",
     "prettier": "1.17.1",
-    "todolint": "1.0.4",
+    "todolint": "1.0.5",
     "tslint": "5.16.0",
     "tslint-config-prettier": "1.18.0",
     "tslint-react": "4.0.0",
     "typescript": "3.4.5"
   },
   "engines": {
-    "node": "v10.15.3"
+    "node": "v10.16.0"
   }
 }
