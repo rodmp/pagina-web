@@ -1,7 +1,6 @@
 {
   "extends": ["tslint:latest", "tslint-react", "tslint-config-prettier"],
   "linterOptions": {
-    // unnecessary for cli but necessary for IDE
     "exclude": ["dist", "node_modules", "out", "wiki", ".next", "./**/*.js"]
   },
   "rules": {
