@@ -5324,10 +5324,10 @@ to-regex@^3.0.1, to-regex@^3.0.2:
     regex-not "^1.0.2"
     safe-regex "^1.1.0"
 
-todolint@1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/todolint/-/todolint-1.0.4.tgz#53d2f493ca48ab19d10e159286b639eff0639874"
-  integrity sha512-KGHpZvyrrb7Rc6Sj6SXaLB2xLjnI3/hSTvEhIaCvnoCo51ZKuruLgcm3o2amxXex9h8UOrut35YQSQP3k6Aztw==
+todolint@1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/todolint/-/todolint-1.0.5.tgz#d08ac870878895416cb84ff73cdaeb7d9ffd6f44"
+  integrity sha512-UFIhoLnfD05mvEyUIx6ujzR3MADv0Ti2GyiugkZB8dU+dOFHdsH1bj8V9ToMu4VkYUu8SMFMzziRJmMcNT22Lg==
   dependencies:
     chalk "^2.3.0"
     minimatch "^3.0.4"
