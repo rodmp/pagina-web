@@ -13,11 +13,7 @@ const getAuthToken = (cookie?: string) => {
   }
   const tokenData: Token | undefined = Cookies.getJSON('TOKEN_DATA')
 
-  if (tokenData) {
-    return tokenData
-  }
-
-  return
+  return tokenData
 }
 
 export default getAuthToken
