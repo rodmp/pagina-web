@@ -1,4 +1,10 @@
-import React, { ReactNode, RefObject, useContext, useEffect, useState } from 'react'
+import React, {
+  ReactNode,
+  RefObject,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
 
 export { default as Field } from './Field'
 export { default as Form } from './Form'
@@ -13,13 +19,13 @@ interface FormDataType {
 }
 
 interface SetStateProps1 {
-  formName: string,
-  inputName?: undefined,
+  formName: string
+  inputName?: undefined
   value: FormDataType
 }
 
 interface SetStateProps2 {
-  formName: string,
+  formName: string
   inputName: string
   value: string
 }
@@ -33,8 +39,8 @@ interface FormState {
 }
 
 interface Store {
-  state: FormState,
-  setState: setStateType,
+  state: FormState
+  setState: setStateType
 }
 
 export const FormContext = React.createContext<Store>({
@@ -46,7 +52,7 @@ export const FormProvider = ({ children }: Props) => {
     setState,
     state: {},
   })
-  function setState (props: SetStateProps) {
+  function setState(props: SetStateProps) {
     const { formName, inputName, value } = props
 
     setStore(prevStore => ({
@@ -54,27 +60,21 @@ export const FormProvider = ({ children }: Props) => {
       state: {
         ...prevStore.state,
         [formName]: {
-          ...(
-            typeof inputName === 'string' && typeof value === 'string'
+          ...(typeof inputName === 'string' && typeof value === 'string'
             ? {
-              ...prevStore.state[formName],
-              [inputName]: value,
-            }
-            : value as FormDataType
-          ),
+                ...prevStore.state[formName],
+                [inputName]: value,
+              }
+            : (value as FormDataType)),
         },
       },
     }))
   }
-  return(
-    <FormContext.Provider value={store}>
-      { children }
-    </FormContext.Provider>
-  )
+  return <FormContext.Provider value={store}>{children}</FormContext.Provider>
 }
 
 interface UseInputArgs {
-  inputRef: RefObject<HTMLInputElement>,
+  inputRef: RefObject<HTMLInputElement>
   defaultValue?: string
 }
 
@@ -93,12 +93,18 @@ export const useInput: useInputType = (args: UseInputArgs) => {
     const formName = inputRef.current.form.name
     const inputName = inputRef.current.name
     const formData = state[formName] || {}
-    const value = typeof formData[inputName] === 'string' ? formData[inputName] : defaultValue
-    const setValue: setValueType = (str: string) => setState({ formName, inputName, value: str })
+    const value =
+      typeof formData[inputName] === 'string'
+        ? formData[inputName]
+        : defaultValue
+    const setValue: setValueType = (str: string) =>
+      setState({ formName, inputName, value: str })
     return [value, setValue]
   }
   const valuePlaceholder = defaultValue
-  const setValuePlaceholder: setValueType = () => { return }
+  const setValuePlaceholder: setValueType = () => {
+    return
+  }
   return [valuePlaceholder, setValuePlaceholder]
 }
 
@@ -107,13 +113,15 @@ interface UseFormArgs {
 }
 
 const getNamedInputs = (elements: HTMLFormControlsCollection) => {
-  const namedInputs = Array.from(elements).filter(el => el instanceof HTMLInputElement && el.name)
+  const namedInputs = Array.from(elements).filter(
+    el => el instanceof HTMLInputElement && el.name
+  )
   return namedInputs as HTMLInputElement[]
 }
 
 const getObjectFromInputs = (elements: HTMLInputElement[]) => {
   const obj: FormDataType = {}
-  elements.forEach(el => obj[el.name] = el.value)
+  elements.forEach(el => (obj[el.name] = el.value))
   return obj
 }
 
@@ -122,7 +130,7 @@ export const useForm = (args: UseFormArgs) => {
   const { state, setState } = useContext(FormContext)
 
   useEffect(() => {
-    const formEl = (formRef.current as HTMLFormElement)
+    const formEl = formRef.current as HTMLFormElement
     const inputs = getNamedInputs(formEl.elements)
     const value = getObjectFromInputs(inputs)
     setState({ formName: formEl.name, value })

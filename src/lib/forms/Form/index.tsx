@@ -1,15 +1,11 @@
-import React, {
-  ReactElement,
-  useEffect,
-  useRef,
-} from 'react'
+import React, { ReactElement, useEffect, useRef } from 'react'
 import { Request, RequestDispatcher } from 'react-request-hook'
 import { useForm } from '../'
 
 interface Props {
-  children: ReactElement | ReactElement[],
-  onSubmit?: RequestDispatcher<Request>,
-  name: string,
+  children: ReactElement | ReactElement[]
+  onSubmit?: RequestDispatcher<Request>
+  name: string
 }
 
 const Form = ({ children, onSubmit, name }: Props) => {
@@ -18,8 +14,8 @@ const Form = ({ children, onSubmit, name }: Props) => {
   // https://github.com/prometheonsystems/bedrock-client2/issues/6
   const values = useForm({ formRef })
   useEffect(() => {
-    const form = (formRef.current) as HTMLFormElement
-    const event: EventListener = (e) => {
+    const form = formRef.current as HTMLFormElement
+    const event: EventListener = e => {
       e.preventDefault()
       if (typeof onSubmit === 'function') {
         onSubmit(values)
@@ -34,9 +30,9 @@ const Form = ({ children, onSubmit, name }: Props) => {
   //   //   console.log('2. Form changed')
   //   // }
   // }
-  return(
+  return (
     <form ref={formRef} name={name}>
-      { children }
+      {children}
     </form>
   )
 }

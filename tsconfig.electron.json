@@ -1,22 +1,9 @@
-// TODO: move the rules to tsconfig.json, extend it here (not vice-versa)
-
 {
+  "extends": "./tsconfig.json",
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "~/*": ["./src/*"],
-      "@assets/*": ["./assets/*"],
-      "@types": ["./types"],
-      "@types/*": ["./types/*"]
-    },
-    "jsx": "preserve",
-    "outDir": "dist",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "sourceMap": true,
-    "strict": true
+    "noEmit": false,
+    "outDir": "dist"
   },
+  "include": [],
   "files": ["src/electron-main.ts"]
 }

@@ -37,7 +37,7 @@ type PageType<TPayload = any> = NextFunctionComponentOriginal<
 
 type AppProps = AppPropsInitial & GetInitialPropsExtended
 interface AppLayoutProps extends GetInitialPropsExtended {
-  Page: PageType<any>,
+  Page: PageType<any>
   pageProps: any
 }
 
@@ -46,30 +46,32 @@ interface GetInitialPropsExtended {
 }
 
 export interface Token {
-  access_token: string,
-  created_at: number,
-  expires_in: number,
-  refresh_token: string,
+  access_token: string
+  created_at: number
+  expires_in: number
+  refresh_token: string
   token_type: string
 }
 
 interface ResourceOkResponse<TPayload> {
-  data: TPayload,
+  data: TPayload
   error?: undefined
 }
 
 interface ResourceErrorResponse<TPayload> {
-  data?: undefined,
+  data?: undefined
   error: {}
 }
 
-type ResourceResponse<TPayload> = ResourceOkResponse<TPayload> | ResourceErrorResponse<TPayload>
+type ResourceResponse<TPayload> =
+  | ResourceOkResponse<TPayload>
+  | ResourceErrorResponse<TPayload>
 
 // type ResourceCallback = () => void | undefined
 
 export interface Resource<TPayload> {
   resource: {
-    initialResponse: ResourceResponse<TPayload>,
+    initialResponse: ResourceResponse<TPayload>
   }
 }
 type NextContext = NextContextOriginal & GetInitialPropsExtended

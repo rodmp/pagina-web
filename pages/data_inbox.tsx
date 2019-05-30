@@ -37,18 +37,21 @@ const DataInbox: PageType<any> = _props => {
 
   const { data, isLoading } = response
 
-  const handleClick = useCallback(() => setOffset(prevOffset => prevOffset + LIMIT), [offset])
+  const handleClick = useCallback(
+    () => setOffset(prevOffset => prevOffset + LIMIT),
+    [offset]
+  )
 
-  return(
+  return (
     <div>
       <div>Data Inbox:</div>
       <div>{offset}</div>
       <button onClick={handleClick}>Next page</button>
-      {/* TODO: return data */}
-      { isLoading
-        ? <div>loading...</div>
-        : data && data.data.map((entity: any) => entity.id).join(',')
-      }
+      {isLoading ? (
+        <div>loading...</div>
+      ) : (
+        data && data.data.map((entity: any) => entity.id).join(',')
+      )}
     </div>
   )
 }

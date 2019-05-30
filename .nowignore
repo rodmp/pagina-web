@@ -4,10 +4,12 @@ out
 now.json
 
 # Other
-.vscode
 .huskyrc.json
 .nvmrc
-types
-wiki
+.todolintrc.json
+.vscode
 README.md
 tslint.json
+types
+typings
+wiki
