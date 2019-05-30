@@ -15,8 +15,8 @@ const Login: PageType = () => {
     <div>
       <div>Login:</div>
       <Form name='login' onSubmit={getToken}>
-        <Field name='email' label='Email:' />
-        <Field name='password' type='password' label='Password:' />
+        <Field name='email' label='Email' />
+        <Field name='password' type='password' label='Password' />
         <Submit isLoading={isLoading} />
       </Form>
     </div>

@@ -32,14 +32,16 @@ const Field: FieldType = ({ name, type, defaultValue = '', label }: Props) => {
   // https://github.com/prometheonsystems/bedrock-client2/issues/12
   return (
     <>
-      {label ? <label>{label}</label> : ''}
-      <input
-        ref={inputRef}
-        type={type}
-        name={name}
-        value={value}
-        onChange={handleChange}
-      />
+      <label>
+        {label ? <div>{label}</div> : undefined}
+        <input
+          ref={inputRef}
+          type={type}
+          name={name}
+          value={value}
+          onChange={handleChange}
+        />
+      </label>
     </>
   )
 }
