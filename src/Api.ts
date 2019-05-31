@@ -19,7 +19,8 @@ export default {
     return request<Token>({
       method: 'POST',
       url: '/oauth/token',
-      transformRequest: () => `grant_type=refresh_token&refresh_token=${refreshToken}`,
+      transformRequest: () =>
+        `grant_type=refresh_token&refresh_token=${refreshToken}`,
     })
   },
 
