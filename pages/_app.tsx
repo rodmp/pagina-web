@@ -3,13 +3,13 @@ import Cookies from 'js-cookie'
 import NextApp, { Container } from 'next/app'
 import * as R from 'ramda'
 import React from 'react'
-import getAuthTokenData from '~/helpers/getAuthTokenData'
-import AppLayout from '~/components/AppLayout'
-import shouldUpdateAuthToken from '~/helpers/shouldUpdateAuthToken'
-import getInitialPropsBy from '~/helpers/getInitialPropsBy'
-import Login from './login'
 import Api from '~/Api'
+import AppLayout from '~/components/AppLayout'
+import getAuthTokenData from '~/helpers/getAuthTokenData'
+import getInitialPropsBy from '~/helpers/getInitialPropsBy'
+import shouldUpdateAuthToken from '~/helpers/shouldUpdateAuthToken'
 import updateAuthToken from '~/helpers/updateAuthToken'
+import Login from './login'
 
 /**
  * This is very root component and in 95% cases it should not be touched, try to use AppLayout instead

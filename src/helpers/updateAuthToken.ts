@@ -1,6 +1,6 @@
 import { Token } from '@types'
-import Cookies from 'js-cookie'
 import { addSeconds } from 'date-fns'
+import Cookies from 'js-cookie'
 
 const updateAuthToken = (tokenData: Token | undefined) => {
   if (tokenData) {

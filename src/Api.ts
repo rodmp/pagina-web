@@ -18,9 +18,9 @@ export default {
   refreshToken: ({ refreshToken }: { refreshToken: string }) => {
     return request<Token>({
       method: 'POST',
-      url: '/oauth/token',
       transformRequest: () =>
         `grant_type=refresh_token&refresh_token=${refreshToken}`,
+      url: '/oauth/token',
     })
   },
 
