@@ -1,7 +1,9 @@
 import { Token } from '@types'
 
 const shouldUpdateAuthToken = (tokenData: Token | undefined) => {
-  if (!tokenData) { return false }
+  if (!tokenData) {
+    return false
+  }
 
   const { expires_in, created_at } = tokenData
 
