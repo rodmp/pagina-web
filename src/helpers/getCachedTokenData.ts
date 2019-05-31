@@ -4,7 +4,7 @@ import Cookies from 'js-cookie'
 /**
  * @param cookies - cookies, should be passed if used on server, only (for SSR)
  */
-const getAuthTokenData = (cookie?: string) => {
+const getCachedTokenData = (cookie?: string) => {
   if (cookie) {
     // TODO:X declare global document
     // @ts-ignore: Property does not exist
@@ -16,4 +16,4 @@ const getAuthTokenData = (cookie?: string) => {
   return tokenData
 }
 
-export default getAuthTokenData
+export default getCachedTokenData

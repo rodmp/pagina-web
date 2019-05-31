@@ -4,7 +4,7 @@ import NextApp, { Container } from 'next/app'
 import * as R from 'ramda'
 import React from 'react'
 import AppLayout from '~/components/AppLayout'
-import getAuthTokenData from '~/helpers/getAuthTokenData'
+import getCachedTokenData from '~/helpers/getCachedTokenData'
 import updateAuthTokenDataIfNeeded from '~/helpers/updateAuthTokenDataIfNeeded'
 import Login from './login'
 
@@ -20,9 +20,8 @@ class App extends NextApp<AppProps> {
     const { Component, ctx } = props
 
     const cookie = ctx.req && ctx.req.headers.cookie
-    const cachedTokenData = getAuthTokenData(cookie)
-    await updateAuthTokenDataIfNeeded(cachedTokenData)
-    const tokenData = cachedTokenData
+    const cachedTokenData = getCachedTokenData(cookie)
+    const tokenData = await updateAuthTokenDataIfNeeded(cachedTokenData)
     const authToken = tokenData && tokenData.access_token
 
     ctx.authToken = authToken
