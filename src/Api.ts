@@ -16,10 +16,13 @@ export default {
   },
 
   refreshToken: ({ refreshToken }: { refreshToken: string }) => {
+    const params = {
+      grant_type: 'refresh_token',
+      refresh_token: refreshToken,
+    }
     return request<Token>({
       method: 'POST',
-      transformRequest: () =>
-        `grant_type=refresh_token&refresh_token=${refreshToken}`,
+      params,
       url: '/oauth/token',
     })
   },

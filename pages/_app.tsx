@@ -3,12 +3,9 @@ import Cookies from 'js-cookie'
 import NextApp, { Container } from 'next/app'
 import * as R from 'ramda'
 import React from 'react'
-import Api from '~/Api'
 import AppLayout from '~/components/AppLayout'
 import getAuthTokenData from '~/helpers/getAuthTokenData'
-import getInitialPropsBy from '~/helpers/getInitialPropsBy'
-import shouldUpdateAuthToken from '~/helpers/shouldUpdateAuthToken'
-import updateAuthToken from '~/helpers/updateAuthToken'
+import updateAuthTokenDataIfNeeded from '~/helpers/updateAuthTokenDataIfNeeded'
 import Login from './login'
 
 /**
@@ -23,26 +20,12 @@ class App extends NextApp<AppProps> {
     const { Component, ctx } = props
 
     const cookie = ctx.req && ctx.req.headers.cookie
-    let authTokenData = getAuthTokenData(cookie)
+    const cachedTokenData = getAuthTokenData(cookie)
+    await updateAuthTokenDataIfNeeded(cachedTokenData)
+    const tokenData = cachedTokenData
+    const authToken = tokenData && tokenData.access_token
 
-    if (authTokenData && shouldUpdateAuthToken(authTokenData)) {
-      const request = getInitialPropsBy(Api.refreshToken, [
-        { refreshToken: authTokenData.refresh_token },
-      ])
-      const {
-        resource: { initialResponse },
-      } = await request({ ...ctx, authToken: authTokenData.access_token })
-
-      if (initialResponse && initialResponse.data && !initialResponse.error) {
-        authTokenData = updateAuthToken(initialResponse.data) || authTokenData
-      } else if (initialResponse && initialResponse.error) {
-        // handle update token error ?
-      }
-    }
-
-    const accessToken = authTokenData && authTokenData.access_token
-
-    ctx.authToken = accessToken
+    ctx.authToken = authToken
 
     let pageProps = {}
 
@@ -50,7 +33,7 @@ class App extends NextApp<AppProps> {
       pageProps = await Component.getInitialProps(ctx)
     }
 
-    return { pageProps, authToken: accessToken }
+    return { pageProps, authToken }
   }
 
   public render() {
