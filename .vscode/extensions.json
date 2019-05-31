@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "ms-vscode.vscode-typescript-tslint-plugin",
+    "esbenp.prettier-vscode",
+    "DavidAnson.vscode-markdownlint",
+    "mikestead.dotenv",
+    "codezombiech.gitignore",
+    "wayou.vscode-todo-highlight"
+  ]
+}
