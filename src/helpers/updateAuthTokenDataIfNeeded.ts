@@ -16,7 +16,7 @@ export default async function updateAuthTokenDataIfNeeded(tokenData?: Token) {
           return tokenData
         }
         default:
-          return
+          return tokenData
       }
     } catch {
       return
