@@ -17,10 +17,19 @@
         "laravel-mix": "^5.0.1",
         "lodash": "^4.17.19",
         "popper.js": "^1.12",
-        "resolve-url-loader": "^2.3.1",
+        "resolve-url-loader": "^3.1.0",
         "sass": "^1.20.1",
         "sass-loader": "^8.0.0",
         "vue": "^2.5.17",
         "vue-template-compiler": "^2.6.10"
+    },
+    "dependencies": {
+        "@bigcommerce/big-design": "^0.24.0",
+        "react": "^17.0.1",
+        "react-dom": "^17.0.1",
+        "react-vue": "0.0.5",
+        "styled-components": "^5.2.1",
+        "vue-react": "^1.2.0",
+        "vuera": "^0.2.7"
     }
 }
