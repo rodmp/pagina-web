@@ -6,7 +6,12 @@
 import VueReact from "vue-react";
 import { VuePlugin } from "vuera";
 import { Table, Grid, GridItem } from "@bigcommerce/big-design";
-import { ArrowBackIcon, ArrowForwardIcon } from "@bigcommerce/big-design-icons";
+import {
+    ArrowBackIcon,
+    ArrowForwardIcon,
+    ExpandLessIcon,
+    ExpandMoreIcon,
+} from "@bigcommerce/big-design-icons";
 
 require("./bootstrap");
 
@@ -34,6 +39,9 @@ Vue.react("BigGrid", Grid);
 Vue.react("BigGridItem", GridItem);
 Vue.react("BigArrowBackIcon", ArrowBackIcon);
 Vue.react("BigArrowForwardIcon", ArrowForwardIcon);
+Vue.react("BigExpandLessIcon", ExpandLessIcon);
+Vue.react("BigExpandMoreIcon", ExpandMoreIcon);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
