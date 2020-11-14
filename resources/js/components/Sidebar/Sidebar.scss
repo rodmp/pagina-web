@@ -1,0 +1,24 @@
+@import "~/app";
+.sidebar {
+    position: sticky;
+    width: $sidebar-width-closed;
+    height: 100vh;
+    background-color: $sidebar-bg-color;
+    color: var(--sidebar-color);
+    transition: $sidebar-transition-time;
+}
+
+.sidebar.sidebarOpened {
+    width: $sidebar-width-open;
+}
+
+.sidebar-wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+}

@@ -1,0 +1,56 @@
+@import "~/app";
+.cp-nav-footer {
+    background: #44414e;
+    transition: $sidebar-transition-time;
+}
+
+#nav-help {
+    background-color: #44414e;
+    border: 0;
+    color: #e1e6eb;
+    cursor: pointer;
+    height: 4rem;
+    padding: 0;
+    position: relative;
+    text-align: left;
+    width: 100%;
+    outline: none;
+}
+
+.userProfile-label,
+.userProfile-supportPin {
+    padding-left: 1.5rem;
+}
+
+.userProfile-label {
+    padding-bottom: 1rem;
+    cursor: pointer;
+    display: block;
+}
+
+.userProfile-supportPin {
+    bottom: 0.8rem;
+    color: #8e919c;
+    display: block;
+    font-size: 0.9rem;
+    position: absolute;
+    white-space: nowrap;
+}
+
+.userProfile-icon {
+    cursor: pointer;
+    fill: #d7d6d9;
+    height: 16px;
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%) scaleY(1);
+    transform: translate(-50%, -50%) scaleY(1);
+    -webkit-transition: fill 0.1s ease;
+    transition: fill 0.1s ease;
+    width: 16px;
+}
+
+#userProfile {
+    position: relative;
+}
