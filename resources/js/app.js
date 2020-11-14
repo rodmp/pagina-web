@@ -4,18 +4,33 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 import VueReact from "vue-react";
-import { VuePlugin } from "vuera";
-import { Table, Grid, GridItem } from "@bigcommerce/big-design";
-import {
-    ArrowBackIcon,
-    ArrowForwardIcon,
-    ExpandLessIcon,
-    ExpandMoreIcon,
-} from "@bigcommerce/big-design-icons";
+import VueTouch from "vue-touch";
+import Vue from "vue";
+
+import router from "./routes";
+import store from "./store";
+// import layoutMixin from "./mixins/layout";
+import ReactComponents from "./reactComponents";
 
 require("./bootstrap");
 
 window.Vue = require("vue");
+
+/**
+ * Vue Plugins
+ */
+Vue.use(VueReact); //Plugin for loading react components
+Vue.use(VueTouch);
+
+/**
+ * Vue Mixins
+ */
+// Vue.mixin(layoutMixin);
+
+/**
+ * Vue configurations
+ */
+Vue.config.productionTip = false;
 
 /**
  * The following block of code may be used to automatically register your
@@ -27,20 +42,18 @@ window.Vue = require("vue");
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+Vue.component("vue-app", require("./pages/App.vue").default);
+Vue.component(
+    "v-content-loader",
+    require("./components/ContentLoader").default
+);
 
-Vue.component("main-page", require("./pages/App.vue").default);
-Vue.component("home-page", require("./pages/AppHome.vue").default);
-
-Vue.use(VueReact);
-Vue.use(VuePlugin);
-
-Vue.react("BigTable", Table);
-Vue.react("BigGrid", Grid);
-Vue.react("BigGridItem", GridItem);
-Vue.react("BigArrowBackIcon", ArrowBackIcon);
-Vue.react("BigArrowForwardIcon", ArrowForwardIcon);
-Vue.react("BigExpandLessIcon", ExpandLessIcon);
-Vue.react("BigExpandMoreIcon", ExpandMoreIcon);
+/**
+ * Register React Components
+ */
+Object.keys(ReactComponents).map(key =>
+    Vue.react(`Big${key}`, ReactComponents[key])
+);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -50,4 +63,6 @@ Vue.react("BigExpandMoreIcon", ExpandMoreIcon);
 
 const app = new Vue({
     el: "#app",
+    store,
+    router
 });
