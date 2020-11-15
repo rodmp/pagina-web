@@ -1,0 +1,16 @@
+@import "~/app.scss";
+
+.root {
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    left: 0;
+    transition: left $sidebar-transition-time ease-in-out;
+}
+
+.main-container {
+    overflow: auto;
+    flex: auto;
+}
