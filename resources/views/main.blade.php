@@ -23,7 +23,7 @@
 
 <body>
     <div id="app">
-        <main-page></main-page>
+        <vue-app></vue-app>
     </div>
 </body>
 

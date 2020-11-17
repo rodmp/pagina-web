@@ -2,9 +2,11 @@
 $body-bg: #f8fafc;
 
 // Typography
-$font-family-sans-serif: 'Nunito', sans-serif;
+$font-family-sans-serif: "Nunito", sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
+$font-size-mini: 0.9rem;
+$font-weight-thin: 300 !default;
 
 // Colors
 $blue: #3490dc;
@@ -17,3 +19,21 @@ $yellow: #ffed4a;
 $green: #38c172;
 $teal: #4dc0b5;
 $cyan: #6cb2eb;
+
+//Sidebar Variables
+$sidebar-width-open: 260px;
+$sidebar-width-closed: 50px;
+$sidebar-transition-time: 0.3s !default;
+$sidebar-bg-color: #34313f;
+
+@media screen and (max-width: 1280) {
+    $sidebar-width-open: 175px;
+}
+
+@media screen and (min-width: 1281) {
+    $sidebar-width-open: 260px;
+}
+
+//Components
+$content-padding: 40px;
+$content-padding-sm: 15px;
