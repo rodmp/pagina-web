@@ -24,7 +24,10 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@babel/plugin-syntax-jsx": "^7.12.1",
         "@bigcommerce/big-design": "^0.24.0",
+        "@vue/babel-helper-vue-jsx-merge-props": "^1.2.1",
+        "@vue/babel-plugin-transform-vue-jsx": "^1.2.1",
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
         "react-vue": "0.0.5",

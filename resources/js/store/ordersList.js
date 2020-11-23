@@ -25,6 +25,9 @@ export default {
                 }
                 commit("setLoading", false);
             });
+        },
+        cancelOrder({ commit }, id) {
+            console.log(id);
         }
     }
 };

@@ -5,6 +5,7 @@
             <div class="card w-100">
                 <div class="card-body">
                     <BigTable
+                        class="big-table"
                         keyField="id"
                         itemName="Orders"
                         :columns="columns"
@@ -19,6 +20,7 @@
 
 <script>
 import { createNamespacedHelpers } from "vuex";
+import React from "react";
 const { mapState, mapActions } = createNamespacedHelpers("ordersList");
 export default {
     created() {
@@ -30,7 +32,11 @@ export default {
     data() {
         return {
             columns: [
-                { header: "Order Id", hash: "id", render: ({ id }) => id },
+                {
+                    header: "Order Id",
+                    hash: "id",
+                    render: ({ id }) => id
+                },
                 {
                     header: "Billing Name",
                     hash: "billing_address",
@@ -45,9 +51,34 @@ export default {
                 {
                     header: "Order Status",
                     hash: "status",
-                    render: ({ status }) => status
+                    render: ({ status }) => React.createElement("span", { className: status.replace(' ', '_').toLowerCase() }, status)
+                },
+                {
+                    header: "Actions",
+                    hash: "actions",
+                    render: ({ id, status }) => {
+                        const actionName = this.getActionName(status);
+                        const className = this.getActionClassName(actionName);
+                        if (actionName) {
+                            return React.createElement("button", {
+                                className,
+                                onMouseDown: () => this.runAction(id, actionName)
+                            }, actionName);
+                        }
+                        return null;
+                    }
                 }
-            ]
+            ],
+            actions: {
+                cancelOrder: "Cancel"
+            },
+            status: {
+                incomplete: "Incomplete",
+                awaitingFulfillment: "Awaiting Fulfillment"
+            },
+            actionClass: {
+                cancel: "btn btn-danger"
+            }
             // pagination: {
             //     currentPage,
             //     totalItems: this.items.length,
@@ -59,11 +90,38 @@ export default {
         };
     },
     methods: {
-        ...mapActions(["getOrders"])
+        ...mapActions(["getOrders", "cancelOrder"]),
+        getActionName(status) {
+            switch(status) {
+                case this.status.incomplete: {
+                    return null;
+                }
+                case this.status.awaitingFulfillment: {
+                    return this.actions.cancelOrder;
+                }
+                default: {
+                    return null;
+                }
+            }
+        },
+        getActionClassName(actionName) {
+            switch(actionName) {
+                case this.actions.cancelOrder: {
+                    return this.actionClass.cancel;
+                }
+                default: {
+                    return null;
+                }
+            }
+        },
+        runAction(id, actionName) {
+            if ( actionName === "Cancel" )
+                this.cancelOrder(id);
+        }
     },
     computed: {
         ...mapState(["orders", "currentPage", "isLoading"])
     }
 };
 </script>
-<style src="./OrdersList.scss" lang="scss" scoped />
+<style src="./OrdersList.scss" lang="scss" />
