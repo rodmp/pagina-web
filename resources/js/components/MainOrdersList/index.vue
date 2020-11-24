@@ -10,6 +10,7 @@
                         itemName="Orders"
                         :columns="columns"
                         :items="orders"
+                        :pagination="pagination"
                         stickyHeader="true"
                     />
                 </div>
@@ -21,106 +22,73 @@
 <script>
 import { createNamespacedHelpers } from "vuex";
 import React from "react";
+
+import { columns } from "./columns";
 const { mapState, mapActions } = createNamespacedHelpers("ordersList");
+
+const ordersPerPageOptions = [2, 3, 4, 5, 6, 7, 8, 9, 10];
+
 export default {
     created() {
-        this.getOrders();
+        this.getOrders({ currentPage: this.currentPage, limit: this.limit });
     },
     mounted() {
-        console.log("OrdersPage Component mounted.");
+        console.log(
+            "OrdersPage Component mounted.",
+            this.limit,
+            this.currentPage,
+            this.totalOrders
+        );
     },
     data() {
         return {
-            columns: [
-                {
-                    header: "Order Id",
-                    hash: "id",
-                    render: ({ id }) => id
-                },
-                {
-                    header: "Billing Name",
-                    hash: "billing_address",
-                    render: ({ billing_address }) =>
-                        `${billing_address.first_name} ${billing_address.last_name}`
-                },
-                {
-                    header: "Order Total",
-                    hash: "total_ex_tax",
-                    render: ({ total_ex_tax }) => total_ex_tax
-                },
-                {
-                    header: "Order Status",
-                    hash: "status",
-                    render: ({ status }) => React.createElement("span", { className: status.replace(' ', '_').toLowerCase() }, status)
-                },
-                {
-                    header: "Actions",
-                    hash: "actions",
-                    render: ({ id, status }) => {
-                        const actionName = this.getActionName(status);
-                        const className = this.getActionClassName(actionName);
-                        if (actionName) {
-                            return React.createElement("button", {
-                                className,
-                                onMouseDown: () => this.runAction(id, actionName)
-                            }, actionName);
-                        }
-                        return null;
-                    }
-                }
-            ],
-            actions: {
-                cancelOrder: "Cancel"
-            },
-            status: {
-                incomplete: "Incomplete",
-                awaitingFulfillment: "Awaiting Fulfillment"
-            },
-            actionClass: {
-                cancel: "btn btn-danger"
-            }
-            // pagination: {
-            //     currentPage,
-            //     totalItems: this.items.length,
-            //     onPageChange: setCurrentPage,
-            //     itemsPerPageOptions,
-            //     onItemsPerPageChange,
-            //     itemsPerPage
-            // }
+            columns: columns(this.runAction)
         };
     },
     methods: {
-        ...mapActions(["getOrders", "cancelOrder"]),
-        getActionName(status) {
-            switch(status) {
-                case this.status.incomplete: {
-                    return null;
-                }
-                case this.status.awaitingFulfillment: {
-                    return this.actions.cancelOrder;
-                }
-                default: {
-                    return null;
-                }
-            }
-        },
-        getActionClassName(actionName) {
-            switch(actionName) {
-                case this.actions.cancelOrder: {
-                    return this.actionClass.cancel;
-                }
-                default: {
-                    return null;
-                }
-            }
-        },
+        ...mapActions([
+            "getOrders",
+            "cancelOrder",
+            "changePage",
+            "changeLimit"
+        ]),
         runAction(id, actionName) {
-            if ( actionName === "Cancel" )
-                this.cancelOrder(id);
+            if (actionName === "Cancel") this.cancelOrder(id);
+        },
+        handleChangeLimit(newLimit) {
+            this.changePage(1);
+            this.changeLimit(newLimit);
+            this.getOrders({
+                currentPage: this.currentPage,
+                limit: this.limit
+            });
+        },
+        handleChangePage(newPage) {
+            this.changePage(newPage);
+            this.getOrders({
+                currentPage: this.currentPage,
+                limit: this.limit
+            });
         }
     },
     computed: {
-        ...mapState(["orders", "currentPage", "isLoading"])
+        ...mapState([
+            "orders",
+            "currentPage",
+            "isLoading",
+            "totalOrders",
+            "limit"
+        ]),
+        pagination: function() {
+            return {
+                currentPage: this.currentPage,
+                totalItems: this.totalOrders,
+                onPageChange: this.handleChangePage,
+                itemsPerPageOptions: ordersPerPageOptions,
+                onItemsPerPageChange: this.handleChangeLimit,
+                itemsPerPage: this.limit
+            };
+        }
     }
 };
 </script>
