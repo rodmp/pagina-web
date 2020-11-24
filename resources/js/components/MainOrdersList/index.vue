@@ -30,7 +30,10 @@ const ordersPerPageOptions = [2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 export default {
     created() {
-        this.getOrders({ currentPage: this.currentPage, limit: this.limit });
+        this.getOrders({
+            currentPage: this.currentPage,
+            limit: this.limit
+        });
     },
     mounted() {
         console.log(
@@ -58,13 +61,11 @@ export default {
         handleChangeLimit(newLimit) {
             this.changePage(1);
             this.changeLimit(newLimit);
-            this.getOrders({
-                currentPage: this.currentPage,
-                limit: this.limit
-            });
         },
         handleChangePage(newPage) {
             this.changePage(newPage);
+        },
+        fetchOrders() {
             this.getOrders({
                 currentPage: this.currentPage,
                 limit: this.limit
@@ -88,6 +89,14 @@ export default {
                 onItemsPerPageChange: this.handleChangeLimit,
                 itemsPerPage: this.limit
             };
+        }
+    },
+    watch: {
+        currentPage() {
+            this.fetchOrders()
+        },
+        limit() {
+            this.fetchOrders()
         }
     }
 };
