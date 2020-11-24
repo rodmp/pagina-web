@@ -65,7 +65,7 @@ export default {
         handleChangePage(newPage) {
             this.changePage(newPage);
         },
-        fetchOrders() {
+        refreshOrders() {
             this.getOrders({
                 currentPage: this.currentPage,
                 limit: this.limit
@@ -93,10 +93,10 @@ export default {
     },
     watch: {
         currentPage() {
-            this.fetchOrders()
+            this.refreshOrders()
         },
         limit() {
-            this.fetchOrders()
+            this.refreshOrders()
         }
     }
 };
