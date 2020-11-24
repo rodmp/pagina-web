@@ -1,0 +1,16 @@
+@import "~/app";
+:global .big-table {
+  & .incomplete {
+    background-color: red;
+    padding: 4px 10px;
+    border-radius: 3px;
+    color: white;
+  }
+
+  & .awaiting_fulfillment {
+    background-color: gray;
+    padding: 4px 10px;
+    border-radius: 3px;
+    color: black;
+  }
+}

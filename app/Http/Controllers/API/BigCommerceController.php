@@ -175,6 +175,10 @@ class BigCommerceController extends Controller
             $requestConfig['body'] = $request->getContent();
         }
 
+        if ($request->method() === 'GET') {
+            $requestConfig['query'] = $request->query();
+        }
+
         $client = new Client();
         $result = $client->request($request->method(), 'https://api.bigcommerce.com/' . $this->getStoreHash($request) . '/' . $endpoint, $requestConfig);
         return $result;

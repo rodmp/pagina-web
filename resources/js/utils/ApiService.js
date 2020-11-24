@@ -21,6 +21,16 @@ export const ApiService = {
     },
 
     /**
+     * Get Orders Count
+     */
+    getOrdersCount() {
+        return axios({
+            method: "get",
+            url: "/api/bc-api/v2/orders/count"
+        });
+    },
+
+    /**
      * Update Order by Id
      *
      * @param {string | number} orderId
