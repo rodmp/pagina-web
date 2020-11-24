@@ -101,4 +101,4 @@ export default {
     }
 };
 </script>
-<style src="./OrdersList.scss" lang="scss" />
+<style src="./OrdersList.scss" lang="scss" scoped />
