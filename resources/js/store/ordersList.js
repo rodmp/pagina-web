@@ -50,8 +50,19 @@ export default {
                     commit("setLoading", false);
                 });
         },
-        cancelOrder({ commit }, id) {
-            console.log(`Cancelled a order: id => ${id}`);
+        cancelOrder({ commit, dispatch, getters }, id) {
+            console.log(`Cancel a order: id => ${id}`);
+            const { currentPage, limit } = getters;
+            commit("setLoading", true);
+            Promise.all([
+                ApiService.deleteOrder(id)
+            ])
+                .then(response => {
+                    dispatch('getOrders', { currentPage, limit })
+                })
+                .catch(err => {
+                    dispatch('getOrders', { currentPage, limit })
+                });
         },
         changePage({ commit }, newPage) {
             console.log(`Changed Page: ${newPage}`);
@@ -60,6 +71,14 @@ export default {
         changeLimit({ commit }, newLimit) {
             console.log(`Changed Limit per page: ${newLimit}`);
             commit("setLimit", newLimit);
+        }
+    },
+    getters: {
+        currentPage: (state) => {
+            return state.currentPage;
+        },
+        limit: (state) => {
+            return state.limit;
         }
     }
 };
