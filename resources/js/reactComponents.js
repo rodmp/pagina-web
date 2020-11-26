@@ -5,7 +5,8 @@ import {
     Tabs,
     Panel,
     Button,
-    ProgressCircle
+    ProgressCircle,
+    Modal
 } from "@bigcommerce/big-design";
 import {
     ArrowBackIcon,
@@ -25,5 +26,6 @@ export default {
     ArrowForwardIcon,
     ArrowBackIcon,
     ExpandLessIcon,
-    ExpandMoreIcon
+    ExpandMoreIcon,
+    Modal
 };

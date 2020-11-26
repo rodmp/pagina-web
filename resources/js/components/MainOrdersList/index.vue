@@ -16,6 +16,15 @@
                 </div>
             </div>
         </div>
+        <BigModal
+            :header="'Cancel Order?'"
+            :isOpen="isOpen"
+            :children="modalChildren"
+            :actions="[
+                { text: 'Cancel', variant: 'subtle', onClick: () => setIsOpen(false) },
+                { text: 'Apply', onClick: handleApply },
+            ]"
+        />
     </div>
 </template>
 
@@ -45,7 +54,10 @@ export default {
     },
     data() {
         return {
-            columns: columns(this.runAction)
+            columns: columns(this.runAction),
+            cancelOrderId: null,
+            isOpen: false,
+            modalChildren: React.createElement('div', null, 'Will you cancel the order?')
         };
     },
     methods: {
@@ -55,8 +67,20 @@ export default {
             "changePage",
             "changeLimit"
         ]),
+        setIsOpen(isOpen) {
+            this.isOpen = isOpen;
+        },
+        handleApply() {
+            this.isOpen = false;
+            setTimeout(() => {
+                if(this.cancelOrderId) this.cancelOrder(this.cancelOrderId);
+            }, 100);
+        },
         runAction(id, actionName) {
-            if (actionName === "Cancel") this.cancelOrder(id);
+            if (actionName === "Cancel") {
+                this.setIsOpen(true);
+                this.cancelOrderId = id;
+            };
         },
         handleChangeLimit(newLimit) {
             this.changePage(1);
