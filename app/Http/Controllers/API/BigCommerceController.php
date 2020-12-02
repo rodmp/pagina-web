@@ -5,9 +5,11 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use App\Http\Traits\Helpers;
 
 class BigCommerceController extends Controller
 {
+    use Helpers;
     protected $baseURL;
 
     public function __construct()
@@ -19,8 +21,8 @@ class BigCommerceController extends Controller
     {
         $requestConfig = [
             'headers' => [
-                'X-Auth-Client' => getAppClientId(),
-                'X-Auth-Token' => getAccessToken($request),
+                'X-Auth-Client' => $this->getAppClientId(),
+                'X-Auth-Token' => $this->getAccessToken($request),
                 'Content-Type' => 'application/json',
             ],
         ];
@@ -34,7 +36,7 @@ class BigCommerceController extends Controller
         }
 
         $client = new Client();
-        $result = $client->request($request->method(), 'https://api.bigcommerce.com/' . getStoreHash($request) . '/' . $endpoint, $requestConfig);
+        $result = $client->request($request->method(), 'https://api.bigcommerce.com/' . $this->getStoreHash($request) . '/' . $endpoint, $requestConfig);
         return $result;
     }
 

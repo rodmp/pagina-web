@@ -7,9 +7,11 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7;
 use Illuminate\Http\Request;
+use App\Http\Traits\Helpers;
 
 class MainController extends Controller
 {
+    use Helpers;
     protected $baseURL;
 
     public function __construct()
@@ -39,8 +41,8 @@ class MainController extends Controller
             $client = new Client();
             $result = $client->request('POST', 'https://login.bigcommerce.com/oauth2/token', [
                 'json' => [
-                    'client_id' => getAppClientId(),
-                    'client_secret' => getAppSecret(),
+                    'client_id' => $this->getAppClientId(),
+                    'client_secret' => $this->getAppSecret(),
                     'redirect_uri' => $this->baseURL . '/oauth/install',
                     'grant_type' => 'authorization_code',
                     'code' => $request->input('code'),
@@ -61,7 +63,7 @@ class MainController extends Controller
                 // If the merchant installed the app via an external link, redirect back to the
                 // BC installation success page for this app
                 if ($request->has('external_install')) {
-                    return redirect('https://login.bigcommerce.com/app/' . getAppClientId() . '/install/succeeded');
+                    return redirect('https://login.bigcommerce.com/app/' . $this->getAppClientId() . '/install/succeeded');
                 }
             }
 
@@ -79,7 +81,7 @@ class MainController extends Controller
             // If the merchant installed the app via an external link, redirect back to the
             // BC installation failure page for this app
             if ($request->has('external_install')) {
-                return redirect('https://login.bigcommerce.com/app/' . getAppClientId() . '/install/failed');
+                return redirect('https://login.bigcommerce.com/app/' . $this->getAppClientId() . '/install/failed');
             } else {
                 return redirect()->action([MainController::class, 'error'])->with('error_message', $errorMessage);
             }
@@ -117,7 +119,7 @@ class MainController extends Controller
         $data = json_decode($jsonStr, true);
 
         // confirm the signature
-        $expectedSignature = hash_hmac('sha256', $jsonStr, getAppSecret(), $raw = false);
+        $expectedSignature = hash_hmac('sha256', $jsonStr, $this->getAppSecret(), $raw = false);
         if (!hash_equals($expectedSignature, $signature)) {
             error_log('Bad signed request from BigCommerce!');
             return null;
