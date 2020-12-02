@@ -4,26 +4,26 @@ namespace App\Http\Traits;
 trait Helpers {
     public function getAppClientId()
     {
-        if (env('APP_ENV') === 'local') {
-            return env('BC_LOCAL_CLIENT_ID');
+        if (config('app.env') === 'local') {
+            return config('bigcommerce.bc_local_client_id');
         } else {
-            return env('BC_APP_CLIENT_ID');
+            return config('bigcommerce.bc_app_client_id');
         }
     }
 
     public function getAppSecret()
     {
-        if (env('APP_ENV') === 'local') {
-            return env('BC_LOCAL_SECRET');
+        if (config('app.env') === 'local') {
+            return config('bigcommerce.bc_local_secret');
         } else {
-            return env('BC_APP_SECRET');
+            return config('bigcommerce.bc_app_secret');
         }
     }
 
     public function getAccessToken($request)
     {
-        if (env('APP_ENV') === 'local') {
-            return env('BC_LOCAL_ACCESS_TOKEN');
+        if (config('app.env') === 'local') {
+            return config('bigcommerce.bc_local_access_token');
         } else {
             return $request->session()->get('access_token');
         }
@@ -31,8 +31,8 @@ trait Helpers {
 
     public function getStoreHash($request)
     {
-        if (env('APP_ENV') === 'local') {
-            return env('BC_LOCAL_STORE_HASH');
+        if (config('app.env') === 'local') {
+            return config('bigcommerce.bc_local_store_hash');
         } else {
             return $request->session()->get('store_hash');
         }
