@@ -53,9 +53,10 @@ export default {
         cancelOrder({ commit, dispatch, getters }, id) {
             console.log(`Cancel a order: id => ${id}`);
             const { currentPage, limit } = getters;
+            const newOrderData = { status_id: 5 };
             commit("setLoading", true);
             Promise.all([
-                ApiService.deleteOrder(id)
+                ApiService.updateOrder(id, newOrderData)
             ])
                 .then(response => {
                     dispatch('getOrders', { currentPage, limit })

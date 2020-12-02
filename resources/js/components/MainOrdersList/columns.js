@@ -20,10 +20,10 @@ const orderActions = {
 const getActionName = status => {
     switch (status) {
         case orderStatus.incomplete: {
-            return null;
+            return orderActions.cancelOrder;
         }
         case orderStatus.awaitingFulfillment: {
-            return orderActions.cancelOrder;
+            return null;
         }
         default: {
             return null;
