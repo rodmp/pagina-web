@@ -13,6 +13,27 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
+Route::group(['prefix' => 'oauth'], function () {
+    Route::get('install', 'MainController@install');
+
+    Route::get('load', 'MainController@load');
+
+    Route::get('uninstall', function () {
+        echo 'uninstall';
+        return app()->version();
+    });
+
+    Route::get('remove-user', function () {
+        echo 'remove-user';
+        return app()->version();
+    });
+});
+
+Route::get('error', 'MainController@error');
+
+Route::any('/bc-api/{endpoint}', 'API\BigCommerceController@proxyBigCommerceAPIRequest')
+    ->where('endpoint', 'v2\/.*|v3\/.*');
+
 Route::get('/{any}', function () {
     return view('main');
 })->where('any', '.*');

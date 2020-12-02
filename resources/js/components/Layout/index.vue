@@ -1,6 +1,6 @@
 <template>
     <div class="root">
-        <Sidebar />
+        <Sidebar v-if="showSideBar" />
         <div class="main-container">
             <transition name="router-animation">
                 <router-view />
@@ -16,6 +16,11 @@ import Sidebar from "@/components/Sidebar";
 
 export default {
     name: "Layout",
+    data() {
+        return {
+            showSideBar: true,
+        }
+    },
     components: { Sidebar },
     methods: {
         ...mapActions([
@@ -39,6 +44,11 @@ export default {
         ...mapState(["sidebarClose", "sidebarStatic"])
     },
     created() {
+        if (process.env.MIX_APP_INSTALL === "local") {
+            this.showSideBar = true;
+        } else {
+            this.showSideBar = false;
+        }
         this.handleWindowResize();
         window.addEventListener("resize", this.handleWindowResize);
     },

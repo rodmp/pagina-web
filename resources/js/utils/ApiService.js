@@ -15,7 +15,7 @@ export const ApiService = {
 
         return axios({
             method: "get",
-            url: "/api/bc-api/v2/orders",
+            url: "/bc-api/v2/orders",
             params
         });
     },
@@ -26,7 +26,7 @@ export const ApiService = {
     getOrdersCount() {
         return axios({
             method: "get",
-            url: "/api/bc-api/v2/orders/count"
+            url: "/bc-api/v2/orders/count"
         });
     },
 
@@ -39,7 +39,7 @@ export const ApiService = {
     updateOrder(orderId, data) {
         return axios({
             method: "put",
-            url: `/api/bc-api/v2/orders/${orderId}`,
+            url: `/bc-api/v2/orders/${orderId}`,
             data
         });
     },
@@ -52,7 +52,7 @@ export const ApiService = {
     deleteOrder(orderId) {
         return axios({
             method: "delete",
-            url: `/api/bc-api/v2/orders/${orderId}`
+            url: `/bc-api/v2/orders/${orderId}`
         });
     },
 
@@ -73,7 +73,7 @@ export const ApiService = {
 
         return axios({
             method: "get",
-            url: `/api/bc-api/${resource}`,
+            url: `/bc-api/${resource}`,
             params
         });
     },
@@ -87,7 +87,7 @@ export const ApiService = {
     getResourceEntry(resource, params) {
         return axios({
             method: "get",
-            url: `/api/bc-api/${resource}`,
+            url: `/bc-api/${resource}`,
             params
         });
     },
@@ -101,7 +101,7 @@ export const ApiService = {
     updateResourceEntry(resource, data) {
         return axios({
             method: "put",
-            url: `/api/bc-api/${resource}`,
+            url: `/bc-api/${resource}`,
             data
         });
     },
@@ -114,7 +114,7 @@ export const ApiService = {
     deleteResourceEntry(resource) {
         return axios({
             method: "delete",
-            url: `/api/bc-api/${resource}`
+            url: `/bc-api/${resource}`
         });
     }
 };
