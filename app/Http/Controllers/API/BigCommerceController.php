@@ -14,7 +14,7 @@ class BigCommerceController extends Controller
 
     public function __construct()
     {
-        $this->baseURL = env('APP_URL');
+        $this->baseURL = config('app.url');
     }
 
     public function makeBigCommerceAPIRequest(Request $request, $endpoint)
