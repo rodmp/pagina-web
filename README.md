@@ -47,7 +47,7 @@ Likewise, setting it to production will use only the credentials received during
 APP_ENV=production
 
 To hide or show the sidebar of locally built sample app run in production, setting env like bellow.
-MIX_APP_INSTALL=production
+MIX_APP_INSTALL=production/local
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
