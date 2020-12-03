@@ -16,21 +16,13 @@
                 </div>
             </div>
         </div>
-        <BigModal
-            :header="'Cancel Order?'"
-            :isOpen="isOpen"
-            :children="modalChildren"
-            :actions="[
-                { text: 'Cancel', variant: 'subtle', onClick: () => setIsOpen(false) },
-                { text: 'Apply', onClick: handleApply },
-            ]"
-        />
+        <Modal :data="modalValue" v-on:handleApply="handleApply" />
     </div>
 </template>
 
 <script>
 import { createNamespacedHelpers } from "vuex";
-import React from "react";
+import Modal from "@components/Modal";
 
 import { columns } from "./columns";
 const { mapState, mapActions } = createNamespacedHelpers("ordersList");
@@ -38,6 +30,9 @@ const { mapState, mapActions } = createNamespacedHelpers("ordersList");
 const ordersPerPageOptions = [2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 export default {
+    components: {
+        Modal
+    },
     created() {
         this.getOrders({
             currentPage: this.currentPage,
@@ -56,8 +51,11 @@ export default {
         return {
             columns: columns(this.runAction),
             cancelOrderId: null,
-            isOpen: false,
-            modalChildren: React.createElement('div', null, 'Will you cancel the order?')
+            modalValue: {
+                headerTitle: 'headerTitle',
+                bodyTitle: 'bodyTitle',
+                isOpen: false
+            },
         };
     },
     methods: {
@@ -67,18 +65,19 @@ export default {
             "changePage",
             "changeLimit"
         ]),
-        setIsOpen(isOpen) {
-            this.isOpen = isOpen;
-        },
         handleApply() {
-            this.isOpen = false;
+            this.modalValue.isOpen = false;
             setTimeout(() => {
                 if(this.cancelOrderId) this.cancelOrder(this.cancelOrderId);
             }, 100);
         },
         runAction(id, actionName) {
             if (actionName === "Cancel") {
-                this.setIsOpen(true);
+                this.modalValue = {
+                    isOpen: true,
+                    headerTitle: 'Cancel Order!',
+                    bodyTitle: 'Will you cancel this order?'
+                };
                 this.cancelOrderId = id;
             };
         },
