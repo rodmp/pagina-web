@@ -13,6 +13,7 @@
 import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers("layout");
 import Sidebar from "@/components/Sidebar";
+import { isAppInstalled } from '@/utils';
 
 export default {
     name: "Layout",
@@ -44,7 +45,7 @@ export default {
         ...mapState(["sidebarClose", "sidebarStatic"])
     },
     created() {
-        if (process.env.MIX_APP_INSTALL === "local") {
+        if (!isAppInstalled()) {
             this.showSideBar = true;
         } else {
             this.showSideBar = false;

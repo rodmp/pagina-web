@@ -22,4 +22,15 @@ const isScreen = size => {
     );
 };
 
-export default isScreen;
+const isAppInstalled = () => {
+    if (process.env.MIX_APP_INSTALL === "local") {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+export {
+    isScreen,
+    isAppInstalled
+};

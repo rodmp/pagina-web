@@ -1,9 +1,9 @@
 import {
     Table,
-    Grid,
-    GridItem,
+    // Grid,
+    // GridItem,
     Tabs,
-    Panel,
+    // Panel,
     Button,
     ProgressCircle,
     Modal
