@@ -12,6 +12,20 @@ const mix = require("laravel-mix");
  */
 
 mix.webpackConfig({
+    module: {
+        rules: [
+            {
+                test: /\.(react)\.?(jsx)(\?.*)?$/,
+                exclude: /(node_modules)/,
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        presets: ["@babel/env", "@babel/react"]
+                    }
+                }
+            }
+        ]
+    },
     resolve: {
         alias: {
             "@": path.resolve(__dirname, "resources/js"),

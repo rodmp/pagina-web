@@ -1,8 +1,6 @@
 <template>
     <div class="container-fluid">
-        <div class="row p-3 h3 pt-5 pl-4">
-            Sample App
-        </div>
+        <div class="row p-3 h3 pt-5 pl-4">Sample App</div>
         <div class="row border-bottom pt-0 pl-5">
             <BigTabs
                 :items="tabItems"
@@ -18,6 +16,7 @@
 
 <script>
 import { mainPageTabs } from "@/data";
+
 export default {
     mounted() {
         console.log("MainPage Component mounted.");
@@ -28,7 +27,6 @@ export default {
             activeTab: this.getCurrentTab().id
         };
     },
-    components: {},
     methods: {
         handleTabClick(tabId) {
             this.activeTab = tabId;
