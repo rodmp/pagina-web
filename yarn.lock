@@ -7441,11 +7441,6 @@ vue-loader@^15.4.2:
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
 
-vue-react@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/vue-react/-/vue-react-1.2.0.tgz#978a734ed87795d400ca000604e142589d163c21"
-  integrity sha512-WvhBQZwSQ/LhPAkpOU9KAPkHuenkQRZ5fTUYUgFosPgnwcunoKIyYIgz2RZcfzmEInYiprf3G1ndoZ4iMR5uhg==
-
 vue-router@^3.4.9:
   version "3.4.9"
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-3.4.9.tgz#c016f42030ae2932f14e4748b39a1d9a0e250e66"

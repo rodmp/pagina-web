@@ -3,13 +3,12 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-import VueReact from "vue-react";
 import VueTouch from "vue-touch";
 import Vue from "vue";
+import { VuePlugin, ReactInVue } from "vuera";
 
 import router from "./routes";
 import store from "./store";
-// import layoutMixin from "./mixins/layout";
 import ReactComponents from "./reactComponents";
 
 require("./bootstrap");
@@ -19,13 +18,8 @@ window.Vue = require("vue");
 /**
  * Vue Plugins
  */
-Vue.use(VueReact); //Plugin for loading react components
 Vue.use(VueTouch);
-
-/**
- * Vue Mixins
- */
-// Vue.mixin(layoutMixin);
+Vue.use(VuePlugin); //Plugin for loading react components
 
 /**
  * Vue configurations
@@ -52,7 +46,7 @@ Vue.component(
  * Register React Components
  */
 Object.keys(ReactComponents).map(key =>
-    Vue.react(`Big${key}`, ReactComponents[key])
+    Vue.component(`Big${key}`, ReactInVue(ReactComponents[key]))
 );
 
 /**
