@@ -62,6 +62,13 @@ export default {
         runOrderAction(id, actionName) {
             if (actionName === "Cancel") {
                 this.cancelOrder(id);
+                const alert = {
+                    header: "A order cancelled",
+                    type: "success",
+                    onClose: () => null,
+                    autoDismiss: true
+                };
+                this.$alertManager.add(alert);
             }
         },
         handleChangeLimit(newLimit) {

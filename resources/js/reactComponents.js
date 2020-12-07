@@ -15,6 +15,9 @@ import {
     ExpandMoreIcon
 } from "@bigcommerce/big-design-icons";
 
+/**
+ * Register Global React Components
+ */
 export default {
     // Panel, Does not work
     // Grid,
