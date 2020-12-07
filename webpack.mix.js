@@ -15,7 +15,7 @@ mix.webpackConfig({
     module: {
         rules: [
             {
-                test: /\.(react)\.?(jsx)(\?.*)?$/,
+                test: /\.(react).*\.?(jsx)(\?.*)?$/,
                 exclude: /(node_modules)/,
                 use: {
                     loader: "babel-loader",

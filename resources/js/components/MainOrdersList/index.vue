@@ -16,23 +16,17 @@
                 </div>
             </div>
         </div>
-        <Modal :data="modalValue" v-on:handleApply="handleApply" />
     </div>
 </template>
 
 <script>
 import { createNamespacedHelpers } from "vuex";
-import Modal from "@components/Modal";
+import { columns } from "./columns.react";
 
-import { columns } from "./columns";
 const { mapState, mapActions } = createNamespacedHelpers("ordersList");
-
 const ordersPerPageOptions = [2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 export default {
-    components: {
-        Modal
-    },
     created() {
         this.getOrders({
             currentPage: this.currentPage,
@@ -49,13 +43,13 @@ export default {
     },
     data() {
         return {
-            columns: columns(this.runAction),
+            columns: columns(this.runOrderAction),
             cancelOrderId: null,
             modalValue: {
-                headerTitle: 'headerTitle',
-                bodyTitle: 'bodyTitle',
+                headerTitle: "headerTitle",
+                bodyTitle: "bodyTitle",
                 isOpen: false
-            },
+            }
         };
     },
     methods: {
@@ -65,21 +59,10 @@ export default {
             "changePage",
             "changeLimit"
         ]),
-        handleApply() {
-            this.modalValue.isOpen = false;
-            setTimeout(() => {
-                if(this.cancelOrderId) this.cancelOrder(this.cancelOrderId);
-            }, 100);
-        },
-        runAction(id, actionName) {
+        runOrderAction(id, actionName) {
             if (actionName === "Cancel") {
-                this.modalValue = {
-                    isOpen: true,
-                    headerTitle: 'Cancel Order!',
-                    bodyTitle: 'Will you cancel this order?'
-                };
-                this.cancelOrderId = id;
-            };
+                this.cancelOrder(id);
+            }
         },
         handleChangeLimit(newLimit) {
             this.changePage(1);
@@ -116,10 +99,10 @@ export default {
     },
     watch: {
         currentPage() {
-            this.refreshOrders()
+            this.refreshOrders();
         },
         limit() {
-            this.refreshOrders()
+            this.refreshOrders();
         }
     }
 };
