@@ -63,7 +63,7 @@ export default {
             if (actionName === "Cancel") {
                 this.cancelOrder(id);
                 const alert = {
-                    header: "A order cancelled",
+                    header: `A order #${id} has been cancelled`,
                     type: "success",
                     onClose: () => null,
                     autoDismiss: true
