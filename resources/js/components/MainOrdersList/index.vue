@@ -24,7 +24,7 @@ import { createNamespacedHelpers } from "vuex";
 import { columns } from "./columns.react";
 
 const { mapState, mapActions } = createNamespacedHelpers("ordersList");
-const ordersPerPageOptions = [2, 3, 4, 5, 6, 7, 8, 9, 10];
+const ordersPerPageOptions = [5, 10, 50, 100];
 
 export default {
     created() {

@@ -39,7 +39,14 @@
 >   npm run dev or npm run watch
 >   ```
 >
->   After compiling the app should be reachable at the site you are hosting the app on locally. i.e [https://laravel-vue-bigcommerce-app.test](https://laravel-vue-bigcommerce-app.test)
+>   After compiling the app:
+>   - You should be reachable at the site you are hosting the app on locally. i.e [https://laravel-vue-bigcommerce-app.test](https://laravel-vue-bigcommerce-app.test)
+>
+>   - Or you can simply run the app locally using below command and url.
+>     ```bash
+>     php artisan serve
+>     ```
+>       [http://localhost:8000](http://localhost:8000) or [http://127.0.0.1:8000](http://127.0.0.1:8000)
 >
 >- When running the app outside of BigCommerce, setting the follow environment variable will cause the app to use the local API credential (also in the .env file):
 >`APP_ENV=local`
