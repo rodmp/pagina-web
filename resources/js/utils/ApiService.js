@@ -8,7 +8,7 @@ export const ApiService = {
         params = Object.assign(
             {
                 page: 1,
-                limit: 10
+                limit: 10,
             },
             params
         );
@@ -16,7 +16,7 @@ export const ApiService = {
         return axios({
             method: "get",
             url: "/bc-api/v2/orders",
-            params
+            params,
         });
     },
 
@@ -26,7 +26,7 @@ export const ApiService = {
     getOrdersCount() {
         return axios({
             method: "get",
-            url: "/bc-api/v2/orders/count"
+            url: "/bc-api/v2/orders/count",
         });
     },
 
@@ -40,7 +40,7 @@ export const ApiService = {
         return axios({
             method: "put",
             url: `/bc-api/v2/orders/${orderId}`,
-            data
+            data,
         });
     },
 
@@ -52,7 +52,7 @@ export const ApiService = {
     deleteOrder(orderId) {
         return axios({
             method: "delete",
-            url: `/bc-api/v2/orders/${orderId}`
+            url: `/bc-api/v2/orders/${orderId}`,
         });
     },
 
@@ -66,7 +66,7 @@ export const ApiService = {
         params = Object.assign(
             {
                 page: 1,
-                limit: 10
+                limit: 10,
             },
             params
         );
@@ -74,7 +74,7 @@ export const ApiService = {
         return axios({
             method: "get",
             url: `/bc-api/${resource}`,
-            params
+            params,
         });
     },
 
@@ -88,7 +88,7 @@ export const ApiService = {
         return axios({
             method: "get",
             url: `/bc-api/${resource}`,
-            params
+            params,
         });
     },
 
@@ -102,7 +102,7 @@ export const ApiService = {
         return axios({
             method: "put",
             url: `/bc-api/${resource}`,
-            data
+            data,
         });
     },
 
@@ -114,7 +114,7 @@ export const ApiService = {
     deleteResourceEntry(resource) {
         return axios({
             method: "delete",
-            url: `/bc-api/${resource}`
+            url: `/bc-api/${resource}`,
         });
-    }
+    },
 };

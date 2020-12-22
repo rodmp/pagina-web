@@ -1,11 +1,11 @@
-import { ApiService } from "@/utils";
+import {ApiService} from "@/utils";
 
 export default {
     namespaced: true,
     state: {
         catalogSummary: {},
         storeInfo: {},
-        isLoading: false
+        isLoading: false,
     },
     mutations: {
         setStoreInfo(state, storeInfo) {
@@ -16,25 +16,25 @@ export default {
         },
         setLoading(state, isLoading) {
             state.isLoading = isLoading;
-        }
+        },
     },
     actions: {
-        getSummary({ commit }) {
+        getSummary({commit}) {
             commit("setLoading", true);
             Promise.all([
                 ApiService.getResourceEntry("v2/store"),
-                ApiService.getResourceEntry("v3/catalog/summary")
+                ApiService.getResourceEntry("v3/catalog/summary"),
             ])
                 .then(([store, summary]) => {
                     commit("setStoreInfo", store.data);
                     commit("setCatalogSummary", summary.data.data);
                     commit("setLoading", false);
                 })
-                .catch(([storeErr, summaryErr]) => {
+                .catch(() => {
                     commit("setStoreInfo", {});
                     commit("setCatalogSummary", {});
                     commit("setLoading", false);
                 });
-        }
-    }
+        },
+    },
 };

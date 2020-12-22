@@ -18,26 +18,26 @@
             type="button"
             @click="toggleSidebarMethod"
         >
-            <BigArrowForwardIcon color="#b7c6fe" size="20" />
+            <big-arrow-forward-icon color="#b7c6fe" size="20" />
         </button>
     </header>
 </template>
 <script>
-import { mapState, mapActions } from "vuex";
+import {mapState, mapActions} from "vuex";
 
 export default {
+    computed: {
+        ...mapState("layout", ["sidebarClose", "sidebarStatic"]),
+    },
     mounted() {
         console.log("AppSideBarHeader Component mounted.");
-    },
-    computed: {
-        ...mapState("layout", ["sidebarClose", "sidebarStatic"])
     },
     methods: {
         ...mapActions("layout", ["toggleSidebar", "changeSidebarClose"]),
         toggleSidebarMethod() {
             this.changeSidebarClose(!this.sidebarClose);
-        }
-    }
+        },
+    },
 };
 </script>
 <style src="./SidebarHeader.scss" lang="scss" scoped></style>

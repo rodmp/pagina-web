@@ -1,6 +1,6 @@
 <template>
     <nav
-        :class="{ sidebar: true, sidebarStatic, sidebarOpened }"
+        :class="{sidebar: true, sidebarStatic, sidebarOpened}"
         @mouseenter="sidebarMouseEnter"
         @mouseleave="sidebarMouseLeave"
     >
@@ -13,8 +13,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
-import { isScreen } from "@/utils";
+import {mapState, mapActions} from "vuex";
 import SidebarHeader from "./../SidebarHeader";
 import SidebarBody from "./../SidebarBody";
 import SidebarFooter from "./../SidebarFooter";
@@ -24,11 +23,19 @@ export default {
     components: {
         SidebarFooter,
         SidebarHeader,
-        SidebarBody
+        SidebarBody,
     },
     data() {
         return {};
     },
+    computed: {
+        ...mapState("layout", {
+            sidebarStatic: (state) => state.sidebarStatic,
+            sidebarOpened: (state) => !state.sidebarClose,
+            sidebarHelperClose: (state) => state.sidebarHelperClose,
+        }),
+    },
+    created() {},
     methods: {
         ...mapActions("layout", ["changeSidebarClose"]),
         sidebarMouseEnter() {
@@ -40,16 +47,8 @@ export default {
             if (!this.sidebarStatic) {
                 this.changeSidebarClose(true);
             }
-        }
+        },
     },
-    created() {},
-    computed: {
-        ...mapState("layout", {
-            sidebarStatic: state => state.sidebarStatic,
-            sidebarOpened: state => !state.sidebarClose,
-            sidebarHelperClose: state => state.sidebarHelperClose
-        })
-    }
 };
 </script>
 

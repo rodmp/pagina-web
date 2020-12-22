@@ -1,16 +1,16 @@
 import React from "react";
-import { Button, Badge } from "@bigcommerce/big-design";
+import {Badge} from "@bigcommerce/big-design";
 import MainOrderActionModal from "../MainOrderActionModal.react";
 
 const orderActions = {
-        cancelOrder: "Cancel"
+        cancelOrder: "Cancel",
     },
     orderStatus = {
         incomplete: "Incomplete",
-        awaitingFulfillment: "Awaiting Fulfillment"
+        awaitingFulfillment: "Awaiting Fulfillment",
     },
     orderActionType = {
-        cancel: "destructive"
+        cancel: "destructive",
     };
 
 /**
@@ -18,7 +18,7 @@ const orderActions = {
  *
  * @param {orderStatus[keyof orderStatus]} status
  */
-const getActionName = status => {
+const getActionName = (status) => {
     switch (status) {
         case orderStatus.incomplete: {
             return orderActions.cancelOrder;
@@ -37,7 +37,7 @@ const getActionName = status => {
  *
  * @param {orderActions[keyof orderActions]} actionName
  */
-const getActionType = actionName => {
+const getActionType = (actionName) => {
     switch (actionName) {
         case orderActions.cancelOrder: {
             return orderActionType.cancel;
@@ -52,7 +52,7 @@ const getActionType = actionName => {
  *
  * @param {orderStatus[keyof orderStatus]} status
  */
-const getStatusVariant = status => {
+const getStatusVariant = (status) => {
     switch (status) {
         case orderStatus.incomplete: {
             return "danger";
@@ -71,47 +71,48 @@ const getStatusVariant = status => {
  *
  * @param {(id: string, actionName: string)=>void} onAction
  */
-export const columns = onAction => [
+export const columns = (onAction) => [
     {
         header: "Order Id",
         hash: "id",
-        render: ({ id }) => id
+        render: ({id}) => id,
     },
     {
         header: "Billing Name",
         hash: "billing_address",
-        render: ({ billing_address }) =>
-            `${billing_address.first_name} ${billing_address.last_name}`
+        render: ({billing_address}) =>
+            `${billing_address.first_name} ${billing_address.last_name}`,
     },
     {
         header: "Order Total",
         hash: "total_ex_tax",
-        render: ({ total_ex_tax }) => total_ex_tax
+        render: ({total_ex_tax}) => total_ex_tax,
     },
     {
         header: "Order Status",
         hash: "status",
-        render: ({ status }) => (
+        render: ({status}) => (
             <Badge variant={getStatusVariant(status)} label={status} />
-        )
+        ),
     },
     {
         header: "Actions",
         hash: "actions",
-        render: ({ id, status }) => {
+        render: ({id, status}) => {
             const actionName = getActionName(status);
             const actionType = getActionType(actionName);
+            console.log(`${actionType} -> For Future`);
             if (actionName) {
                 return (
                     <MainOrderActionModal
                         actionName={actionName}
-                        onClickApply={e => onAction(id, actionName)}
+                        onClickApply={() => onAction(id, actionName)}
                     />
                 );
             }
             return null;
-        }
-    }
+        },
+    },
 ];
 
 export default columns;

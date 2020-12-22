@@ -47,12 +47,12 @@
     </div>
 </template>
 <script>
-import { createNamespacedHelpers } from "vuex";
-const { mapState } = createNamespacedHelpers("summary");
+import {createNamespacedHelpers} from "vuex";
+const {mapState} = createNamespacedHelpers("summary");
 
 export default {
     computed: {
-        ...mapState(["catalogSummary"])
-    }
+        ...mapState(["catalogSummary"]),
+    },
 };
 </script>

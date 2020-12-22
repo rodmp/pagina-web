@@ -9,25 +9,25 @@
 <script>
 import MainSummaryCatalogSummary from "./../MainSummaryCatalogSummary";
 import MainSummaryStoreOverview from "./../MainSummaryStoreOverview";
-import { createNamespacedHelpers } from "vuex";
-const { mapState, mapActions } = createNamespacedHelpers("summary");
+import {createNamespacedHelpers} from "vuex";
+const {mapState, mapActions} = createNamespacedHelpers("summary");
 
 export default {
+    components: {
+        MainSummaryCatalogSummary,
+        MainSummaryStoreOverview,
+    },
+    computed: {
+        ...mapState(["storeInfo", "catalogSummary", "isLoading"]),
+    },
     created() {
         this.getSummary();
     },
     mounted() {
         console.log("Summary Component mounted.");
     },
-    components: {
-        MainSummaryCatalogSummary,
-        MainSummaryStoreOverview
-    },
     methods: {
-        ...mapActions(["getSummary"])
+        ...mapActions(["getSummary"]),
     },
-    computed: {
-        ...mapState(["storeInfo", "catalogSummary", "isLoading"])
-    }
 };
 </script>

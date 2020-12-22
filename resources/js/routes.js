@@ -15,7 +15,7 @@ export default new Router({
         {
             path: "/error",
             name: "Error",
-            component: ErrorPage
+            component: ErrorPage,
         },
         {
             path: "/",
@@ -32,16 +32,16 @@ export default new Router({
                         {
                             path: "summary",
                             name: "Summary",
-                            component: Summary
+                            component: Summary,
                         },
                         {
                             path: "orders-list",
                             name: "Orders List",
-                            component: OrdersList
-                        }
-                    ]
-                }
-            ]
-        }
-    ]
+                            component: OrdersList,
+                        },
+                    ],
+                },
+            ],
+        },
+    ],
 });

@@ -6,13 +6,13 @@ import {
     // Panel,
     Button,
     ProgressCircle,
-    Modal
+    Modal,
 } from "@bigcommerce/big-design";
 import {
     ArrowBackIcon,
     ArrowForwardIcon,
     ExpandLessIcon,
-    ExpandMoreIcon
+    ExpandMoreIcon,
 } from "@bigcommerce/big-design-icons";
 
 /**
@@ -30,5 +30,5 @@ export default {
     ArrowBackIcon,
     ExpandLessIcon,
     ExpandMoreIcon,
-    Modal
+    Modal,
 };
