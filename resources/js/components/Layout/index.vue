@@ -1,6 +1,6 @@
 <template>
     <div class="root">
-        <Sidebar v-if="showSideBar" />
+        <sidebar v-if="showSideBar" />
         <div class="main-container">
             <transition name="router-animation">
                 <router-view />
@@ -8,41 +8,25 @@
         </div>
     </div>
 </template>
-
 <script>
-import { createNamespacedHelpers } from "vuex";
-const { mapState, mapActions } = createNamespacedHelpers("layout");
+import {createNamespacedHelpers} from "vuex";
+const {mapState, mapActions} = createNamespacedHelpers("layout");
 import Sidebar from "@/components/Sidebar";
-import { isAppInstalled } from '@/utils';
+import {isAppInstalled} from "@/utils";
 
 export default {
     name: "Layout",
+    components: {Sidebar},
     data() {
         return {
             showSideBar: true,
-        }
-    },
-    components: { Sidebar },
-    methods: {
-        ...mapActions([
-            "handleSwipe",
-            "toggleSidebar",
-            "changeSidebarStatic",
-            "changeSidebarClose"
-        ]),
-        handleWindowResize() {
-            const width = window.innerWidth;
-            if (width <= 768) {
-                this.changeSidebarStatic(false);
-                this.changeSidebarClose(true);
-            } else {
-                this.changeSidebarStatic(true);
-                this.changeSidebarClose(false);
-            }
-        }
+        };
     },
     computed: {
-        ...mapState(["sidebarClose", "sidebarStatic"])
+        ...mapState(["sidebarClose", "sidebarStatic"]),
+    },
+    beforeDestroy() {
+        window.removeEventListener("resize", this.handleWindowResize);
     },
     created() {
         if (!isAppInstalled()) {
@@ -53,9 +37,24 @@ export default {
         this.handleWindowResize();
         window.addEventListener("resize", this.handleWindowResize);
     },
-    beforeDestroy() {
-        window.removeEventListener("resize", this.handleWindowResize);
-    }
+    methods: {
+        ...mapActions([
+            "handleSwipe",
+            "toggleSidebar",
+            "changeSidebarStatic",
+            "changeSidebarClose",
+        ]),
+        handleWindowResize() {
+            const width = window.innerWidth;
+            if (width <= 768) {
+                this.changeSidebarStatic(false);
+                this.changeSidebarClose(true);
+            } else {
+                this.changeSidebarStatic(true);
+                this.changeSidebarClose(false);
+            }
+        },
+    },
 };
 </script>
 

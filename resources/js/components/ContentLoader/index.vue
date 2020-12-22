@@ -1,6 +1,6 @@
 <template>
     <div class="content-loader-wrapper" :class="asOverlay">
-        <BigProgressCircle size="small" />
+        <big-progress-circle size="small" />
         <slot class="content" />
     </div>
 </template>
@@ -8,8 +8,8 @@
 export default {
     name: "ContentLoader",
     props: {
-        asOverlay: Boolean
-    }
+        asOverlay: Boolean,
+    },
 };
 </script>
 <style src="./ContentLoader.scss" lang="scss" scoped />

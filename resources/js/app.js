@@ -5,8 +5,8 @@
  */
 import VueTouch from "vue-touch";
 import Vue from "vue";
-import { VuePlugin, ReactInVue } from "vuera";
-import { createAlertsManager } from "@bigcommerce/big-design";
+import {VuePlugin, ReactInVue} from "vuera";
+import {createAlertsManager} from "@bigcommerce/big-design";
 
 import router from "./routes";
 import store from "./store";
@@ -44,7 +44,7 @@ Vue.component(
 /******************************************************
  ************** Register React Components *************
  *****************************************************/
-Object.keys(ReactComponents).map(key =>
+Object.keys(ReactComponents).map((key) =>
     Vue.component(`Big${key}`, ReactInVue(ReactComponents[key]))
 );
 
@@ -65,8 +65,8 @@ Object.keys(ReactComponents).map(key =>
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
+new Vue({
     el: "#app",
     store,
-    router
+    router,
 });

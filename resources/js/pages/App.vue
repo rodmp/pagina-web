@@ -3,20 +3,20 @@
 </template>
 
 <script>
-import { AlertsManager } from "@bigcommerce/big-design";
-import { ReactInVue } from "vuera";
+import {AlertsManager} from "@bigcommerce/big-design";
+import {ReactInVue} from "vuera";
 
 export default {
     name: "App",
+    components: {
+        "alerts-manager": ReactInVue(AlertsManager),
+    },
     data() {
         return {
-            manager: this.$alertManager
+            manager: this.$alertManager,
         };
     },
-    components: {
-        "alerts-manager": ReactInVue(AlertsManager)
-    },
-    created() {}
+    created() {},
 };
 </script>
 

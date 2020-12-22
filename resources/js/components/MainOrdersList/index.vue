@@ -4,7 +4,7 @@
         <div class="row">
             <div class="card w-100">
                 <div class="card-body">
-                    <BigTable
+                    <big-table
                         class="big-table"
                         keyField="id"
                         itemName="Orders"
@@ -20,17 +20,55 @@
 </template>
 
 <script>
-import { createNamespacedHelpers } from "vuex";
-import { columns } from "./columns.react";
+import {createNamespacedHelpers} from "vuex";
+import {columns} from "./columns.react";
 
-const { mapState, mapActions } = createNamespacedHelpers("ordersList");
+const {mapState, mapActions} = createNamespacedHelpers("ordersList");
 const ordersPerPageOptions = [5, 10, 50, 100];
 
 export default {
+    data() {
+        return {
+            columns: columns(this.runOrderAction),
+            cancelOrderId: null,
+            modalValue: {
+                headerTitle: "headerTitle",
+                bodyTitle: "bodyTitle",
+                isOpen: false,
+            },
+        };
+    },
+    computed: {
+        ...mapState([
+            "orders",
+            "currentPage",
+            "isLoading",
+            "totalOrders",
+            "limit",
+        ]),
+        pagination: function() {
+            return {
+                currentPage: this.currentPage,
+                totalItems: this.totalOrders,
+                onPageChange: this.handleChangePage,
+                itemsPerPageOptions: ordersPerPageOptions,
+                onItemsPerPageChange: this.handleChangeLimit,
+                itemsPerPage: this.limit,
+            };
+        },
+    },
+    watch: {
+        currentPage() {
+            this.refreshOrders();
+        },
+        limit() {
+            this.refreshOrders();
+        },
+    },
     created() {
         this.getOrders({
             currentPage: this.currentPage,
-            limit: this.limit
+            limit: this.limit,
         });
     },
     mounted() {
@@ -41,23 +79,12 @@ export default {
             this.totalOrders
         );
     },
-    data() {
-        return {
-            columns: columns(this.runOrderAction),
-            cancelOrderId: null,
-            modalValue: {
-                headerTitle: "headerTitle",
-                bodyTitle: "bodyTitle",
-                isOpen: false
-            }
-        };
-    },
     methods: {
         ...mapActions([
             "getOrders",
             "cancelOrder",
             "changePage",
-            "changeLimit"
+            "changeLimit",
         ]),
         runOrderAction(id, actionName) {
             if (actionName === "Cancel") {
@@ -66,7 +93,7 @@ export default {
                     header: `A order #${id} has been cancelled`,
                     type: "success",
                     onClose: () => null,
-                    autoDismiss: true
+                    autoDismiss: true,
                 };
                 this.$alertManager.add(alert);
             }
@@ -81,37 +108,10 @@ export default {
         refreshOrders() {
             this.getOrders({
                 currentPage: this.currentPage,
-                limit: this.limit
+                limit: this.limit,
             });
-        }
-    },
-    computed: {
-        ...mapState([
-            "orders",
-            "currentPage",
-            "isLoading",
-            "totalOrders",
-            "limit"
-        ]),
-        pagination: function() {
-            return {
-                currentPage: this.currentPage,
-                totalItems: this.totalOrders,
-                onPageChange: this.handleChangePage,
-                itemsPerPageOptions: ordersPerPageOptions,
-                onItemsPerPageChange: this.handleChangeLimit,
-                itemsPerPage: this.limit
-            };
-        }
-    },
-    watch: {
-        currentPage() {
-            this.refreshOrders();
         },
-        limit() {
-            this.refreshOrders();
-        }
-    }
+    },
 };
 </script>
 <style src="./OrdersList.scss" lang="scss" scoped />

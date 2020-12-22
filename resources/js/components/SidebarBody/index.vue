@@ -5,7 +5,7 @@
 export default {
     mounted() {
         console.log("AppSideBarBody Component mounted.");
-    }
+    },
 };
 </script>
 <style src="./SidebarBody.scss" lang="scss" scoped></style>

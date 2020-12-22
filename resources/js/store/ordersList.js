@@ -1,4 +1,4 @@
-import { ApiService } from "@/utils";
+import {ApiService} from "@/utils";
 
 export default {
     namespaced: true,
@@ -7,7 +7,7 @@ export default {
         orders: [],
         totalOrders: 0,
         limit: 10,
-        isLoading: false
+        isLoading: false,
     },
     mutations: {
         setOrders(state, orders) {
@@ -24,16 +24,16 @@ export default {
         },
         setTotalOrders(state, count) {
             state.totalOrders = count;
-        }
+        },
     },
     actions: {
-        getOrders({ commit }, { currentPage, limit }) {
+        getOrders({commit}, {currentPage, limit}) {
             commit("setLoading", true);
             Promise.all([
-                ApiService.getOrders({ page: currentPage, limit: limit }),
-                ApiService.getOrdersCount()
+                ApiService.getOrders({page: currentPage, limit: limit}),
+                ApiService.getOrdersCount(),
             ])
-                .then(([{ data: ordersData }, { data: countData }]) => {
+                .then(([{data: ordersData}, {data: countData}]) => {
                     if (ordersData) {
                         commit("setOrders", ordersData);
                     }
@@ -44,35 +44,33 @@ export default {
                     }
                     commit("setLoading", false);
                 })
-                .catch(err => {
+                .catch(() => {
                     commit("setOrders", []);
                     commit("setTotalOrders", 0);
                     commit("setLoading", false);
                 });
         },
-        cancelOrder({ commit, dispatch, getters }, id) {
+        cancelOrder({commit, dispatch, getters}, id) {
             console.log(`Cancel a order: id => ${id}`);
-            const { currentPage, limit } = getters;
-            const newOrderData = { status_id: 5 };
+            const {currentPage, limit} = getters;
+            const newOrderData = {status_id: 5};
             commit("setLoading", true);
-            Promise.all([
-                ApiService.updateOrder(id, newOrderData)
-            ])
-                .then(response => {
-                    dispatch('getOrders', { currentPage, limit })
+            Promise.all([ApiService.updateOrder(id, newOrderData)])
+                .then(() => {
+                    dispatch("getOrders", {currentPage, limit});
                 })
-                .catch(err => {
-                    dispatch('getOrders', { currentPage, limit })
+                .catch(() => {
+                    dispatch("getOrders", {currentPage, limit});
                 });
         },
-        changePage({ commit }, newPage) {
+        changePage({commit}, newPage) {
             console.log(`Changed Page: ${newPage}`);
             commit("setPage", newPage);
         },
-        changeLimit({ commit }, newLimit) {
+        changeLimit({commit}, newLimit) {
             console.log(`Changed Limit per page: ${newLimit}`);
             commit("setLimit", newLimit);
-        }
+        },
     },
     getters: {
         currentPage: (state) => {
@@ -80,6 +78,6 @@ export default {
         },
         limit: (state) => {
             return state.limit;
-        }
-    }
+        },
+    },
 };

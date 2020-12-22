@@ -3,7 +3,7 @@ export default {
     state: {
         sidebarClose: false,
         sidebarStatic: true,
-        sidebarHelperClose: true
+        sidebarHelperClose: true,
     },
     mutations: {
         toggleSidebar(state) {
@@ -20,7 +20,7 @@ export default {
                 }
             }
         },
-        toggleSidebarHelper(state, index) {
+        toggleSidebarHelper(state) {
             state.sidebarHelperClose = !state.sidebarHelperClose;
         },
         changeSidebarStatic(state, status) {
@@ -28,23 +28,23 @@ export default {
         },
         changeSidebarClose(state, status) {
             state.sidebarClose = status;
-        }
+        },
     },
     actions: {
-        changeSidebarStatic({ commit }, status) {
+        changeSidebarStatic({commit}, status) {
             commit("changeSidebarStatic", status);
         },
-        changeSidebarClose({ commit }, status) {
+        changeSidebarClose({commit}, status) {
             commit("changeSidebarClose", status);
         },
-        toggleSidebar({ commit }) {
+        toggleSidebar({commit}) {
             commit("toggleSidebar");
         },
-        handleSwipe({ commit }, e) {
+        handleSwipe({commit}, e) {
             commit("handleSwipe", e);
         },
-        toggleSidebarHelper({ commit }) {
+        toggleSidebarHelper({commit}) {
             commit("toggleSidebarHelper");
-        }
-    }
+        },
+    },
 };

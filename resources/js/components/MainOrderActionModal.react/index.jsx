@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { Button, Modal, Text } from "@bigcommerce/big-design";
+import React, {useState} from "react";
+import {Button, Modal, Text} from "@bigcommerce/big-design";
 import _ from "lodash";
 
 function MainOrderActionModal(props) {
-    const { actionName, onClickApply } = props;
+    const {actionName, onClickApply} = props;
     const [isOpen, setIsOpen] = useState(false);
 
     const handleClickApply = () => {
@@ -20,9 +20,9 @@ function MainOrderActionModal(props) {
                     {
                         text: "Cancel",
                         variant: "subtle",
-                        onClick: () => setIsOpen(false)
+                        onClick: () => setIsOpen(false),
                     },
-                    { text: "Apply", onClick: handleClickApply }
+                    {text: "Apply", onClick: handleClickApply},
                 ]}
                 header={`${_.capitalize(actionName)} Order`}
                 isOpen={isOpen}

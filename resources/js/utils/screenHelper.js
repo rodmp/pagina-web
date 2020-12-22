@@ -6,7 +6,7 @@ const screens = {
     "md-max": 991,
     "lg-min": 992,
     "lg-max": 1199,
-    "xl-min": 1200
+    "xl-min": 1200,
 };
 
 /**
@@ -14,7 +14,7 @@ const screens = {
  *
  * @param {'xs' | 'sm' | 'md' | 'lg' | 'xl'} size
  */
-const isScreen = size => {
+const isScreen = (size) => {
     const screenPx = window.innerWidth;
     return (
         (screenPx >= screens[`${size}-min`] || size === "xs") &&
@@ -28,9 +28,6 @@ const isAppInstalled = () => {
     } else {
         return true;
     }
-}
-
-export {
-    isScreen,
-    isAppInstalled
 };
+
+export {isScreen, isAppInstalled};
