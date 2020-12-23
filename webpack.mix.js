@@ -18,6 +18,9 @@ mix.webpackConfig({
                 test: /\.(js|vue|jsx)$/,
                 loader: "eslint-loader",
                 exclude: /node_modules/,
+                options: {
+                    fix: true,
+                },
             },
             {
                 test: /\.(react).*\.?(jsx)(\?.*)?$/,
