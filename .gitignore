@@ -1,5 +1,3 @@
-# Standard gitignore
-
 .DS_Store
 .env
 .next

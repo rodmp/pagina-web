@@ -12,6 +12,7 @@ const AppLayout = (props: AppLayoutProps) => {
 
   const isAuth = Boolean(authToken)
   const router = useRouter()
+
   useEffect(() => {
     if (router.asPath !== '/login' && !isAuth) {
       router.push('/login')

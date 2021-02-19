@@ -4,6 +4,7 @@ out
 now.json
 
 # Other
+.circleci
 .huskyrc.json
 .nvmrc
 .todolintrc.json
