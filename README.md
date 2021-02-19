@@ -21,9 +21,3 @@ nvm install
 yarn
 yarn start
 ```
-
-## Deploy
-
-To be able to see deployments, ask [Jerry Green](https://t.me/jerrygreen) to sent you an invite to give access. While that, [register on now.sh](https://zeit.co/github-setup), the deployment service. After you'll be invited, you will be able to see deployments here:
-
-- [zeit.co/bedrock](https://zeit.co/bedrock)
