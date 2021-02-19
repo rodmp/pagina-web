@@ -24,7 +24,7 @@
     "axios": "0.18.0",
     "date-fns": "1.30.1",
     "dotenv": "7.0.0",
-    "electron": "4.1.4",
+    "electron": "9.4.0",
     "electron-is-dev": "1.1.0",
     "electron-next": "3.1.5",
     "js-cookie": "2.2.0",
